@@ -1,9 +1,11 @@
 {
-    "name": "ezsystems/ezplatform-solr-search-engine",
-    "description": "Solr search engine implementation for eZ Platform",
+    "name": "ibexa/solr",
+    "description": "Solr search engine implementation for Ibexa",
     "license": "GPL-2.0-only",
-    "type": "ezplatform-bundle",
-    "homepage": "https://github.com/ezsystems/ezplatform-solr-search-engine",
+    "type": "ibexa-bundle",
+    "replace": {
+        "ezsystems/ezplatform-solr-search-engine": "*"
+    },
     "authors": [
         {
             "name": "eZ Systems dev team",
@@ -31,13 +33,19 @@
         "psr-4": {
             "EzSystems\\EzPlatformSolrSearchEngine\\": "lib",
             "EzSystems\\EzPlatformSolrSearchEngineBundle\\": "bundle",
-            "EzSystems\\EzPlatformSolrSearchEngine\\Tests\\SetupFactory\\": "tests/lib/SetupFactory"
+            "EzSystems\\EzPlatformSolrSearchEngine\\Tests\\SetupFactory\\": "tests/lib/SetupFactory",
+            "Ibexa\\Solr\\": "src/lib/",
+            "Ibexa\\Bundle\\Solr\\": "src/bundle/",
+            "Ibexa\\Contracts\\Solr\\": "src/contracts/",
+            "Ibexa\\Tests\\Solr\\SetupFactory\\": "tests/lib/SetupFactory"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "EzSystems\\EzPlatformSolrSearchEngine\\Tests\\": "tests/lib",
-            "EzSystems\\EzPlatformSolrSearchEngineBundle\\Tests\\": "tests/bundle"
+            "EzSystems\\EzPlatformSolrSearchEngineBundle\\Tests\\": "tests/bundle",
+            "Ibexa\\Tests\\Solr\\": "tests/lib/",
+            "Ibexa\\Tests\\Bundle\\Solr\\": "tests/bundle/"
         }
     },
     "scripts": {
@@ -46,7 +54,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "4.0.x-dev"
+            "dev-main": "4.0.x-dev"
         }
     }
 }
