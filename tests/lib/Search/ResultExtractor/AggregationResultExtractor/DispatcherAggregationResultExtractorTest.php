@@ -6,13 +6,13 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor;
+namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor;
 
 use eZ\Publish\API\Repository\Exceptions\NotImplementedException;
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
 use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\DispatcherAggregationResultExtractor;
+use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
+use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\DispatcherAggregationResultExtractor;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -97,3 +97,5 @@ final class DispatcherAggregationResultExtractorTest extends TestCase
         return $extractor;
     }
 }
+
+class_alias(DispatcherAggregationResultExtractorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\DispatcherAggregationResultExtractorTest');

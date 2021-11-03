@@ -6,10 +6,10 @@
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Gateway;
+namespace Ibexa\Tests\Solr\Gateway;
 
-use EzSystems\EzPlatformSolrSearchEngine\Gateway;
-use EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry;
+use Ibexa\Solr\Gateway;
+use Ibexa\Solr\Gateway\GatewayRegistry;
 use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 
@@ -90,3 +90,5 @@ class GatewayRegistryTest extends TestCase
         return $this->createMock(Gateway::class);
     }
 }
+
+class_alias(GatewayRegistryTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Gateway\GatewayRegistryTest');

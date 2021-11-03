@@ -8,11 +8,11 @@
  *
  * @version //autogentag//
  */
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Gateway;
+namespace Ibexa\Tests\Solr\Search\Gateway;
 
 use eZ\Publish\API\Repository\Exceptions\PropertyNotFoundException;
-use EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint;
-use EzSystems\EzPlatformSolrSearchEngine\Tests\Search\TestCase;
+use Ibexa\Solr\Gateway\Endpoint;
+use Ibexa\Tests\Solr\Search\TestCase;
 
 /**
  * Test case for native endpoint resolver.
@@ -99,3 +99,5 @@ class EndpointTest extends TestCase
         $actual = new Endpoint(['dsn' => 'https://10.10.10.10:5434/jolr?query']);
     }
 }
+
+class_alias(EndpointTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Gateway\EndpointTest');

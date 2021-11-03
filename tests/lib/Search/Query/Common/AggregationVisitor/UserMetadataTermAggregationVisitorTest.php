@@ -6,12 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor;
+namespace Ibexa\Tests\Solr\Search\Query\Common\AggregationVisitor;
 
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation;
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
-use EzSystems\EzPlatformSolrSearchEngine\Query\AggregationVisitor;
-use EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\UserMetadataTermAggregationVisitor;
+use Ibexa\Contracts\Solr\Query\AggregationVisitor;
+use Ibexa\Solr\Query\Common\AggregationVisitor\UserMetadataTermAggregationVisitor;
 
 final class UserMetadataTermAggregationVisitorTest extends AbstractAggregationVisitorTest
 {
@@ -71,3 +71,5 @@ final class UserMetadataTermAggregationVisitorTest extends AbstractAggregationVi
         ];
     }
 }
+
+class_alias(UserMetadataTermAggregationVisitorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor\UserMetadataTermAggregationVisitorTest');

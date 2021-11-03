@@ -8,9 +8,9 @@
  *
  * @version //autogentag//
  */
-namespace EzSystems\EzPlatformSolrSearchEngineBundle\Tests\DependencyInjection;
+namespace Ibexa\Tests\Bundle\Solr\DependencyInjection;
 
-use EzSystems\EzPlatformSolrSearchEngineBundle\DependencyInjection\EzSystemsEzPlatformSolrSearchEngineExtension;
+use Ibexa\Bundle\Solr\DependencyInjection\IbexaSolrExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
@@ -642,3 +642,5 @@ class EzPublishEzPlatformSolrSearchEngineExtensionTest extends AbstractExtension
         );
     }
 }
+
+class_alias(EzPublishEzPlatformSolrSearchEngineExtensionTest::class, 'EzSystems\EzPlatformSolrSearchEngineBundle\Tests\DependencyInjection\EzPublishEzPlatformSolrSearchEngineExtensionTest');

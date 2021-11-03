@@ -6,16 +6,16 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor;
+namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor;
 
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation;
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Range;
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
 use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult\RangeAggregationResult;
 use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult\RangeAggregationResultEntry;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\RangeAggregationResultExtractor;
+use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
+use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
+use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationResultExtractor;
 use stdClass;
 
 final class RangeAggregationResultExtractorTest extends AbstractAggregationResultExtractorTest
@@ -113,3 +113,5 @@ final class RangeAggregationResultExtractorTest extends AbstractAggregationResul
         return $bucket;
     }
 }
+
+class_alias(RangeAggregationResultExtractorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\RangeAggregationResultExtractorTest');

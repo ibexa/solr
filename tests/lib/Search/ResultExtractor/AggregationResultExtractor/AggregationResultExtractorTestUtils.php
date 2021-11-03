@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor;
+namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor;
 
 final class AggregationResultExtractorTestUtils
 {
@@ -20,3 +20,5 @@ final class AggregationResultExtractorTestUtils
         /* This class shouldn't be instantiated */
     }
 }
+
+class_alias(AggregationResultExtractorTestUtils::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\AggregationResultExtractorTestUtils');

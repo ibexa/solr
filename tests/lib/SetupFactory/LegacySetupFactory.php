@@ -4,7 +4,7 @@
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\SetupFactory;
+namespace Ibexa\Tests\Solr\SetupFactory;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
@@ -14,8 +14,8 @@ use eZ\Publish\Core\Base\Container\Compiler as BaseCompiler;
 use eZ\Publish\Core\Base\ServiceContainer;
 use eZ\Publish\Core\Persistence\Legacy\Content\Gateway as ContentGateway;
 use eZ\Publish\SPI\Persistence;
-use EzSystems\EzPlatformSolrSearchEngine\Container\Compiler;
-use EzSystems\EzPlatformSolrSearchEngine\Handler as SolrSearchHandler;
+use Ibexa\Solr\Container\Compiler;
+use Ibexa\Solr\Handler as SolrSearchHandler;
 use RuntimeException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -140,3 +140,5 @@ class LegacySetupFactory extends CoreLegacySetupFactory
         return self::CONFIGURATION_FILES_MAP[$coresSetup];
     }
 }
+
+class_alias(LegacySetupFactory::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\SetupFactory\LegacySetupFactory');

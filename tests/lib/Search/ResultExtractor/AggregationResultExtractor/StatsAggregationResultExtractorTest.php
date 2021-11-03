@@ -6,13 +6,13 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor;
+namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor;
 
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\AbstractStatsAggregation;
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
 use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult\StatsAggregationResult;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\StatsAggregationResultExtractor;
+use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
+use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\StatsAggregationResultExtractor;
 use stdClass;
 
 final class StatsAggregationResultExtractorTest extends AbstractAggregationResultExtractorTest
@@ -95,3 +95,5 @@ final class StatsAggregationResultExtractorTest extends AbstractAggregationResul
         return $data;
     }
 }
+
+class_alias(StatsAggregationResultExtractorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\StatsAggregationResultExtractorTest');
