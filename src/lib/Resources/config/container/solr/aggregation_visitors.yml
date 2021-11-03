@@ -5,30 +5,30 @@ services:
     public: false
 
   ezpublish.search.solr.query.content.aggregation_visitor.dispatcher:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\DispatcherAggregationVisitor
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\DispatcherAggregationVisitor
     arguments:
       $visitors: !tagged ezplatform.search.solr.query.content.aggregation_visitor
 
   ezpublish.search.solr.query.location.aggregation_visitor.dispatcher:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\DispatcherAggregationVisitor
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\DispatcherAggregationVisitor
     arguments:
       $visitors: !tagged ezplatform.search.solr.query.location.aggregation_visitor
 
   ### Factories
 
-  EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory:
+  Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory:
     arguments:
       $fieldNameResolver: '@ezpublish.search.common.field_name_resolver'
 
-  EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\RawAggregationVisitorFactory: ~
+  Ibexa\Solr\Query\Common\AggregationVisitor\Factory\RawAggregationVisitorFactory: ~
 
-  EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory: ~
+  Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory: ~
 
   ### Aggregation visitors
 
   ezpublish.search.solr.query.common.aggregation_visitor.content_type:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\TermAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\ContentTypeTermAggregation'
       $searchIndexFieldName: 'content_type_id_id'
@@ -37,8 +37,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.content_type_group:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\TermAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\ContentTypeGroupTermAggregation'
       $searchIndexFieldName: 'content_type_group_ids_mid'
@@ -47,8 +47,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.field.author_term:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\TermAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\AuthorTermAggregation'
       $searchIndexFieldName: 'aggregation_value'
@@ -57,8 +57,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.field.checkbox_term:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\TermAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\CheckboxTermAggregation'
       $searchIndexFieldName: 'value'
@@ -67,8 +67,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.field.date_range:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\RangeAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\DateRangeAggregation'
       $searchIndexFieldName: 'value'
@@ -77,8 +77,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.field.datetime_range:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\RangeAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\DateTimeRangeAggregation'
       $searchIndexFieldName: 'value'
@@ -87,8 +87,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.field.country_term:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\TermAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\CountryTermAggregation'
       $searchIndexFieldName: 'idc'
@@ -97,8 +97,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.field.float_range:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\RangeAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\FloatRangeAggregation'
       $searchIndexFieldName: 'value'
@@ -107,8 +107,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.field.float_stats:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\StatsAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createStatsAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\StatsAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createStatsAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\FloatStatsAggregation'
       $searchIndexFieldName: 'value'
@@ -117,8 +117,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.field.integer_range:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\RangeAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\IntegerRangeAggregation'
       $searchIndexFieldName: 'value'
@@ -127,8 +127,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.field.integer_stats:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\StatsAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createStatsAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\StatsAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createStatsAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\IntegerStatsAggregation'
       $searchIndexFieldName: 'value'
@@ -137,8 +137,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.field.keyword_term:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\TermAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\KeywordTermAggregation'
       $searchIndexFieldName: 'value'
@@ -147,8 +147,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.field.selection_term:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\TermAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\SelectionTermAggregation'
       $searchIndexFieldName: 'selected_option_value'
@@ -157,8 +157,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.field.time_range:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\RangeAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\TimeRangeAggregation'
       $searchIndexFieldName: 'value'
@@ -167,8 +167,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.language:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\TermAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\LanguageTermAggregation'
       $searchIndexFieldName: 'content_language_codes_raw_mid'
@@ -177,8 +177,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.raw_range:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\RangeAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\RawAggregationVisitorFactory', 'createRangeAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\RawAggregationVisitorFactory', 'createRangeAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\RawRangeAggregation'
     tags:
@@ -186,8 +186,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.raw_stats:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\StatsAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\RawAggregationVisitorFactory', 'createStatsAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\StatsAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\RawAggregationVisitorFactory', 'createStatsAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\RawStatsAggregation'
     tags:
@@ -195,8 +195,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.raw_term:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\TermAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\RawAggregationVisitorFactory', 'createTermAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\RawAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\RawTermAggregation'
     tags:
@@ -204,8 +204,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.common.aggregation_visitor.section:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\TermAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\SectionTermAggregation'
       $searchIndexFieldName: 'content_section_id_id'
@@ -213,17 +213,17 @@ services:
       - { name: ezplatform.search.solr.query.content.aggregation_visitor }
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
-  EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\DateMetadataRangeAggregationVisitor:
+  Ibexa\Solr\Query\Common\AggregationVisitor\DateMetadataRangeAggregationVisitor:
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_visitor }
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
-  EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\ObjectStateAggregationVisitor:
+  Ibexa\Solr\Query\Common\AggregationVisitor\ObjectStateAggregationVisitor:
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_visitor }
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
-  EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\UserMetadataTermAggregationVisitor:
+  Ibexa\Solr\Query\Common\AggregationVisitor\UserMetadataTermAggregationVisitor:
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_visitor }
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
@@ -231,8 +231,8 @@ services:
   ### Content specific visitors
 
   ezpublish.search.solr.query.content.aggregation_visitor.visibility:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\TermAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\VisibilityTermAggregation'
       $searchIndexFieldName: 'location_visible_b'
@@ -240,7 +240,7 @@ services:
       - { name: ezplatform.search.solr.query.content.aggregation_visitor }
 
   ezpublish.search.solr.query.content.aggregation_visitor.subtree:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\SubtreeTermAggregationVisitor
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\SubtreeTermAggregationVisitor
     arguments:
       $pathStringFieldName: 'location_path_string_mid'
       $locationIdFieldName: 'location_ancestors_mid'
@@ -250,8 +250,8 @@ services:
   ### Location specific visitors
 
   ezpublish.search.solr.query.location.aggregation_visitor.visibility:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\TermAggregationVisitor
-    factory: ['@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\VisibilityTermAggregation'
       $searchIndexFieldName: 'invisible_b'
@@ -259,8 +259,8 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.location.aggregation_visitor.location_children:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\LocationChildrenTermAggregationVisitor
-    factory: [ '@EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor' ]
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\LocationChildrenTermAggregationVisitor
+    factory: [ '@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor' ]
     arguments:
       $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Location\LocationChildrenTermAggregation'
       $searchIndexFieldName: 'parent_id_id'
@@ -268,7 +268,7 @@ services:
       - { name: ezplatform.search.solr.query.location.aggregation_visitor }
 
   ezpublish.search.solr.query.location.aggregation_visitor.subtree:
-    class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\SubtreeTermAggregationVisitor
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\SubtreeTermAggregationVisitor
     arguments:
       $pathStringFieldName: 'path_string_id'
       $locationIdFieldName: 'location_ancestors_mid'

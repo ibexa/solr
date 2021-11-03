@@ -1,16 +1,16 @@
 parameters:
-    ezpublish.search.solr.gateway.client.http.stream.class: EzSystems\EzPlatformSolrSearchEngine\Gateway\HttpClient\Stream
-    ezpublish.search.solr.query.common.criterion_visitor.aggregate.class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\Aggregate
-    ezpublish.search.solr.query.common.sort_clause_visitor.aggregate.class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\SortClauseVisitor\Aggregate
-    ezpublish.search.solr.query.common.facet_builder_visitor.aggregate.class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\FacetBuilderVisitor\Aggregate
-    ezpublish.search.solr.field_mapper.block.class: EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentFieldMapper\Aggregate
-    ezpublish.search.solr.field_mapper.block_translation.class: EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentTranslationFieldMapper\Aggregate
-    ezpublish.search.solr.field_mapper.content.class: EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentFieldMapper\Aggregate
-    ezpublish.search.solr.field_mapper.content_translation.class: EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentTranslationFieldMapper\Aggregate
-    ezpublish.search.solr.field_mapper.location.class: EzSystems\EzPlatformSolrSearchEngine\FieldMapper\LocationFieldMapper\Aggregate
-    ezpublish.search.solr.field_mapper.boost_factor_provider.class: EzSystems\EzPlatformSolrSearchEngine\FieldMapper\BoostFactorProvider
+    ezpublish.search.solr.gateway.client.http.stream.class: Ibexa\Solr\Gateway\HttpClient\Stream
+    ezpublish.search.solr.query.common.criterion_visitor.aggregate.class: Ibexa\Solr\Query\Common\CriterionVisitor\Aggregate
+    ezpublish.search.solr.query.common.sort_clause_visitor.aggregate.class: Ibexa\Solr\Query\Common\SortClauseVisitor\Aggregate
+    ezpublish.search.solr.query.common.facet_builder_visitor.aggregate.class: Ibexa\Solr\Query\Common\FacetBuilderVisitor\Aggregate
+    ezpublish.search.solr.field_mapper.block.class: Ibexa\Solr\FieldMapper\ContentFieldMapper\Aggregate
+    ezpublish.search.solr.field_mapper.block_translation.class: Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\Aggregate
+    ezpublish.search.solr.field_mapper.content.class: Ibexa\Solr\FieldMapper\ContentFieldMapper\Aggregate
+    ezpublish.search.solr.field_mapper.content_translation.class: Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\Aggregate
+    ezpublish.search.solr.field_mapper.location.class: Ibexa\Solr\FieldMapper\LocationFieldMapper\Aggregate
+    ezpublish.search.solr.field_mapper.boost_factor_provider.class: Ibexa\Solr\FieldMapper\BoostFactorProvider
     ezpublish.search.solr.field_mapper.boost_factor_provider.map: []
-    ezpublish.search.solr.field_mapper.indexing_depth_provider.class: \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\IndexingDepthProvider
+    ezpublish.search.solr.field_mapper.indexing_depth_provider.class: \Ibexa\Solr\FieldMapper\IndexingDepthProvider
     ezpublish.search.solr.field_mapper.indexing_depth_provider.map: []
     ezpublish.search.solr.field_mapper.indexing_depth_provider.default: 0
 

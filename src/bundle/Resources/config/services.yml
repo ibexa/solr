@@ -1,7 +1,7 @@
 parameters:
-    ezpublish.solr.engine_factory.class: EzSystems\EzPlatformSolrSearchEngineBundle\ApiLoader\SolrEngineFactory
-    ezpublish.solr.boost_factor_provider_factory.class: EzSystems\EzPlatformSolrSearchEngineBundle\ApiLoader\BoostFactorProviderFactory
-    ezpublish.solr.indexing_depth_provider_factory.class: EzSystems\EzPlatformSolrSearchEngineBundle\ApiLoader\IndexingDepthProviderFactory
+    ezpublish.solr.engine_factory.class: Ibexa\Bundle\Solr\ApiLoader\SolrEngineFactory
+    ezpublish.solr.boost_factor_provider_factory.class: Ibexa\Bundle\Solr\ApiLoader\BoostFactorProviderFactory
+    ezpublish.solr.indexing_depth_provider_factory.class: Ibexa\Bundle\Solr\ApiLoader\IndexingDepthProviderFactory
     ez_search_engine_solr.default_connection: ~
 
 services:
@@ -11,8 +11,8 @@ services:
             $repositoryConfigurationProvider: "@ezpublish.api.repository_configuration_provider"
             $defaultConnection: "%ez_search_engine_solr.default_connection%"
             $searchEngineClass: "%ezpublish.spi.search.solr.class%"
-            $gatewayRegistry: '@EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry'
-            $coreFilterRegistry: '@EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry'
+            $gatewayRegistry: '@Ibexa\Solr\Gateway\GatewayRegistry'
+            $coreFilterRegistry: '@Ibexa\Solr\CoreFilter\CoreFilterRegistry'
             $contentHandler: "@ezpublish.spi.persistence.content_handler"
             $documentMapper: "@ezpublish.search.solr.document_mapper"
             $contentResultExtractor: "@ezpublish.search.solr.result_extractor.content"
@@ -42,12 +42,12 @@ services:
 
     ezpublish.search.solr.gateway.distribution_strategy.abstract_standalone:
         abstract: true
-        class: EzSystems\EzPlatformSolrSearchEngine\Gateway\DistributionStrategy\StandaloneDistributionStrategy
+        class: Ibexa\Solr\Gateway\DistributionStrategy\StandaloneDistributionStrategy
         arguments:
             - "@ezpublish.search.solr.gateway.endpoint_registry"
 
     ezpublish.search.solr.gateway.distribution_strategy.abstract_cloud:
         abstract: true
-        class: EzSystems\EzPlatformSolrSearchEngine\Gateway\DistributionStrategy\CloudDistributionStrategy
+        class: Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy
         arguments:
             - "@ezpublish.search.solr.gateway.endpoint_registry"

@@ -10,17 +10,17 @@ imports:
 
 parameters:
     ezpublish.search.solr.connection.server: http://localhost:8983/solr/core0
-    ezpublish.spi.search.solr.class: EzSystems\EzPlatformSolrSearchEngine\Handler
-    ezpublish.search.solr.gateway.native.class: EzSystems\EzPlatformSolrSearchEngine\Gateway\Native
-    ezpublish.search.solr.gateway.endpoint_registry.class: EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointRegistry
-    ezpublish.search.solr.gateway.endpoint_resolver.native.class: EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointResolver\NativeEndpointResolver
-    ezpublish.search.solr.gateway.update_serializer.class: EzSystems\EzPlatformSolrSearchEngine\Gateway\UpdateSerializer
-    ezpublish.search.solr.core_filter.native.class: EzSystems\EzPlatformSolrSearchEngine\CoreFilter\NativeCoreFilter
-    ezpublish.search.solr.document_mapper.native.class: EzSystems\EzPlatformSolrSearchEngine\DocumentMapper\NativeDocumentMapper
-    ezpublish.search.solr.result_extractor.native.class: EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\NativeResultExtractor
-    ezpublish.search.solr.query_converter.class: EzSystems\EzPlatformSolrSearchEngine\Query\Common\QueryConverter\NativeQueryConverter
-    ezpublish.search.solr.boost_factor_provider.class: EzSystems\EzPlatformSolrSearchEngine\FieldMapper\BoostFactorProvider
-    ezpublish.search.solr.indexing_depth_provider.class: EzSystems\EzPlatformSolrSearchEngine\FieldMapper\IndexingDepthProvider
+    ezpublish.spi.search.solr.class: Ibexa\Solr\Handler
+    ezpublish.search.solr.gateway.native.class: Ibexa\Solr\Gateway\Native
+    ezpublish.search.solr.gateway.endpoint_registry.class: Ibexa\Solr\Gateway\EndpointRegistry
+    ezpublish.search.solr.gateway.endpoint_resolver.native.class: Ibexa\Solr\Gateway\EndpointResolver\NativeEndpointResolver
+    ezpublish.search.solr.gateway.update_serializer.class: Ibexa\Solr\Gateway\UpdateSerializer
+    ezpublish.search.solr.core_filter.native.class: Ibexa\Solr\CoreFilter\NativeCoreFilter
+    ezpublish.search.solr.document_mapper.native.class: Ibexa\Solr\DocumentMapper\NativeDocumentMapper
+    ezpublish.search.solr.result_extractor.native.class: Ibexa\Solr\ResultExtractor\NativeResultExtractor
+    ezpublish.search.solr.query_converter.class: Ibexa\Solr\Query\Common\QueryConverter\NativeQueryConverter
+    ezpublish.search.solr.boost_factor_provider.class: Ibexa\Solr\FieldMapper\BoostFactorProvider
+    ezpublish.search.solr.indexing_depth_provider.class: Ibexa\Solr\FieldMapper\IndexingDepthProvider
     # Endpoint resolver arguments must be set in order to be overrideable
     ezpublish.search.solr.entry_endpoints: []
     ezpublish.search.solr.cluster_endpoints: []
@@ -28,7 +28,7 @@ parameters:
     ezpublish.search.solr.main_translations_endpoint: null
 
 services:
-    EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry: ~
+    Ibexa\Solr\Gateway\GatewayRegistry: ~
 
     ezpublish.search.solr.gateway.endpoint_registry:
         class: "%ezpublish.search.solr.gateway.endpoint_registry.class%"
@@ -44,7 +44,7 @@ services:
     ezpublish.search.solr.gateway.endpoint_resolver:
         alias: ezpublish.search.solr.gateway.endpoint_resolver.native
 
-    EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry: ~
+    Ibexa\Solr\CoreFilter\CoreFilterRegistry: ~
 
     ezpublish.search.solr.core_filter.native:
         class: "%ezpublish.search.solr.core_filter.native.class%"
@@ -122,7 +122,7 @@ services:
             - "@ezpublish.search.common.field_name_generator"
 
     ezpublish.search.solr.gateway.distribution_strategy.standalone:
-        class: EzSystems\EzPlatformSolrSearchEngine\Gateway\DistributionStrategy\StandaloneDistributionStrategy
+        class: Ibexa\Solr\Gateway\DistributionStrategy\StandaloneDistributionStrategy
         arguments:
             - "@ezpublish.search.solr.gateway.endpoint_registry"
             - "@ezpublish.search.solr.gateway.endpoint_resolver"
@@ -155,7 +155,7 @@ services:
         lazy: true
 
     ezpublish.spi.search.solr.indexer:
-        class: EzSystems\EzPlatformSolrSearchEngine\Indexer
+        class: Ibexa\Solr\Indexer
         arguments:
             $logger: "@logger"
             $persistenceHandler: "@ezpublish.api.storage_engine"
