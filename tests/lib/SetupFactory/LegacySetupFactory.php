@@ -55,7 +55,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
 
     protected function externalBuildContainer(ContainerBuilder $containerBuilder)
     {
-        $settingsPath = __DIR__ . '/../../../lib/Resources/config/container/';
+        $settingsPath = __DIR__ . '/../../../src/lib/Resources/config/container/';
         $testSettingsPath = __DIR__ . '/../Resources/config/';
 
         $solrLoader = new YamlFileLoader($containerBuilder, new FileLocator($settingsPath));

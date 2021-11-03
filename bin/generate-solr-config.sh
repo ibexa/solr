@@ -15,15 +15,15 @@ This config can be used to configure solr on eZ Platform Cloud (Platform.sh) or 
 The script should be executed from the eZ Platform root directory.
 
 Help (this text):
-./vendor/ezsystems/ezplatform-solr-search-engine/bin/generate-solr-config.sh --help
+./vendor/ibexa/solr/bin/generate-solr-config.sh --help
 
 Usage with eZ Platform Cloud (arguments here can be skipped as they have default values):
-./vendor/ezsystems/ezplatform-solr-search-engine/bin/generate-solr-config.sh \\
+./vendor/ibexa/solr/bin/generate-solr-config.sh \\
   --destination-dir=.platform/configsets/solr6/conf \\
   --solr-version=7.7.2
 
 Usage with on-premise version of Solr:
-./vendor/ezsystems/ezplatform-solr-search-engine/bin/generate-solr-config.sh \\
+./vendor/ibexa/solr/bin/generate-solr-config.sh \\
   --destination-dir=/opt/solr/server/ez/template \\
   --solr-install-dir=/opt/solr
 
@@ -108,7 +108,7 @@ if [ "$SOLR_INSTALL_DIR" == "" ]; then
 fi
 
 mkdir -p $DESTINATION_DIR
-cp -a ${EZ_BUNDLE_PATH}/lib/Resources/config/solr/* $DESTINATION_DIR
+cp -a ${EZ_BUNDLE_PATH}/src/lib/Resources/config/solr/* $DESTINATION_DIR
 cp ${SOLR_INSTALL_DIR}/server/solr/configsets/_default/conf/{solrconfig.xml,stopwords.txt,synonyms.txt} $DESTINATION_DIR
 
 if [[ ! $DESTINATION_DIR =~ ^\.platform ]]; then
