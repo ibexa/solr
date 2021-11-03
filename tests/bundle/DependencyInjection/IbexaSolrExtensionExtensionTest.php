@@ -14,7 +14,7 @@ use Ibexa\Bundle\Solr\DependencyInjection\IbexaSolrExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
-class EzPublishEzPlatformSolrSearchEngineExtensionTest extends AbstractExtensionTestCase
+class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
 {
     /**
      * @var \EzSystems\EzPlatformSolrSearchEngineBundle\DependencyInjection\EzSystemsEzPlatformSolrSearchEngineExtension
@@ -23,7 +23,7 @@ class EzPublishEzPlatformSolrSearchEngineExtensionTest extends AbstractExtension
 
     protected function setUp(): void
     {
-        $this->extension = new EzSystemsEzPlatformSolrSearchEngineExtension();
+        $this->extension = new IbexaSolrExtension();
 
         parent::setUp();
     }
@@ -643,4 +643,4 @@ class EzPublishEzPlatformSolrSearchEngineExtensionTest extends AbstractExtension
     }
 }
 
-class_alias(EzPublishEzPlatformSolrSearchEngineExtensionTest::class, 'EzSystems\EzPlatformSolrSearchEngineBundle\Tests\DependencyInjection\EzPublishEzPlatformSolrSearchEngineExtensionTest');
+class_alias(IbexaSolrExtensionExtensionTest::class, 'EzSystems\EzPlatformSolrSearchEngineBundle\Tests\DependencyInjection\EzPublishEzPlatformSolrSearchEngineExtensionTest');
