@@ -10,6 +10,7 @@ namespace Ibexa\Solr\Query\Common\AggregationVisitor;
 
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation;
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver;
 
 final class RangeAggregationVisitor extends AbstractRangeAggregationVisitor
 {

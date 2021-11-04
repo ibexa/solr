@@ -15,6 +15,7 @@ use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult;
 use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult\RangeAggregationResult;
 use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult\RangeAggregationResultEntry;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
+use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
 use stdClass;
 
 final class RangeAggregationResultExtractor implements AggregationResultExtractor

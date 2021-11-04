@@ -13,6 +13,7 @@ use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult;
 use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult\TermAggregationResult;
 use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult\TermAggregationResultEntry;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
+use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\NullAggregationKeyMapper;
 use stdClass;
 

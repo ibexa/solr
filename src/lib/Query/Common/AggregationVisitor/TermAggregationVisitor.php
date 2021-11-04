@@ -9,6 +9,7 @@ namespace Ibexa\Solr\Query\Common\AggregationVisitor;
 
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\AbstractTermAggregation;
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver;
 
 final class TermAggregationVisitor extends AbstractTermAggregationVisitor
 {
