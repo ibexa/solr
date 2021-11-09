@@ -21,7 +21,9 @@
         "symfony/dependency-injection": "^5.0",
         "symfony/console": "^5.0",
         "symfony/config": "^5.0",
-        "symfony/framework-bundle": "^5.0"
+        "symfony/framework-bundle": "^5.0",
+        "ibexa/core": "dev-main",
+        "ibexa/namespace-compatibility": "dev-main"
     },
     "require-dev": {
         "ezsystems/doctrine-dbal-schema": "^4.0@dev",
@@ -31,21 +33,23 @@
     },
     "autoload": {
         "psr-4": {
-            "EzSystems\\EzPlatformSolrSearchEngine\\": "lib",
-            "EzSystems\\EzPlatformSolrSearchEngineBundle\\": "bundle",
-            "EzSystems\\EzPlatformSolrSearchEngine\\Tests\\SetupFactory\\": "tests/lib/SetupFactory",
             "Ibexa\\Solr\\": "src/lib/",
             "Ibexa\\Bundle\\Solr\\": "src/bundle/",
             "Ibexa\\Contracts\\Solr\\": "src/contracts/",
+            "EzSystems\\EzPlatformSolrSearchEngine\\": "lib",
+            "EzSystems\\EzPlatformSolrSearchEngineBundle\\": "bundle",
+            "EzSystems\\EzPlatformSolrSearchEngine\\Tests\\SetupFactory\\": "tests/lib/SetupFactory",
             "Ibexa\\Tests\\Solr\\SetupFactory\\": "tests/lib/SetupFactory"
         }
     },
     "autoload-dev": {
         "psr-4": {
+            "Ibexa\\Tests\\Bundle\\Solr\\": "tests/bundle/",
             "EzSystems\\EzPlatformSolrSearchEngine\\Tests\\": "tests/lib",
             "EzSystems\\EzPlatformSolrSearchEngineBundle\\Tests\\": "tests/bundle",
-            "Ibexa\\Tests\\Solr\\": "tests/lib/",
-            "Ibexa\\Tests\\Bundle\\Solr\\": "tests/bundle/"
+            "Ibexa\\Tests\\Integration\\Core\\": "vendor/ibexa/core/tests/integration/Core",
+            "Ibexa\\Tests\\Core\\": "vendor/ibexa/core/tests/lib",
+            "Ibexa\\Tests\\Bundle\\Core\\":  "vendor/ibexa/core/tests/bundle"
         }
     },
     "scripts": {
@@ -55,6 +59,16 @@
     "extra": {
         "branch-alias": {
             "dev-main": "4.0.x-dev"
+        }
+    },
+    "repositories": {
+        "core": {
+            "type": "vcs",
+            "url": "git@github.com:ibexa/core.git"
+        },
+        "namespace-compatibility": {
+            "type": "vcs",
+            "url": "git@github.com:ibexa/namespace-compatibility.git"
         }
     }
 }
