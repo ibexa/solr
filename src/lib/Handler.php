@@ -18,6 +18,7 @@ use eZ\Publish\SPI\Persistence\Content;
 use eZ\Publish\SPI\Persistence\Content\Handler as ContentHandler;
 use eZ\Publish\SPI\Persistence\Content\Location;
 use eZ\Publish\SPI\Search\VersatileHandler;
+use Ibexa\Contracts\Solr\DocumentMapper;
 
 /**
  * The Content Search handler retrieves sets of of Content objects, based on a
