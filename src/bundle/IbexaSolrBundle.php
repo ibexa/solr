@@ -10,6 +10,7 @@
  */
 namespace Ibexa\Bundle\Solr;
 
+use Ibexa\Bundle\Solr\DependencyInjection\IbexaSolrExtension;
 use Ibexa\Solr\Container\Compiler\CoreFilterRegistryPass;
 use Ibexa\Solr\Container\Compiler\GatewayRegistryPass;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -47,7 +48,7 @@ class IbexaSolrBundle extends Bundle
     public function getContainerExtension()
     {
         if (!isset($this->extension)) {
-            $this->extension = new DependencyInjection\EzSystemsEzPlatformSolrSearchEngineExtension();
+            $this->extension = new IbexaSolrExtension();
         }
 
         return $this->extension;
