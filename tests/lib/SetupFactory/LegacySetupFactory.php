@@ -10,14 +10,18 @@ use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
 use eZ\Publish\API\Repository\Tests\SearchServiceTranslationLanguageFallbackTest;
 use eZ\Publish\API\Repository\Tests\SetupFactory\Legacy as CoreLegacySetupFactory;
-use eZ\Publish\Core\Base\Container\Compiler as BaseCompiler;
+use eZ\Publish\Core\Base\Container\Compiler\Search\AggregateFieldValueMapperPass;
+use eZ\Publish\Core\Base\Container\Compiler\Search\FieldRegistryPass;
+use Ibexa\Bundle\NamespaceCompatibility\DependencyInjection\Compiler\AliasDecoratorCompatibilityPass;
+use Ibexa\Bundle\NamespaceCompatibility\DependencyInjection\Compiler\ServiceCompatibilityPass;
+use Ibexa\Solr\Container\Compiler;
 use eZ\Publish\Core\Base\ServiceContainer;
 use eZ\Publish\Core\Persistence\Legacy\Content\Gateway as ContentGateway;
-use eZ\Publish\SPI\Persistence;
-use Ibexa\Solr\Container\Compiler;
+use eZ\Publish\SPI\Persistence\Content\Handler;
 use Ibexa\Solr\Handler as SolrSearchHandler;
 use RuntimeException;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
@@ -55,8 +59,26 @@ class LegacySetupFactory extends CoreLegacySetupFactory
 
     protected function externalBuildContainer(ContainerBuilder $containerBuilder)
     {
-        $settingsPath = __DIR__ . '/../../../src/lib/Resources/config/container/';
-        $testSettingsPath = __DIR__ . '/../Resources/config/';
+        $containerBuilder->addCompilerPass(
+            new ServiceCompatibilityPass(),
+            PassConfig::TYPE_BEFORE_OPTIMIZATION,
+            128
+        );
+        $containerBuilder->addCompilerPass(
+            new AliasDecoratorCompatibilityPass(),
+            PassConfig::TYPE_BEFORE_OPTIMIZATION,
+            127
+        );
+
+        parent::externalBuildContainer($containerBuilder);
+
+        $this->loadSolrSettings($containerBuilder);
+    }
+
+    protected function loadSolrSettings(ContainerBuilder $containerBuilder): void
+    {
+        $settingsPath = realpath(__DIR__ . '/../../../src/lib/Resources/config/container/');
+        $testSettingsPath = realpath(__DIR__ . '/../Resources/config/');
 
         $solrLoader = new YamlFileLoader($containerBuilder, new FileLocator($settingsPath));
         $solrLoader->load('solr.yml');
@@ -73,13 +95,13 @@ class LegacySetupFactory extends CoreLegacySetupFactory
         $containerBuilder->addCompilerPass(new Compiler\AggregateFacetBuilderVisitorPass());
         $containerBuilder->addCompilerPass(new Compiler\AggregateSortClauseVisitorPass());
         $containerBuilder->addCompilerPass(new Compiler\EndpointRegistryPass());
-        $containerBuilder->addCompilerPass(new BaseCompiler\Search\AggregateFieldValueMapperPass());
-        $containerBuilder->addCompilerPass(new BaseCompiler\Search\FieldRegistryPass());
+        $containerBuilder->addCompilerPass(new AggregateFieldValueMapperPass());
+        $containerBuilder->addCompilerPass(new FieldRegistryPass());
     }
 
     private function getPersistenceContentHandler(
         ServiceContainer $serviceContainer
-    ): Persistence\Content\Handler {
+    ): Handler {
         /** @var \eZ\Publish\SPI\Persistence\Content\Handler $contentHandler */
         $contentHandler = $serviceContainer->get('ezpublish.spi.persistence.content_handler');
 
