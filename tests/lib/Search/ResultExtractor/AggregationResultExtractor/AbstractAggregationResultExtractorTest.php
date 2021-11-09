@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor;
+namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor;
 
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
 use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor;
+use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -62,3 +62,5 @@ abstract class AbstractAggregationResultExtractorTest extends TestCase
 
     abstract public function dataProviderForTestExtract(): iterable;
 }
+
+class_alias(AbstractAggregationResultExtractorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\AbstractAggregationResultExtractorTest');

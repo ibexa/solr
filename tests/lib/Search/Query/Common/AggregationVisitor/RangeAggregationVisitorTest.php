@@ -6,14 +6,14 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor;
+namespace Ibexa\Tests\Solr\Search\Query\Common\AggregationVisitor;
 
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation;
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Range;
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
-use EzSystems\EzPlatformSolrSearchEngine\Query\AggregationVisitor;
-use EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\AggregationFieldResolver;
-use EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\RangeAggregationVisitor;
+use Ibexa\Contracts\Solr\Query\AggregationVisitor;
+use Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver;
+use Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor;
 
 final class RangeAggregationVisitorTest extends AbstractAggregationVisitorTest
 {
@@ -84,3 +84,5 @@ final class RangeAggregationVisitorTest extends AbstractAggregationVisitorTest
         ];
     }
 }
+
+class_alias(RangeAggregationVisitorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor\RangeAggregationVisitorTest');

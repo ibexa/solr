@@ -6,15 +6,15 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor;
+namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor;
 
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\AbstractTermAggregation;
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
 use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult\TermAggregationResult;
 use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult\TermAggregationResultEntry;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor;
+use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
+use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
+use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor;
 use stdClass;
 
 final class TermAggregationResultExtractorTest extends AbstractAggregationResultExtractorTest
@@ -116,3 +116,5 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
         return $bucket;
     }
 }
+
+class_alias(TermAggregationResultExtractorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractorTest');

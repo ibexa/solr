@@ -8,7 +8,7 @@
  *
  * @version //autogentag//
  */
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search;
+namespace Ibexa\Tests\Solr\Search;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
@@ -18,3 +18,5 @@ use PHPUnit\Framework\TestCase as BaseTestCase;
 abstract class TestCase extends BaseTestCase
 {
 }
+
+class_alias(TestCase::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\TestCase');

@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor;
+namespace Ibexa\Tests\Solr\Search\Query\Common\AggregationVisitor;
 
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
-use EzSystems\EzPlatformSolrSearchEngine\Query\AggregationVisitor;
+use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use PHPUnit\Framework\TestCase;
 
 abstract class AbstractAggregationVisitorTest extends TestCase
@@ -74,3 +74,5 @@ abstract class AbstractAggregationVisitorTest extends TestCase
         // Overwrite in parent class to configure additional mocks
     }
 }
+
+class_alias(AbstractAggregationVisitorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor\AbstractAggregationVisitorTest');

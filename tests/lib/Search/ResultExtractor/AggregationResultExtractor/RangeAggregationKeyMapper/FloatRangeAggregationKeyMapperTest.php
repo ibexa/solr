@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
+namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
 
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\FloatRangeAggregationKeyMapper;
+use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
+use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\FloatRangeAggregationKeyMapper;
 
 final class FloatRangeAggregationKeyMapperTest extends AbstractRangeAggregationKeyMapperTest
 {
@@ -35,3 +35,5 @@ final class FloatRangeAggregationKeyMapperTest extends AbstractRangeAggregationK
         return new FloatRangeAggregationKeyMapper();
     }
 }
+
+class_alias(FloatRangeAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\FloatRangeAggregationKeyMapperTest');

@@ -6,15 +6,15 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
+namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
 use eZ\Publish\API\Repository\UserService;
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation;
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
 use eZ\Publish\API\Repository\Values\User\User;
 use eZ\Publish\API\Repository\Values\User\UserGroup;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\UserMetadataAggregationKeyMapper;
-use EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\AggregationResultExtractorTestUtils;
+use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\UserMetadataAggregationKeyMapper;
+use Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\AggregationResultExtractorTestUtils;
 use PHPUnit\Framework\TestCase;
 
 final class UserMetadataAggregationKeyMapperTest extends TestCase
@@ -110,3 +110,5 @@ final class UserMetadataAggregationKeyMapperTest extends TestCase
         return $users;
     }
 }
+
+class_alias(UserMetadataAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\UserMetadataAggregationKeyMapperTest');

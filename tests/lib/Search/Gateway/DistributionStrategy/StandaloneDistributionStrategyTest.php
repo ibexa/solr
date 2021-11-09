@@ -6,12 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Gateway\DistributionStrategy;
+namespace Ibexa\Tests\Solr\Search\Gateway\DistributionStrategy;
 
-use EzSystems\EzPlatformSolrSearchEngine\Gateway\DistributionStrategy\StandaloneDistributionStrategy;
-use EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint;
-use EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointRegistry;
-use EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointResolver;
+use Ibexa\Solr\Gateway\DistributionStrategy\StandaloneDistributionStrategy;
+use Ibexa\Solr\Gateway\Endpoint;
+use Ibexa\Solr\Gateway\EndpointRegistry;
+use Ibexa\Solr\Gateway\EndpointResolver;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -95,3 +95,5 @@ class StandaloneDistributionStrategyTest extends TestCase
         return $endpointRegistry;
     }
 }
+
+class_alias(StandaloneDistributionStrategyTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Gateway\DistributionStrategy\StandaloneDistributionStrategyTest');

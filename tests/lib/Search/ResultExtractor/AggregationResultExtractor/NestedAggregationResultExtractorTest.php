@@ -6,12 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor;
+namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor;
 
 use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
 use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\NestedAggregationResultExtractor;
+use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
+use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\NestedAggregationResultExtractor;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -84,3 +84,5 @@ final class NestedAggregationResultExtractorTest extends TestCase
         );
     }
 }
+
+class_alias(NestedAggregationResultExtractorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\NestedAggregationResultExtractorTest');

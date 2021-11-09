@@ -6,12 +6,12 @@
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\FieldMapper;
+namespace Ibexa\Tests\Solr\Search\FieldMapper;
 
 use eZ\Publish\SPI\Persistence\Content\Type as SPIContentType;
 use eZ\Publish\SPI\Persistence\Content\Type\FieldDefinition as SPIFieldDefinition;
-use EzSystems\EzPlatformSolrSearchEngine\FieldMapper\BoostFactorProvider;
-use EzSystems\EzPlatformSolrSearchEngine\Tests\Search\TestCase;
+use Ibexa\Solr\FieldMapper\BoostFactorProvider;
+use Ibexa\Tests\Solr\Search\TestCase;
 
 /**
  * Test case for the boost factor provider.
@@ -280,3 +280,5 @@ class BoostFactorProviderTest extends TestCase
         );
     }
 }
+
+class_alias(BoostFactorProviderTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\FieldMapper\BoostFactorProviderTest');

@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\FieldMapper;
+namespace Ibexa\Tests\Solr\Search\FieldMapper;
 
 use eZ\Publish\SPI\Persistence\Content\Type as SPIContentType;
-use EzSystems\EzPlatformSolrSearchEngine\FieldMapper\IndexingDepthProvider;
+use Ibexa\Solr\FieldMapper\IndexingDepthProvider;
 use PHPUnit\Framework\TestCase;
 
 class IndexingDepthProviderTest extends TestCase
@@ -56,3 +56,5 @@ class IndexingDepthProviderTest extends TestCase
         ]);
     }
 }
+
+class_alias(IndexingDepthProviderTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\FieldMapper\IndexingDepthProviderTest');

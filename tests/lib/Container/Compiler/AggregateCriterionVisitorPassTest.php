@@ -8,9 +8,9 @@
  *
  * @version //autogentag//
  */
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Container\Compiler;
+namespace Ibexa\Tests\Solr\Container\Compiler;
 
-use EzSystems\EzPlatformSolrSearchEngine\Container\Compiler\AggregateCriterionVisitorPass;
+use Ibexa\Solr\Container\Compiler\AggregateCriterionVisitorPass;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -54,3 +54,5 @@ class AggregateCriterionVisitorPassTest extends AbstractCompilerPassTestCase
         );
     }
 }
+
+class_alias(AggregateCriterionVisitorPassTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Container\Compiler\AggregateCriterionVisitorPassTest');

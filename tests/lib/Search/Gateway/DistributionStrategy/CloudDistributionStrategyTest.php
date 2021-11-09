@@ -6,12 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Gateway\DistributionStrategy;
+namespace Ibexa\Tests\Solr\Search\Gateway\DistributionStrategy;
 
-use EzSystems\EzPlatformSolrSearchEngine\Gateway\DistributionStrategy\CloudDistributionStrategy;
-use EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint;
-use EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointRegistry;
-use EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointResolver;
+use Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy;
+use Ibexa\Solr\Gateway\Endpoint;
+use Ibexa\Solr\Gateway\EndpointRegistry;
+use Ibexa\Solr\Gateway\EndpointResolver;
 use PHPUnit\Framework\TestCase;
 
 class CloudDistributionStrategyTest extends TestCase
@@ -87,3 +87,5 @@ class CloudDistributionStrategyTest extends TestCase
         ], $this->distributionStrategy->getSearchParameters($parameters, $languagesSettings));
     }
 }
+
+class_alias(CloudDistributionStrategyTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Gateway\DistributionStrategy\CloudDistributionStrategyTest');

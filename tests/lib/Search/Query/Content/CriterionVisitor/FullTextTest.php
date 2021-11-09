@@ -8,15 +8,15 @@
  *
  * @version //autogentag//
  */
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Content\CriterionVisitor;
+namespace Ibexa\Tests\Solr\Search\Query\Content\CriterionVisitor;
 
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use eZ\Publish\Core\FieldType\TextLine\SearchField;
 use eZ\Publish\Core\Search\Common\FieldNameResolver;
 use eZ\Publish\SPI\Search\FieldType\StringField;
-use EzSystems\EzPlatformSolrSearchEngine\Query\Common\QueryTranslator\Generator\WordVisitor;
-use EzSystems\EzPlatformSolrSearchEngine\Query\Content\CriterionVisitor\FullText;
-use EzSystems\EzPlatformSolrSearchEngine\Tests\Search\TestCase;
+use Ibexa\Solr\Query\Common\QueryTranslator\Generator\WordVisitor;
+use Ibexa\Solr\Query\Content\CriterionVisitor\FullText;
+use Ibexa\Tests\Solr\Search\TestCase;
 use QueryTranslator\Languages\Galach\Generators;
 use QueryTranslator\Languages\Galach\Parser;
 use QueryTranslator\Languages\Galach\TokenExtractor\Text;
@@ -291,3 +291,5 @@ class FullTextTest extends TestCase
         );
     }
 }
+
+class_alias(FullTextTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Content\CriterionVisitor\FullTextTest');
