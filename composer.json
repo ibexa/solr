@@ -36,10 +36,10 @@
             "Ibexa\\Solr\\": "src/lib/",
             "Ibexa\\Bundle\\Solr\\": "src/bundle/",
             "Ibexa\\Contracts\\Solr\\": "src/contracts/",
+            "Ibexa\\Tests\\Solr\\SetupFactory\\": "tests/lib/SetupFactory/",
             "EzSystems\\EzPlatformSolrSearchEngine\\": "src/lib/",
             "EzSystems\\EzPlatformSolrSearchEngineBundle\\": "src/bundle/",
-            "EzSystems\\EzPlatformSolrSearchEngine\\Tests\\SetupFactory\\": "tests/lib/SetupFactory/",
-            "Ibexa\\Tests\\Solr\\SetupFactory\\": "tests/lib/SetupFactory/"
+            "EzSystems\\EzPlatformSolrSearchEngine\\Tests\\SetupFactory\\": "tests/lib/SetupFactory/"
         }
     },
     "autoload-dev": {
