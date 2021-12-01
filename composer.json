@@ -51,7 +51,7 @@
         }
     },
     "scripts": {
-        "fix-cs": "php-cs-fixer fix -v --show-progress=estimating",
+        "fix-cs": "php-cs-fixer fix --config=.php-cs-fixer.php --show-progress=dots",
         "check-cs": "php-cs-fixer fix --dry-run -v --show-progress=estimating"
     },
     "extra": {
