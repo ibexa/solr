@@ -16,13 +16,13 @@ use PHPUnit\Framework\TestCase;
 
 class CloudDistributionStrategyTest extends TestCase
 {
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Gateway\DistributionStrategy\CloudDistributionStrategy */
+    /** @var \Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy */
     private $distributionStrategy;
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointResolver|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Ibexa\Solr\Gateway\EndpointResolver|\PHPUnit\Framework\MockObject\MockObject */
     private $endpointResolver;
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointRegistry|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Ibexa\Solr\Gateway\EndpointRegistry|\PHPUnit\Framework\MockObject\MockObject */
     private $endpointRegistry;
 
     protected function setUp(): void

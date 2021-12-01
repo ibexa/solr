@@ -10,8 +10,8 @@
  */
 namespace Ibexa\Solr\Query\Common\CriterionVisitor\DateMetadata;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
 use Ibexa\Solr\Query\Common\CriterionVisitor\DateMetadata;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
@@ -39,7 +39,7 @@ class ModifiedIn extends DateMetadata
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Query\CriterionVisitor $subVisitor
+     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      *
      * @return string
      */

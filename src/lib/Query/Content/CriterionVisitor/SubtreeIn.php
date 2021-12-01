@@ -10,9 +10,9 @@
  */
 namespace Ibexa\Solr\Query\Content\CriterionVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion\Operator;
-use eZ\Publish\Core\Repository\Values\Content\Query\Criterion\PermissionSubtree;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Core\Repository\Values\Content\Query\Criterion\PermissionSubtree;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 /**
@@ -36,7 +36,7 @@ class SubtreeIn extends CriterionVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param CriterionVisitor $subVisitor
+     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      *
      * @return string
      */

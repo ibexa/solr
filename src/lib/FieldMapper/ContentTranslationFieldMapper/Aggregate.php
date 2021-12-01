@@ -8,7 +8,7 @@
  */
 namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
-use eZ\Publish\SPI\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
 
 /**
@@ -19,12 +19,12 @@ class Aggregate extends ContentTranslationFieldMapper
     /**
      * An array of aggregated field mappers, sorted by priority.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentTranslationFieldMapper[]
+     * @var \Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper[]
      */
     protected $mappers = [];
 
     /**
-     * @param \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentTranslationFieldMapper[] $mappers
+     * @param \Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper[] $mappers
      *        An array of mappers, sorted by priority.
      */
     public function __construct(array $mappers = [])

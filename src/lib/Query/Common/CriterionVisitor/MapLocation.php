@@ -10,8 +10,8 @@
  */
 namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
-use eZ\Publish\Core\Search\Common\FieldNameResolver;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Core\Search\Common\FieldNameResolver;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 /**
@@ -22,7 +22,7 @@ abstract class MapLocation extends CriterionVisitor
     /**
      * Field map.
      *
-     * @var \eZ\Publish\Core\Search\Common\FieldNameResolver
+     * @var \Ibexa\Core\Search\Common\FieldNameResolver
      */
     protected $fieldNameResolver;
 

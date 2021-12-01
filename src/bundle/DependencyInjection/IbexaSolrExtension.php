@@ -98,7 +98,7 @@ class IbexaSolrExtension extends Extension
      * Loads a specific configuration.
      *
      * @param array $configs An array of configuration values
-     * @param ContainerBuilder $container A ContainerBuilder instance
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container A ContainerBuilder instance
      *
      * @throws \InvalidArgumentException When provided tag is not defined in this extension
      *
@@ -173,7 +173,7 @@ class IbexaSolrExtension extends Extension
     /**
      * Creates needed search services for given connection name and parameters.
      *
-     * @param ContainerBuilder $container
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      * @param string $connectionName
      * @param array $connectionParams
      */
@@ -228,7 +228,7 @@ class IbexaSolrExtension extends Extension
     /**
      * Creates boost factor map parameter for a given $connectionName.
      *
-     * @param ContainerBuilder $container
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      * @param string $connectionName
      * @param array $connectionParams
      */
@@ -244,7 +244,7 @@ class IbexaSolrExtension extends Extension
     /**
      * Creates indexing depth map parameter for a given $connectionName.
      *
-     * @param ContainerBuilder $container
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      * @param string $connectionName
      * @param array $connectionParams
      */
@@ -285,7 +285,7 @@ class IbexaSolrExtension extends Extension
     /**
      * Builds boost factor map from the given $config.
      *
-     * @see \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\BoostFactorProvider::$map
+     * @see \Ibexa\Solr\FieldMapper\BoostFactorProvider::$map
      *
      * @param array $config
      *

@@ -8,16 +8,16 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\Exceptions\UnauthorizedException;
-use eZ\Publish\API\Repository\UserService;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
+use Ibexa\Contracts\Core\Repository\UserService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
 final class UserMetadataAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    /** @var \eZ\Publish\API\Repository\UserService */
+    /** @var \Ibexa\Contracts\Core\Repository\UserService */
     private $userService;
 
     public function __construct(UserService $userService)
@@ -26,10 +26,10 @@ final class UserMetadataAggregationKeyMapper implements TermAggregationKeyMapper
     }
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation $aggregation
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation $aggregation
      * @param string[] $keys
      *
-     * @return \eZ\Publish\API\Repository\Values\User\User[]
+     * @return \Ibexa\Contracts\Core\Repository\Values\User\User[]
      */
     public function map(Aggregation $aggregation, array $languageFilter, array $keys): array
     {

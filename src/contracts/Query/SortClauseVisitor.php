@@ -10,7 +10,7 @@
  */
 namespace Ibexa\Contracts\Solr\Query;
 
-use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
 
 /**
  * Visits the sort clause into a Solr query.

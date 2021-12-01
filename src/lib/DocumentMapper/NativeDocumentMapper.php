@@ -10,10 +10,10 @@
  */
 namespace Ibexa\Solr\DocumentMapper;
 
-use eZ\Publish\SPI\Persistence\Content;
-use eZ\Publish\SPI\Persistence\Content\Location;
-use eZ\Publish\SPI\Persistence\Content\Location\Handler as LocationHandler;
-use eZ\Publish\SPI\Search\Document;
+use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content\Location;
+use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
+use Ibexa\Contracts\Core\Search\Document;
 use Ibexa\Contracts\Solr\DocumentMapper;
 use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
 use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
@@ -25,34 +25,34 @@ use Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper;
 class NativeDocumentMapper implements DocumentMapper
 {
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentFieldMapper
+     * @var \Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper
      */
     private $blockFieldMapper;
 
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentTranslationFieldMapper
+     * @var \Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper
      */
     private $blockTranslationFieldMapper;
 
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentFieldMapper
+     * @var \Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper
      */
     private $contentFieldMapper;
 
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentTranslationFieldMapper
+     * @var \Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper
      */
     private $contentTranslationFieldMapper;
 
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\LocationFieldMapper
+     * @var \Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper
      */
     private $locationFieldMapper;
 
     /**
      * Location handler.
      *
-     * @var \eZ\Publish\SPI\Persistence\Content\Location\Handler
+     * @var \Ibexa\Contracts\Core\Persistence\Content\Location\Handler
      */
     protected $locationHandler;
 
@@ -78,7 +78,7 @@ class NativeDocumentMapper implements DocumentMapper
     /**
      * Maps given Content to a Document.
      *
-     * @return \eZ\Publish\SPI\Search\Document[]
+     * @return \Ibexa\Contracts\Core\Search\Document[]
      */
     public function mapContentBlock(Content $content)
     {
@@ -187,7 +187,7 @@ class NativeDocumentMapper implements DocumentMapper
      * Returns an array of fields for the given $content, to be added to the
      * corresponding block documents.
      *
-     * @return \eZ\Publish\SPI\Search\Field[]
+     * @return \Ibexa\Contracts\Core\Search\Field[]
      */
     private function getBlockFields(Content $content)
     {
@@ -206,7 +206,7 @@ class NativeDocumentMapper implements DocumentMapper
      *
      * @param string $languageCode
      *
-     * @return \eZ\Publish\SPI\Search\Field[]
+     * @return \Ibexa\Contracts\Core\Search\Field[]
      */
     private function getBlockTranslationFields(Content $content, $languageCode)
     {
@@ -223,7 +223,7 @@ class NativeDocumentMapper implements DocumentMapper
      * Returns an array of fields for the given $content, to be added to the corresponding
      * Content document.
      *
-     * @return \eZ\Publish\SPI\Search\Field[]
+     * @return \Ibexa\Contracts\Core\Search\Field[]
      */
     private function getContentFields(Content $content)
     {
@@ -242,7 +242,7 @@ class NativeDocumentMapper implements DocumentMapper
      *
      * @param string $languageCode
      *
-     * @return \eZ\Publish\SPI\Search\Field[]
+     * @return \Ibexa\Contracts\Core\Search\Field[]
      */
     private function getContentTranslationFields(Content $content, $languageCode)
     {
@@ -259,7 +259,7 @@ class NativeDocumentMapper implements DocumentMapper
      * Returns an array of fields for the given $location, to be added to the corresponding
      * Location document.
      *
-     * @return \eZ\Publish\SPI\Search\Field[]
+     * @return \Ibexa\Contracts\Core\Search\Field[]
      */
     private function getLocationFields(Location $location)
     {

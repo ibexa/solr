@@ -10,7 +10,7 @@
  */
 namespace Ibexa\Solr\Query\Location\CriterionVisitor\Location;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 /**
@@ -31,7 +31,7 @@ class IsMainLocation extends CriterionVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Query\CriterionVisitor $subVisitor
+     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      *
      * @return string
      */

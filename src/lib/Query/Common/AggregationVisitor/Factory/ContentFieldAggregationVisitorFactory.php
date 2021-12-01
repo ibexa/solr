@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Common\AggregationVisitor\Factory;
 
-use eZ\Publish\Core\Search\Common\FieldNameResolver;
+use Ibexa\Core\Search\Common\FieldNameResolver;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use Ibexa\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver\ContentFieldAggregationFieldResolver;
 use Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor;
@@ -16,7 +16,7 @@ use Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor;
 
 final class ContentFieldAggregationVisitorFactory
 {
-    /** @var \eZ\Publish\Core\Search\Common\FieldNameResolver */
+    /** @var \Ibexa\Core\Search\Common\FieldNameResolver */
     private $fieldNameResolver;
 
     public function __construct(FieldNameResolver $fieldNameResolver)

@@ -8,7 +8,7 @@
  */
 namespace Ibexa\Solr\Query;
 
-use eZ\Publish\API\Repository\Values\Content\Query\FacetBuilder;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder;
 
 /**
  * Visits Solr results into correct facet and facet builder combination.
@@ -22,7 +22,7 @@ interface FacetFieldVisitor
      *
      * @param string $field
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Search\Facet
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\Facet
      */
     public function mapField($field, array $data, FacetBuilder $facetBuilder);
 

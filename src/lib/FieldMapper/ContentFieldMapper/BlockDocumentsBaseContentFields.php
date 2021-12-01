@@ -8,14 +8,14 @@
  */
 namespace Ibexa\Solr\FieldMapper\ContentFieldMapper;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\SPI\Persistence\Content;
-use eZ\Publish\SPI\Persistence\Content\Location\Handler as LocationHandler;
-use eZ\Publish\SPI\Persistence\Content\ObjectState\Handler as ObjectStateHandler;
-use eZ\Publish\SPI\Persistence\Content\Section\Handler as SectionHandler;
-use eZ\Publish\SPI\Persistence\Content\Type\Handler as ContentTypeHandler;
-use eZ\Publish\SPI\Search\Field;
-use eZ\Publish\SPI\Search\FieldType;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
+use Ibexa\Contracts\Core\Persistence\Content\ObjectState\Handler as ObjectStateHandler;
+use Ibexa\Contracts\Core\Persistence\Content\Section\Handler as SectionHandler;
+use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
+use Ibexa\Contracts\Core\Search\Field;
+use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
 
 /**
@@ -24,22 +24,22 @@ use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
 class BlockDocumentsBaseContentFields extends ContentFieldMapper
 {
     /**
-     * @var \eZ\Publish\SPI\Persistence\Content\Location\Handler
+     * @var \Ibexa\Contracts\Core\Persistence\Content\Location\Handler
      */
     protected $locationHandler;
 
     /**
-     * @var \eZ\Publish\SPI\Persistence\Content\Type\Handler
+     * @var \Ibexa\Contracts\Core\Persistence\Content\Type\Handler
      */
     protected $contentTypeHandler;
 
     /**
-     * @var \eZ\Publish\SPI\Persistence\Content\ObjectState\Handler
+     * @var \Ibexa\Contracts\Core\Persistence\Content\ObjectState\Handler
      */
     protected $objectStateHandler;
 
     /**
-     * @var \eZ\Publish\SPI\Persistence\Content\Section\Handler
+     * @var \Ibexa\Contracts\Core\Persistence\Content\Section\Handler
      */
     protected $sectionHandler;
 

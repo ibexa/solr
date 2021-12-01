@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Common\AggregationVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Location\SubtreeTermAggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Location\SubtreeTermAggregation;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 
 final class SubtreeTermAggregationVisitor implements AggregationVisitor
@@ -32,7 +32,7 @@ final class SubtreeTermAggregationVisitor implements AggregationVisitor
     }
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Location\SubtreeTermAggregation $aggregation
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Location\SubtreeTermAggregation $aggregation
      */
     public function visit(
         AggregationVisitor $dispatcherVisitor,

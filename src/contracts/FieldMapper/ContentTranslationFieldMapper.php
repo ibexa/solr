@@ -8,7 +8,7 @@
  */
 namespace Ibexa\Contracts\Solr\FieldMapper;
 
-use eZ\Publish\SPI\Persistence\Content as SPIContent;
+use Ibexa\Contracts\Core\Persistence\Content as SPIContent;
 
 /**
  * Base class for Content translation document field mapper.
@@ -32,7 +32,7 @@ abstract class ContentTranslationFieldMapper
      *
      * @param string $languageCode
      *
-     * @return \eZ\Publish\SPI\Search\Field[]
+     * @return \Ibexa\Contracts\Core\Search\Field[]
      */
     abstract public function mapFields(SPIContent $content, $languageCode);
 }

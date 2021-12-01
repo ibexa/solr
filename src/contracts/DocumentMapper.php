@@ -10,8 +10,8 @@
  */
 namespace Ibexa\Contracts\Solr;
 
-use eZ\Publish\SPI\Persistence\Content;
-use eZ\Publish\SPI\Persistence\Content\Location;
+use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content\Location;
 
 /**
  * Mapper maps Content and Location objects to a Document objects, representing a
@@ -41,7 +41,7 @@ interface DocumentMapper
      *
      * Each Content Document contains nested Documents representing it's Locations.
      *
-     * @return \eZ\Publish\SPI\Search\Document[]
+     * @return \Ibexa\Contracts\Core\Search\Document[]
      */
     public function mapContentBlock(Content $content);
 

@@ -10,11 +10,11 @@
  */
 namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
-use eZ\Publish\Core\Search\Common\FieldNameResolver;
-use eZ\Publish\Core\Search\Common\FieldValueMapper;
-use eZ\Publish\SPI\Search\Field as SearchField;
-use eZ\Publish\SPI\Search\FieldType;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Core\Search\Common\FieldNameResolver;
+use Ibexa\Core\Search\Common\FieldValueMapper;
+use Ibexa\Contracts\Core\Search\Field as SearchField;
+use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 /**
@@ -27,12 +27,12 @@ abstract class Field extends CriterionVisitor
     /**
      * Field map.
      *
-     * @var \eZ\Publish\Core\Search\Common\FieldNameResolver
+     * @var \Ibexa\Core\Search\Common\FieldNameResolver
      */
     protected $fieldNameResolver;
 
     /**
-     * @var \eZ\Publish\Core\Search\Common\FieldValueMapper
+     * @var \Ibexa\Core\Search\Common\FieldValueMapper
      */
     protected $fieldValueMapper;
 
@@ -45,7 +45,7 @@ abstract class Field extends CriterionVisitor
     /**
      * Get array of search fields.
      *
-     * @return \eZ\Publish\SPI\Search\FieldType[] Array of field types indexed by name.
+     * @return \Ibexa\Contracts\Core\Search\FieldType[] Array of field types indexed by name.
      */
     protected function getSearchFields(Criterion $criterion)
     {
@@ -59,7 +59,7 @@ abstract class Field extends CriterionVisitor
      * Map search field value to solr value using FieldValueMapper.
      *
      * @param mixed $value
-     * @param \eZ\Publish\SPI\Search\FieldType $searchFieldType
+     * @param \Ibexa\Contracts\Core\Search\FieldType $searchFieldType
      *
      * @return mixed
      */

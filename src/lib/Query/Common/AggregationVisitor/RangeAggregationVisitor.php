@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Common\AggregationVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver;
 
 final class RangeAggregationVisitor extends AbstractRangeAggregationVisitor
@@ -17,7 +17,7 @@ final class RangeAggregationVisitor extends AbstractRangeAggregationVisitor
     /** @var string */
     private $aggregationClass;
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\AggregationFieldResolver */
+    /** @var \Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver */
     private $aggregationFieldResolver;
 
     public function __construct(string $aggregationClass, AggregationFieldResolver $aggregationFieldResolver)

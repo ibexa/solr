@@ -10,8 +10,8 @@
  */
 namespace Ibexa\Bundle\Solr\ApiLoader;
 
-use eZ\Bundle\EzPublishCoreBundle\ApiLoader\RepositoryConfigurationProvider;
-use eZ\Publish\SPI\Persistence\Content\Handler;
+use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
+use Ibexa\Contracts\Core\Persistence\Content\Handler;
 use Ibexa\Solr\CoreFilter\CoreFilterRegistry;
 use Ibexa\Contracts\Solr\DocumentMapper;
 use Ibexa\Solr\Gateway\GatewayRegistry;
@@ -19,7 +19,7 @@ use Ibexa\Solr\ResultExtractor;
 
 class SolrEngineFactory
 {
-    /** @var \eZ\Bundle\EzPublishCoreBundle\ApiLoader\RepositoryConfigurationProvider */
+    /** @var \Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider */
     private $repositoryConfigurationProvider;
 
     /** @var string */
@@ -28,22 +28,22 @@ class SolrEngineFactory
     /** @var string */
     private $searchEngineClass;
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry */
+    /** @var \Ibexa\Solr\Gateway\GatewayRegistry */
     private $gatewayRegistry;
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry */
+    /** @var \Ibexa\Solr\CoreFilter\CoreFilterRegistry */
     private $coreFilterRegistry;
 
-    /** @var \eZ\Publish\SPI\Persistence\Content\Handler */
+    /** @var \Ibexa\Contracts\Core\Persistence\Content\Handler */
     private $contentHandler;
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\DocumentMapper */
+    /** @var \Ibexa\Contracts\Solr\DocumentMapper */
     private $documentMapper;
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor */
+    /** @var \Ibexa\Solr\ResultExtractor */
     private $contentResultExtractor;
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor */
+    /** @var \Ibexa\Solr\ResultExtractor */
     private $locationResultExtractor;
 
     public function __construct(

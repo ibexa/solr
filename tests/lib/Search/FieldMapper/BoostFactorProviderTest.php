@@ -8,8 +8,8 @@
  */
 namespace Ibexa\Tests\Solr\Search\FieldMapper;
 
-use eZ\Publish\SPI\Persistence\Content\Type as SPIContentType;
-use eZ\Publish\SPI\Persistence\Content\Type\FieldDefinition as SPIFieldDefinition;
+use Ibexa\Contracts\Core\Persistence\Content\Type as SPIContentType;
+use Ibexa\Contracts\Core\Persistence\Content\Type\FieldDefinition as SPIFieldDefinition;
 use Ibexa\Solr\FieldMapper\BoostFactorProvider;
 use Ibexa\Tests\Solr\Search\TestCase;
 

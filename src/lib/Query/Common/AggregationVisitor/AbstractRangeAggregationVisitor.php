@@ -9,14 +9,14 @@ declare(strict_types=1);
 namespace Ibexa\Solr\Query\Common\AggregationVisitor;
 
 use DateTimeInterface;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 
 abstract class AbstractRangeAggregationVisitor implements AggregationVisitor
 {
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation $aggregation
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation $aggregation
      */
     public function visit(
         AggregationVisitor $dispatcherVisitor,

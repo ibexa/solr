@@ -10,7 +10,7 @@
  */
 namespace Ibexa\Solr\Query\Common\FacetBuilderVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\FacetBuilder;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder;
 use Ibexa\Solr\Query\FacetBuilderVisitor;
 use Ibexa\Solr\Query\FacetFieldVisitor;
 
@@ -24,14 +24,14 @@ class Aggregate extends FacetBuilderVisitor implements FacetFieldVisitor
     /**
      * Array of available visitors.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Query\FacetBuilderVisitor[]
+     * @var \Ibexa\Solr\Query\FacetBuilderVisitor[]
      */
     protected $visitors = [];
 
     /**
      * Construct from optional visitor array.
      *
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Query\FacetBuilderVisitor[] $visitors
+     * @param \Ibexa\Solr\Query\FacetBuilderVisitor[] $visitors
      */
     public function __construct(array $visitors = [])
     {

@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\FieldMapper;
 
-use eZ\Publish\SPI\Persistence\Content\Type as ContentType;
+use Ibexa\Contracts\Core\Persistence\Content\Type as ContentType;
 
 class IndexingDepthProvider
 {

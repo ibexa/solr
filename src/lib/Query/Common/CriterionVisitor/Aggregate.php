@@ -10,8 +10,8 @@
  */
 namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
-use eZ\Publish\API\Repository\Exceptions\NotImplementedException;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 /**
@@ -22,14 +22,14 @@ class Aggregate extends CriterionVisitor
     /**
      * Array of available visitors.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Query\CriterionVisitor[]
+     * @var \Ibexa\Contracts\Solr\Query\CriterionVisitor[]
      */
     protected $visitors = [];
 
     /**
      * Construct from optional visitor array.
      *
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Query\CriterionVisitor[] $visitors
+     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor[] $visitors
      */
     public function __construct(array $visitors = [])
     {
@@ -59,9 +59,9 @@ class Aggregate extends CriterionVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotImplementedException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException
      *
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Query\CriterionVisitor $subVisitor
+     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      *
      * @return string
      */

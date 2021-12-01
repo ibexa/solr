@@ -10,8 +10,8 @@
  */
 namespace Ibexa\Solr\ResultExtractor;
 
-use eZ\Publish\SPI\Persistence\Content\Handler as ContentHandler;
-use eZ\Publish\SPI\Persistence\Content\Location\Handler as LocationHandler;
+use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
+use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
 use Ibexa\Solr\Gateway\EndpointRegistry;
 use Ibexa\Solr\Query\FacetFieldVisitor;
 use Ibexa\Solr\ResultExtractor;
@@ -26,14 +26,14 @@ class LoadingResultExtractor extends ResultExtractor
     /**
      * Content handler.
      *
-     * @var \eZ\Publish\SPI\Persistence\Content\Handler
+     * @var \Ibexa\Contracts\Core\Persistence\Content\Handler
      */
     protected $contentHandler;
 
     /**
      * Location handler.
      *
-     * @var \eZ\Publish\SPI\Persistence\Content\Location\Handler
+     * @var \Ibexa\Contracts\Core\Persistence\Content\Location\Handler
      */
     protected $locationHandler;
 
@@ -57,7 +57,7 @@ class LoadingResultExtractor extends ResultExtractor
      *
      * @param mixed $hit
      *
-     * @return \eZ\Publish\API\Repository\Values\ValueObject
+     * @return \Ibexa\Contracts\Core\Repository\Values\ValueObject
      */
     public function extractHit($hit)
     {

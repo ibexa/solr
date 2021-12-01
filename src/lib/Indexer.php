@@ -7,18 +7,18 @@
 namespace Ibexa\Solr;
 
 use Doctrine\DBAL\Connection;
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\Core\Search\Common\IncrementalIndexer;
-use eZ\Publish\SPI\Persistence\Content\ContentInfo;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Core\Search\Common\IncrementalIndexer;
+use Ibexa\Contracts\Core\Persistence\Content\ContentInfo;
 use Ibexa\Solr\Handler as SolrSearchHandler;
-use eZ\Publish\SPI\Persistence\Handler as PersistenceHandler;
+use Ibexa\Contracts\Core\Persistence\Handler as PersistenceHandler;
 use Psr\Log\LoggerInterface;
 use Exception;
 
 class Indexer extends IncrementalIndexer
 {
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Handler
+     * @var \Ibexa\Solr\Handler
      */
     protected $searchHandler;
 

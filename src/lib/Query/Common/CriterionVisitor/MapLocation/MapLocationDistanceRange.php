@@ -12,9 +12,9 @@ namespace Ibexa\Solr\Query\Common\CriterionVisitor\MapLocation;
 
 use Ibexa\Solr\Query\Common\CriterionVisitor\MapLocation;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion\Operator;
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 
 /**
  * Visits the MapLocationDistance criterion.
@@ -24,7 +24,7 @@ class MapLocationDistanceRange extends MapLocation
     /**
      * Check if visitor is applicable to current criterion.
      *
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\Criterion $criterion
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion $criterion
      *
      * @return bool
      */
@@ -42,10 +42,10 @@ class MapLocationDistanceRange extends MapLocation
     /**
      * Map field value to a proper Solr representation.
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If no searchable fields are found for the given criterion target.
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException If no searchable fields are found for the given criterion target.
      *
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\Criterion $criterion
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Query\CriterionVisitor $subVisitor
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion $criterion
+     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      *
      * @return string
      */
@@ -76,7 +76,7 @@ class MapLocationDistanceRange extends MapLocation
             );
         }
 
-        /** @var \eZ\Publish\API\Repository\Values\Content\Query\Criterion\Value\MapLocationValue $location */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Value\MapLocationValue $location */
         $location = $criterion->valueData;
 
         $queries = [];

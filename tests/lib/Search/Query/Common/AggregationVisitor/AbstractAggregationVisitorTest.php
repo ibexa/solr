@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Solr\Search\Query\Common\AggregationVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use PHPUnit\Framework\TestCase;
 
@@ -18,10 +18,10 @@ abstract class AbstractAggregationVisitorTest extends TestCase
         'languageCode' => 'eng-gb',
     ];
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Query\AggregationVisitor */
+    /** @var \Ibexa\Contracts\Solr\Query\AggregationVisitor */
     protected $visitor;
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Query\AggregationVisitor|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Ibexa\Contracts\Solr\Query\AggregationVisitor|\PHPUnit\Framework\MockObject\MockObject */
     protected $dispatcherVisitor;
 
     protected function setUp(): void

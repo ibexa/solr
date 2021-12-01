@@ -8,14 +8,14 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Common\AggregationVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\AbstractStatsAggregation;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractStatsAggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 
 abstract class AbstractStatsAggregationVisitor implements AggregationVisitor
 {
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\Aggregation\AbstractStatsAggregation $aggregation
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractStatsAggregation $aggregation
      */
     public function visit(
         AggregationVisitor $dispatcherVisitor,

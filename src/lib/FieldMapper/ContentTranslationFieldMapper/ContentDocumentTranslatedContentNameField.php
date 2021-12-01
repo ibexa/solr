@@ -8,10 +8,10 @@
  */
 namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
-use eZ\Publish\SPI\Persistence\Content;
-use eZ\Publish\SPI\Persistence\Content\Type\Handler as ContentTypeHandler;
-use eZ\Publish\SPI\Search\Field;
-use eZ\Publish\SPI\Search\FieldType;
+use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
+use Ibexa\Contracts\Core\Search\Field;
+use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Solr\FieldMapper\BoostFactorProvider;
 use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
 
@@ -28,12 +28,12 @@ class ContentDocumentTranslatedContentNameField extends ContentTranslationFieldM
     private static $fieldName = 'meta_content__name';
 
     /**
-     * @var \eZ\Publish\SPI\Persistence\Content\Type\Handler
+     * @var \Ibexa\Contracts\Core\Persistence\Content\Type\Handler
      */
     protected $contentTypeHandler;
 
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\BoostFactorProvider
+     * @var \Ibexa\Solr\FieldMapper\BoostFactorProvider
      */
     protected $boostFactorProvider;
 

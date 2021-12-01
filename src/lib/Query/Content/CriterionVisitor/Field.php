@@ -14,7 +14,7 @@ use Ibexa\Solr\Query\Common\CriterionVisitor\Field as FieldBase;
  * Kept for BC reasons.
  *
  * @deprecated since 1.2, to be removed in 2.0. Use extended class instead.
- * @see \EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\Field
+ * @see \Ibexa\Solr\Query\Common\CriterionVisitor\Field
  */
 abstract class Field extends FieldBase
 {

@@ -8,14 +8,14 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\ResultExtractor\AggregationResultExtractor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
-use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use stdClass;
 
 final class NestedAggregationResultExtractor implements AggregationResultExtractor
 {
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor */
+    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor */
     private $innerResultExtractor;
 
     /** @var string */

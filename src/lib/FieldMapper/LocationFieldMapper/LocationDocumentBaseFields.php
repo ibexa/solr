@@ -8,10 +8,10 @@
  */
 namespace Ibexa\Solr\FieldMapper\LocationFieldMapper;
 
-use eZ\Publish\SPI\Persistence\Content\Handler as ContentHandler;
-use eZ\Publish\SPI\Persistence\Content\Location;
-use eZ\Publish\SPI\Search\Field;
-use eZ\Publish\SPI\Search\FieldType;
+use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
+use Ibexa\Contracts\Core\Persistence\Content\Location;
+use Ibexa\Contracts\Core\Search\Field;
+use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Contracts\Solr\DocumentMapper;
 use Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper;
 
@@ -21,7 +21,7 @@ use Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper;
 class LocationDocumentBaseFields extends LocationFieldMapper
 {
     /**
-     * @var \eZ\Publish\SPI\Persistence\Content\Handler
+     * @var \Ibexa\Contracts\Core\Persistence\Content\Handler
      */
     protected $contentHandler;
 

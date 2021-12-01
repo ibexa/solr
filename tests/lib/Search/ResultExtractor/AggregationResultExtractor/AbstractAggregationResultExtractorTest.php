@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
-use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -19,7 +19,7 @@ abstract class AbstractAggregationResultExtractorTest extends TestCase
     protected const EXAMPLE_AGGREGATION_NAME = 'custom_aggregation';
     protected const EXAMPLE_LANGUAGE_FILTER = [];
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor */
+    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor */
     protected $extractor;
 
     protected function setUp(): void

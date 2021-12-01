@@ -62,9 +62,9 @@ class Stream implements HttpClient
      *
      * @param string $method
      * @param string $path
-     * @param Message $message
+     * @param \Ibexa\Solr\Gateway\Message $message
      *
-     * @return Message
+     * @return \Ibexa\Solr\Gateway\Message
      */
     public function request($method, Endpoint $endpoint, $path, Message $message = null)
     {

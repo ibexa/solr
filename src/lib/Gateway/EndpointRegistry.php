@@ -27,7 +27,7 @@ class EndpointRegistry
     /**
      * Construct from optional array of Endpoints.
      *
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint[] $endpoints
+     * @param \Ibexa\Solr\Gateway\Endpoint[] $endpoints
      */
     public function __construct(array $endpoints = [])
     {
@@ -40,7 +40,7 @@ class EndpointRegistry
      * Registers $endpoint with $name.
      *
      * @param string $name
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint $endpoint
+     * @param \Ibexa\Solr\Gateway\Endpoint $endpoint
      */
     public function registerEndpoint($name, Endpoint $endpoint)
     {
@@ -52,7 +52,7 @@ class EndpointRegistry
      *
      * @param string $name
      *
-     * @return \EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint
+     * @return \Ibexa\Solr\Gateway\Endpoint
      */
     public function getEndpoint($name)
     {
@@ -66,7 +66,7 @@ class EndpointRegistry
     /**
      * Get first Endpoint, for usecases where there is only one.
      *
-     * @return \EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint
+     * @return \Ibexa\Solr\Gateway\Endpoint
      */
     public function getFirstEndpoint()
     {

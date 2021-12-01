@@ -17,13 +17,13 @@ use PHPUnit\Framework\TestCase;
 
 class StandaloneDistributionStrategyTest extends TestCase
 {
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Gateway\DistributionStrategy\StandaloneDistributionStrategy */
+    /** @var \Ibexa\Solr\Gateway\DistributionStrategy\StandaloneDistributionStrategy */
     private $distributionStrategy;
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointRegistry|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Ibexa\Solr\Gateway\EndpointRegistry|\PHPUnit\Framework\MockObject\MockObject */
     private $endpointRegistry;
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointResolver|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Ibexa\Solr\Gateway\EndpointResolver|\PHPUnit\Framework\MockObject\MockObject */
     private $endpointResolver;
 
     protected function setUp(): void

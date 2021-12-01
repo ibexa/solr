@@ -8,7 +8,7 @@
  */
 namespace Ibexa\Contracts\Solr\FieldMapper;
 
-use eZ\Publish\SPI\Persistence\Content\Location as SPILocation;
+use Ibexa\Contracts\Core\Persistence\Content\Location as SPILocation;
 
 /**
  * Base class for Location document field mappers.
@@ -27,7 +27,7 @@ abstract class LocationFieldMapper
     /**
      * Maps given $location to an array of search fields.
      *
-     * @return \eZ\Publish\SPI\Search\Field[]
+     * @return \Ibexa\Contracts\Core\Search\Field[]
      */
     abstract public function mapFields(SPILocation $location);
 }

@@ -10,7 +10,7 @@
  */
 namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use RuntimeException;
 
@@ -32,13 +32,13 @@ class LogicalOr extends CriterionVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param CriterionVisitor $subVisitor
+     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      *
      * @return string
      */
     public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
     {
-        /** @var \eZ\Publish\API\Repository\Values\Content\Query\Criterion\LogicalAnd $criterion */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalAnd $criterion */
         if (!isset($criterion->criteria[0])) {
             throw new RuntimeException('Invalid aggregation in LogicalOr criterion.');
         }

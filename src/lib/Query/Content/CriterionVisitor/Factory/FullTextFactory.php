@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Content\CriterionVisitor\Factory;
 
-use eZ\Publish\Core\Search\Common\FieldNameResolver;
+use Ibexa\Core\Search\Common\FieldNameResolver;
 use Ibexa\Solr\FieldMapper\IndexingDepthProvider;
 use Ibexa\Solr\Query\Content\CriterionVisitor\FullText;
 use QueryTranslator\Languages\Galach\Generators\ExtendedDisMax;
@@ -18,7 +18,7 @@ use QueryTranslator\Languages\Galach\Tokenizer;
 /**
  * Factory for FullText Criterion Visitor.
  *
- * @see \EzSystems\EzPlatformSolrSearchEngine\Query\Content\CriterionVisitor\FullText
+ * @see \Ibexa\Solr\Query\Content\CriterionVisitor\FullText
  *
  * @internal
  */
@@ -27,7 +27,7 @@ final class FullTextFactory
     /**
      * Field map.
      *
-     * @var \eZ\Publish\Core\Search\Common\FieldNameResolver
+     * @var \Ibexa\Core\Search\Common\FieldNameResolver
      */
     private $fieldNameResolver;
 
@@ -47,18 +47,18 @@ final class FullTextFactory
     private $generator;
 
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\IndexingDepthProvider
+     * @var \Ibexa\Solr\FieldMapper\IndexingDepthProvider
      */
     private $indexingDepthProvider;
 
     /**
      * Create from content type handler and field registry.
      *
-     * @param \eZ\Publish\Core\Search\Common\FieldNameResolver $fieldNameResolver
+     * @param \Ibexa\Core\Search\Common\FieldNameResolver $fieldNameResolver
      * @param \QueryTranslator\Languages\Galach\Tokenizer $tokenizer
      * @param \QueryTranslator\Languages\Galach\Parser $parser
      * @param \QueryTranslator\Languages\Galach\Generators\ExtendedDisMax $generator
-     * @param \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\IndexingDepthProvider $indexingDepthProvider
+     * @param \Ibexa\Solr\FieldMapper\IndexingDepthProvider $indexingDepthProvider
      */
     public function __construct(
         FieldNameResolver $fieldNameResolver,
@@ -77,7 +77,7 @@ final class FullTextFactory
     /**
      * Create FullText Criterion Visitor.
      *
-     * @return \EzSystems\EzPlatformSolrSearchEngine\Query\Content\CriterionVisitor\FullText
+     * @return \Ibexa\Solr\Query\Content\CriterionVisitor\FullText
      */
     public function createCriterionVisitor(): FullText
     {

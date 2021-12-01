@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Solr\Search\Query\Common\AggregationVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use Ibexa\Solr\Query\Common\AggregationVisitor\DispatcherAggregationVisitor;
 use Ibexa\Tests\Solr\Search\TestCase;

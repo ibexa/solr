@@ -10,13 +10,13 @@
  */
 namespace Ibexa\Solr\CoreFilter;
 
-use eZ\Publish\API\Repository\Values\Content\Query;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion\CustomField;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion\LogicalAnd;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion\LogicalNot;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion\LogicalOr;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CustomField;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalAnd;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalNot;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalOr;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
 use Ibexa\Solr\CoreFilter;
 use Ibexa\Solr\Gateway\EndpointResolver;
 
@@ -168,7 +168,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @param string[] $languageCodes
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Query\Criterion
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion
      */
     private function getLanguageFilter(array $languageCodes)
     {

@@ -8,14 +8,14 @@
  */
 namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
-use eZ\Publish\Core\Search\Common\FieldNameGenerator;
-use eZ\Publish\Core\Search\Common\FieldRegistry;
-use eZ\Publish\SPI\Persistence\Content;
-use eZ\Publish\SPI\Persistence\Content\Type as ContentType;
-use eZ\Publish\SPI\Persistence\Content\Type\FieldDefinition;
-use eZ\Publish\SPI\Persistence\Content\Type\Handler as ContentTypeHandler;
-use eZ\Publish\SPI\Search\Field;
-use eZ\Publish\SPI\Search\FieldType;
+use Ibexa\Core\Search\Common\FieldNameGenerator;
+use Ibexa\Core\Search\Common\FieldRegistry;
+use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content\Type as ContentType;
+use Ibexa\Contracts\Core\Persistence\Content\Type\FieldDefinition;
+use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
+use Ibexa\Contracts\Core\Search\Field;
+use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Solr\FieldMapper\BoostFactorProvider;
 use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
 
@@ -25,22 +25,22 @@ use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
 class BlockDocumentsContentFields extends ContentTranslationFieldMapper
 {
     /**
-     * @var \eZ\Publish\SPI\Persistence\Content\Type\Handler
+     * @var \Ibexa\Contracts\Core\Persistence\Content\Type\Handler
      */
     protected $contentTypeHandler;
 
     /**
-     * @var \eZ\Publish\Core\Search\Common\FieldRegistry
+     * @var \Ibexa\Core\Search\Common\FieldRegistry
      */
     protected $fieldRegistry;
 
     /**
-     * @var \eZ\Publish\Core\Search\Common\FieldNameGenerator
+     * @var \Ibexa\Core\Search\Common\FieldNameGenerator
      */
     protected $fieldNameGenerator;
 
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\BoostFactorProvider
+     * @var \Ibexa\Solr\FieldMapper\BoostFactorProvider
      */
     protected $boostFactorProvider;
 
@@ -109,7 +109,7 @@ class BlockDocumentsContentFields extends ContentTranslationFieldMapper
     /**
      * Return index field type for the given arguments.
      *
-     * @return \eZ\Publish\SPI\Search\FieldType
+     * @return \Ibexa\Contracts\Core\Search\FieldType
      */
     private function getIndexFieldType(
         ContentType $contentType,

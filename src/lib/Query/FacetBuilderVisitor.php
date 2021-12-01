@@ -10,7 +10,7 @@
  */
 namespace Ibexa\Solr\Query;
 
-use eZ\Publish\API\Repository\Values\Content\Query\FacetBuilder;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder;
 
 /**
  * Visits the facet builder tree into a Solr query.
@@ -40,7 +40,7 @@ abstract class FacetBuilderVisitor
      *
      * @param string $field
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Search\Facet
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\Facet
      */
     public function map($field, array $data)
     {

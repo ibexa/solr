@@ -10,9 +10,9 @@
  */
 namespace Ibexa\Solr\Query\Common\FacetBuilderVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\FacetBuilder;
-use eZ\Publish\API\Repository\Values\Content\Query\FacetBuilder\UserFacetBuilder;
-use eZ\Publish\API\Repository\Values\Content\Search\Facet;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder\UserFacetBuilder;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\Facet;
 use Ibexa\Solr\Query\FacetBuilderVisitor;
 use Ibexa\Solr\Query\FacetFieldVisitor;
 
@@ -58,7 +58,7 @@ class User extends FacetBuilderVisitor implements FacetFieldVisitor
      */
     public function visitBuilder(FacetBuilder $facetBuilder, $fieldId)
     {
-        /** @var \eZ\Publish\API\Repository\Values\Content\Query\FacetBuilder\UserFacetBuilder $facetBuilder */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder\UserFacetBuilder $facetBuilder */
         $field = self::DOC_FIELD_MAP[$facetBuilder->type];
 
         return [

@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Solr\Search\FieldMapper;
 
-use eZ\Publish\SPI\Persistence\Content\Type as SPIContentType;
+use Ibexa\Contracts\Core\Persistence\Content\Type as SPIContentType;
 use Ibexa\Solr\FieldMapper\IndexingDepthProvider;
 use PHPUnit\Framework\TestCase;
 

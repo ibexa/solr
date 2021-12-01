@@ -18,12 +18,12 @@ abstract class AbstractDistributionStrategy implements DistributionStrategy
     /**
      * Endpoint registry service.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointRegistry
+     * @var \Ibexa\Solr\Gateway\EndpointRegistry
      */
     protected $endpointRegistry;
 
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointResolver
+     * @var \Ibexa\Solr\Gateway\EndpointResolver
      */
     protected $endpointResolver;
 

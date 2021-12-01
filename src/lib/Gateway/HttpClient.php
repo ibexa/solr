@@ -21,11 +21,11 @@ interface HttpClient
      * Returns the result from the remote server.
      *
      * @param string $method
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint $endpoint
+     * @param \Ibexa\Solr\Gateway\Endpoint $endpoint
      * @param string $path
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Gateway\Message $message
+     * @param \Ibexa\Solr\Gateway\Message $message
      *
-     * @return \EzSystems\EzPlatformSolrSearchEngine\Gateway\Message
+     * @return \Ibexa\Solr\Gateway\Message
      */
     public function request($method, Endpoint $endpoint, $path, Message $message = null);
 }

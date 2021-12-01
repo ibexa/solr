@@ -61,7 +61,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.content_type_term:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\ContentTypeTermAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ContentTypeTermAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\ContentTypeAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -70,7 +70,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.content_type_group_term:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\ContentTypeGroupTermAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ContentTypeGroupTermAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\ContentTypeGroupAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -79,7 +79,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.data_metadata_range:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\DateMetadataRangeAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\DateMetadataRangeAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\DateTimeRangeAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -88,7 +88,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.langauge_term:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\LanguageTermAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\LanguageTermAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\LanguageAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -97,7 +97,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.raw_range:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\RawRangeAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\RawRangeAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\NullRangeAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -106,7 +106,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.raw_stats:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\StatsAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\RawStatsAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\RawStatsAggregation'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
       - { name: ezplatform.search.solr.query.location.aggregation_result_extractor }
@@ -114,7 +114,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.raw_term:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\RawTermAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\RawTermAggregation'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
       - { name: ezplatform.search.solr.query.location.aggregation_result_extractor }
@@ -122,7 +122,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.object_state_term:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\ObjectStateTermAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ObjectStateTermAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\ObjectStateAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -131,7 +131,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.section_term:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\SectionTermAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\SectionTermAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\SectionAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -140,7 +140,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.subtree_term:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Location\SubtreeTermAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Location\SubtreeTermAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\SubtreeAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -149,7 +149,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.location_children_term:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Location\LocationChildrenTermAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Location\LocationChildrenTermAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\LocationAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.location.aggregation_result_extractor }
@@ -164,7 +164,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.user_metadata_term:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\UserMetadataAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -173,7 +173,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.field.author_term:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\AuthorTermAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\AuthorTermAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\AuthorAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -182,7 +182,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.field.checkbox_term:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\CheckboxTermAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\CheckboxTermAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\BooleanAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -191,7 +191,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.field.country:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\CountryTermAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\CountryTermAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\CountryAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -200,7 +200,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.field.date_range:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\DateRangeAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\DateRangeAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\DateTimeRangeAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -209,7 +209,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.field.datetime_range:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\DateTimeRangeAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\DateTimeRangeAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\DateTimeRangeAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -218,7 +218,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.field.float_range:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\FloatRangeAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\FloatRangeAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\FloatRangeAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -227,7 +227,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.field.float_stats:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\StatsAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\FloatStatsAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\FloatStatsAggregation'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
       - { name: ezplatform.search.solr.query.location.aggregation_result_extractor }
@@ -235,7 +235,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.field.integer_range:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\IntegerRangeAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\IntegerRangeAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\IntRangeAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -244,7 +244,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.field.integer_stats:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\StatsAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\IntegerStatsAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\IntegerStatsAggregation'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
       - { name: ezplatform.search.solr.query.location.aggregation_result_extractor }
@@ -252,7 +252,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.field.keyword_term:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\KeywordTermAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\KeywordTermAggregation'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
       - { name: ezplatform.search.solr.query.location.aggregation_result_extractor }
@@ -260,7 +260,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.field.selection_term:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\SelectionTermAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\SelectionTermAggregation'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
       - { name: ezplatform.search.solr.query.location.aggregation_result_extractor }
@@ -268,7 +268,7 @@ services:
   ezplatform.search.solr.query.common.aggregation_result_extractor.field.time_range:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\TimeRangeAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\TimeRangeAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\IntRangeAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -279,7 +279,7 @@ services:
   ezplatform.search.solr.query.content.aggregation_result_extractor.visibility:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\VisibilityTermAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\VisibilityTermAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\BooleanAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.content.aggregation_result_extractor }
@@ -289,7 +289,7 @@ services:
   ezplatform.search.solr.query.location.aggregation_result_extractor.visibility:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor
     arguments:
-      $aggregationClass: 'eZ\Publish\API\Repository\Values\Content\Query\Aggregation\VisibilityTermAggregation'
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\VisibilityTermAggregation'
       $keyMapper: '@Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\InvertedBooleanAggregationKeyMapper'
     tags:
       - { name: ezplatform.search.solr.query.location.aggregation_result_extractor }

@@ -10,7 +10,7 @@
  */
 namespace Ibexa\Tests\Solr\Search\Gateway;
 
-use eZ\Publish\API\Repository\Exceptions\PropertyNotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\PropertyNotFoundException;
 use Ibexa\Solr\Gateway\Endpoint;
 use Ibexa\Tests\Solr\Search\TestCase;
 

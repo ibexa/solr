@@ -16,7 +16,7 @@ interface EndpointResolver
     /**
      * Returns name of the Endpoint used as entry point for distributed search.
      *
-     * @return \EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint
+     * @return \Ibexa\Solr\Gateway\Endpoint
      */
     public function getEntryEndpoint();
 

@@ -83,7 +83,7 @@ class GatewayRegistryTest extends TestCase
     }
 
     /**
-     * @return \EzSystems\EzPlatformSolrSearchEngine\Gateway|\PHPUnit\Framework\MockObject\MockObject
+     * @return \Ibexa\Solr\Gateway|\PHPUnit\Framework\MockObject\MockObject
      */
     private function getGatewayMock(): Gateway
     {

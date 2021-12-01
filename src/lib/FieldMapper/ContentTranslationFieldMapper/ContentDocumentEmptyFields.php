@@ -8,12 +8,12 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
-use eZ\Publish\Core\Persistence\FieldTypeRegistry;
-use eZ\Publish\Core\Search\Common\FieldNameGenerator;
-use eZ\Publish\SPI\Persistence\Content;
-use eZ\Publish\SPI\Persistence\Content\Type\Handler as ContentTypeHandler;
-use eZ\Publish\SPI\Search\Field;
-use eZ\Publish\SPI\Search\FieldType;
+use Ibexa\Core\Persistence\FieldTypeRegistry;
+use Ibexa\Core\Search\Common\FieldNameGenerator;
+use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
+use Ibexa\Contracts\Core\Search\Field;
+use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
 
 /**
@@ -24,17 +24,17 @@ class ContentDocumentEmptyFields extends ContentTranslationFieldMapper
     public const IS_EMPTY_NAME = 'is_empty';
 
     /**
-     * @var \eZ\Publish\SPI\Persistence\Content\Type\Handler
+     * @var \Ibexa\Contracts\Core\Persistence\Content\Type\Handler
      */
     private $contentTypeHandler;
 
     /**
-     * @var \eZ\Publish\Core\Search\Common\FieldNameGenerator
+     * @var \Ibexa\Core\Search\Common\FieldNameGenerator
      */
     private $fieldNameGenerator;
 
     /**
-     * @var \eZ\Publish\Core\Persistence\FieldTypeRegistry
+     * @var \Ibexa\Core\Persistence\FieldTypeRegistry
      */
     private $fieldTypeRegistry;
 
@@ -61,7 +61,7 @@ class ContentDocumentEmptyFields extends ContentTranslationFieldMapper
     /**
      * @param string $languageCode
      *
-     * @return \eZ\Publish\SPI\Search\Field[]
+     * @return \Ibexa\Contracts\Core\Search\Field[]
      */
     public function mapFields(Content $content, $languageCode)
     {
@@ -83,7 +83,7 @@ class ContentDocumentEmptyFields extends ContentTranslationFieldMapper
                     continue;
                 }
 
-                /** @var \eZ\Publish\Core\Persistence\FieldType $fieldType */
+                /** @var \Ibexa\Core\Persistence\FieldType $fieldType */
                 $fieldType = $this->fieldTypeRegistry->getFieldType($fieldDefinition->fieldType);
                 $fields[] = new Field(
                     $name = $this->fieldNameGenerator->getName(

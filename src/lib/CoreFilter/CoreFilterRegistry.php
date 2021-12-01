@@ -13,11 +13,11 @@ use OutOfBoundsException;
 
 final class CoreFilterRegistry
 {
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\CoreFilter[] */
+    /** @var \Ibexa\Solr\CoreFilter[] */
     private $coreFilters;
 
     /**
-     * @param \EzSystems\EzPlatformSolrSearchEngine\CoreFilter[] $coreFilters
+     * @param \Ibexa\Solr\CoreFilter[] $coreFilters
      */
     public function __construct(array $coreFilters = [])
     {
@@ -25,7 +25,7 @@ final class CoreFilterRegistry
     }
 
     /**
-     * @return \EzSystems\EzPlatformSolrSearchEngine\CoreFilter[] $coreFilters
+     * @return \Ibexa\Solr\CoreFilter[] $coreFilters
      */
     public function getCoreFilters(): array
     {
@@ -33,7 +33,7 @@ final class CoreFilterRegistry
     }
 
     /**
-     * @param \EzSystems\EzPlatformSolrSearchEngine\CoreFilter[] $coreFilters
+     * @param \Ibexa\Solr\CoreFilter[] $coreFilters
      */
     public function setCoreFilters(array $coreFilters): void
     {

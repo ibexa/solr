@@ -10,11 +10,11 @@
  */
 namespace Ibexa\Solr;
 
-use eZ\Publish\API\Repository\Values\Content\Search\AggregationResultCollection;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResultCollection;
 use Ibexa\Solr\Gateway\EndpointRegistry;
 use Ibexa\Solr\Query\FacetFieldVisitor;
-use eZ\Publish\API\Repository\Values\Content\Search\SearchResult;
-use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use stdClass;
 
@@ -24,13 +24,13 @@ use stdClass;
  */
 abstract class ResultExtractor
 {
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Query\FacetFieldVisitor */
+    /** @var \Ibexa\Solr\Query\FacetFieldVisitor */
     protected $facetBuilderVisitor;
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor */
+    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor */
     protected $aggregationResultExtractor;
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointRegistry */
+    /** @var \Ibexa\Solr\Gateway\EndpointRegistry */
     protected $endpointRegistry;
 
     public function __construct(
@@ -47,11 +47,11 @@ abstract class ResultExtractor
      * Extracts search result from $data returned by Solr backend.
      *
      * @param mixed $data
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\FacetBuilder[] $facetBuilders
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\Aggregation[] $aggregations
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder[] $facetBuilders
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation[] $aggregations
      * @param array $languageFilter
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Search\SearchResult
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult
      */
     public function extract($data, array $facetBuilders = [], array $aggregations = [], array $languageFilter = [])
     {
@@ -80,7 +80,7 @@ abstract class ResultExtractor
      *
      * @param mixed $hit
      *
-     * @return \eZ\Publish\API\Repository\Values\ValueObject
+     * @return \Ibexa\Contracts\Core\Repository\Values\ValueObject
      */
     abstract public function extractHit($hit);
 
@@ -115,7 +115,7 @@ abstract class ResultExtractor
     }
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\Aggregation[] $aggregations
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation[] $aggregations
      */
     protected function extractAggregations(
         stdClass $data,
@@ -139,9 +139,9 @@ abstract class ResultExtractor
     }
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\FacetBuilder[] $facetBuilders
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder[] $facetBuilders
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Search\Facet[]
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\Facet[]
      */
     protected function extractFacets(stdClass $data, array $facetBuilders, array $languageFilter): array
     {

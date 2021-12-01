@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Common\SortClauseVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
 use Ibexa\Contracts\Solr\Query\SortClauseVisitor;
 
 class Score extends SortClauseVisitor

@@ -8,15 +8,15 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Solr\Search\Query\Common\AggregationVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\AbstractStatsAggregation;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractStatsAggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver;
 use Ibexa\Solr\Query\Common\AggregationVisitor\StatsAggregationVisitor;
 
 final class StatsAggregationVisitorTest extends AbstractAggregationVisitorTest
 {
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\AggregationFieldResolver|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver|\PHPUnit\Framework\MockObject\MockObject */
     private $aggregationFieldResolver;
 
     protected function setUp(): void

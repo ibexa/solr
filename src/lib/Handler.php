@@ -8,16 +8,16 @@
  */
 namespace Ibexa\Solr;
 
-use eZ\Publish\API\Repository\SearchService;
-use eZ\Publish\API\Repository\Values\Content\LocationQuery;
-use eZ\Publish\API\Repository\Values\Content\Query;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use eZ\Publish\SPI\Persistence\Content;
-use eZ\Publish\SPI\Persistence\Content\Handler as ContentHandler;
-use eZ\Publish\SPI\Persistence\Content\Location;
-use eZ\Publish\SPI\Search\VersatileHandler;
+use Ibexa\Contracts\Core\Repository\SearchService;
+use Ibexa\Contracts\Core\Repository\Values\Content\LocationQuery;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
+use Ibexa\Contracts\Core\Persistence\Content\Location;
+use Ibexa\Contracts\Core\Search\VersatileHandler;
 use Ibexa\Contracts\Solr\DocumentMapper;
 
 /**
@@ -52,21 +52,21 @@ class Handler implements VersatileHandler
     /**
      * Content locator gateway.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Gateway
+     * @var \Ibexa\Solr\Gateway
      */
     protected $gateway;
 
     /**
      * Content handler.
      *
-     * @var \eZ\Publish\SPI\Persistence\Content\Handler
+     * @var \Ibexa\Contracts\Core\Persistence\Content\Handler
      */
     protected $contentHandler;
 
     /**
      * Document mapper.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\DocumentMapper
+     * @var \Ibexa\Contracts\Solr\DocumentMapper
      */
     protected $mapper;
 
@@ -75,38 +75,38 @@ class Handler implements VersatileHandler
      *
      * @deprecated since eZ Platform 3.2.0, to be removed in eZ Platform 4.0.0. Use $contentResultExtractor or $locationResultExtractor instead of $resultExtractor.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor
+     * @var \Ibexa\Solr\ResultExtractor
      */
     protected $resultExtractor;
 
     /**
      * Content result extractor.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor
+     * @var \Ibexa\Solr\ResultExtractor
      */
     protected $contentResultExtractor;
 
     /**
      * Location result extractor.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor
+     * @var \Ibexa\Solr\ResultExtractor
      */
     protected $locationResultExtractor;
 
     /**
      * Core filter service.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\CoreFilter
+     * @var \Ibexa\Solr\CoreFilter
      */
     protected $coreFilter;
 
     /**
      * Creates a new content handler.
      *
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Gateway $gateway
-     * @param \EzSystems\EzPlatformSolrSearchEngine\DocumentMapper $mapper
-     * @param \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor $resultExtractor
-     * @param \EzSystems\EzPlatformSolrSearchEngine\CoreFilter $coreFilter
+     * @param \Ibexa\Solr\Gateway $gateway
+     * @param \Ibexa\Contracts\Solr\DocumentMapper $mapper
+     * @param \Ibexa\Solr\ResultExtractor $resultExtractor
+     * @param \Ibexa\Solr\CoreFilter $coreFilter
      */
     public function __construct(
         Gateway $gateway,
@@ -130,14 +130,14 @@ class Handler implements VersatileHandler
     /**
      * Finds content objects for the given query.
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException if Query criterion is not applicable to its target
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException if Query criterion is not applicable to its target
      *
      * @param array $languageFilter - a map of language related filters specifying languages query will be performed on.
      *        Also used to define which field languages are loaded for the returned content.
      *        Currently supports: <code>array("languages" => array(<language1>,..), "useAlwaysAvailable" => bool)</code>
      *                            useAlwaysAvailable defaults to true to avoid exceptions on missing translations.
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Search\SearchResult
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult
      */
     public function findContent(Query $query, array $languageFilter = [])
     {
@@ -162,16 +162,16 @@ class Handler implements VersatileHandler
     /**
      * Performs a query for a single content object.
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException if the object was not found by the query or due to permissions
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException if Criterion is not applicable to its target
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException if there is more than than one result matching the criterions
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException if the object was not found by the query or due to permissions
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException if Criterion is not applicable to its target
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException if there is more than than one result matching the criterions
      *
      * @param array $languageFilter - a map of language related filters specifying languages query will be performed on.
      *        Also used to define which field languages are loaded for the returned content.
      *        Currently supports: <code>array("languages" => array(<language1>,..), "useAlwaysAvailable" => bool)</code>
      *                            useAlwaysAvailable defaults to true to avoid exceptions on missing translations.
      *
-     * @return \eZ\Publish\SPI\Persistence\Content
+     * @return \Ibexa\Contracts\Core\Persistence\Content
      */
     public function findSingle(Criterion $filter, array $languageFilter = [])
     {
@@ -210,7 +210,7 @@ class Handler implements VersatileHandler
      *        Currently supports: <code>array("languages" => array(<language1>,..), "useAlwaysAvailable" => bool)</code>
      *                            useAlwaysAvailable defaults to true to avoid exceptions on missing translations.
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Search\SearchResult
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult
      */
     public function findLocations(LocationQuery $query, array $languageFilter = [])
     {
@@ -236,7 +236,7 @@ class Handler implements VersatileHandler
      * @param string $prefix
      * @param string[] $fieldPaths
      * @param int $limit
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\Criterion $filter
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion $filter
      */
     public function suggest($prefix, $fieldPaths = [], $limit = 10, Criterion $filter = null)
     {
@@ -266,7 +266,7 @@ class Handler implements VersatileHandler
      *       sure we match the features of these.
      *       See also {@see Solr\Content\Search\Gateway\Native::bulkIndexContent} for further Solr specific info.
      *
-     * @param \eZ\Publish\SPI\Persistence\Content[] $contentObjects
+     * @param \Ibexa\Contracts\Core\Persistence\Content[] $contentObjects
      */
     public function bulkIndexContent(array $contentObjects)
     {
@@ -408,7 +408,7 @@ class Handler implements VersatileHandler
      *
      * @param int $limit
      *
-     * @return Query
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query
      */
     protected function prepareQuery($limit = self::DEFAULT_QUERY_LIMIT)
     {
@@ -449,7 +449,7 @@ class Handler implements VersatileHandler
     /**
      * Generate search document for Content object to be indexed by a search engine.
      *
-     * @return \eZ\Publish\SPI\Search\Document
+     * @return \Ibexa\Contracts\Core\Search\Document
      */
     public function generateDocument(Content $content)
     {
@@ -464,7 +464,7 @@ class Handler implements VersatileHandler
      * - On large amounts of data make sure to iterate with several calls to this function with a limited
      *   set of content objects, amount you have memory for depends on server, size of objects, & PHP version.
      *
-     * @param \eZ\Publish\SPI\Search\Document[] $documents
+     * @param \Ibexa\Contracts\Core\Search\Document[] $documents
      */
     public function bulkIndexDocuments(array $documents)
     {

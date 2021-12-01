@@ -8,7 +8,7 @@
  */
 namespace Ibexa\Solr\FieldMapper\LocationFieldMapper;
 
-use eZ\Publish\SPI\Persistence\Content\Location;
+use Ibexa\Contracts\Core\Persistence\Content\Location;
 use Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper;
 
 /**
@@ -19,12 +19,12 @@ class Aggregate extends LocationFieldMapper
     /**
      * An array of aggregated field mappers, sorted by priority.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\LocationFieldMapper[]
+     * @var \Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper[]
      */
     protected $mappers = [];
 
     /**
-     * @param \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\LocationFieldMapper[] $mappers
+     * @param \Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper[] $mappers
      *        An array of mappers, sorted by priority.
      */
     public function __construct(array $mappers = [])

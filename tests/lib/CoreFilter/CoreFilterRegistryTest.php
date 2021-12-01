@@ -81,7 +81,7 @@ class CoreFilterRegistryTest extends TestCase
     }
 
     /**
-     * @return \EzSystems\EzPlatformSolrSearchEngine\CoreFilter|\PHPUnit\Framework\MockObject\MockObject
+     * @return \Ibexa\Solr\CoreFilter|\PHPUnit\Framework\MockObject\MockObject
      */
     private function getCoreFilterMock(): CoreFilter
     {

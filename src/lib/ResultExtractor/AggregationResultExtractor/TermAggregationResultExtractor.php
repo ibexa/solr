@@ -8,10 +8,10 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\ResultExtractor\AggregationResultExtractor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
-use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult;
-use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult\TermAggregationResult;
-use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult\TermAggregationResultEntry;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResult;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResultEntry;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\NullAggregationKeyMapper;
@@ -19,7 +19,7 @@ use stdClass;
 
 final class TermAggregationResultExtractor implements AggregationResultExtractor
 {
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper */
+    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper */
     private $keyMapper;
 
     /** @var string */

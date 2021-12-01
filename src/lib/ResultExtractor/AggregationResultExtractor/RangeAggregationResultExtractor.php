@@ -8,12 +8,12 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\ResultExtractor\AggregationResultExtractor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Range;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
-use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult;
-use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult\RangeAggregationResult;
-use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult\RangeAggregationResultEntry;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Range;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\RangeAggregationResult;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\RangeAggregationResultEntry;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
 use stdClass;
@@ -23,7 +23,7 @@ final class RangeAggregationResultExtractor implements AggregationResultExtracto
     /** @var string */
     private $aggregationClass;
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper */
+    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper */
     private $keyMapper;
 
     public function __construct(string $aggregationClass, RangeAggregationKeyMapper $keyMapper)
@@ -38,7 +38,7 @@ final class RangeAggregationResultExtractor implements AggregationResultExtracto
     }
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation $aggregation
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation $aggregation
      */
     public function extract(Aggregation $aggregation, array $languageFilter, stdClass $data): AggregationResult
     {
@@ -72,8 +72,8 @@ final class RangeAggregationResultExtractor implements AggregationResultExtracto
     /**
      * Ensures that results entries are in the exact same order as they ware defined in aggregation.
      *
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation $aggregation
-     * @param \eZ\Publish\API\Repository\Values\Content\Search\AggregationResult\RangeAggregationResultEntry[] $entries
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation $aggregation
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\RangeAggregationResultEntry[] $entries
      */
     private function sort(AbstractRangeAggregation $aggregation, array &$entries): void
     {

@@ -8,13 +8,13 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
 final class ContentTypeAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    /** @var \eZ\Publish\API\Repository\ContentTypeService */
+    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
     private $contentTypeService;
 
     public function __construct(ContentTypeService $contentTypeService)
@@ -23,11 +23,11 @@ final class ContentTypeAggregationKeyMapper implements TermAggregationKeyMapper
     }
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\Aggregation\ContentTypeTermAggregation $aggregation
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ContentTypeTermAggregation $aggregation
      * @param array $languageFilter
      * @param string[] $keys
      *
-     * @return \eZ\Publish\API\Repository\Values\ContentType\ContentType[]
+     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType[]
      */
     public function map(Aggregation $aggregation, array $languageFilter, array $keys): array
     {

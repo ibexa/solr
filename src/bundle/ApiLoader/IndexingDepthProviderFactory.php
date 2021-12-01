@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Bundle\Solr\ApiLoader;
 
-use eZ\Bundle\EzPublishCoreBundle\ApiLoader\RepositoryConfigurationProvider;
+use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
@@ -17,7 +17,7 @@ class IndexingDepthProviderFactory implements ContainerAwareInterface
     use ContainerAwareTrait;
 
     /**
-     * @var \eZ\Bundle\EzPublishCoreBundle\ApiLoader\RepositoryConfigurationProvider
+     * @var \Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider
      */
     private $repositoryConfigurationProvider;
 

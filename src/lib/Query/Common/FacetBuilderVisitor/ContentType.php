@@ -10,8 +10,8 @@
  */
 namespace Ibexa\Solr\Query\Common\FacetBuilderVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\FacetBuilder;
-use eZ\Publish\API\Repository\Values\Content\Search\Facet;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\Facet;
 use Ibexa\Solr\Query\FacetBuilderVisitor;
 use Ibexa\Solr\Query\FacetFieldVisitor;
 

@@ -10,7 +10,7 @@
  */
 namespace Ibexa\Solr\Query\Location\CriterionVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Solr\Query\Content\CriterionVisitor\FullText as ContentFullText;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
@@ -22,7 +22,7 @@ class FullText extends ContentFullText
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Query\CriterionVisitor $subVisitor
+     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      *
      * @return string
      */

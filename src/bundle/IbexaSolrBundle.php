@@ -20,8 +20,8 @@ use Ibexa\Solr\Container\Compiler\AggregateFacetBuilderVisitorPass;
 use Ibexa\Solr\Container\Compiler\AggregateSortClauseVisitorPass;
 use Ibexa\Solr\Container\Compiler\FieldMapperPass;
 use Ibexa\Solr\Container\Compiler\EndpointRegistryPass;
-use eZ\Publish\Core\Base\Container\Compiler\Search\AggregateFieldValueMapperPass;
-use eZ\Publish\Core\Base\Container\Compiler\Search\FieldRegistryPass;
+use Ibexa\Core\Base\Container\Compiler\Search\AggregateFieldValueMapperPass;
+use Ibexa\Core\Base\Container\Compiler\Search\FieldRegistryPass;
 
 class IbexaSolrBundle extends Bundle
 {

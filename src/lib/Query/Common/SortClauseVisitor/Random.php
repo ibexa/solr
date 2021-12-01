@@ -9,7 +9,7 @@
 namespace Ibexa\Solr\Query\Common\SortClauseVisitor;
 
 use Ibexa\Contracts\Solr\Query\SortClauseVisitor;
-use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
 
 /**
  * Visits the sortClause tree into a Solr query.
@@ -19,7 +19,7 @@ class Random extends SortClauseVisitor
     /**
      * Check if visitor is applicable to current sortClause.
      *
-     * @param SortClause $sortClause
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
      *
      * @return bool
      */
@@ -31,7 +31,7 @@ class Random extends SortClauseVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param SortClause $sortClause
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
      *
      * @return string
      */

@@ -10,7 +10,7 @@
  */
 namespace Ibexa\Solr\Query;
 
-use eZ\Publish\API\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 
 /**
  * Converts the query tree into an array of Solr query parameters.

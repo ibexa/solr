@@ -8,9 +8,9 @@
  */
 namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
-use eZ\Publish\SPI\Persistence\Content;
-use eZ\Publish\SPI\Search\Field;
-use eZ\Publish\SPI\Search\FieldType;
+use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Search\Field;
+use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
 
 /**

@@ -17,7 +17,7 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
 {
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngineBundle\DependencyInjection\EzSystemsEzPlatformSolrSearchEngineExtension
+     * @var \Ibexa\Bundle\Solr\DependencyInjection\IbexaSolrExtension
      */
     private $extension;
 

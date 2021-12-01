@@ -10,7 +10,7 @@
  */
 namespace Ibexa\Solr;
 
-use eZ\Publish\API\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 
 /**
  * Core filter applies conditions on a query object ensuring matching of correct

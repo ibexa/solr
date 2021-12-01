@@ -8,14 +8,14 @@
  */
 namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
-use eZ\Publish\Core\Search\Common\FieldNameGenerator;
-use eZ\Publish\Core\Search\Common\FieldRegistry;
-use eZ\Publish\SPI\Persistence\Content;
-use eZ\Publish\SPI\Persistence\Content\Handler as ContentHandler;
-use eZ\Publish\SPI\Persistence\Content\Type as ContentType;
-use eZ\Publish\SPI\Persistence\Content\Type\Handler as ContentTypeHandler;
-use eZ\Publish\SPI\Search\Field;
-use eZ\Publish\SPI\Search\FieldType;
+use Ibexa\Core\Search\Common\FieldNameGenerator;
+use Ibexa\Core\Search\Common\FieldRegistry;
+use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
+use Ibexa\Contracts\Core\Persistence\Content\Type as ContentType;
+use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
+use Ibexa\Contracts\Core\Search\Field;
+use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Solr\FieldMapper\BoostFactorProvider;
 use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
 use Ibexa\Solr\FieldMapper\IndexingDepthProvider;
@@ -40,32 +40,32 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
     private static $relatedContentFieldName = 'meta_related_content_%d__text';
 
     /**
-     * @var \eZ\Publish\SPI\Persistence\Content\Type\Handler
+     * @var \Ibexa\Contracts\Core\Persistence\Content\Type\Handler
      */
     protected $contentTypeHandler;
 
     /**
-     * @var \eZ\Publish\SPI\Persistence\Content\Handler
+     * @var \Ibexa\Contracts\Core\Persistence\Content\Handler
      */
     protected $contentHandler;
 
     /**
-     * @var \eZ\Publish\Core\Search\Common\FieldRegistry
+     * @var \Ibexa\Core\Search\Common\FieldRegistry
      */
     protected $fieldRegistry;
 
     /**
-     * @var \eZ\Publish\Core\Search\Common\FieldNameGenerator
+     * @var \Ibexa\Core\Search\Common\FieldNameGenerator
      */
     protected $fieldNameGenerator;
 
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\BoostFactorProvider
+     * @var \Ibexa\Solr\FieldMapper\BoostFactorProvider
      */
     protected $boostFactorProvider;
 
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\IndexingDepthProvider
+     * @var \Ibexa\Solr\FieldMapper\IndexingDepthProvider
      */
     protected $indexingDepthProvider;
 
@@ -114,9 +114,9 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
      * @param int $maxDepth
      * @param int $depth
      *
-     * @return \eZ\Publish\SPI\Search\Field[]
+     * @return \Ibexa\Contracts\Core\Search\Field[]
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
     private function doMapFields(Content $content, ContentType $contentType, $languageCode, $maxDepth, $depth = 0)
     {
@@ -170,9 +170,9 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
      * @param int $maxDepth
      * @param int $depth
      *
-     * @return \eZ\Publish\SPI\Search\Field[]
+     * @return \Ibexa\Contracts\Core\Search\Field[]
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
     private function doMapRelatedFields(Content $sourceContent, $languageCode, $maxDepth, $depth)
     {
@@ -218,7 +218,7 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
     /**
      * Return index field type for the given $contentType.
      *
-     * @return \eZ\Publish\SPI\Search\FieldType
+     * @return \Ibexa\Contracts\Core\Search\FieldType
      */
     private function getIndexFieldType(ContentType $contentType)
     {

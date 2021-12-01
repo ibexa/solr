@@ -8,13 +8,13 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver;
 
 final class RawAggregationFieldResolver implements AggregationFieldResolver
 {
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\Aggregation\RawAggregation $aggregation
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\RawAggregation $aggregation
      */
     public function resolveTargetField(Aggregation $aggregation): string
     {

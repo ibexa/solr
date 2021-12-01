@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Common\CriterionVisitor\Factory;
 
-use eZ\Publish\Core\Search\Common\FieldNameResolver;
+use Ibexa\Core\Search\Common\FieldNameResolver;
 use Ibexa\Solr\FieldMapper\IndexingDepthProvider;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use QueryTranslator\Languages\Galach\Generators\ExtendedDisMax;
@@ -18,8 +18,8 @@ use QueryTranslator\Languages\Galach\Tokenizer;
 /**
  * Factory for FullText Criterion Visitor.
  *
- * @see \EzSystems\EzPlatformSolrSearchEngine\Query\Content\CriterionVisitor\FullText
- * @see \EzSystems\EzPlatformSolrSearchEngine\Query\Location\CriterionVisitor\FullText
+ * @see \Ibexa\Solr\Query\Content\CriterionVisitor\FullText
+ * @see \Ibexa\Solr\Query\Location\CriterionVisitor\FullText
  *
  * @internal
  */
@@ -28,7 +28,7 @@ abstract class FullTextFactoryAbstract
     /**
      * Field map.
      *
-     * @var \eZ\Publish\Core\Search\Common\FieldNameResolver
+     * @var \Ibexa\Core\Search\Common\FieldNameResolver
      */
     protected $fieldNameResolver;
 
@@ -48,7 +48,7 @@ abstract class FullTextFactoryAbstract
     protected $generator;
 
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\IndexingDepthProvider
+     * @var \Ibexa\Solr\FieldMapper\IndexingDepthProvider
      */
     protected $indexingDepthProvider;
 

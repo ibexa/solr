@@ -10,7 +10,7 @@
  */
 namespace Ibexa\Solr\Gateway;
 
-use eZ\Publish\SPI\Persistence\ValueObject;
+use Ibexa\Contracts\Core\Persistence\ValueObject;
 
 /**
  * @property-read string $scheme

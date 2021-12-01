@@ -8,8 +8,8 @@
  */
 namespace Ibexa\Solr\FieldMapper;
 
-use eZ\Publish\SPI\Persistence\Content\Type as ContentType;
-use eZ\Publish\SPI\Persistence\Content\Type\FieldDefinition;
+use Ibexa\Contracts\Core\Persistence\Content\Type as ContentType;
+use Ibexa\Contracts\Core\Persistence\Content\Type\FieldDefinition;
 
 /**
  * BoostFactorProvider provides boost factors for indexed fields.

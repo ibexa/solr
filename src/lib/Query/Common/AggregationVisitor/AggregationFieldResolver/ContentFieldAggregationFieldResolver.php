@@ -8,15 +8,15 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\FieldAggregation;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
-use eZ\Publish\Core\Search\Common\FieldNameResolver;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\FieldAggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Core\Search\Common\FieldNameResolver;
 use Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver;
 use RuntimeException;
 
 final class ContentFieldAggregationFieldResolver implements AggregationFieldResolver
 {
-    /** @var \eZ\Publish\Core\Search\Common\FieldNameResolver */
+    /** @var \Ibexa\Core\Search\Common\FieldNameResolver */
     private $fieldNameResolver;
 
     /** @var string */
