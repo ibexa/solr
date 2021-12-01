@@ -1,12 +1,8 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\Query\Location\CriterionVisitor;
 
@@ -49,7 +45,7 @@ class Ancestor extends CriterionVisitor
             implode(
                 ' OR ',
                 array_map(
-                    function ($value) {
+                    static function ($value) {
                         return 'location_id:"' . $value . '"';
                     },
                     array_keys($idSet)

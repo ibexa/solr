@@ -1,21 +1,17 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\Query\Common\QueryConverter;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
-use Ibexa\Solr\Query\QueryConverter;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Contracts\Solr\Query\SortClauseVisitor;
 use Ibexa\Solr\Query\FacetFieldVisitor;
+use Ibexa\Solr\Query\QueryConverter;
 
 /**
  * Native implementation of Query Converter.

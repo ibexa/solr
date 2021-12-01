@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
@@ -9,8 +9,8 @@ declare(strict_types=1);
 namespace Ibexa\Solr\Query\Common\AggregationVisitor;
 
 use DateTimeInterface;
-use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 
 abstract class AbstractRangeAggregationVisitor implements AggregationVisitor

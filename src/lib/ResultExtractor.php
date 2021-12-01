@@ -1,21 +1,17 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResultCollection;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
+use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Solr\Gateway\EndpointRegistry;
 use Ibexa\Solr\Query\FacetFieldVisitor;
-use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
-use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
-use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use stdClass;
 
 /**
@@ -163,7 +159,8 @@ abstract class ResultExtractor
                             . ', as it makes it impossible to exactly identify which facets belongs to which builder.'
                             . "\nMake sure to adapt your visitor for the following field: ${field}"
                             . "\nExample: 'facet.field' => \"{!ex=dt key=\${id}}${field}\",",
-                            E_USER_DEPRECATED);
+                            E_USER_DEPRECATED
+                        );
                     }
 
                     $facets[] = $this->facetBuilderVisitor->mapField(

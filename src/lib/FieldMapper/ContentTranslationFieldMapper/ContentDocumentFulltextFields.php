@@ -1,23 +1,21 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
-use Ibexa\Core\Search\Common\FieldNameGenerator;
-use Ibexa\Core\Search\Common\FieldRegistry;
 use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Type as ContentType;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Ibexa\Contracts\Core\Search\Field;
 use Ibexa\Contracts\Core\Search\FieldType;
-use Ibexa\Solr\FieldMapper\BoostFactorProvider;
 use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
+use Ibexa\Core\Search\Common\FieldNameGenerator;
+use Ibexa\Core\Search\Common\FieldRegistry;
+use Ibexa\Solr\FieldMapper\BoostFactorProvider;
 use Ibexa\Solr\FieldMapper\IndexingDepthProvider;
 
 /**
@@ -179,13 +177,13 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
         $relations = $this->contentHandler->loadRelations($sourceContent->versionInfo->contentInfo->id);
 
         $relatedContents = $this->contentHandler->loadContentList(
-            array_map(function (Content\Relation $relation) {
+            array_map(static function (Content\Relation $relation) {
                 return $relation->destinationContentId;
             }, $relations)
         );
 
         $contentTypes = $this->contentTypeHandler->loadContentTypeList(
-            array_map(function (Content $content) {
+            array_map(static function (Content $content) {
                 return $content->versionInfo->contentInfo->contentTypeId;
             }, $relatedContents)
         );

@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Content\CriterionVisitor\Factory;
 
+use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Solr\Query\Common\CriterionVisitor\Factory\FullTextFactoryAbstract;
 use Ibexa\Solr\Query\Content\CriterionVisitor\FullText;
-use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 /**
  * Factory for FullText Criterion Visitor.

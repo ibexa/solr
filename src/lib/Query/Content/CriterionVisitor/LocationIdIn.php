@@ -1,12 +1,8 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\Query\Content\CriterionVisitor;
 
@@ -45,7 +41,7 @@ class LocationIdIn extends CriterionVisitor
             implode(
                 ' OR ',
                 array_map(
-                    function ($id) {
+                    static function ($id) {
                         return 'location_id_mid:"' . $id . '"';
                     },
                     $criterion->value

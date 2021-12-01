@@ -1,24 +1,22 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Solr;
 
+use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
+use Ibexa\Contracts\Core\Persistence\Content\Location;
 use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\LocationQuery;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
-use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
-use Ibexa\Core\Base\Exceptions\NotFoundException;
-use Ibexa\Contracts\Core\Persistence\Content;
-use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
-use Ibexa\Contracts\Core\Persistence\Content\Location;
 use Ibexa\Contracts\Core\Search\VersatileHandler;
 use Ibexa\Contracts\Solr\DocumentMapper;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
 
 /**
  * The Content Search handler retrieves sets of of Content objects, based on a
@@ -44,10 +42,10 @@ use Ibexa\Contracts\Solr\DocumentMapper;
 class Handler implements VersatileHandler
 {
     /* Solr's maxBooleanClauses config value is 1024 */
-    const SOLR_BULK_REMOVE_LIMIT = 1000;
+    public const SOLR_BULK_REMOVE_LIMIT = 1000;
     /* 16b max unsigned integer value due to Solr (JVM) limitations */
-    const SOLR_MAX_QUERY_LIMIT = 65535;
-    const DEFAULT_QUERY_LIMIT = 1000;
+    public const SOLR_MAX_QUERY_LIMIT = 65535;
+    public const DEFAULT_QUERY_LIMIT = 1000;
 
     /**
      * Content locator gateway.
@@ -428,8 +426,11 @@ class Handler implements VersatileHandler
      */
     protected function allItemsWithinLocation($locationId)
     {
-        return new Criterion\CustomField('location_path_string_mid', Criterion\Operator::EQ,
-            "/.*\\/{$locationId}\\/.*/");
+        return new Criterion\CustomField(
+            'location_path_string_mid',
+            Criterion\Operator::EQ,
+            "/.*\\/{$locationId}\\/.*/"
+        );
     }
 
     /**

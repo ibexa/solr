@@ -1,19 +1,15 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Tests\Solr\Search\Query\Content\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Search\FieldType\StringField;
 use Ibexa\Core\FieldType\TextLine\SearchField;
 use Ibexa\Core\Search\Common\FieldNameResolver;
-use Ibexa\Contracts\Core\Search\FieldType\StringField;
 use Ibexa\Solr\Query\Common\QueryTranslator\Generator\WordVisitor;
 use Ibexa\Solr\Query\Content\CriterionVisitor\FullText;
 use Ibexa\Tests\Solr\Search\TestCase;

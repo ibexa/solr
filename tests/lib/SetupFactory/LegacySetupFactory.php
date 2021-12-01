@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Tests\Solr\SetupFactory;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
-use Ibexa\Tests\Integration\Core\Repository\SearchServiceTranslationLanguageFallbackTest;
+use Ibexa\Bundle\NamespaceCompatibility\DependencyInjection\Compiler\AliasDecoratorCompatibilityPass;
+use Ibexa\Bundle\NamespaceCompatibility\DependencyInjection\Compiler\ServiceCompatibilityPass;
+use Ibexa\Contracts\Core\Persistence\Content\Handler;
 use Ibexa\Contracts\Core\Test\Repository\SetupFactory\Legacy as CoreLegacySetupFactory;
 use Ibexa\Core\Base\Container\Compiler\Search\AggregateFieldValueMapperPass;
 use Ibexa\Core\Base\Container\Compiler\Search\FieldRegistryPass;
-use Ibexa\Bundle\NamespaceCompatibility\DependencyInjection\Compiler\AliasDecoratorCompatibilityPass;
-use Ibexa\Bundle\NamespaceCompatibility\DependencyInjection\Compiler\ServiceCompatibilityPass;
-use Ibexa\Solr\Container\Compiler;
 use Ibexa\Core\Base\ServiceContainer;
 use Ibexa\Core\Persistence\Legacy\Content\Gateway as ContentGateway;
-use Ibexa\Contracts\Core\Persistence\Content\Handler;
+use Ibexa\Solr\Container\Compiler;
 use Ibexa\Solr\Handler as SolrSearchHandler;
+use Ibexa\Tests\Integration\Core\Repository\SearchServiceTranslationLanguageFallbackTest;
 use RuntimeException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;

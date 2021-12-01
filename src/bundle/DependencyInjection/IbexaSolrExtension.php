@@ -1,22 +1,18 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Bundle\Solr\DependencyInjection;
 
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ChildDefinition;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\Config\FileLocator;
 
 class IbexaSolrExtension extends Extension
 {
@@ -25,7 +21,7 @@ class IbexaSolrExtension extends Extension
      *
      * @var string
      */
-    const ENGINE_ID = 'ezpublish.spi.search.solr';
+    public const ENGINE_ID = 'ezpublish.spi.search.solr';
 
     /**
      * Configured core gateway service ID.
@@ -34,7 +30,7 @@ class IbexaSolrExtension extends Extension
      *
      * @var string
      */
-    const GATEWAY_ID = 'ezpublish.search.solr.gateway.native';
+    public const GATEWAY_ID = 'ezpublish.search.solr.gateway.native';
 
     /**
      * Configured core filter service ID.
@@ -43,7 +39,7 @@ class IbexaSolrExtension extends Extension
      *
      * @var string
      */
-    const CORE_FILTER_ID = 'ezpublish.search.solr.core_filter.native';
+    public const CORE_FILTER_ID = 'ezpublish.search.solr.core_filter.native';
 
     /**
      * Configured core endpoint resolver service ID.
@@ -52,36 +48,36 @@ class IbexaSolrExtension extends Extension
      *
      * @var string
      */
-    const ENDPOINT_RESOLVER_ID = 'ezpublish.search.solr.gateway.endpoint_resolver.native';
+    public const ENDPOINT_RESOLVER_ID = 'ezpublish.search.solr.gateway.endpoint_resolver.native';
 
     /**
      * Endpoint class.
      *
      * @var string
      */
-    const ENDPOINT_CLASS = 'EzSystems\\EzPlatformSolrSearchEngine\\Gateway\\Endpoint';
+    public const ENDPOINT_CLASS = 'EzSystems\\EzPlatformSolrSearchEngine\\Gateway\\Endpoint';
 
     /**
      * Endpoint service tag.
      *
      * @var string
      */
-    const ENDPOINT_TAG = 'ezpublish.search.solr.endpoint';
+    public const ENDPOINT_TAG = 'ezpublish.search.solr.endpoint';
 
     /**
      * @var string
      */
-    const BOOST_FACTOR_PROVIDER_ID = 'ezpublish.search.solr.field_mapper.boost_factor_provider';
+    public const BOOST_FACTOR_PROVIDER_ID = 'ezpublish.search.solr.field_mapper.boost_factor_provider';
 
     /**
      * @var string
      */
-    const STANDALONE_DISTRIBUTION_STRATEGY_ID = 'ezpublish.search.solr.gateway.distribution_strategy.abstract_standalone';
+    public const STANDALONE_DISTRIBUTION_STRATEGY_ID = 'ezpublish.search.solr.gateway.distribution_strategy.abstract_standalone';
 
     /**
      * @var string
      */
-    const CLOUD_DISTRIBUTION_STRATEGY_ID = 'ezpublish.search.solr.gateway.distribution_strategy.abstract_cloud';
+    public const CLOUD_DISTRIBUTION_STRATEGY_ID = 'ezpublish.search.solr.gateway.distribution_strategy.abstract_cloud';
 
     public function getAlias()
     {

@@ -1,19 +1,15 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\Query\Common\SortClauseVisitor;
 
-use Ibexa\Contracts\Solr\Query\SortClauseVisitor;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
-use Ibexa\Core\Search\Common\FieldNameResolver;
+use Ibexa\Contracts\Solr\Query\SortClauseVisitor;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Core\Search\Common\FieldNameResolver;
 
 /**
  * Visits the sort clause into a Solr query.

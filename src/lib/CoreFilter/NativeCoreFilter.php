@@ -1,12 +1,8 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\CoreFilter;
 
@@ -36,7 +32,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @var string
      */
-    const FIELD_DOCUMENT_TYPE = 'document_type_id';
+    public const FIELD_DOCUMENT_TYPE = 'document_type_id';
 
     /**
      * Name of the Solr backend field holding list of all translation's Content
@@ -44,7 +40,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @var string
      */
-    const FIELD_LANGUAGES = 'content_language_codes_ms';
+    public const FIELD_LANGUAGES = 'content_language_codes_ms';
 
     /**
      * Name of the Solr backend field holding language code of the indexed
@@ -52,7 +48,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @var string
      */
-    const FIELD_LANGUAGE = 'meta_indexed_language_code_s';
+    public const FIELD_LANGUAGE = 'meta_indexed_language_code_s';
 
     /**
      * Name of the Solr backend field indicating if the indexed translation
@@ -60,7 +56,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @var string
      */
-    const FIELD_IS_MAIN_LANGUAGE = 'meta_indexed_is_main_translation_b';
+    public const FIELD_IS_MAIN_LANGUAGE = 'meta_indexed_is_main_translation_b';
 
     /**
      * Name of the Solr backend field indicating if the indexed translation
@@ -68,7 +64,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @var string
      */
-    const FIELD_IS_ALWAYS_AVAILABLE = 'meta_indexed_is_main_translation_and_always_available_b';
+    public const FIELD_IS_ALWAYS_AVAILABLE = 'meta_indexed_is_main_translation_and_always_available_b';
 
     /**
      * Name of the Solr backend field indicating if the indexed document is
@@ -76,7 +72,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @var string
      */
-    const FIELD_IS_MAIN_LANGUAGES_INDEX = 'meta_indexed_main_translation_b';
+    public const FIELD_IS_MAIN_LANGUAGES_INDEX = 'meta_indexed_main_translation_b';
 
     /**
      * Indicates presence of main languages index.

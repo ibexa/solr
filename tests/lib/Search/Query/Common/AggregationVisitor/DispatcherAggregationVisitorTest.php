@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
@@ -75,9 +75,9 @@ final class DispatcherAggregationVisitorTest extends TestCase
     }
 
     private function createVisitorMock(
-       Aggregation $aggregation,
-       array $languageFilter,
-       bool $supports
+        Aggregation $aggregation,
+        array $languageFilter,
+        bool $supports
     ): MockObject {
         $visitor = $this->createMock(AggregationVisitor::class);
         $visitor->method('canVisit')->with($aggregation, $languageFilter)->willReturn($supports);

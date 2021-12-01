@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Solr;
 
 use Doctrine\DBAL\Connection;
+use Exception;
+use Ibexa\Contracts\Core\Persistence\Content\ContentInfo;
+use Ibexa\Contracts\Core\Persistence\Handler as PersistenceHandler;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Core\Search\Common\IncrementalIndexer;
-use Ibexa\Contracts\Core\Persistence\Content\ContentInfo;
 use Ibexa\Solr\Handler as SolrSearchHandler;
-use Ibexa\Contracts\Core\Persistence\Handler as PersistenceHandler;
 use Psr\Log\LoggerInterface;
-use Exception;
 
 class Indexer extends IncrementalIndexer
 {

@@ -1,12 +1,8 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Contracts\Solr;
 
@@ -26,14 +22,14 @@ interface DocumentMapper
      *
      * @var string
      */
-    const DOCUMENT_TYPE_IDENTIFIER_CONTENT = 'content';
+    public const DOCUMENT_TYPE_IDENTIFIER_CONTENT = 'content';
 
     /**
      * Identifier of Location documents.
      *
      * @var string
      */
-    const DOCUMENT_TYPE_IDENTIFIER_LOCATION = 'location';
+    public const DOCUMENT_TYPE_IDENTIFIER_LOCATION = 'location';
 
     /**
      * Maps given Content and it's Locations to a collection of nested Documents,

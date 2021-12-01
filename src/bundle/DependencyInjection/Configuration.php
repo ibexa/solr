@@ -1,9 +1,7 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Bundle\Solr\DependencyInjection;
@@ -113,14 +111,14 @@ class Configuration implements ConfigurationInterface
             ->prototype('array')
                 ->beforeNormalization()
                     ->ifTrue(
-                        function ($v) {
+                        static function ($v) {
                             return
                                 !empty($v['mapping']) && !\is_array($v['mapping'])
                             ;
                         }
                     )
                     ->then(
-                        function ($v) {
+                        static function ($v) {
                             // If single endpoint is set for Content mapping, use it as default
                             // mapping for Content index
                             $v['mapping'] = [
@@ -133,7 +131,7 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->beforeNormalization()
                     ->ifTrue(
-                        function ($v) {
+                        static function ($v) {
                             return
                                 empty($v['entry_endpoints']) &&
                                 (
@@ -146,7 +144,7 @@ class Configuration implements ConfigurationInterface
                     )
                     ->then(
                         // If entry endpoints are not provided use mapping endpoints
-                        function ($v) {
+                        static function ($v) {
                             $endpointSet = [];
 
                             if (!empty($v['mapping']['translations'])) {
@@ -315,7 +313,7 @@ class Configuration implements ConfigurationInterface
                                 ->useAttributeAsKey('content_type_identifier')
                                 ->beforeNormalization()
                                     ->always(
-                                        function (array $v) {
+                                        static function (array $v) {
                                             $valuesMapped = [];
                                             foreach ($v as $key => $value) {
                                                 if (\is_array($value)) {
@@ -351,7 +349,7 @@ class Configuration implements ConfigurationInterface
                                 ->useAttributeAsKey('content_type_identifier')
                                 ->beforeNormalization()
                                     ->always(
-                                        function (array $v) {
+                                        static function (array $v) {
                                             $valuesMapped = [];
                                             foreach ($v as $key => $value) {
                                                 if (\is_array($value)) {

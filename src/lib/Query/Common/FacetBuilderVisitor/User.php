@@ -1,12 +1,8 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\Query\Common\FacetBuilderVisitor;
 
@@ -26,7 +22,7 @@ class User extends FacetBuilderVisitor implements FacetFieldVisitor
     /**
      * @internal Will be marked private when we require PHP 7.0 and can do that.
      */
-    const DOC_FIELD_MAP = [
+    public const DOC_FIELD_MAP = [
         UserFacetBuilder::OWNER => 'content_owner_user_id_id',
         UserFacetBuilder::GROUP => 'content_owner_user_group_ids_mid',
         UserFacetBuilder::MODIFIER => 'content_version_creator_user_id_id',
