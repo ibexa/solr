@@ -85,6 +85,12 @@ class IbexaSolrExtension extends Extension
 
     public function getAlias()
     {
+        return 'ibexa_solr';
+    }
+
+    private function getServicePrefix(): string
+    {
+        // @todo needs to be rebranded to ibexa.solr or ibexa.search.solr
         return 'ez_search_engine_solr';
     }
 
@@ -128,7 +134,7 @@ class IbexaSolrExtension extends Extension
      */
     protected function processConnectionConfiguration(ContainerBuilder $container, array $config)
     {
-        $alias = $this->getAlias();
+        $alias = $this->getServicePrefix();
 
         if (isset($config['default_connection'])) {
             $container->setParameter(
@@ -173,7 +179,7 @@ class IbexaSolrExtension extends Extension
      */
     private function configureSearchServices(ContainerBuilder $container, $connectionName, $connectionParams)
     {
-        $alias = $this->getAlias();
+        $alias = $this->getServicePrefix();
 
         // Endpoint resolver
         $endpointResolverDefinition = new ChildDefinition(self::ENDPOINT_RESOLVER_ID);
@@ -228,7 +234,7 @@ class IbexaSolrExtension extends Extension
      */
     private function configureBoostMap(ContainerBuilder $container, $connectionName, $connectionParams)
     {
-        $alias = $this->getAlias();
+        $alias = $this->getServicePrefix();
         $boostFactorMap = $this->buildBoostFactorMap($connectionParams['boost_factors']);
         $boostFactorMapId = "{$alias}.connection.{$connectionName}.boost_factor_map_id";
 
@@ -244,7 +250,7 @@ class IbexaSolrExtension extends Extension
      */
     private function configureIndexingDepth(ContainerBuilder $container, $connectionName, $connectionParams)
     {
-        $alias = $this->getAlias();
+        $alias = $this->getServicePrefix();
 
         $defaultIndexingDepthId = "{$alias}.connection.{$connectionName}.indexing_depth.default";
         $contentTypeIndexingDepthMapId = "{$alias}.connection.{$connectionName}.indexing_depth.map";
@@ -266,7 +272,7 @@ class IbexaSolrExtension extends Extension
         $definition->addTag(self::ENDPOINT_TAG, ['alias' => $alias]);
 
         $container->setDefinition(
-            sprintf($this->getAlias() . '.endpoints.%s', $alias),
+            sprintf($this->getServicePrefix() . '.endpoints.%s', $alias),
             $definition
         );
     }
