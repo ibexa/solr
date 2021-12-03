@@ -1,21 +1,17 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\Query\Common\QueryConverter;
 
-use eZ\Publish\API\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
-use Ibexa\Solr\Query\QueryConverter;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Contracts\Solr\Query\SortClauseVisitor;
 use Ibexa\Solr\Query\FacetFieldVisitor;
+use Ibexa\Solr\Query\QueryConverter;
 
 /**
  * Native implementation of Query Converter.
@@ -25,35 +21,35 @@ class NativeQueryConverter extends QueryConverter
     /**
      * Query visitor.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Query\CriterionVisitor
+     * @var \Ibexa\Contracts\Solr\Query\CriterionVisitor
      */
     protected $criterionVisitor;
 
     /**
      * Sort clause visitor.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Query\SortClauseVisitor
+     * @var \Ibexa\Contracts\Solr\Query\SortClauseVisitor
      */
     protected $sortClauseVisitor;
 
     /**
      * Facet builder visitor.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Query\FacetFieldVisitor
+     * @var \Ibexa\Solr\Query\FacetFieldVisitor
      */
     protected $facetBuilderVisitor;
 
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Query\AggregationVisitor
+     * @var \Ibexa\Contracts\Solr\Query\AggregationVisitor
      */
     private $aggregationVisitor;
 
     /**
      * Construct from visitors.
      *
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Query\CriterionVisitor $criterionVisitor
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Query\SortClauseVisitor $sortClauseVisitor
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Query\FacetFieldVisitor $facetBuilderVisitor
+     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $criterionVisitor
+     * @param \Ibexa\Contracts\Solr\Query\SortClauseVisitor $sortClauseVisitor
+     * @param \Ibexa\Solr\Query\FacetFieldVisitor $facetBuilderVisitor
      */
     public function __construct(
         CriterionVisitor $criterionVisitor,
@@ -110,7 +106,7 @@ class NativeQueryConverter extends QueryConverter
     /**
      * Converts an array of sort clause objects to a proper Solr representation.
      *
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\SortClause[] $sortClauses
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause[] $sortClauses
      *
      * @return string
      */
@@ -131,7 +127,7 @@ class NativeQueryConverter extends QueryConverter
      * This method uses spl_object_hash() to get id of each and every facet builder, as this
      * is expected by {@link \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor}.
      *
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\FacetBuilder[] $facetBuilders
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder[] $facetBuilders
      *
      * @return array
      */

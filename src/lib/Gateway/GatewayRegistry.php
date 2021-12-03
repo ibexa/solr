@@ -1,9 +1,7 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Solr\Gateway;
@@ -16,11 +14,11 @@ use OutOfBoundsException;
  */
 final class GatewayRegistry
 {
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Gateway[] */
+    /** @var \Ibexa\Solr\Gateway[] */
     private $gateways;
 
     /**
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Gateway[] $gateways
+     * @param \Ibexa\Solr\Gateway[] $gateways
      */
     public function __construct(array $gateways = [])
     {
@@ -28,7 +26,7 @@ final class GatewayRegistry
     }
 
     /**
-     * @return \EzSystems\EzPlatformSolrSearchEngine\Gateway[]
+     * @return \Ibexa\Solr\Gateway[]
      */
     public function getGateways(): array
     {
@@ -36,7 +34,7 @@ final class GatewayRegistry
     }
 
     /**
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Gateway[] $gateways
+     * @param \Ibexa\Solr\Gateway[] $gateways
      */
     public function setGateways(array $gateways): void
     {

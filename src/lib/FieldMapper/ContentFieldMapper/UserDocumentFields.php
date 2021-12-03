@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\FieldMapper\ContentFieldMapper;
 
-use eZ\Publish\SPI\Persistence\Content as SPIContent;
-use eZ\Publish\SPI\Search\Field;
-use eZ\Publish\SPI\Search\FieldType;
+use Ibexa\Contracts\Core\Persistence\Content as SPIContent;
+use Ibexa\Contracts\Core\Search\Field;
+use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
 
 final class UserDocumentFields extends ContentFieldMapper

@@ -1,22 +1,18 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\CoreFilter;
 
-use eZ\Publish\API\Repository\Values\Content\Query;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion\CustomField;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion\LogicalAnd;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion\LogicalNot;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion\LogicalOr;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CustomField;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalAnd;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalNot;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalOr;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
 use Ibexa\Solr\CoreFilter;
 use Ibexa\Solr\Gateway\EndpointResolver;
 
@@ -36,7 +32,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @var string
      */
-    const FIELD_DOCUMENT_TYPE = 'document_type_id';
+    public const FIELD_DOCUMENT_TYPE = 'document_type_id';
 
     /**
      * Name of the Solr backend field holding list of all translation's Content
@@ -44,7 +40,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @var string
      */
-    const FIELD_LANGUAGES = 'content_language_codes_ms';
+    public const FIELD_LANGUAGES = 'content_language_codes_ms';
 
     /**
      * Name of the Solr backend field holding language code of the indexed
@@ -52,7 +48,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @var string
      */
-    const FIELD_LANGUAGE = 'meta_indexed_language_code_s';
+    public const FIELD_LANGUAGE = 'meta_indexed_language_code_s';
 
     /**
      * Name of the Solr backend field indicating if the indexed translation
@@ -60,7 +56,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @var string
      */
-    const FIELD_IS_MAIN_LANGUAGE = 'meta_indexed_is_main_translation_b';
+    public const FIELD_IS_MAIN_LANGUAGE = 'meta_indexed_is_main_translation_b';
 
     /**
      * Name of the Solr backend field indicating if the indexed translation
@@ -68,7 +64,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @var string
      */
-    const FIELD_IS_ALWAYS_AVAILABLE = 'meta_indexed_is_main_translation_and_always_available_b';
+    public const FIELD_IS_ALWAYS_AVAILABLE = 'meta_indexed_is_main_translation_and_always_available_b';
 
     /**
      * Name of the Solr backend field indicating if the indexed document is
@@ -76,7 +72,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @var string
      */
-    const FIELD_IS_MAIN_LANGUAGES_INDEX = 'meta_indexed_main_translation_b';
+    public const FIELD_IS_MAIN_LANGUAGES_INDEX = 'meta_indexed_main_translation_b';
 
     /**
      * Indicates presence of main languages index.
@@ -168,7 +164,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @param string[] $languageCodes
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Query\Criterion
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion
      */
     private function getLanguageFilter(array $languageCodes)
     {

@@ -1,12 +1,8 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\Gateway\HttpClient;
 
@@ -62,9 +58,9 @@ class Stream implements HttpClient
      *
      * @param string $method
      * @param string $path
-     * @param Message $message
+     * @param \Ibexa\Solr\Gateway\Message $message
      *
-     * @return Message
+     * @return \Ibexa\Solr\Gateway\Message
      */
     public function request($method, Endpoint $endpoint, $path, Message $message = null)
     {

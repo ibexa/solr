@@ -1,16 +1,12 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr;
 
-use eZ\Publish\API\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 
 /**
  * The Content Search Gateway provides the implementation for one database to
@@ -51,7 +47,7 @@ abstract class Gateway
      * Documents are given as an array of the array of documents. The array of documents
      * holds documents for all translations of the particular entity.
      *
-     * @param \eZ\Publish\SPI\Search\Document[][] $documents
+     * @param \Ibexa\Contracts\Core\Search\Document[][] $documents
      */
     abstract public function bulkIndexDocuments(array $documents);
 

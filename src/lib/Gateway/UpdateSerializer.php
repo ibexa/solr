@@ -1,18 +1,16 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Solr\Gateway;
 
-use eZ\Publish\Core\Search\Common\FieldNameGenerator;
-use eZ\Publish\Core\Search\Common\FieldValueMapper;
-use eZ\Publish\SPI\Search\Document;
-use eZ\Publish\SPI\Search\Field;
-use eZ\Publish\SPI\Search\FieldType;
+use Ibexa\Contracts\Core\Search\Document;
+use Ibexa\Contracts\Core\Search\Field;
+use Ibexa\Contracts\Core\Search\FieldType;
+use Ibexa\Core\Search\Common\FieldNameGenerator;
+use Ibexa\Core\Search\Common\FieldValueMapper;
 use XMLWriter;
 
 /**
@@ -22,12 +20,12 @@ use XMLWriter;
 class UpdateSerializer
 {
     /**
-     * @var \eZ\Publish\Core\Search\Common\FieldValueMapper
+     * @var \Ibexa\Core\Search\Common\FieldValueMapper
      */
     protected $fieldValueMapper;
 
     /**
-     * @var \eZ\Publish\Core\Search\Common\FieldNameGenerator
+     * @var \Ibexa\Core\Search\Common\FieldNameGenerator
      */
     protected $nameGenerator;
 
@@ -42,7 +40,7 @@ class UpdateSerializer
     /**
      * Create update XML for the given array of $documents.
      *
-     * @param \eZ\Publish\SPI\Search\Document[] $documents
+     * @param \Ibexa\Contracts\Core\Search\Document[] $documents
      *
      * @return string
      */
@@ -117,7 +115,7 @@ class UpdateSerializer
      *
      * @param string $id
      *
-     * @return \eZ\Publish\SPI\Search\Document
+     * @return \Ibexa\Contracts\Core\Search\Document
      */
     private function getNestedDummyDocument($id)
     {

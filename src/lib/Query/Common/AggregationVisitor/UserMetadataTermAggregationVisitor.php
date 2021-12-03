@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Common\AggregationVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\AbstractTermAggregation;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractTermAggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 
 final class UserMetadataTermAggregationVisitor extends AbstractTermAggregationVisitor
 {
@@ -21,7 +21,7 @@ final class UserMetadataTermAggregationVisitor extends AbstractTermAggregationVi
     }
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation $aggregation
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation $aggregation
      */
     protected function getTargetField(AbstractTermAggregation $aggregation): string
     {

@@ -1,19 +1,15 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\Query\Common\SortClauseVisitor;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
 use Ibexa\Contracts\Solr\Query\SortClauseVisitor;
-use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
-use eZ\Publish\Core\Search\Common\FieldNameResolver;
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Core\Search\Common\FieldNameResolver;
 
 /**
  * Visits the sort clause into a Solr query.
@@ -23,14 +19,14 @@ class Field extends SortClauseVisitor
     /**
      * Field name resolver.
      *
-     * @var \eZ\Publish\Core\Search\Common\FieldNameResolver
+     * @var \Ibexa\Core\Search\Common\FieldNameResolver
      */
     protected $fieldNameResolver;
 
     /**
      * Create from field name resolver.
      *
-     * @param \eZ\Publish\Core\Search\Common\FieldNameResolver $fieldNameResolver
+     * @param \Ibexa\Core\Search\Common\FieldNameResolver $fieldNameResolver
      */
     public function __construct(FieldNameResolver $fieldNameResolver)
     {
@@ -40,7 +36,7 @@ class Field extends SortClauseVisitor
     /**
      * Get sort field name.
      *
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\SortClause $sortClause
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
      * @param string $contentTypeIdentifier
      * @param string $fieldDefinitionIdentifier
      *
@@ -61,7 +57,7 @@ class Field extends SortClauseVisitor
     /**
      * Check if visitor is applicable to the $sortClause.
      *
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\SortClause $sortClause
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
      *
      * @return bool
      */
@@ -73,16 +69,16 @@ class Field extends SortClauseVisitor
     /**
      * Map the $sortClause to a proper Solr representation.
      *
-     * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentException If no sortable fields are
+     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException If no sortable fields are
      *         found for the given sort clause target.
      *
-     * @param \eZ\Publish\API\Repository\Values\Content\Query\SortClause $sortClause
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
      *
      * @return string
      */
     public function visit(SortClause $sortClause)
     {
-        /** @var \eZ\Publish\API\Repository\Values\Content\Query\SortClause\Target\FieldTarget $target */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\Target\FieldTarget $target */
         $target = $sortClause->targetData;
         $fieldName = $this->getSortFieldName(
             $sortClause,

@@ -1,9 +1,7 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Solr\CoreFilter;
@@ -13,11 +11,11 @@ use OutOfBoundsException;
 
 final class CoreFilterRegistry
 {
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\CoreFilter[] */
+    /** @var \Ibexa\Solr\CoreFilter[] */
     private $coreFilters;
 
     /**
-     * @param \EzSystems\EzPlatformSolrSearchEngine\CoreFilter[] $coreFilters
+     * @param \Ibexa\Solr\CoreFilter[] $coreFilters
      */
     public function __construct(array $coreFilters = [])
     {
@@ -25,7 +23,7 @@ final class CoreFilterRegistry
     }
 
     /**
-     * @return \EzSystems\EzPlatformSolrSearchEngine\CoreFilter[] $coreFilters
+     * @return \Ibexa\Solr\CoreFilter[] $coreFilters
      */
     public function getCoreFilters(): array
     {
@@ -33,7 +31,7 @@ final class CoreFilterRegistry
     }
 
     /**
-     * @param \EzSystems\EzPlatformSolrSearchEngine\CoreFilter[] $coreFilters
+     * @param \Ibexa\Solr\CoreFilter[] $coreFilters
      */
     public function setCoreFilters(array $coreFilters): void
     {

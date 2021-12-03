@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Common\AggregationVisitor;
 
-use eZ\Publish\API\Repository\Exceptions\NotImplementedException;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 
 final class DispatcherAggregationVisitor implements AggregationVisitor
 {
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Query\AggregationVisitor[] */
+    /** @var \Ibexa\Contracts\Solr\Query\AggregationVisitor[] */
     private $visitors;
 
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Query\AggregationVisitor[]
+     * @var \Ibexa\Contracts\Solr\Query\AggregationVisitor[]
      */
     public function __construct(iterable $visitors)
     {

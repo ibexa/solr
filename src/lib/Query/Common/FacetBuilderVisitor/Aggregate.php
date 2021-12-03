@@ -1,16 +1,12 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\Query\Common\FacetBuilderVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\FacetBuilder;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder;
 use Ibexa\Solr\Query\FacetBuilderVisitor;
 use Ibexa\Solr\Query\FacetFieldVisitor;
 
@@ -24,14 +20,14 @@ class Aggregate extends FacetBuilderVisitor implements FacetFieldVisitor
     /**
      * Array of available visitors.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Query\FacetBuilderVisitor[]
+     * @var \Ibexa\Solr\Query\FacetBuilderVisitor[]
      */
     protected $visitors = [];
 
     /**
      * Construct from optional visitor array.
      *
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Query\FacetBuilderVisitor[] $visitors
+     * @param \Ibexa\Solr\Query\FacetBuilderVisitor[] $visitors
      */
     public function __construct(array $visitors = [])
     {

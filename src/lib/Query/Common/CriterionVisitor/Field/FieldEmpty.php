@@ -1,22 +1,22 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Common\CriterionVisitor\Field;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
-use eZ\Publish\Core\Search\Common\FieldNameGenerator;
-use eZ\Publish\Core\Search\Common\FieldNameResolver;
-use eZ\Publish\Core\Search\Common\FieldValueMapper;
-use eZ\Publish\SPI\Search\FieldType\BooleanField;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Search\FieldType\BooleanField;
+use Ibexa\Contracts\Solr\Query\CriterionVisitor;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Core\Search\Common\FieldNameGenerator;
+use Ibexa\Core\Search\Common\FieldNameResolver;
+use Ibexa\Core\Search\Common\FieldValueMapper;
 use Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\ContentDocumentEmptyFields;
 use Ibexa\Solr\Query\Common\CriterionVisitor\Field;
-use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 /**
  * Visits the IsFieldEmpty criterion.
@@ -24,7 +24,7 @@ use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 final class FieldEmpty extends Field
 {
     /**
-     * @var \eZ\Publish\Core\Search\Common\FieldNameGenerator
+     * @var \Ibexa\Core\Search\Common\FieldNameGenerator
      */
     private $fieldNameGenerator;
 
@@ -49,9 +49,9 @@ final class FieldEmpty extends Field
     /**
      * Map field value to a proper Solr representation.
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If no searchable fields are found for the given criterion target.
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException If no searchable fields are found for the given criterion target.
      *
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Query\CriterionVisitor $subVisitor
+     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      */
     public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null): string
     {

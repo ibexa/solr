@@ -1,14 +1,12 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Solr\FieldMapper\ContentFieldMapper;
 
-use eZ\Publish\SPI\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
 
 /**
@@ -19,12 +17,12 @@ class Aggregate extends ContentFieldMapper
     /**
      * An array of aggregated field mappers, sorted by priority.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentFieldMapper[]
+     * @var \Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper[]
      */
     protected $mappers = [];
 
     /**
-     * @param \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentFieldMapper[] $mappers
+     * @param \Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper[] $mappers
      *        An array of mappers, sorted by priority.
      */
     public function __construct(array $mappers = [])

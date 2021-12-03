@@ -1,19 +1,15 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\Query\Content\CriterionVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion\FullText as FullTextCriterion;
-use eZ\Publish\Core\Search\Common\FieldNameResolver;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\FullText as FullTextCriterion;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
+use Ibexa\Core\Search\Common\FieldNameResolver;
 use QueryTranslator\Languages\Galach\Generators\ExtendedDisMax;
 use QueryTranslator\Languages\Galach\Parser;
 use QueryTranslator\Languages\Galach\Tokenizer;
@@ -26,7 +22,7 @@ class FullText extends CriterionVisitor
     /**
      * Field map.
      *
-     * @var \eZ\Publish\Core\Search\Common\FieldNameResolver
+     * @var \Ibexa\Core\Search\Common\FieldNameResolver
      */
     protected $fieldNameResolver;
 
@@ -94,13 +90,13 @@ class FullText extends CriterionVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Query\CriterionVisitor $subVisitor
+     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      *
      * @return string
      */
     public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
     {
-        /** @var \eZ\Publish\API\Repository\Values\Content\Query\Criterion\FullText $criterion */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\FullText $criterion */
         $tokenSequence = $this->tokenizer->tokenize($criterion->value);
         $syntaxTree = $this->parser->parse($tokenSequence);
 
@@ -118,7 +114,7 @@ class FullText extends CriterionVisitor
 
     private function getQueryFields(Criterion $criterion)
     {
-        /** @var \eZ\Publish\API\Repository\Values\Content\Query\Criterion\FullText $criterion */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\FullText $criterion */
         $queryFields = ['meta_content__text_t'];
 
         for ($i = 1; $i <= $this->maxDepth; ++$i) {

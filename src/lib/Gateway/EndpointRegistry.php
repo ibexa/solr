@@ -1,12 +1,8 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\Gateway;
 
@@ -27,7 +23,7 @@ class EndpointRegistry
     /**
      * Construct from optional array of Endpoints.
      *
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint[] $endpoints
+     * @param \Ibexa\Solr\Gateway\Endpoint[] $endpoints
      */
     public function __construct(array $endpoints = [])
     {
@@ -40,7 +36,7 @@ class EndpointRegistry
      * Registers $endpoint with $name.
      *
      * @param string $name
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint $endpoint
+     * @param \Ibexa\Solr\Gateway\Endpoint $endpoint
      */
     public function registerEndpoint($name, Endpoint $endpoint)
     {
@@ -52,7 +48,7 @@ class EndpointRegistry
      *
      * @param string $name
      *
-     * @return \EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint
+     * @return \Ibexa\Solr\Gateway\Endpoint
      */
     public function getEndpoint($name)
     {
@@ -66,7 +62,7 @@ class EndpointRegistry
     /**
      * Get first Endpoint, for usecases where there is only one.
      *
-     * @return \EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint
+     * @return \Ibexa\Solr\Gateway\Endpoint
      */
     public function getFirstEndpoint()
     {

@@ -1,17 +1,13 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Contracts\Solr;
 
-use eZ\Publish\SPI\Persistence\Content;
-use eZ\Publish\SPI\Persistence\Content\Location;
+use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content\Location;
 
 /**
  * Mapper maps Content and Location objects to a Document objects, representing a
@@ -26,14 +22,14 @@ interface DocumentMapper
      *
      * @var string
      */
-    const DOCUMENT_TYPE_IDENTIFIER_CONTENT = 'content';
+    public const DOCUMENT_TYPE_IDENTIFIER_CONTENT = 'content';
 
     /**
      * Identifier of Location documents.
      *
      * @var string
      */
-    const DOCUMENT_TYPE_IDENTIFIER_LOCATION = 'location';
+    public const DOCUMENT_TYPE_IDENTIFIER_LOCATION = 'location';
 
     /**
      * Maps given Content and it's Locations to a collection of nested Documents,
@@ -41,7 +37,7 @@ interface DocumentMapper
      *
      * Each Content Document contains nested Documents representing it's Locations.
      *
-     * @return \eZ\Publish\SPI\Search\Document[]
+     * @return \Ibexa\Contracts\Core\Search\Document[]
      */
     public function mapContentBlock(Content $content);
 

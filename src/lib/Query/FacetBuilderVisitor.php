@@ -1,16 +1,12 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\Query;
 
-use eZ\Publish\API\Repository\Values\Content\Query\FacetBuilder;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder;
 
 /**
  * Visits the facet builder tree into a Solr query.
@@ -40,7 +36,7 @@ abstract class FacetBuilderVisitor
      *
      * @param string $field
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Search\Facet
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\Facet
      */
     public function map($field, array $data)
     {

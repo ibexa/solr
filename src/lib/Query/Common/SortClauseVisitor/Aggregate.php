@@ -1,17 +1,13 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\Query\Common\SortClauseVisitor;
 
-use eZ\Publish\API\Repository\Exceptions\NotImplementedException;
-use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
 use Ibexa\Contracts\Solr\Query\SortClauseVisitor;
 
 /**
@@ -22,14 +18,14 @@ class Aggregate extends SortClauseVisitor
     /**
      * Array of available visitors.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Query\SortClauseVisitor[]
+     * @var \Ibexa\Contracts\Solr\Query\SortClauseVisitor[]
      */
     protected $visitors = [];
 
     /**
      * Construct from optional visitor array.
      *
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Query\SortClauseVisitor[] $visitors
+     * @param \Ibexa\Contracts\Solr\Query\SortClauseVisitor[] $visitors
      */
     public function __construct(array $visitors = [])
     {
@@ -59,7 +55,7 @@ class Aggregate extends SortClauseVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotImplementedException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException
      *
      * @return string
      */

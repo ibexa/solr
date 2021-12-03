@@ -1,26 +1,26 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\Solr\ResultExtractor\AggregationResultExtractor;
 
-use eZ\Publish\API\Repository\Exceptions\NotImplementedException;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
-use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use stdClass;
 
 final class DispatcherAggregationResultExtractor implements AggregationResultExtractor
 {
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor[] */
+    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor[] */
     private $extractors;
 
     /**
-     * @param \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor[] $extractors
+     * @param \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor[] $extractors
      */
     public function __construct(iterable $extractors)
     {

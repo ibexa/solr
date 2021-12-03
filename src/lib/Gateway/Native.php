@@ -1,19 +1,15 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\Gateway;
 
-use eZ\Publish\API\Repository\Values\Content\Query;
-use eZ\Publish\SPI\Search\Document;
-use eZ\Publish\SPI\Search\Field;
-use eZ\Publish\SPI\Search\FieldType;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Search\Document;
+use Ibexa\Contracts\Core\Search\Field;
+use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Solr\Gateway;
 use Ibexa\Solr\Query\QueryConverter;
 use RuntimeException;
@@ -27,52 +23,52 @@ class Native extends Gateway
     /**
      * HTTP client to communicate with Solr server.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Gateway\HttpClient
+     * @var \Ibexa\Solr\Gateway\HttpClient
      */
     protected $client;
 
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointResolver
+     * @var \Ibexa\Solr\Gateway\EndpointResolver
      */
     protected $endpointResolver;
 
     /**
      * Endpoint registry service.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointRegistry
+     * @var \Ibexa\Solr\Gateway\EndpointRegistry
      */
     protected $endpointRegistry;
 
     /**
      * Content Query converter.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Query\QueryConverter
+     * @var \Ibexa\Solr\Query\QueryConverter
      */
     protected $contentQueryConverter;
 
     /**
      * Location Query converter.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Query\QueryConverter
+     * @var \Ibexa\Solr\Query\QueryConverter
      */
     protected $locationQueryConverter;
 
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Gateway\UpdateSerializer
+     * @var \Ibexa\Solr\Gateway\UpdateSerializer
      */
     protected $updateSerializer;
 
     /**
-     * @var \EzSystems\EzPlatformSolrSearchEngine\Gateway\DistributionStrategy
+     * @var \Ibexa\Solr\Gateway\DistributionStrategy
      */
     protected $distributionStrategy;
 
     /**
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Gateway\HttpClient $client
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointResolver $endpointResolver
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointRegistry $endpointRegistry
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Gateway\UpdateSerializer $updateSerializer
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Gateway\DistributionStrategy $distributionStrategy
+     * @param \Ibexa\Solr\Gateway\HttpClient $client
+     * @param \Ibexa\Solr\Gateway\EndpointResolver $endpointResolver
+     * @param \Ibexa\Solr\Gateway\EndpointRegistry $endpointRegistry
+     * @param \Ibexa\Solr\Gateway\UpdateSerializer $updateSerializer
+     * @param \Ibexa\Solr\Gateway\DistributionStrategy $distributionStrategy
      */
     public function __construct(
         HttpClient $client,
@@ -228,7 +224,7 @@ class Native extends Gateway
      * - On large amounts of data make sure to iterate with several calls to this function with a limited
      *   set of documents, amount you have memory for depends on server, size of documents, & PHP version.
      *
-     * @param \eZ\Publish\SPI\Search\Document[][] $documents
+     * @param \Ibexa\Contracts\Core\Search\Document[][] $documents
      */
     public function bulkIndexDocuments(array $documents)
     {
@@ -267,7 +263,7 @@ class Native extends Gateway
     /**
      * Returns version of the $document to be indexed in the always available core.
      *
-     * @return \eZ\Publish\SPI\Search\Document
+     * @return \Ibexa\Contracts\Core\Search\Document
      */
     protected function getMainTranslationDocument(Document $document)
     {
@@ -302,8 +298,8 @@ class Native extends Gateway
     }
 
     /**
-     * @param \EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint $endpoint
-     * @param \eZ\Publish\SPI\Search\Document[] $documents
+     * @param \Ibexa\Solr\Gateway\Endpoint $endpoint
+     * @param \Ibexa\Contracts\Core\Search\Document[] $documents
      */
     protected function doBulkIndexDocuments(Endpoint $endpoint, array $documents)
     {

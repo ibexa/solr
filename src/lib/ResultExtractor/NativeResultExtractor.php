@@ -1,17 +1,13 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Solr\ResultExtractor;
 
-use eZ\Publish\SPI\Persistence\Content\ContentInfo;
-use eZ\Publish\SPI\Persistence\Content\Location;
+use Ibexa\Contracts\Core\Persistence\Content\ContentInfo;
+use Ibexa\Contracts\Core\Persistence\Content\Location;
 use Ibexa\Solr\ResultExtractor;
 use RuntimeException;
 
@@ -28,7 +24,7 @@ class NativeResultExtractor extends ResultExtractor
      *
      * @param mixed $hit
      *
-     * @return \eZ\Publish\API\Repository\Values\ValueObject
+     * @return \Ibexa\Contracts\Core\Repository\Values\ValueObject
      */
     public function extractHit($hit)
     {
@@ -46,7 +42,7 @@ class NativeResultExtractor extends ResultExtractor
     /**
      * @param mixed $hit
      *
-     * @return \eZ\Publish\SPI\Persistence\Content\ContentInfo
+     * @return \Ibexa\Contracts\Core\Persistence\Content\ContentInfo
      */
     protected function extractContentInfoFromHit($hit)
     {
@@ -77,7 +73,7 @@ class NativeResultExtractor extends ResultExtractor
     /**
      * @param mixed $hit
      *
-     * @return \eZ\Publish\SPI\Persistence\Content\Location
+     * @return \Ibexa\Contracts\Core\Persistence\Content\Location
      */
     protected function extractLocationFromHit($hit)
     {

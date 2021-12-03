@@ -1,14 +1,15 @@
 <?php
+
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Common\AggregationVisitor\Factory;
 
-use eZ\Publish\Core\Search\Common\FieldNameResolver;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
+use Ibexa\Core\Search\Common\FieldNameResolver;
 use Ibexa\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver\ContentFieldAggregationFieldResolver;
 use Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor;
 use Ibexa\Solr\Query\Common\AggregationVisitor\StatsAggregationVisitor;
@@ -16,7 +17,7 @@ use Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor;
 
 final class ContentFieldAggregationVisitorFactory
 {
-    /** @var \eZ\Publish\Core\Search\Common\FieldNameResolver */
+    /** @var \Ibexa\Core\Search\Common\FieldNameResolver */
     private $fieldNameResolver;
 
     public function __construct(FieldNameResolver $fieldNameResolver)

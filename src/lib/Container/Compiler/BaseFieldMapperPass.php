@@ -1,9 +1,7 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Solr\Container\Compiler;
@@ -20,12 +18,12 @@ abstract class BaseFieldMapperPass implements CompilerPassInterface
     /**
      * Service ID of the aggregate plugin.
      */
-    const AGGREGATE_MAPPER_SERVICE_ID = null;
+    public const AGGREGATE_MAPPER_SERVICE_ID = null;
 
     /**
      * Service tag of plugins registering to the aggregate one.
      */
-    const AGGREGATE_MAPPER_SERVICE_TAG = null;
+    public const AGGREGATE_MAPPER_SERVICE_TAG = null;
 
     public function process(ContainerBuilder $container)
     {

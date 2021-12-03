@@ -1,14 +1,12 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Solr\FieldMapper\LocationFieldMapper;
 
-use eZ\Publish\SPI\Persistence\Content\Location;
+use Ibexa\Contracts\Core\Persistence\Content\Location;
 use Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper;
 
 /**
@@ -19,12 +17,12 @@ class Aggregate extends LocationFieldMapper
     /**
      * An array of aggregated field mappers, sorted by priority.
      *
-     * @var \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\LocationFieldMapper[]
+     * @var \Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper[]
      */
     protected $mappers = [];
 
     /**
-     * @param \EzSystems\EzPlatformSolrSearchEngine\FieldMapper\LocationFieldMapper[] $mappers
+     * @param \Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper[] $mappers
      *        An array of mappers, sorted by priority.
      */
     public function __construct(array $mappers = [])

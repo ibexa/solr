@@ -1,27 +1,23 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
 namespace Ibexa\Bundle\Solr;
 
 use Ibexa\Bundle\Solr\DependencyInjection\IbexaSolrExtension;
-use Ibexa\Solr\Container\Compiler\CoreFilterRegistryPass;
-use Ibexa\Solr\Container\Compiler\GatewayRegistryPass;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Ibexa\Core\Base\Container\Compiler\Search\AggregateFieldValueMapperPass;
+use Ibexa\Core\Base\Container\Compiler\Search\FieldRegistryPass;
 use Ibexa\Solr\Container\Compiler\AggregateCriterionVisitorPass;
 use Ibexa\Solr\Container\Compiler\AggregateFacetBuilderVisitorPass;
 use Ibexa\Solr\Container\Compiler\AggregateSortClauseVisitorPass;
-use Ibexa\Solr\Container\Compiler\FieldMapperPass;
+use Ibexa\Solr\Container\Compiler\CoreFilterRegistryPass;
 use Ibexa\Solr\Container\Compiler\EndpointRegistryPass;
-use eZ\Publish\Core\Base\Container\Compiler\Search\AggregateFieldValueMapperPass;
-use eZ\Publish\Core\Base\Container\Compiler\Search\FieldRegistryPass;
+use Ibexa\Solr\Container\Compiler\FieldMapperPass;
+use Ibexa\Solr\Container\Compiler\GatewayRegistryPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class IbexaSolrBundle extends Bundle
 {
