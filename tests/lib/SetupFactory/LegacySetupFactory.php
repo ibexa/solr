@@ -1,23 +1,27 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\SetupFactory;
+namespace Ibexa\Tests\Solr\SetupFactory;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
-use eZ\Publish\API\Repository\Tests\SearchServiceTranslationLanguageFallbackTest;
-use eZ\Publish\API\Repository\Tests\SetupFactory\Legacy as CoreLegacySetupFactory;
-use eZ\Publish\Core\Base\Container\Compiler as BaseCompiler;
-use eZ\Publish\Core\Base\ServiceContainer;
-use eZ\Publish\Core\Persistence\Legacy\Content\Gateway as ContentGateway;
-use eZ\Publish\SPI\Persistence;
-use EzSystems\EzPlatformSolrSearchEngine\Container\Compiler;
-use EzSystems\EzPlatformSolrSearchEngine\Handler as SolrSearchHandler;
+use Ibexa\Bundle\NamespaceCompatibility\DependencyInjection\Compiler\AliasDecoratorCompatibilityPass;
+use Ibexa\Bundle\NamespaceCompatibility\DependencyInjection\Compiler\ServiceCompatibilityPass;
+use Ibexa\Contracts\Core\Persistence\Content\Handler;
+use Ibexa\Contracts\Core\Test\Repository\SetupFactory\Legacy as CoreLegacySetupFactory;
+use Ibexa\Core\Base\Container\Compiler\Search\AggregateFieldValueMapperPass;
+use Ibexa\Core\Base\Container\Compiler\Search\FieldRegistryPass;
+use Ibexa\Core\Base\ServiceContainer;
+use Ibexa\Core\Persistence\Legacy\Content\Gateway as ContentGateway;
+use Ibexa\Solr\Container\Compiler;
+use Ibexa\Solr\Handler as SolrSearchHandler;
+use Ibexa\Tests\Integration\Core\Repository\SearchServiceTranslationLanguageFallbackTest;
 use RuntimeException;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
@@ -39,7 +43,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
      *
      * @param bool $initializeFromScratch
      *
-     * @return \eZ\Publish\API\Repository\Repository
+     * @return \Ibexa\Contracts\Core\Repository\Repository
      */
     public function getRepository($initializeFromScratch = true)
     {
@@ -55,8 +59,26 @@ class LegacySetupFactory extends CoreLegacySetupFactory
 
     protected function externalBuildContainer(ContainerBuilder $containerBuilder)
     {
-        $settingsPath = __DIR__ . '/../../../lib/Resources/config/container/';
-        $testSettingsPath = __DIR__ . '/../Resources/config/';
+        $containerBuilder->addCompilerPass(
+            new ServiceCompatibilityPass(),
+            PassConfig::TYPE_BEFORE_OPTIMIZATION,
+            128
+        );
+        $containerBuilder->addCompilerPass(
+            new AliasDecoratorCompatibilityPass(),
+            PassConfig::TYPE_BEFORE_OPTIMIZATION,
+            127
+        );
+
+        parent::externalBuildContainer($containerBuilder);
+
+        $this->loadSolrSettings($containerBuilder);
+    }
+
+    protected function loadSolrSettings(ContainerBuilder $containerBuilder): void
+    {
+        $settingsPath = realpath(__DIR__ . '/../../../src/lib/Resources/config/container/');
+        $testSettingsPath = realpath(__DIR__ . '/../Resources/config/');
 
         $solrLoader = new YamlFileLoader($containerBuilder, new FileLocator($settingsPath));
         $solrLoader->load('solr.yml');
@@ -73,14 +95,14 @@ class LegacySetupFactory extends CoreLegacySetupFactory
         $containerBuilder->addCompilerPass(new Compiler\AggregateFacetBuilderVisitorPass());
         $containerBuilder->addCompilerPass(new Compiler\AggregateSortClauseVisitorPass());
         $containerBuilder->addCompilerPass(new Compiler\EndpointRegistryPass());
-        $containerBuilder->addCompilerPass(new BaseCompiler\Search\AggregateFieldValueMapperPass());
-        $containerBuilder->addCompilerPass(new BaseCompiler\Search\FieldRegistryPass());
+        $containerBuilder->addCompilerPass(new AggregateFieldValueMapperPass());
+        $containerBuilder->addCompilerPass(new FieldRegistryPass());
     }
 
     private function getPersistenceContentHandler(
         ServiceContainer $serviceContainer
-    ): Persistence\Content\Handler {
-        /** @var \eZ\Publish\SPI\Persistence\Content\Handler $contentHandler */
+    ): Handler {
+        /** @var \Ibexa\Contracts\Core\Persistence\Content\Handler $contentHandler */
         $contentHandler = $serviceContainer->get('ezpublish.spi.persistence.content_handler');
 
         return $contentHandler;
@@ -88,7 +110,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
 
     private function getSearchHandler(ServiceContainer $serviceContainer): SolrSearchHandler
     {
-        /** @var \EzSystems\EzPlatformSolrSearchEngine\Handler $searchHandler */
+        /** @var \Ibexa\Solr\Handler $searchHandler */
         $searchHandler = $serviceContainer->get('ezpublish.spi.search.solr');
 
         return $searchHandler;
@@ -140,3 +162,5 @@ class LegacySetupFactory extends CoreLegacySetupFactory
         return self::CONFIGURATION_FILES_MAP[$coresSetup];
     }
 }
+
+class_alias(LegacySetupFactory::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\SetupFactory\LegacySetupFactory');

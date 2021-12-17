@@ -1,15 +1,13 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\CoreFilter;
+namespace Ibexa\Tests\Solr\CoreFilter;
 
-use EzSystems\EzPlatformSolrSearchEngine\CoreFilter;
-use EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry;
+use Ibexa\Solr\CoreFilter;
+use Ibexa\Solr\CoreFilter\CoreFilterRegistry;
 use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 
@@ -81,10 +79,12 @@ class CoreFilterRegistryTest extends TestCase
     }
 
     /**
-     * @return \EzSystems\EzPlatformSolrSearchEngine\CoreFilter|\PHPUnit\Framework\MockObject\MockObject
+     * @return \Ibexa\Solr\CoreFilter|\PHPUnit\Framework\MockObject\MockObject
      */
     private function getCoreFilterMock(): CoreFilter
     {
         return $this->createMock(CoreFilter::class);
     }
 }
+
+class_alias(CoreFilterRegistryTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\CoreFilter\CoreFilterRegistryTest');

@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor;
+namespace Ibexa\Tests\Solr\Search\Query\Common\AggregationVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
-use EzSystems\EzPlatformSolrSearchEngine\Query\AggregationVisitor;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use PHPUnit\Framework\TestCase;
 
 abstract class AbstractAggregationVisitorTest extends TestCase
@@ -18,10 +18,10 @@ abstract class AbstractAggregationVisitorTest extends TestCase
         'languageCode' => 'eng-gb',
     ];
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Query\AggregationVisitor */
+    /** @var \Ibexa\Contracts\Solr\Query\AggregationVisitor */
     protected $visitor;
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\Query\AggregationVisitor|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Ibexa\Contracts\Solr\Query\AggregationVisitor|\PHPUnit\Framework\MockObject\MockObject */
     protected $dispatcherVisitor;
 
     protected function setUp(): void
@@ -74,3 +74,5 @@ abstract class AbstractAggregationVisitorTest extends TestCase
         // Overwrite in parent class to configure additional mocks
     }
 }
+
+class_alias(AbstractAggregationVisitorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor\AbstractAggregationVisitorTest');

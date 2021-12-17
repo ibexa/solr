@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
+namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
 
 use DateTimeImmutable;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\DateTimeRangeAggregationKeyMapper;
+use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
+use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\DateTimeRangeAggregationKeyMapper;
 
 final class DateTimeRangeAggregationKeyMapperTest extends AbstractRangeAggregationKeyMapperTest
 {
@@ -36,3 +36,5 @@ final class DateTimeRangeAggregationKeyMapperTest extends AbstractRangeAggregati
         return new DateTimeRangeAggregationKeyMapper();
     }
 }
+
+class_alias(DateTimeRangeAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\DateTimeRangeAggregationKeyMapperTest');

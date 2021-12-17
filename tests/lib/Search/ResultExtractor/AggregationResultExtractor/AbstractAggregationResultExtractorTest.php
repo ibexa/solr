@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor;
+namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
-use eZ\Publish\API\Repository\Values\Content\Search\AggregationResult;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult;
+use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -19,7 +19,7 @@ abstract class AbstractAggregationResultExtractorTest extends TestCase
     protected const EXAMPLE_AGGREGATION_NAME = 'custom_aggregation';
     protected const EXAMPLE_LANGUAGE_FILTER = [];
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor */
+    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor */
     protected $extractor;
 
     protected function setUp(): void
@@ -62,3 +62,5 @@ abstract class AbstractAggregationResultExtractorTest extends TestCase
 
     abstract public function dataProviderForTestExtract(): iterable;
 }
+
+class_alias(AbstractAggregationResultExtractorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\AbstractAggregationResultExtractorTest');

@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion\Operator;
-use EzSystems\EzPlatformSolrSearchEngine\Query\CriterionVisitor;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 final class UserIdIn extends CriterionVisitor
 {
