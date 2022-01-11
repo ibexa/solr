@@ -31,7 +31,7 @@ class AggregateCriterionVisitorPass implements CompilerPassInterface
             );
 
             $visitors = $container->findTaggedServiceIds(
-                'ezpublish.search.solr.query.content.criterion_visitor'
+                'ibexa.search.solr.query.content.criterion.visitor'
             );
 
             $this->addHandlers($aggregateContentCriterionVisitorDefinition, $visitors);
@@ -43,7 +43,7 @@ class AggregateCriterionVisitorPass implements CompilerPassInterface
             );
 
             $visitors = $container->findTaggedServiceIds(
-                'ezpublish.search.solr.query.location.criterion_visitor'
+                'ibexa.search.solr.query.location.criterion.visitor'
             );
 
             $this->addHandlers($aggregateLocationCriterionVisitorDefinition, $visitors);

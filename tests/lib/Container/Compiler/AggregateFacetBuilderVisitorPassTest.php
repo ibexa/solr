@@ -42,12 +42,12 @@ class AggregateFacetBuilderVisitorPassTest extends AbstractCompilerPassTestCase
     {
         $serviceId = 'service_id';
         $def = new Definition();
-        $def->addTag('ezpublish.search.solr.query.content.facet_builder_visitor');
+        $def->addTag('ibexa.search.solr.query.content.facet_builder.visitor');
         $this->setDefinition($serviceId, $def);
 
         $serviceId2 = 'service_id2';
         $def = new Definition();
-        $def->addTag('ezpublish.search.solr.query.location.facet_builder_visitor');
+        $def->addTag('ibexa.search.solr.query.location.facet_builder.visitor');
         $this->setDefinition($serviceId2, $def);
 
         $this->compile();

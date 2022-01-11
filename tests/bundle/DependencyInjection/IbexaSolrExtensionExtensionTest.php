@@ -136,7 +136,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
 
         $this->assertContainerBuilderHasServiceDefinitionWithTag(
             "ez_search_engine_solr.endpoints.{$endpointName}",
-            'ezpublish.search.solr.endpoint',
+            'ibexa.search.solr.endpoint',
             ['alias' => $endpointName]
         );
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(

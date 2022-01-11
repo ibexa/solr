@@ -31,4 +31,4 @@ services:
                 path: /solr
                 core: collection1
         tags:
-            - {name: ezpublish.search.solr.endpoint, alias: endpoint0}
+            - {name: ibexa.search.solr.endpoint, alias: endpoint0}

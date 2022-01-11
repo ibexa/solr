@@ -151,7 +151,7 @@ services:
             - "@ezpublish.search.solr.result_extractor.location"
             - "@ezpublish.search.solr.core_filter"
         tags:
-            - {name: ezplatform.search_engine, alias: solr}
+            - {name: ibexa.search.engine, alias: solr}
         lazy: true
 
     ezpublish.spi.search.solr.indexer:
@@ -162,6 +162,6 @@ services:
             $connection: "@ezpublish.persistence.connection"
             $searchHandler: "@ezpublish.spi.search.solr"
         tags:
-            - {name: ezplatform.search_engine.indexer, alias: solr}
+            - {name: ibexa.search.engine.indexer, alias: solr}
         lazy: true
 

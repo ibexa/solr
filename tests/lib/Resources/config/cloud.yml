@@ -38,7 +38,7 @@ services:
                 path: /solr
                 core: core0
         tags:
-            - {name: ezpublish.search.solr.endpoint, alias: eng}
+            - {name: ibexa.search.solr.endpoint, alias: eng}
 
     ezpublish.search.solr.endpoint.ger:
         class: "%ezpublish.solr.endpoint.class%"
@@ -50,7 +50,7 @@ services:
                 path: /solr
                 core: core1
         tags:
-            - {name: ezpublish.search.solr.endpoint, alias: ger}
+            - {name: ibexa.search.solr.endpoint, alias: ger}
 
     ezpublish.search.solr.endpoint.default:
         class: "%ezpublish.solr.endpoint.class%"
@@ -62,7 +62,7 @@ services:
                 path: /solr
                 core: core2
         tags:
-            - {name: ezpublish.search.solr.endpoint, alias: default}
+            - {name: ibexa.search.solr.endpoint, alias: default}
 
     ezpublish.search.solr.endpoint.main:
         class: "%ezpublish.solr.endpoint.class%"
@@ -74,7 +74,7 @@ services:
                 path: /solr
                 core: core3
         tags:
-            - {name: ezpublish.search.solr.endpoint, alias: main}
+            - {name: ibexa.search.solr.endpoint, alias: main}
 
     ezpublish.search.solr.gateway.distribution_strategy.cloud:
         class: Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy

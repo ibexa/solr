@@ -38,7 +38,7 @@ class AggregateSortClauseVisitorPassTest extends AbstractCompilerPassTestCase
     {
         $serviceId = 'service_id';
         $def = new Definition();
-        $def->addTag('ezpublish.search.solr.query.content.sort_clause_visitor');
+        $def->addTag('ibexa.search.solr.query.content.sort_clause.visitor');
         $this->setDefinition($serviceId, $def);
 
         $this->compile();

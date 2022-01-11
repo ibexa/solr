@@ -14,7 +14,7 @@ use Ibexa\Solr\Container\Compiler\BaseFieldMapperPass;
  */
 class ContentTranslationFieldMapperPass extends BaseFieldMapperPass
 {
-    public const AGGREGATE_MAPPER_SERVICE_ID = 'ezpublish.search.solr.field_mapper.content_translation';
+    public const AGGREGATE_MAPPER_SERVICE_ID = 'ibexa.search.solr.field.mapper.content.translation';
     public const AGGREGATE_MAPPER_SERVICE_TAG = self::AGGREGATE_MAPPER_SERVICE_ID;
 }
 
