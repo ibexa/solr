@@ -43,6 +43,7 @@
     "autoload-dev": {
         "psr-4": {
             "Ibexa\\Tests\\Bundle\\Solr\\": "tests/bundle/",
+            "Ibexa\\Tests\\Solr\\": "tests/lib/",
             "EzSystems\\EzPlatformSolrSearchEngine\\Tests\\": "tests/lib/",
             "EzSystems\\EzPlatformSolrSearchEngineBundle\\Tests\\": "tests/bundle/",
             "Ibexa\\Tests\\Integration\\Core\\": "vendor/ibexa/core/tests/integration/Core/",
