@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\FieldMapper;
+namespace Ibexa\Tests\Solr\Search\FieldMapper;
 
-use eZ\Publish\SPI\Persistence\Content\Type as SPIContentType;
-use EzSystems\EzPlatformSolrSearchEngine\FieldMapper\IndexingDepthProvider;
+use Ibexa\Contracts\Core\Persistence\Content\Type as SPIContentType;
+use Ibexa\Solr\FieldMapper\IndexingDepthProvider;
 use PHPUnit\Framework\TestCase;
 
 class IndexingDepthProviderTest extends TestCase
@@ -56,3 +56,5 @@ class IndexingDepthProviderTest extends TestCase
         ]);
     }
 }
+
+class_alias(IndexingDepthProviderTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\FieldMapper\IndexingDepthProviderTest');

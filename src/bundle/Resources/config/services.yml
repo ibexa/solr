@@ -1,0 +1,53 @@
+parameters:
+    ezpublish.solr.engine_factory.class: Ibexa\Bundle\Solr\ApiLoader\SolrEngineFactory
+    ezpublish.solr.boost_factor_provider_factory.class: Ibexa\Bundle\Solr\ApiLoader\BoostFactorProviderFactory
+    ezpublish.solr.indexing_depth_provider_factory.class: Ibexa\Bundle\Solr\ApiLoader\IndexingDepthProviderFactory
+    ez_search_engine_solr.default_connection: ~
+
+services:
+    ezpublish.solr.engine_factory:
+        class: "%ezpublish.solr.engine_factory.class%"
+        arguments:
+            $repositoryConfigurationProvider: "@ezpublish.api.repository_configuration_provider"
+            $defaultConnection: "%ez_search_engine_solr.default_connection%"
+            $searchEngineClass: "%ezpublish.spi.search.solr.class%"
+            $gatewayRegistry: '@Ibexa\Solr\Gateway\GatewayRegistry'
+            $coreFilterRegistry: '@Ibexa\Solr\CoreFilter\CoreFilterRegistry'
+            $contentHandler: "@ezpublish.spi.persistence.content_handler"
+            $documentMapper: "@ezpublish.search.solr.document_mapper"
+            $contentResultExtractor: "@ezpublish.search.solr.result_extractor.content"
+            $locationResultExtractor: "@ezpublish.search.solr.result_extractor.location"
+
+    ezpublish.solr.boost_factor_provider_factory:
+        class: "%ezpublish.solr.boost_factor_provider_factory.class%"
+        arguments:
+            - "@ezpublish.api.repository_configuration_provider"
+            - "%ez_search_engine_solr.default_connection%"
+            - "%ezpublish.search.solr.boost_factor_provider.class%"
+        calls:
+            - [setContainer, ["@service_container"]]
+
+    ezpublish.search.solr.field_mapper.indexing_depth_provider_factory:
+        class: "%ezpublish.solr.indexing_depth_provider_factory.class%"
+        arguments:
+            - "@ezpublish.api.repository_configuration_provider"
+            - "%ez_search_engine_solr.default_connection%"
+            - "%ezpublish.search.solr.indexing_depth_provider.class%"
+        calls:
+            - [setContainer, ["@service_container"]]
+
+    ezpublish.search.solr.field_mapper.indexing_depth_provider:
+        class: "%ezpublish.search.solr.field_mapper.indexing_depth_provider.class%"
+        factory: ['@ezpublish.search.solr.field_mapper.indexing_depth_provider_factory', 'buildService']
+
+    ezpublish.search.solr.gateway.distribution_strategy.abstract_standalone:
+        abstract: true
+        class: Ibexa\Solr\Gateway\DistributionStrategy\StandaloneDistributionStrategy
+        arguments:
+            - "@ezpublish.search.solr.gateway.endpoint_registry"
+
+    ezpublish.search.solr.gateway.distribution_strategy.abstract_cloud:
+        abstract: true
+        class: Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy
+        arguments:
+            - "@ezpublish.search.solr.gateway.endpoint_registry"

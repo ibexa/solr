@@ -1,18 +1,14 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Gateway;
+namespace Ibexa\Tests\Solr\Search\Gateway;
 
-use eZ\Publish\API\Repository\Exceptions\PropertyNotFoundException;
-use EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint;
-use EzSystems\EzPlatformSolrSearchEngine\Tests\Search\TestCase;
+use Ibexa\Contracts\Core\Repository\Exceptions\PropertyNotFoundException;
+use Ibexa\Solr\Gateway\Endpoint;
+use Ibexa\Tests\Solr\Search\TestCase;
 
 /**
  * Test case for native endpoint resolver.
@@ -99,3 +95,5 @@ class EndpointTest extends TestCase
         $actual = new Endpoint(['dsn' => 'https://10.10.10.10:5434/jolr?query']);
     }
 }
+
+class_alias(EndpointTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Gateway\EndpointTest');

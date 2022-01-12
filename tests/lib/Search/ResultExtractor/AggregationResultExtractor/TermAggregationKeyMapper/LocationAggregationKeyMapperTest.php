@@ -1,28 +1,28 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
+namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\LocationAggregationKeyMapper;
-use EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\AggregationResultExtractorTestUtils;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\LocationAggregationKeyMapper;
+use Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\AggregationResultExtractorTestUtils;
 use PHPUnit\Framework\TestCase;
 
 final class LocationAggregationKeyMapperTest extends TestCase
 {
     private const EXAMPLE_LOCATION_IDS = ['2', '54', '47'];
 
-    /** @var \eZ\Publish\API\Repository\LocationService|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Ibexa\Contracts\Core\Repository\LocationService|\PHPUnit\Framework\MockObject\MockObject */
     private $locationService;
 
-    /** @var \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\LocationAggregationKeyMapper */
+    /** @var \Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\LocationAggregationKeyMapper */
     private $mapper;
 
     protected function setUp(): void
@@ -68,3 +68,5 @@ final class LocationAggregationKeyMapperTest extends TestCase
         return $locations;
     }
 }
+
+class_alias(LocationAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\LocationAggregationKeyMapperTest');

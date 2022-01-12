@@ -8,7 +8,7 @@ parameters:
     ignored_storage_files:
         -
             var/ezdemo_site/storage/images/design/plain-site/172-2-eng-US/eZ-Publish-Demo-Design-without-demo-content1.png
-    ezpublish.solr.endpoint.class: EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint
+    ezpublish.solr.endpoint.class: Ibexa\Solr\Gateway\Endpoint
 
     ezpublish.search.solr.default.distribution_strategy: cloud
 
@@ -77,7 +77,7 @@ services:
             - {name: ezpublish.search.solr.endpoint, alias: main}
 
     ezpublish.search.solr.gateway.distribution_strategy.cloud:
-        class: EzSystems\EzPlatformSolrSearchEngine\Gateway\DistributionStrategy\CloudDistributionStrategy
+        class: Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy
         arguments:
             - "@ezpublish.search.solr.gateway.endpoint_registry"
             - "@ezpublish.search.solr.gateway.endpoint_resolver"

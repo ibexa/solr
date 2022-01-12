@@ -1,16 +1,12 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Container\Compiler;
+namespace Ibexa\Tests\Solr\Container\Compiler;
 
-use EzSystems\EzPlatformSolrSearchEngine\Container\Compiler\AggregateCriterionVisitorPass;
+use Ibexa\Solr\Container\Compiler\AggregateCriterionVisitorPass;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -54,3 +50,5 @@ class AggregateCriterionVisitorPassTest extends AbstractCompilerPassTestCase
         );
     }
 }
+
+class_alias(AggregateCriterionVisitorPassTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Container\Compiler\AggregateCriterionVisitorPassTest');
