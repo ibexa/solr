@@ -38,7 +38,7 @@ class AggregateCriterionVisitorPassTest extends AbstractCompilerPassTestCase
     {
         $serviceId = 'service_id';
         $def = new Definition();
-        $def->addTag('ezpublish.search.solr.query.content.criterion_visitor');
+        $def->addTag('ibexa.search.solr.query.content.criterion.visitor');
         $this->setDefinition($serviceId, $def);
 
         $this->compile();

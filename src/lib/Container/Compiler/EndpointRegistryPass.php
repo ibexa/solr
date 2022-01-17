@@ -35,13 +35,13 @@ class EndpointRegistryPass implements CompilerPassInterface
             'ezpublish.search.solr.gateway.endpoint_registry'
         );
 
-        $endpoints = $container->findTaggedServiceIds('ezpublish.search.solr.endpoint');
+        $endpoints = $container->findTaggedServiceIds('ibexa.search.solr.endpoint');
 
         foreach ($endpoints as $id => $attributes) {
             foreach ($attributes as $attribute) {
                 if (!isset($attribute['alias'])) {
                     throw new LogicException(
-                        "'ezpublish.search.solr.endpoint' service tag needs an 'alias' attribute " .
+                        "'ibexa.search.solr.endpoint' service tag needs an 'alias' attribute " .
                         'to identify the endpoint.'
                     );
                 }

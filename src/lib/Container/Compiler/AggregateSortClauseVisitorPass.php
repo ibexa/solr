@@ -34,7 +34,7 @@ class AggregateSortClauseVisitorPass implements CompilerPassInterface
             );
 
             $visitors = $container->findTaggedServiceIds(
-                'ezpublish.search.solr.query.content.sort_clause_visitor'
+                'ibexa.search.solr.query.content.sort_clause.visitor'
             );
 
             $this->addHandlers($aggregateContentSortClauseVisitorDefinition, $visitors);
@@ -46,7 +46,7 @@ class AggregateSortClauseVisitorPass implements CompilerPassInterface
             );
 
             $visitors = $container->findTaggedServiceIds(
-                'ezpublish.search.solr.query.location.sort_clause_visitor'
+                'ibexa.search.solr.query.location.sort_clause.visitor'
             );
 
             $this->addHandlers($aggregateLocationSortClauseVisitorDefinition, $visitors);

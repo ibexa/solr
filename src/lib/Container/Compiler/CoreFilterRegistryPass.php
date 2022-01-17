@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 final class CoreFilterRegistryPass implements CompilerPassInterface
 {
-    public const CORE_FILTER_SERVICE_TAG = 'ezpublish.search.solr.core_filter';
+    public const CORE_FILTER_SERVICE_TAG = 'ibexa.search.solr.core.filter';
 
     public function process(ContainerBuilder $container): void
     {
@@ -30,7 +30,7 @@ final class CoreFilterRegistryPass implements CompilerPassInterface
             foreach ($attributes as $attribute) {
                 if (!isset($attribute['connection'])) {
                     throw new LogicException(
-                        "'ezpublish.search.solr.core_filter' service tag needs a 'connection' attribute " .
+                        "'ibexa.search.solr.core.filter' service tag needs a 'connection' attribute " .
                         'to identify the Gateway.'
                     );
                 }

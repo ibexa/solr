@@ -37,7 +37,7 @@ services:
                 path: /solr
                 core: core0
         tags:
-            - {name: ezpublish.search.solr.endpoint, alias: endpoint0}
+            - {name: ibexa.search.solr.endpoint, alias: endpoint0}
 
     ezpublish.search.solr.endpoint.endpoint1:
         class: "%ezpublish.solr.endpoint.class%"
@@ -49,7 +49,7 @@ services:
                 path: /solr
                 core: core1
         tags:
-            - {name: ezpublish.search.solr.endpoint, alias: endpoint1}
+            - {name: ibexa.search.solr.endpoint, alias: endpoint1}
 
     ezpublish.search.solr.endpoint.endpoint2:
         class: "%ezpublish.solr.endpoint.class%"
@@ -61,7 +61,7 @@ services:
                 path: /solr
                 core: core2
         tags:
-            - {name: ezpublish.search.solr.endpoint, alias: endpoint2}
+            - {name: ibexa.search.solr.endpoint, alias: endpoint2}
 
     ezpublish.search.solr.endpoint.endpoint3:
         class: "%ezpublish.solr.endpoint.class%"
@@ -73,7 +73,7 @@ services:
                 path: /solr
                 core: core3
         tags:
-            - {name: ezpublish.search.solr.endpoint, alias: endpoint3}
+            - {name: ibexa.search.solr.endpoint, alias: endpoint3}
 
     ezpublish.search.solr.endpoint.endpoint4:
         class: "%ezpublish.solr.endpoint.class%"
@@ -85,7 +85,7 @@ services:
                 path: /solr
                 core: core4
         tags:
-            - {name: ezpublish.search.solr.endpoint, alias: endpoint4}
+            - {name: ibexa.search.solr.endpoint, alias: endpoint4}
 
     ezpublish.search.solr.endpoint.endpoint5:
         class: "%ezpublish.solr.endpoint.class%"
@@ -97,4 +97,4 @@ services:
                 path: /solr
                 core: core5
         tags:
-            - {name: ezpublish.search.solr.endpoint, alias: endpoint5}
+            - {name: ibexa.search.solr.endpoint, alias: endpoint5}
