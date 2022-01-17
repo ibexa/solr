@@ -64,7 +64,7 @@ services:
     ezpublish.search.solr.field_mapper.content:
         class: "%ezpublish.search.solr.field_mapper.content.class%"
 
-    # Note: services tagged with 'ibexa.search.solr.field.mapper.content_translation'
+    # Note: services tagged with 'ibexa.search.solr.field.mapper.content.translation'
     # are registered to this one using compilation pass
     ezpublish.search.solr.field_mapper.content_translation:
         class: "%ezpublish.search.solr.field_mapper.content_translation.class%"

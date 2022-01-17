@@ -27,12 +27,12 @@ services:
             - '@ezpublish.search.common.field_name_generator'
             - '@ezpublish.search.solr.field_mapper.boost_factor_provider'
         tags:
-            - {name: ibexa.search.solr.field.mapper.block_translation}
+            - {name: ibexa.search.solr.field.mapper.block.translation}
 
     ezpublish.search.solr.field_mapper.block_translation.block_documents_meta_fields:
         class: '%ezpublish.search.solr.field_mapper.block_translation.block_documents_meta_fields.class%'
         tags:
-            - {name: ibexa.search.solr.field.mapper.block_translation}
+            - {name: ibexa.search.solr.field.mapper.block.translation}
 
     ezpublish.search.solr.field_mapper.content_translation.content_document_translated_content_name_field:
         class: '%ezpublish.search.solr.field_mapper.content_translation.content_document_translated_content_name_field.class%'
@@ -40,7 +40,7 @@ services:
             - '@ezpublish.spi.persistence.content_type_handler'
             - '@ezpublish.search.solr.field_mapper.boost_factor_provider'
         tags:
-            - {name: ibexa.search.solr.field.mapper.block_translation}
+            - {name: ibexa.search.solr.field.mapper.block.translation}
 
     ezpublish.search.solr.field_mapper.content.content_document_base_fields:
         class: '%ezpublish.search.solr.field_mapper.content.content_document_base_fields.class%'
@@ -68,7 +68,7 @@ services:
             - '@ezpublish.search.solr.field_mapper.boost_factor_provider'
             - '@ezpublish.search.solr.field_mapper.indexing_depth_provider'
         tags:
-            - {name: ibexa.search.solr.field.mapper.content_translation}
+            - {name: ibexa.search.solr.field.mapper.content.translation}
 
     ezpublish.search.solr.field_mapper.location.location_document_base_fields:
         class: '%ezpublish.search.solr.field_mapper.location.location_document_base_fields.class%'
@@ -84,4 +84,4 @@ services:
             - '@ezpublish.search.common.field_name_generator'
             - '@ezpublish.persistence.field_type_registry'
         tags:
-            - {name: ibexa.search.solr.field.mapper.block_translation}
+            - {name: ibexa.search.solr.field.mapper.block.translation}
