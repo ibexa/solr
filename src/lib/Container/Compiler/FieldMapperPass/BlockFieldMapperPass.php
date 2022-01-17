@@ -13,8 +13,8 @@ use Ibexa\Solr\Container\Compiler\BaseFieldMapperPass;
  */
 class BlockFieldMapperPass extends BaseFieldMapperPass
 {
-    public const AGGREGATE_MAPPER_SERVICE_ID = 'ibexa.search.solr.field.mapper.block';
-    public const AGGREGATE_MAPPER_SERVICE_TAG = self::AGGREGATE_MAPPER_SERVICE_ID;
+    public const AGGREGATE_MAPPER_SERVICE_ID = 'ezpublish.search.solr.field_mapper.block';
+    public const AGGREGATE_MAPPER_SERVICE_TAG = 'ibexa.search.solr.field.mapper.block';
 }
 
 class_alias(BlockFieldMapperPass::class, 'EzSystems\EzPlatformSolrSearchEngine\Container\Compiler\FieldMapperPass\BlockFieldMapperPass');
