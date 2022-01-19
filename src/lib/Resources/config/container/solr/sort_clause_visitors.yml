@@ -19,13 +19,13 @@ parameters:
 
 services:
     # Common for Content and Location search
-    ezpublish.search.solr.query.common.sort_clause_visitor.content_id:
+    Ibexa\Solr\Query\Common\SortClauseVisitor\ContentId:
         class: "%ezpublish.search.solr.query.common.sort_clause_visitor.content_id.class%"
         tags:
             - {name: ibexa.search.solr.query.content.sort_clause.visitor}
             - {name: ibexa.search.solr.query.location.sort_clause.visitor}
 
-    ezpublish.search.solr.query.common.sort_clause_visitor.content_name:
+    Ibexa\Solr\Query\Common\SortClauseVisitor\ContentName:
         class: "%ezpublish.search.solr.query.common.sort_clause_visitor.content_name.class%"
         tags:
             - {name: ibexa.search.solr.query.content.sort_clause.visitor}
@@ -36,48 +36,48 @@ services:
             - {name: ibexa.search.solr.query.content.sort_clause.visitor}
             - {name: ibexa.search.solr.query.location.sort_clause.visitor}
 
-    ezpublish.search.solr.query.common.sort_clause_visitor.field:
+    Ibexa\Solr\Query\Common\SortClauseVisitor\Field:
         class: "%ezpublish.search.solr.query.common.sort_clause_visitor.field.class%"
         arguments:
-            - "@ezpublish.search.common.field_name_resolver"
+            - '@Ibexa\Core\Search\Common\FieldNameResolver'
         tags:
             - {name: ibexa.search.solr.query.content.sort_clause.visitor}
             - {name: ibexa.search.solr.query.location.sort_clause.visitor}
 
-    ezpublish.search.solr.query.common.sort_clause_visitor.section_identifier:
+    Ibexa\Solr\Query\Common\SortClauseVisitor\SectionIdentifier:
         class: "%ezpublish.search.solr.query.common.sort_clause_visitor.section_identifier.class%"
         tags:
             - {name: ibexa.search.solr.query.content.sort_clause.visitor}
             - {name: ibexa.search.solr.query.location.sort_clause.visitor}
 
-    ezpublish.search.solr.query.common.sort_clause_visitor.section_name:
+    Ibexa\Solr\Query\Common\SortClauseVisitor\SectionName:
         class: "%ezpublish.search.solr.query.common.sort_clause_visitor.section_name.class%"
         tags:
             - {name: ibexa.search.solr.query.content.sort_clause.visitor}
             - {name: ibexa.search.solr.query.location.sort_clause.visitor}
 
-    ezpublish.search.solr.query.common.sort_clause_visitor.date_published:
+    Ibexa\Solr\Query\Common\SortClauseVisitor\DatePublished:
         class: "%ezpublish.search.solr.query.common.sort_clause_visitor.date_published.class%"
         tags:
             - {name: ibexa.search.solr.query.content.sort_clause.visitor}
             - {name: ibexa.search.solr.query.location.sort_clause.visitor}
 
-    ezpublish.search.solr.query.common.sort_clause_visitor.date_modified:
+    Ibexa\Solr\Query\Common\SortClauseVisitor\DateModified:
         class: "%ezpublish.search.solr.query.common.sort_clause_visitor.date_modified.class%"
         tags:
             - {name: ibexa.search.solr.query.content.sort_clause.visitor}
             - {name: ibexa.search.solr.query.location.sort_clause.visitor}
 
-    ezpublish.search.solr.query.common.sort_clause_visitor.map_location_distance:
+    Ibexa\Solr\Query\Common\SortClauseVisitor\MapLocationDistance:
         class: "%ezpublish.search.solr.query.common.sort_clause_visitor.map_location_distance.class%"
         arguments:
-            - "@ezpublish.search.common.field_name_resolver"
+            - '@Ibexa\Core\Search\Common\FieldNameResolver'
             - 'value_location'
         tags:
             - {name: ibexa.search.solr.query.content.sort_clause.visitor}
             - {name: ibexa.search.solr.query.location.sort_clause.visitor}
 
-    ezpublish.search.solr.query.common.sort_clause_visitor.random:
+    Ibexa\Solr\Query\Common\SortClauseVisitor\Random:
         class: "%ezpublish.search.solr.query.common.sort_clause_visitor.random.class%"
         tags:
             - {name: ibexa.search.solr.query.content.sort_clause.visitor}
@@ -94,32 +94,32 @@ services:
             - {name: ibexa.search.solr.query.location.sort_clause.visitor}
 
     # Location search
-    ezpublish.search.solr.query.location.sort_clause_visitor.depth:
+    Ibexa\Solr\Query\Location\SortClauseVisitor\Location\Depth:
         class: "%ezpublish.search.solr.query.location.sort_clause_visitor.depth.class%"
         tags:
             - {name: ibexa.search.solr.query.location.sort_clause.visitor}
 
-    ezpublish.search.solr.query.location.sort_clause_visitor.id:
+    Ibexa\Solr\Query\Location\SortClauseVisitor\Location\Id:
         class: "%ezpublish.search.solr.query.location.sort_clause_visitor.id.class%"
         tags:
             - {name: ibexa.search.solr.query.location.sort_clause.visitor}
 
-    ezpublish.search.solr.query.location.sort_clause_visitor.is_main_location:
+    Ibexa\Solr\Query\Location\SortClauseVisitor\Location\IsMainLocation:
         class: "%ezpublish.search.solr.query.location.sort_clause_visitor.is_main_location.class%"
         tags:
             - {name: ibexa.search.solr.query.location.sort_clause.visitor}
 
-    ezpublish.search.solr.query.location.sort_clause_visitor.path:
+    Ibexa\Solr\Query\Location\SortClauseVisitor\Location\Path:
         class: "%ezpublish.search.solr.query.location.sort_clause_visitor.path.class%"
         tags:
             - {name: ibexa.search.solr.query.location.sort_clause.visitor}
 
-    ezpublish.search.solr.query.location.sort_clause_visitor.priority:
+    Ibexa\Solr\Query\Location\SortClauseVisitor\Location\Priority:
         class: "%ezpublish.search.solr.query.location.sort_clause_visitor.priority.class%"
         tags:
             - {name: ibexa.search.solr.query.location.sort_clause.visitor}
 
-    ezpublish.search.solr.query.location.sort_clause_visitor.visibility:
+    Ibexa\Solr\Query\Location\SortClauseVisitor\Location\Visibility:
         class: "%ezpublish.search.solr.query.location.sort_clause_visitor.visibility.class%"
         tags:
             - {name: ibexa.search.solr.query.location.sort_clause.visitor}

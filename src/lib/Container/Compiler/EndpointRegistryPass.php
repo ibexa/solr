@@ -25,14 +25,14 @@ class EndpointRegistryPass implements CompilerPassInterface
     {
         if (
             !$container->hasDefinition(
-                'ezpublish.search.solr.gateway.endpoint_registry'
+                \Ibexa\Solr\Gateway\EndpointRegistry::class
             )
         ) {
             return;
         }
 
         $fieldRegistryDefinition = $container->getDefinition(
-            'ezpublish.search.solr.gateway.endpoint_registry'
+            \Ibexa\Solr\Gateway\EndpointRegistry::class
         );
 
         $endpoints = $container->findTaggedServiceIds('ibexa.search.solr.endpoint');

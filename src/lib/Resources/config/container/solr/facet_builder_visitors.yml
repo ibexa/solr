@@ -4,19 +4,19 @@ parameters:
     ezpublish.search.solr.query.common.facet_builder_visitor.user.class: Ibexa\Solr\Query\Common\FacetBuilderVisitor\User
 
 services:
-    ezpublish.search.solr.query.common.facet_builder_visitor.content_type:
+    Ibexa\Solr\Query\Common\FacetBuilderVisitor\ContentType:
         class: "%ezpublish.search.solr.query.common.facet_builder_visitor.content_type.class%"
         tags:
             - {name: ibexa.search.solr.query.content.facet_builder.visitor}
             - {name: ibexa.search.solr.query.location.facet_builder.visitor}
 
-    ezpublish.search.solr.query.common.facet_builder_visitor.section:
+    Ibexa\Solr\Query\Common\FacetBuilderVisitor\Section:
         class: "%ezpublish.search.solr.query.common.facet_builder_visitor.section.class%"
         tags:
             - {name: ibexa.search.solr.query.content.facet_builder.visitor}
             - {name: ibexa.search.solr.query.location.facet_builder.visitor}
 
-    ezpublish.search.solr.query.common.facet_builder_visitor.user:
+    Ibexa\Solr\Query\Common\FacetBuilderVisitor\User:
         class: "%ezpublish.search.solr.query.common.facet_builder_visitor.user.class%"
         tags:
             - {name: ibexa.search.solr.query.content.facet_builder.visitor}

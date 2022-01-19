@@ -15,71 +15,71 @@ parameters:
     ezpublish.search.solr.field_mapper.indexing_depth_provider.default: 0
 
 services:
-    ezpublish.search.solr.gateway.client.http.stream:
+    Ibexa\Solr\Gateway\HttpClient\Stream:
         class: "%ezpublish.search.solr.gateway.client.http.stream.class%"
         arguments: ["@?logger"]
 
     # Note: services tagged with 'ibexa.search.solr.query.content.criterion.visitor'
     # are registered to this one using compilation pass
-    ezpublish.search.solr.query.content.criterion_visitor.aggregate:
+    ibexa.solr.query.content.criterion_visitor.aggregate:
         class: "%ezpublish.search.solr.query.common.criterion_visitor.aggregate.class%"
 
     # Note: services tagged with 'ibexa.search.solr.query.content.sort_clause.visitor'
     # are registered to this one using compilation pass
-    ezpublish.search.solr.query.content.sort_clause_visitor.aggregate:
+    ibexa.solr.query.content.sort_clause_visitor.aggregate:
         class: "%ezpublish.search.solr.query.common.sort_clause_visitor.aggregate.class%"
 
     # Note: services tagged with 'ibexa.search.solr.query.content.facet_builder.visitor'
     # are registered to this one using compilation pass
-    ezpublish.search.solr.query.content.facet_builder_visitor.aggregate:
+    ibexa.solr.query.content.facet_builder_visitor.aggregate:
         class: "%ezpublish.search.solr.query.common.facet_builder_visitor.aggregate.class%"
 
     # Note: services tagged with 'ibexa.search.solr.query.location.criterion.visitor'
     # are registered to this one using compilation pass
-    ezpublish.search.solr.query.location.criterion_visitor.aggregate:
+    ibexa.solr.query.location.criterion_visitor.aggregate:
         class: "%ezpublish.search.solr.query.common.criterion_visitor.aggregate.class%"
 
     # Note: services tagged with 'ibexa.search.solr.query.location.sort_clause.visitor'
     # are registered to this one using compilation pass
-    ezpublish.search.solr.query.location.sort_clause_visitor.aggregate:
+    ibexa.solr.query.location.sort_clause_visitor.aggregate:
         class: "%ezpublish.search.solr.query.common.sort_clause_visitor.aggregate.class%"
 
     # Note: services tagged with 'ibexa.search.solr.query.location.facet_builder.visitor'
     # are registered to this one using compilation pass
-    ezpublish.search.solr.query.location.facet_builder_visitor.aggregate:
+    ibexa.solr.query.location.facet_builder_visitor.aggregate:
         class: "%ezpublish.search.solr.query.common.facet_builder_visitor.aggregate.class%"
 
     # Note: services tagged with 'ibexa.search.solr.field.mapper.block'
     # are registered to this one using compilation pass
-    ezpublish.search.solr.field_mapper.block:
+    ibexa.solr.field_mapper.block:
         class: "%ezpublish.search.solr.field_mapper.block.class%"
 
     # Note: services tagged with 'ibexa.search.solr.field.mapper.block_translation'
     # are registered to this one using compilation pass
-    ezpublish.search.solr.field_mapper.block_translation:
+    ibexa.solr.field_mapper.block_translation:
         class: "%ezpublish.search.solr.field_mapper.block_translation.class%"
 
     # Note: services tagged with 'ibexa.search.solr.field.mapper.content'
     # are registered to this one using compilation pass
-    ezpublish.search.solr.field_mapper.content:
+    ibexa.solr.field_mapper.content:
         class: "%ezpublish.search.solr.field_mapper.content.class%"
 
     # Note: services tagged with 'ibexa.search.solr.field.mapper.content.translation'
     # are registered to this one using compilation pass
-    ezpublish.search.solr.field_mapper.content_translation:
+    ibexa.solr.field_mapper.content_translation:
         class: "%ezpublish.search.solr.field_mapper.content_translation.class%"
 
     # Note: services tagged with 'ibexa.search.solr.field.mapper.location'
     # are registered to this one using compilation pass
-    ezpublish.search.solr.field_mapper.location:
+    Ibexa\Solr\FieldMapper\LocationFieldMapper\Aggregate:
         class: "%ezpublish.search.solr.field_mapper.location.class%"
 
-    ezpublish.search.solr.field_mapper.boost_factor_provider:
+    Ibexa\Solr\FieldMapper\BoostFactorProvider:
         class: "%ezpublish.search.solr.field_mapper.boost_factor_provider.class%"
         arguments:
             - "%ezpublish.search.solr.field_mapper.boost_factor_provider.map%"
 
-    ezpublish.search.solr.field_mapper.indexing_depth_provider:
+    Ibexa\Solr\FieldMapper\IndexingDepthProvider:
         class: "%ezpublish.search.solr.field_mapper.indexing_depth_provider.class%"
         arguments:
             - "%ezpublish.search.solr.field_mapper.indexing_depth_provider.map%"

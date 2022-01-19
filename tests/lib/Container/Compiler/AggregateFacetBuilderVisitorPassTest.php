@@ -18,11 +18,11 @@ class AggregateFacetBuilderVisitorPassTest extends AbstractCompilerPassTestCase
     {
         parent::setUp();
         $this->setDefinition(
-            'ezpublish.search.solr.query.content.facet_builder_visitor.aggregate',
+            'ibexa.solr.query.content.facet_builder_visitor.aggregate',
             new Definition()
         );
         $this->setDefinition(
-            'ezpublish.search.solr.query.location.facet_builder_visitor.aggregate',
+            'ibexa.solr.query.location.facet_builder_visitor.aggregate',
             new Definition()
         );
     }
@@ -53,13 +53,13 @@ class AggregateFacetBuilderVisitorPassTest extends AbstractCompilerPassTestCase
         $this->compile();
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
-            'ezpublish.search.solr.query.content.facet_builder_visitor.aggregate',
+            'ibexa.solr.query.content.facet_builder_visitor.aggregate',
             'addVisitor',
             [new Reference($serviceId)]
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
-            'ezpublish.search.solr.query.location.facet_builder_visitor.aggregate',
+            'ibexa.solr.query.location.facet_builder_visitor.aggregate',
             'addVisitor',
             [new Reference($serviceId2)]
         );

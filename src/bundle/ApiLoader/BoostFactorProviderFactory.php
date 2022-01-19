@@ -57,7 +57,7 @@ class BoostFactorProviderFactory implements ContainerAwareInterface
 
         return new $this->boostFactorProviderClass(
             $this->container->getParameter(
-                "ez_search_engine_solr.connection.{$connection}.boost_factor_map_id"
+                "ibexa.solr.connection.{$connection}.boost_factor_map_id"
             )
         );
     }

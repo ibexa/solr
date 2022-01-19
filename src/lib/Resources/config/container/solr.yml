@@ -30,10 +30,10 @@ parameters:
 services:
     Ibexa\Solr\Gateway\GatewayRegistry: ~
 
-    ezpublish.search.solr.gateway.endpoint_registry:
+    Ibexa\Solr\Gateway\EndpointRegistry:
         class: "%ezpublish.search.solr.gateway.endpoint_registry.class%"
 
-    ezpublish.search.solr.gateway.endpoint_resolver.native:
+    ibexa.solr.gateway.endpoint_resolver.native:
         class: "%ezpublish.search.solr.gateway.endpoint_resolver.native.class%"
         arguments:
             - "%ezpublish.search.solr.entry_endpoints%"
@@ -41,126 +41,126 @@ services:
             - "%ezpublish.search.solr.default_endpoint%"
             - "%ezpublish.search.solr.main_translations_endpoint%"
 
-    ezpublish.search.solr.gateway.endpoint_resolver:
-        alias: ezpublish.search.solr.gateway.endpoint_resolver.native
+    ibexa.solr.gateway.endpoint_resolver:
+        alias: ibexa.solr.gateway.endpoint_resolver.native
 
     Ibexa\Solr\CoreFilter\CoreFilterRegistry: ~
 
-    ezpublish.search.solr.core_filter.native:
+    ibexa.solr.core_filter.native:
         class: "%ezpublish.search.solr.core_filter.native.class%"
         arguments:
-            - "@ezpublish.search.solr.gateway.endpoint_resolver.native"
+            - '@ibexa.solr.gateway.endpoint_resolver.native'
 
-    ezpublish.search.solr.core_filter:
-        alias: ezpublish.search.solr.core_filter.native
+    ibexa.solr.core_filter:
+        alias: ibexa.solr.core_filter.native
 
-    ezpublish.search.solr.document_mapper.native:
+    Ibexa\Solr\DocumentMapper\NativeDocumentMapper:
         class: "%ezpublish.search.solr.document_mapper.native.class%"
         arguments:
-            - "@ezpublish.search.solr.field_mapper.block"
-            - "@ezpublish.search.solr.field_mapper.block_translation"
-            - "@ezpublish.search.solr.field_mapper.content"
-            - "@ezpublish.search.solr.field_mapper.content_translation"
-            - "@ezpublish.search.solr.field_mapper.location"
-            - "@ezpublish.spi.persistence.location_handler"
+            - '@ibexa.solr.field_mapper.block'
+            - '@ibexa.solr.field_mapper.block_translation'
+            - '@ibexa.solr.field_mapper.content'
+            - '@ibexa.solr.field_mapper.content_translation'
+            - '@Ibexa\Solr\FieldMapper\LocationFieldMapper\Aggregate'
+            - '@Ibexa\Contracts\Core\Persistence\Content\Location\Handler'
 
-    ezpublish.search.solr.document_mapper:
-        alias: ezpublish.search.solr.document_mapper.native
+    ibexa.solr.document_mapper:
+        alias: Ibexa\Solr\DocumentMapper\NativeDocumentMapper
 
-    ezpublish.search.solr.result_extractor.native:
+    ibexa.solr.result_extractor.native:
         class: "%ezpublish.search.solr.result_extractor.native.class%"
         arguments:
-            - "@ezpublish.search.solr.query.content.facet_builder_visitor.aggregate"
-            - "@ezpublish.search.solr.query.content.aggregation_result_extractor.dispatcher"
-            - "@ezpublish.search.solr.gateway.endpoint_registry"
+            - '@ibexa.solr.query.content.facet_builder_visitor.aggregate'
+            - '@ibexa.solr.query.content.aggregation_result_extractor.dispatcher'
+            - '@Ibexa\Solr\Gateway\EndpointRegistry'
         deprecated: 'The "%service_id%" service is deprecated since eZ Platform 3.2.0, to be removed in eZ Platform 4.0.0., use ezpublish.search.solr.result_extractor.content.native or ezpublish.search.solr.result_extractor.location.native instead.'
 
-    ezpublish.search.solr.result_extractor.content.native:
+    ibexa.solr.result_extractor.content.native:
         class: "%ezpublish.search.solr.result_extractor.native.class%"
         arguments:
-            - "@ezpublish.search.solr.query.content.facet_builder_visitor.aggregate"
-            - "@ezpublish.search.solr.query.content.aggregation_result_extractor.dispatcher"
-            - "@ezpublish.search.solr.gateway.endpoint_registry"
+            - '@ibexa.solr.query.content.facet_builder_visitor.aggregate'
+            - '@ibexa.solr.query.content.aggregation_result_extractor.dispatcher'
+            - '@Ibexa\Solr\Gateway\EndpointRegistry'
 
-    ezpublish.search.solr.result_extractor.location.native:
+    ibexa.solr.result_extractor.location.native:
         class: "%ezpublish.search.solr.result_extractor.native.class%"
         arguments:
-            - "@ezpublish.search.solr.query.content.facet_builder_visitor.aggregate"
-            - "@ezpublish.search.solr.query.location.aggregation_result_extractor.dispatcher"
-            - "@ezpublish.search.solr.gateway.endpoint_registry"
+            - '@ibexa.solr.query.content.facet_builder_visitor.aggregate'
+            - '@ibexa.solr.query.location.aggregation_result_extractor.dispatcher'
+            - '@Ibexa\Solr\Gateway\EndpointRegistry'
 
-    ezpublish.search.solr.result_extractor:
-        alias: ezpublish.search.solr.result_extractor.native
+    ibexa.solr.result_extractor:
+        alias: ibexa.solr.result_extractor.native
         deprecated: 'The "%alias_id%" alias is deprecated since eZ Platform 3.2.0, to be removed in eZ Platform 4.0.0. Use ezpublish.search.solr.result_extractor.content or ezpublish.search.solr.result_extractor.location instead'
 
-    ezpublish.search.solr.result_extractor.content:
-        alias: ezpublish.search.solr.result_extractor.content.native
+    ibexa.solr.result_extractor.content:
+        alias: ibexa.solr.result_extractor.content.native
 
-    ezpublish.search.solr.result_extractor.location:
-        alias: ezpublish.search.solr.result_extractor.location.native
+    ibexa.solr.result_extractor.location:
+        alias: ibexa.solr.result_extractor.location.native
 
-    ezpublish.search.solr.query_converter.content:
+    ibexa.solr.query_converter.content:
         class: "%ezpublish.search.solr.query_converter.class%"
         arguments:
-            - "@ezpublish.search.solr.query.content.criterion_visitor.aggregate"
-            - "@ezpublish.search.solr.query.content.sort_clause_visitor.aggregate"
-            - "@ezpublish.search.solr.query.content.facet_builder_visitor.aggregate"
-            - "@ezpublish.search.solr.query.content.aggregation_visitor.dispatcher"
+            - '@ibexa.solr.query.content.criterion_visitor.aggregate'
+            - '@ibexa.solr.query.content.sort_clause_visitor.aggregate'
+            - '@ibexa.solr.query.content.facet_builder_visitor.aggregate'
+            - '@ibexa.solr.query.content.aggregation_visitor.dispatcher'
 
-    ezpublish.search.solr.query_converter.location:
+    ibexa.solr.query_converter.location:
         class: "%ezpublish.search.solr.query_converter.class%"
         arguments:
-            - "@ezpublish.search.solr.query.location.criterion_visitor.aggregate"
-            - "@ezpublish.search.solr.query.location.sort_clause_visitor.aggregate"
-            - "@ezpublish.search.solr.query.location.facet_builder_visitor.aggregate"
-            - "@ezpublish.search.solr.query.location.aggregation_visitor.dispatcher"
+            - '@ibexa.solr.query.location.criterion_visitor.aggregate'
+            - '@ibexa.solr.query.location.sort_clause_visitor.aggregate'
+            - '@ibexa.solr.query.location.facet_builder_visitor.aggregate'
+            - '@ibexa.solr.query.location.aggregation_visitor.dispatcher'
 
-    ezpublish.search.solr.gateway.update_serializer:
+    Ibexa\Solr\Gateway\UpdateSerializer:
         class: "%ezpublish.search.solr.gateway.update_serializer.class%"
         arguments:
-            - "@ezpublish.search.common.field_value_mapper.aggregate"
-            - "@ezpublish.search.common.field_name_generator"
+            - '@Ibexa\Core\Search\Common\FieldValueMapper\Aggregate'
+            - '@Ibexa\Core\Search\Common\FieldNameGenerator'
 
-    ezpublish.search.solr.gateway.distribution_strategy.standalone:
+    ibexa.solr.gateway.distribution_strategy.standalone:
         class: Ibexa\Solr\Gateway\DistributionStrategy\StandaloneDistributionStrategy
         arguments:
-            - "@ezpublish.search.solr.gateway.endpoint_registry"
-            - "@ezpublish.search.solr.gateway.endpoint_resolver"
+            - '@Ibexa\Solr\Gateway\EndpointRegistry'
+            - '@ibexa.solr.gateway.endpoint_resolver'
 
-    ezpublish.search.solr.gateway.native:
+    ibexa.solr.gateway.native:
         class: "%ezpublish.search.solr.gateway.native.class%"
         arguments:
-            - "@ezpublish.search.solr.gateway.client.http.stream"
-            - "@ezpublish.search.solr.gateway.endpoint_resolver"
-            - "@ezpublish.search.solr.gateway.endpoint_registry"
-            - "@ezpublish.search.solr.query_converter.content"
-            - "@ezpublish.search.solr.query_converter.location"
-            - "@ezpublish.search.solr.gateway.update_serializer"
-            - "@ezpublish.search.solr.gateway.distribution_strategy.standalone"
+            - '@Ibexa\Solr\Gateway\HttpClient\Stream'
+            - '@ibexa.solr.gateway.endpoint_resolver'
+            - '@Ibexa\Solr\Gateway\EndpointRegistry'
+            - '@ibexa.solr.query_converter.content'
+            - '@ibexa.solr.query_converter.location'
+            - '@Ibexa\Solr\Gateway\UpdateSerializer'
+            - '@ibexa.solr.gateway.distribution_strategy.standalone'
 
-    ezpublish.search.solr.gateway:
-        alias: ezpublish.search.solr.gateway.native
+    ibexa.solr.gateway:
+        alias: ibexa.solr.gateway.native
 
-    ezpublish.spi.search.solr:
+    Ibexa\Solr\Handler:
         class: "%ezpublish.spi.search.solr.class%"
         arguments:
-            - "@ezpublish.search.solr.gateway"
-            - "@ezpublish.spi.persistence.content_handler"
-            - "@ezpublish.search.solr.document_mapper"
-            - "@ezpublish.search.solr.result_extractor.content"
-            - "@ezpublish.search.solr.result_extractor.location"
-            - "@ezpublish.search.solr.core_filter"
+            - '@ibexa.solr.gateway'
+            - '@Ibexa\Contracts\Core\Persistence\Content\Handler'
+            - '@ibexa.solr.document_mapper'
+            - '@ibexa.solr.result_extractor.content'
+            - '@ibexa.solr.result_extractor.location'
+            - '@ibexa.solr.core_filter'
         tags:
             - {name: ibexa.search.engine, alias: solr}
         lazy: true
 
-    ezpublish.spi.search.solr.indexer:
+    Ibexa\Solr\Indexer:
         class: Ibexa\Solr\Indexer
         arguments:
             $logger: "@logger"
-            $persistenceHandler: "@ezpublish.api.storage_engine"
-            $connection: "@ezpublish.persistence.connection"
-            $searchHandler: "@ezpublish.spi.search.solr"
+            $persistenceHandler: '@Ibexa\Contracts\Core\Persistence\Handler'
+            $connection: '@ibexa.persistence.connection'
+            $searchHandler: '@Ibexa\Solr\Handler'
         tags:
             - {name: ibexa.search.engine.indexer, alias: solr}
         lazy: true

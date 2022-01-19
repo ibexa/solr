@@ -13,7 +13,7 @@ use Ibexa\Solr\Container\Compiler\BaseFieldMapperPass;
  */
 class LocationFieldMapperPass extends BaseFieldMapperPass
 {
-    public const AGGREGATE_MAPPER_SERVICE_ID = 'ezpublish.search.solr.field_mapper.location';
+    public const AGGREGATE_MAPPER_SERVICE_ID = \Ibexa\Solr\FieldMapper\LocationFieldMapper\Aggregate::class;
     public const AGGREGATE_MAPPER_SERVICE_TAG = 'ibexa.search.solr.field.mapper.location';
 }
 

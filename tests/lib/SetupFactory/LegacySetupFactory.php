@@ -103,7 +103,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
         ServiceContainer $serviceContainer
     ): Handler {
         /** @var \Ibexa\Contracts\Core\Persistence\Content\Handler $contentHandler */
-        $contentHandler = $serviceContainer->get('ezpublish.spi.persistence.content_handler');
+        $contentHandler = $serviceContainer->get('Ibexa\Contracts\Core\Persistence\Content\Handler');
 
         return $contentHandler;
     }
@@ -111,7 +111,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
     private function getSearchHandler(ServiceContainer $serviceContainer): SolrSearchHandler
     {
         /** @var \Ibexa\Solr\Handler $searchHandler */
-        $searchHandler = $serviceContainer->get('ezpublish.spi.search.solr');
+        $searchHandler = $serviceContainer->get(\Ibexa\Solr\Handler::class);
 
         return $searchHandler;
     }
@@ -119,7 +119,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
     private function getDatabaseConnection(ServiceContainer $serviceContainer): Connection
     {
         /** @var \Doctrine\DBAL\Connection $connection */
-        $connection = $serviceContainer->get('ezpublish.persistence.connection');
+        $connection = $serviceContainer->get('ibexa.persistence.connection');
 
         return $connection;
     }

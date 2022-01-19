@@ -19,15 +19,15 @@ class AggregateCriterionVisitorPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         if (
-            !$container->hasDefinition('ezpublish.search.solr.query.content.criterion_visitor.aggregate') &&
-            !$container->hasDefinition('ezpublish.search.solr.query.location.criterion_visitor.aggregate')
+            !$container->hasDefinition('ibexa.solr.query.content.criterion_visitor.aggregate') &&
+            !$container->hasDefinition('ibexa.solr.query.location.criterion_visitor.aggregate')
         ) {
             return;
         }
 
-        if ($container->hasDefinition('ezpublish.search.solr.query.content.criterion_visitor.aggregate')) {
+        if ($container->hasDefinition('ibexa.solr.query.content.criterion_visitor.aggregate')) {
             $aggregateContentCriterionVisitorDefinition = $container->getDefinition(
-                'ezpublish.search.solr.query.content.criterion_visitor.aggregate'
+                'ibexa.solr.query.content.criterion_visitor.aggregate'
             );
 
             $visitors = $container->findTaggedServiceIds(
@@ -37,9 +37,9 @@ class AggregateCriterionVisitorPass implements CompilerPassInterface
             $this->addHandlers($aggregateContentCriterionVisitorDefinition, $visitors);
         }
 
-        if ($container->hasDefinition('ezpublish.search.solr.query.location.criterion_visitor.aggregate')) {
+        if ($container->hasDefinition('ibexa.solr.query.location.criterion_visitor.aggregate')) {
             $aggregateLocationCriterionVisitorDefinition = $container->getDefinition(
-                'ezpublish.search.solr.query.location.criterion_visitor.aggregate'
+                'ibexa.solr.query.location.criterion_visitor.aggregate'
             );
 
             $visitors = $container->findTaggedServiceIds(

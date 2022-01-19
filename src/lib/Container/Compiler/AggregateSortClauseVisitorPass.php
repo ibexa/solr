@@ -22,15 +22,15 @@ class AggregateSortClauseVisitorPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         if (
-            !$container->hasDefinition('ezpublish.search.solr.query.content.sort_clause_visitor.aggregate') &&
-            !$container->hasDefinition('ezpublish.search.solr.query.location.sort_clause_visitor.aggregate')
+            !$container->hasDefinition('ibexa.solr.query.content.sort_clause_visitor.aggregate') &&
+            !$container->hasDefinition('ibexa.solr.query.location.sort_clause_visitor.aggregate')
         ) {
             return;
         }
 
-        if ($container->hasDefinition('ezpublish.search.solr.query.content.sort_clause_visitor.aggregate')) {
+        if ($container->hasDefinition('ibexa.solr.query.content.sort_clause_visitor.aggregate')) {
             $aggregateContentSortClauseVisitorDefinition = $container->getDefinition(
-                'ezpublish.search.solr.query.content.sort_clause_visitor.aggregate'
+                'ibexa.solr.query.content.sort_clause_visitor.aggregate'
             );
 
             $visitors = $container->findTaggedServiceIds(
@@ -40,9 +40,9 @@ class AggregateSortClauseVisitorPass implements CompilerPassInterface
             $this->addHandlers($aggregateContentSortClauseVisitorDefinition, $visitors);
         }
 
-        if ($container->hasDefinition('ezpublish.search.solr.query.location.sort_clause_visitor.aggregate')) {
+        if ($container->hasDefinition('ibexa.solr.query.location.sort_clause_visitor.aggregate')) {
             $aggregateLocationSortClauseVisitorDefinition = $container->getDefinition(
-                'ezpublish.search.solr.query.location.sort_clause_visitor.aggregate'
+                'ibexa.solr.query.location.sort_clause_visitor.aggregate'
             );
 
             $visitors = $container->findTaggedServiceIds(

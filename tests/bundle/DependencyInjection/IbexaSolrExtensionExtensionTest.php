@@ -135,12 +135,12 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         $this->load(['endpoints' => [$endpointName => $endpointValues]]);
 
         $this->assertContainerBuilderHasServiceDefinitionWithTag(
-            "ez_search_engine_solr.endpoints.{$endpointName}",
+            "ibexa.solr.endpoints.{$endpointName}",
             'ibexa.search.solr.endpoint',
             ['alias' => $endpointName]
         );
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            "ez_search_engine_solr.endpoints.{$endpointName}",
+            "ibexa.solr.endpoints.{$endpointName}",
             0,
             $expectedArgument
         );
@@ -234,12 +234,12 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         $this->load($configurationValues);
 
         $this->assertContainerBuilderHasParameter(
-            'ez_search_engine_solr.default_connection',
+            'ibexa.solr.default_connection',
             'connection1'
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'ez_search_engine_solr.connection.connection1.endpoint_resolver_id',
+            'ibexa.solr.connection.connection1.endpoint_resolver_id',
             0,
             [
                 'endpoint1',
@@ -247,7 +247,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
             ]
         );
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'ez_search_engine_solr.connection.connection1.endpoint_resolver_id',
+            'ibexa.solr.connection.connection1.endpoint_resolver_id',
             1,
             [
                 'cro-HR' => 'endpoint1',
@@ -256,20 +256,20 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
             ]
         );
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'ez_search_engine_solr.connection.connection1.endpoint_resolver_id',
+            'ibexa.solr.connection.connection1.endpoint_resolver_id',
             2,
             'endpoint4'
         );
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'ez_search_engine_solr.connection.connection1.endpoint_resolver_id',
+            'ibexa.solr.connection.connection1.endpoint_resolver_id',
             3,
             'endpoint5'
         );
         $this->assertContainerBuilderHasService(
-            'ez_search_engine_solr.connection.connection1.core_filter_id'
+            'ibexa.solr.connection.connection1.core_filter_id'
         );
         $this->assertContainerBuilderHasService(
-            'ez_search_engine_solr.connection.connection1.gateway_id'
+            'ibexa.solr.connection.connection1.gateway_id'
         );
     }
 
@@ -293,12 +293,12 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         $this->load($configurationValues);
 
         $this->assertContainerBuilderHasParameter(
-            'ez_search_engine_solr.default_connection',
+            'ibexa.solr.default_connection',
             'connection1'
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'ez_search_engine_solr.connection.connection1.endpoint_resolver_id',
+            'ibexa.solr.connection.connection1.endpoint_resolver_id',
             0,
             [
                 'endpoint1',
@@ -308,7 +308,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
             ]
         );
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'ez_search_engine_solr.connection.connection1.endpoint_resolver_id',
+            'ibexa.solr.connection.connection1.endpoint_resolver_id',
             1,
             [
                 'cro-HR' => 'endpoint1',
@@ -316,20 +316,20 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
             ]
         );
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'ez_search_engine_solr.connection.connection1.endpoint_resolver_id',
+            'ibexa.solr.connection.connection1.endpoint_resolver_id',
             2,
             'endpoint3'
         );
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'ez_search_engine_solr.connection.connection1.endpoint_resolver_id',
+            'ibexa.solr.connection.connection1.endpoint_resolver_id',
             3,
             'endpoint4'
         );
         $this->assertContainerBuilderHasService(
-            'ez_search_engine_solr.connection.connection1.core_filter_id'
+            'ibexa.solr.connection.connection1.core_filter_id'
         );
         $this->assertContainerBuilderHasService(
-            'ez_search_engine_solr.connection.connection1.gateway_id'
+            'ibexa.solr.connection.connection1.gateway_id'
         );
     }
 
@@ -353,12 +353,12 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         $this->load($configurationValues);
 
         $this->assertContainerBuilderHasParameter(
-            'ez_search_engine_solr.default_connection',
+            'ibexa.solr.default_connection',
             'connection1'
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'ez_search_engine_solr.connection.connection1.endpoint_resolver_id',
+            'ibexa.solr.connection.connection1.endpoint_resolver_id',
             0,
             [
                 'endpoint1',
@@ -366,7 +366,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
             ]
         );
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'ez_search_engine_solr.connection.connection1.endpoint_resolver_id',
+            'ibexa.solr.connection.connection1.endpoint_resolver_id',
             1,
             [
                 'cro-HR' => 'endpoint1',
@@ -374,20 +374,20 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
             ]
         );
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'ez_search_engine_solr.connection.connection1.endpoint_resolver_id',
+            'ibexa.solr.connection.connection1.endpoint_resolver_id',
             2,
             'endpoint2'
         );
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'ez_search_engine_solr.connection.connection1.endpoint_resolver_id',
+            'ibexa.solr.connection.connection1.endpoint_resolver_id',
             3,
             'endpoint2'
         );
         $this->assertContainerBuilderHasService(
-            'ez_search_engine_solr.connection.connection1.core_filter_id'
+            'ibexa.solr.connection.connection1.core_filter_id'
         );
         $this->assertContainerBuilderHasService(
-            'ez_search_engine_solr.connection.connection1.gateway_id'
+            'ibexa.solr.connection.connection1.gateway_id'
         );
     }
 
@@ -404,37 +404,37 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         $this->load($configurationValues);
 
         $this->assertContainerBuilderHasParameter(
-            'ez_search_engine_solr.default_connection',
+            'ibexa.solr.default_connection',
             'connection1'
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'ez_search_engine_solr.connection.connection1.endpoint_resolver_id',
+            'ibexa.solr.connection.connection1.endpoint_resolver_id',
             0,
             [
                 'endpoint1',
             ]
         );
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'ez_search_engine_solr.connection.connection1.endpoint_resolver_id',
+            'ibexa.solr.connection.connection1.endpoint_resolver_id',
             1,
             []
         );
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'ez_search_engine_solr.connection.connection1.endpoint_resolver_id',
+            'ibexa.solr.connection.connection1.endpoint_resolver_id',
             2,
             'endpoint1'
         );
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'ez_search_engine_solr.connection.connection1.endpoint_resolver_id',
+            'ibexa.solr.connection.connection1.endpoint_resolver_id',
             3,
             null
         );
         $this->assertContainerBuilderHasService(
-            'ez_search_engine_solr.connection.connection1.core_filter_id'
+            'ibexa.solr.connection.connection1.core_filter_id'
         );
         $this->assertContainerBuilderHasService(
-            'ez_search_engine_solr.connection.connection1.gateway_id'
+            'ibexa.solr.connection.connection1.gateway_id'
         );
     }
 
@@ -633,7 +633,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         $this->load($configuration);
 
         $this->assertContainerBuilderHasParameter(
-            'ez_search_engine_solr.connection.connection1.boost_factor_map_id',
+            'ibexa.solr.connection.connection1.boost_factor_map_id',
             $map
         );
     }
