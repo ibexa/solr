@@ -103,7 +103,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
         ServiceContainer $serviceContainer
     ): Handler {
         /** @var \Ibexa\Contracts\Core\Persistence\Content\Handler $contentHandler */
-        $contentHandler = $serviceContainer->get('Ibexa\Contracts\Core\Persistence\Content\Handler');
+        $contentHandler = $serviceContainer->get(Handler::class);
 
         return $contentHandler;
     }
@@ -111,7 +111,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
     private function getSearchHandler(ServiceContainer $serviceContainer): SolrSearchHandler
     {
         /** @var \Ibexa\Solr\Handler $searchHandler */
-        $searchHandler = $serviceContainer->get(\Ibexa\Solr\Handler::class);
+        $searchHandler = $serviceContainer->get(SolrSearchHandler::class);
 
         return $searchHandler;
     }

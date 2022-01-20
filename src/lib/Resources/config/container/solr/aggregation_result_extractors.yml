@@ -154,7 +154,7 @@ services:
     tags:
       - { name: ibexa.search.solr.query.location.aggregation.result.extractor }
 
-  Ibexa\Solr\ResultExtractor\AggregationResultExtractor\NestedAggregationResultExtractor:
+  ibexa.solr.query.common.aggregation_result_extractor.subtree_term.nested:
     class: Ibexa\Solr\ResultExtractor\AggregationResultExtractor\NestedAggregationResultExtractor
     decorates: ibexa.solr.query.common.aggregation_result_extractor.subtree_term
     arguments:
