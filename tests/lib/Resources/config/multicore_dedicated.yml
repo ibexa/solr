@@ -24,8 +24,8 @@ parameters:
     ezpublish.search.solr.field_mapper.indexing_depth_provider.default: 2
 
 services:
-    ezpublish.spi.search_engine:
-        alias: ezpublish.spi.search.solr
+    Ibexa\Contracts\Core\Search\VersatileHandler:
+        alias: Ibexa\Solr\Handler
 
     ezpublish.search.solr.endpoint.endpoint0:
         class: "%ezpublish.solr.endpoint.class%"

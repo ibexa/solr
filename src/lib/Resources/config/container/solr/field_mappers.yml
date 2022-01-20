@@ -9,40 +9,40 @@ parameters:
     ezpublish.search.solr.field_mapper.location.location_document_base_fields.class: Ibexa\Solr\FieldMapper\LocationFieldMapper\LocationDocumentBaseFields
 
 services:
-    ezpublish.search.solr.field_mapper.block.block_documents_base_content_fields:
+    Ibexa\Solr\FieldMapper\ContentFieldMapper\BlockDocumentsBaseContentFields:
         class: '%ezpublish.search.solr.field_mapper.block.block_documents_base_content_fields.class%'
         arguments:
-            - '@ezpublish.spi.persistence.location_handler'
-            - '@ezpublish.spi.persistence.content_type_handler'
-            - '@ezpublish.spi.persistence.object_state_handler'
-            - '@ezpublish.spi.persistence.section_handler'
+            - '@Ibexa\Contracts\Core\Persistence\Content\Location\Handler'
+            - '@Ibexa\Contracts\Core\Persistence\Content\Type\Handler'
+            - '@Ibexa\Contracts\Core\Persistence\Content\ObjectState\Handler'
+            - '@Ibexa\Contracts\Core\Persistence\Content\Section\Handler'
         tags:
             - {name: ibexa.search.solr.field.mapper.block}
 
-    ezpublish.search.solr.field_mapper.block_translation.block_documents_content_fields:
+    Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\BlockDocumentsContentFields:
         class: '%ezpublish.search.solr.field_mapper.block_translation.block_documents_content_fields.class%'
         arguments:
-            - '@ezpublish.spi.persistence.content_type_handler'
-            - '@ezpublish.search.common.field_registry'
-            - '@ezpublish.search.common.field_name_generator'
-            - '@ezpublish.search.solr.field_mapper.boost_factor_provider'
+            - '@Ibexa\Contracts\Core\Persistence\Content\Type\Handler'
+            - '@Ibexa\Core\Search\Common\FieldRegistry'
+            - '@Ibexa\Core\Search\Common\FieldNameGenerator'
+            - '@Ibexa\Solr\FieldMapper\BoostFactorProvider'
         tags:
             - {name: ibexa.search.solr.field.mapper.block.translation}
 
-    ezpublish.search.solr.field_mapper.block_translation.block_documents_meta_fields:
+    Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\BlockDocumentsMetaFields:
         class: '%ezpublish.search.solr.field_mapper.block_translation.block_documents_meta_fields.class%'
         tags:
             - {name: ibexa.search.solr.field.mapper.block.translation}
 
-    ezpublish.search.solr.field_mapper.content_translation.content_document_translated_content_name_field:
+    Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\ContentDocumentTranslatedContentNameField:
         class: '%ezpublish.search.solr.field_mapper.content_translation.content_document_translated_content_name_field.class%'
         arguments:
-            - '@ezpublish.spi.persistence.content_type_handler'
-            - '@ezpublish.search.solr.field_mapper.boost_factor_provider'
+            - '@Ibexa\Contracts\Core\Persistence\Content\Type\Handler'
+            - '@Ibexa\Solr\FieldMapper\BoostFactorProvider'
         tags:
             - {name: ibexa.search.solr.field.mapper.block.translation}
 
-    ezpublish.search.solr.field_mapper.content.content_document_base_fields:
+    Ibexa\Solr\FieldMapper\ContentFieldMapper\ContentDocumentBaseFields:
         class: '%ezpublish.search.solr.field_mapper.content.content_document_base_fields.class%'
         tags:
             - {name: ibexa.search.solr.field.mapper.content}
@@ -51,37 +51,37 @@ services:
         tags:
             - { name: ibexa.search.solr.field.mapper.content }
 
-    ezpublish.search.solr.field_mapper.content.content_document_location_fields:
+    Ibexa\Solr\FieldMapper\ContentFieldMapper\ContentDocumentLocationFields:
         class: '%ezpublish.search.solr.field_mapper.content.content_document_location_fields.class%'
         arguments:
-            - '@ezpublish.spi.persistence.location_handler'
+            - '@Ibexa\Contracts\Core\Persistence\Content\Location\Handler'
         tags:
             - {name: ibexa.search.solr.field.mapper.content}
 
-    ezpublish.search.solr.field_mapper.content_translation.content_document_fulltext_fields:
+    Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\ContentDocumentFulltextFields:
         class: '%ezpublish.search.solr.field_mapper.content_translation.content_document_fulltext_fields.class%'
         arguments:
-            - '@ezpublish.spi.persistence.content_type_handler'
-            - '@ezpublish.spi.persistence.content_handler'
-            - '@ezpublish.search.common.field_registry'
-            - '@ezpublish.search.common.field_name_generator'
-            - '@ezpublish.search.solr.field_mapper.boost_factor_provider'
-            - '@ezpublish.search.solr.field_mapper.indexing_depth_provider'
+            - '@Ibexa\Contracts\Core\Persistence\Content\Type\Handler'
+            - '@Ibexa\Contracts\Core\Persistence\Content\Handler'
+            - '@Ibexa\Core\Search\Common\FieldRegistry'
+            - '@Ibexa\Core\Search\Common\FieldNameGenerator'
+            - '@Ibexa\Solr\FieldMapper\BoostFactorProvider'
+            - '@Ibexa\Solr\FieldMapper\IndexingDepthProvider'
         tags:
             - {name: ibexa.search.solr.field.mapper.content.translation}
 
-    ezpublish.search.solr.field_mapper.location.location_document_base_fields:
+    Ibexa\Solr\FieldMapper\LocationFieldMapper\LocationDocumentBaseFields:
         class: '%ezpublish.search.solr.field_mapper.location.location_document_base_fields.class%'
         arguments:
-            - '@ezpublish.spi.persistence.content_handler'
+            - '@Ibexa\Contracts\Core\Persistence\Content\Handler'
         tags:
             - {name: ibexa.search.solr.field.mapper.location}
 
-    ezpublish.search.solr.field_mapper.content_translation.content_document_empty_fields:
+    Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\ContentDocumentEmptyFields:
         class: Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\ContentDocumentEmptyFields
         arguments:
-            - '@ezpublish.spi.persistence.content_type_handler'
-            - '@ezpublish.search.common.field_name_generator'
-            - '@ezpublish.persistence.field_type_registry'
+            - '@Ibexa\Contracts\Core\Persistence\Content\Type\Handler'
+            - '@Ibexa\Core\Search\Common\FieldNameGenerator'
+            - '@Ibexa\Core\Persistence\FieldTypeRegistry'
         tags:
             - {name: ibexa.search.solr.field.mapper.block.translation}

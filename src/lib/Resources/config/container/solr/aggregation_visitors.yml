@@ -4,12 +4,12 @@ services:
     autoconfigure: true
     public: false
 
-  ezpublish.search.solr.query.content.aggregation_visitor.dispatcher:
+  ibexa.solr.query.content.aggregation_visitor.dispatcher:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\DispatcherAggregationVisitor
     arguments:
       $visitors: !tagged ibexa.search.solr.query.content.aggregation.visitor
 
-  ezpublish.search.solr.query.location.aggregation_visitor.dispatcher:
+  ibexa.solr.query.location.aggregation_visitor.dispatcher:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\DispatcherAggregationVisitor
     arguments:
       $visitors: !tagged ibexa.search.solr.query.location.aggregation.visitor
@@ -18,7 +18,7 @@ services:
 
   Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory:
     arguments:
-      $fieldNameResolver: '@ezpublish.search.common.field_name_resolver'
+      $fieldNameResolver: '@Ibexa\Core\Search\Common\FieldNameResolver'
 
   Ibexa\Solr\Query\Common\AggregationVisitor\Factory\RawAggregationVisitorFactory: ~
 
@@ -26,7 +26,7 @@ services:
 
   ### Aggregation visitors
 
-  ezpublish.search.solr.query.common.aggregation_visitor.content_type:
+  ibexa.solr.query.common.aggregation_visitor.content_type:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
@@ -36,7 +36,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.content_type_group:
+  ibexa.solr.query.common.aggregation_visitor.content_type_group:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
@@ -46,7 +46,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.field.author_term:
+  ibexa.solr.query.common.aggregation_visitor.field.author_term:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
@@ -56,7 +56,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.field.checkbox_term:
+  ibexa.solr.query.common.aggregation_visitor.field.checkbox_term:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
@@ -66,7 +66,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.field.date_range:
+  ibexa.solr.query.common.aggregation_visitor.field.date_range:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
     arguments:
@@ -76,7 +76,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.field.datetime_range:
+  ibexa.solr.query.common.aggregation_visitor.field.datetime_range:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
     arguments:
@@ -86,7 +86,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.field.country_term:
+  ibexa.solr.query.common.aggregation_visitor.field.country_term:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
@@ -96,7 +96,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.field.float_range:
+  ibexa.solr.query.common.aggregation_visitor.field.float_range:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
     arguments:
@@ -106,7 +106,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.field.float_stats:
+  ibexa.solr.query.common.aggregation_visitor.field.float_stats:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\StatsAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createStatsAggregationVisitor']
     arguments:
@@ -116,7 +116,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.field.integer_range:
+  ibexa.solr.query.common.aggregation_visitor.field.integer_range:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
     arguments:
@@ -126,7 +126,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.field.integer_stats:
+  ibexa.solr.query.common.aggregation_visitor.field.integer_stats:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\StatsAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createStatsAggregationVisitor']
     arguments:
@@ -136,7 +136,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.field.keyword_term:
+  ibexa.solr.query.common.aggregation_visitor.field.keyword_term:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
@@ -146,7 +146,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.field.selection_term:
+  ibexa.solr.query.common.aggregation_visitor.field.selection_term:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
@@ -156,7 +156,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.field.time_range:
+  ibexa.solr.query.common.aggregation_visitor.field.time_range:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
     arguments:
@@ -166,7 +166,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.language:
+  ibexa.solr.query.common.aggregation_visitor.language:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
@@ -176,7 +176,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.raw_range:
+  ibexa.solr.query.common.aggregation_visitor.raw_range:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\RawAggregationVisitorFactory', 'createRangeAggregationVisitor']
     arguments:
@@ -185,7 +185,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.raw_stats:
+  ibexa.solr.query.common.aggregation_visitor.raw_stats:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\StatsAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\RawAggregationVisitorFactory', 'createStatsAggregationVisitor']
     arguments:
@@ -194,7 +194,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.raw_term:
+  ibexa.solr.query.common.aggregation_visitor.raw_term:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\RawAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
@@ -203,7 +203,7 @@ services:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.common.aggregation_visitor.section:
+  ibexa.solr.query.common.aggregation_visitor.section:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
@@ -230,7 +230,7 @@ services:
 
   ### Content specific visitors
 
-  ezpublish.search.solr.query.content.aggregation_visitor.visibility:
+  ibexa.solr.query.content.aggregation_visitor.visibility:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
@@ -239,7 +239,7 @@ services:
     tags:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
 
-  ezpublish.search.solr.query.content.aggregation_visitor.subtree:
+  ibexa.solr.query.content.aggregation_visitor.subtree:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\SubtreeTermAggregationVisitor
     arguments:
       $pathStringFieldName: 'location_path_string_mid'
@@ -249,7 +249,7 @@ services:
 
   ### Location specific visitors
 
-  ezpublish.search.solr.query.location.aggregation_visitor.visibility:
+  ibexa.solr.query.location.aggregation_visitor.visibility:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
@@ -258,7 +258,7 @@ services:
     tags:
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.location.aggregation_visitor.location_children:
+  Ibexa\Solr\Query\Common\AggregationVisitor\LocationChildrenTermAggregationVisitor:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\LocationChildrenTermAggregationVisitor
     factory: [ '@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor' ]
     arguments:
@@ -267,7 +267,7 @@ services:
     tags:
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
 
-  ezpublish.search.solr.query.location.aggregation_visitor.subtree:
+  ibexa.solr.query.location.aggregation_visitor.subtree:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\SubtreeTermAggregationVisitor
     arguments:
       $pathStringFieldName: 'path_string_id'

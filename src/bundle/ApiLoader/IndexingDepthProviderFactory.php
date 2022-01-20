@@ -52,10 +52,10 @@ class IndexingDepthProviderFactory implements ContainerAwareInterface
 
         return new $this->indexingDepthProviderClass(
             $this->container->getParameter(
-                "ez_search_engine_solr.connection.{$connection}.indexing_depth.map"
+                "ibexa.solr.connection.{$connection}.indexing_depth.map"
             ),
             $this->container->getParameter(
-                "ez_search_engine_solr.connection.{$connection}.indexing_depth.default"
+                "ibexa.solr.connection.{$connection}.indexing_depth.default"
             )
         );
     }

@@ -25,8 +25,8 @@ parameters:
     ezpublish.search.solr.field_mapper.indexing_depth_provider.default: 2
 
 services:
-    ezpublish.spi.search_engine:
-        alias: ezpublish.spi.search.solr
+    Ibexa\Contracts\Core\Search\VersatileHandler:
+        alias: Ibexa\Solr\Handler
 
     ezpublish.search.solr.endpoint.eng:
         class: "%ezpublish.solr.endpoint.class%"
@@ -79,16 +79,16 @@ services:
     ezpublish.search.solr.gateway.distribution_strategy.cloud:
         class: Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy
         arguments:
-            - "@ezpublish.search.solr.gateway.endpoint_registry"
-            - "@ezpublish.search.solr.gateway.endpoint_resolver"
+            - '@Ibexa\Solr\Gateway\EndpointRegistry'
+            - '@ibexa.solr.gateway.endpoint_resolver'
 
-    ezpublish.search.solr.gateway.native:
+    ibexa.solr.gateway.native:
         class: "%ezpublish.search.solr.gateway.native.class%"
         arguments:
-            - "@ezpublish.search.solr.gateway.client.http.stream"
-            - "@ezpublish.search.solr.gateway.endpoint_resolver"
-            - "@ezpublish.search.solr.gateway.endpoint_registry"
-            - "@ezpublish.search.solr.query_converter.content"
-            - "@ezpublish.search.solr.query_converter.location"
-            - "@ezpublish.search.solr.gateway.update_serializer"
+            - '@Ibexa\Solr\Gateway\HttpClient\Stream'
+            - '@ibexa.solr.gateway.endpoint_resolver'
+            - '@Ibexa\Solr\Gateway\EndpointRegistry'
+            - '@ibexa.solr.query_converter.content'
+            - '@ibexa.solr.query_converter.location'
+            - '@Ibexa\Solr\Gateway\UpdateSerializer'
             - "@ezpublish.search.solr.gateway.distribution_strategy.cloud"

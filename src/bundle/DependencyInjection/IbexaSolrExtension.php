@@ -6,6 +6,11 @@
  */
 namespace Ibexa\Bundle\Solr\DependencyInjection;
 
+use Ibexa\Bundle\Solr\ApiLoader\BoostFactorProviderFactory;
+use Ibexa\Bundle\Solr\ApiLoader\SolrEngineFactory;
+use Ibexa\Solr\FieldMapper\BoostFactorProvider;
+use Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy;
+use Ibexa\Solr\Handler;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -21,7 +26,7 @@ class IbexaSolrExtension extends Extension
      *
      * @var string
      */
-    public const ENGINE_ID = 'ezpublish.spi.search.solr';
+    public const ENGINE_ID = Handler::class;
 
     /**
      * Configured core gateway service ID.
@@ -30,7 +35,7 @@ class IbexaSolrExtension extends Extension
      *
      * @var string
      */
-    public const GATEWAY_ID = 'ezpublish.search.solr.gateway.native';
+    public const GATEWAY_ID = 'ibexa.solr.gateway.native';
 
     /**
      * Configured core filter service ID.
@@ -39,7 +44,7 @@ class IbexaSolrExtension extends Extension
      *
      * @var string
      */
-    public const CORE_FILTER_ID = 'ezpublish.search.solr.core_filter.native';
+    public const CORE_FILTER_ID = 'ibexa.solr.core_filter.native';
 
     /**
      * Configured core endpoint resolver service ID.
@@ -48,7 +53,7 @@ class IbexaSolrExtension extends Extension
      *
      * @var string
      */
-    public const ENDPOINT_RESOLVER_ID = 'ezpublish.search.solr.gateway.endpoint_resolver.native';
+    public const ENDPOINT_RESOLVER_ID = 'ibexa.solr.gateway.endpoint_resolver.native';
 
     /**
      * Endpoint class.
@@ -67,17 +72,17 @@ class IbexaSolrExtension extends Extension
     /**
      * @var string
      */
-    public const BOOST_FACTOR_PROVIDER_ID = 'ezpublish.search.solr.field_mapper.boost_factor_provider';
+    public const BOOST_FACTOR_PROVIDER_ID = BoostFactorProvider::class;
 
     /**
      * @var string
      */
-    public const STANDALONE_DISTRIBUTION_STRATEGY_ID = 'ezpublish.search.solr.gateway.distribution_strategy.abstract_standalone';
+    public const STANDALONE_DISTRIBUTION_STRATEGY_ID = 'ibexa.solr.gateway.distribution_strategy.abstract_standalone';
 
     /**
      * @var string
      */
-    public const CLOUD_DISTRIBUTION_STRATEGY_ID = 'ezpublish.search.solr.gateway.distribution_strategy.abstract_cloud';
+    public const CLOUD_DISTRIBUTION_STRATEGY_ID = CloudDistributionStrategy::class;
 
     public function getAlias()
     {
@@ -87,7 +92,7 @@ class IbexaSolrExtension extends Extension
     private function getServicePrefix(): string
     {
         // @todo needs to be rebranded to ibexa.solr or ibexa.search.solr
-        return 'ez_search_engine_solr';
+        return 'ibexa.solr';
     }
 
     /**
@@ -159,11 +164,11 @@ class IbexaSolrExtension extends Extension
 
         // Search engine itself, for given connection name
         $searchEngineDef = $container->findDefinition(self::ENGINE_ID);
-        $searchEngineDef->setFactory([new Reference('ezpublish.solr.engine_factory'), 'buildEngine']);
+        $searchEngineDef->setFactory([new Reference(SolrEngineFactory::class), 'buildEngine']);
 
         // Factory for BoostFactorProvider uses mapping configured for the connection in use
         $boostFactorProviderDef = $container->findDefinition(self::BOOST_FACTOR_PROVIDER_ID);
-        $boostFactorProviderDef->setFactory([new Reference('ezpublish.solr.boost_factor_provider_factory'), 'buildService']);
+        $boostFactorProviderDef->setFactory([new Reference(BoostFactorProviderFactory::class), 'buildService']);
     }
 
     /**

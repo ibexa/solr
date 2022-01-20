@@ -14,7 +14,7 @@ use Ibexa\Solr\Container\Compiler\BaseFieldMapperPass;
  */
 class BlockTranslationFieldMapperPass extends BaseFieldMapperPass
 {
-    public const AGGREGATE_MAPPER_SERVICE_ID = 'ezpublish.search.solr.field_mapper.block_translation';
+    public const AGGREGATE_MAPPER_SERVICE_ID = 'ibexa.solr.field_mapper.block_translation';
     public const AGGREGATE_MAPPER_SERVICE_TAG = 'ibexa.search.solr.field.mapper.block.translation';
 }
 

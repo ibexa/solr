@@ -18,7 +18,7 @@ class AggregateCriterionVisitorPassTest extends AbstractCompilerPassTestCase
     {
         parent::setUp();
         $this->setDefinition(
-            'ezpublish.search.solr.query.content.criterion_visitor.aggregate',
+            'ibexa.solr.query.content.criterion_visitor.aggregate',
             new Definition()
         );
     }
@@ -44,7 +44,7 @@ class AggregateCriterionVisitorPassTest extends AbstractCompilerPassTestCase
         $this->compile();
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
-            'ezpublish.search.solr.query.content.criterion_visitor.aggregate',
+            'ibexa.solr.query.content.criterion_visitor.aggregate',
             'addVisitor',
             [new Reference($serviceId)]
         );
