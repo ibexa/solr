@@ -6,6 +6,11 @@
  */
 namespace Ibexa\Bundle\Solr\DependencyInjection;
 
+use Ibexa\Bundle\Solr\ApiLoader\BoostFactorProviderFactory;
+use Ibexa\Bundle\Solr\ApiLoader\SolrEngineFactory;
+use Ibexa\Solr\FieldMapper\BoostFactorProvider;
+use Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy;
+use Ibexa\Solr\Handler;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -21,7 +26,7 @@ class IbexaSolrExtension extends Extension
      *
      * @var string
      */
-    public const ENGINE_ID = \Ibexa\Solr\Handler::class;
+    public const ENGINE_ID = Handler::class;
 
     /**
      * Configured core gateway service ID.
@@ -67,7 +72,7 @@ class IbexaSolrExtension extends Extension
     /**
      * @var string
      */
-    public const BOOST_FACTOR_PROVIDER_ID = \Ibexa\Solr\FieldMapper\BoostFactorProvider::class;
+    public const BOOST_FACTOR_PROVIDER_ID = BoostFactorProvider::class;
 
     /**
      * @var string
@@ -77,7 +82,7 @@ class IbexaSolrExtension extends Extension
     /**
      * @var string
      */
-    public const CLOUD_DISTRIBUTION_STRATEGY_ID = \Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy::class;
+    public const CLOUD_DISTRIBUTION_STRATEGY_ID = CloudDistributionStrategy::class;
 
     public function getAlias()
     {
@@ -159,11 +164,11 @@ class IbexaSolrExtension extends Extension
 
         // Search engine itself, for given connection name
         $searchEngineDef = $container->findDefinition(self::ENGINE_ID);
-        $searchEngineDef->setFactory([new Reference(\Ibexa\Bundle\Solr\ApiLoader\SolrEngineFactory::class), 'buildEngine']);
+        $searchEngineDef->setFactory([new Reference(SolrEngineFactory::class), 'buildEngine']);
 
         // Factory for BoostFactorProvider uses mapping configured for the connection in use
         $boostFactorProviderDef = $container->findDefinition(self::BOOST_FACTOR_PROVIDER_ID);
-        $boostFactorProviderDef->setFactory([new Reference(\Ibexa\Bundle\Solr\ApiLoader\BoostFactorProviderFactory::class), 'buildService']);
+        $boostFactorProviderDef->setFactory([new Reference(BoostFactorProviderFactory::class), 'buildService']);
     }
 
     /**

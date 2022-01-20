@@ -6,6 +6,7 @@
  */
 namespace Ibexa\Solr\Container\Compiler;
 
+use Ibexa\Solr\Gateway\EndpointRegistry;
 use LogicException;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -25,14 +26,14 @@ class EndpointRegistryPass implements CompilerPassInterface
     {
         if (
             !$container->hasDefinition(
-                \Ibexa\Solr\Gateway\EndpointRegistry::class
+                EndpointRegistry::class
             )
         ) {
             return;
         }
 
         $fieldRegistryDefinition = $container->getDefinition(
-            \Ibexa\Solr\Gateway\EndpointRegistry::class
+            EndpointRegistry::class
         );
 
         $endpoints = $container->findTaggedServiceIds('ibexa.search.solr.endpoint');
