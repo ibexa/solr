@@ -322,7 +322,7 @@ services:
         tags:
             - {name: ibexa.search.solr.query.location.criterion.visitor}
 
-    Siso\Bundle\SearchBundle\Service\Ezp\SubtreeInVisitor:
+    Ibexa\Bundle\Commerce\Search\Service\Ezp\SubtreeInVisitor:
         class: "%ezpublish.search.solr.query.location.criterion_visitor.subtree_in.class%"
         tags:
             - {name: ibexa.search.solr.query.location.criterion.visitor}
