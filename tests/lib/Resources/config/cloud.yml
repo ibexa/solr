@@ -83,7 +83,7 @@ services:
             - '@ibexa.solr.gateway.endpoint_resolver'
 
     ibexa.solr.gateway.native:
-        class: "%ezpublish.search.solr.gateway.native.class%"
+        class: Ibexa\Solr\Gateway\Native
         arguments:
             - '@Ibexa\Solr\Gateway\HttpClient\Stream'
             - '@ibexa.solr.gateway.endpoint_resolver'

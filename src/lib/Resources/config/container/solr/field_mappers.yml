@@ -1,16 +1,7 @@
 parameters:
-    ezpublish.search.solr.field_mapper.block.block_documents_base_content_fields.class: Ibexa\Solr\FieldMapper\ContentFieldMapper\BlockDocumentsBaseContentFields
-    ezpublish.search.solr.field_mapper.block_translation.block_documents_content_fields.class: Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\BlockDocumentsContentFields
-    ezpublish.search.solr.field_mapper.block_translation.block_documents_meta_fields.class: Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\BlockDocumentsMetaFields
-    ezpublish.search.solr.field_mapper.content.content_document_base_fields.class: Ibexa\Solr\FieldMapper\ContentFieldMapper\ContentDocumentBaseFields
-    ezpublish.search.solr.field_mapper.content.content_document_location_fields.class: Ibexa\Solr\FieldMapper\ContentFieldMapper\ContentDocumentLocationFields
-    ezpublish.search.solr.field_mapper.content_translation.content_document_fulltext_fields.class: Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\ContentDocumentFulltextFields
-    ezpublish.search.solr.field_mapper.content_translation.content_document_translated_content_name_field.class: Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\ContentDocumentTranslatedContentNameField
-    ezpublish.search.solr.field_mapper.location.location_document_base_fields.class: Ibexa\Solr\FieldMapper\LocationFieldMapper\LocationDocumentBaseFields
 
 services:
     Ibexa\Solr\FieldMapper\ContentFieldMapper\BlockDocumentsBaseContentFields:
-        class: '%ezpublish.search.solr.field_mapper.block.block_documents_base_content_fields.class%'
         arguments:
             - '@Ibexa\Contracts\Core\Persistence\Content\Location\Handler'
             - '@Ibexa\Contracts\Core\Persistence\Content\Type\Handler'
@@ -20,7 +11,6 @@ services:
             - {name: ibexa.search.solr.field.mapper.block}
 
     Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\BlockDocumentsContentFields:
-        class: '%ezpublish.search.solr.field_mapper.block_translation.block_documents_content_fields.class%'
         arguments:
             - '@Ibexa\Contracts\Core\Persistence\Content\Type\Handler'
             - '@Ibexa\Core\Search\Common\FieldRegistry'
@@ -30,12 +20,10 @@ services:
             - {name: ibexa.search.solr.field.mapper.block.translation}
 
     Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\BlockDocumentsMetaFields:
-        class: '%ezpublish.search.solr.field_mapper.block_translation.block_documents_meta_fields.class%'
         tags:
             - {name: ibexa.search.solr.field.mapper.block.translation}
 
     Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\ContentDocumentTranslatedContentNameField:
-        class: '%ezpublish.search.solr.field_mapper.content_translation.content_document_translated_content_name_field.class%'
         arguments:
             - '@Ibexa\Contracts\Core\Persistence\Content\Type\Handler'
             - '@Ibexa\Solr\FieldMapper\BoostFactorProvider'
@@ -43,7 +31,6 @@ services:
             - {name: ibexa.search.solr.field.mapper.block.translation}
 
     Ibexa\Solr\FieldMapper\ContentFieldMapper\ContentDocumentBaseFields:
-        class: '%ezpublish.search.solr.field_mapper.content.content_document_base_fields.class%'
         tags:
             - {name: ibexa.search.solr.field.mapper.content}
 
@@ -52,14 +39,12 @@ services:
             - { name: ibexa.search.solr.field.mapper.content }
 
     Ibexa\Solr\FieldMapper\ContentFieldMapper\ContentDocumentLocationFields:
-        class: '%ezpublish.search.solr.field_mapper.content.content_document_location_fields.class%'
         arguments:
             - '@Ibexa\Contracts\Core\Persistence\Content\Location\Handler'
         tags:
             - {name: ibexa.search.solr.field.mapper.content}
 
     Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\ContentDocumentFulltextFields:
-        class: '%ezpublish.search.solr.field_mapper.content_translation.content_document_fulltext_fields.class%'
         arguments:
             - '@Ibexa\Contracts\Core\Persistence\Content\Type\Handler'
             - '@Ibexa\Contracts\Core\Persistence\Content\Handler'
@@ -71,7 +56,6 @@ services:
             - {name: ibexa.search.solr.field.mapper.content.translation}
 
     Ibexa\Solr\FieldMapper\LocationFieldMapper\LocationDocumentBaseFields:
-        class: '%ezpublish.search.solr.field_mapper.location.location_document_base_fields.class%'
         arguments:
             - '@Ibexa\Contracts\Core\Persistence\Content\Handler'
         tags:

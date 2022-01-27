@@ -1,16 +1,12 @@
 parameters:
-    ezpublish.solr.engine_factory.class: Ibexa\Bundle\Solr\ApiLoader\SolrEngineFactory
-    ezpublish.solr.boost_factor_provider_factory.class: Ibexa\Bundle\Solr\ApiLoader\BoostFactorProviderFactory
-    ezpublish.solr.indexing_depth_provider_factory.class: Ibexa\Bundle\Solr\ApiLoader\IndexingDepthProviderFactory
     ibexa.solr.default_connection: ~
 
 services:
     Ibexa\Bundle\Solr\ApiLoader\SolrEngineFactory:
-        class: "%ezpublish.solr.engine_factory.class%"
         arguments:
             $repositoryConfigurationProvider: '@Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider'
             $defaultConnection: "%ibexa.solr.default_connection%"
-            $searchEngineClass: "%ezpublish.spi.search.solr.class%"
+            $searchEngineClass: Ibexa\Solr\Handler
             $gatewayRegistry: '@Ibexa\Solr\Gateway\GatewayRegistry'
             $coreFilterRegistry: '@Ibexa\Solr\CoreFilter\CoreFilterRegistry'
             $contentHandler: '@Ibexa\Contracts\Core\Persistence\Content\Handler'
@@ -19,25 +15,23 @@ services:
             $locationResultExtractor: '@ibexa.solr.result_extractor.location'
 
     Ibexa\Bundle\Solr\ApiLoader\BoostFactorProviderFactory:
-        class: "%ezpublish.solr.boost_factor_provider_factory.class%"
         arguments:
             - '@Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider'
             - "%ibexa.solr.default_connection%"
-            - "%ezpublish.search.solr.boost_factor_provider.class%"
+            - Ibexa\Solr\FieldMapper\BoostFactorProvider
         calls:
             - [setContainer, ["@service_container"]]
 
     Ibexa\Bundle\Solr\ApiLoader\IndexingDepthProviderFactory:
-        class: "%ezpublish.solr.indexing_depth_provider_factory.class%"
         arguments:
             - '@Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider'
             - "%ibexa.solr.default_connection%"
-            - "%ezpublish.search.solr.indexing_depth_provider.class%"
+            - Ibexa\Solr\FieldMapper\IndexingDepthProvider
         calls:
             - [setContainer, ["@service_container"]]
 
     Ibexa\Solr\FieldMapper\IndexingDepthProvider:
-        class: "%ezpublish.search.solr.field_mapper.indexing_depth_provider.class%"
+        class: \Ibexa\Solr\FieldMapper\IndexingDepthProvider
         factory: ['@Ibexa\Bundle\Solr\ApiLoader\IndexingDepthProviderFactory', 'buildService']
 
     ibexa.solr.gateway.distribution_strategy.abstract_standalone:
