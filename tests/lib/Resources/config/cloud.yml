@@ -12,17 +12,17 @@ parameters:
 
     ezpublish.search.solr.default.distribution_strategy: cloud
 
-    ezpublish.search.solr.entry_endpoints:
+    ibexa.search.solr.entry_endpoints:
           - eng
           - ger
           - default
           - main
-    ezpublish.search.solr.cluster_endpoints:
+    ibexa.search.solr.cluster_endpoints:
           eng-GB: eng # cloud@shard0
           ger-DE: ger # cloud@shard3
-    ezpublish.search.solr.default_endpoint: default # cloud@shard2
-    ezpublish.search.solr.main_translations_endpoint: main # cloud@shard1
-    ezpublish.search.solr.field_mapper.indexing_depth_provider.default: 2
+    ibexa.search.solr.default_endpoint: default # cloud@shard2
+    ibexa.search.solr.main_translations_endpoint: main # cloud@shard1
+    ibexa.search.solr.field_mapper.indexing_depth_provider.default: 2
 
 services:
     Ibexa\Contracts\Core\Search\VersatileHandler:

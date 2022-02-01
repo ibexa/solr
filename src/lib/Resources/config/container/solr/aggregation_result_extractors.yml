@@ -22,7 +22,7 @@ services:
 
   Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\CountryAggregationKeyMapper:
     arguments:
-      $countriesInfo: '%ezpublish.fieldType.ezcountry.data%'
+      $countriesInfo: '%ibexa.field_type.country.data%'
 
   Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\ContentTypeAggregationKeyMapper: ~
 
