@@ -9,12 +9,12 @@ imports:
     - {resource: solr/aggregation_visitors.yml}
 
 parameters:
-    ezpublish.search.solr.connection.server: http://localhost:8983/solr/core0
+    ibexa.search.solr.connection.server: http://localhost:8983/solr/core0
     # Endpoint resolver arguments must be set in order to be overrideable
-    ezpublish.search.solr.entry_endpoints: []
-    ezpublish.search.solr.cluster_endpoints: []
-    ezpublish.search.solr.default_endpoint: null
-    ezpublish.search.solr.main_translations_endpoint: null
+    ibexa.search.solr.entry_endpoints: []
+    ibexa.search.solr.cluster_endpoints: []
+    ibexa.search.solr.default_endpoint: null
+    ibexa.search.solr.main_translations_endpoint: null
 
 services:
     Ibexa\Solr\Gateway\GatewayRegistry: ~
@@ -24,10 +24,10 @@ services:
     ibexa.solr.gateway.endpoint_resolver.native:
         class: Ibexa\Solr\Gateway\EndpointResolver\NativeEndpointResolver
         arguments:
-            - "%ezpublish.search.solr.entry_endpoints%"
-            - "%ezpublish.search.solr.cluster_endpoints%"
-            - "%ezpublish.search.solr.default_endpoint%"
-            - "%ezpublish.search.solr.main_translations_endpoint%"
+            - '%ibexa.search.solr.entry_endpoints%'
+            - '%ibexa.search.solr.cluster_endpoints%'
+            - '%ibexa.search.solr.default_endpoint%'
+            - '%ibexa.search.solr.main_translations_endpoint%'
 
     ibexa.solr.gateway.endpoint_resolver:
         alias: ibexa.solr.gateway.endpoint_resolver.native

@@ -19,7 +19,7 @@ final class CountryAggregationKeyMapperTest extends TestCase
     private const EXAMPLE_RAW_KEYS = [93, 94, 55];
 
     /**
-     * Example country info entries from ezpublish.fieldType.ezcountry.data parameter.
+     * Example country info entries from "ibexa.field_type.country.data" parameter.
      */
     private const EXAMPLE_COUNTRIES_INFO = [
         'AF' => [
