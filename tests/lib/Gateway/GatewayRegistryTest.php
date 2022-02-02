@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 class GatewayRegistryTest extends TestCase
 {
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry::addGateway
+     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::addGateway
      */
     public function testAddGateway(): void
     {
@@ -25,7 +25,7 @@ class GatewayRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry::getGateway
+     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::getGateway
      */
     public function testGetGateway(): void
     {
@@ -36,7 +36,7 @@ class GatewayRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry::getGateway
+     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::getGateway
      */
     public function testGetGatewayForMissingConnection(): void
     {
@@ -47,7 +47,7 @@ class GatewayRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry::hasGateway
+     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::hasGateway
      */
     public function testHasGateway(): void
     {
@@ -58,7 +58,7 @@ class GatewayRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry::setGateways
+     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::setGateways
      */
     public function testSetGateways(): void
     {
@@ -71,7 +71,7 @@ class GatewayRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry::getGateways
+     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::getGateways
      */
     public function testGetGateways(): void
     {

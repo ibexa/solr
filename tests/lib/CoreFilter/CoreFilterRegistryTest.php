@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 class CoreFilterRegistryTest extends TestCase
 {
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry::addCoreFilter
+     * @covers \Ibexa\Solr\CoreFilter\CoreFilterRegistry::addCoreFilter
      */
     public function testAddCoreFilter(): void
     {
@@ -25,7 +25,7 @@ class CoreFilterRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry::getCoreFilter
+     * @covers \Ibexa\Solr\CoreFilter\CoreFilterRegistry::getCoreFilter
      */
     public function testGetCoreFilter(): void
     {
@@ -35,7 +35,7 @@ class CoreFilterRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry::getGateway
+     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::getGateway
      */
     public function testGetCoreFilterForMissingConnection(): void
     {
@@ -46,7 +46,7 @@ class CoreFilterRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry::hasCoreFilter
+     * @covers \Ibexa\Solr\CoreFilter\CoreFilterRegistry::hasCoreFilter
      */
     public function testHasCoreFilter(): void
     {
@@ -56,7 +56,7 @@ class CoreFilterRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry::setCoreFilters
+     * @covers \Ibexa\Solr\CoreFilter\CoreFilterRegistry::setCoreFilters
      */
     public function testSetCoreFilters(): void
     {
@@ -69,7 +69,7 @@ class CoreFilterRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry::getCoreFilters
+     * @covers \Ibexa\Solr\CoreFilter\CoreFilterRegistry::getCoreFilters
      */
     public function testGetCoreFilters(): void
     {
