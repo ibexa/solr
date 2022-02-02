@@ -33,7 +33,7 @@ class Indexer extends IncrementalIndexer
 
     public function getName()
     {
-        return 'eZ Platform Solr Search Engine';
+        return 'Ibexa Solr Search Engine';
     }
 
     public function purge()

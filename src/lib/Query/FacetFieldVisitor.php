@@ -11,7 +11,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder;
 /**
  * Visits Solr results into correct facet and facet builder combination.
  *
- * @deprecated since eZ Platform 3.2.0, to be removed in eZ Platform 4.0.0.
+ * @deprecated since eZ Platform 3.2.0, to be removed in Ibexa 4.0.0.
  */
 interface FacetFieldVisitor
 {
