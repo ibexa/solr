@@ -60,7 +60,7 @@ class IbexaSolrExtension extends Extension
      *
      * @var string
      */
-    public const ENDPOINT_CLASS = 'EzSystems\\EzPlatformSolrSearchEngine\\Gateway\\Endpoint';
+    public const ENDPOINT_CLASS = 'Ibexa\\Solr\\Gateway\\Endpoint';
 
     /**
      * Endpoint service tag.
