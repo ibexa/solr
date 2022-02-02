@@ -125,7 +125,7 @@ class NativeQueryConverter extends QueryConverter
      * Converts an array of facet builder objects to a Solr query parameters representation.
      *
      * This method uses spl_object_hash() to get id of each and every facet builder, as this
-     * is expected by {@link \EzSystems\EzPlatformSolrSearchEngine\ResultExtractor}.
+     * is expected by {@link \Ibexa\Solr\ResultExtractor}.
      *
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder[] $facetBuilders
      *

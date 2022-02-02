@@ -21,7 +21,7 @@ use QueryTranslator\Languages\Galach\Tokenizer;
 /**
  * Test case for FullText criterion visitor.
  *
- * @covers \EzSystems\EzPlatformSolrSearchEngine\Query\Content\CriterionVisitor\FullText
+ * @covers \Ibexa\Solr\Query\Content\CriterionVisitor\FullText
  */
 class FullTextTest extends TestCase
 {
