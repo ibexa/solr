@@ -71,7 +71,7 @@ class Handler implements VersatileHandler
     /**
      * Result extractor.
      *
-     * @deprecated since eZ Platform 3.2.0, to be removed in eZ Platform 4.0.0. Use $contentResultExtractor or $locationResultExtractor instead of $resultExtractor.
+     * @deprecated since eZ Platform 3.2.0, to be removed in Ibexa 4.0.0. Use $contentResultExtractor or $locationResultExtractor instead of $resultExtractor.
      *
      * @var \Ibexa\Solr\ResultExtractor
      */
