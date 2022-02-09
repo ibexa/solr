@@ -241,7 +241,7 @@ services:
         tags:
             - {name: ibexa.search.solr.query.location.criterion.visitor}
 
-    Ibexa\Bundle\Commerce\Search\Service\Ezp\SubtreeInVisitor:
+    Ibexa\Solr\Query\Location\CriterionVisitor\SubtreeIn:
         tags:
             - {name: ibexa.search.solr.query.location.criterion.visitor}
 
