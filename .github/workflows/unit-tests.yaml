@@ -8,8 +8,8 @@ on:
   pull_request: ~
 
 jobs:
-  tests:
-    name: Tests
+  unit-tests:
+    name: Unit tests
     runs-on: "ubuntu-20.04"
     timeout-minutes: 5
 

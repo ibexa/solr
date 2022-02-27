@@ -1,0 +1,33 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         processIsolation="false"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         beStrictAboutTestsThatDoNotTestAnything="false"
+         colors="true"
+         failOnWarning="true"
+         >
+    <php>
+        <env name="setupFactory" value="Ibexa\Tests\Solr\SetupFactory\LegacySetupFactory" />
+        <env name="backendVersion" value="5" />
+        <env name="fixtureDir" value="Solr" />
+        <env name="solrServer" value="http://localhost:8983/" />
+        <env name="CORES_SETUP" value="dedicated" />
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled"/>
+        <ini name="error_reporting" value="-1" />
+        <env name="KERNEL_CLASS" value="Ibexa\Contracts\Core\Test\IbexaTestKernel"/>
+    </php>
+    <testsuites>
+        <!-- Search service is used all over the place, so we must run entire integration test suite -->
+        <testsuite name="integration_repository">
+            <directory>vendor/ibexa/core/tests/integration/Core</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">vendor/ibexa/core/tests/integration</directory>
+        </whitelist>
+    </filter>
+</phpunit>
