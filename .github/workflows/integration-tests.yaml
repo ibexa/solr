@@ -9,7 +9,6 @@ on:
 
 jobs:
   integration-tests:
-    needs: tests
     runs-on: "ubuntu-20.04"
     timeout-minutes: 5
     permissions:
