@@ -51,11 +51,11 @@ jobs:
       - name: Setup problem matchers for PHPUnit
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-      - name: Setup Solr
-        run: bin/.travis/init_solr.sh
-        env:
-          CORES_SETUP: single
-          SOLR_CORES: collection1
+#      - name: Setup Solr
+#        run: bin/.travis/init_solr.sh
+#        env:
+#          CORES_SETUP: single
+#          SOLR_CORES: collection1
 
       - name: Run integration test suite on Solr
         run: composer run-script --timeout=600 test -- --testsuite integration --exclude-group solr-incomplete
