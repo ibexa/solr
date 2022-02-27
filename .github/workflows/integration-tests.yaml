@@ -58,7 +58,7 @@ jobs:
 #          SOLR_CORES: collection1
 
       - name: Run integration test suite on Solr
-        run: composer run-script --timeout=600 integration --exclude-group solr-incomplete
+        run: composer run-script --timeout=600 integration
         env:
           SEARCH_ENGINE: solr
           SOLR_DSN: http://localhost:${{ job.services.solr.ports[8983] }}/solr
