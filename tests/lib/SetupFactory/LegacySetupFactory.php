@@ -8,8 +8,6 @@ namespace Ibexa\Tests\Solr\SetupFactory;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
-use Ibexa\Bundle\NamespaceCompatibility\DependencyInjection\Compiler\AliasDecoratorCompatibilityPass;
-use Ibexa\Bundle\NamespaceCompatibility\DependencyInjection\Compiler\ServiceCompatibilityPass;
 use Ibexa\Contracts\Core\Persistence\Content\Handler;
 use Ibexa\Contracts\Core\Test\Repository\SetupFactory\Legacy as CoreLegacySetupFactory;
 use Ibexa\Core\Base\Container\Compiler\Search\AggregateFieldValueMapperPass;
@@ -21,7 +19,6 @@ use Ibexa\Solr\Handler as SolrSearchHandler;
 use Ibexa\Tests\Integration\Core\Repository\SearchServiceTranslationLanguageFallbackTest;
 use RuntimeException;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
@@ -59,17 +56,6 @@ class LegacySetupFactory extends CoreLegacySetupFactory
 
     protected function externalBuildContainer(ContainerBuilder $containerBuilder)
     {
-        $containerBuilder->addCompilerPass(
-            new ServiceCompatibilityPass(),
-            PassConfig::TYPE_BEFORE_OPTIMIZATION,
-            128
-        );
-        $containerBuilder->addCompilerPass(
-            new AliasDecoratorCompatibilityPass(),
-            PassConfig::TYPE_BEFORE_OPTIMIZATION,
-            127
-        );
-
         parent::externalBuildContainer($containerBuilder);
 
         $this->loadSolrSettings($containerBuilder);
