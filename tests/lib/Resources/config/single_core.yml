@@ -24,11 +24,7 @@ services:
     ezpublish.search.solr.endpoint.endpoint0:
         class: "%ezpublish.solr.endpoint.class%"
         arguments:
-            -
-                scheme: http
-                host: localhost
-                port: 8983
-                path: /solr
-                core: collection1
+            - dsn: '%SOLR_DSN%'
+              core: collection1
         tags:
             - {name: ibexa.search.solr.endpoint, alias: endpoint0}

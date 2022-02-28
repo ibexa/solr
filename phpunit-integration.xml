@@ -13,7 +13,7 @@
         <env name="setupFactory" value="Ibexa\Tests\Solr\SetupFactory\LegacySetupFactory" />
         <env name="backendVersion" value="5" />
         <env name="fixtureDir" value="Solr" />
-        <env name="solrServer" value="http://localhost:8983/" />
+        <env name="SOLR_DSN" value="http://127.0.0.1:8983/solr" />
         <env name="CORES_SETUP" value="dedicated" />
         <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled"/>
         <ini name="error_reporting" value="-1" />

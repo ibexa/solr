@@ -83,6 +83,8 @@ class LegacySetupFactory extends CoreLegacySetupFactory
         $containerBuilder->addCompilerPass(new Compiler\EndpointRegistryPass());
         $containerBuilder->addCompilerPass(new AggregateFieldValueMapperPass());
         $containerBuilder->addCompilerPass(new FieldRegistryPass());
+
+        $containerBuilder->setParameter('SOLR_DSN', getenv('SOLR_DSN'));
     }
 
     private function getPersistenceContentHandler(
