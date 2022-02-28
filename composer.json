@@ -59,15 +59,5 @@
         "branch-alias": {
             "dev-main": "4.0.x-dev"
         }
-    },
-    "repositories": {
-        "core": {
-            "type": "vcs",
-            "url": "git@github.com:ibexa/core.git"
-        },
-        "namespace-compatibility": {
-            "type": "vcs",
-            "url": "git@github.com:ibexa/namespace-compatibility.git"
-        }
     }
 }
