@@ -56,7 +56,7 @@
         "fix-cs": "php-cs-fixer fix --config=.php-cs-fixer.php -v --show-progress=dots",
         "check-cs": "php-cs-fixer fix --dry-run -v --show-progress=dots",
         "test": "phpunit -c phpunit.xml",
-        "integration": "phpunit -c phpunit-integration.xml"
+        "integration": "phpunit -c phpunit-integration.xml --stop-on-error"
     },
     "extra": {
         "branch-alias": {
