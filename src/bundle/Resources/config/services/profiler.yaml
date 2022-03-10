@@ -1,0 +1,10 @@
+services:
+    Ibexa\Bundle\Solr\DataCollector\TraceableHttpClient:
+        decorates: Ibexa\Solr\Gateway\HttpClient\Stream
+
+    Ibexa\Bundle\Solr\DataCollector\SolrDataCollector:
+        arguments:
+            $client: '@Ibexa\Bundle\Solr\DataCollector\TraceableHttpClient'
+        tags:
+            -   name: data_collector
+                id: Ibexa\Bundle\Solr\DataCollector\SolrDataCollector
