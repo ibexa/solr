@@ -31,7 +31,7 @@ class AggregateFacetBuilderVisitorPass implements CompilerPassInterface
             "ibexa.solr.query.${name}.facet_builder_visitor.aggregate"
         );
 
-        foreach ($container->findTaggedServiceIds("ibexa.search.solr.query.${name}.facet_builder_visitor") as $id => $attributes) {
+        foreach ($container->findTaggedServiceIds("ibexa.search.solr.query.${name}.facet_builder.visitor") as $id => $attributes) {
             $aggregateFacetBuilderVisitorDefinition->addMethodCall(
                 'addVisitor',
                 [
