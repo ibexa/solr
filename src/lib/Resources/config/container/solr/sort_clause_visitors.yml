@@ -1,0 +1,95 @@
+parameters:
+    # Common for Content and Location search
+    # Location search
+
+services:
+    # Common for Content and Location search
+    Ibexa\Solr\Query\Common\SortClauseVisitor\ContentId:
+        tags:
+            - {name: ibexa.search.solr.query.content.sort_clause.visitor}
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    Ibexa\Solr\Query\Common\SortClauseVisitor\ContentName:
+        tags:
+            - {name: ibexa.search.solr.query.content.sort_clause.visitor}
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    Ibexa\Solr\Query\Common\SortClauseVisitor\ContentTranslatedName:
+        tags:
+            - {name: ibexa.search.solr.query.content.sort_clause.visitor}
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    Ibexa\Solr\Query\Common\SortClauseVisitor\Field:
+        arguments:
+            - '@Ibexa\Core\Search\Common\FieldNameResolver'
+        tags:
+            - {name: ibexa.search.solr.query.content.sort_clause.visitor}
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    Ibexa\Solr\Query\Common\SortClauseVisitor\SectionIdentifier:
+        tags:
+            - {name: ibexa.search.solr.query.content.sort_clause.visitor}
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    Ibexa\Solr\Query\Common\SortClauseVisitor\SectionName:
+        tags:
+            - {name: ibexa.search.solr.query.content.sort_clause.visitor}
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    Ibexa\Solr\Query\Common\SortClauseVisitor\DatePublished:
+        tags:
+            - {name: ibexa.search.solr.query.content.sort_clause.visitor}
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    Ibexa\Solr\Query\Common\SortClauseVisitor\DateModified:
+        tags:
+            - {name: ibexa.search.solr.query.content.sort_clause.visitor}
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    Ibexa\Solr\Query\Common\SortClauseVisitor\MapLocationDistance:
+        arguments:
+            - '@Ibexa\Core\Search\Common\FieldNameResolver'
+            - 'value_location'
+        tags:
+            - {name: ibexa.search.solr.query.content.sort_clause.visitor}
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    Ibexa\Solr\Query\Common\SortClauseVisitor\Random:
+        tags:
+            - {name: ibexa.search.solr.query.content.sort_clause.visitor}
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    Ibexa\Solr\Query\Common\SortClauseVisitor\CustomField:
+        tags:
+            - {name: ibexa.search.solr.query.content.sort_clause.visitor}
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    Ibexa\Solr\Query\Common\SortClauseVisitor\Score:
+        tags:
+            - {name: ibexa.search.solr.query.content.sort_clause.visitor}
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    # Location search
+    Ibexa\Solr\Query\Location\SortClauseVisitor\Location\Depth:
+        tags:
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    Ibexa\Solr\Query\Location\SortClauseVisitor\Location\Id:
+        tags:
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    Ibexa\Solr\Query\Location\SortClauseVisitor\Location\IsMainLocation:
+        tags:
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    Ibexa\Solr\Query\Location\SortClauseVisitor\Location\Path:
+        tags:
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    Ibexa\Solr\Query\Location\SortClauseVisitor\Location\Priority:
+        tags:
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}
+
+    Ibexa\Solr\Query\Location\SortClauseVisitor\Location\Visibility:
+        tags:
+            - {name: ibexa.search.solr.query.location.sort_clause.visitor}

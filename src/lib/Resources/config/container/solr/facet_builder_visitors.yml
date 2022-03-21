@@ -1,0 +1,17 @@
+parameters:
+
+services:
+    Ibexa\Solr\Query\Common\FacetBuilderVisitor\ContentType:
+        tags:
+            - {name: ibexa.search.solr.query.content.facet_builder.visitor}
+            - {name: ibexa.search.solr.query.location.facet_builder.visitor}
+
+    Ibexa\Solr\Query\Common\FacetBuilderVisitor\Section:
+        tags:
+            - {name: ibexa.search.solr.query.content.facet_builder.visitor}
+            - {name: ibexa.search.solr.query.location.facet_builder.visitor}
+
+    Ibexa\Solr\Query\Common\FacetBuilderVisitor\User:
+        tags:
+            - {name: ibexa.search.solr.query.content.facet_builder.visitor}
+            - {name: ibexa.search.solr.query.location.facet_builder.visitor}

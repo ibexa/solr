@@ -1,18 +1,14 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Gateway\EndpointResolver;
+namespace Ibexa\Tests\Solr\Search\Gateway\EndpointResolver;
 
-use EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointResolver\NativeEndpointResolver;
-use EzSystems\EzPlatformSolrSearchEngine\Gateway\SingleEndpointResolver;
-use EzSystems\EzPlatformSolrSearchEngine\Tests\Search\TestCase;
+use Ibexa\Solr\Gateway\EndpointResolver\NativeEndpointResolver;
+use Ibexa\Solr\Gateway\SingleEndpointResolver;
+use Ibexa\Tests\Solr\Search\TestCase;
 use RuntimeException;
 
 /**
@@ -1067,3 +1063,5 @@ class NativeEndpointResolverTest extends TestCase
         );
     }
 }
+
+class_alias(NativeEndpointResolverTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Gateway\EndpointResolver\NativeEndpointResolverTest');

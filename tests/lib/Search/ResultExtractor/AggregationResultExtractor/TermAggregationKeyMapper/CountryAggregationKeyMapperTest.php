@@ -1,13 +1,17 @@
 <?php
 
+/**
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
+ * @license For full copyright and license information view LICENSE file distributed with this source code.
+ */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
+namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation\Field\CountryTermAggregation;
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
-use EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\CountryAggregationKeyMapper;
-use EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\AggregationResultExtractorTestUtils;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\CountryTermAggregation;
+use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\CountryAggregationKeyMapper;
+use Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\AggregationResultExtractorTestUtils;
 use PHPUnit\Framework\TestCase;
 
 final class CountryAggregationKeyMapperTest extends TestCase
@@ -15,7 +19,7 @@ final class CountryAggregationKeyMapperTest extends TestCase
     private const EXAMPLE_RAW_KEYS = [93, 94, 55];
 
     /**
-     * Example country info entries from ezpublish.fieldType.ezcountry.data parameter.
+     * Example country info entries from "ibexa.field_type.country.data" parameter.
      */
     private const EXAMPLE_COUNTRIES_INFO = [
         'AF' => [
@@ -117,3 +121,5 @@ final class CountryAggregationKeyMapperTest extends TestCase
         ];
     }
 }
+
+class_alias(CountryAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\CountryAggregationKeyMapperTest');
