@@ -1,10 +1,12 @@
 services:
-    Ibexa\Bundle\Solr\DataCollector\TraceableHttpClient:
+    Ibexa\Bundle\Solr\DataCollector\DataCollectorHttpClient:
         decorates: Ibexa\Solr\Gateway\HttpClient\Stream
+        arguments:
+            $innerClient: '@.inner'
 
     Ibexa\Bundle\Solr\DataCollector\SolrDataCollector:
         arguments:
-            $client: '@Ibexa\Bundle\Solr\DataCollector\TraceableHttpClient'
+            $client: '@Ibexa\Bundle\Solr\DataCollector\DataCollectorHttpClient'
         tags:
             -   name: data_collector
                 id: Ibexa\Bundle\Solr\DataCollector\SolrDataCollector

@@ -46,6 +46,7 @@ class Configuration implements ConfigurationInterface
 
         $this->addEndpointsSection($rootNode);
         $this->addConnectionsSection($rootNode);
+        $this->addProfilerSection($rootNode);
 
         return $treeBuilder;
     }
@@ -391,6 +392,20 @@ class Configuration implements ConfigurationInterface
                 ->end()
             ->end()
         ->end();
+    }
+
+    public function addProfilerSection(ArrayNodeDefinition $node): void
+    {
+        $node->children()
+            ->arrayNode('profiler')
+                ->addDefaultsIfNotSet()
+                ->children()
+                    ->booleanNode('enabled')
+                        ->info('Enabled integration with Symfony Profiler')
+                        ->defaultFalse()
+                    ->end()
+                ->end()
+            ->end();
     }
 }
 

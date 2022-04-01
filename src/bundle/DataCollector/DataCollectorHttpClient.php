@@ -12,7 +12,7 @@ use Ibexa\Solr\Gateway\Endpoint;
 use Ibexa\Solr\Gateway\HttpClient;
 use Ibexa\Solr\Gateway\Message;
 
-final class TraceableHttpClient implements HttpClient
+final class DataCollectorHttpClient implements HttpClient
 {
     private HttpClient $innerClient;
 

@@ -15,16 +15,16 @@ use Throwable;
 
 final class SolrDataCollector extends AbstractDataCollector
 {
-    private TraceableHttpClient $client;
+    private DataCollectorHttpClient $client;
 
-    public function __construct(TraceableHttpClient $client)
+    public function __construct(DataCollectorHttpClient $client)
     {
         $this->client = $client;
     }
 
     public static function getTemplate(): ?string
     {
-        return 'data_collector/solr.html.twig';
+        return '@IbexaSolr/data_collector/solr.html.twig';
     }
 
     public function collect(Request $request, Response $response, Throwable $exception = null): void

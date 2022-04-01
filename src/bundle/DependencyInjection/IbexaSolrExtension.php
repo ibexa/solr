@@ -123,6 +123,10 @@ class IbexaSolrExtension extends Extension
         );
         $loader->load('services.yml');
 
+        if ($config['profiler']['enabled']) {
+            $loader->load('services/profiler.yaml');
+        }
+
         $this->processConnectionConfiguration($container, $config);
     }
 
