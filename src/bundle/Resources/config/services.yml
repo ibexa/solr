@@ -1,12 +1,13 @@
 parameters:
     ibexa.solr.default_connection: ~
+    ibexa.solr.search_engine_class: Ibexa\Solr\Handler
 
 services:
     Ibexa\Bundle\Solr\ApiLoader\SolrEngineFactory:
         arguments:
             $repositoryConfigurationProvider: '@Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider'
             $defaultConnection: "%ibexa.solr.default_connection%"
-            $searchEngineClass: Ibexa\Solr\Handler
+            $searchEngineClass: "%ibexa.solr.search_engine_class%"
             $gatewayRegistry: '@Ibexa\Solr\Gateway\GatewayRegistry'
             $coreFilterRegistry: '@Ibexa\Solr\CoreFilter\CoreFilterRegistry'
             $contentHandler: '@Ibexa\Contracts\Core\Persistence\Content\Handler'
