@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor;
+namespace Ibexa\Tests\Solr\Search\Query\Common\AggregationVisitor;
 
-use eZ\Publish\API\Repository\Values\Content\Query\Aggregation;
-use EzSystems\EzPlatformSolrSearchEngine\Query\AggregationVisitor;
-use EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\DispatcherAggregationVisitor;
-use EzSystems\EzPlatformSolrSearchEngine\Tests\Search\TestCase;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Solr\Query\AggregationVisitor;
+use Ibexa\Solr\Query\Common\AggregationVisitor\DispatcherAggregationVisitor;
+use Ibexa\Tests\Solr\Search\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 
 final class DispatcherAggregationVisitorTest extends TestCase
@@ -75,9 +75,9 @@ final class DispatcherAggregationVisitorTest extends TestCase
     }
 
     private function createVisitorMock(
-       Aggregation $aggregation,
-       array $languageFilter,
-       bool $supports
+        Aggregation $aggregation,
+        array $languageFilter,
+        bool $supports
     ): MockObject {
         $visitor = $this->createMock(AggregationVisitor::class);
         $visitor->method('canVisit')->with($aggregation, $languageFilter)->willReturn($supports);
@@ -85,3 +85,5 @@ final class DispatcherAggregationVisitorTest extends TestCase
         return $visitor;
     }
 }
+
+class_alias(DispatcherAggregationVisitorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor\DispatcherAggregationVisitorTest');

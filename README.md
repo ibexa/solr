@@ -13,7 +13,7 @@ To contribute to this bundle, make sure to run both unit and integration tests (
 1. Set up this repository locally
 
     ```bash
-    git clone git@github.com:ezsystems/ezplatform-solr-search-engine.git solr
+    git clone git@github.com:ibexa/solr.git solr
     cd solr
     composer install
     ```
@@ -27,10 +27,10 @@ To contribute to this bundle, make sure to run both unit and integration tests (
 
 3. Run integration tests
 
-    To run integration tests against Solr, using [default config](https://github.com/ezsystems/ezplatform-kernel/blob/master/phpunit-integration-legacy-solr.xml#L14-L19):
+    To run integration tests against Solr, using [default config](https://github.com/ibexa/core/blob/master/phpunit-integration-legacy-solr.xml#L14-L19):
     ```bash
     export CORES_SETUP="single"
-    php -d memory_limit=-1 vendor/bin/phpunit --bootstrap tests/bootstrap.php -vc vendor/ezsystems/ezplatform-kernel/phpunit-integration-legacy-solr.xml
+    php -d memory_limit=-1 vendor/bin/phpunit --bootstrap tests/bootstrap.php -vc vendor/ibexa/core/phpunit-integration-legacy-solr.xml
     ```
 
 ## COPYRIGHT

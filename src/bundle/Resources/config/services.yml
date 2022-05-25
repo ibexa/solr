@@ -1,0 +1,47 @@
+parameters:
+    ibexa.solr.default_connection: ~
+
+services:
+    Ibexa\Bundle\Solr\ApiLoader\SolrEngineFactory:
+        arguments:
+            $repositoryConfigurationProvider: '@Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider'
+            $defaultConnection: "%ibexa.solr.default_connection%"
+            $searchEngineClass: Ibexa\Solr\Handler
+            $gatewayRegistry: '@Ibexa\Solr\Gateway\GatewayRegistry'
+            $coreFilterRegistry: '@Ibexa\Solr\CoreFilter\CoreFilterRegistry'
+            $contentHandler: '@Ibexa\Contracts\Core\Persistence\Content\Handler'
+            $documentMapper: '@ibexa.solr.document_mapper'
+            $contentResultExtractor: '@ibexa.solr.result_extractor.content'
+            $locationResultExtractor: '@ibexa.solr.result_extractor.location'
+
+    Ibexa\Bundle\Solr\ApiLoader\BoostFactorProviderFactory:
+        arguments:
+            - '@Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider'
+            - "%ibexa.solr.default_connection%"
+            - Ibexa\Solr\FieldMapper\BoostFactorProvider
+        calls:
+            - [setContainer, ["@service_container"]]
+
+    Ibexa\Bundle\Solr\ApiLoader\IndexingDepthProviderFactory:
+        arguments:
+            - '@Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider'
+            - "%ibexa.solr.default_connection%"
+            - Ibexa\Solr\FieldMapper\IndexingDepthProvider
+        calls:
+            - [setContainer, ["@service_container"]]
+
+    Ibexa\Solr\FieldMapper\IndexingDepthProvider:
+        class: \Ibexa\Solr\FieldMapper\IndexingDepthProvider
+        factory: ['@Ibexa\Bundle\Solr\ApiLoader\IndexingDepthProviderFactory', 'buildService']
+
+    ibexa.solr.gateway.distribution_strategy.abstract_standalone:
+        abstract: true
+        class: Ibexa\Solr\Gateway\DistributionStrategy\StandaloneDistributionStrategy
+        arguments:
+            - '@Ibexa\Solr\Gateway\EndpointRegistry'
+
+    Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy:
+        abstract: true
+        class: Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy
+        arguments:
+            - '@Ibexa\Solr\Gateway\EndpointRegistry'

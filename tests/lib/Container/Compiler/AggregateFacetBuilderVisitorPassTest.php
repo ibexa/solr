@@ -1,16 +1,12 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
- *
- * @version //autogentag//
  */
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Container\Compiler;
+namespace Ibexa\Tests\Solr\Container\Compiler;
 
-use EzSystems\EzPlatformSolrSearchEngine\Container\Compiler\AggregateFacetBuilderVisitorPass;
+use Ibexa\Solr\Container\Compiler\AggregateFacetBuilderVisitorPass;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -22,11 +18,11 @@ class AggregateFacetBuilderVisitorPassTest extends AbstractCompilerPassTestCase
     {
         parent::setUp();
         $this->setDefinition(
-            'ezpublish.search.solr.query.content.facet_builder_visitor.aggregate',
+            'ibexa.solr.query.content.facet_builder_visitor.aggregate',
             new Definition()
         );
         $this->setDefinition(
-            'ezpublish.search.solr.query.location.facet_builder_visitor.aggregate',
+            'ibexa.solr.query.location.facet_builder_visitor.aggregate',
             new Definition()
         );
     }
@@ -46,26 +42,28 @@ class AggregateFacetBuilderVisitorPassTest extends AbstractCompilerPassTestCase
     {
         $serviceId = 'service_id';
         $def = new Definition();
-        $def->addTag('ezpublish.search.solr.query.content.facet_builder_visitor');
+        $def->addTag('ibexa.search.solr.query.content.facet_builder.visitor');
         $this->setDefinition($serviceId, $def);
 
         $serviceId2 = 'service_id2';
         $def = new Definition();
-        $def->addTag('ezpublish.search.solr.query.location.facet_builder_visitor');
+        $def->addTag('ibexa.search.solr.query.location.facet_builder.visitor');
         $this->setDefinition($serviceId2, $def);
 
         $this->compile();
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
-            'ezpublish.search.solr.query.content.facet_builder_visitor.aggregate',
+            'ibexa.solr.query.content.facet_builder_visitor.aggregate',
             'addVisitor',
             [new Reference($serviceId)]
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
-            'ezpublish.search.solr.query.location.facet_builder_visitor.aggregate',
+            'ibexa.solr.query.location.facet_builder_visitor.aggregate',
             'addVisitor',
             [new Reference($serviceId2)]
         );
     }
 }
+
+class_alias(AggregateFacetBuilderVisitorPassTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Container\Compiler\AggregateFacetBuilderVisitorPassTest');

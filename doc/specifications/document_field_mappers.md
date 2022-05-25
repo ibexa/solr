@@ -42,19 +42,19 @@ as follows:
 
 - all block documents
     - `ContentFieldMapper`
-    - `ezpublish.search.solr.document_field_mapper.block`
+    - `ibexa.search.solr.field.mapper.block`
 - all block documents per translation
     - `ContentTranslationFieldMapper`
-    - `ezpublish.search.solr.field_mapper.block_translation`
+    - `ibexa.search.solr.field.mapper.block.translation`
 - Content documents
     - `ContentFieldMapper`
-    - `ezpublish.search.solr.document_field_mapper.content`
+    - `ibexa.search.solr.field.mapper.content`
 - Content documents per translation
     - `ContentTranslationFieldMapper`
-    - `ezpublish.search.solr.field_mapper.content_translation`
+    - `ibexa.search.solr.field.mapper.content.translation`
 - Location documents
     - `LocationFieldMapper`
-    - `ezpublish.search.solr.field_mapper.location`
+    - `ibexa.search.solr.field.mapper.location`
 
 The following example shows how to index data from the parent Location content, in order to make it
 available for full text search on the children content. A concrete use case could be indexing
@@ -130,5 +130,5 @@ my_webinar_app.webinar_event_title_fulltext_field_mapper:
         - '@ezpublish.spi.persistence.content_handler'
         - '@ezpublish.spi.persistence.location_handler'
     tags:
-        - {name: ezpublish.search.solr.field_mapper.content}
+        - {name: ibexa.search.solr.field.mapper.content}
 ```
