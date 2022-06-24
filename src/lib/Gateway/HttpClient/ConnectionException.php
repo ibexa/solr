@@ -7,16 +7,23 @@
 namespace Ibexa\Solr\Gateway\HttpClient;
 
 use RuntimeException;
+use Throwable;
 
 /**
  * HTTPClient connection exception.
  */
 class ConnectionException extends RuntimeException
 {
-    public function __construct($server, $path, $method)
-    {
+    public function __construct(
+        string $server,
+        string $path,
+        string $method,
+        ?Throwable $previous = null
+    ) {
         parent::__construct(
-            "Could not connect to server $server."
+            sprintf('Request %s %s%s failed', $method, $server, $path),
+            1,
+            $previous
         );
     }
 }

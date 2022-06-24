@@ -8,6 +8,7 @@ namespace Ibexa\Tests\Solr\SetupFactory;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
+use Ibexa\Bundle\Solr\DependencyInjection\IbexaSolrExtension;
 use Ibexa\Contracts\Core\Persistence\Content\Handler;
 use Ibexa\Contracts\Core\Test\Repository\SetupFactory\Legacy as CoreLegacySetupFactory;
 use Ibexa\Core\Base\Container\Compiler\Search\AggregateFieldValueMapperPass;
@@ -15,12 +16,16 @@ use Ibexa\Core\Base\Container\Compiler\Search\FieldRegistryPass;
 use Ibexa\Core\Base\ServiceContainer;
 use Ibexa\Core\Persistence\Legacy\Content\Gateway as ContentGateway;
 use Ibexa\Solr\Container\Compiler;
+use Ibexa\Solr\Gateway\UpdateSerializerInterface;
 use Ibexa\Solr\Handler as SolrSearchHandler;
 use Ibexa\Tests\Integration\Core\Repository\SearchServiceTranslationLanguageFallbackTest;
 use RuntimeException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * Used to setup the infrastructure for Repository Public API integration tests,
@@ -54,7 +59,10 @@ class LegacySetupFactory extends CoreLegacySetupFactory
         return $repository;
     }
 
-    protected function externalBuildContainer(ContainerBuilder $containerBuilder)
+    /**
+     * @throws \Exception
+     */
+    protected function externalBuildContainer(ContainerBuilder $containerBuilder): void
     {
         parent::externalBuildContainer($containerBuilder);
 
@@ -83,6 +91,12 @@ class LegacySetupFactory extends CoreLegacySetupFactory
         $containerBuilder->addCompilerPass(new Compiler\EndpointRegistryPass());
         $containerBuilder->addCompilerPass(new AggregateFieldValueMapperPass());
         $containerBuilder->addCompilerPass(new FieldRegistryPass());
+
+        $containerBuilder
+            ->registerForAutoconfiguration(UpdateSerializerInterface::class)
+            ->addTag(IbexaSolrExtension::GATEWAY_UPDATE_SERIALIZER_TAG);
+
+        $this->configureSymfonyHttpClient($containerBuilder);
     }
 
     private function getPersistenceContentHandler(
@@ -146,6 +160,14 @@ class LegacySetupFactory extends CoreLegacySetupFactory
         }
 
         return self::CONFIGURATION_FILES_MAP[$coresSetup];
+    }
+
+    private function configureSymfonyHttpClient(ContainerBuilder $containerBuilder): void
+    {
+        $containerBuilder->setDefinition(
+            'http_client',
+            (new Definition(HttpClientInterface::class))->setFactory([HttpClient::class, 'create'])
+        );
     }
 }
 

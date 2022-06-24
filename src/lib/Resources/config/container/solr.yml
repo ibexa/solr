@@ -7,6 +7,7 @@ imports:
     - {resource: solr/sort_clause_visitors.yml}
     - {resource: solr/aggregation_result_extractors.yml}
     - {resource: solr/aggregation_visitors.yml}
+    - {resource: solr/gateway_update_serializers.yaml}
 
 parameters:
     ibexa.search.solr.connection.server: http://localhost:8983/solr/core0
@@ -116,13 +117,13 @@ services:
     ibexa.solr.gateway.native:
         class: Ibexa\Solr\Gateway\Native
         arguments:
-            - '@Ibexa\Solr\Gateway\HttpClient\Stream'
-            - '@ibexa.solr.gateway.endpoint_resolver'
-            - '@Ibexa\Solr\Gateway\EndpointRegistry'
-            - '@ibexa.solr.query_converter.content'
-            - '@ibexa.solr.query_converter.location'
-            - '@Ibexa\Solr\Gateway\UpdateSerializer'
-            - '@ibexa.solr.gateway.distribution_strategy.standalone'
+            $client: '@Ibexa\Solr\Gateway\HttpClient\Stream'
+            $endpointResolver: '@ibexa.solr.gateway.endpoint_resolver'
+            $endpointRegistry: '@Ibexa\Solr\Gateway\EndpointRegistry'
+            $contentQueryConverter: '@ibexa.solr.query_converter.content'
+            $locationQueryConverter: '@ibexa.solr.query_converter.location'
+            $updateSerializer: '@Ibexa\Solr\Gateway\UpdateSerializerInterface'
+            $distributionStrategy: '@ibexa.solr.gateway.distribution_strategy.standalone'
 
     ibexa.solr.gateway:
         alias: ibexa.solr.gateway.native

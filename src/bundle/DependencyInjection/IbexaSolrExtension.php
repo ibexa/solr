@@ -10,6 +10,7 @@ use Ibexa\Bundle\Solr\ApiLoader\BoostFactorProviderFactory;
 use Ibexa\Bundle\Solr\ApiLoader\SolrEngineFactory;
 use Ibexa\Solr\FieldMapper\BoostFactorProvider;
 use Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy;
+use Ibexa\Solr\Gateway\UpdateSerializerInterface;
 use Ibexa\Solr\Handler;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ChildDefinition;
@@ -84,14 +85,15 @@ class IbexaSolrExtension extends Extension
      */
     public const CLOUD_DISTRIBUTION_STRATEGY_ID = CloudDistributionStrategy::class;
 
+    public const GATEWAY_UPDATE_SERIALIZER_TAG = 'ibexa.solr.gateway.serializer.update';
+
     public function getAlias()
     {
         return 'ibexa_solr';
     }
 
-    private function getServicePrefix(): string
+    public function getServicePrefix(): string
     {
-        // @todo needs to be rebranded to ibexa.solr or ibexa.search.solr
         return 'ibexa.solr';
     }
 
@@ -124,6 +126,10 @@ class IbexaSolrExtension extends Extension
         $loader->load('services.yml');
 
         $this->processConnectionConfiguration($container, $config);
+
+        $container
+            ->registerForAutoconfiguration(UpdateSerializerInterface::class)
+            ->addTag(self::GATEWAY_UPDATE_SERIALIZER_TAG);
     }
 
     /**
@@ -218,8 +224,8 @@ class IbexaSolrExtension extends Extension
 
         // Gateway
         $gatewayDefinition = new ChildDefinition(self::GATEWAY_ID);
-        $gatewayDefinition->replaceArgument(1, new Reference($endpointResolverId));
-        $gatewayDefinition->replaceArgument(6, new Reference($distributionStrategyId));
+        $gatewayDefinition->replaceArgument('$endpointResolver', new Reference($endpointResolverId));
+        $gatewayDefinition->replaceArgument('$distributionStrategy', new Reference($distributionStrategyId));
         $gatewayDefinition->addTag('ibexa.search.solr.gateway', ['connection' => $connectionName]);
 
         $gatewayId = "$alias.connection.$connectionName.gateway_id";

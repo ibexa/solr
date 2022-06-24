@@ -37,6 +37,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     public function testEmpty()
     {
         $this->load();
+        $this->expectNotToPerformAssertions();
     }
 
     public function dataProviderForTestEndpoint()
@@ -204,9 +205,17 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
      *
      * @dataProvider dataProviderForTestConnection
      */
-    public function testConnectionLoad($configurationValues)
+    public function testConnectionLoad(array $configurationValues): void
     {
         $this->load($configurationValues);
+        $alias = $this->extension->getServicePrefix();
+        $connectionNames = array_keys($configurationValues['connections']);
+        foreach ($connectionNames as $connectionName) {
+            $this->assertContainerBuilderHasService("$alias.connection.$connectionName.gateway_id");
+        }
+        if (empty($connectionNames)) {
+            $this->expectNotToPerformAssertions();
+        }
     }
 
     public function testConnection()

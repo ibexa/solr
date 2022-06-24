@@ -85,10 +85,10 @@ services:
     ibexa.solr.gateway.native:
         class: Ibexa\Solr\Gateway\Native
         arguments:
-            - '@Ibexa\Solr\Gateway\HttpClient\Stream'
-            - '@ibexa.solr.gateway.endpoint_resolver'
-            - '@Ibexa\Solr\Gateway\EndpointRegistry'
-            - '@ibexa.solr.query_converter.content'
-            - '@ibexa.solr.query_converter.location'
-            - '@Ibexa\Solr\Gateway\UpdateSerializer'
-            - "@ezpublish.search.solr.gateway.distribution_strategy.cloud"
+            $client: '@Ibexa\Solr\Gateway\HttpClient\Stream'
+            $endpointResolver: '@ibexa.solr.gateway.endpoint_resolver'
+            $endpointRegistry: '@Ibexa\Solr\Gateway\EndpointRegistry'
+            $contentQueryConverter: '@ibexa.solr.query_converter.content'
+            $locationQueryConverter: '@ibexa.solr.query_converter.location'
+            $updateSerializer: '@Ibexa\Solr\Gateway\UpdateSerializerInterface'
+            $distributionStrategy: '@ezpublish.search.solr.gateway.distribution_strategy.cloud'
