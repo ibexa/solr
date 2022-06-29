@@ -12,25 +12,20 @@ namespace Ibexa\Solr\Gateway;
 class Message
 {
     /**
-     * Response headers.
+     * Request/Response headers.
      *
      * @var array
      */
     public $headers;
 
     /**
-     * Response body.
+     * Request/Response body.
      *
      * @var string
      */
     public $body;
 
-    /**
-     * Construct from headers and body.
-     *
-     * @param string $body
-     */
-    public function __construct(array $headers = [], $body = '')
+    public function __construct(array $headers = [], string $body = '')
     {
         $this->headers = $headers;
         $this->body = $body;

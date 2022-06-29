@@ -54,7 +54,7 @@ class Native extends Gateway
     protected $locationQueryConverter;
 
     /**
-     * @var \Ibexa\Solr\Gateway\UpdateSerializer
+     * @var \Ibexa\Solr\Gateway\UpdateSerializerInterface
      */
     protected $updateSerializer;
 
@@ -63,20 +63,13 @@ class Native extends Gateway
      */
     protected $distributionStrategy;
 
-    /**
-     * @param \Ibexa\Solr\Gateway\HttpClient $client
-     * @param \Ibexa\Solr\Gateway\EndpointResolver $endpointResolver
-     * @param \Ibexa\Solr\Gateway\EndpointRegistry $endpointRegistry
-     * @param \Ibexa\Solr\Gateway\UpdateSerializer $updateSerializer
-     * @param \Ibexa\Solr\Gateway\DistributionStrategy $distributionStrategy
-     */
     public function __construct(
         HttpClient $client,
         EndpointResolver $endpointResolver,
         EndpointRegistry $endpointRegistry,
         QueryConverter $contentQueryConverter,
         QueryConverter $locationQueryConverter,
-        UpdateSerializer $updateSerializer,
+        UpdateSerializerInterface $updateSerializer,
         DistributionStrategy $distributionStrategy
     ) {
         $this->client = $client;
@@ -226,7 +219,7 @@ class Native extends Gateway
      *
      * @param \Ibexa\Contracts\Core\Search\Document[][] $documents
      */
-    public function bulkIndexDocuments(array $documents)
+    public function bulkIndexDocuments(array $documents): void
     {
         $documentMap = [];
 
@@ -235,7 +228,10 @@ class Native extends Gateway
 
         foreach ($documents as $translationDocuments) {
             foreach ($translationDocuments as $document) {
-                $documentMap[$document->languageCode][] = $document;
+                $indexingTarget = $this->endpointResolver->getIndexingTarget(
+                    $document->languageCode
+                );
+                $documentMap[$indexingTarget][] = $document;
 
                 if ($mainTranslationsEndpoint !== null && $document->isMainTranslation) {
                     $mainTranslationsDocuments[] = $this->getMainTranslationDocument($document);
@@ -243,12 +239,10 @@ class Native extends Gateway
             }
         }
 
-        foreach ($documentMap as $languageCode => $translationDocuments) {
+        foreach ($documentMap as $indexingTarget => $targetDocuments) {
             $this->doBulkIndexDocuments(
-                $this->endpointRegistry->getEndpoint(
-                    $this->endpointResolver->getIndexingTarget($languageCode)
-                ),
-                $translationDocuments
+                $this->endpointRegistry->getEndpoint($indexingTarget),
+                $targetDocuments
             );
         }
 
@@ -310,7 +304,7 @@ class Native extends Gateway
             '/update?wt=json',
             new Message(
                 [
-                    'Content-Type' => 'text/xml',
+                    'Content-Type' => 'application/' . $this->updateSerializer->getSupportedFormat(),
                 ],
                 $updates
             )
@@ -403,7 +397,7 @@ class Native extends Gateway
                 '/update',
                 new Message(
                     [
-                        'Content-Type' => 'text/xml',
+                        'Content-Type' => 'application/xml',
                     ],
                     $payload
                 )
