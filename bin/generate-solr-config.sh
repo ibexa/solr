@@ -24,7 +24,7 @@ Usage with eZ Platform Cloud (arguments here can be skipped as they have default
 
 Usage with on-premise version of Solr:
 ./vendor/ibexa/solr/bin/generate-solr-config.sh \\
-  --destination-dir=/opt/solr/server/ez/template \\
+  --destination-dir=/opt/solr/server/ibexa/template \\
   --solr-install-dir=/opt/solr
 
 Warning:
