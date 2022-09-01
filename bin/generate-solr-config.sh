@@ -2,7 +2,7 @@
 
 set -e
 
-# Default paramters, if not overloaded by user arguments
+# Default parameters, if not overloaded by user arguments
 DESTINATION_DIR=.platform/configsets/solr8/conf
 SOLR_VERSION=8.11.1
 FORCE=false
@@ -10,14 +10,14 @@ SOLR_INSTALL_DIR=""
 
 show_help() {
     cat << EOF
-Script for generting solr config
-This config can be used to configure solr on eZ Platform Cloud (Platform.sh) or elsewhere.
-The script should be executed from the eZ Platform root directory.
+Script for generating Solr config
+This config can be used to configure solr on Ibexa Cloud (Platform.sh) or elsewhere.
+The script should be executed from the Ibexa project root directory.
 
 Help (this text):
 ./vendor/ibexa/solr/bin/generate-solr-config.sh --help
 
-Usage with eZ Platform Cloud (arguments here can be skipped as they have default values):
+Usage with Ibexa Cloud (arguments here can be skipped as they have default values):
 ./vendor/ibexa/solr/bin/generate-solr-config.sh \\
   --destination-dir=.platform/configsets/solr8/conf \\
   --solr-version=8.11.1
