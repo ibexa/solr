@@ -2,6 +2,8 @@ parameters:
     ibexa.search.solr.field_mapper.boost_factor_provider.map: []
     ibexa.search.solr.field_mapper.indexing_depth_provider.map: []
     ibexa.search.solr.field_mapper.indexing_depth_provider.default: 0
+    ibexa.solr.http_client.timeout: !php/const \Ibexa\Bundle\Solr\DependencyInjection\Configuration::SOLR_HTTP_CLIENT_DEFAULT_TIMEOUT
+    ibexa.solr.http_client.max_retries: !php/const \Ibexa\Bundle\Solr\DependencyInjection\Configuration::SOLR_HTTP_CLIENT_DEFAULT_MAX_RETRIES
 
 services:
     ibexa.solr.http_client.retryable:
@@ -10,10 +12,10 @@ services:
         arguments:
             $client: '@.inner'
             $strategy: null
-            $maxRetries: 5
+            $maxRetries: '%ibexa.solr.http_client.max_retries%'
             $logger: '@?logger'
         tags:
-            - { name: monolog.logger, channel: solr }
+            - { name: monolog.logger, channel: ibexa.solr }
 
     ibexa.solr.http_client:
         class: Symfony\Contracts\HttpClient\HttpClientInterface
@@ -21,12 +23,13 @@ services:
         calls:
             -   setLogger: [ '@logger' ]
         tags:
-            - { name: monolog.logger, channel: solr }
+            - { name: monolog.logger, channel: ibexa.solr }
 
     Ibexa\Solr\Gateway\HttpClient\Stream:
         autoconfigure: true
         arguments:
             $client: '@ibexa.solr.http_client'
+            $timeout: '%ibexa.solr.http_client.timeout%'
 
     # Note: services tagged with 'ibexa.search.solr.query.content.criterion.visitor'
     # are registered to this one using compilation pass
@@ -87,7 +90,6 @@ services:
             - '%ibexa.search.solr.field_mapper.boost_factor_provider.map%'
 
     Ibexa\Solr\FieldMapper\IndexingDepthProvider:
-        class: \Ibexa\Solr\FieldMapper\IndexingDepthProvider
         arguments:
             - '%ibexa.search.solr.field_mapper.indexing_depth_provider.map%'
             - '%ibexa.search.solr.field_mapper.indexing_depth_provider.default%'
