@@ -1,7 +1,34 @@
 parameters:
     ibexa.solr.default_connection: ~
+    ibexa.solr.http_client.timeout: !php/const \EzSystems\EzPlatformSolrSearchEngineBundle\DependencyInjection\Configuration::SOLR_HTTP_CLIENT_DEFAULT_TIMEOUT
+    ibexa.solr.http_client.max_retries: !php/const \EzSystems\EzPlatformSolrSearchEngineBundle\DependencyInjection\Configuration::SOLR_HTTP_CLIENT_DEFAULT_MAX_RETRIES
 
 services:
+    ibexa.solr.http_client.retryable:
+        class: Symfony\Component\HttpClient\RetryableHttpClient
+        decorates: ibexa.solr.http_client
+        arguments:
+            $client: '@.inner'
+            $strategy: null
+            $maxRetries: '%ibexa.solr.http_client.max_retries%'
+            $logger: '@?logger'
+        tags:
+            - { name: monolog.logger, channel: ibexa.solr }
+
+    ibexa.solr.http_client:
+        class: Symfony\Contracts\HttpClient\HttpClientInterface
+        factory: [ \Symfony\Component\HttpClient\HttpClient, 'create' ]
+        calls:
+            -   setLogger: [ '@logger' ]
+        tags:
+            - { name: monolog.logger, channel: ibexa.solr }
+
+    Ibexa\Solr\Gateway\HttpClient\Stream:
+        autoconfigure: true
+        arguments:
+            $client: '@ibexa.solr.http_client'
+            $timeout: '%ibexa.solr.http_client.timeout%'
+
     Ibexa\Bundle\Solr\ApiLoader\SolrEngineFactory:
         arguments:
             $repositoryConfigurationProvider: '@Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider'
@@ -31,7 +58,7 @@ services:
             - [setContainer, ["@service_container"]]
 
     Ibexa\Solr\FieldMapper\IndexingDepthProvider:
-        class: \Ibexa\Solr\FieldMapper\IndexingDepthProvider
+        class: Ibexa\Solr\FieldMapper\IndexingDepthProvider
         factory: ['@Ibexa\Bundle\Solr\ApiLoader\IndexingDepthProviderFactory', 'buildService']
 
     ibexa.solr.gateway.distribution_strategy.abstract_standalone:

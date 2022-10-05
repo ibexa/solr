@@ -14,6 +14,7 @@ use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
+use InvalidArgumentException;
 
 final class UserMetadataAggregationKeyMapper implements TermAggregationKeyMapper
 {
@@ -49,13 +50,22 @@ final class UserMetadataAggregationKeyMapper implements TermAggregationKeyMapper
 
     private function resolveKeyLoader(Aggregation $aggregation): callable
     {
-        switch ($aggregation->getType()) {
+        $type = $aggregation->getType();
+        switch ($type) {
             case UserMetadataTermAggregation::OWNER:
             case UserMetadataTermAggregation::MODIFIER:
                 return [$this->userService, 'loadUser'];
             case UserMetadataTermAggregation::GROUP:
                 return [$this->userService, 'loadUserGroup'];
         }
+
+        throw new InvalidArgumentException(sprintf(
+            'Expected one of: "%s". Received "%s"',
+            implode('", "', [
+                UserMetadataTermAggregation::OWNER, UserMetadataTermAggregation::MODIFIER, UserMetadataTermAggregation::GROUP,
+            ]),
+            $type,
+        ));
     }
 }
 
