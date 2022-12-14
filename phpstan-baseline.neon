@@ -331,7 +331,7 @@ parameters:
 			path: src/lib/FieldMapper/ContentFieldMapper/ContentDocumentLocationFields.php
 
 		-
-			message: "#^Offset 'ancestors' does not exist on array\\{ancestors\\?\\: array\\<int, mixed\\>, ids\\: non\\-empty\\-array\\<int, mixed\\>, parent_ids\\: non\\-empty\\-array\\<int, mixed\\>, path_strings\\: non\\-empty\\-array\\<int, string\\>, remote_ids\\: non\\-empty\\-array\\<int, mixed\\>\\}\\.$#"
+			message: "#^Offset 'ancestors' does not exist on array\\{ancestors\\?\\: non\\-empty\\-array\\<int, mixed\\>, ids\\: non\\-empty\\-array\\<int, mixed\\>, parent_ids\\: non\\-empty\\-array\\<int, mixed\\>, path_strings\\: non\\-empty\\-array\\<int, string\\>, remote_ids\\: non\\-empty\\-array\\<int, mixed\\>\\}\\.$#"
 			count: 1
 			path: src/lib/FieldMapper/ContentFieldMapper/ContentDocumentLocationFields.php
 
@@ -1016,6 +1016,11 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/LogicalAnd.php
 
 		-
+			message: "#^Strict comparison using \\=\\=\\= between \\*NEVER\\* and 1 will always evaluate to false\\.$#"
+			count: 1
+			path: src/lib/Query/Common/CriterionVisitor/LogicalAnd.php
+
+		-
 			message: "#^Cannot call method visit\\(\\) on Ibexa\\\\Contracts\\\\Solr\\\\Query\\\\CriterionVisitor\\|null\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/LogicalNot.php
@@ -1027,6 +1032,11 @@ parameters:
 
 		-
 			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\CriterionVisitor\\\\LogicalOr\\:\\:visit\\(\\) should return string but returns false\\.$#"
+			count: 1
+			path: src/lib/Query/Common/CriterionVisitor/LogicalOr.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between \\*NEVER\\* and 1 will always evaluate to false\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/LogicalOr.php
 
