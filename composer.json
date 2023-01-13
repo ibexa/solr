@@ -26,7 +26,6 @@
         "symfony/http-client": "^5.4"
     },
     "require-dev": {
-        "league/flysystem-memory": "^1.0",
         "symfony/proxy-manager-bridge": "^5.4",
         "ibexa/doctrine-schema": "~4.4.0@dev",
         "phpunit/phpunit": "^8.2",
