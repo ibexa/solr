@@ -23,16 +23,21 @@ class PublishedBetween extends DateMetadata
      */
     public function canVisit(Criterion $criterion)
     {
-        return
-            $criterion instanceof Criterion\DateMetadata &&
-            $criterion->target === 'created' &&
-            (
-                $criterion->operator === Operator::LT ||
-                $criterion->operator === Operator::LTE ||
-                $criterion->operator === Operator::GT ||
-                $criterion->operator === Operator::GTE ||
-                $criterion->operator === Operator::BETWEEN
-            );
+        if (!$criterion instanceof Criterion\DateMetadata) {
+            return false;
+        }
+
+        if (!in_array($criterion->target, [Criterion\DateMetadata::PUBLISHED, Criterion\DateMetadata::CREATED])) {
+            return false;
+        }
+
+        return in_array($criterion->operator, [
+            Operator::LT,
+            Operator::LTE,
+            Operator::GT,
+            Operator::GTE,
+            Operator::BETWEEN,
+        ], true);
     }
 
     /**
