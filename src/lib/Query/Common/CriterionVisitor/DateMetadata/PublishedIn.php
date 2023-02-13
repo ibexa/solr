@@ -23,13 +23,17 @@ class PublishedIn extends DateMetadata
      */
     public function canVisit(Criterion $criterion)
     {
-        return
-            $criterion instanceof Criterion\DateMetadata &&
-            $criterion->target === 'created' &&
-            (
-                ($criterion->operator ?: Operator::IN) === Operator::IN ||
-                $criterion->operator === Operator::EQ
-            );
+        if (!$criterion instanceof Criterion\DateMetadata) {
+            return false;
+        }
+
+        if (!in_array($criterion->target, [Criterion\DateMetadata::PUBLISHED, Criterion\DateMetadata::CREATED])) {
+            return false;
+        }
+
+        $operator = $criterion->operator ?: Operator::IN;
+
+        return in_array($operator, [Operator::IN, Operator::EQ], true);
     }
 
     /**
