@@ -69,5 +69,10 @@
         "branch-alias": {
             "dev-main": "4.3.x-dev"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "*": false
+        }
     }
 }
