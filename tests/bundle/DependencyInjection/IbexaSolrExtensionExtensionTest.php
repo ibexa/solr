@@ -654,7 +654,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     /**
      * @dataProvider getDataForTestHttpClientConfiguration
      *
-     * @phpstan-param SolrHttpClientConfigArray $httpClientConfig
+     * @phpstan-param SolrHttpClientConfigArray $config
      */
     public function testHttpClientConfiguration(array $config): void
     {
@@ -675,6 +675,9 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         );
     }
 
+    /**
+     * @return iterable<string, array<SolrHttpClientConfigArray>>
+     */
     public function getDataForTestHttpClientConfiguration(): iterable
     {
         yield 'default values' => [
