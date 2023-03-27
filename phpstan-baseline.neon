@@ -31,6 +31,16 @@ parameters:
 			path: src/bundle/DependencyInjection/Configuration.php
 
 		-
+			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\Configuration\\:\\:addConnectionsSection\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/bundle/DependencyInjection/Configuration.php
+
+		-
+			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\Configuration\\:\\:addEndpointsSection\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/bundle/DependencyInjection/Configuration.php
+
+		-
 			message: "#^Property Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\Configuration\\:\\:\\$defaultEndpointValues type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/bundle/DependencyInjection/Configuration.php
