@@ -17,7 +17,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 final class DispatcherAggregationVisitorTest extends TestCase
 {
     private const EXAMPLE_LANGUAGE_FILTER = [
-        'languageCode' => 'eng-gb',
+        'languages' => ['eng-gb'],
     ];
 
     private const EXAMPLE_VISITOR_RESULT = [
@@ -74,6 +74,11 @@ final class DispatcherAggregationVisitorTest extends TestCase
         );
     }
 
+    /**
+     * @param array{languages: string[]} $languageFilter
+     *
+     * @return \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Solr\Query\AggregationVisitor
+     */
     private function createVisitorMock(
         Aggregation $aggregation,
         array $languageFilter,
