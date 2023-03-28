@@ -84,6 +84,8 @@ class Native extends Gateway
     /**
      * Returns search hits for the given query.
      *
+     * @phpstan-param array{languages: string[]} $languageSettings
+     *
      * @param array $languageSettings - a map of filters for the returned fields.
      *        Currently supported: <code>array("languages" => array(<language1>,..))</code>.
      *

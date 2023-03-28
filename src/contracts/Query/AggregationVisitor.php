@@ -14,10 +14,14 @@ interface AggregationVisitor
 {
     /**
      * Check if visitor is applicable to current aggreagtion.
+     *
+     * @param array{languages: string[]} $languageFilter
      */
     public function canVisit(Aggregation $aggregation, array $languageFilter): bool;
 
     /**
+     * @param array{languages: string[]} $languageFilter
+     *
      * @return string[]
      */
     public function visit(
