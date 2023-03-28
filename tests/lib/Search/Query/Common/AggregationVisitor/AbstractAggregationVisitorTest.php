@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 abstract class AbstractAggregationVisitorTest extends TestCase
 {
     protected const EXAMPLE_LANGUAGE_FILTER = [
-        'languages' => ['eng-gb'],
+        'languages' => ['eng-GB'],
     ];
 
     /** @var \Ibexa\Contracts\Solr\Query\AggregationVisitor */
