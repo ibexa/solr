@@ -141,16 +141,6 @@ parameters:
 			path: src/bundle/IbexaSolrBundle.php
 
 		-
-			message: "#^Method Ibexa\\\\Contracts\\\\Solr\\\\Query\\\\AggregationVisitor\\:\\:canVisit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/contracts/Query/AggregationVisitor.php
-
-		-
-			message: "#^Method Ibexa\\\\Contracts\\\\Solr\\\\Query\\\\AggregationVisitor\\:\\:visit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/contracts/Query/AggregationVisitor.php
-
-		-
 			message: "#^Method Ibexa\\\\Contracts\\\\Solr\\\\Query\\\\CriterionVisitor\\:\\:escapeQuote\\(\\) should return string but returns string\\|null\\.$#"
 			count: 1
 			path: src/contracts/Query/CriterionVisitor.php
@@ -556,6 +546,11 @@ parameters:
 			path: src/lib/Gateway/Message.php
 
 		-
+			message: "#^Default value of the parameter \\#2 \\$languageSettings \\(array\\{\\}\\) of method Ibexa\\\\Solr\\\\Gateway\\\\Native\\:\\:findContent\\(\\) is incompatible with type array\\{languages\\: array\\<string\\>\\}\\.$#"
+			count: 1
+			path: src/lib/Gateway/Native.php
+
+		-
 			message: "#^Method Ibexa\\\\Solr\\\\Gateway\\\\Native\\:\\:commit\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: src/lib/Gateway/Native.php
@@ -567,11 +562,6 @@ parameters:
 
 		-
 			message: "#^Method Ibexa\\\\Solr\\\\Gateway\\\\Native\\:\\:doBulkIndexDocuments\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/lib/Gateway/Native.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Gateway\\\\Native\\:\\:findContent\\(\\) has parameter \\$languageSettings with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/lib/Gateway/Native.php
 
@@ -786,29 +776,14 @@ parameters:
 			path: src/lib/Query/Common/AggregationVisitor/AbstractRangeAggregationVisitor.php
 
 		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\AbstractRangeAggregationVisitor\\:\\:visit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/AbstractRangeAggregationVisitor.php
-
-		-
 			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\AbstractRangeAggregationVisitor\\:\\:visit\\(\\) should return array\\<string\\> but returns array\\<string, array\\<string, array\\<string, string\\>\\>\\|string\\>\\.$#"
 			count: 1
 			path: src/lib/Query/Common/AggregationVisitor/AbstractRangeAggregationVisitor.php
 
 		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\AbstractStatsAggregationVisitor\\:\\:visit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/AbstractStatsAggregationVisitor.php
-
-		-
 			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\AbstractStatsAggregationVisitor\\:\\:visit\\(\\) should return array\\<string\\> but returns array\\<string, array\\<string, string\\>\\|string\\>\\.$#"
 			count: 1
 			path: src/lib/Query/Common/AggregationVisitor/AbstractStatsAggregationVisitor.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\AbstractTermAggregationVisitor\\:\\:visit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/AbstractTermAggregationVisitor.php
 
 		-
 			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\AbstractTermAggregationVisitor\\:\\:visit\\(\\) should return array\\<string\\> but returns array\\<string, int\\|string\\>\\.$#"
@@ -826,94 +801,14 @@ parameters:
 			path: src/lib/Query/Common/AggregationVisitor/AggregationFieldResolver/RawAggregationFieldResolver.php
 
 		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\DateMetadataRangeAggregationVisitor\\:\\:canVisit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/DateMetadataRangeAggregationVisitor.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\DispatcherAggregationVisitor\\:\\:__construct\\(\\) has parameter \\$visitors with no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/DispatcherAggregationVisitor.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\DispatcherAggregationVisitor\\:\\:canVisit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/DispatcherAggregationVisitor.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\DispatcherAggregationVisitor\\:\\:findVisitor\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/DispatcherAggregationVisitor.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\DispatcherAggregationVisitor\\:\\:visit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/DispatcherAggregationVisitor.php
-
-		-
-			message: "#^PHPDoc tag @var above a method has no effect\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/DispatcherAggregationVisitor.php
-
-		-
-			message: "#^PHPDoc tag @var does not specify variable name\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/DispatcherAggregationVisitor.php
-
-		-
-			message: "#^Property Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\DispatcherAggregationVisitor\\:\\:\\$visitors \\(array\\<Ibexa\\\\Contracts\\\\Solr\\\\Query\\\\AggregationVisitor\\>\\) does not accept iterable\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/DispatcherAggregationVisitor.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\ObjectStateAggregationVisitor\\:\\:canVisit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/ObjectStateAggregationVisitor.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\ObjectStateAggregationVisitor\\:\\:visit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/ObjectStateAggregationVisitor.php
-
-		-
 			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\ObjectStateAggregationVisitor\\:\\:visit\\(\\) should return array\\<string\\> but returns array\\<string, int\\|string\\>\\.$#"
 			count: 1
 			path: src/lib/Query/Common/AggregationVisitor/ObjectStateAggregationVisitor.php
 
 		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\RangeAggregationVisitor\\:\\:canVisit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/RangeAggregationVisitor.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\StatsAggregationVisitor\\:\\:canVisit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/StatsAggregationVisitor.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\SubtreeTermAggregationVisitor\\:\\:canVisit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/SubtreeTermAggregationVisitor.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\SubtreeTermAggregationVisitor\\:\\:visit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/SubtreeTermAggregationVisitor.php
-
-		-
 			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\SubtreeTermAggregationVisitor\\:\\:visit\\(\\) should return array\\<string\\> but returns array\\<string, array\\<string, array\\<string, int\\|string\\>\\>\\|string\\>\\.$#"
 			count: 1
 			path: src/lib/Query/Common/AggregationVisitor/SubtreeTermAggregationVisitor.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\TermAggregationVisitor\\:\\:canVisit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/TermAggregationVisitor.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\AggregationVisitor\\\\UserMetadataTermAggregationVisitor\\:\\:canVisit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/UserMetadataTermAggregationVisitor.php
 
 		-
 			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\CriterionVisitor\\\\Aggregate\\:\\:addVisitor\\(\\) has no return type specified\\.$#"
@@ -1146,7 +1041,7 @@ parameters:
 			path: src/lib/Query/Common/FacetBuilderVisitor/User.php
 
 		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\QueryConverter\\\\NativeQueryConverter\\:\\:convert\\(\\) has parameter \\$languageSettings with no value type specified in iterable type array\\.$#"
+			message: "#^Default value of the parameter \\#2 \\$languageSettings \\(array\\{\\}\\) of method Ibexa\\\\Solr\\\\Query\\\\Common\\\\QueryConverter\\\\NativeQueryConverter\\:\\:convert\\(\\) is incompatible with type array\\{languages\\: array\\<string\\>\\}\\.$#"
 			count: 1
 			path: src/lib/Query/Common/QueryConverter/NativeQueryConverter.php
 
@@ -1341,7 +1236,7 @@ parameters:
 			path: src/lib/Query/Location/CriterionVisitor/Visibility.php
 
 		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\QueryConverter\\:\\:convert\\(\\) has parameter \\$languageSettings with no value type specified in iterable type array\\.$#"
+			message: "#^Default value of the parameter \\#2 \\$languageSettings \\(array\\{\\}\\) of method Ibexa\\\\Solr\\\\Query\\\\QueryConverter\\:\\:convert\\(\\) is incompatible with type array\\{languages\\: array\\<string\\>\\}\\.$#"
 			count: 1
 			path: src/lib/Query/QueryConverter.php
 
@@ -2009,116 +1904,6 @@ parameters:
 			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Gateway\\\\EndpointTest\\:\\:testEndpointDsnParsingWithoutUser\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: tests/lib/Search/Gateway/EndpointTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\AbstractAggregationVisitorTest\\:\\:configureMocksForTestVisit\\(\\) has parameter \\$expectedResult with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/AbstractAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\AbstractAggregationVisitorTest\\:\\:configureMocksForTestVisit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/AbstractAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\AbstractAggregationVisitorTest\\:\\:dataProviderForCanVisit\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/AbstractAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\AbstractAggregationVisitorTest\\:\\:dataProviderForVisit\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/AbstractAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\AbstractAggregationVisitorTest\\:\\:testCanVisit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/AbstractAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\AbstractAggregationVisitorTest\\:\\:testVisit\\(\\) has parameter \\$expectedResult with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/AbstractAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\AbstractAggregationVisitorTest\\:\\:testVisit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/AbstractAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\DateMetadataRangeAggregationVisitorTest\\:\\:dataProviderForCanVisit\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/DateMetadataRangeAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\DateMetadataRangeAggregationVisitorTest\\:\\:dataProviderForVisit\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/DateMetadataRangeAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\DispatcherAggregationVisitorTest\\:\\:createVisitorMock\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/DispatcherAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\ObjectStateGroupAggregationVisitorTest\\:\\:dataProviderForCanVisit\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/ObjectStateGroupAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\ObjectStateGroupAggregationVisitorTest\\:\\:dataProviderForVisit\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/ObjectStateGroupAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\RangeAggregationVisitorTest\\:\\:dataProviderForCanVisit\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/RangeAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\RangeAggregationVisitorTest\\:\\:dataProviderForVisit\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/RangeAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\StatsAggregationVisitorTest\\:\\:dataProviderForCanVisit\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/StatsAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\StatsAggregationVisitorTest\\:\\:dataProviderForVisit\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/StatsAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\SubtreeTermAggregationVisitorTest\\:\\:dataProviderForCanVisit\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/SubtreeTermAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\SubtreeTermAggregationVisitorTest\\:\\:dataProviderForVisit\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/SubtreeTermAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\TermAggregationVisitorTest\\:\\:dataProviderForCanVisit\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/TermAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\TermAggregationVisitorTest\\:\\:dataProviderForVisit\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/TermAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\UserMetadataTermAggregationVisitorTest\\:\\:dataProviderForCanVisit\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/UserMetadataTermAggregationVisitorTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Common\\\\AggregationVisitor\\\\UserMetadataTermAggregationVisitorTest\\:\\:dataProviderForVisit\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: tests/lib/Search/Query/Common/AggregationVisitor/UserMetadataTermAggregationVisitorTest.php
 
 		-
 			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Search\\\\Query\\\\Content\\\\CriterionVisitor\\\\FullTextTest\\:\\:getFullTextCriterionVisitor\\(\\) has no return type specified\\.$#"

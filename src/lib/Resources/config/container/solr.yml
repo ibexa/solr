@@ -150,4 +150,3 @@ services:
         tags:
             - {name: ibexa.search.engine.indexer, alias: solr}
         lazy: true
-

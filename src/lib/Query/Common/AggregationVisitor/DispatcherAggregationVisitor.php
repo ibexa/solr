@@ -14,11 +14,11 @@ use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 
 final class DispatcherAggregationVisitor implements AggregationVisitor
 {
-    /** @var \Ibexa\Contracts\Solr\Query\AggregationVisitor[] */
+    /** @var iterable<\Ibexa\Contracts\Solr\Query\AggregationVisitor> */
     private $visitors;
 
     /**
-     * @var \Ibexa\Contracts\Solr\Query\AggregationVisitor[]
+     * @param iterable<\Ibexa\Contracts\Solr\Query\AggregationVisitor> $visitors
      */
     public function __construct(iterable $visitors)
     {
@@ -46,6 +46,9 @@ final class DispatcherAggregationVisitor implements AggregationVisitor
         return $visitor->visit($this, $aggregation, $languageFilter);
     }
 
+    /**
+     * @param array{languages: string[]} $languageFilter
+     */
     private function findVisitor(Aggregation $aggregation, array $languageFilter): ?AggregationVisitor
     {
         foreach ($this->visitors as $visitor) {
