@@ -21,6 +21,7 @@ services:
         calls:
             -   setLogger: [ '@logger' ]
         tags:
+            - { name: http_client.client }
             - { name: monolog.logger, channel: ibexa.solr }
 
     Ibexa\Solr\Gateway\HttpClient\Stream:
