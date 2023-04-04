@@ -83,7 +83,7 @@ abstract class ResultExtractor
     /**
      * Returns language code of the Content's translation of the matched document.
      *
-     * @param $hit
+     * @param mixed $hit
      *
      * @return string
      */
