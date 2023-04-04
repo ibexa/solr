@@ -16,7 +16,7 @@ class EndpointRegistry
     /**
      * Registered endpoints.
      *
-     * @var array(string => Endpoint)
+     * @var array<string, Endpoint>
      */
     protected $endpoint = [];
 
