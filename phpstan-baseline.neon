@@ -321,7 +321,7 @@ parameters:
 			path: src/lib/FieldMapper/ContentFieldMapper/ContentDocumentLocationFields.php
 
 		-
-			message: "#^Offset 'ancestors' does not exist on array\\{ancestors\\?\\: non\\-empty\\-array\\<int, mixed\\>, ids\\: non\\-empty\\-array\\<int, mixed\\>, parent_ids\\: non\\-empty\\-array\\<int, mixed\\>, path_strings\\: non\\-empty\\-array\\<int, string\\>, remote_ids\\: non\\-empty\\-array\\<int, mixed\\>\\}\\.$#"
+			message: "#^Offset 'ancestors' does not exist on array\\{ancestors\\?\\: non\\-empty\\-array\\<int\\<0, max\\>, mixed\\>, ids\\: non\\-empty\\-array\\<int\\<0, max\\>, mixed\\>, parent_ids\\: non\\-empty\\-array\\<int\\<0, max\\>, mixed\\>, path_strings\\: non\\-empty\\-array\\<int\\<0, max\\>, string\\>, remote_ids\\: non\\-empty\\-array\\<int\\<0, max\\>, mixed\\>\\}\\.$#"
 			count: 1
 			path: src/lib/FieldMapper/ContentFieldMapper/ContentDocumentLocationFields.php
 
@@ -502,11 +502,6 @@ parameters:
 
 		-
 			message: "#^Method Ibexa\\\\Solr\\\\Gateway\\\\EndpointRegistry\\:\\:registerEndpoint\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/lib/Gateway/EndpointRegistry.php
-
-		-
-			message: "#^Property Ibexa\\\\Solr\\\\Gateway\\\\EndpointRegistry\\:\\:\\$endpoint type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/lib/Gateway/EndpointRegistry.php
 
@@ -1262,11 +1257,6 @@ parameters:
 
 		-
 			message: "#^Method Ibexa\\\\Solr\\\\ResultExtractor\\:\\:extractSearchHit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/ResultExtractor.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\ResultExtractor\\:\\:getMatchedLanguageCode\\(\\) has parameter \\$hit with no type specified\\.$#"
 			count: 1
 			path: src/lib/ResultExtractor.php
 
