@@ -321,7 +321,7 @@ parameters:
 			path: src/lib/FieldMapper/ContentFieldMapper/ContentDocumentLocationFields.php
 
 		-
-			message: "#^Offset 'ancestors' does not exist on array\\{ancestors\\?\\: non\\-empty\\-array\\<int, mixed\\>, ids\\: non\\-empty\\-array\\<int, mixed\\>, parent_ids\\: non\\-empty\\-array\\<int, mixed\\>, path_strings\\: non\\-empty\\-array\\<int, string\\>, remote_ids\\: non\\-empty\\-array\\<int, mixed\\>\\}\\.$#"
+			message: "#^Offset 'ancestors' does not exist on array\\{ancestors\\?\\: non\\-empty\\-array\\<int\\<0, max\\>, mixed\\>, ids\\: non\\-empty\\-array\\<int\\<0, max\\>, mixed\\>, parent_ids\\: non\\-empty\\-array\\<int\\<0, max\\>, mixed\\>, path_strings\\: non\\-empty\\-array\\<int\\<0, max\\>, string\\>, remote_ids\\: non\\-empty\\-array\\<int\\<0, max\\>, mixed\\>\\}\\.$#"
 			count: 1
 			path: src/lib/FieldMapper/ContentFieldMapper/ContentDocumentLocationFields.php
 
