@@ -13,6 +13,8 @@ use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\LocationQuery;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
+use Ibexa\Contracts\Core\Repository\Values\Search\SearchContextInterface;
 use Ibexa\Contracts\Core\Search\VersatileHandler;
 use Ibexa\Contracts\Solr\DocumentMapper;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
@@ -123,6 +125,30 @@ class Handler implements VersatileHandler
 
         // For BC these are still set
         $this->resultExtractor = $contentResultExtractor;
+    }
+
+    public function find(Query $query, SearchContextInterface $context = null): SearchResult
+    {
+        $query = clone $query;
+        $query->filter = $query->filter ?: new Criterion\MatchAll();
+        $query->query = $query->query ?: new Criterion\MatchAll();
+
+        $languageFilter = [];
+        $documentTypeIdentifiers = [];
+
+        if ($context !== null) {
+            $languageFilter = $context->getLanguageFilter();
+            $documentTypeIdentifiers = $context->getDocumentTypeIdentifiers();
+        }
+
+        $this->coreFilter->applyWithMultipleTypes($query, $languageFilter, $documentTypeIdentifiers);
+
+        return $this->contentResultExtractor->extract(
+            $this->gateway->findContent($query, $languageFilter),
+            $query->facetBuilders,
+            $query->aggregations,
+            $languageFilter
+        );
     }
 
     /**

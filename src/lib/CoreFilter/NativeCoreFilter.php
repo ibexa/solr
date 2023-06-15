@@ -120,6 +120,40 @@ class NativeCoreFilter extends CoreFilter
     }
 
     /**
+     * @param array<string, mixed> $languageSettings
+     * @param array<string> $documentTypeIdentifiers
+     */
+    public function applyWithMultipleTypes(
+        Query $query,
+        array $languageSettings,
+        array $documentTypeIdentifiers
+    ): void {
+        $languages = empty($languageSettings['languages']) ? [] : $languageSettings['languages'];
+        $useAlwaysAvailable =
+            !isset($languageSettings['useAlwaysAvailable']) ||
+            $languageSettings['useAlwaysAvailable'] === true
+        ;
+
+        $excludeTranslationsFromAlwaysAvailable =
+            $languageSettings['excludeTranslationsFromAlwaysAvailable'] ?? true;
+
+        $criteria = [
+            new CustomField(self::FIELD_DOCUMENT_TYPE, Operator::IN, $documentTypeIdentifiers),
+            $this->getCoreCriterion(
+                $languages,
+                $useAlwaysAvailable,
+                $excludeTranslationsFromAlwaysAvailable
+            ),
+        ];
+
+        if ($query->filter !== null) {
+            $criteria[] = $query->filter;
+        }
+
+        $query->filter = new LogicalAnd($criteria);
+    }
+
+    /**
      * Returns a filtering condition for the given language settings.
      *
      * The condition ensures the same Content will be matched only once across all

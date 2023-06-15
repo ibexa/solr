@@ -20,6 +20,16 @@ abstract class CoreFilter
      * @param string $documentTypeIdentifier
      */
     abstract public function apply(Query $query, array $languageSettings, $documentTypeIdentifier);
+
+    /**
+     * @param array<string, mixed> $languageSettings
+     * @param array<string> $documentTypeIdentifiers
+     */
+    abstract public function applyWithMultipleTypes(
+        Query $query,
+        array $languageSettings,
+        array $documentTypeIdentifiers
+    ): void;
 }
 
 class_alias(CoreFilter::class, 'EzSystems\EzPlatformSolrSearchEngine\CoreFilter');
