@@ -73,8 +73,5 @@
         "allow-plugins": {
             "*": false
         }
-    },
-    "config": {
-        "allow-plugins": false
     }
 }
