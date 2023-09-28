@@ -100,6 +100,13 @@ class NativeQueryConverter extends QueryConverter
             }
         }
 
+        if ($query->spellcheck !== null) {
+            $params['spellcheck'] = 'true';
+            $params['spellcheck.q'] = $query->spellcheck->getQuery();
+            $params['spellcheck.count'] = 1;
+            $params['spellcheck.collate'] = 'true';
+        }
+
         return $params;
     }
 
