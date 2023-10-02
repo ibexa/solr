@@ -7,6 +7,7 @@
 namespace Ibexa\Bundle\Solr\ApiLoader;
 
 use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
+use Ibexa\Solr\FieldMapper\BoostFactorProvider;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
@@ -48,6 +49,10 @@ class BoostFactorProviderFactory implements ContainerAwareInterface
 
     public function buildService()
     {
+        if ($this->container === null) {
+            return new BoostFactorProvider();
+        }
+
         $repositoryConfig = $this->repositoryConfigurationProvider->getRepositoryConfig();
 
         $connection = $this->defaultConnection;

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Bundle\Solr\ApiLoader;
 
 use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
+use Ibexa\Solr\FieldMapper\IndexingDepthProvider;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
@@ -43,6 +44,10 @@ class IndexingDepthProviderFactory implements ContainerAwareInterface
 
     public function buildService()
     {
+        if ($this->container === null) {
+            return new IndexingDepthProvider();
+        }
+
         $repositoryConfig = $this->repositoryConfigurationProvider->getRepositoryConfig();
 
         $connection = $this->defaultConnection;
