@@ -70,8 +70,6 @@
         }
     },
     "config": {
-        "allow-plugins": {
-            "*": false
-        }
+        "allow-plugins": false
     }
 }
