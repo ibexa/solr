@@ -36,7 +36,7 @@ class Ancestor extends CriterionVisitor
     {
         $idSet = [];
         foreach ($criterion->value as $value) {
-            foreach (explode('/', trim($value, '/')) as $id) {
+            foreach (explode('/', trim((string)$value, '/')) as $id) {
                 $idSet[$id] = true;
             }
         }
