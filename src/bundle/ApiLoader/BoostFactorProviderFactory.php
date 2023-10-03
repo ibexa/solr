@@ -8,6 +8,7 @@ namespace Ibexa\Bundle\Solr\ApiLoader;
 
 use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
 use Ibexa\Solr\FieldMapper\BoostFactorProvider;
+use LogicException;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
@@ -50,7 +51,7 @@ class BoostFactorProviderFactory implements ContainerAwareInterface
     public function buildService()
     {
         if ($this->container === null) {
-            return new BoostFactorProvider();
+            throw new LogicException(sprintf('Unable to build %s due to missing container reference', BoostFactorProvider::class));
         }
 
         $repositoryConfig = $this->repositoryConfigurationProvider->getRepositoryConfig();
