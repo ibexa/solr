@@ -70,7 +70,7 @@ class ContentTypeIdentifierIn extends CriterionVisitor
 
         foreach ($criterion->value as $identifier) {
             try {
-                $validIds[] = $contentTypeHandler->loadByIdentifier($identifier)->id;
+                $validIds[] = $contentTypeHandler->loadByIdentifier((string) $identifier)->id;
             } catch (NotFoundException $e) {
                 // Filter out non-existing content types, but track for code below
                 $invalidIdentifiers[] = $identifier;

@@ -9,6 +9,8 @@ declare(strict_types=1);
 namespace Ibexa\Bundle\Solr\ApiLoader;
 
 use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
+use Ibexa\Solr\FieldMapper\IndexingDepthProvider;
+use LogicException;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
@@ -43,6 +45,10 @@ class IndexingDepthProviderFactory implements ContainerAwareInterface
 
     public function buildService()
     {
+        if ($this->container === null) {
+            throw new LogicException(sprintf('Unable to build %s due to missing container reference', IndexingDepthProvider::class));
+        }
+
         $repositoryConfig = $this->repositoryConfigurationProvider->getRepositoryConfig();
 
         $connection = $this->defaultConnection;
