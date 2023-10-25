@@ -18,12 +18,9 @@ use Ibexa\Core\Persistence\Legacy\Content\Gateway as ContentGateway;
 use Ibexa\Solr\Container\Compiler;
 use Ibexa\Solr\Gateway\UpdateSerializerInterface;
 use Ibexa\Solr\Handler as SolrSearchHandler;
-use Ibexa\Tests\Integration\Core\Repository\SearchServiceTranslationLanguageFallbackTest;
-use RuntimeException;
-use Symfony\Component\Config\FileLocator;
+use Ibexa\Tests\Integration\Solr\SolrTestContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -33,12 +30,16 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
  */
 class LegacySetupFactory extends CoreLegacySetupFactory
 {
-    public const CONFIGURATION_FILES_MAP = [
-        SearchServiceTranslationLanguageFallbackTest::SETUP_DEDICATED => 'multicore_dedicated.yml',
-        SearchServiceTranslationLanguageFallbackTest::SETUP_SHARED => 'multicore_shared.yml',
-        SearchServiceTranslationLanguageFallbackTest::SETUP_SINGLE => 'single_core.yml',
-        SearchServiceTranslationLanguageFallbackTest::SETUP_CLOUD => 'cloud.yml',
-    ];
+    public const CONFIGURATION_FILES_MAP = SolrTestContainerBuilder::CONFIGURATION_FILES_MAP;
+
+    private SolrTestContainerBuilder $containerBuilder;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->containerBuilder = new SolrTestContainerBuilder();
+    }
 
     /**
      * Returns a configured repository for testing.
@@ -71,16 +72,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
 
     protected function loadSolrSettings(ContainerBuilder $containerBuilder): void
     {
-        $containerBuilder->setParameter('test.ibexa.solr.host', getenv('SOLR_HOST') ?: 'localhost');
-
-        $settingsPath = realpath(__DIR__ . '/../../../src/lib/Resources/config/container/');
-        $testSettingsPath = realpath(__DIR__ . '/../Resources/config/');
-
-        $solrLoader = new YamlFileLoader($containerBuilder, new FileLocator($settingsPath));
-        $solrLoader->load('solr.yml');
-
-        $solrTestLoader = new YamlFileLoader($containerBuilder, new FileLocator($testSettingsPath));
-        $solrTestLoader->load($this->getTestConfigurationFile());
+        $this->containerBuilder->loadSolrSettings($containerBuilder);
 
         $containerBuilder->addCompilerPass(new Compiler\FieldMapperPass\BlockFieldMapperPass());
         $containerBuilder->addCompilerPass(new Compiler\FieldMapperPass\BlockTranslationFieldMapperPass());
@@ -152,16 +144,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
 
     protected function getTestConfigurationFile(): string
     {
-        $isSolrCloud = getenv('SOLR_CLOUD') === 'yes';
-        $coresSetup = $isSolrCloud
-            ? SearchServiceTranslationLanguageFallbackTest::SETUP_CLOUD
-            : getenv('CORES_SETUP');
-
-        if (!isset(self::CONFIGURATION_FILES_MAP[$coresSetup])) {
-            throw new RuntimeException("Backend cores setup '{$coresSetup}' is not handled");
-        }
-
-        return self::CONFIGURATION_FILES_MAP[$coresSetup];
+        return $this->containerBuilder->getTestConfigurationFile();
     }
 
     private function configureSymfonyHttpClient(ContainerBuilder $containerBuilder): void
