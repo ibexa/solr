@@ -27,6 +27,7 @@
     },
     "require-dev": {
         "symfony/proxy-manager-bridge": "^5.4",
+        "symfony/phpunit-bridge": "^5.4",
         "ibexa/doctrine-schema": "~4.6.0@dev",
         "phpunit/phpunit": "^8.2",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1",
