@@ -63,6 +63,11 @@ final class RangeAggregationResultExtractorTest extends AbstractAggregationResul
     {
         $aggregation = $this->createMock(AbstractRangeAggregation::class);
         $aggregation->method('getName')->willReturn(self::EXAMPLE_AGGREGATION_NAME);
+        $aggregation->method('getRanges')->willReturn([
+            new Range(Range::INF, 10, 'a'),
+            new Range(10, 100, 'b'),
+            new Range(100, Range::INF, 'c'),
+        ]);
 
         yield 'default' => [
             $aggregation,
@@ -78,9 +83,9 @@ final class RangeAggregationResultExtractorTest extends AbstractAggregationResul
             new RangeAggregationResult(
                 self::EXAMPLE_AGGREGATION_NAME,
                 [
-                    new RangeAggregationResultEntry(new Range(null, '10'), 10),
-                    new RangeAggregationResultEntry(new Range('10', '100'), 100),
-                    new RangeAggregationResultEntry(new Range('100', null), 1000),
+                    new RangeAggregationResultEntry(new Range(Range::INF, '10', 'a'), 10),
+                    new RangeAggregationResultEntry(new Range('10', '100', 'b'), 100),
+                    new RangeAggregationResultEntry(new Range('100', Range::INF, 'c'), 1000),
                 ]
             ),
         ];
