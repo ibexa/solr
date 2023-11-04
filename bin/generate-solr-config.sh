@@ -119,8 +119,8 @@ else
 fi
 
 # Adapt autoSoftCommit to have a recommended value, and remove add-unknown-fields-to-the-schema
-sed -i.bak '/<updateRequestProcessorChain name="add-unknown-fields-to-the-schema".*/,/<\/updateRequestProcessorChain>/d' $DESTINATION_DIR/solrconfig.xml
-sed -i.bak2 's/${solr.autoSoftCommit.maxTime:-1}/${solr.autoSoftCommit.maxTime:20}/' $DESTINATION_DIR/solrconfig.xml
+sed -i '/<updateRequestProcessorChain name="add-unknown-fields-to-the-schema".*/,/<\/updateRequestProcessorChain>/d' $DESTINATION_DIR/solrconfig.xml
+sed -i 's/${solr.autoSoftCommit.maxTime:-1}/${solr.autoSoftCommit.maxTime:20}/' $DESTINATION_DIR/solrconfig.xml
 
 if [ "$GENERATE_SOLR_TMPDIR" != "" ]; then
     echo Removing temp dir: $GENERATE_SOLR_TMPDIR
