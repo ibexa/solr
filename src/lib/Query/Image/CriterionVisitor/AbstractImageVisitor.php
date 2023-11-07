@@ -10,6 +10,7 @@ namespace Ibexa\Solr\Query\Image\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Ibexa\Core\FieldType\Image\Type;
 use Ibexa\Core\Search\Common\FieldNameResolver;
 
@@ -31,10 +32,12 @@ abstract class AbstractImageVisitor extends CriterionVisitor
 
     /**
      * @return array<string>
+     *
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
     protected function getSearchFieldNames(Criterion $criterion): array
     {
-        return array_keys(
+        $searchFieldNames = array_keys(
             $this->fieldNameResolver->getFieldTypes(
                 $criterion,
                 $criterion->target,
@@ -42,5 +45,14 @@ abstract class AbstractImageVisitor extends CriterionVisitor
                 $this->getSearchFieldName()
             )
         );
+
+        if (empty($searchFieldNames)) {
+            throw new InvalidArgumentException(
+                '$criterion->target',
+                "No searchable Fields found for the provided Criterion target '{$criterion->target}'."
+            );
+        }
+
+        return $searchFieldNames;
     }
 }
