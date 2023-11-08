@@ -16,7 +16,7 @@ jobs:
             matrix:
                 solr-version:
                     - '7.7.3'
-                    - '8.11.1'
+                    - '8.11.2'
                 cores-setup:
                     - 'dedicated'
                     - 'shared'
