@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\Integration\Solr;
+namespace Ibexa\Solr\Test;
 
 use Ibexa\Tests\Integration\Core\Repository\SearchServiceTranslationLanguageFallbackTest;
 use RuntimeException;
@@ -31,8 +31,8 @@ final class SolrTestContainerBuilder
     {
         $containerBuilder->setParameter('test.ibexa.solr.host', getenv('SOLR_HOST') ?: 'localhost');
 
-        $settingsPath = dirname(__DIR__, 2) . '/src/lib/Resources/config/container/';
-        $testSettingsPath = dirname(__DIR__) . '/lib/Resources/config/';
+        $settingsPath = dirname(__DIR__) . '/Resources/config/container/';
+        $testSettingsPath = dirname(__DIR__, 3) . '/tests/lib/Resources/config/';
 
         $solrLoader = new YamlFileLoader($containerBuilder, new FileLocator($settingsPath));
         $solrLoader->load('solr.yml');

@@ -43,7 +43,6 @@
             "Ibexa\\Bundle\\Solr\\": "src/bundle/",
             "Ibexa\\Contracts\\Solr\\": "src/contracts/",
             "Ibexa\\Tests\\Solr\\SetupFactory\\": "tests/lib/SetupFactory/",
-            "Ibexa\\Tests\\Integration\\Solr\\": "tests/integration/",
             "EzSystems\\EzPlatformSolrSearchEngine\\": "src/lib/",
             "EzSystems\\EzPlatformSolrSearchEngineBundle\\": "src/bundle/",
             "EzSystems\\EzPlatformSolrSearchEngine\\Tests\\SetupFactory\\": "tests/lib/SetupFactory/"

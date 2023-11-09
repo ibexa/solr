@@ -18,7 +18,7 @@ use Ibexa\Core\Persistence\Legacy\Content\Gateway as ContentGateway;
 use Ibexa\Solr\Container\Compiler;
 use Ibexa\Solr\Gateway\UpdateSerializerInterface;
 use Ibexa\Solr\Handler as SolrSearchHandler;
-use Ibexa\Tests\Integration\Solr\SolrTestContainerBuilder;
+use Ibexa\Solr\Test\SolrTestContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\HttpClient\HttpClient;

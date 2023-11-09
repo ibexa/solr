@@ -6,16 +6,22 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\Integration\Solr;
+namespace Ibexa\Contracts\Solr\Test;
 
 use Ibexa\Bundle\Solr\IbexaSolrBundle;
 use Ibexa\Contracts\Core\Search\Handler;
 use Ibexa\Contracts\Core\Test\IbexaTestKernel as BaseIbexaTestKernel;
 use Ibexa\Solr\Handler as SolrHandler;
+use Ibexa\Solr\Test\SolrTestContainerBuilder;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-final class IbexaTestKernel extends BaseIbexaTestKernel
+/**
+ * @internal
+ *
+ * Exposed in contracts to be able to run tests from ibexa/core.
+ */
+final class IbexaSolrTestKernel extends BaseIbexaTestKernel
 {
     public function registerBundles(): iterable
     {
