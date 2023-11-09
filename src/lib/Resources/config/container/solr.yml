@@ -64,7 +64,7 @@ services:
         deprecated:
             version: 'eZ Platform 3.2.0'
             package: 'ibexa/solr'
-            message: 'The "%service_id%" service is deprecated since eZ Platform 3.2.0, to be removed in eZ Platform 4.0.0., use ezpublish.search.solr.result_extractor.content.native or ezpublish.search.solr.result_extractor.location.native instead.'
+            message: 'The "%service_id%" service is deprecated since eZ Platform 3.2.0, to be removed in Ibexa DXP 5.0.0. Use ibexa.solr.result_extractor.content.native or ibexa.solr.result_extractor.location.native instead.'
 
     ibexa.solr.result_extractor.content.native:
         class: Ibexa\Solr\ResultExtractor\NativeResultExtractor
@@ -85,7 +85,7 @@ services:
         deprecated:
             version: 'eZ Platform 3.2.0'
             package: 'ibexa/solr'
-            message: 'The "%alias_id%" alias is deprecated since eZ Platform 3.2.0, to be removed in eZ Platform 4.0.0. Use ezpublish.search.solr.result_extractor.content or ezpublish.search.solr.result_extractor.location instead'
+            message: 'The "%alias_id%" alias is deprecated since eZ Platform 3.2.0, to be removed in Ibexa DXP 5.0.0. Use ibexa.solr.result_extractor.content or ibexa.solr.result_extractor.location instead'
 
     ibexa.solr.result_extractor.content:
         alias: ibexa.solr.result_extractor.content.native
