@@ -10,7 +10,7 @@ namespace Ibexa\Tests\Integration\Solr;
 
 use Ibexa\Bundle\Solr\IbexaSolrBundle;
 use Ibexa\Contracts\Core\Search\Handler;
-use Ibexa\Contracts\Test\Core\IbexaTestKernel as BaseIbexaTestKernel;
+use Ibexa\Contracts\Core\Test\IbexaTestKernel as BaseIbexaTestKernel;
 use Ibexa\Solr\Handler as SolrHandler;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
