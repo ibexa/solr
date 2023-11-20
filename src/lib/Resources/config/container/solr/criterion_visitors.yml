@@ -293,3 +293,39 @@ services:
         tags:
             - {name: ibexa.search.solr.query.content.criterion.visitor}
             - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Image\CriterionVisitor\AbstractImageVisitor:
+        abstract: true
+        arguments:
+            $fieldNameResolver: '@Ibexa\Core\Search\Common\FieldNameResolver'
+            $imageFieldType: '@Ibexa\Core\FieldType\Image\Type'
+
+    Ibexa\Solr\Query\Image\CriterionVisitor\MimeType:
+        parent: Ibexa\Solr\Query\Image\CriterionVisitor\AbstractImageVisitor
+        tags:
+            - { name: ibexa.search.solr.query.content.criterion.visitor }
+            - { name: ibexa.search.solr.query.location.criterion.visitor }
+
+    Ibexa\Solr\Query\Image\CriterionVisitor\FileSize:
+        parent: Ibexa\Solr\Query\Image\CriterionVisitor\AbstractImageVisitor
+        tags:
+            - { name: ibexa.search.solr.query.content.criterion.visitor }
+            - { name: ibexa.search.solr.query.location.criterion.visitor }
+
+    Ibexa\Solr\Query\Image\CriterionVisitor\Width:
+        parent: Ibexa\Solr\Query\Image\CriterionVisitor\AbstractImageVisitor
+        tags:
+            - { name: ibexa.search.solr.query.content.criterion.visitor }
+            - { name: ibexa.search.solr.query.location.criterion.visitor }
+
+    Ibexa\Solr\Query\Image\CriterionVisitor\Height:
+        parent: Ibexa\Solr\Query\Image\CriterionVisitor\AbstractImageVisitor
+        tags:
+            - { name: ibexa.search.solr.query.content.criterion.visitor }
+            - { name: ibexa.search.solr.query.location.criterion.visitor }
+
+    Ibexa\Solr\Query\Image\CriterionVisitor\Orientation:
+        parent: Ibexa\Solr\Query\Image\CriterionVisitor\AbstractImageVisitor
+        tags:
+            - { name: ibexa.search.solr.query.content.criterion.visitor }
+            - { name: ibexa.search.solr.query.location.criterion.visitor }
