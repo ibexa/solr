@@ -6,9 +6,11 @@
  */
 namespace Ibexa\Solr;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Spellcheck;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResultCollection;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\SpellcheckResult;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Solr\Gateway\EndpointRegistry;
 use Ibexa\Solr\Query\FacetFieldVisitor;
@@ -49,8 +51,13 @@ abstract class ResultExtractor
      *
      * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult
      */
-    public function extract($data, array $facetBuilders = [], array $aggregations = [], array $languageFilter = [])
-    {
+    public function extract(
+        $data,
+        array $facetBuilders = [],
+        array $aggregations = [],
+        array $languageFilter = [],
+        ?Spellcheck $spellcheck = null
+    ) {
         $result = new SearchResult(
             [
                 'time' => $data->responseHeader->QTime / 1000,
@@ -61,6 +68,7 @@ abstract class ResultExtractor
 
         $result->facets = $this->extractFacets($data, $facetBuilders, $languageFilter);
         $result->aggregations = $this->extractAggregations($data, $aggregations, $languageFilter);
+        $result->spellcheck = $this->extractSpellcheck($data, $spellcheck);
 
         foreach ($data->response->docs as $doc) {
             $result->searchHits[] = $this->extractSearchHit($doc, $languageFilter);
@@ -185,6 +193,22 @@ abstract class ResultExtractor
                 'valueObject' => $this->extractHit($doc),
             ]
         );
+    }
+
+    protected function extractSpellcheck(stdClass $data, ?Spellcheck $spellcheck): ?SpellcheckResult
+    {
+        if ($spellcheck === null) {
+            return null;
+        }
+
+        if (isset($data->spellcheck)) {
+            $incorrect = !empty($data->spellcheck->collations);
+            $query = $data->spellcheck->collations[1] ?? $spellcheck->getQuery();
+
+            return new SpellcheckResult($query, $incorrect);
+        }
+
+        return new SpellcheckResult($spellcheck->getQuery(), false);
     }
 }
 

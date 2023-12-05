@@ -19,7 +19,7 @@ use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Ibexa\Core\Base\Exceptions\NotFoundException;
 
 /**
- * The Content Search handler retrieves sets of of Content objects, based on a
+ * The Content Search handler retrieves sets of Content objects, based on a
  * set of criteria.
  *
  * The basic idea of this class is to do the following:
@@ -33,7 +33,7 @@ use Ibexa\Core\Base\Exceptions\NotFoundException;
  * sensible queries from all criterion definitions.
  *
  * 3) The query might be possible to optimize (remove empty statements),
- * reduce singular and and or constructs…
+ * reduce singular and or constructs…
  *
  * 4) Additionally we might need a post-query filtering step, which filters
  * content objects based on criteria, which could not be converted in to
@@ -153,7 +153,8 @@ class Handler implements VersatileHandler
             $this->gateway->findContent($query, $languageFilter),
             $query->facetBuilders,
             $query->aggregations,
-            $languageFilter
+            $languageFilter,
+            $query->spellcheck
         );
     }
 
@@ -224,7 +225,9 @@ class Handler implements VersatileHandler
         return $this->locationResultExtractor->extract(
             $this->gateway->findLocations($query, $languageFilter),
             $query->facetBuilders,
-            $query->aggregations
+            $query->aggregations,
+            $languageFilter,
+            $query->spellcheck
         );
     }
 
@@ -478,6 +481,7 @@ class Handler implements VersatileHandler
             case SearchService::CAPABILITY_SCORING:
             case SearchService::CAPABILITY_FACETS:
             case SearchService::CAPABILITY_CUSTOM_FIELDS:
+            case SearchService::CAPABILITY_SPELLCHECK:
             case SearchService::CAPABILITY_ADVANCED_FULLTEXT:
             case SearchService::CAPABILITY_AGGREGATIONS:
                 return true;
