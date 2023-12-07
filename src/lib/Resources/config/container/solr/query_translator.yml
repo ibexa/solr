@@ -1,0 +1,59 @@
+parameters:
+
+services:
+    ibexa.solr.query.query_translator.galach.token_extractor:
+        class: QueryTranslator\Languages\Galach\TokenExtractor\Text
+
+    ibexa.solr.query.query_translator.galach.tokenizer:
+        class: QueryTranslator\Languages\Galach\Tokenizer
+        arguments:
+            - '@ibexa.solr.query.query_translator.galach.token_extractor'
+
+    ibexa.solr.query.query_translator.galach.parser:
+        class: QueryTranslator\Languages\Galach\Parser
+
+    ibexa.solr.query.query_translator.galach.generator.visitor.group:
+        class: QueryTranslator\Languages\Galach\Generators\Lucene\Common\Group
+
+    ibexa.solr.query.query_translator.galach.generator.visitor.logical_and:
+        class: QueryTranslator\Languages\Galach\Generators\Lucene\Common\LogicalAnd
+
+    ibexa.solr.query.query_translator.galach.generator.visitor.logical_not:
+        class: QueryTranslator\Languages\Galach\Generators\Lucene\Common\LogicalNot
+
+    ibexa.solr.query.query_translator.galach.generator.visitor.logical_or:
+        class: QueryTranslator\Languages\Galach\Generators\Lucene\Common\LogicalOr
+
+    ibexa.solr.query.query_translator.galach.generator.visitor.mandatory:
+        class: QueryTranslator\Languages\Galach\Generators\Lucene\Common\Mandatory
+
+    ibexa.solr.query.query_translator.galach.generator.visitor.phrase:
+        class: QueryTranslator\Languages\Galach\Generators\Lucene\Common\Phrase
+
+    ibexa.solr.query.query_translator.galach.generator.visitor.prohibited:
+        class: QueryTranslator\Languages\Galach\Generators\Lucene\Common\Prohibited
+
+    ibexa.solr.query.query_translator.galach.generator.visitor.query:
+        class: QueryTranslator\Languages\Galach\Generators\Lucene\Common\Query
+
+    Ibexa\Solr\Query\Common\QueryTranslator\Generator\WordVisitor:
+        class: Ibexa\Solr\Query\Common\QueryTranslator\Generator\WordVisitor
+
+    ibexa.solr.query.query_translator.galach.generator.common.aggregate:
+        class: QueryTranslator\Languages\Galach\Generators\Common\Aggregate
+        arguments:
+            -
+                - '@ibexa.solr.query.query_translator.galach.generator.visitor.group'
+                - '@ibexa.solr.query.query_translator.galach.generator.visitor.logical_and'
+                - '@ibexa.solr.query.query_translator.galach.generator.visitor.logical_not'
+                - '@ibexa.solr.query.query_translator.galach.generator.visitor.logical_or'
+                - '@ibexa.solr.query.query_translator.galach.generator.visitor.mandatory'
+                - '@ibexa.solr.query.query_translator.galach.generator.visitor.phrase'
+                - '@ibexa.solr.query.query_translator.galach.generator.visitor.prohibited'
+                - '@ibexa.solr.query.query_translator.galach.generator.visitor.query'
+                - '@Ibexa\Solr\Query\Common\QueryTranslator\Generator\WordVisitor'
+
+    ibexa.solr.query.query_translator.galach.generator.edismax:
+        class: QueryTranslator\Languages\Galach\Generators\ExtendedDisMax
+        arguments:
+            - '@ibexa.solr.query.query_translator.galach.generator.common.aggregate'

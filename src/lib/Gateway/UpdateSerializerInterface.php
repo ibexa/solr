@@ -17,7 +17,7 @@ interface UpdateSerializerInterface
     /**
      * Create update request string for the given array of $documents.
      *
-     * @param \eZ\Publish\SPI\Search\Document[] $documents
+     * @param \Ibexa\Contracts\Core\Search\Document[] $documents
      */
     public function serialize(array $documents): string;
 

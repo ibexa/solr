@@ -8,21 +8,21 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Gateway\UpdateSerializer;
 
-use eZ\Publish\Core\Search\Common\FieldNameGenerator;
-use eZ\Publish\Core\Search\Common\FieldValueMapper;
-use eZ\Publish\SPI\Search\Document;
-use eZ\Publish\SPI\Search\Field;
-use eZ\Publish\SPI\Search\FieldType\IdentifierField;
+use Ibexa\Contracts\Core\Search\Document;
+use Ibexa\Contracts\Core\Search\Field;
+use Ibexa\Contracts\Core\Search\FieldType\IdentifierField;
+use Ibexa\Core\Search\Common\FieldNameGenerator;
+use Ibexa\Core\Search\Common\FieldValueMapper;
 
 /**
  * @internal
  */
 abstract class UpdateSerializer
 {
-    /** @var \eZ\Publish\Core\Search\Common\FieldValueMapper */
+    /** @var \Ibexa\Core\Search\Common\FieldValueMapper */
     protected $fieldValueMapper;
 
-    /** @var \eZ\Publish\Core\Search\Common\FieldNameGenerator */
+    /** @var \Ibexa\Core\Search\Common\FieldNameGenerator */
     protected $nameGenerator;
 
     public function __construct(

@@ -1,0 +1,71 @@
+parameters:
+
+services:
+    Ibexa\Solr\FieldMapper\ContentFieldMapper\BlockDocumentsBaseContentFields:
+        arguments:
+            - '@Ibexa\Contracts\Core\Persistence\Content\Location\Handler'
+            - '@Ibexa\Contracts\Core\Persistence\Content\Type\Handler'
+            - '@Ibexa\Contracts\Core\Persistence\Content\ObjectState\Handler'
+            - '@Ibexa\Contracts\Core\Persistence\Content\Section\Handler'
+        tags:
+            - {name: ibexa.search.solr.field.mapper.block}
+
+    Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\BlockDocumentsContentFields:
+        arguments:
+            - '@Ibexa\Contracts\Core\Persistence\Content\Type\Handler'
+            - '@Ibexa\Core\Search\Common\FieldRegistry'
+            - '@Ibexa\Core\Search\Common\FieldNameGenerator'
+            - '@Ibexa\Solr\FieldMapper\BoostFactorProvider'
+        tags:
+            - {name: ibexa.search.solr.field.mapper.block.translation}
+
+    Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\BlockDocumentsMetaFields:
+        tags:
+            - {name: ibexa.search.solr.field.mapper.block.translation}
+
+    Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\ContentDocumentTranslatedContentNameField:
+        arguments:
+            - '@Ibexa\Contracts\Core\Persistence\Content\Type\Handler'
+            - '@Ibexa\Solr\FieldMapper\BoostFactorProvider'
+        tags:
+            - {name: ibexa.search.solr.field.mapper.block.translation}
+
+    Ibexa\Solr\FieldMapper\ContentFieldMapper\ContentDocumentBaseFields:
+        tags:
+            - {name: ibexa.search.solr.field.mapper.content}
+
+    Ibexa\Solr\FieldMapper\ContentFieldMapper\UserDocumentFields:
+        tags:
+            - { name: ibexa.search.solr.field.mapper.content }
+
+    Ibexa\Solr\FieldMapper\ContentFieldMapper\ContentDocumentLocationFields:
+        arguments:
+            - '@Ibexa\Contracts\Core\Persistence\Content\Location\Handler'
+        tags:
+            - {name: ibexa.search.solr.field.mapper.content}
+
+    Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\ContentDocumentFulltextFields:
+        arguments:
+            - '@Ibexa\Contracts\Core\Persistence\Content\Type\Handler'
+            - '@Ibexa\Contracts\Core\Persistence\Content\Handler'
+            - '@Ibexa\Core\Search\Common\FieldRegistry'
+            - '@Ibexa\Core\Search\Common\FieldNameGenerator'
+            - '@Ibexa\Solr\FieldMapper\BoostFactorProvider'
+            - '@Ibexa\Solr\FieldMapper\IndexingDepthProvider'
+        tags:
+            - {name: ibexa.search.solr.field.mapper.content.translation}
+
+    Ibexa\Solr\FieldMapper\LocationFieldMapper\LocationDocumentBaseFields:
+        arguments:
+            - '@Ibexa\Contracts\Core\Persistence\Content\Handler'
+        tags:
+            - {name: ibexa.search.solr.field.mapper.location}
+
+    Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\ContentDocumentEmptyFields:
+        class: Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\ContentDocumentEmptyFields
+        arguments:
+            - '@Ibexa\Contracts\Core\Persistence\Content\Type\Handler'
+            - '@Ibexa\Core\Search\Common\FieldNameGenerator'
+            - '@Ibexa\Core\Persistence\FieldTypeRegistry'
+        tags:
+            - {name: ibexa.search.solr.field.mapper.block.translation}

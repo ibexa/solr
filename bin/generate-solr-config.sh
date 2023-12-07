@@ -2,7 +2,7 @@
 
 set -e
 
-# Default paramters, if not overloaded by user arguments
+# Default parameters, if not overloaded by user arguments
 DESTINATION_DIR=.platform/configsets/solr8/conf
 SOLR_VERSION=8.11.1
 FORCE=false
@@ -10,21 +10,21 @@ SOLR_INSTALL_DIR=""
 
 show_help() {
     cat << EOF
-Script for generting solr config
-This config can be used to configure solr on eZ Platform Cloud (Platform.sh) or elsewhere.
-The script should be executed from the eZ Platform root directory.
+Script for generating Solr config
+This config can be used to configure solr on Ibexa Cloud (Platform.sh) or elsewhere.
+The script should be executed from the Ibexa project root directory.
 
 Help (this text):
-./vendor/ezsystems/ezplatform-solr-search-engine/bin/generate-solr-config.sh --help
+./vendor/ibexa/solr/bin/generate-solr-config.sh --help
 
-Usage with eZ Platform Cloud (arguments here can be skipped as they have default values):
-./vendor/ezsystems/ezplatform-solr-search-engine/bin/generate-solr-config.sh \\
+Usage with Ibexa Cloud (arguments here can be skipped as they have default values):
+./vendor/ibexa/solr/bin/generate-solr-config.sh \\
   --destination-dir=.platform/configsets/solr8/conf \\
   --solr-version=8.11.1
 
 Usage with on-premise version of Solr:
-./vendor/ezsystems/ezplatform-solr-search-engine/bin/generate-solr-config.sh \\
-  --destination-dir=/opt/solr/server/ez/template \\
+./vendor/ibexa/solr/bin/generate-solr-config.sh \\
+  --destination-dir=/opt/solr/server/ibexa/template \\
   --solr-install-dir=/opt/solr
 
 Warning:
@@ -108,7 +108,7 @@ if [ "$SOLR_INSTALL_DIR" == "" ]; then
 fi
 
 mkdir -p $DESTINATION_DIR
-cp -a ${EZ_BUNDLE_PATH}/lib/Resources/config/solr/* $DESTINATION_DIR
+cp -a ${EZ_BUNDLE_PATH}/src/lib/Resources/config/solr/* $DESTINATION_DIR
 cp ${SOLR_INSTALL_DIR}/server/solr/configsets/_default/conf/{solrconfig.xml,stopwords.txt,synonyms.txt} $DESTINATION_DIR
 
 if [[ ! $DESTINATION_DIR =~ ^\.platform ]]; then
@@ -120,7 +120,9 @@ fi
 
 # Adapt autoSoftCommit to have a recommended value, and remove add-unknown-fields-to-the-schema
 sed -i.bak '/<updateRequestProcessorChain name="add-unknown-fields-to-the-schema".*/,/<\/updateRequestProcessorChain>/d' $DESTINATION_DIR/solrconfig.xml
-sed -i.bak2 's/${solr.autoSoftCommit.maxTime:-1}/${solr.autoSoftCommit.maxTime:20}/' $DESTINATION_DIR/solrconfig.xml
+sed -i.bak 's/${solr.autoSoftCommit.maxTime:-1}/${solr.autoSoftCommit.maxTime:20}/' $DESTINATION_DIR/solrconfig.xml
+
+rm $DESTINATION_DIR/solrconfig.xml.bak
 
 if [ "$GENERATE_SOLR_TMPDIR" != "" ]; then
     echo Removing temp dir: $GENERATE_SOLR_TMPDIR

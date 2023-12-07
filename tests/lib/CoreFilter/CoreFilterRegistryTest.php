@@ -1,22 +1,20 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\CoreFilter;
+namespace Ibexa\Tests\Solr\CoreFilter;
 
-use EzSystems\EzPlatformSolrSearchEngine\CoreFilter;
-use EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry;
+use Ibexa\Solr\CoreFilter;
+use Ibexa\Solr\CoreFilter\CoreFilterRegistry;
 use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 
 class CoreFilterRegistryTest extends TestCase
 {
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry::addCoreFilter
+     * @covers \Ibexa\Solr\CoreFilter\CoreFilterRegistry::addCoreFilter
      */
     public function testAddCoreFilter(): void
     {
@@ -27,7 +25,7 @@ class CoreFilterRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry::getCoreFilter
+     * @covers \Ibexa\Solr\CoreFilter\CoreFilterRegistry::getCoreFilter
      */
     public function testGetCoreFilter(): void
     {
@@ -37,7 +35,7 @@ class CoreFilterRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry::getGateway
+     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::getGateway
      */
     public function testGetCoreFilterForMissingConnection(): void
     {
@@ -48,7 +46,7 @@ class CoreFilterRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry::hasCoreFilter
+     * @covers \Ibexa\Solr\CoreFilter\CoreFilterRegistry::hasCoreFilter
      */
     public function testHasCoreFilter(): void
     {
@@ -58,7 +56,7 @@ class CoreFilterRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry::setCoreFilters
+     * @covers \Ibexa\Solr\CoreFilter\CoreFilterRegistry::setCoreFilters
      */
     public function testSetCoreFilters(): void
     {
@@ -71,7 +69,7 @@ class CoreFilterRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry::getCoreFilters
+     * @covers \Ibexa\Solr\CoreFilter\CoreFilterRegistry::getCoreFilters
      */
     public function testGetCoreFilters(): void
     {
@@ -81,10 +79,12 @@ class CoreFilterRegistryTest extends TestCase
     }
 
     /**
-     * @return \EzSystems\EzPlatformSolrSearchEngine\CoreFilter|\PHPUnit\Framework\MockObject\MockObject
+     * @return \Ibexa\Solr\CoreFilter|\PHPUnit\Framework\MockObject\MockObject
      */
     private function getCoreFilterMock(): CoreFilter
     {
         return $this->createMock(CoreFilter::class);
     }
 }
+
+class_alias(CoreFilterRegistryTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\CoreFilter\CoreFilterRegistryTest');

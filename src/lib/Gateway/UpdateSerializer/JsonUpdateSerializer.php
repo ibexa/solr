@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Gateway\UpdateSerializer;
 
-use eZ\Publish\SPI\Search\Document;
-use eZ\Publish\SPI\Search\Field;
-use eZ\Publish\SPI\Search\FieldType\IdentifierField;
+use Ibexa\Contracts\Core\Search\Document;
+use Ibexa\Contracts\Core\Search\Field;
+use Ibexa\Contracts\Core\Search\FieldType\IdentifierField;
 use Ibexa\Solr\Gateway\UpdateSerializerInterface;
 
 /**

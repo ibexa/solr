@@ -8,14 +8,14 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Bundle\Solr\Gateway\UpdateSerializer;
 
-use eZ\Publish\Core\Search\Common\FieldNameGenerator;
-use eZ\Publish\Core\Search\Common\FieldValueMapper;
-use eZ\Publish\SPI\Search\Document;
-use eZ\Publish\SPI\Search\Field;
-use EzSystems\EzPlatformSolrSearchEngine\DocumentMapper;
+use Ibexa\Contracts\Core\Search\Document;
+use Ibexa\Contracts\Core\Search\Field;
+use Ibexa\Contracts\Core\Search\FieldType;
+use Ibexa\Contracts\Solr\DocumentMapper;
+use Ibexa\Core\Search\Common\FieldNameGenerator;
+use Ibexa\Core\Search\Common\FieldValueMapper;
 use Ibexa\Solr\Gateway\UpdateSerializer\JsonUpdateSerializer;
 use PHPUnit\Framework\TestCase;
-use eZ\Publish\SPI\Search\FieldType;
 
 /**
  * @covers \Ibexa\Solr\Gateway\UpdateSerializer\JsonUpdateSerializer
@@ -76,10 +76,14 @@ class JsonUpdateSerializerTest extends TestCase
                             new Field('id', 'content1langenggb', new FieldType\IdentifierField()),
                             new Field('content_id', 1, new FieldType\IdentifierField()),
                             new Field(
-                                'content_id_normalized', 1, new FieldType\IntegerField()
+                                'content_id_normalized',
+                                1,
+                                new FieldType\IntegerField()
                             ),
                             new Field(
-                                'content_version_no', 2, new FieldType\IntegerField()
+                                'content_version_no',
+                                2,
+                                new FieldType\IntegerField()
                             ),
                             new Field(
                                 'content_name',
@@ -102,7 +106,9 @@ class JsonUpdateSerializerTest extends TestCase
                                 new FieldType\StringField()
                             ),
                             new Field(
-                                'content_always_available', true, new FieldType\BooleanField()
+                                'content_always_available',
+                                true,
+                                new FieldType\BooleanField()
                             ),
                             new Field(
                                 'document_type',

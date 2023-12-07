@@ -1,5 +1,5 @@
 parameters:
-    ezpublish.search.solr.field_mapper.indexing_depth_provider.default: 2
+    ibexa.search.solr.field_mapper.indexing_depth_provider.default: 2
 
 services:
     logger:

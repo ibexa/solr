@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Gateway;
 
-use eZ\Publish\SPI\Exception\InvalidArgumentException;
+use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
 
 class UpdateSerializerFactory
 {
@@ -24,7 +24,7 @@ class UpdateSerializerFactory
     }
 
     /**
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
     public function getSerializer(string $format): UpdateSerializerInterface
     {

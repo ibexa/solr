@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Solr\Gateway;
 
-use eZ\Publish\SPI\Exception\InvalidArgumentException;
+use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
 use Ibexa\Solr\Gateway\UpdateSerializerFactory;
 use Ibexa\Solr\Gateway\UpdateSerializerInterface;
 use PHPUnit\Framework\TestCase;
@@ -26,7 +26,7 @@ final class UpdateSerializerFactoryTest extends TestCase
      *
      * @param array<\Ibexa\Solr\Gateway\UpdateSerializerInterface> $serializers
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
     public function testGetSerializer(
         array $serializers,
@@ -39,7 +39,7 @@ final class UpdateSerializerFactoryTest extends TestCase
     }
 
     /**
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
     public function testGetSerializerThrowsInvalidArgumentException(): void
     {

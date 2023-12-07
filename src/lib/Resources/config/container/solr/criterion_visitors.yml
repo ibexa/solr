@@ -1,0 +1,295 @@
+parameters:
+    # Common
+    # Content search
+    # Location search
+    # We don't support fulltext Location search out of the box
+    #ezpublish.search.solr.query.location.criterion_visitor.full_text.class: Ibexa\Solr\Query\Location\CriterionVisitor\FullText
+
+services:
+    # Common for Content and Location search
+    Ibexa\Solr\Query\Common\CriterionVisitor\ContentIdIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\ContentTypeGroupIdIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\ContentTypeIdIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\ContentTypeIdentifierIn:
+        arguments:
+            - '@Ibexa\Contracts\Core\Persistence\Content\Type\Handler'
+            - "@?logger"
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\CustomField\CustomFieldIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\Field\FieldLike:
+        arguments:
+            - '@Ibexa\Core\Search\Common\FieldNameResolver'
+            - '@Ibexa\Core\Search\Common\FieldValueMapper\Aggregate'
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\CustomField\CustomFieldRange:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\Field\FieldIn:
+        arguments:
+            - '@Ibexa\Core\Search\Common\FieldNameResolver'
+            - '@Ibexa\Core\Search\Common\FieldValueMapper\Aggregate'
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\Field\FieldEmpty:
+        arguments:
+            - '@Ibexa\Core\Search\Common\FieldNameResolver'
+            - '@Ibexa\Core\Search\Common\FieldValueMapper\Aggregate'
+            - '@Ibexa\Core\Search\Common\FieldNameGenerator'
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\Field\FieldRange:
+        arguments:
+            - '@Ibexa\Core\Search\Common\FieldNameResolver'
+            - '@Ibexa\Core\Search\Common\FieldValueMapper\Aggregate'
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\Field\FieldRelation:
+        arguments:
+            - '@Ibexa\Core\Search\Common\FieldNameResolver'
+            - '@Ibexa\Core\Search\Common\FieldValueMapper\Aggregate'
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\LanguageCodeIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\LogicalAnd:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\LogicalNot:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\LogicalOr:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\MapLocation\MapLocationDistanceIn:
+        arguments:
+            - '@Ibexa\Core\Search\Common\FieldNameResolver'
+            - 'ezgmaplocation'
+            - 'value_location'
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\MapLocation\MapLocationDistanceRange:
+        arguments:
+            - '@Ibexa\Core\Search\Common\FieldNameResolver'
+            - 'ezgmaplocation'
+            - 'value_location'
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\MatchAll:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\MatchNone:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\DateMetadata\ModifiedBetween:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\DateMetadata\ModifiedIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\ObjectStateIdIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\ObjectStateIdentifierIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\DateMetadata\PublishedBetween:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\DateMetadata\PublishedIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\RemoteIdIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\SectionIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\SectionIdentifierIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\UserEmailIn:
+        tags:
+            - { name: ibexa.search.solr.query.content.criterion.visitor }
+            - { name: ibexa.search.solr.query.location.criterion.visitor }
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\UserIdIn:
+        tags:
+            - { name: ibexa.search.solr.query.content.criterion.visitor }
+            - { name: ibexa.search.solr.query.location.criterion.visitor }
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\UserLoginIn:
+        tags:
+            - { name: ibexa.search.solr.query.content.criterion.visitor }
+            - { name: ibexa.search.solr.query.location.criterion.visitor }
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\UserMetadataIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\Factory\FullTextFactoryAbstract:
+        abstract: true
+        arguments:
+            - '@Ibexa\Core\Search\Common\FieldNameResolver'
+            - '@ibexa.solr.query.query_translator.galach.tokenizer'
+            - '@ibexa.solr.query.query_translator.galach.parser'
+            - '@ibexa.solr.query.query_translator.galach.generator.edismax'
+            - '@Ibexa\Solr\FieldMapper\IndexingDepthProvider'
+
+    # Content search
+    Ibexa\Solr\Query\Content\CriterionVisitor\Ancestor:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+
+    Ibexa\Solr\Query\Content\CriterionVisitor\SubtreeIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+
+    Ibexa\Solr\Query\Content\CriterionVisitor\LocationIdIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+
+    Ibexa\Solr\Query\Content\CriterionVisitor\ParentLocationIdIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+
+    Ibexa\Solr\Query\Content\CriterionVisitor\LocationRemoteIdIn:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+
+    Ibexa\Solr\Query\Content\CriterionVisitor\FullText:
+        factory: ['@Ibexa\Solr\Query\Content\CriterionVisitor\Factory\ContentFullTextFactory', 'createCriterionVisitor']
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+
+    Ibexa\Solr\Query\Content\CriterionVisitor\Factory\ContentFullTextFactory:
+        parent: Ibexa\Solr\Query\Common\CriterionVisitor\Factory\FullTextFactoryAbstract
+
+    Ibexa\Solr\Query\Content\CriterionVisitor\Visibility:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+
+    # Location search
+    Ibexa\Solr\Query\Location\CriterionVisitor\Ancestor:
+        tags:
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Location\CriterionVisitor\SubtreeIn:
+        tags:
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Location\CriterionVisitor\LocationIdIn:
+        tags:
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Location\CriterionVisitor\ParentLocationIdIn:
+        tags:
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Location\CriterionVisitor\LocationRemoteIdIn:
+        tags:
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Location\CriterionVisitor\Visibility:
+        tags:
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Location\CriterionVisitor\Location\DepthIn:
+        tags:
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Location\CriterionVisitor\Location\DepthBetween:
+        tags:
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Location\CriterionVisitor\Location\IsMainLocation:
+        tags:
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Location\CriterionVisitor\Location\PriorityIn:
+        tags:
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Location\CriterionVisitor\Location\PriorityBetween:
+        tags:
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Location\CriterionVisitor\FullText:
+        factory: ['@Ibexa\Solr\Query\Location\CriterionVisitor\Factory\LocationFullTextFactory', 'createCriterionVisitor']
+        tags:
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Location\CriterionVisitor\Factory\LocationFullTextFactory:
+        parent: Ibexa\Solr\Query\Common\CriterionVisitor\Factory\FullTextFactoryAbstract
+
+    Ibexa\Solr\Query\Common\CriterionVisitor\CompositeCriterion:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
