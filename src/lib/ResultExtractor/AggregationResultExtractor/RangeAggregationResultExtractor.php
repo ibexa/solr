@@ -10,7 +10,6 @@ namespace Ibexa\Solr\ResultExtractor\AggregationResultExtractor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation;
-use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Range;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\RangeAggregationResult;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\RangeAggregationResultEntry;
@@ -45,23 +44,20 @@ final class RangeAggregationResultExtractor implements AggregationResultExtracto
         $entries = [];
 
         foreach ($data as $key => $bucket) {
-            if ($key === 'count') {
+            if ($key === 'count' || strpos($key, '_') === false) {
                 continue;
             }
 
-            if (strpos($key, '_') === false) {
-                continue;
+            $values = explode('_', $key, 2);
+            $a = $this->keyMapper->map($aggregation, $languageFilter, $values[0]);
+            $b = $this->keyMapper->map($aggregation, $languageFilter, $values[1]);
+
+            foreach ($aggregation->getRanges() as $range) {
+                if ($range->getFrom() == $a && $range->getTo() == $b) {
+                    $entries[] = new RangeAggregationResultEntry($range, $bucket->count);
+                    break;
+                }
             }
-
-            list($from, $to) = explode('_', $key, 2);
-
-            $entries[] = new RangeAggregationResultEntry(
-                new Range(
-                    $this->keyMapper->map($aggregation, $languageFilter, $from),
-                    $this->keyMapper->map($aggregation, $languageFilter, $to),
-                ),
-                $bucket->count
-            );
         }
 
         $this->sort($aggregation, $entries);
