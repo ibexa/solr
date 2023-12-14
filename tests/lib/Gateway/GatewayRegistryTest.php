@@ -1,22 +1,20 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Gateway;
+namespace Ibexa\Tests\Solr\Gateway;
 
-use EzSystems\EzPlatformSolrSearchEngine\Gateway;
-use EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry;
+use Ibexa\Solr\Gateway;
+use Ibexa\Solr\Gateway\GatewayRegistry;
 use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 
 class GatewayRegistryTest extends TestCase
 {
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry::addGateway
+     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::addGateway
      */
     public function testAddGateway(): void
     {
@@ -27,7 +25,7 @@ class GatewayRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry::getGateway
+     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::getGateway
      */
     public function testGetGateway(): void
     {
@@ -38,7 +36,7 @@ class GatewayRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry::getGateway
+     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::getGateway
      */
     public function testGetGatewayForMissingConnection(): void
     {
@@ -49,7 +47,7 @@ class GatewayRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry::hasGateway
+     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::hasGateway
      */
     public function testHasGateway(): void
     {
@@ -60,7 +58,7 @@ class GatewayRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry::setGateways
+     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::setGateways
      */
     public function testSetGateways(): void
     {
@@ -73,7 +71,7 @@ class GatewayRegistryTest extends TestCase
     }
 
     /**
-     * @covers \EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry::getGateways
+     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::getGateways
      */
     public function testGetGateways(): void
     {
@@ -83,10 +81,12 @@ class GatewayRegistryTest extends TestCase
     }
 
     /**
-     * @return \EzSystems\EzPlatformSolrSearchEngine\Gateway|\PHPUnit\Framework\MockObject\MockObject
+     * @return \Ibexa\Solr\Gateway|\PHPUnit\Framework\MockObject\MockObject
      */
     private function getGatewayMock(): Gateway
     {
         return $this->createMock(Gateway::class);
     }
 }
+
+class_alias(GatewayRegistryTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Gateway\GatewayRegistryTest');

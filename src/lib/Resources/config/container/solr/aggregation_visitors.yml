@@ -1,0 +1,276 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  ibexa.solr.query.content.aggregation_visitor.dispatcher:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\DispatcherAggregationVisitor
+    arguments:
+      $visitors: !tagged ibexa.search.solr.query.content.aggregation.visitor
+
+  ibexa.solr.query.location.aggregation_visitor.dispatcher:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\DispatcherAggregationVisitor
+    arguments:
+      $visitors: !tagged ibexa.search.solr.query.location.aggregation.visitor
+
+  ### Factories
+
+  Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory:
+    arguments:
+      $fieldNameResolver: '@Ibexa\Core\Search\Common\FieldNameResolver'
+
+  Ibexa\Solr\Query\Common\AggregationVisitor\Factory\RawAggregationVisitorFactory: ~
+
+  Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory: ~
+
+  ### Aggregation visitors
+
+  ibexa.solr.query.common.aggregation_visitor.content_type:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ContentTypeTermAggregation'
+      $searchIndexFieldName: 'content_type_id_id'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.content_type_group:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ContentTypeGroupTermAggregation'
+      $searchIndexFieldName: 'content_type_group_ids_mid'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.field.author_term:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\AuthorTermAggregation'
+      $searchIndexFieldName: 'aggregation_value'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.field.checkbox_term:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\CheckboxTermAggregation'
+      $searchIndexFieldName: 'value'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.field.date_range:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\DateRangeAggregation'
+      $searchIndexFieldName: 'value'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.field.datetime_range:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\DateTimeRangeAggregation'
+      $searchIndexFieldName: 'value'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.field.country_term:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\CountryTermAggregation'
+      $searchIndexFieldName: 'idc'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.field.float_range:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\FloatRangeAggregation'
+      $searchIndexFieldName: 'value'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.field.float_stats:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\StatsAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createStatsAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\FloatStatsAggregation'
+      $searchIndexFieldName: 'value'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.field.integer_range:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\IntegerRangeAggregation'
+      $searchIndexFieldName: 'value'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.field.integer_stats:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\StatsAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createStatsAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\IntegerStatsAggregation'
+      $searchIndexFieldName: 'value'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.field.keyword_term:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\KeywordTermAggregation'
+      $searchIndexFieldName: 'value'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.field.selection_term:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\SelectionTermAggregation'
+      $searchIndexFieldName: 'selected_option_value'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.field.time_range:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createRangeAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\TimeRangeAggregation'
+      $searchIndexFieldName: 'value'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.language:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\LanguageTermAggregation'
+      $searchIndexFieldName: 'content_language_codes_raw_mid'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.raw_range:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\RawAggregationVisitorFactory', 'createRangeAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\RawRangeAggregation'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.raw_stats:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\StatsAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\RawAggregationVisitorFactory', 'createStatsAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\RawStatsAggregation'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.raw_term:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\RawAggregationVisitorFactory', 'createTermAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\RawTermAggregation'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.common.aggregation_visitor.section:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\SectionTermAggregation'
+      $searchIndexFieldName: 'content_section_id_id'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  Ibexa\Solr\Query\Common\AggregationVisitor\DateMetadataRangeAggregationVisitor:
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  Ibexa\Solr\Query\Common\AggregationVisitor\ObjectStateAggregationVisitor:
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  Ibexa\Solr\Query\Common\AggregationVisitor\UserMetadataTermAggregationVisitor:
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ### Content specific visitors
+
+  ibexa.solr.query.content.aggregation_visitor.visibility:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\VisibilityTermAggregation'
+      $searchIndexFieldName: 'location_visible_b'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+
+  ibexa.solr.query.content.aggregation_visitor.subtree:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\SubtreeTermAggregationVisitor
+    arguments:
+      $pathStringFieldName: 'location_path_string_mid'
+      $locationIdFieldName: 'location_ancestors_mid'
+    tags:
+      - { name: ibexa.search.solr.query.content.aggregation.visitor }
+
+  ### Location specific visitors
+
+  ibexa.solr.query.location.aggregation_visitor.visibility:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor
+    factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\VisibilityTermAggregation'
+      $searchIndexFieldName: 'invisible_b'
+    tags:
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  Ibexa\Solr\Query\Common\AggregationVisitor\LocationChildrenTermAggregationVisitor:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\LocationChildrenTermAggregationVisitor
+    factory: [ '@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory', 'createTermAggregationVisitor' ]
+    arguments:
+      $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Location\LocationChildrenTermAggregation'
+      $searchIndexFieldName: 'parent_id_id'
+    tags:
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }
+
+  ibexa.solr.query.location.aggregation_visitor.subtree:
+    class: Ibexa\Solr\Query\Common\AggregationVisitor\SubtreeTermAggregationVisitor
+    arguments:
+      $pathStringFieldName: 'path_string_id'
+      $locationIdFieldName: 'location_ancestors_mid'
+    tags:
+      - { name: ibexa.search.solr.query.location.aggregation.visitor }

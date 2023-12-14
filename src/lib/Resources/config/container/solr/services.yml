@@ -1,0 +1,93 @@
+parameters:
+    ibexa.search.solr.field_mapper.boost_factor_provider.map: []
+    ibexa.search.solr.field_mapper.indexing_depth_provider.map: []
+    ibexa.search.solr.field_mapper.indexing_depth_provider.default: 0
+
+services:
+    ibexa.solr.http_client.retryable:
+        class: Symfony\Component\HttpClient\RetryableHttpClient
+        decorates: ibexa.solr.http_client
+        arguments:
+            $client: '@.inner'
+            $strategy: null
+            $maxRetries: 5
+            $logger: '@?logger'
+        tags:
+            - { name: monolog.logger, channel: solr }
+
+    ibexa.solr.http_client:
+        class: Symfony\Contracts\HttpClient\HttpClientInterface
+        factory: [ \Symfony\Component\HttpClient\HttpClient, 'create' ]
+        calls:
+            -   setLogger: [ '@logger' ]
+        tags:
+            - { name: monolog.logger, channel: solr }
+
+    Ibexa\Solr\Gateway\HttpClient\Stream:
+        autoconfigure: true
+        arguments:
+            $client: '@ibexa.solr.http_client'
+
+    # Note: services tagged with 'ibexa.search.solr.query.content.criterion.visitor'
+    # are registered to this one using compilation pass
+    ibexa.solr.query.content.criterion_visitor.aggregate:
+        class: Ibexa\Solr\Query\Common\CriterionVisitor\Aggregate
+
+    # Note: services tagged with 'ibexa.search.solr.query.content.sort_clause.visitor'
+    # are registered to this one using compilation pass
+    ibexa.solr.query.content.sort_clause_visitor.aggregate:
+        class: Ibexa\Solr\Query\Common\SortClauseVisitor\Aggregate
+
+    # Note: services tagged with 'ibexa.search.solr.query.content.facet_builder.visitor'
+    # are registered to this one using compilation pass
+    ibexa.solr.query.content.facet_builder_visitor.aggregate:
+        class: Ibexa\Solr\Query\Common\FacetBuilderVisitor\Aggregate
+
+    # Note: services tagged with 'ibexa.search.solr.query.location.criterion.visitor'
+    # are registered to this one using compilation pass
+    ibexa.solr.query.location.criterion_visitor.aggregate:
+        class: Ibexa\Solr\Query\Common\CriterionVisitor\Aggregate
+
+    # Note: services tagged with 'ibexa.search.solr.query.location.sort_clause.visitor'
+    # are registered to this one using compilation pass
+    ibexa.solr.query.location.sort_clause_visitor.aggregate:
+        class: Ibexa\Solr\Query\Common\SortClauseVisitor\Aggregate
+
+    # Note: services tagged with 'ibexa.search.solr.query.location.facet_builder.visitor'
+    # are registered to this one using compilation pass
+    ibexa.solr.query.location.facet_builder_visitor.aggregate:
+        class: Ibexa\Solr\Query\Common\FacetBuilderVisitor\Aggregate
+
+    # Note: services tagged with 'ibexa.search.solr.field.mapper.block'
+    # are registered to this one using compilation pass
+    ibexa.solr.field_mapper.block:
+        class: Ibexa\Solr\FieldMapper\ContentFieldMapper\Aggregate
+
+    # Note: services tagged with 'ibexa.search.solr.field.mapper.block_translation'
+    # are registered to this one using compilation pass
+    ibexa.solr.field_mapper.block_translation:
+        class: Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\Aggregate
+
+    # Note: services tagged with 'ibexa.search.solr.field.mapper.content'
+    # are registered to this one using compilation pass
+    ibexa.solr.field_mapper.content:
+        class: Ibexa\Solr\FieldMapper\ContentFieldMapper\Aggregate
+
+    # Note: services tagged with 'ibexa.search.solr.field.mapper.content.translation'
+    # are registered to this one using compilation pass
+    ibexa.solr.field_mapper.content_translation:
+        class: Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper\Aggregate
+
+    # Note: services tagged with 'ibexa.search.solr.field.mapper.location'
+    # are registered to this one using compilation pass
+    Ibexa\Solr\FieldMapper\LocationFieldMapper\Aggregate: ~
+
+    Ibexa\Solr\FieldMapper\BoostFactorProvider:
+        arguments:
+            - '%ibexa.search.solr.field_mapper.boost_factor_provider.map%'
+
+    Ibexa\Solr\FieldMapper\IndexingDepthProvider:
+        class: \Ibexa\Solr\FieldMapper\IndexingDepthProvider
+        arguments:
+            - '%ibexa.search.solr.field_mapper.indexing_depth_provider.map%'
+            - '%ibexa.search.solr.field_mapper.indexing_depth_provider.default%'

@@ -1,15 +1,13 @@
 <?php
 
 /**
- * This file is part of the eZ Platform Solr Search Engine package.
- *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace EzSystems\EzPlatformSolrSearchEngine\Tests\Container\Compiler;
+namespace Ibexa\Tests\Solr\Container\Compiler;
 
-use EzSystems\EzPlatformSolrSearchEngine\Container\Compiler\CoreFilterRegistryPass;
-use EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry;
+use Ibexa\Solr\Container\Compiler\CoreFilterRegistryPass;
+use Ibexa\Solr\CoreFilter\CoreFilterRegistry;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -44,3 +42,5 @@ class CoreFilterRegistryPassTest extends AbstractCompilerPassTestCase
         );
     }
 }
+
+class_alias(CoreFilterRegistryPassTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Container\Compiler\CoreFilterRegistryPassTest');

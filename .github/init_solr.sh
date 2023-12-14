@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-default_config_files[1]='lib/Resources/config/solr/schema.xml'
-default_config_files[2]='lib/Resources/config/solr/custom-fields-types.xml'
-default_config_files[3]='lib/Resources/config/solr/language-fieldtypes.xml'
+default_config_files[1]='src/lib/Resources/config/solr/schema.xml'
+default_config_files[2]='src/lib/Resources/config/solr/custom-fields-types.xml'
+default_config_files[3]='src/lib/Resources/config/solr/language-fieldtypes.xml'
 
 default_cores[0]='core0'
 default_cores[1]='core1'
@@ -16,7 +16,7 @@ default_shards=('shard0')
 
 SOLR_PORT=${SOLR_PORT:-8983}
 SOLR_DIR=${SOLR_DIR:-'__solr'}
-SOLR_VERSION=${SOLR_VERSION:-'8.11.1'}
+SOLR_VERSION=${SOLR_VERSION:-'8.11.2'}
 SOLR_INSTALL_DIR="${SOLR_DIR}/${SOLR_VERSION}"
 SOLR_DEBUG=${SOLR_DEBUG:-false}
 SOLR_HOME=${SOLR_HOME:-'ezcloud'}
@@ -45,7 +45,7 @@ fi
 download() {
     case ${SOLR_VERSION} in
         # PS!!: Append versions and don't remove old ones (except in major versions), used in integration tests from other packages!
-        7.7.* | 8.[5-8].* | 8.11.* )
+        7.7.* | 8.* )
             url="http://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/solr-${SOLR_VERSION}.tgz"
             ;;
         *)
