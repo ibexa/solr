@@ -34,7 +34,7 @@ final class ContentName extends CriterionVisitor
 
     public function canVisit(Criterion $criterion): bool
     {
-        return $criterion instanceof Criterion\ContentNameCriterion
+        return $criterion instanceof Criterion\ContentName
             && $criterion->operator === Criterion\Operator::LIKE;
     }
 
