@@ -14,6 +14,9 @@ use QueryTranslator\Languages\Galach\Generators\ExtendedDisMax;
 use QueryTranslator\Languages\Galach\Parser;
 use QueryTranslator\Tokenizing;
 
+/**
+ * @internal
+ */
 final class ContentName extends CriterionVisitor
 {
     private Tokenizing $tokenizer;
