@@ -237,10 +237,6 @@ services:
             - {name: ibexa.search.solr.query.content.criterion.visitor}
 
     Ibexa\Solr\Query\Content\CriterionVisitor\ContentName:
-        arguments:
-            $tokenizer: '@ibexa.solr.query.query_translator.galach.tokenizer'
-            $parser: '@ibexa.solr.query.query_translator.galach.parser'
-            $generator: '@ibexa.solr.query.query_translator.galach.generator.edismax'
         tags:
             - {name: ibexa.search.solr.query.content.criterion.visitor}
             - {name: ibexa.search.solr.query.location.criterion.visitor}
