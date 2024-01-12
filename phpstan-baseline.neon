@@ -821,17 +821,17 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/CompositeCriterion.php
 
 		-
-			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/ContentIdIn.php
 
 		-
-			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/ContentTypeIdIn.php
 
 		-
-			message: "#^Argument of an invalid type array\\<int\\|string\\>\\|bool\\|int\\|string supplied for foreach, only iterables are supported\\.$#"
+			message: "#^Argument of an invalid type array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/ContentTypeIdentifierIn.php
 
@@ -846,34 +846,24 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/CustomField/CustomFieldIn.php
 
 		-
-			message: "#^Cannot access offset 0 on array\\<int\\|string\\>\\|bool\\|int\\|string\\.$#"
+			message: "#^Cannot access offset 0 on array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/DateMetadata/ModifiedBetween.php
 
 		-
-			message: "#^Argument of an invalid type array\\<int\\|string\\>\\|bool\\|int\\|string supplied for foreach, only iterables are supported\\.$#"
+			message: "#^Argument of an invalid type array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/DateMetadata/ModifiedIn.php
 
 		-
-			message: "#^Cannot access offset 0 on array\\<int\\|string\\>\\|bool\\|int\\|string\\.$#"
+			message: "#^Cannot access offset 0 on array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/DateMetadata/PublishedBetween.php
 
 		-
-			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/DateMetadata/PublishedIn.php
-
-		-
-			message: "#^Property Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Query\\\\Criterion\\:\\:\\$value \\(array\\<int\\|string\\>\\|bool\\|int\\|string\\) does not accept array\\<bool\\|int\\|string\\>\\.$#"
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/Field/FieldEmpty.php
-
-		-
-			message: "#^Property Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Query\\\\Criterion\\:\\:\\$value \\(array\\<int\\|string\\>\\|bool\\|int\\|string\\) does not accept array\\<bool\\|int\\|string\\>\\.$#"
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/Field/FieldIn.php
 
 		-
 			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\CriterionVisitor\\\\Field\\:\\:getSearchFields\\(\\) invoked with 2 parameters, 1 required\\.$#"
@@ -881,12 +871,7 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/Field/FieldRelation.php
 
 		-
-			message: "#^Property Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Query\\\\Criterion\\:\\:\\$value \\(array\\<int\\|string\\>\\|bool\\|int\\|string\\) does not accept array\\<bool\\|int\\|string\\>\\.$#"
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/Field/FieldRelation.php
-
-		-
-			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/LanguageCodeIn.php
 
@@ -921,22 +906,12 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/MapLocation.php
 
 		-
-			message: "#^Property Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Query\\\\Criterion\\:\\:\\$value \\(array\\<int\\|string\\>\\|bool\\|int\\|string\\) does not accept array\\<bool\\|int\\|string\\>\\.$#"
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/MapLocation/MapLocationDistanceIn.php
-
-		-
-			message: "#^Property Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Query\\\\Criterion\\:\\:\\$value \\(array\\<int\\|string\\>\\|bool\\|int\\|string\\) does not accept array\\<bool\\|int\\|string\\>\\.$#"
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/MapLocation/MapLocationDistanceRange.php
-
-		-
-			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/ObjectStateIdIn.php
 
 		-
-			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(bool\\|int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: non\\-falsy\\-string given\\.$#"
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(bool\\|float\\|int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: non\\-falsy\\-string given\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/ObjectStateIdentifierIn.php
 
@@ -946,22 +921,22 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/ObjectStateIdentifierIn.php
 
 		-
-			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/RemoteIdIn.php
 
 		-
-			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(bool\\|int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: non\\-falsy\\-string given\\.$#"
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(bool\\|float\\|int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: non\\-falsy\\-string given\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/SectionIdentifierIn.php
 
 		-
-			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/SectionIn.php
 
 		-
-			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(bool\\|int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: non\\-falsy\\-string given\\.$#"
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(bool\\|float\\|int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: non\\-falsy\\-string given\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/UserEmailIn.php
 
@@ -971,7 +946,7 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/UserEmailIn.php
 
 		-
-			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(bool\\|int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: non\\-falsy\\-string given\\.$#"
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(bool\\|float\\|int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: non\\-falsy\\-string given\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/UserIdIn.php
 
@@ -981,7 +956,7 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/UserIdIn.php
 
 		-
-			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(bool\\|int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: non\\-falsy\\-string given\\.$#"
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(bool\\|float\\|int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: non\\-falsy\\-string given\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/UserLoginIn.php
 
@@ -991,7 +966,7 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/UserLoginIn.php
 
 		-
-			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/UserMetadataIn.php
 
@@ -1096,7 +1071,7 @@ parameters:
 			path: src/lib/Query/Common/SortClauseVisitor/MapLocationDistance.php
 
 		-
-			message: "#^Argument of an invalid type array\\<int\\|string\\>\\|bool\\|int\\|string supplied for foreach, only iterables are supported\\.$#"
+			message: "#^Argument of an invalid type array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/lib/Query/Content/CriterionVisitor/Ancestor.php
 
@@ -1111,22 +1086,22 @@ parameters:
 			path: src/lib/Query/Content/CriterionVisitor/FullText.php
 
 		-
-			message: "#^Parameter \\#1 \\$string of method QueryTranslator\\\\Languages\\\\Galach\\\\Tokenizer\\:\\:tokenize\\(\\) expects string, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#1 \\$string of method QueryTranslator\\\\Languages\\\\Galach\\\\Tokenizer\\:\\:tokenize\\(\\) expects string, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Content/CriterionVisitor/FullText.php
 
 		-
-			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Content/CriterionVisitor/LocationIdIn.php
 
 		-
-			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Content/CriterionVisitor/LocationRemoteIdIn.php
 
 		-
-			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Content/CriterionVisitor/ParentLocationIdIn.php
 
@@ -1136,17 +1111,17 @@ parameters:
 			path: src/lib/Query/Content/CriterionVisitor/SubtreeIn.php
 
 		-
-			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Content/CriterionVisitor/SubtreeIn.php
 
 		-
-			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, int\\|string given\\.$#"
+			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Content/CriterionVisitor/SubtreeIn.php
 
 		-
-			message: "#^Cannot access offset 0 on array\\<int\\|string\\>\\|bool\\|int\\|string\\.$#"
+			message: "#^Cannot access offset 0 on array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string\\.$#"
 			count: 1
 			path: src/lib/Query/Content/CriterionVisitor/Visibility.php
 
@@ -1171,62 +1146,62 @@ parameters:
 			path: src/lib/Query/FacetFieldVisitor.php
 
 		-
-			message: "#^Argument of an invalid type array\\<int\\|string\\>\\|bool\\|int\\|string supplied for foreach, only iterables are supported\\.$#"
+			message: "#^Argument of an invalid type array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/Ancestor.php
 
 		-
-			message: "#^Cannot access offset 0 on array\\<int\\|string\\>\\|bool\\|int\\|string\\.$#"
+			message: "#^Cannot access offset 0 on array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string\\.$#"
 			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/Location/DepthBetween.php
 
 		-
-			message: "#^Argument of an invalid type array\\<int\\|string\\>\\|bool\\|int\\|string supplied for foreach, only iterables are supported\\.$#"
+			message: "#^Argument of an invalid type array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/Location/DepthIn.php
 
 		-
-			message: "#^Cannot access offset 0 on array\\<int\\|string\\>\\|bool\\|int\\|string\\.$#"
+			message: "#^Cannot access offset 0 on array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string\\.$#"
 			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/Location/IsMainLocation.php
 
 		-
-			message: "#^Cannot access offset 0 on array\\<int\\|string\\>\\|bool\\|int\\|string\\.$#"
+			message: "#^Cannot access offset 0 on array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string\\.$#"
 			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/Location/PriorityBetween.php
 
 		-
-			message: "#^Argument of an invalid type array\\<int\\|string\\>\\|bool\\|int\\|string supplied for foreach, only iterables are supported\\.$#"
+			message: "#^Argument of an invalid type array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/Location/PriorityIn.php
 
 		-
-			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/LocationIdIn.php
 
 		-
-			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/LocationRemoteIdIn.php
 
 		-
-			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/ParentLocationIdIn.php
 
 		-
-			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int\\|string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/SubtreeIn.php
 
 		-
-			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, int\\|string given\\.$#"
+			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/SubtreeIn.php
 
 		-
-			message: "#^Cannot access offset 0 on array\\<int\\|string\\>\\|bool\\|int\\|string\\.$#"
+			message: "#^Cannot access offset 0 on array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string\\.$#"
 			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/Visibility.php
 
