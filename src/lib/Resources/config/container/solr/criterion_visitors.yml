@@ -236,6 +236,11 @@ services:
         tags:
             - {name: ibexa.search.solr.query.content.criterion.visitor}
 
+    Ibexa\Solr\Query\Content\CriterionVisitor\ContentName:
+        tags:
+            - {name: ibexa.search.solr.query.content.criterion.visitor}
+            - {name: ibexa.search.solr.query.location.criterion.visitor}
+
     # Location search
     Ibexa\Solr\Query\Location\CriterionVisitor\Ancestor:
         tags:
