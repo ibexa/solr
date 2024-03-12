@@ -73,6 +73,7 @@ class BlockDocumentsBaseContentFields extends ContentFieldMapper
         $ancestorLocationsContentIds[] = $contentInfo->ownerId;
 
         $section = $this->sectionHandler->load($contentInfo->sectionId);
+        $contentType = $this->contentTypeHandler->load($contentInfo->contentTypeId);
 
         return [
             new Field(
@@ -173,8 +174,13 @@ class BlockDocumentsBaseContentFields extends ContentFieldMapper
             ),
             new Field(
                 'content_type_group_ids',
-                $this->contentTypeHandler->load($contentInfo->contentTypeId)->groupIds,
+                $contentType->groupIds,
                 new FieldType\MultipleIdentifierField()
+            ),
+            new Field(
+                'content_type_is_container',
+                $contentType->isContainer,
+                new FieldType\BooleanField()
             ),
             new Field(
                 'content_object_state_ids',

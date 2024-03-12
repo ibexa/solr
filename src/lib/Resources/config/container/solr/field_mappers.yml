@@ -58,6 +58,7 @@ services:
     Ibexa\Solr\FieldMapper\LocationFieldMapper\LocationDocumentBaseFields:
         arguments:
             - '@Ibexa\Contracts\Core\Persistence\Content\Handler'
+            - '@Ibexa\Contracts\Core\Persistence\Content\Type\Handler'
         tags:
             - {name: ibexa.search.solr.field.mapper.location}
 
