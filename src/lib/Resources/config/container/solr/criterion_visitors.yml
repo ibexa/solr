@@ -241,6 +241,10 @@ services:
             - {name: ibexa.search.solr.query.content.criterion.visitor}
             - {name: ibexa.search.solr.query.location.criterion.visitor}
 
+    Ibexa\Solr\Query\Content\CriterionVisitor\IsContainer:
+        tags:
+            - { name: ibexa.search.solr.query.content.criterion.visitor }
+
     # Location search
     Ibexa\Solr\Query\Location\CriterionVisitor\Ancestor:
         tags:
@@ -290,6 +294,10 @@ services:
         factory: ['@Ibexa\Solr\Query\Location\CriterionVisitor\Factory\LocationFullTextFactory', 'createCriterionVisitor']
         tags:
             - {name: ibexa.search.solr.query.location.criterion.visitor}
+
+    Ibexa\Solr\Query\Location\CriterionVisitor\IsContainer:
+        tags:
+            - { name: ibexa.search.solr.query.location.criterion.visitor }
 
     Ibexa\Solr\Query\Location\CriterionVisitor\Factory\LocationFullTextFactory:
         parent: Ibexa\Solr\Query\Common\CriterionVisitor\Factory\FullTextFactoryAbstract
