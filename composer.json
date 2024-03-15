@@ -52,7 +52,7 @@
             "Ibexa\\Tests\\Solr\\": "tests/lib/",
             "Ibexa\\Tests\\Integration\\Core\\": "vendor/ibexa/core/tests/integration/Core/",
             "Ibexa\\Tests\\Core\\": "vendor/ibexa/core/tests/lib/",
-            "Ibexa\\Tests\\Bundle\\Core\\":  "vendor/ibexa/core/tests/bundle/",
+            "Ibexa\\Tests\\Bundle\\Core\\": "vendor/ibexa/core/tests/bundle/",
             "EzSystems\\EzPlatformSolrSearchEngine\\Tests\\": "tests/lib/",
             "EzSystems\\EzPlatformSolrSearchEngineBundle\\Tests\\": "tests/bundle/"
         }
