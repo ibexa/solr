@@ -14,11 +14,11 @@ class IsContainer extends CriterionVisitor
 {
     public function canVisit(Criterion $criterion): bool
     {
-        return $criterion instanceof Criterion\Visibility && $criterion->operator === Operator::EQ;
+        return $criterion instanceof Criterion\IsContainer && $criterion->operator === Operator::EQ;
     }
 
     public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null): string
     {
-        return 'is_container_b:' . ($criterion->value[0] === 1 ? 'true' : 'false');
+        return 'is_container_b:' . ($criterion->value[0] ? 'true' : 'false');
     }
 }

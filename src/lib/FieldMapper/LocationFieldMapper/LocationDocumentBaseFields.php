@@ -119,7 +119,7 @@ class LocationDocumentBaseFields extends LocationFieldMapper
             ),
             new Field(
                 'is_container',
-                ($location->id == $contentType->isContainer),
+                $contentType->isContainer,
                 new FieldType\BooleanField()
             ),
         ];
