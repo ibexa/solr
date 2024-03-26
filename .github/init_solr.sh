@@ -46,7 +46,7 @@ download() {
     case ${SOLR_VERSION} in
         # PS!!: Append versions and don't remove old ones (except in major versions), used in integration tests from other packages!
         7.7.* | 8.* )
-            url="http://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/solr-${SOLR_VERSION}.tgz"
+            url="https://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/solr-${SOLR_VERSION}.tgz"
             ;;
         *)
             echo "Version '${SOLR_VERSION}' is not supported or not valid"
@@ -296,5 +296,3 @@ else
     solr_cloud_upload_collection_configuration
     solr_cloud_create_collections
 fi
-
-
