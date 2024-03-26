@@ -10,7 +10,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
-class IsContainer extends CriterionVisitor
+final class IsContainer extends CriterionVisitor
 {
     public function canVisit(Criterion $criterion): bool
     {
@@ -19,6 +19,12 @@ class IsContainer extends CriterionVisitor
 
     public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null): string
     {
-        return 'is_container_b:' . ($criterion->value[0] ? 'true' : 'false');
+        $value = $criterion->value;
+
+        if (!is_array($value) || !is_bool($value[0])) {
+            throw new \LogicException('Criterion value should be of type array<bool>');
+        }
+
+        return 'is_container_b:' . ($value[0] ? 'true' : 'false');
     }
 }

@@ -19,6 +19,12 @@ final class IsContainer extends CriterionVisitor
 
     public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null): string
     {
-        return 'content_type_is_container_b:' . ($criterion->value[0] ? 'true' : 'false');
+        $value = $criterion->value;
+
+        if (!is_array($value) || !is_bool($value[0])) {
+            throw new \LogicException('Criterion value should be of type array<bool>');
+        }
+
+        return 'content_type_is_container_b:' . ($value[0] ? 'true' : 'false');
     }
 }
