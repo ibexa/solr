@@ -7,8 +7,8 @@
 namespace Ibexa\Solr\FieldMapper\LocationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
-use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
+use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Ibexa\Contracts\Core\Search\Field;
 use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Contracts\Solr\DocumentMapper;
@@ -29,8 +29,7 @@ class LocationDocumentBaseFields extends LocationFieldMapper
     public function __construct(
         ContentHandler $contentHandler,
         ContentTypeHandler $contentTypeHandler
-    )
-    {
+    ) {
         $this->contentHandler = $contentHandler;
         $this->contentTypeHandler = $contentTypeHandler;
     }
