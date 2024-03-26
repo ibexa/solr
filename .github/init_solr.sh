@@ -292,5 +292,3 @@ else
     solr_cloud_upload_collection_configuration
     solr_cloud_create_collections
 fi
-
-
