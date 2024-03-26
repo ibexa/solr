@@ -8,6 +8,7 @@ namespace Ibexa\Solr\FieldMapper\LocationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
+use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Ibexa\Contracts\Core\Search\Field;
 use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Contracts\Solr\DocumentMapper;
@@ -23,9 +24,14 @@ class LocationDocumentBaseFields extends LocationFieldMapper
      */
     protected $contentHandler;
 
-    public function __construct(ContentHandler $contentHandler)
-    {
+    protected ContentTypeHandler $contentTypeHandler;
+
+    public function __construct(
+        ContentHandler $contentHandler,
+        ContentTypeHandler $contentTypeHandler
+    ) {
         $this->contentHandler = $contentHandler;
+        $this->contentTypeHandler = $contentTypeHandler;
     }
 
     public function accept(Location $location)
@@ -36,6 +42,7 @@ class LocationDocumentBaseFields extends LocationFieldMapper
     public function mapFields(Location $location)
     {
         $contentInfo = $this->contentHandler->loadContentInfo($location->contentId);
+        $contentType = $this->contentTypeHandler->load($contentInfo->contentTypeId);
 
         return [
             new Field(
@@ -107,6 +114,11 @@ class LocationDocumentBaseFields extends LocationFieldMapper
             new Field(
                 'is_main_location',
                 ($location->id == $contentInfo->mainLocationId),
+                new FieldType\BooleanField()
+            ),
+            new Field(
+                'is_container',
+                $contentType->isContainer,
                 new FieldType\BooleanField()
             ),
         ];
