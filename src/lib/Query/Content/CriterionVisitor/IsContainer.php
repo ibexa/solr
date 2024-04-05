@@ -22,7 +22,11 @@ final class IsContainer extends CriterionVisitor
         $value = $criterion->value;
 
         if (!is_array($value) || !is_bool($value[0])) {
-            throw new \LogicException('Criterion value should be of type array<bool>');
+            throw new \LogicException(sprintf(
+                '%s value should be of type array<bool>, received %s.',
+                Criterion\IsContainer::class,
+                get_debug_type($value),
+            ));
         }
 
         return 'content_type_is_container_b:' . ($value[0] ? 'true' : 'false');
