@@ -29,6 +29,6 @@ final class IsContainer extends CriterionVisitor
             ));
         }
 
-        return 'is_container_b:' . ($value[0] ? 'true' : 'false');
+        return 'is_container_b:' . $this->toString($value[0]);
     }
 }
