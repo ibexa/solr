@@ -4,14 +4,18 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+declare(strict_types=1);
+
 namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
-abstract class CommonIsContainer extends CommonCriterionVisitor
+abstract class BaseIsContainer extends CriterionVisitor
 {
+    abstract protected function getTargetField(): string;
+
     public function canVisit(Criterion $criterion): bool
     {
         return $criterion instanceof Criterion\IsContainer && $criterion->operator === Operator::EQ;
