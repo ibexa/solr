@@ -12,6 +12,9 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
+/**
+ * @internal
+ */
 abstract class BaseIsContainer extends CriterionVisitor
 {
     abstract protected function getTargetField(): string;

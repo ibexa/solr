@@ -10,6 +10,9 @@ namespace Ibexa\Solr\Query\Content\CriterionVisitor;
 
 use Ibexa\Solr\Query\Common\CriterionVisitor\BaseIsContainer;
 
+/**
+ * @internal
+ */
 final class IsContainer extends BaseIsContainer
 {
     public function getTargetField(): string
