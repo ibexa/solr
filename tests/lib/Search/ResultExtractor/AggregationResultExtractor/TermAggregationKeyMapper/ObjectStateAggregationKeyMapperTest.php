@@ -74,5 +74,3 @@ final class ObjectStateAggregationKeyMapperTest extends TestCase
         return $expectedObjectStates;
     }
 }
-
-class_alias(ObjectStateAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\ObjectStateAggregationKeyMapperTest');

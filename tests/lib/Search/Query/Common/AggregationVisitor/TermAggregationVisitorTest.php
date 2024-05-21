@@ -68,5 +68,3 @@ final class TermAggregationVisitorTest extends AbstractAggregationVisitorTest
         ];
     }
 }
-
-class_alias(TermAggregationVisitorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor\TermAggregationVisitorTest');

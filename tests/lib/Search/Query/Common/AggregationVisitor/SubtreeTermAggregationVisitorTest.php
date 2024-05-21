@@ -70,5 +70,3 @@ final class SubtreeTermAggregationVisitorTest extends AbstractAggregationVisitor
         );
     }
 }
-
-class_alias(SubtreeTermAggregationVisitorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor\SubtreeTermAggregationVisitorTest');

@@ -87,5 +87,3 @@ class CoreFilterRegistryTest extends TestCase
         return $this->createMock(CoreFilter::class);
     }
 }
-
-class_alias(CoreFilterRegistryTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\CoreFilter\CoreFilterRegistryTest');

@@ -101,5 +101,3 @@ final class DateMetadataRangeAggregationVisitorTest extends AbstractAggregationV
         ];
     }
 }
-
-class_alias(DateMetadataRangeAggregationVisitorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor\DateMetadataRangeAggregationVisitorTest');

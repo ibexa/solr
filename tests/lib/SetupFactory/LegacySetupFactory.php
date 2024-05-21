@@ -156,5 +156,3 @@ class LegacySetupFactory extends CoreLegacySetupFactory
         );
     }
 }
-
-class_alias(LegacySetupFactory::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\SetupFactory\LegacySetupFactory');

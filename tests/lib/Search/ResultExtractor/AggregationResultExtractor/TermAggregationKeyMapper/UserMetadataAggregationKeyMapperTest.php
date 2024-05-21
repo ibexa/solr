@@ -110,5 +110,3 @@ final class UserMetadataAggregationKeyMapperTest extends TestCase
         return $users;
     }
 }
-
-class_alias(UserMetadataAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\UserMetadataAggregationKeyMapperTest');

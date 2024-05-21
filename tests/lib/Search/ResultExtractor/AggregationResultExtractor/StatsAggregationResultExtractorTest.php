@@ -95,5 +95,3 @@ final class StatsAggregationResultExtractorTest extends AbstractAggregationResul
         return $data;
     }
 }
-
-class_alias(StatsAggregationResultExtractorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\StatsAggregationResultExtractorTest');

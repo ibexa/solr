@@ -90,5 +90,3 @@ final class DispatcherAggregationVisitorTest extends TestCase
         return $visitor;
     }
 }
-
-class_alias(DispatcherAggregationVisitorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor\DispatcherAggregationVisitorTest');

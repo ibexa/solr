@@ -43,5 +43,3 @@ class CoreFilterRegistryPassTest extends AbstractCompilerPassTestCase
         );
     }
 }
-
-class_alias(CoreFilterRegistryPassTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Container\Compiler\CoreFilterRegistryPassTest');

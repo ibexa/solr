@@ -36,5 +36,3 @@ final class DateTimeRangeAggregationKeyMapperTest extends AbstractRangeAggregati
         return new DateTimeRangeAggregationKeyMapper();
     }
 }
-
-class_alias(DateTimeRangeAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\DateTimeRangeAggregationKeyMapperTest');

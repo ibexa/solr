@@ -696,5 +696,3 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         ];
     }
 }
-
-class_alias(IbexaSolrExtensionExtensionTest::class, 'EzSystems\EzPlatformSolrSearchEngineBundle\Tests\DependencyInjection\EzPublishEzPlatformSolrSearchEngineExtensionTest');

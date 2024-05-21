@@ -35,5 +35,3 @@ final class InvertedBooleanAggregationKeyMapperTest extends TestCase
         );
     }
 }
-
-class_alias(InvertedBooleanAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\InvertedBooleanAggregationKeyMapperTest');

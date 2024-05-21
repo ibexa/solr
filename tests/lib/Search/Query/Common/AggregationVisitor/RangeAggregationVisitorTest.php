@@ -84,5 +84,3 @@ final class RangeAggregationVisitorTest extends AbstractAggregationVisitorTest
         ];
     }
 }
-
-class_alias(RangeAggregationVisitorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor\RangeAggregationVisitorTest');

@@ -121,5 +121,3 @@ final class CountryAggregationKeyMapperTest extends TestCase
         ];
     }
 }
-
-class_alias(CountryAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\CountryAggregationKeyMapperTest');

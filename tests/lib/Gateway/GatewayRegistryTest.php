@@ -89,5 +89,3 @@ class GatewayRegistryTest extends TestCase
         return $this->createMock(Gateway::class);
     }
 }
-
-class_alias(GatewayRegistryTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Gateway\GatewayRegistryTest');

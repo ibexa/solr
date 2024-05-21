@@ -38,5 +38,3 @@ abstract class AbstractRangeAggregationKeyMapperTest extends TestCase
         return $this->createMock(Aggregation::class);
     }
 }
-
-class_alias(AbstractRangeAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\AbstractRangeAggregationKeyMapperTest');

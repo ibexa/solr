@@ -66,5 +66,3 @@ class AggregateFacetBuilderVisitorPassTest extends AbstractCompilerPassTestCase
         );
     }
 }
-
-class_alias(AggregateFacetBuilderVisitorPassTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Container\Compiler\AggregateFacetBuilderVisitorPassTest');

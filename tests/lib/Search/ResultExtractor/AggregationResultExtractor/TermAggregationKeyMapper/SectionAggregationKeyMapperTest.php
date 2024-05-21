@@ -63,5 +63,3 @@ final class SectionAggregationKeyMapperTest extends TestCase
         return $sections;
     }
 }
-
-class_alias(SectionAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\SectionAggregationKeyMapperTest');

@@ -95,5 +95,3 @@ class StandaloneDistributionStrategyTest extends TestCase
         return $endpointRegistry;
     }
 }
-
-class_alias(StandaloneDistributionStrategyTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Gateway\DistributionStrategy\StandaloneDistributionStrategyTest');

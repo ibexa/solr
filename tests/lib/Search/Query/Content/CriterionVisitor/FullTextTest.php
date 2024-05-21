@@ -288,5 +288,3 @@ class FullTextTest extends TestCase
         );
     }
 }
-
-class_alias(FullTextTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Content\CriterionVisitor\FullTextTest');

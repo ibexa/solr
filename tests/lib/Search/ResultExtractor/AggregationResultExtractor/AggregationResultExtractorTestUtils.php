@@ -20,5 +20,3 @@ final class AggregationResultExtractorTestUtils
         /* This class shouldn't be instantiated */
     }
 }
-
-class_alias(AggregationResultExtractorTestUtils::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\AggregationResultExtractorTestUtils');
