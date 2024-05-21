@@ -59,5 +59,3 @@ class Aggregate extends ContentFieldMapper
         return $fields;
     }
 }
-
-class_alias(Aggregate::class, 'EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentFieldMapper\Aggregate');

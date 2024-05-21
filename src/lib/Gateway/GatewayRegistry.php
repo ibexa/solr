@@ -61,5 +61,3 @@ final class GatewayRegistry
         return isset($this->gateways[$connectionName]);
     }
 }
-
-class_alias(GatewayRegistry::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\GatewayRegistry');

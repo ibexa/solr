@@ -30,5 +30,3 @@ class FullText extends ContentFullText
         return "{!child of='document_type_id:content' v='document_type_id:content AND {$condition}'}";
     }
 }
-
-class_alias(FullText::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Location\CriterionVisitor\FullText');

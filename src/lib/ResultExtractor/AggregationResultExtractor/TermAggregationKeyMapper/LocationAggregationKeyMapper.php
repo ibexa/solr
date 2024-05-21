@@ -34,5 +34,3 @@ final class LocationAggregationKeyMapper implements TermAggregationKeyMapper
         return $result;
     }
 }
-
-class_alias(LocationAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\LocationAggregationKeyMapper');

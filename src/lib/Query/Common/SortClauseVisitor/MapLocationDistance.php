@@ -110,5 +110,3 @@ class MapLocationDistance extends SortClauseVisitor
         return "geodist({$fieldName},{$target->latitude},{$target->longitude})" . $this->getDirection($sortClause);
     }
 }
-
-class_alias(MapLocationDistance::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\SortClauseVisitor\MapLocationDistance');

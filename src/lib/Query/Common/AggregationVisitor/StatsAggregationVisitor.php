@@ -36,5 +36,3 @@ final class StatsAggregationVisitor extends AbstractStatsAggregationVisitor
         return $this->aggregationFieldResolver->resolveTargetField($aggregation);
     }
 }
-
-class_alias(StatsAggregationVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\StatsAggregationVisitor');

@@ -53,5 +53,3 @@ class SectionIn extends CriterionVisitor
             ')';
     }
 }
-
-class_alias(SectionIn::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\SectionIn');

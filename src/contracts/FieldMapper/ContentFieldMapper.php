@@ -30,5 +30,3 @@ abstract class ContentFieldMapper
      */
     abstract public function mapFields(SPIContent $content);
 }
-
-class_alias(ContentFieldMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentFieldMapper');

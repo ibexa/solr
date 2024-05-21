@@ -26,5 +26,3 @@ abstract class QueryConverter
      */
     abstract public function convert(Query $query, array $languageSettings = []);
 }
-
-class_alias(QueryConverter::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\QueryConverter');

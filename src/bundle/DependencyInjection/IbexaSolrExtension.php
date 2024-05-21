@@ -342,5 +342,3 @@ class IbexaSolrExtension extends Extension
         );
     }
 }
-
-class_alias(IbexaSolrExtension::class, 'EzSystems\EzPlatformSolrSearchEngineBundle\DependencyInjection\EzSystemsEzPlatformSolrSearchEngineExtension');

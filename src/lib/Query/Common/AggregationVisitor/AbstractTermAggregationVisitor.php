@@ -32,5 +32,3 @@ abstract class AbstractTermAggregationVisitor implements AggregationVisitor
 
     abstract protected function getTargetField(AbstractTermAggregation $aggregation): string;
 }
-
-class_alias(AbstractTermAggregationVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\AbstractTermAggregationVisitor');

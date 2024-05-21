@@ -23,5 +23,3 @@ class Score extends SortClauseVisitor
         return 'score ' . $this->getDirection($sortClause);
     }
 }
-
-class_alias(Score::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\SortClauseVisitor\Score');

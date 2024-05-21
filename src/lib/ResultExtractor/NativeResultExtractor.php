@@ -95,5 +95,3 @@ class NativeResultExtractor extends ResultExtractor
         );
     }
 }
-
-class_alias(NativeResultExtractor::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\NativeResultExtractor');

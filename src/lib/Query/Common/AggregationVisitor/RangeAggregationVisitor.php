@@ -36,5 +36,3 @@ final class RangeAggregationVisitor extends AbstractRangeAggregationVisitor
         return $this->aggregationFieldResolver->resolveTargetField($aggregation);
     }
 }
-
-class_alias(RangeAggregationVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\RangeAggregationVisitor');

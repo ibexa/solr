@@ -212,5 +212,3 @@ abstract class ResultExtractor
         return new SpellcheckResult($spellcheck->getQuery(), false);
     }
 }
-
-class_alias(ResultExtractor::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor');

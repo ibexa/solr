@@ -75,5 +75,3 @@ class Indexer extends IncrementalIndexer
         }
     }
 }
-
-class_alias(Indexer::class, 'EzSystems\EzPlatformSolrSearchEngine\Indexer');

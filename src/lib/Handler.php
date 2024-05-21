@@ -501,5 +501,3 @@ class Handler implements VersatileHandler
         );
     }
 }
-
-class_alias(Handler::class, 'EzSystems\EzPlatformSolrSearchEngine\Handler');

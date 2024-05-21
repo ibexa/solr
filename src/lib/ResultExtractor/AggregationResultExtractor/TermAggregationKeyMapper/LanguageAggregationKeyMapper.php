@@ -34,5 +34,3 @@ final class LanguageAggregationKeyMapper implements TermAggregationKeyMapper
         return $result;
     }
 }
-
-class_alias(LanguageAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\LanguageAggregationKeyMapper');

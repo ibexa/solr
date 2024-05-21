@@ -90,5 +90,3 @@ class Aggregate extends FacetBuilderVisitor implements FacetFieldVisitor
         return [];
     }
 }
-
-class_alias(Aggregate::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\FacetBuilderVisitor\Aggregate');

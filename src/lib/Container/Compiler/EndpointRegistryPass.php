@@ -59,5 +59,3 @@ class EndpointRegistryPass implements CompilerPassInterface
         }
     }
 }
-
-class_alias(EndpointRegistryPass::class, 'EzSystems\EzPlatformSolrSearchEngine\Container\Compiler\EndpointRegistryPass');

@@ -37,5 +37,3 @@ class MatchAll extends CriterionVisitor
         return '*:*';
     }
 }
-
-class_alias(MatchAll::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\MatchAll');

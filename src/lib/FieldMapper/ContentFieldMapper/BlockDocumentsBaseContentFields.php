@@ -277,5 +277,3 @@ class BlockDocumentsBaseContentFields extends ContentFieldMapper
         return array_keys($ancestorLocationContentIds);
     }
 }
-
-class_alias(BlockDocumentsBaseContentFields::class, 'EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentFieldMapper\BlockDocumentsBaseContentFields');

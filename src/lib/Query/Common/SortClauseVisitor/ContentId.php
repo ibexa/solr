@@ -35,5 +35,3 @@ class ContentId extends SortClauseVisitor
         return 'content_id_normalized_i' . $this->getDirection($sortClause);
     }
 }
-
-class_alias(ContentId::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\SortClauseVisitor\ContentId');

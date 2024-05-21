@@ -65,5 +65,3 @@ final class SubtreeTermAggregationVisitor implements AggregationVisitor
         return count(explode('/', trim($pathString, '/')));
     }
 }
-
-class_alias(SubtreeTermAggregationVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\SubtreeTermAggregationVisitor');

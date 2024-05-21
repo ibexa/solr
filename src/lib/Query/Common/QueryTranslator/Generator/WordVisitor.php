@@ -45,5 +45,3 @@ class WordVisitor extends WordBase
         );
     }
 }
-
-class_alias(WordVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\QueryTranslator\Generator\WordVisitor');

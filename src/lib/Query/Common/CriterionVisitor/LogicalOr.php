@@ -54,5 +54,3 @@ class LogicalOr extends CriterionVisitor
         return '(' . implode(' OR ', $subCriteria) . ')';
     }
 }
-
-class_alias(LogicalOr::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\LogicalOr');

@@ -84,5 +84,3 @@ class SolrEngineFactory
         );
     }
 }
-
-class_alias(SolrEngineFactory::class, 'EzSystems\EzPlatformSolrSearchEngineBundle\ApiLoader\SolrEngineFactory');

@@ -30,5 +30,3 @@ abstract class LocationFieldMapper
      */
     abstract public function mapFields(SPILocation $location);
 }
-
-class_alias(LocationFieldMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\FieldMapper\LocationFieldMapper');

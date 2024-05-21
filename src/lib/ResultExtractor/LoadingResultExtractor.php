@@ -70,5 +70,3 @@ class LoadingResultExtractor extends ResultExtractor
         throw new RuntimeException("Could not extract: document of type '{$hit->document_type_id}' is not handled.");
     }
 }
-
-class_alias(LoadingResultExtractor::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\LoadingResultExtractor');

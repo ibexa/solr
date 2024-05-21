@@ -32,5 +32,3 @@ class Message
         $this->body = $body;
     }
 }
-
-class_alias(Message::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\Message');

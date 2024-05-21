@@ -78,5 +78,3 @@ class FieldRelation extends Field
         return '(' . implode($op, $queries) . ')';
     }
 }
-
-class_alias(FieldRelation::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\Field\FieldRelation');

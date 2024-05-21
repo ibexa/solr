@@ -58,5 +58,3 @@ abstract class AbstractRangeAggregationVisitor implements AggregationVisitor
         return (string)$value;
     }
 }
-
-class_alias(AbstractRangeAggregationVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\AbstractRangeAggregationVisitor');

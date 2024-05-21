@@ -22,5 +22,3 @@ final class IntRangeAggregationKeyMapper implements RangeAggregationKeyMapper
         return (int)$key;
     }
 }
-
-class_alias(IntRangeAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\IntRangeAggregationKeyMapper');

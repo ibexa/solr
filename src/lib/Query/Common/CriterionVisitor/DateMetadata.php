@@ -37,5 +37,3 @@ abstract class DateMetadata extends CriterionVisitor
         return $date->format('Y-m-d\\TH:i:s\\Z');
     }
 }
-
-class_alias(DateMetadata::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\DateMetadata');

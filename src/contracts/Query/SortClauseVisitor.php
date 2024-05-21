@@ -38,5 +38,3 @@ abstract class SortClauseVisitor
         return ' ' . ($sortClause->direction === 'descending' ? 'desc' : 'asc');
     }
 }
-
-class_alias(SortClauseVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\SortClauseVisitor');

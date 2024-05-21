@@ -280,5 +280,3 @@ class NativeCoreFilter extends CoreFilter
         return $excludedLanguageCodes;
     }
 }
-
-class_alias(NativeCoreFilter::class, 'EzSystems\EzPlatformSolrSearchEngine\CoreFilter\NativeCoreFilter');

@@ -98,5 +98,3 @@ class Field extends SortClauseVisitor
         return $fieldName . $this->getDirection($sortClause);
     }
 }
-
-class_alias(Field::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\SortClauseVisitor\Field');

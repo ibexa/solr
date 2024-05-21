@@ -23,5 +23,3 @@ final class DateTimeRangeAggregationKeyMapper implements RangeAggregationKeyMapp
         return new DateTimeImmutable($key);
     }
 }
-
-class_alias(DateTimeRangeAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\DateTimeRangeAggregationKeyMapper');

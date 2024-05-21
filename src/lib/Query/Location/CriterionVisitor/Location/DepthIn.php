@@ -48,5 +48,3 @@ class DepthIn extends CriterionVisitor
         return '(' . implode(' OR ', $values) . ')';
     }
 }
-
-class_alias(DepthIn::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Location\CriterionVisitor\Location\DepthIn');

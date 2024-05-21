@@ -21,5 +21,3 @@ final class InvertedBooleanAggregationKeyMapper implements TermAggregationKeyMap
         ];
     }
 }
-
-class_alias(InvertedBooleanAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\InvertedBooleanAggregationKeyMapper');

@@ -62,5 +62,3 @@ class CustomFieldIn extends CriterionVisitor
         return preg_match('#^/.*/$#', $preparedValue);
     }
 }
-
-class_alias(CustomFieldIn::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\CustomField\CustomFieldIn');

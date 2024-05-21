@@ -26,5 +26,3 @@ final class SearchFieldAggregationFieldResolver implements AggregationFieldResol
         return $this->searchIndexFieldName;
     }
 }
-
-class_alias(SearchFieldAggregationFieldResolver::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\AggregationFieldResolver\SearchFieldAggregationFieldResolver');

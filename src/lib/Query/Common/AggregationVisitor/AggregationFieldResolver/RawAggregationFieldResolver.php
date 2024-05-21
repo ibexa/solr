@@ -21,5 +21,3 @@ final class RawAggregationFieldResolver implements AggregationFieldResolver
         return $aggregation->getFieldName();
     }
 }
-
-class_alias(RawAggregationFieldResolver::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\AggregationFieldResolver\RawAggregationFieldResolver');

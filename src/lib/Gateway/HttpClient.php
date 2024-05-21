@@ -26,5 +26,3 @@ interface HttpClient
      */
     public function request($method, Endpoint $endpoint, $path, Message $message = null);
 }
-
-class_alias(HttpClient::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\HttpClient');

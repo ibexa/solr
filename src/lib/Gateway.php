@@ -75,5 +75,3 @@ abstract class Gateway
      */
     abstract public function commit($flush = false);
 }
-
-class_alias(Gateway::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway');

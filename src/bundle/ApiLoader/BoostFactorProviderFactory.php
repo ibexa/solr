@@ -69,5 +69,3 @@ class BoostFactorProviderFactory implements ContainerAwareInterface
         );
     }
 }
-
-class_alias(BoostFactorProviderFactory::class, 'EzSystems\EzPlatformSolrSearchEngineBundle\ApiLoader\BoostFactorProviderFactory');

@@ -49,5 +49,3 @@ interface EndpointResolver
      */
     public function getEndpoints();
 }
-
-class_alias(EndpointResolver::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointResolver');

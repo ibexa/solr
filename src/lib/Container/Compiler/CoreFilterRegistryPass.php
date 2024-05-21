@@ -47,5 +47,3 @@ final class CoreFilterRegistryPass implements CompilerPassInterface
         }
     }
 }
-
-class_alias(CoreFilterRegistryPass::class, 'EzSystems\EzPlatformSolrSearchEngine\Container\Compiler\CoreFilterRegistryPass');

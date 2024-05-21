@@ -75,5 +75,3 @@ class FieldRange extends Field
         return '(' . implode(' OR ', $queries) . ')';
     }
 }
-
-class_alias(FieldRange::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\Field\FieldRange');

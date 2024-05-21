@@ -34,5 +34,3 @@ class ContentDocumentBaseFields extends ContentFieldMapper
         ];
     }
 }
-
-class_alias(ContentDocumentBaseFields::class, 'EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentFieldMapper\ContentDocumentBaseFields');

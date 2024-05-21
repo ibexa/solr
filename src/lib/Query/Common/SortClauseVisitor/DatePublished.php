@@ -35,5 +35,3 @@ class DatePublished extends SortClauseVisitor
         return 'content_publication_date_dt' . $this->getDirection($sortClause);
     }
 }
-
-class_alias(DatePublished::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\SortClauseVisitor\DatePublished');

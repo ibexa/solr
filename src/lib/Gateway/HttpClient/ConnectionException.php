@@ -28,5 +28,3 @@ class ConnectionException extends RuntimeException
         );
     }
 }
-
-class_alias(ConnectionException::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\HttpClient\ConnectionException');

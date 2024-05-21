@@ -141,5 +141,3 @@ class FullText extends CriterionVisitor
         return 1.0 / pow(2.0, $depth);
     }
 }
-
-class_alias(FullText::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Content\CriterionVisitor\FullText');

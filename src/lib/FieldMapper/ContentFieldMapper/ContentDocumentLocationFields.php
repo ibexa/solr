@@ -148,5 +148,3 @@ class ContentDocumentLocationFields extends ContentFieldMapper
         return $ancestorsIds;
     }
 }
-
-class_alias(ContentDocumentLocationFields::class, 'EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentFieldMapper\ContentDocumentLocationFields');

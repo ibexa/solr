@@ -35,5 +35,3 @@ class IsMainLocation extends SortClauseVisitor
         return 'is_main_location_b' . $this->getDirection($sortClause);
     }
 }
-
-class_alias(IsMainLocation::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Location\SortClauseVisitor\Location\IsMainLocation');

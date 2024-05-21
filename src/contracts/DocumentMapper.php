@@ -72,5 +72,3 @@ interface DocumentMapper
      */
     public function generateLocationDocumentId($locationId, $languageCode = null);
 }
-
-class_alias(DocumentMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\DocumentMapper');

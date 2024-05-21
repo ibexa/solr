@@ -72,5 +72,3 @@ abstract class Field extends CriterionVisitor
         return current($value);
     }
 }
-
-class_alias(Field::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\Field');

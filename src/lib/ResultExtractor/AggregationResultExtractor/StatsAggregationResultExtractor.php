@@ -41,5 +41,3 @@ final class StatsAggregationResultExtractor implements AggregationResultExtracto
         );
     }
 }
-
-class_alias(StatsAggregationResultExtractor::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\StatsAggregationResultExtractor');

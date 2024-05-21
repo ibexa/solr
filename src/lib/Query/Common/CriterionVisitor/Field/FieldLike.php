@@ -66,5 +66,3 @@ class FieldLike extends Field
         return '(' . implode(' OR ', $queries) . ')';
     }
 }
-
-class_alias(FieldLike::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\Field\FieldLike');

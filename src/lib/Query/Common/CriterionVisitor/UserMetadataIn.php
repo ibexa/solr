@@ -69,5 +69,3 @@ class UserMetadataIn extends CriterionVisitor
             ')';
     }
 }
-
-class_alias(UserMetadataIn::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\UserMetadataIn');

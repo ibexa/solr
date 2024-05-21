@@ -57,5 +57,3 @@ class PublishedIn extends DateMetadata
         );
     }
 }
-
-class_alias(PublishedIn::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\DateMetadata\PublishedIn');

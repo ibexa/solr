@@ -17,5 +17,3 @@ class ContentFieldMapperPass extends BaseFieldMapperPass
     public const AGGREGATE_MAPPER_SERVICE_ID = 'ibexa.solr.field_mapper.content';
     public const AGGREGATE_MAPPER_SERVICE_TAG = 'ibexa.search.solr.field.mapper.content';
 }
-
-class_alias(ContentFieldMapperPass::class, 'EzSystems\EzPlatformSolrSearchEngine\Container\Compiler\FieldMapperPass\ContentFieldMapperPass');

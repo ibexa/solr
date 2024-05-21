@@ -45,5 +45,3 @@ class ObjectStateIdentifierIn extends CriterionVisitor
         );
     }
 }
-
-class_alias(ObjectStateIdentifierIn::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\ObjectStateIdentifierIn');

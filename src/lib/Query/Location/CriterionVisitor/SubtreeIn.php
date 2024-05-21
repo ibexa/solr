@@ -53,5 +53,3 @@ class SubtreeIn extends CriterionVisitor
             ')';
     }
 }
-
-class_alias(SubtreeIn::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Location\CriterionVisitor\SubtreeIn');

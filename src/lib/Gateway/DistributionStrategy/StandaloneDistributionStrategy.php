@@ -29,5 +29,3 @@ final class StandaloneDistributionStrategy extends AbstractDistributionStrategy
         return $parameters;
     }
 }
-
-class_alias(StandaloneDistributionStrategy::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\DistributionStrategy\StandaloneDistributionStrategy');

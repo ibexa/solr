@@ -37,5 +37,3 @@ final class ContentFullTextFactory extends FullTextFactoryAbstract
         );
     }
 }
-
-class_alias(ContentFullTextFactory::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Content\CriterionVisitor\Factory\ContentFullTextFactory');

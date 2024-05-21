@@ -80,5 +80,3 @@ final class FieldEmpty extends Field
         return '(' . implode(' OR ', $queries) . ')';
     }
 }
-
-class_alias(FieldEmpty::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\Field\FieldEmpty');

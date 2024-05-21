@@ -36,5 +36,3 @@ final class ObjectStateAggregationVisitor implements AggregationVisitor
         ];
     }
 }
-
-class_alias(ObjectStateAggregationVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\ObjectStateAggregationVisitor');

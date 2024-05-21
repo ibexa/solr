@@ -57,5 +57,3 @@ class PriorityBetween extends CriterionVisitor
         return 'priority_i:' . $this->getRange($criterion->operator, $start, $end);
     }
 }
-
-class_alias(PriorityBetween::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Location\CriterionVisitor\Location\PriorityBetween');

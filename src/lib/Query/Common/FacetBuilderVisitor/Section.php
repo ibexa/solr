@@ -52,5 +52,3 @@ class Section extends FacetBuilderVisitor implements FacetFieldVisitor
         ];
     }
 }
-
-class_alias(Section::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\FacetBuilderVisitor\Section');

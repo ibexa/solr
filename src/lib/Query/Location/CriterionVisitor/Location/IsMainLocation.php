@@ -37,5 +37,3 @@ class IsMainLocation extends CriterionVisitor
         return 'is_main_location_b:' . ($criterion->value[0] === Criterion\Location\IsMainLocation::MAIN ? 'true' : 'false');
     }
 }
-
-class_alias(IsMainLocation::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Location\CriterionVisitor\Location\IsMainLocation');

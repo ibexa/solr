@@ -35,5 +35,3 @@ class DateModified extends SortClauseVisitor
         return 'content_modification_date_dt' . $this->getDirection($sortClause);
     }
 }
-
-class_alias(DateModified::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\SortClauseVisitor\DateModified');

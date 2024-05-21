@@ -53,5 +53,3 @@ class LanguageCodeIn extends CriterionVisitor
         return '(' . implode(' OR ', $languageCodeExpressions) . ')';
     }
 }
-
-class_alias(LanguageCodeIn::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\LanguageCodeIn');

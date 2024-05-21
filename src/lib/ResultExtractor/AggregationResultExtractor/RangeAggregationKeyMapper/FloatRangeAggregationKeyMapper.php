@@ -22,5 +22,3 @@ final class FloatRangeAggregationKeyMapper implements RangeAggregationKeyMapper
         return (float)$key;
     }
 }
-
-class_alias(FloatRangeAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\FloatRangeAggregationKeyMapper');
