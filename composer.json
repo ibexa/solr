@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": ">=8.3",
         "ext-json": "*",
         "ext-xmlwriter": "*",
         "ibexa/core": "~5.0.0@dev",
@@ -26,15 +26,15 @@
         "symfony/http-client": "^5.4"
     },
     "require-dev": {
-        "symfony/proxy-manager-bridge": "^5.4",
-        "symfony/phpunit-bridge": "^5.4",
+        "ibexa/code-style": "~2.0.0",
         "ibexa/doctrine-schema": "~5.0.0@dev",
-        "phpunit/phpunit": "^8.2",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1",
-        "ibexa/code-style": "^1.0",
         "phpstan/phpstan": "^1.8",
         "phpstan/phpstan-phpunit": "^1.1",
-        "phpstan/phpstan-symfony": "^1.2"
+        "phpstan/phpstan-symfony": "^1.2",
+        "phpunit/phpunit": "^9.6",
+        "symfony/phpunit-bridge": "^5.4",
+        "symfony/proxy-manager-bridge": "^5.4"
     },
     "autoload": {
         "psr-4": {
@@ -74,6 +74,7 @@
         }
     },
     "config": {
-        "allow-plugins": false
+        "allow-plugins": false,
+        "sort-packages": true
     }
 }
