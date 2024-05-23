@@ -37,7 +37,7 @@ abstract class AbstractAggregationResultExtractorTest extends TestCase
         array $languageFilter,
         bool $expectedResult
     ): void {
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             $this->extractor->canVisit($aggregation, $languageFilter)
         );
@@ -54,7 +54,7 @@ abstract class AbstractAggregationResultExtractorTest extends TestCase
         stdClass $rawData,
         AggregationResult $expectedResult
     ): void {
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             $this->extractor->extract($aggregation, $languageFilter, $rawData)
         );

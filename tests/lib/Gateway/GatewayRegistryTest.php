@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\Solr\Gateway;
 
 use Ibexa\Solr\Gateway;
@@ -21,7 +22,7 @@ class GatewayRegistryTest extends TestCase
         $registry = new GatewayRegistry();
         $registry->addGateway('connection1', $this->getGatewayMock());
 
-        $this->assertCount(1, $registry->getGateways());
+        self::assertCount(1, $registry->getGateways());
     }
 
     /**
@@ -32,7 +33,7 @@ class GatewayRegistryTest extends TestCase
         $registry = new GatewayRegistry();
         $registry->addGateway('connection1', $this->getGatewayMock());
 
-        $this->assertInstanceOf(Gateway::class, $registry->getGateway('connection1'));
+        self::assertInstanceOf(Gateway::class, $registry->getGateway('connection1'));
     }
 
     /**
@@ -54,7 +55,7 @@ class GatewayRegistryTest extends TestCase
         $registry = new GatewayRegistry();
         $registry->addGateway('connection1', $this->getGatewayMock());
 
-        $this->assertTrue($registry->hasGateway('connection1'));
+        self::assertTrue($registry->hasGateway('connection1'));
     }
 
     /**
@@ -67,7 +68,7 @@ class GatewayRegistryTest extends TestCase
         $registry = new GatewayRegistry();
         $registry->setGateways($gateways);
 
-        $this->assertEquals($gateways, $registry->getGateways());
+        self::assertEquals($gateways, $registry->getGateways());
     }
 
     /**
@@ -77,7 +78,7 @@ class GatewayRegistryTest extends TestCase
     {
         $registry = new GatewayRegistry(['connection1' => $this->getGatewayMock()]);
 
-        $this->assertCount(1, $registry->getGateways());
+        self::assertCount(1, $registry->getGateways());
     }
 
     /**

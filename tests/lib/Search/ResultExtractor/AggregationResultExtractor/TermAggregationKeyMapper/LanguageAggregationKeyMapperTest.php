@@ -40,7 +40,7 @@ final class LanguageAggregationKeyMapperTest extends TestCase
             ->with(self::EXAMPLE_LANGUAGE_CODES)
             ->willReturn($expectedLanguages);
 
-        $this->assertEquals(
+        self::assertEquals(
             array_combine(
                 self::EXAMPLE_LANGUAGE_CODES,
                 $expectedLanguages

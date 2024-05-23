@@ -40,7 +40,7 @@ final class LocationAggregationKeyMapperTest extends TestCase
             ->with(self::EXAMPLE_LOCATION_IDS)
             ->willReturn($expectedLocations);
 
-        $this->assertEquals(
+        self::assertEquals(
             array_combine(
                 self::EXAMPLE_LOCATION_IDS,
                 $expectedLocations

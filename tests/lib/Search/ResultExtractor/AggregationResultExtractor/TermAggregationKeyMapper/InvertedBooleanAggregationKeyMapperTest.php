@@ -19,7 +19,7 @@ final class InvertedBooleanAggregationKeyMapperTest extends TestCase
     {
         $mapper = new InvertedBooleanAggregationKeyMapper();
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 false => true,
                 true => false,

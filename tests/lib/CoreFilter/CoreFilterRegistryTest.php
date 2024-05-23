@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\Solr\CoreFilter;
 
 use Ibexa\Solr\CoreFilter;
@@ -21,7 +22,7 @@ class CoreFilterRegistryTest extends TestCase
         $registry = new CoreFilterRegistry();
         $registry->addCoreFilter('connection1', $this->getCoreFilterMock());
 
-        $this->assertCount(1, $registry->getCoreFilters());
+        self::assertCount(1, $registry->getCoreFilters());
     }
 
     /**
@@ -31,7 +32,7 @@ class CoreFilterRegistryTest extends TestCase
     {
         $registry = new CoreFilterRegistry(['connection1' => $this->getCoreFilterMock()]);
 
-        $this->assertInstanceOf(CoreFilter::class, $registry->getCoreFilter('connection1'));
+        self::assertInstanceOf(CoreFilter::class, $registry->getCoreFilter('connection1'));
     }
 
     /**
@@ -52,7 +53,7 @@ class CoreFilterRegistryTest extends TestCase
     {
         $registry = new CoreFilterRegistry(['connection1' => $this->getCoreFilterMock()]);
 
-        $this->assertTrue($registry->hasCoreFilter('connection1'));
+        self::assertTrue($registry->hasCoreFilter('connection1'));
     }
 
     /**
@@ -65,7 +66,7 @@ class CoreFilterRegistryTest extends TestCase
         $registry = new CoreFilterRegistry();
         $registry->setCoreFilters($coreFilters);
 
-        $this->assertEquals($coreFilters, $registry->getCoreFilters());
+        self::assertEquals($coreFilters, $registry->getCoreFilters());
     }
 
     /**
@@ -75,7 +76,7 @@ class CoreFilterRegistryTest extends TestCase
     {
         $registry = new CoreFilterRegistry(['connection1' => $this->getCoreFilterMock()]);
 
-        $this->assertCount(1, $registry->getCoreFilters());
+        self::assertCount(1, $registry->getCoreFilters());
     }
 
     /**

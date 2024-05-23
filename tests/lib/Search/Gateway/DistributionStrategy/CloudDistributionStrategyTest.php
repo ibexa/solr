@@ -47,7 +47,7 @@ class CloudDistributionStrategyTest extends TestCase
     public function testGetSearchParameters(): void
     {
         $this->endpointResolver
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getEndpoints')
             ->willReturn(['en', 'de', 'fr', 'pl']);
 
@@ -56,7 +56,7 @@ class CloudDistributionStrategyTest extends TestCase
             'indent' => true,
         ];
 
-        $this->assertEquals([
+        self::assertEquals([
             'wt' => 'json',
             'indent' => true,
             'collection' => 'collection_en,collection_de,collection_fr,collection_pl',
@@ -70,7 +70,7 @@ class CloudDistributionStrategyTest extends TestCase
         ];
 
         $this->endpointResolver
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getSearchTargets')
             ->with($languagesSettings)
             ->willReturn(['en', 'pl']);
@@ -80,7 +80,7 @@ class CloudDistributionStrategyTest extends TestCase
             'indent' => true,
         ];
 
-        $this->assertEquals([
+        self::assertEquals([
             'wt' => 'json',
             'indent' => true,
             'collection' => 'collection_en,collection_pl',

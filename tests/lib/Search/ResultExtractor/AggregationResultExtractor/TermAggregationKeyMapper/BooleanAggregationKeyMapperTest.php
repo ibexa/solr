@@ -19,7 +19,7 @@ final class BooleanAggregationKeyMapperTest extends TestCase
     {
         $mapper = new BooleanAggregationKeyMapper();
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 false => false,
                 true => true,

@@ -40,7 +40,7 @@ class StandaloneDistributionStrategyTest extends TestCase
     public function testGetSearchTargets(): void
     {
         $this->endpointResolver
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getEndpoints')
             ->willReturn(['A', 'B', 'C']);
 
@@ -49,7 +49,7 @@ class StandaloneDistributionStrategyTest extends TestCase
             'indent' => true,
         ]);
 
-        $this->assertEquals([
+        self::assertEquals([
             'wt' => 'json',
             'indent' => true,
             'shards' => '127.0.0.65:8983/solr/collection1,127.0.0.66:8983/solr/collection1,127.0.0.67:8983/solr/collection1',
@@ -63,7 +63,7 @@ class StandaloneDistributionStrategyTest extends TestCase
         ];
 
         $this->endpointResolver
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getSearchTargets')
             ->with($languagesSettings)
             ->willReturn(['A', 'B']);
@@ -73,7 +73,7 @@ class StandaloneDistributionStrategyTest extends TestCase
             'indent' => true,
         ];
 
-        $this->assertEquals([
+        self::assertEquals([
             'wt' => 'json',
             'indent' => true,
             'shards' => '127.0.0.65:8983/solr/collection1,127.0.0.66:8983/solr/collection1',

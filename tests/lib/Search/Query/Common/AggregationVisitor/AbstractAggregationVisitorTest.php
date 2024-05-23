@@ -42,7 +42,7 @@ abstract class AbstractAggregationVisitorTest extends TestCase
         array $languageFilter,
         bool $expectedValue
     ): void {
-        $this->assertEquals(
+        self::assertEquals(
             $expectedValue,
             $this->visitor->canVisit($aggregation, $languageFilter)
         );
@@ -70,7 +70,7 @@ abstract class AbstractAggregationVisitorTest extends TestCase
     ): void {
         $this->configureMocksForTestVisit($aggregation, $languageFilter, $expectedResult);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             $this->visitor->visit($this->dispatcherVisitor, $aggregation, $languageFilter)
         );

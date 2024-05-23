@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\Solr\Search\FieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content\Type as SPIContentType;
@@ -126,7 +127,7 @@ class BoostFactorProviderTest extends TestCase
             $this->getFieldDefinitionStub($fieldDefinitionIdentifier)
         );
 
-        $this->assertEquals($expectedBoostFactor, $boostFactor);
+        self::assertEquals($expectedBoostFactor, $boostFactor);
     }
 
     public function providerForTestGetContentMetaFieldBoostFactor()
@@ -252,7 +253,7 @@ class BoostFactorProviderTest extends TestCase
             $fieldName
         );
 
-        $this->assertEquals($expectedBoostFactor, $boostFactor);
+        self::assertEquals($expectedBoostFactor, $boostFactor);
     }
 
     protected function getFieldBoostProvider(array $map)

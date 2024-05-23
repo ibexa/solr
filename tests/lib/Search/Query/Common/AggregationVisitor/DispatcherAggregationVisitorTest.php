@@ -37,7 +37,7 @@ final class DispatcherAggregationVisitorTest extends TestCase
             $this->createVisitorMock($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false),
         ]);
 
-        $this->assertTrue($dispatcher->canVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER));
+        self::assertTrue($dispatcher->canVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER));
     }
 
     public function testCanVisitOnNonSupportedAggregation(): void
@@ -50,7 +50,7 @@ final class DispatcherAggregationVisitorTest extends TestCase
             $this->createVisitorMock($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false),
         ]);
 
-        $this->assertFalse($dispatcher->canVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER));
+        self::assertFalse($dispatcher->canVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER));
     }
 
     public function testVisit(): void
@@ -68,7 +68,7 @@ final class DispatcherAggregationVisitorTest extends TestCase
             ->with($dispatcher, $aggregation, self::EXAMPLE_LANGUAGE_FILTER)
             ->willReturn(self::EXAMPLE_VISITOR_RESULT);
 
-        $this->assertEquals(
+        self::assertEquals(
             self::EXAMPLE_VISITOR_RESULT,
             $dispatcher->visit($dispatcher, $aggregation, self::EXAMPLE_LANGUAGE_FILTER)
         );

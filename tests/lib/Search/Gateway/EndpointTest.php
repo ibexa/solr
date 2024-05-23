@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\Solr\Search\Gateway;
 
 use Ibexa\Contracts\Core\Repository\Exceptions\PropertyNotFoundException;
@@ -28,7 +29,7 @@ class EndpointTest extends TestCase
                 'core' => 'core0',
         ]);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testEndpointDsnParsingWithoutUser()
@@ -44,7 +45,7 @@ class EndpointTest extends TestCase
                 'core' => 'core0',
         ]);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testEndpointDsnParsingWithFragment()
@@ -60,7 +61,7 @@ class EndpointTest extends TestCase
                 'core' => 'core1',
         ]);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testEndpointDsnParsingOverridesAllIfSet()
@@ -85,7 +86,7 @@ class EndpointTest extends TestCase
                 'core' => 'core1',
         ]);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testEndpointDsnParsingWithQuery()

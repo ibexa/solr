@@ -39,12 +39,12 @@ final class NestedAggregationResultExtractorTest extends TestCase
         $aggregation = $this->createMock(Aggregation::class);
 
         $this->innerResultExtractor
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('canVisit')
             ->with($aggregation, AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER)
             ->willReturn(true);
 
-        $this->assertTrue(
+        self::assertTrue(
             $this->resultExtractor->canVisit(
                 $aggregation,
                 AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER
@@ -62,7 +62,7 @@ final class NestedAggregationResultExtractorTest extends TestCase
         $aggregation = $this->createMock(Aggregation::class);
 
         $this->innerResultExtractor
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('extract')
             ->with(
                 $aggregation,
@@ -74,7 +74,7 @@ final class NestedAggregationResultExtractorTest extends TestCase
         $wrappedData = new stdClass();
         $wrappedData->{self::EXAMPLE_NESTED_RESULT_KEY} = $data;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             $this->resultExtractor->extract(
                 $aggregation,

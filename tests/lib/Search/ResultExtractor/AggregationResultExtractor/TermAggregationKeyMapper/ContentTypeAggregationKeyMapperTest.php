@@ -38,7 +38,7 @@ final class ContentTypeAggregationKeyMapperTest extends TestCase
 
         $mapper = new ContentTypeAggregationKeyMapper($this->contentTypeService);
 
-        $this->assertEquals(
+        self::assertEquals(
             array_combine(
                 self::EXAMPLE_CONTENT_TYPE_IDS,
                 $expectedContentTypes

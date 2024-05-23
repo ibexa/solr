@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\Solr\Search\Gateway\EndpointResolver;
 
 use Ibexa\Solr\Gateway\EndpointResolver\NativeEndpointResolver;
@@ -26,7 +27,7 @@ class NativeEndpointResolverTest extends TestCase
 
         $endpointResolver = $this->getEndpointResolver($entryEndpoints);
 
-        $this->assertEquals(
+        self::assertEquals(
             'endpoint2',
             $endpointResolver->getEntryEndpoint()
         );
@@ -50,7 +51,7 @@ class NativeEndpointResolverTest extends TestCase
 
         $endpointResolver = $this->getEndpointResolver([], $endpointMap);
 
-        $this->assertEquals(
+        self::assertEquals(
             'endpoint3',
             $endpointResolver->getIndexingTarget('eng-GB')
         );
@@ -63,7 +64,7 @@ class NativeEndpointResolverTest extends TestCase
 
         $endpointResolver = $this->getEndpointResolver([], $endpointMap, $defaultEndpoint);
 
-        $this->assertEquals(
+        self::assertEquals(
             'endpoint4',
             $endpointResolver->getIndexingTarget('ger-DE')
         );
@@ -82,7 +83,7 @@ class NativeEndpointResolverTest extends TestCase
 
         $endpointResolver = $this->getEndpointResolver([], [], null, $mainLanguagesEndpoint);
 
-        $this->assertEquals(
+        self::assertEquals(
             'endpoint5',
             $endpointResolver->getMainLanguagesEndpoint()
         );
@@ -92,7 +93,7 @@ class NativeEndpointResolverTest extends TestCase
     {
         $endpointResolver = $this->getEndpointResolver();
 
-        $this->assertNull($endpointResolver->getMainLanguagesEndpoint());
+        self::assertNull($endpointResolver->getMainLanguagesEndpoint());
     }
 
     public function providerForTestGetSearchTargets()
@@ -822,10 +823,10 @@ class NativeEndpointResolverTest extends TestCase
 
         $actual = $endpointResolver->getSearchTargets($languageSettings);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
 
         if ($endpointResolver instanceof SingleEndpointResolver) {
-            $this->assertEquals($expectedIsMultiple, $endpointResolver->hasMultipleEndpoints());
+            self::assertEquals($expectedIsMultiple, $endpointResolver->hasMultipleEndpoints());
         }
     }
 
@@ -940,7 +941,7 @@ class NativeEndpointResolverTest extends TestCase
         try {
             $endpointResolver->getSearchTargets($languageSettings);
         } catch (RuntimeException $e) {
-            $this->assertEquals($message, $e->getMessage());
+            self::assertEquals($message, $e->getMessage());
 
             throw $e;
         }
@@ -1033,7 +1034,7 @@ class NativeEndpointResolverTest extends TestCase
 
         $endpoints = $endpointResolver->getEndpoints();
 
-        $this->assertEquals($expected, $endpoints);
+        self::assertEquals($expected, $endpoints);
     }
 
     public function testGetEndpointsThrowsRuntimeException()

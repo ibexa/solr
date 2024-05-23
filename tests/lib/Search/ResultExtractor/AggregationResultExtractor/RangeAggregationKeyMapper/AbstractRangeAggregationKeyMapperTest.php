@@ -23,7 +23,7 @@ abstract class AbstractRangeAggregationKeyMapperTest extends TestCase
     {
         $mapper = $this->createRangeAggregationKeyMapper();
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             $mapper->map($aggregation, $languageFilter, $key)
         );
