@@ -53,7 +53,7 @@ final class CountryAggregationKeyMapperTest extends TestCase
     ): void {
         $mapper = new CountryAggregationKeyMapper(self::EXAMPLE_COUNTRIES_INFO);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             $mapper->map(
                 $aggregation,

@@ -18,11 +18,11 @@ class IndexingDepthProviderTest extends TestCase
     {
         $indexingDepthProvider = $this->createIndexingDepthProvider();
 
-        $this->assertEquals(2, $indexingDepthProvider->getMaxDepthForContent(
+        self::assertEquals(2, $indexingDepthProvider->getMaxDepthForContent(
             $this->getContentTypeStub('article')
         ));
 
-        $this->assertEquals(1, $indexingDepthProvider->getMaxDepthForContent(
+        self::assertEquals(1, $indexingDepthProvider->getMaxDepthForContent(
             $this->getContentTypeStub('blog_post')
         ));
     }
@@ -31,14 +31,14 @@ class IndexingDepthProviderTest extends TestCase
     {
         $indexingDepthProvider = $this->createIndexingDepthProvider();
 
-        $this->assertEquals(0, $indexingDepthProvider->getMaxDepthForContent(
+        self::assertEquals(0, $indexingDepthProvider->getMaxDepthForContent(
             $this->getContentTypeStub('folder')
         ));
     }
 
     public function testGetMaxDepth()
     {
-        $this->assertEquals(2, $this->createIndexingDepthProvider()->getMaxDepth());
+        self::assertEquals(2, $this->createIndexingDepthProvider()->getMaxDepth());
     }
 
     private function createIndexingDepthProvider(): IndexingDepthProvider

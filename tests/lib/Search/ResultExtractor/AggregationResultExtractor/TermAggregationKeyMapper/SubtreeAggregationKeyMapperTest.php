@@ -43,7 +43,7 @@ final class SubtreeAggregationKeyMapperTest extends TestCase
 
         $mapper = new SubtreeAggregationKeyMapper($this->locationAggregationKeyMapper);
 
-        $this->assertEquals(
+        self::assertEquals(
             $exceptedResult,
             $mapper->map(
                 $aggregation,

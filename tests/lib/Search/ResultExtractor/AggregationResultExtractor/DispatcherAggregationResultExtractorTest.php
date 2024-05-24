@@ -30,7 +30,7 @@ final class DispatcherAggregationResultExtractorTest extends TestCase
             $this->createExtractorMockWithCanVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false),
         ]);
 
-        $this->assertTrue($dispatcher->canVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER));
+        self::assertTrue($dispatcher->canVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER));
     }
 
     public function testSupportsReturnsFalse(): void
@@ -43,7 +43,7 @@ final class DispatcherAggregationResultExtractorTest extends TestCase
             $this->createExtractorMockWithCanVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false),
         ]);
 
-        $this->assertFalse($dispatcher->canVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER));
+        self::assertFalse($dispatcher->canVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER));
     }
 
     public function testExtract(): void
@@ -64,7 +64,7 @@ final class DispatcherAggregationResultExtractorTest extends TestCase
             ->with($aggregation, self::EXAMPLE_LANGUAGE_FILTER, $data)
             ->willReturn($expectedResult);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             $dispatcher->extract($aggregation, self::EXAMPLE_LANGUAGE_FILTER, $data)
         );

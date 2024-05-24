@@ -24,7 +24,7 @@ final class StatsAggregationVisitorTest extends AbstractAggregationVisitorTest
         $this->aggregationFieldResolver = $this->createMock(AggregationFieldResolver::class);
         $this->aggregationFieldResolver
             ->method('resolveTargetField')
-            ->with($this->isInstanceOf(AbstractStatsAggregation::class))
+            ->with(self::isInstanceOf(AbstractStatsAggregation::class))
             ->willReturn('custom_field_id');
 
         parent::setUp();

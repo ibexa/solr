@@ -19,7 +19,7 @@ final class NullAggregationKeyMapperTest extends TestCase
     {
         $mapper = new NullAggregationKeyMapper();
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'foo' => 'foo',
                 'bar' => 'bar',

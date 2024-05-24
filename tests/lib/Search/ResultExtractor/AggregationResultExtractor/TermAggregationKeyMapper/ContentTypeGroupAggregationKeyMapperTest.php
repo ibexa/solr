@@ -33,7 +33,7 @@ final class ContentTypeGroupAggregationKeyMapperTest extends TestCase
 
         $mapper = new ContentTypeGroupAggregationKeyMapper($this->contentTypeService);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedContentTypesGroups,
             $mapper->map(
                 $this->createMock(Aggregation::class),
@@ -59,7 +59,7 @@ final class ContentTypeGroupAggregationKeyMapperTest extends TestCase
             $contentTypeGroup = $this->createContentTypeGroupWithIds((int)$id);
 
             $this->contentTypeService
-                ->expects($this->at($i))
+                ->expects(self::at($i))
                 ->method('loadContentTypeGroup')
                 ->with((int)$id, [])
                 ->willReturn($contentTypeGroup);

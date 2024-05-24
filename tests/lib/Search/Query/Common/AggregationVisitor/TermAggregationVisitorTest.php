@@ -24,7 +24,7 @@ final class TermAggregationVisitorTest extends AbstractAggregationVisitorTest
         $this->aggregationFieldResolver = $this->createMock(AggregationFieldResolver::class);
         $this->aggregationFieldResolver
             ->method('resolveTargetField')
-            ->with($this->isInstanceOf(AbstractTermAggregation::class))
+            ->with(self::isInstanceOf(AbstractTermAggregation::class))
             ->willReturn('custom_field_id');
 
         parent::setUp();

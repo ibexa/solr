@@ -20,7 +20,7 @@ final class SearchFieldAggregationFieldResolverTest extends TestCase
 
         $aggregationFieldResolver = new SearchFieldAggregationFieldResolver('custom_field_id');
 
-        $this->assertEquals(
+        self::assertEquals(
             'custom_field_id',
             $aggregationFieldResolver->resolveTargetField($aggregation)
         );

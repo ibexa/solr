@@ -39,7 +39,7 @@ final class UserMetadataAggregationKeyMapperTest extends TestCase
      */
     public function testMapForUserKey(Aggregation $aggregation): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             $this->createExpectedResultForUserKey(self::EXAMPLE_USER_IDS),
             $this->mapper->map(
                 $aggregation,
@@ -64,7 +64,7 @@ final class UserMetadataAggregationKeyMapperTest extends TestCase
     {
         $aggregation = new UserMetadataTermAggregation('group', UserMetadataTermAggregation::GROUP);
 
-        $this->assertEquals(
+        self::assertEquals(
             $this->createExpectedResultForUserGroupKey(self::EXAMPLE_USER_GROUP_IDS),
             $this->mapper->map(
                 $aggregation,
@@ -81,7 +81,7 @@ final class UserMetadataAggregationKeyMapperTest extends TestCase
             $user = $this->createMock(User::class);
 
             $this->userService
-                ->expects($this->at($i))
+                ->expects(self::at($i))
                 ->method('loadUser')
                 ->with($userId)
                 ->willReturn($user);
@@ -99,7 +99,7 @@ final class UserMetadataAggregationKeyMapperTest extends TestCase
             $user = $this->createMock(UserGroup::class);
 
             $this->userService
-                ->expects($this->at($i))
+                ->expects(self::at($i))
                 ->method('loadUserGroup')
                 ->with($userGroupId)
                 ->willReturn($user);

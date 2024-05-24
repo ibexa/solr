@@ -28,7 +28,7 @@ final class AuthorAggregationKeyMapperTest extends TestCase
     ): void {
         $mapper = new AuthorAggregationKeyMapper();
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             $mapper->map(
                 $aggregation,

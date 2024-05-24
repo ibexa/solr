@@ -35,7 +35,7 @@ final class SectionAggregationKeyMapperTest extends TestCase
     {
         $expectedSections = $this->configureSectionServiceMock(self::EXAMPLE_SECTION_IDS);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedSections,
             $this->mapper->map(
                 $this->createMock(Aggregation::class),
@@ -52,7 +52,7 @@ final class SectionAggregationKeyMapperTest extends TestCase
             $section = $this->createMock(Section::class);
 
             $this->sectionService
-                ->expects($this->at($i))
+                ->expects(self::at($i))
                 ->method('loadSection')
                 ->with($sectionId)
                 ->willReturn($section);

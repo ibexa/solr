@@ -37,7 +37,7 @@ final class ObjectStateAggregationKeyMapperTest extends TestCase
             $this->configureObjectStateService('ez_lock', ['unlocked', 'locked'])
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedObjectStates,
             $this->mapper->map(
                 new ObjectStateTermAggregation('aggregation', 'ez_lock'),
@@ -63,7 +63,7 @@ final class ObjectStateAggregationKeyMapperTest extends TestCase
             $objectState = $this->createMock(ObjectState::class);
 
             $this->objectStateService
-                ->expects($this->at($i + 1))
+                ->expects(self::at($i + 1))
                 ->method('loadObjectStateByIdentifier')
                 ->with($objectStateGroup, $objectStateIdentifier, [])
                 ->willReturn($objectState);

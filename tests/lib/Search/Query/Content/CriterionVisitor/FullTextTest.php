@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\Solr\Search\Query\Content\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
@@ -34,22 +35,22 @@ class FullTextTest extends TestCase
             ->getMock();
 
         $fieldNameResolver
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getFieldNames')
             ->with(
-                $this->isInstanceOf(Criterion::class),
-                $this->isType('string')
+                self::isInstanceOf(Criterion::class),
+                self::isType('string')
             )
             ->willReturn(
                 $fieldNames
             );
 
         $fieldNameResolver
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getFieldTypes')
             ->with(
-                $this->isInstanceOf(Criterion::class),
-                $this->isType('string')
+                self::isInstanceOf(Criterion::class),
+                self::isType('string')
             )
             ->willReturn(
                 $fieldTypes
@@ -113,7 +114,7 @@ class FullTextTest extends TestCase
 
         $criterion = new Criterion\FullText('Hello');
 
-        $this->assertEquals(
+        self::assertEquals(
             "{!edismax v='Hello' qf='meta_content__text_t' uf=-*}",
             $visitor->visit($criterion)
         );
@@ -125,7 +126,7 @@ class FullTextTest extends TestCase
 
         $criterion = new Criterion\FullText('Hello World');
 
-        $this->assertEquals(
+        self::assertEquals(
             "{!edismax v='Hello World' qf='meta_content__text_t' uf=-*}",
             $visitor->visit($criterion)
         );
@@ -138,7 +139,7 @@ class FullTextTest extends TestCase
         $criterion = new Criterion\FullText('Hello');
         $criterion->fuzziness = .5;
 
-        $this->assertEquals(
+        self::assertEquals(
             "{!edismax v='Hello~0.5' qf='meta_content__text_t' uf=-*}",
             $visitor->visit($criterion)
         );
@@ -151,7 +152,7 @@ class FullTextTest extends TestCase
         $criterion = new Criterion\FullText('Hello World');
         $criterion->fuzziness = .5;
 
-        $this->assertEquals(
+        self::assertEquals(
             "{!edismax v='Hello~0.5 World~0.5' qf='meta_content__text_t' uf=-*}",
             $visitor->visit($criterion)
         );
@@ -170,7 +171,7 @@ class FullTextTest extends TestCase
         $criterion = new Criterion\FullText('Hello');
         $criterion->boost = ['title' => 2];
 
-        $this->assertEquals(
+        self::assertEquals(
             "{!edismax v='Hello' qf='meta_content__text_t title_1_s^2 title_2_s^2' uf=-*}",
             $visitor->visit($criterion)
         );
@@ -189,7 +190,7 @@ class FullTextTest extends TestCase
         $criterion = new Criterion\FullText('Hello World');
         $criterion->boost = ['title' => 2];
 
-        $this->assertEquals(
+        self::assertEquals(
             "{!edismax v='Hello World' qf='meta_content__text_t title_1_s^2 title_2_s^2' uf=-*}",
             $visitor->visit($criterion)
         );
@@ -204,7 +205,7 @@ class FullTextTest extends TestCase
             'unknown_field' => 2,
         ];
 
-        $this->assertEquals(
+        self::assertEquals(
             "{!edismax v='Hello' qf='meta_content__text_t' uf=-*}",
             $visitor->visit($criterion)
         );
@@ -219,7 +220,7 @@ class FullTextTest extends TestCase
             'unknown_field' => 2,
         ];
 
-        $this->assertEquals(
+        self::assertEquals(
             "{!edismax v='Hello World' qf='meta_content__text_t' uf=-*}",
             $visitor->visit($criterion)
         );
@@ -238,7 +239,7 @@ class FullTextTest extends TestCase
         $criterion->fuzziness = .5;
         $criterion->boost = ['title' => 2];
 
-        $this->assertEquals(
+        self::assertEquals(
             "{!edismax v='Hello~0.5' qf='meta_content__text_t title_1_s^2 title_2_s^2' uf=-*}",
             $visitor->visit($criterion)
         );
@@ -257,7 +258,7 @@ class FullTextTest extends TestCase
         $criterion->fuzziness = .5;
         $criterion->boost = ['title' => 2];
 
-        $this->assertEquals(
+        self::assertEquals(
             "{!edismax v='Hello~0.5 World~0.5' qf='meta_content__text_t title_1_s^2 title_2_s^2' uf=-*}",
             $visitor->visit($criterion)
         );
@@ -269,7 +270,7 @@ class FullTextTest extends TestCase
 
         $criterion = new Criterion\FullText('OR Hello && (and goodbye)) AND OR AND "as NOT +always');
 
-        $this->assertEquals(
+        self::assertEquals(
             "{!edismax v='Hello AND (and goodbye) as +always' qf='meta_content__text_t' uf=-*}",
             $visitor->visit($criterion)
         );
@@ -281,7 +282,7 @@ class FullTextTest extends TestCase
 
         $criterion = new Criterion\FullText('Hello');
 
-        $this->assertEquals(
+        self::assertEquals(
             "{!edismax v='Hello' qf='meta_content__text_t meta_related_content_1__text_t^0.5 meta_related_content_2__text_t^0.25 meta_related_content_3__text_t^0.125' uf=-*}",
             $visitor->visit($criterion)
         );

@@ -25,7 +25,7 @@ final class RangeAggregationVisitorTest extends AbstractAggregationVisitorTest
         $this->aggregationFieldResolver = $this->createMock(AggregationFieldResolver::class);
         $this->aggregationFieldResolver
             ->method('resolveTargetField')
-            ->with($this->isInstanceOf(AbstractRangeAggregation::class))
+            ->with(self::isInstanceOf(AbstractRangeAggregation::class))
             ->willReturn('custom_field_id');
 
         parent::setUp();
