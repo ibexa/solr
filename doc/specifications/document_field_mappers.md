@@ -66,27 +66,27 @@ something like this:
 
 namespace My\WebinarApp;
 
-use EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentFieldMapper;
-use eZ\Publish\SPI\Persistence\Content\Handler as ContentHandler;
-use eZ\Publish\SPI\Persistence\Content\Location\Handler as LocationHandler;
-use eZ\Publish\SPI\Persistence\Content;
-use eZ\Publish\SPI\Search;
+use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
+use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
+use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
+use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Search;
 
 class WebinarEventTitleFulltextFieldMapper extends ContentFieldMapper
 {
     /**
-     * @var \eZ\Publish\SPI\Persistence\Content\Type\Handler
+     * @var \Ibexa\Contracts\Core\Persistence\Content\Handler
      */
     protected $contentHandler;
 
     /**
-     * @var \eZ\Publish\SPI\Persistence\Content\Location\Handler
+     * @var \Ibexa\Contracts\Core\Persistence\Content\Location\Handler
      */
     protected $locationHandler;
 
     /**
-     * @param \eZ\Publish\SPI\Persistence\Content\Handler $contentHandler
-     * @param \eZ\Publish\SPI\Persistence\Content\Location\Handler $locationHandler
+     * @param \Ibexa\Contracts\Core\Persistence\Content\Handler $contentHandler
+     * @param \Ibexa\Contracts\Core\Persistence\Content\Location\Handler $locationHandler
      */
     public function __construct(
         ContentHandler $contentHandler,
@@ -127,8 +127,8 @@ this:
 my_webinar_app.webinar_event_title_fulltext_field_mapper:
     class: My\WebinarApp\WebinarEventTitleFulltextFieldMapper
     arguments:
-        - '@ezpublish.spi.persistence.content_handler'
-        - '@ezpublish.spi.persistence.location_handler'
+        $contentHandler: '@Ibexa\Contracts\Core\Persistence\Content\Handler'
+        $locationHandler: '@Ibexa\Contracts\Core\Persistence\Content\Location\Handler'
     tags:
         - {name: ibexa.search.solr.field.mapper.content}
 ```
