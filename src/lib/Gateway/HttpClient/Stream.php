@@ -19,7 +19,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 /**
  * Simple PHP stream based HTTP client.
  *
- * @internal type-hint {@see \EzSystems\EzPlatformSolrSearchEngine\Gateway\HttpClient} instead.
+ * @internal type-hint {@see \Ibexa\Solr\Gateway\HttpClient} instead.
  */
 class Stream implements HttpClient, LoggerAwareInterface
 {
