@@ -269,5 +269,3 @@ class NativeDocumentMapper implements DocumentMapper
         return $fields;
     }
 }
-
-class_alias(NativeDocumentMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\DocumentMapper\NativeDocumentMapper');

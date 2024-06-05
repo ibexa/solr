@@ -41,10 +41,7 @@
             "Ibexa\\Solr\\": "src/lib/",
             "Ibexa\\Bundle\\Solr\\": "src/bundle/",
             "Ibexa\\Contracts\\Solr\\": "src/contracts/",
-            "Ibexa\\Tests\\Solr\\SetupFactory\\": "tests/lib/SetupFactory/",
-            "EzSystems\\EzPlatformSolrSearchEngine\\": "src/lib/",
-            "EzSystems\\EzPlatformSolrSearchEngineBundle\\": "src/bundle/",
-            "EzSystems\\EzPlatformSolrSearchEngine\\Tests\\SetupFactory\\": "tests/lib/SetupFactory/"
+            "Ibexa\\Tests\\Solr\\SetupFactory\\": "tests/lib/SetupFactory/"
         }
     },
     "autoload-dev": {
@@ -53,9 +50,7 @@
             "Ibexa\\Tests\\Solr\\": "tests/lib/",
             "Ibexa\\Tests\\Integration\\Core\\": "vendor/ibexa/core/tests/integration/Core/",
             "Ibexa\\Tests\\Core\\": "vendor/ibexa/core/tests/lib/",
-            "Ibexa\\Tests\\Bundle\\Core\\": "vendor/ibexa/core/tests/bundle/",
-            "EzSystems\\EzPlatformSolrSearchEngine\\Tests\\": "tests/lib/",
-            "EzSystems\\EzPlatformSolrSearchEngineBundle\\Tests\\": "tests/bundle/"
+            "Ibexa\\Tests\\Bundle\\Core\\": "vendor/ibexa/core/tests/bundle/"
         }
     },
     "scripts": {

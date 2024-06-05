@@ -18,5 +18,3 @@ class LocationFieldMapperPass extends BaseFieldMapperPass
     public const AGGREGATE_MAPPER_SERVICE_ID = Aggregate::class;
     public const AGGREGATE_MAPPER_SERVICE_TAG = 'ibexa.search.solr.field.mapper.location';
 }
-
-class_alias(LocationFieldMapperPass::class, 'EzSystems\EzPlatformSolrSearchEngine\Container\Compiler\FieldMapperPass\LocationFieldMapperPass');

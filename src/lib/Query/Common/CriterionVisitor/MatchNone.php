@@ -37,5 +37,3 @@ class MatchNone extends CriterionVisitor
         return '(NOT *:*)';
     }
 }
-
-class_alias(MatchNone::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\MatchNone');

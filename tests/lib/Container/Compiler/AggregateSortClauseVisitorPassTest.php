@@ -51,5 +51,3 @@ class AggregateSortClauseVisitorPassTest extends AbstractCompilerPassTestCase
         );
     }
 }
-
-class_alias(AggregateSortClauseVisitorPassTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Container\Compiler\AggregateSortClauseVisitorPassTest');

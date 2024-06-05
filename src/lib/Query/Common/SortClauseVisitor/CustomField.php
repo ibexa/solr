@@ -26,5 +26,3 @@ final class CustomField extends SortClauseVisitor
         return $targetData->fieldName . ' ' . $this->getDirection($sortClause);
     }
 }
-
-class_alias(CustomField::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\SortClauseVisitor\CustomField');

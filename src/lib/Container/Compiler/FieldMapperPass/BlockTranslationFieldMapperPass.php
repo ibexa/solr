@@ -18,5 +18,3 @@ class BlockTranslationFieldMapperPass extends BaseFieldMapperPass
     public const AGGREGATE_MAPPER_SERVICE_ID = 'ibexa.solr.field_mapper.block_translation';
     public const AGGREGATE_MAPPER_SERVICE_TAG = 'ibexa.search.solr.field.mapper.block.translation';
 }
-
-class_alias(BlockTranslationFieldMapperPass::class, 'EzSystems\EzPlatformSolrSearchEngine\Container\Compiler\FieldMapperPass\BlockTranslationFieldMapperPass');

@@ -64,5 +64,3 @@ final class ContentTypeAggregationKeyMapperTest extends TestCase
         return $contentTypes;
     }
 }
-
-class_alias(ContentTypeAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\ContentTypeAggregationKeyMapperTest');

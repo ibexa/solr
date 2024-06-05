@@ -41,5 +41,3 @@ final class NestedAggregationResultExtractor implements AggregationResultExtract
         );
     }
 }
-
-class_alias(NestedAggregationResultExtractor::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\NestedAggregationResultExtractor');

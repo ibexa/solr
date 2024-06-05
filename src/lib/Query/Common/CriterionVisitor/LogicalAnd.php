@@ -54,5 +54,3 @@ class LogicalAnd extends CriterionVisitor
         return '(' . implode(' AND ', $subCriteria) . ')';
     }
 }
-
-class_alias(LogicalAnd::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\LogicalAnd');

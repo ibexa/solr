@@ -445,5 +445,3 @@ class Native extends Gateway
         return $result;
     }
 }
-
-class_alias(Native::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\Native');

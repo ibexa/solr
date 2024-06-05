@@ -45,5 +45,3 @@ final class SectionAggregationKeyMapper implements TermAggregationKeyMapper
         return $result;
     }
 }
-
-class_alias(SectionAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\SectionAggregationKeyMapper');

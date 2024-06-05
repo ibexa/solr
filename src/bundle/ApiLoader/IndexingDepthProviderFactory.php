@@ -66,5 +66,3 @@ class IndexingDepthProviderFactory implements ContainerAwareInterface
         );
     }
 }
-
-class_alias(IndexingDepthProviderFactory::class, 'EzSystems\EzPlatformSolrSearchEngineBundle\ApiLoader\IndexingDepthProviderFactory');

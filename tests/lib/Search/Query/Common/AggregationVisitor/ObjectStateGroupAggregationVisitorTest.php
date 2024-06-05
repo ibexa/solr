@@ -66,5 +66,3 @@ final class ObjectStateGroupAggregationVisitorTest extends AbstractAggregationVi
         ];
     }
 }
-
-class_alias(ObjectStateGroupAggregationVisitorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor\ObjectStateGroupAggregationVisitorTest');

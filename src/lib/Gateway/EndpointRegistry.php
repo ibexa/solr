@@ -74,5 +74,3 @@ class EndpointRegistry
         return reset($this->endpoint);
     }
 }
-
-class_alias(EndpointRegistry::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointRegistry');

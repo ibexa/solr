@@ -38,5 +38,3 @@ class Visibility extends CriterionVisitor
         return 'location_visible_b:' . ($criterion->value[0] === Criterion\Visibility::VISIBLE ? 'true' : 'false');
     }
 }
-
-class_alias(Visibility::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Content\CriterionVisitor\Visibility');

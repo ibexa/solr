@@ -35,5 +35,3 @@ final class NullRangeAggregationKeyMapperTest extends AbstractRangeAggregationKe
         return new NullRangeAggregationKeyMapper();
     }
 }
-
-class_alias(NullRangeAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\NullRangeAggregationKeyMapperTest');

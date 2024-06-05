@@ -68,5 +68,3 @@ final class LocationAggregationKeyMapperTest extends TestCase
         return $locations;
     }
 }
-
-class_alias(LocationAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\LocationAggregationKeyMapperTest');

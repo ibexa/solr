@@ -26,5 +26,3 @@ final class SearchFieldAggregationFieldResolverTest extends TestCase
         );
     }
 }
-
-class_alias(SearchFieldAggregationFieldResolverTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor\AggregationFieldResolver\SearchFieldAggregationFieldResolverTest');

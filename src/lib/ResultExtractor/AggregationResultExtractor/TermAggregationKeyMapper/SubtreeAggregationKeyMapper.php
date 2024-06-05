@@ -43,5 +43,3 @@ final class SubtreeAggregationKeyMapper implements TermAggregationKeyMapper
         return $ancestors;
     }
 }
-
-class_alias(SubtreeAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\SubtreeAggregationKeyMapper');

@@ -35,5 +35,3 @@ final class BooleanAggregationKeyMapperTest extends TestCase
         );
     }
 }
-
-class_alias(BooleanAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\BooleanAggregationKeyMapperTest');

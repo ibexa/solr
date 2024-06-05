@@ -35,5 +35,3 @@ final class FloatRangeAggregationKeyMapperTest extends AbstractRangeAggregationK
         return new FloatRangeAggregationKeyMapper();
     }
 }
-
-class_alias(FloatRangeAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\FloatRangeAggregationKeyMapperTest');

@@ -18,5 +18,3 @@ interface AggregationResultExtractor
 
     public function extract(Aggregation $aggregation, array $languageFilter, stdClass $data): AggregationResult;
 }
-
-class_alias(AggregationResultExtractor::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor');

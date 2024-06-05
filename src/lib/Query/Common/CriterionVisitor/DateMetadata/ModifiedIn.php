@@ -50,5 +50,3 @@ class ModifiedIn extends DateMetadata
         return '(' . implode(' OR ', $values) . ')';
     }
 }
-
-class_alias(ModifiedIn::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\DateMetadata\ModifiedIn');

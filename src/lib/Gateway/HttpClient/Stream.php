@@ -108,5 +108,3 @@ class Stream implements HttpClient, LoggerAwareInterface
         );
     }
 }
-
-class_alias(Stream::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\HttpClient\Stream');

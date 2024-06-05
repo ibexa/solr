@@ -35,5 +35,3 @@ final class IntRangeAggregationKeyMapperTest extends AbstractRangeAggregationKey
         return new IntRangeAggregationKeyMapper();
     }
 }
-
-class_alias(IntRangeAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\IntRangeAggregationKeyMapperTest');

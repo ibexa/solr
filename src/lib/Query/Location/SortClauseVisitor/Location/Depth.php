@@ -35,5 +35,3 @@ class Depth extends SortClauseVisitor
         return 'depth_i' . $this->getDirection($sortClause);
     }
 }
-
-class_alias(Depth::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Location\SortClauseVisitor\Location\Depth');

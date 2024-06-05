@@ -43,5 +43,3 @@ class GatewayRegistryPassTest extends AbstractCompilerPassTestCase
         );
     }
 }
-
-class_alias(GatewayRegistryPassTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Container\Compiler\GatewayRegistryPassTest');

@@ -279,5 +279,3 @@ class BoostFactorProviderTest extends TestCase
         );
     }
 }
-
-class_alias(BoostFactorProviderTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\FieldMapper\BoostFactorProviderTest');

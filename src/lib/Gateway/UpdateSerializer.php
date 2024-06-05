@@ -17,5 +17,3 @@ use Ibexa\Solr\Gateway\UpdateSerializer\XmlUpdateSerializer;
 final class UpdateSerializer extends XmlUpdateSerializer
 {
 }
-
-class_alias(UpdateSerializer::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\UpdateSerializer');

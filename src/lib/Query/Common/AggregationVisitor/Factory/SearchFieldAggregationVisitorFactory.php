@@ -46,5 +46,3 @@ final class SearchFieldAggregationVisitorFactory
         );
     }
 }
-
-class_alias(SearchFieldAggregationVisitorFactory::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\Factory\SearchFieldAggregationVisitorFactory');

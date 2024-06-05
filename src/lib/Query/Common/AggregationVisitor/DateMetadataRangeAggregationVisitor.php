@@ -35,5 +35,3 @@ final class DateMetadataRangeAggregationVisitor extends AbstractRangeAggregation
         }
     }
 }
-
-class_alias(DateMetadataRangeAggregationVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\DateMetadataRangeAggregationVisitor');

@@ -128,5 +128,3 @@ class BlockDocumentsContentFields extends ContentTranslationFieldMapper
         return $fieldType;
     }
 }
-
-class_alias(BlockDocumentsContentFields::class, 'EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentTranslationFieldMapper\BlockDocumentsContentFields');

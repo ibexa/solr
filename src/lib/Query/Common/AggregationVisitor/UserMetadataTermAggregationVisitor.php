@@ -40,5 +40,3 @@ final class UserMetadataTermAggregationVisitor extends AbstractTermAggregationVi
         }
     }
 }
-
-class_alias(UserMetadataTermAggregationVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\UserMetadataTermAggregationVisitor');

@@ -35,5 +35,3 @@ class Priority extends SortClauseVisitor
         return 'priority_i' . $this->getDirection($sortClause);
     }
 }
-
-class_alias(Priority::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Location\SortClauseVisitor\Location\Priority');

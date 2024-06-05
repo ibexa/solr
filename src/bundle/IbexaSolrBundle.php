@@ -46,5 +46,3 @@ class IbexaSolrBundle extends Bundle
         return $this->extension;
     }
 }
-
-class_alias(IbexaSolrBundle::class, 'EzSystems\EzPlatformSolrSearchEngineBundle\EzSystemsEzPlatformSolrSearchEngineBundle');

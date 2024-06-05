@@ -17,5 +17,3 @@ interface AggregationFieldResolver
 {
     public function resolveTargetField(Aggregation $aggregation): string;
 }
-
-class_alias(AggregationFieldResolver::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\AggregationFieldResolver');

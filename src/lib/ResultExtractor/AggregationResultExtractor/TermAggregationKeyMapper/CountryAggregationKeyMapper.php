@@ -71,5 +71,3 @@ final class CountryAggregationKeyMapper implements TermAggregationKeyMapper
         return null;
     }
 }
-
-class_alias(CountryAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\CountryAggregationKeyMapper');

@@ -52,5 +52,3 @@ abstract class AbstractDistributionStrategy implements DistributionStrategy
 
     abstract protected function appendSearchTargets(array $parameters, array $searchTargets): array;
 }
-
-class_alias(AbstractDistributionStrategy::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\DistributionStrategy\AbstractDistributionStrategy');

@@ -230,5 +230,3 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
         return $newFieldType;
     }
 }
-
-class_alias(ContentDocumentFulltextFields::class, 'EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentTranslationFieldMapper\ContentDocumentFulltextFields');

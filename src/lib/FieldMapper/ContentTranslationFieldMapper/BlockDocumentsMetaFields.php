@@ -46,5 +46,3 @@ class BlockDocumentsMetaFields extends ContentTranslationFieldMapper
         ];
     }
 }
-
-class_alias(BlockDocumentsMetaFields::class, 'EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentTranslationFieldMapper\BlockDocumentsMetaFields');

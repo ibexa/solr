@@ -116,5 +116,3 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
         return $bucket;
     }
 }
-
-class_alias(TermAggregationResultExtractorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractorTest');

@@ -74,5 +74,3 @@ class FieldIn extends Field
         return '(' . implode(' OR ', $queries) . ')';
     }
 }
-
-class_alias(FieldIn::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\Field\FieldIn');

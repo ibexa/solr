@@ -90,5 +90,3 @@ class MapLocationDistanceRange extends MapLocation
         return '(' . implode(' OR ', $queries) . ')';
     }
 }
-
-class_alias(MapLocationDistanceRange::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\MapLocation\MapLocationDistanceRange');

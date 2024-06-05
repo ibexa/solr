@@ -55,5 +55,3 @@ class CustomFieldRange extends CriterionVisitor
         return $criterion->target . ':' . $this->getRange($criterion->operator, $start, $end);
     }
 }
-
-class_alias(CustomFieldRange::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\CustomField\CustomFieldRange');

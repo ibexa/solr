@@ -18,5 +18,3 @@ final class NullAggregationKeyMapper implements TermAggregationKeyMapper
         return array_combine($keys, $keys);
     }
 }
-
-class_alias(NullAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\NullAggregationKeyMapper');

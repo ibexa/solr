@@ -30,5 +30,3 @@ interface AggregationVisitor
         array $languageFilter
     ): array;
 }
-
-class_alias(AggregationVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\AggregationVisitor');

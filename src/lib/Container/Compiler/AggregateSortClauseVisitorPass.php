@@ -61,5 +61,3 @@ class AggregateSortClauseVisitorPass implements CompilerPassInterface
         }
     }
 }
-
-class_alias(AggregateSortClauseVisitorPass::class, 'EzSystems\EzPlatformSolrSearchEngine\Container\Compiler\AggregateSortClauseVisitorPass');

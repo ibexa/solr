@@ -23,5 +23,3 @@ final class ContentTranslatedName extends SortClauseVisitor
         return 'meta_content__name_s' . $this->getDirection($sortClause);
     }
 }
-
-class_alias(ContentTranslatedName::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\SortClauseVisitor\ContentTranslatedName');

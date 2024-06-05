@@ -14,5 +14,3 @@ interface RangeAggregationKeyMapper
 {
     public function map(Aggregation $aggregation, array $languageFilter, string $key);
 }
-
-class_alias(RangeAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper');

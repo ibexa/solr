@@ -59,5 +59,3 @@ class Aggregate extends LocationFieldMapper
         return $fields;
     }
 }
-
-class_alias(Aggregate::class, 'EzSystems\EzPlatformSolrSearchEngine\FieldMapper\LocationFieldMapper\Aggregate');

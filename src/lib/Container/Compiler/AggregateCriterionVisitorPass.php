@@ -58,5 +58,3 @@ class AggregateCriterionVisitorPass implements CompilerPassInterface
         }
     }
 }
-
-class_alias(AggregateCriterionVisitorPass::class, 'EzSystems\EzPlatformSolrSearchEngine\Container\Compiler\AggregateCriterionVisitorPass');

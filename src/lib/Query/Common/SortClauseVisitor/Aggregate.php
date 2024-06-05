@@ -71,5 +71,3 @@ class Aggregate extends SortClauseVisitor
         throw new NotImplementedException('No visitor available for: ' . \get_class($sortClause));
     }
 }
-
-class_alias(Aggregate::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\SortClauseVisitor\Aggregate');

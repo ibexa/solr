@@ -87,5 +87,3 @@ class CloudDistributionStrategyTest extends TestCase
         ], $this->distributionStrategy->getSearchParameters($parameters, $languagesSettings));
     }
 }
-
-class_alias(CloudDistributionStrategyTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Gateway\DistributionStrategy\CloudDistributionStrategyTest');

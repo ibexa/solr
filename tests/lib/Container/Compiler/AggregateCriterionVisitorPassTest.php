@@ -51,5 +51,3 @@ class AggregateCriterionVisitorPassTest extends AbstractCompilerPassTestCase
         );
     }
 }
-
-class_alias(AggregateCriterionVisitorPassTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Container\Compiler\AggregateCriterionVisitorPassTest');

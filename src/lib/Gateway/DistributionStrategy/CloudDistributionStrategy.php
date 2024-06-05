@@ -29,5 +29,3 @@ final class CloudDistributionStrategy extends AbstractDistributionStrategy
         return $parameters;
     }
 }
-
-class_alias(CloudDistributionStrategy::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\DistributionStrategy\CloudDistributionStrategy');

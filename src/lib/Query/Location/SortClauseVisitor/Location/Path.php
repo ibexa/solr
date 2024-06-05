@@ -35,5 +35,3 @@ class Path extends SortClauseVisitor
         return 'path_string_id' . $this->getDirection($sortClause);
     }
 }
-
-class_alias(Path::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Location\SortClauseVisitor\Location\Path');

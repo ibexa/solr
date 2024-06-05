@@ -118,5 +118,3 @@ final class RangeAggregationResultExtractorTest extends AbstractAggregationResul
         return $bucket;
     }
 }
-
-class_alias(RangeAggregationResultExtractorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\RangeAggregationResultExtractorTest');

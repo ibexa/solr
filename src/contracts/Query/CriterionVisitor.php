@@ -152,5 +152,3 @@ abstract class CriterionVisitor
         );
     }
 }
-
-class_alias(CriterionVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\CriterionVisitor');

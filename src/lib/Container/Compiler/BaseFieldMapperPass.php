@@ -45,5 +45,3 @@ abstract class BaseFieldMapperPass implements CompilerPassInterface
         }
     }
 }
-
-class_alias(BaseFieldMapperPass::class, 'EzSystems\EzPlatformSolrSearchEngine\Container\Compiler\BaseFieldMapperPass');

@@ -111,5 +111,3 @@ class Endpoint extends ValueObject
         return "{$this->scheme}://" . $authorization . $this->getIdentifier();
     }
 }
-
-class_alias(Endpoint::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\Endpoint');

@@ -41,5 +41,3 @@ interface FacetFieldVisitor
      */
     public function visitBuilder(FacetBuilder $facetBuilder, $fieldId);
 }
-
-class_alias(FacetFieldVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\FacetFieldVisitor');

@@ -53,5 +53,3 @@ class ContentTypeIdIn extends CriterionVisitor
             ')';
     }
 }
-
-class_alias(ContentTypeIdIn::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\ContentTypeIdIn');

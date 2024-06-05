@@ -47,5 +47,3 @@ final class GatewayRegistryPass implements CompilerPassInterface
         }
     }
 }
-
-class_alias(GatewayRegistryPass::class, 'EzSystems\EzPlatformSolrSearchEngine\Container\Compiler\GatewayRegistryPass');

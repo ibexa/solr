@@ -81,5 +81,3 @@ class ContentDocumentTranslatedContentNameField extends ContentTranslationFieldM
         ];
     }
 }
-
-class_alias(ContentDocumentTranslatedContentNameField::class, 'EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentTranslationFieldMapper\ContentDocumentTranslatedContentNameField');

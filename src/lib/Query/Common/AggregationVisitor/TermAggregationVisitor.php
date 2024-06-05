@@ -36,5 +36,3 @@ final class TermAggregationVisitor extends AbstractTermAggregationVisitor
         return $this->aggregationFieldResolver->resolveTargetField($aggregation);
     }
 }
-
-class_alias(TermAggregationVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\TermAggregationVisitor');

@@ -51,5 +51,3 @@ class LocationRemoteIdIn extends CriterionVisitor
             ')';
     }
 }
-
-class_alias(LocationRemoteIdIn::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Content\CriterionVisitor\LocationRemoteIdIn');

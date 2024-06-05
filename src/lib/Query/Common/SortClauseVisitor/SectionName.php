@@ -35,5 +35,3 @@ class SectionName extends SortClauseVisitor
         return 'content_section_name_s' . $this->getDirection($sortClause);
     }
 }
-
-class_alias(SectionName::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\SortClauseVisitor\SectionName');

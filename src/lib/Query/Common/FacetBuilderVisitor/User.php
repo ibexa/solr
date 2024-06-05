@@ -65,5 +65,3 @@ class User extends FacetBuilderVisitor implements FacetFieldVisitor
         ];
     }
 }
-
-class_alias(User::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\FacetBuilderVisitor\User');

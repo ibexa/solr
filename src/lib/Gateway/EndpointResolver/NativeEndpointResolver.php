@@ -188,5 +188,3 @@ class NativeEndpointResolver implements EndpointResolver, SingleEndpointResolver
         return $this->hasMultiple = \count($endpointSet) > 1;
     }
 }
-
-class_alias(NativeEndpointResolver::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\EndpointResolver\NativeEndpointResolver');

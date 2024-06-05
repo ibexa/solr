@@ -42,5 +42,3 @@ class AggregateFacetBuilderVisitorPass implements CompilerPassInterface
         }
     }
 }
-
-class_alias(AggregateFacetBuilderVisitorPass::class, 'EzSystems\EzPlatformSolrSearchEngine\Container\Compiler\AggregateFacetBuilderVisitorPass');

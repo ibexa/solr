@@ -66,5 +66,3 @@ final class LanguageAggregationKeyMapperTest extends TestCase
         return $languages;
     }
 }
-
-class_alias(LanguageAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\LanguageAggregationKeyMapperTest');

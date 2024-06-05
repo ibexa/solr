@@ -21,5 +21,3 @@ final class BooleanAggregationKeyMapper implements TermAggregationKeyMapper
         ];
     }
 }
-
-class_alias(BooleanAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\BooleanAggregationKeyMapper');

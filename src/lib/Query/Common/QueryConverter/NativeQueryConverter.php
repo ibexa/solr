@@ -167,5 +167,3 @@ class NativeQueryConverter extends QueryConverter
         return $facetParams;
     }
 }
-
-class_alias(NativeQueryConverter::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\QueryConverter\NativeQueryConverter');

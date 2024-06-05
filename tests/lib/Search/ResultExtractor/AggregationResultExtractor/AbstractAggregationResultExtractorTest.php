@@ -62,5 +62,3 @@ abstract class AbstractAggregationResultExtractorTest extends TestCase
 
     abstract public function dataProviderForTestExtract(): iterable;
 }
-
-class_alias(AbstractAggregationResultExtractorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\AbstractAggregationResultExtractorTest');

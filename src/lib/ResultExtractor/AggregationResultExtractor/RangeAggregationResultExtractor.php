@@ -85,5 +85,3 @@ final class RangeAggregationResultExtractor implements AggregationResultExtracto
         usort($entries, $comparator);
     }
 }
-
-class_alias(RangeAggregationResultExtractor::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\RangeAggregationResultExtractor');

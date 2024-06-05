@@ -96,5 +96,3 @@ class EndpointTest extends TestCase
         $actual = new Endpoint(['dsn' => 'https://10.10.10.10:5434/jolr?query']);
     }
 }
-
-class_alias(EndpointTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Gateway\EndpointTest');

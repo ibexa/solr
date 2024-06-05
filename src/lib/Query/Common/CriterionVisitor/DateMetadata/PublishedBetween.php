@@ -62,5 +62,3 @@ class PublishedBetween extends DateMetadata
         return 'content_publication_date_dt:' . $this->getRange($criterion->operator, $start, $end);
     }
 }
-
-class_alias(PublishedBetween::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\DateMetadata\PublishedBetween');

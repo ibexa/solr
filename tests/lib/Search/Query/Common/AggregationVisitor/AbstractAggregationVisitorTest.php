@@ -97,5 +97,3 @@ abstract class AbstractAggregationVisitorTest extends TestCase
         // Overwrite in parent class to configure additional mocks
     }
 }
-
-class_alias(AbstractAggregationVisitorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor\AbstractAggregationVisitorTest');

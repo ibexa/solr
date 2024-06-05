@@ -35,5 +35,3 @@ class SectionIdentifier extends SortClauseVisitor
         return 'content_section_identifier_id' . $this->getDirection($sortClause);
     }
 }
-
-class_alias(SectionIdentifier::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\SortClauseVisitor\SectionIdentifier');

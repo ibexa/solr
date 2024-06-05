@@ -419,5 +419,3 @@ class Configuration implements ConfigurationInterface
         ->end();
     }
 }
-
-class_alias(Configuration::class, 'EzSystems\EzPlatformSolrSearchEngineBundle\DependencyInjection\Configuration');

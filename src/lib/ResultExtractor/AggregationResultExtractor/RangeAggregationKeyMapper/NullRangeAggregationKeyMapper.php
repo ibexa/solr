@@ -22,5 +22,3 @@ final class NullRangeAggregationKeyMapper implements RangeAggregationKeyMapper
         return $key;
     }
 }
-
-class_alias(NullRangeAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\NullRangeAggregationKeyMapper');

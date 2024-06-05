@@ -41,5 +41,3 @@ class Random extends SortClauseVisitor
         return 'random_' . (string)$seed . ' ' . $this->getDirection($sortClause);
     }
 }
-
-class_alias(Random::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\SortClauseVisitor\Random');

@@ -44,5 +44,3 @@ final class ContentTypeGroupAggregationKeyMapper implements TermAggregationKeyMa
         return $result;
     }
 }
-
-class_alias(ContentTypeGroupAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\ContentTypeGroupAggregationKeyMapper');

@@ -90,5 +90,3 @@ final class FullTextFactory
         );
     }
 }
-
-class_alias(FullTextFactory::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Content\CriterionVisitor\Factory\FullTextFactory');

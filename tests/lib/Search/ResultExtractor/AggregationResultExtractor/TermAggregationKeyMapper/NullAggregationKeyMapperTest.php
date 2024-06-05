@@ -33,5 +33,3 @@ final class NullAggregationKeyMapperTest extends TestCase
         );
     }
 }
-
-class_alias(NullAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\NullAggregationKeyMapperTest');

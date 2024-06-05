@@ -55,5 +55,3 @@ class ModifiedBetween extends DateMetadata
         return 'content_modification_date_dt:' . $this->getRange($criterion->operator, $start, $end);
     }
 }
-
-class_alias(ModifiedBetween::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\DateMetadata\ModifiedBetween');

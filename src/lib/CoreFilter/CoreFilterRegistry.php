@@ -58,5 +58,3 @@ final class CoreFilterRegistry
         return isset($this->coreFilters[$connectionName]);
     }
 }
-
-class_alias(CoreFilterRegistry::class, 'EzSystems\EzPlatformSolrSearchEngine\CoreFilter\CoreFilterRegistry');

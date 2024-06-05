@@ -38,5 +38,3 @@ abstract class AbstractStatsAggregationVisitor implements AggregationVisitor
 
     abstract protected function getTargetField(AbstractStatsAggregation $aggregation): string;
 }
-
-class_alias(AbstractStatsAggregationVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\AbstractStatsAggregationVisitor');

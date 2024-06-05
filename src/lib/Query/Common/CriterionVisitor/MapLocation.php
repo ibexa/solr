@@ -74,5 +74,3 @@ abstract class MapLocation extends CriterionVisitor
         );
     }
 }
-
-class_alias(MapLocation::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\MapLocation');

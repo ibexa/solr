@@ -68,5 +68,3 @@ final class SubtreeAggregationKeyMapperTest extends TestCase
         return $locations;
     }
 }
-
-class_alias(SubtreeAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\SubtreeAggregationKeyMapperTest');

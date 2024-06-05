@@ -134,5 +134,3 @@ class LocationDocumentBaseFields extends LocationFieldMapper
         return $ancestorsIds;
     }
 }
-
-class_alias(LocationDocumentBaseFields::class, 'EzSystems\EzPlatformSolrSearchEngine\FieldMapper\LocationFieldMapper\LocationDocumentBaseFields');

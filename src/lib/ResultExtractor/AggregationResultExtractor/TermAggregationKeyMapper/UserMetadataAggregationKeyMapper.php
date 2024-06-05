@@ -68,5 +68,3 @@ final class UserMetadataAggregationKeyMapper implements TermAggregationKeyMapper
         ));
     }
 }
-
-class_alias(UserMetadataAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\UserMetadataAggregationKeyMapper');

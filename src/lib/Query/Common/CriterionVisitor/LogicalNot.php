@@ -42,5 +42,3 @@ class LogicalNot extends CriterionVisitor
         return '(*:* NOT ' . $subVisitor->visit($criterion->criteria[0]) . ')';
     }
 }
-
-class_alias(LogicalNot::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\LogicalNot');

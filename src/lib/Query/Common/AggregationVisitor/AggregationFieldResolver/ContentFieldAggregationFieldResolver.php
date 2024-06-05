@@ -47,5 +47,3 @@ final class ContentFieldAggregationFieldResolver implements AggregationFieldReso
         return $searchFieldName;
     }
 }
-
-class_alias(ContentFieldAggregationFieldResolver::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\AggregationFieldResolver\ContentFieldAggregationFieldResolver');

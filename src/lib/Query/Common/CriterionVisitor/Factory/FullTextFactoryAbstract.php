@@ -74,5 +74,3 @@ abstract class FullTextFactoryAbstract
      */
     abstract public function createCriterionVisitor(): CriterionVisitor;
 }
-
-class_alias(FullTextFactoryAbstract::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\Factory\FullTextFactoryAbstract');

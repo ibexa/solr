@@ -60,5 +60,3 @@ final class DispatcherAggregationVisitor implements AggregationVisitor
         return null;
     }
 }
-
-class_alias(DispatcherAggregationVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\AggregationVisitor\DispatcherAggregationVisitor');

@@ -35,5 +35,3 @@ class Visibility extends SortClauseVisitor
         return 'invisible_b' . $this->getDirection($sortClause);
     }
 }
-
-class_alias(Visibility::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Location\SortClauseVisitor\Location\Visibility');

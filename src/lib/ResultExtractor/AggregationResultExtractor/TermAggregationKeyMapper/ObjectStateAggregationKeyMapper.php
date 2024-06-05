@@ -49,5 +49,3 @@ final class ObjectStateAggregationKeyMapper implements TermAggregationKeyMapper
         return $mapped;
     }
 }
-
-class_alias(ObjectStateAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\ObjectStateAggregationKeyMapper');

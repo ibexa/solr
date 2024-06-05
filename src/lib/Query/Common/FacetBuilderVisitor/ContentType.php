@@ -52,5 +52,3 @@ class ContentType extends FacetBuilderVisitor implements FacetFieldVisitor
         ];
     }
 }
-
-class_alias(ContentType::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\FacetBuilderVisitor\ContentType');

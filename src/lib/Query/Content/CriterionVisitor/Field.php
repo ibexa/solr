@@ -18,5 +18,3 @@ use Ibexa\Solr\Query\Common\CriterionVisitor\Field as FieldBase;
 abstract class Field extends FieldBase
 {
 }
-
-class_alias(Field::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Content\CriterionVisitor\Field');

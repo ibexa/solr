@@ -58,5 +58,3 @@ final class DispatcherAggregationResultExtractor implements AggregationResultExt
         return null;
     }
 }
-
-class_alias(DispatcherAggregationResultExtractor::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\DispatcherAggregationResultExtractor');

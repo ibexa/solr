@@ -78,5 +78,3 @@ final class AuthorAggregationKeyMapperTest extends TestCase
         ];
     }
 }
-
-class_alias(AuthorAggregationKeyMapperTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\AuthorAggregationKeyMapperTest');

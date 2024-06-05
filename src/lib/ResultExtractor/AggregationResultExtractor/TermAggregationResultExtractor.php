@@ -76,5 +76,3 @@ final class TermAggregationResultExtractor implements AggregationResultExtractor
         return $keys;
     }
 }
-
-class_alias(TermAggregationResultExtractor::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor');

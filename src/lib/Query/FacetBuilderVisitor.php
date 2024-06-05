@@ -80,5 +80,3 @@ abstract class FacetBuilderVisitor
         return $values;
     }
 }
-
-class_alias(FacetBuilderVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\FacetBuilderVisitor');

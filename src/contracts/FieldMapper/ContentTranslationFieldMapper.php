@@ -35,5 +35,3 @@ abstract class ContentTranslationFieldMapper
      */
     abstract public function mapFields(SPIContent $content, $languageCode);
 }
-
-class_alias(ContentTranslationFieldMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentTranslationFieldMapper');

@@ -23,5 +23,3 @@ final class CompositeCriterion extends CriterionVisitor
         return $subVisitor->visit($criterion->criteria, $subVisitor);
     }
 }
-
-class_alias(CompositeCriterion::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\CompositeCriterion');

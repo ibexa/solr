@@ -56,5 +56,3 @@ class IndexingDepthProviderTest extends TestCase
         ]);
     }
 }
-
-class_alias(IndexingDepthProviderTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\FieldMapper\IndexingDepthProviderTest');

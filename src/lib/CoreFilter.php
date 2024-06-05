@@ -22,5 +22,3 @@ abstract class CoreFilter
      */
     abstract public function apply(Query $query, array $languageSettings, $documentTypeIdentifier);
 }
-
-class_alias(CoreFilter::class, 'EzSystems\EzPlatformSolrSearchEngine\CoreFilter');

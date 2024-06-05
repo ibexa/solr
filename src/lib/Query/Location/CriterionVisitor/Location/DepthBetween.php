@@ -57,5 +57,3 @@ class DepthBetween extends CriterionVisitor
         return 'depth_i:' . $this->getRange($criterion->operator, $start, $end);
     }
 }
-
-class_alias(DepthBetween::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Location\CriterionVisitor\Location\DepthBetween');

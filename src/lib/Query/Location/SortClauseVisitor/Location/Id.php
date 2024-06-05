@@ -35,5 +35,3 @@ class Id extends SortClauseVisitor
         return 'location_id_normalized_i' . $this->getDirection($sortClause);
     }
 }
-
-class_alias(Id::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Location\SortClauseVisitor\Location\Id');

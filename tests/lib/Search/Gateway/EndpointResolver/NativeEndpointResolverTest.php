@@ -1064,5 +1064,3 @@ class NativeEndpointResolverTest extends TestCase
         );
     }
 }
-
-class_alias(NativeEndpointResolverTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Gateway\EndpointResolver\NativeEndpointResolverTest');

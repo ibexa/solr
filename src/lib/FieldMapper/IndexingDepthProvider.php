@@ -52,5 +52,3 @@ class IndexingDepthProvider
         return $this->defaultIndexingDepth;
     }
 }
-
-class_alias(IndexingDepthProvider::class, 'EzSystems\EzPlatformSolrSearchEngine\FieldMapper\IndexingDepthProvider');

@@ -37,5 +37,3 @@ final class LocationFullTextFactory extends FullTextFactoryAbstract
         );
     }
 }
-
-class_alias(LocationFullTextFactory::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Location\CriterionVisitor\Factory\LocationFullTextFactory');

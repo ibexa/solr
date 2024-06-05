@@ -99,5 +99,3 @@ class ContentDocumentEmptyFields extends ContentTranslationFieldMapper
         return $fields;
     }
 }
-
-class_alias(ContentDocumentEmptyFields::class, 'EzSystems\EzPlatformSolrSearchEngine\FieldMapper\ContentTranslationFieldMapper\ContentDocumentEmptyFields');

@@ -73,5 +73,3 @@ class Aggregate extends CriterionVisitor
         throw new NotImplementedException('No visitor available for: ' . \get_class($criterion) . ' with operator ' . $criterion->operator);
     }
 }
-
-class_alias(Aggregate::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\Aggregate');

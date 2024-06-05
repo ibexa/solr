@@ -137,5 +137,3 @@ class BoostFactorProvider
         return $this->defaultBoostFactor;
     }
 }
-
-class_alias(BoostFactorProvider::class, 'EzSystems\EzPlatformSolrSearchEngine\FieldMapper\BoostFactorProvider');

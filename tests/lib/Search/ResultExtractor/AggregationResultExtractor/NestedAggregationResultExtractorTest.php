@@ -84,5 +84,3 @@ final class NestedAggregationResultExtractorTest extends TestCase
         );
     }
 }
-
-class_alias(NestedAggregationResultExtractorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\NestedAggregationResultExtractorTest');

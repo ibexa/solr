@@ -30,5 +30,3 @@ final class AuthorAggregationKeyMapper implements TermAggregationKeyMapper
         return $results;
     }
 }
-
-class_alias(AuthorAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\AuthorAggregationKeyMapper');

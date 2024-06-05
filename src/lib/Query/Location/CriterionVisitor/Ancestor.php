@@ -55,5 +55,3 @@ class Ancestor extends CriterionVisitor
             ')';
     }
 }
-
-class_alias(Ancestor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Location\CriterionVisitor\Ancestor');

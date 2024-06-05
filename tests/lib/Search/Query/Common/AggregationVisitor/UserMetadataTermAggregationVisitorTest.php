@@ -71,5 +71,3 @@ final class UserMetadataTermAggregationVisitorTest extends AbstractAggregationVi
         ];
     }
 }
-
-class_alias(UserMetadataTermAggregationVisitorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\Query\Common\AggregationVisitor\UserMetadataTermAggregationVisitorTest');

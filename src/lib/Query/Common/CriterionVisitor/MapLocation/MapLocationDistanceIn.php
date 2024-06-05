@@ -73,5 +73,3 @@ class MapLocationDistanceIn extends MapLocation
         return '(' . implode(' OR ', $queries) . ')';
     }
 }
-
-class_alias(MapLocationDistanceIn::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\MapLocation\MapLocationDistanceIn');

@@ -97,5 +97,3 @@ final class DispatcherAggregationResultExtractorTest extends TestCase
         return $extractor;
     }
 }
-
-class_alias(DispatcherAggregationResultExtractorTest::class, 'EzSystems\EzPlatformSolrSearchEngine\Tests\Search\ResultExtractor\AggregationResultExtractor\DispatcherAggregationResultExtractorTest');

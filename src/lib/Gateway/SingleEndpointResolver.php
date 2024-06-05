@@ -19,5 +19,3 @@ interface SingleEndpointResolver
      */
     public function hasMultipleEndpoints();
 }
-
-class_alias(SingleEndpointResolver::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\SingleEndpointResolver');
