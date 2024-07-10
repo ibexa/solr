@@ -331,34 +331,9 @@ parameters:
 			path: src/lib/FieldMapper/ContentTranslationFieldMapper/Aggregate.php
 
 		-
-			message: "#^Access to protected property Ibexa\\\\Contracts\\\\Core\\\\Search\\\\Field\\:\\:\\$name\\.$#"
-			count: 1
-			path: src/lib/FieldMapper/ContentTranslationFieldMapper/BlockDocumentsContentFields.php
-
-		-
-			message: "#^Access to protected property Ibexa\\\\Contracts\\\\Core\\\\Search\\\\Field\\:\\:\\$type\\.$#"
-			count: 2
-			path: src/lib/FieldMapper/ContentTranslationFieldMapper/BlockDocumentsContentFields.php
-
-		-
-			message: "#^Access to protected property Ibexa\\\\Contracts\\\\Core\\\\Search\\\\Field\\:\\:\\$value\\.$#"
-			count: 2
-			path: src/lib/FieldMapper/ContentTranslationFieldMapper/BlockDocumentsContentFields.php
-
-		-
 			message: "#^Property Ibexa\\\\Contracts\\\\Core\\\\Search\\\\FieldType\\:\\:\\$boost \\(int\\) does not accept float\\.$#"
 			count: 1
 			path: src/lib/FieldMapper/ContentTranslationFieldMapper/BlockDocumentsContentFields.php
-
-		-
-			message: "#^Access to protected property Ibexa\\\\Contracts\\\\Core\\\\Search\\\\Field\\:\\:\\$type\\.$#"
-			count: 1
-			path: src/lib/FieldMapper/ContentTranslationFieldMapper/ContentDocumentFulltextFields.php
-
-		-
-			message: "#^Access to protected property Ibexa\\\\Contracts\\\\Core\\\\Search\\\\Field\\:\\:\\$value\\.$#"
-			count: 2
-			path: src/lib/FieldMapper/ContentTranslationFieldMapper/ContentDocumentFulltextFields.php
 
 		-
 			message: "#^Parameter \\#2 \\$array of function array_map expects array, iterable\\<Ibexa\\\\Contracts\\\\Core\\\\Persistence\\\\Content\\> given\\.$#"
