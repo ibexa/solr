@@ -127,7 +127,7 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
             }
 
             foreach ($contentType->fieldDefinitions as $fieldDefinition) {
-                if ($fieldDefinition->id !== $field->fieldDefinitionId) {
+                if ($fieldDefinition->id !== $field->fieldDefinitionId || !$fieldDefinition->isSearchable) {
                     continue;
                 }
 
@@ -139,7 +139,7 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
                         continue;
                     }
 
-                    if (!$indexField->type instanceof FieldType\FullTextField || !$fieldDefinition->isSearchable) {
+                    if (!$indexField->type instanceof FieldType\FullTextField) {
                         continue;
                     }
 
