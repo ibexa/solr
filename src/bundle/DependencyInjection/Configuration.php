@@ -42,7 +42,7 @@ class Configuration implements ConfigurationInterface
         $this->rootNodeName = $rootNodeName;
     }
 
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder($this->rootNodeName);
 
