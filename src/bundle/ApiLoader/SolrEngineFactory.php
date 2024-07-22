@@ -7,7 +7,7 @@
 
 namespace Ibexa\Bundle\Solr\ApiLoader;
 
-use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
+use Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface;
 use Ibexa\Contracts\Core\Persistence\Content\Handler;
 use Ibexa\Contracts\Solr\DocumentMapper;
 use Ibexa\Solr\CoreFilter\CoreFilterRegistry;
@@ -16,7 +16,7 @@ use Ibexa\Solr\ResultExtractor;
 
 class SolrEngineFactory
 {
-    /** @var \Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider */
+    /** @var \Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface */
     private $repositoryConfigurationProvider;
 
     /** @var string */
@@ -44,7 +44,7 @@ class SolrEngineFactory
     private $locationResultExtractor;
 
     public function __construct(
-        RepositoryConfigurationProvider $repositoryConfigurationProvider,
+        RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
         $defaultConnection,
         $searchEngineClass,
         GatewayRegistry $gatewayRegistry,
