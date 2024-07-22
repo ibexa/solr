@@ -16,8 +16,7 @@ use Ibexa\Solr\ResultExtractor;
 
 class SolrEngineFactory
 {
-    /** @var \Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface */
-    private $repositoryConfigurationProvider;
+    private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider;
 
     /** @var string */
     private $defaultConnection;
