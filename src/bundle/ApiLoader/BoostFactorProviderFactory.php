@@ -7,7 +7,7 @@
 
 namespace Ibexa\Bundle\Solr\ApiLoader;
 
-use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
+use Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface;
 use Ibexa\Solr\FieldMapper\BoostFactorProvider;
 use LogicException;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -20,10 +20,7 @@ class BoostFactorProviderFactory implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
-    /**
-     * @var \Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider
-     */
-    private $repositoryConfigurationProvider;
+    private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider;
 
     /**
      * @var string
@@ -40,7 +37,7 @@ class BoostFactorProviderFactory implements ContainerAwareInterface
      * @param string $boostFactorProviderClass
      */
     public function __construct(
-        RepositoryConfigurationProvider $repositoryConfigurationProvider,
+        RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
         $defaultConnection,
         $boostFactorProviderClass
     ) {
