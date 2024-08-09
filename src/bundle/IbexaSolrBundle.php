@@ -16,6 +16,7 @@ use Ibexa\Solr\Container\Compiler\EndpointRegistryPass;
 use Ibexa\Solr\Container\Compiler\FieldMapperPass;
 use Ibexa\Solr\Container\Compiler\GatewayRegistryPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class IbexaSolrBundle extends Bundle
@@ -37,7 +38,7 @@ class IbexaSolrBundle extends Bundle
         $container->addCompilerPass(new CoreFilterRegistryPass());
     }
 
-    public function getContainerExtension()
+    public function getContainerExtension(): ?ExtensionInterface
     {
         if (!isset($this->extension)) {
             $this->extension = new IbexaSolrExtension();

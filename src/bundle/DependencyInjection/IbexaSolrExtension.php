@@ -13,6 +13,7 @@ use Ibexa\Solr\FieldMapper\BoostFactorProvider;
 use Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy;
 use Ibexa\Solr\Gateway\UpdateSerializerInterface;
 use Ibexa\Solr\Handler;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -91,7 +92,7 @@ class IbexaSolrExtension extends Extension
 
     public const GATEWAY_UPDATE_SERIALIZER_TAG = 'ibexa.solr.gateway.serializer.update';
 
-    public function getAlias()
+    public function getAlias(): string
     {
         return 'ibexa_solr';
     }
@@ -292,7 +293,7 @@ class IbexaSolrExtension extends Extension
         );
     }
 
-    public function getConfiguration(array $config, ContainerBuilder $container)
+    public function getConfiguration(array $config, ContainerBuilder $container): ?ConfigurationInterface
     {
         return new Configuration($this->getAlias());
     }
