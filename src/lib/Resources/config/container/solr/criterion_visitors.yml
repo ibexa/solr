@@ -299,6 +299,12 @@ services:
         tags:
             - { name: ibexa.search.solr.query.location.criterion.visitor }
 
+    Ibexa\Solr\Query\Location\CriterionVisitor\Location\IsBookmarked:
+        arguments:
+            $permissionResolver: '@Ibexa\Contracts\Core\Repository\PermissionResolver'
+        tags:
+            - { name: ibexa.search.solr.query.location.criterion.visitor }
+
     Ibexa\Solr\Query\Location\CriterionVisitor\Factory\LocationFullTextFactory:
         parent: Ibexa\Solr\Query\Common\CriterionVisitor\Factory\FullTextFactoryAbstract
 
