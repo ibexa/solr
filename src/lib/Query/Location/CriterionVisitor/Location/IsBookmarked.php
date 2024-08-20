@@ -13,6 +13,8 @@ use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 final class IsBookmarked extends CriterionVisitor
 {
+    private const SEARCH_FIELD = 'location_bookmarked_user_ids_mid';
+
     private PermissionResolver $permissionResolver;
 
     public function __construct(PermissionResolver $permissionResolver)
@@ -32,7 +34,7 @@ final class IsBookmarked extends CriterionVisitor
     ): string {
         $userId = $this->getUserId($criterion);
 
-        return 'location_bookmarked_user_ids_mid:"' . $userId . '"';
+        return self::SEARCH_FIELD . ':"' . $userId . '"';
     }
 
     /**
