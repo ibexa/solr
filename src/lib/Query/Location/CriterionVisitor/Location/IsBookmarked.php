@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Location\CriterionVisitor\Location;
 
-use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
 use Ibexa\Contracts\Core\Repository\PermissionResolver;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
@@ -34,28 +33,16 @@ final class IsBookmarked extends CriterionVisitor
         Criterion $criterion,
         CriterionVisitor $subVisitor = null
     ): string {
-        $userId = $this->getUserId($criterion);
+        $userId = $this->permissionResolver
+            ->getCurrentUserReference()
+            ->getUserId();
 
-        return self::SEARCH_FIELD . ':"' . $userId . '"';
-    }
+        $query = self::SEARCH_FIELD . ':"' . $userId . '"';
 
-    /**
-     * @throws \Ibexa\Contracts\Core\Exception\InvalidArgumentException
-     */
-    private function getUserId(Criterion $criterion): int
-    {
-        $valueData = $criterion->valueData;
-        if (!$valueData instanceof Criterion\Value\IsBookmarkedValue) {
-            throw new InvalidArgumentException(
-                '$criterion->valueData',
-                sprintf(
-                    'Is expected to be of type: "%s", got "%s"',
-                    Criterion\Value\IsBookmarkedValue::class,
-                    get_debug_type($valueData)
-                )
-            );
+        if (!$criterion->value[0]) {
+            $query = 'NOT ' . $query;
         }
 
-        return $valueData->getUserId() ?? $this->permissionResolver->getCurrentUserReference()->getUserId();
+        return $query;
     }
 }
