@@ -11,6 +11,7 @@ namespace Ibexa\Solr\Query\Location\CriterionVisitor\Location;
 use Ibexa\Contracts\Core\Repository\PermissionResolver;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
+use LogicException;
 
 final class IsBookmarked extends CriterionVisitor
 {
@@ -33,6 +34,10 @@ final class IsBookmarked extends CriterionVisitor
         Criterion $criterion,
         CriterionVisitor $subVisitor = null
     ): string {
+        if (!is_array($criterion->value)) {
+            throw new LogicException('Expected IsBookmarked Criterion value to be an array');
+        }
+
         $userId = $this->permissionResolver
             ->getCurrentUserReference()
             ->getUserId();

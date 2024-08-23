@@ -1138,11 +1138,6 @@ parameters:
 		-
 			message: "#^Cannot access offset 0 on array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string\\.$#"
 			count: 1
-			path: src/lib/Query/Location/CriterionVisitor/Location/IsBookmarked.php
-
-		-
-			message: "#^Cannot access offset 0 on array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string\\.$#"
-			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/Location/IsMainLocation.php
 
 		-
