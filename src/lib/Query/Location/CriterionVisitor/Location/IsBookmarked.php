@@ -37,7 +37,7 @@ final class IsBookmarked extends CriterionVisitor
         if (!is_array($criterion->value)) {
             throw new LogicException(sprintf(
                 'Expected %s Criterion value to be an array, received %s',
-                IsBookmarked::class,
+                Criterion\Location\IsBookmarked::class,
                 get_debug_type($criterion->value),
             ));
         }
