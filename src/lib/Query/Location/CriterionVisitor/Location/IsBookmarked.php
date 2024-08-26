@@ -35,7 +35,11 @@ final class IsBookmarked extends CriterionVisitor
         CriterionVisitor $subVisitor = null
     ): string {
         if (!is_array($criterion->value)) {
-            throw new LogicException('Expected IsBookmarked Criterion value to be an array');
+            throw new LogicException(sprintf(
+                'Expected %s Criterion value to be an array, received %s',
+                IsBookmarked::class,
+                get_debug_type($criterion->value),
+            ));
         }
 
         $userId = $this->permissionResolver
