@@ -7,6 +7,7 @@
 
 namespace Ibexa\Solr\FieldMapper\LocationFieldMapper;
 
+use Ibexa\Contracts\Core\Persistence\Bookmark\Handler as BookmarkHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
@@ -27,10 +28,14 @@ class LocationDocumentBaseFields extends LocationFieldMapper
 
     protected ContentTypeHandler $contentTypeHandler;
 
+    private BookmarkHandler $bookmarkHandler;
+
     public function __construct(
+        BookmarkHandler $bookmarkHandler,
         ContentHandler $contentHandler,
         ContentTypeHandler $contentTypeHandler
     ) {
+        $this->bookmarkHandler = $bookmarkHandler;
         $this->contentHandler = $contentHandler;
         $this->contentTypeHandler = $contentTypeHandler;
     }
@@ -121,6 +126,11 @@ class LocationDocumentBaseFields extends LocationFieldMapper
                 'is_container',
                 $contentType->isContainer,
                 new FieldType\BooleanField()
+            ),
+            new Field(
+                'location_bookmarked_user_ids',
+                $this->bookmarkHandler->loadUserIdsByLocation($location),
+                new FieldType\MultipleIdentifierField()
             ),
         ];
     }

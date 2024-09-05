@@ -7,6 +7,7 @@
 
 namespace Ibexa\Solr\FieldMapper\ContentFieldMapper;
 
+use Ibexa\Contracts\Core\Persistence\Bookmark\Handler as BookmarkHandler;
 use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
@@ -24,8 +25,13 @@ class ContentDocumentLocationFields extends ContentFieldMapper
      */
     protected $locationHandler;
 
-    public function __construct(LocationHandler $locationHandler)
-    {
+    private BookmarkHandler $bookmarkHandler;
+
+    public function __construct(
+        BookmarkHandler $bookmarkHandler,
+        LocationHandler $locationHandler
+    ) {
+        $this->bookmarkHandler = $bookmarkHandler;
         $this->locationHandler = $locationHandler;
     }
 
@@ -88,6 +94,12 @@ class ContentDocumentLocationFields extends ContentFieldMapper
             $fields[] = new Field(
                 'location_ancestors',
                 $locationData['ancestors'],
+                new FieldType\MultipleIdentifierField()
+            );
+
+            $fields[] = new Field(
+                'location_bookmarked_user_ids',
+                $this->bookmarkHandler->loadUserIdsByLocation($location),
                 new FieldType\MultipleIdentifierField()
             );
         }
