@@ -234,7 +234,7 @@ solr_cloud_configure_collection() {
     # Adapt autoSoftCommit to have a recommended value
     sed -i.bak 's/${solr.autoSoftCommit.maxTime:-1}/${solr.autoSoftCommit.maxTime:20}/' "${TEMPLATE_DIR}/solrconfig.xml" || exit_on_error "Can't modify file '${TEMPLATE_DIR}/solrconfig.xml'"
     # Configure spellcheck component
-    sed -i.bar 's/<str name="field">_text_<\/str>/<str name="field">meta_content__text_t<\/str>/' "${TEMPLATE_DIR}/solrconfig.xml"
+    sed -i.bak 's/<str name="field">_text_<\/str>/<str name="field">meta_content__text_t<\/str>/' "${TEMPLATE_DIR}/solrconfig.xml"
     # Add spellcheck component to /select handler
     sed -i.bak 's/<requestHandler name="\/select" class="solr.SearchHandler">/<requestHandler name="\/select" class="solr.SearchHandler">\n    <arr name="last-components">\n      <str>spellcheck<\/str>\n    <\/arr>/' "${TEMPLATE_DIR}/solrconfig.xml"
 }

@@ -122,7 +122,7 @@ fi
 sed -i.bak '/<updateRequestProcessorChain name="add-unknown-fields-to-the-schema".*/,/<\/updateRequestProcessorChain>/d' $DESTINATION_DIR/solrconfig.xml
 sed -i.bak 's/${solr.autoSoftCommit.maxTime:-1}/${solr.autoSoftCommit.maxTime:20}/' $DESTINATION_DIR/solrconfig.xml
 # Configure spellcheck component
-sed -i.bar 's/<str name="field">_text_<\/str>/<str name="field">meta_content__text_t<\/str>/' $DESTINATION_DIR/solrconfig.xml
+sed -i.bak 's/<str name="field">_text_<\/str>/<str name="field">meta_content__text_t<\/str>/' $DESTINATION_DIR/solrconfig.xml
 # Add spellcheck component to /select handler
 sed -i.bak 's/<requestHandler name="\/select" class="solr.SearchHandler">/<requestHandler name="\/select" class="solr.SearchHandler">\n    <arr name="last-components">\n      <str>spellcheck<\/str>\n    <\/arr>/' $DESTINATION_DIR/solrconfig.xml
 
