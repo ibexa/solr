@@ -10,6 +10,7 @@ namespace Ibexa\Tests\Solr\Search\Query;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
+use Ibexa\Tests\Solr\Search\Query\Utils\Stub\TestCriterion;
 use PHPUnit\Framework\TestCase;
 
 abstract class BaseCriterionVisitorTestCase extends TestCase
@@ -49,7 +50,7 @@ abstract class BaseCriterionVisitorTestCase extends TestCase
     {
         yield 'Not supported criterion' => [
             false,
-            new Criterion\ContentId(123),
+            new TestCriterion(),
         ];
 
         yield 'Supported criterion' => [
