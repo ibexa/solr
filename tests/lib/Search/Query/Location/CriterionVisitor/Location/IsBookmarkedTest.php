@@ -13,12 +13,12 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Core\Repository\Values\User\UserReference;
 use Ibexa\Solr\Query\Location\CriterionVisitor\Location\IsBookmarked;
-use PHPUnit\Framework\TestCase;
+use Ibexa\Tests\Solr\Search\Query\BaseCriterionVisitorTestCase;
 
 /**
  * @covers \Ibexa\Solr\Query\Location\CriterionVisitor\Location\IsBookmarked
  */
-final class IsBookmarkedTest extends TestCase
+final class IsBookmarkedTest extends BaseCriterionVisitorTestCase
 {
     private const USER_ID = 123;
 
@@ -34,48 +34,16 @@ final class IsBookmarkedTest extends TestCase
     }
 
     /**
-     * @dataProvider provideDataForTestCanVisit
-     */
-    public function testCanVisit(
-        bool $expected,
-        Criterion $criterion
-    ): void {
-        self::assertSame(
-            $expected,
-            $this->visitor->canVisit($criterion)
-        );
-    }
-
-    /**
-     * @return iterable<array{
-     *     bool,
-     *     \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion
-     * }>
-     */
-    public function provideDataForTestCanVisit(): iterable
-    {
-        yield 'Not supported criterion' => [
-            false,
-            new Criterion\ContentId(123),
-        ];
-
-        yield 'Supported criterion' => [
-            true,
-            new Criterion\Location\IsBookmarked(),
-        ];
-    }
-
-    /**
      * @dataProvider provideDataForTestVisit
      */
     public function testVisit(
-        string $expected,
+        string $expectedQuery,
         Criterion $criterion
     ): void {
         $this->mockPermissionResolverGetCurrentUserReference();
 
         self::assertSame(
-            $expected,
+            $expectedQuery,
             $this->visitor->visit($criterion)
         );
     }
@@ -104,5 +72,15 @@ final class IsBookmarkedTest extends TestCase
         $this->permissionResolver
             ->method('getCurrentUserReference')
             ->willReturn(new UserReference(self::USER_ID));
+    }
+
+    protected function getVisitor(): CriterionVisitor
+    {
+        return $this->visitor;
+    }
+
+    protected function getSupportedCriterion(): Criterion
+    {
+        return new Criterion\Location\IsBookmarked();
     }
 }
