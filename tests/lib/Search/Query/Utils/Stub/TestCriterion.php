@@ -14,6 +14,7 @@ final class TestCriterion extends Criterion
 {
     public function __construct()
     {
+        // No implementation needed. Used for test purposes only.
     }
 
     public function getSpecifications(): array
