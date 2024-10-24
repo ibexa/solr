@@ -12,7 +12,9 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 
 final class TestCriterion extends Criterion
 {
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public function getSpecifications(): array
     {
