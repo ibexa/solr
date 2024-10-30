@@ -48,6 +48,14 @@ final class UserDocumentFields extends ContentFieldMapper
             );
         }
 
+        if (isset($userField->value->externalData['enabled'])) {
+            $fields[] = new Field(
+                'user_is_enabled',
+                $userField->value->externalData['enabled'],
+                new FieldType\BooleanField()
+            );
+        }
+
         return $fields;
     }
 
