@@ -16,13 +16,13 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class AggregateFacetBuilderVisitorPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $this->processVisitors($container, 'content');
         $this->processVisitors($container, 'location');
     }
 
-    private function processVisitors(ContainerBuilder $container, $name = 'content')
+    private function processVisitors(ContainerBuilder $container, string $name = 'content'): void
     {
         if (!$container->hasDefinition("ibexa.solr.query.$name.facet_builder_visitor.aggregate")) {
             return;

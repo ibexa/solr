@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class AggregateCriterionVisitorPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if (
             !$container->hasDefinition('ibexa.solr.query.content.criterion_visitor.aggregate') &&
@@ -51,7 +51,10 @@ class AggregateCriterionVisitorPass implements CompilerPassInterface
         }
     }
 
-    protected function addHandlers(Definition $definition, $handlers)
+    /**
+     * @param array<string, array<mixed>> $handlers
+     */
+    protected function addHandlers(Definition $definition, array $handlers): void
     {
         foreach ($handlers as $id => $attributes) {
             $definition->addMethodCall('addVisitor', [new Reference($id)]);
