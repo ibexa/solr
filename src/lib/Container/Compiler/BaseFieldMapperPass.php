@@ -26,7 +26,7 @@ abstract class BaseFieldMapperPass implements CompilerPassInterface
      */
     public const AGGREGATE_MAPPER_SERVICE_TAG = null;
 
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if (!$container->hasDefinition(static::AGGREGATE_MAPPER_SERVICE_ID)) {
             return;
