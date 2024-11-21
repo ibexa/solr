@@ -54,7 +54,6 @@ class NativeResultExtractor extends ResultExtractor
                 'contentTypeId' => (int)$hit->content_type_id_id,
                 'sectionId' => (int)$hit->content_section_id_id,
                 'currentVersionNo' => $hit->content_version_no_i,
-                'isPublished' => true,
                 'ownerId' => (int)$hit->content_owner_user_id_id,
                 'modificationDate' => strtotime($hit->content_modification_date_dt),
                 'publicationDate' => strtotime($hit->content_publication_date_dt),
