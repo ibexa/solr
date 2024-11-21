@@ -9,6 +9,7 @@ namespace Ibexa\Solr\Query\Content\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\FullText as FullTextCriterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Core\Search\Common\FieldNameResolver;
 use QueryTranslator\Languages\Galach\Generators\ExtendedDisMax;
@@ -83,7 +84,7 @@ class FullText extends CriterionVisitor
      *
      * @return bool
      */
-    public function canVisit(Criterion $criterion)
+    public function canVisit(CriterionInterface $criterion)
     {
         return $criterion instanceof FullTextCriterion;
     }
@@ -92,10 +93,11 @@ class FullText extends CriterionVisitor
      * Map field value to a proper Solr representation.
      *
      * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\FullText $criterion
      *
      * @return string
      */
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
     {
         /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\FullText $criterion */
         $tokenSequence = $this->tokenizer->tokenize($criterion->value);

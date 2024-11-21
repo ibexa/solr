@@ -9,6 +9,7 @@ namespace Ibexa\Solr\Query\Common\CriterionVisitor\Field;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Ibexa\Solr\Query\Common\CriterionVisitor\Field;
@@ -25,7 +26,7 @@ class FieldLike extends Field
      *
      * @return bool
      */
-    public function canVisit(Criterion $criterion)
+    public function canVisit(CriterionInterface $criterion)
     {
         return $criterion instanceof Criterion\Field && $criterion->operator === Operator::LIKE;
     }
@@ -35,12 +36,12 @@ class FieldLike extends Field
      *
      * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException If no searchable fields are found for the given criterion target.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion $criterion
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Field $criterion
      * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      *
      * @return string
      */
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
     {
         $searchFields = $this->getSearchFields($criterion);
 

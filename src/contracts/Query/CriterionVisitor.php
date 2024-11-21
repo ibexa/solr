@@ -9,6 +9,7 @@ namespace Ibexa\Contracts\Solr\Query;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 
 /**
  * Visits the criterion tree into a Solr query.
@@ -20,16 +21,14 @@ abstract class CriterionVisitor
      *
      * @return bool
      */
-    abstract public function canVisit(Criterion $criterion);
+    abstract public function canVisit(CriterionInterface $criterion);
 
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param CriterionVisitor $subVisitor
-     *
      * @return string
      */
-    abstract public function visit(Criterion $criterion, self $subVisitor = null);
+    abstract public function visit(CriterionInterface $criterion, self $subVisitor = null);
 
     /**
      * Get Solr range.

@@ -9,6 +9,7 @@ namespace Ibexa\Solr\Query\Common\CriterionVisitor\MapLocation;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Ibexa\Solr\Query\Common\CriterionVisitor\MapLocation;
@@ -25,7 +26,7 @@ class MapLocationDistanceRange extends MapLocation
      *
      * @return bool
      */
-    public function canVisit(Criterion $criterion)
+    public function canVisit(CriterionInterface $criterion)
     {
         return
             $criterion instanceof Criterion\MapLocationDistance &&
@@ -41,12 +42,12 @@ class MapLocationDistanceRange extends MapLocation
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException If no searchable fields are found for the given criterion target.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion $criterion
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\MapLocationDistance $criterion
      * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      *
      * @return string
      */
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
     {
         $criterion->value = (array)$criterion->value;
 

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Solr\Query\Content\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 /**
@@ -16,13 +17,16 @@ use Ibexa\Contracts\Solr\Query\CriterionVisitor;
  */
 final class ContentName extends CriterionVisitor
 {
-    public function canVisit(Criterion $criterion): bool
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return $criterion instanceof Criterion\ContentName
             && $criterion->operator === Criterion\Operator::LIKE;
     }
 
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null): string
+    /**
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\ContentName $criterion
+     */
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         /** @var string $value */
         $value = $criterion->value;

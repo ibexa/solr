@@ -8,7 +8,6 @@
 namespace Ibexa\Solr\CoreFilter;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
-use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CustomField;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalAnd;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalNot;
@@ -16,6 +15,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalOr;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
 use Ibexa\Solr\CoreFilter;
 use Ibexa\Solr\Gateway\EndpointResolver;
+use RuntimeException;
 
 /**
  * Native core filter handles:.
@@ -132,7 +132,7 @@ class NativeCoreFilter extends CoreFilter
         array $languageCodes,
         bool $useAlwaysAvailable,
         bool $excludeTranslationsFromAlwaysAvailable = true
-    ): Criterion {
+    ): Query\CriterionInterface {
         // Handle languages if given
         if (!empty($languageCodes)) {
             // Get condition for prioritized languages fallback
@@ -164,10 +164,8 @@ class NativeCoreFilter extends CoreFilter
      * Returns criteria for prioritized languages fallback.
      *
      * @param string[] $languageCodes
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion
      */
-    private function getLanguageFilter(array $languageCodes)
+    private function getLanguageFilter(array $languageCodes): Query\CriterionInterface
     {
         $languageFilters = [];
 
@@ -209,6 +207,10 @@ class NativeCoreFilter extends CoreFilter
             return new LogicalAnd($languageFilters);
         }
 
+        if (empty($languageFilters)) {
+            throw new RuntimeException('$languageFilters is empty');
+        }
+
         return reset($languageFilters);
     }
 
@@ -220,7 +222,7 @@ class NativeCoreFilter extends CoreFilter
     private function getAlwaysAvailableFilter(
         array $languageCodes,
         bool $excludeTranslationsFromAlwaysAvailable = true
-    ): Criterion {
+    ): Query\CriterionInterface {
         $excludeOnField = $excludeTranslationsFromAlwaysAvailable
             // Exclude all translations by given languages
             ? self::FIELD_LANGUAGES

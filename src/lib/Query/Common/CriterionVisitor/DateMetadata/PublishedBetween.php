@@ -9,6 +9,7 @@ namespace Ibexa\Solr\Query\Common\CriterionVisitor\DateMetadata;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Solr\Query\Common\CriterionVisitor\DateMetadata;
 
@@ -22,7 +23,7 @@ class PublishedBetween extends DateMetadata
      *
      * @return bool
      */
-    public function canVisit(Criterion $criterion)
+    public function canVisit(CriterionInterface $criterion)
     {
         if (!$criterion instanceof Criterion\DateMetadata) {
             return false;
@@ -44,11 +45,12 @@ class PublishedBetween extends DateMetadata
     /**
      * Map field value to a proper Solr representation.
      *
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\DateMetadata $criterion
      * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      *
      * @return string
      */
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
     {
         $start = $this->getSolrTime($criterion->value[0]);
         $end = isset($criterion->value[1]) ? $this->getSolrTime($criterion->value[1]) : null;

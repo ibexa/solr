@@ -10,12 +10,13 @@ namespace Ibexa\Solr\Query\Image\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 
 final class FileSize extends AbstractImageRangeVisitor
 {
     private const SEARCH_FIELD_FILE_SIZE = 'file_size';
 
-    public function canVisit(Criterion $criterion): bool
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return $criterion instanceof Criterion\Image\FileSize
             && (

@@ -10,6 +10,7 @@ namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 /**
@@ -19,12 +20,15 @@ abstract class BaseIsContainer extends CriterionVisitor
 {
     abstract protected function getTargetField(): string;
 
-    public function canVisit(Criterion $criterion): bool
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return $criterion instanceof Criterion\IsContainer && $criterion->operator === Operator::EQ;
     }
 
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null): string
+    /**
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\IsContainer $criterion
+     */
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         $value = $criterion->value;
 

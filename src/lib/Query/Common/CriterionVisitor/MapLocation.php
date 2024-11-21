@@ -8,6 +8,7 @@
 namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Core\Search\Common\FieldNameResolver;
 
@@ -61,7 +62,7 @@ abstract class MapLocation extends CriterionVisitor
      * @return array
      */
     protected function getSearchFields(
-        Criterion $criterion,
+        CriterionInterface $criterion,
         $fieldDefinitionIdentifier,
         $fieldTypeIdentifier = null,
         $name = null
