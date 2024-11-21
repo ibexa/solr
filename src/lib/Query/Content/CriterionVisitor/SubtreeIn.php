@@ -11,7 +11,6 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
-use Ibexa\Core\Repository\Values\Content\Query\Criterion\PermissionSubtree;
 
 /**
  * Visits the Subtree criterion.

@@ -25,7 +25,6 @@ final class UserLoginIn extends CriterionVisitor
         return in_array($criterion->operator ?? Operator::IN, [Operator::IN, Operator::EQ], true);
     }
 
-
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\UserLogin $criterion
      */

@@ -210,6 +210,7 @@ class NativeCoreFilter extends CoreFilter
         if (empty($languageFilters)) {
             throw new RuntimeException('$languageFilters is empty');
         }
+
         return reset($languageFilters);
     }
 

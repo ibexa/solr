@@ -33,6 +33,7 @@ class Visibility extends CriterionVisitor
      * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Visibility $criterion
 
+     *
      * @return string
      */
     public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
