@@ -103,18 +103,13 @@ class IbexaSolrExtension extends Extension
     }
 
     /**
-     * Loads a specific configuration.
-     *
-     * @param array $configs An array of configuration values
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container A ContainerBuilder instance
-     *
      * @throws \InvalidArgumentException When provided tag is not defined in this extension
-     *
-     * @api
+     * @throws \Exception
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = $this->getConfiguration($configs, $container);
+        assert($configuration !== null);
         $config = $this->processConfiguration($configuration, $configs);
 
         // Loading configuration from lib/Resources/config/container
@@ -141,10 +136,9 @@ class IbexaSolrExtension extends Extension
      * Processes connection configuration by flattening connection parameters
      * and setting them to the container as parameters.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param array $config
+     * @param array<string, mixed> $config
      */
-    protected function processConnectionConfiguration(ContainerBuilder $container, array $config)
+    protected function processConnectionConfiguration(ContainerBuilder $container, array $config): void
     {
         $alias = $this->getServicePrefix();
 
@@ -189,12 +183,13 @@ class IbexaSolrExtension extends Extension
     /**
      * Creates needed search services for given connection name and parameters.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param string $connectionName
-     * @param array $connectionParams
+     * @param array<string, mixed> $connectionParams
      */
-    private function configureSearchServices(ContainerBuilder $container, $connectionName, $connectionParams)
-    {
+    private function configureSearchServices(
+        ContainerBuilder $container,
+        string $connectionName,
+        array $connectionParams
+    ): void {
         $alias = $this->getServicePrefix();
 
         // Endpoint resolver
@@ -244,12 +239,13 @@ class IbexaSolrExtension extends Extension
     /**
      * Creates boost factor map parameter for a given $connectionName.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param string $connectionName
-     * @param array $connectionParams
+     * @param array<string, mixed> $connectionParams
      */
-    private function configureBoostMap(ContainerBuilder $container, $connectionName, $connectionParams)
-    {
+    private function configureBoostMap(
+        ContainerBuilder $container,
+        string $connectionName,
+        array $connectionParams
+    ): void {
         $alias = $this->getServicePrefix();
         $boostFactorMap = $this->buildBoostFactorMap($connectionParams['boost_factors']);
         $boostFactorMapId = "{$alias}.connection.{$connectionName}.boost_factor_map_id";
@@ -260,11 +256,9 @@ class IbexaSolrExtension extends Extension
     /**
      * Creates indexing depth map parameter for a given $connectionName.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param string $connectionName
-     * @param array $connectionParams
+     * @param array<string, mixed> $connectionParams
      */
-    private function configureIndexingDepth(ContainerBuilder $container, $connectionName, $connectionParams)
+    private function configureIndexingDepth(ContainerBuilder $container, string $connectionName, array $connectionParams): void
     {
         $alias = $this->getServicePrefix();
 
@@ -278,11 +272,9 @@ class IbexaSolrExtension extends Extension
     /**
      * Creates Endpoint definition in the service container.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param string $alias
-     * @param array $params
+     * @param array<mixed> $params
      */
-    protected function defineEndpoint(ContainerBuilder $container, $alias, $params)
+    protected function defineEndpoint(ContainerBuilder $container, string $alias, array $params): void
     {
         $definition = new Definition(self::ENDPOINT_CLASS, [$params]);
         $definition->addTag(self::ENDPOINT_TAG, ['alias' => $alias]);
@@ -293,6 +285,9 @@ class IbexaSolrExtension extends Extension
         );
     }
 
+    /**
+     * @param array<array<mixed>> $config
+     */
     public function getConfiguration(array $config, ContainerBuilder $container): ?ConfigurationInterface
     {
         return new Configuration($this->getAlias());
@@ -303,11 +298,11 @@ class IbexaSolrExtension extends Extension
      *
      * @see \Ibexa\Solr\FieldMapper\BoostFactorProvider::$map
      *
-     * @param array $config
+     * @param array<string, mixed> $config
      *
-     * @return array
+     * @return array<string, mixed>
      */
-    protected function buildBoostFactorMap(array $config)
+    protected function buildBoostFactorMap(array $config): array
     {
         $boostFactorMap = [];
 
