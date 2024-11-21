@@ -175,7 +175,11 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
      */
     private function doMapRelatedFields(Content $sourceContent, $languageCode, $maxDepth, $depth)
     {
-        $relations = $this->contentHandler->loadRelations($sourceContent->versionInfo->contentInfo->id);
+        $sourceContentId = $sourceContent->versionInfo->contentInfo->id;
+        $relations = $this->contentHandler->loadRelationList(
+            $sourceContentId,
+            $this->contentHandler->countRelations($sourceContentId)
+        );
 
         $relatedContents = $this->contentHandler->loadContentList(
             array_map(static function (Content\Relation $relation) {
