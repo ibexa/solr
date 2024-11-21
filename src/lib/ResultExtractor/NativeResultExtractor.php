@@ -60,6 +60,7 @@ class NativeResultExtractor extends ResultExtractor
                 'alwaysAvailable' => $hit->content_always_available_b,
                 'remoteId' => $hit->content_remote_id_id,
                 'mainLanguageCode' => $hit->content_main_language_code_s,
+                'status' => ContentInfo::STATUS_PUBLISHED,
             ]
         );
 
