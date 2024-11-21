@@ -9,6 +9,7 @@ namespace Ibexa\Solr\Query\Content\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Core\Repository\Values\Content\Query\Criterion\PermissionSubtree;
 
@@ -22,10 +23,10 @@ class SubtreeIn extends CriterionVisitor
      *
      * @return bool
      */
-    public function canVisit(Criterion $criterion)
+    public function canVisit(CriterionInterface $criterion)
     {
         return
-            ($criterion instanceof Criterion\Subtree || $criterion instanceof PermissionSubtree) &&
+            $criterion instanceof Criterion\Subtree &&
             (($criterion->operator ?: Operator::IN) === Operator::IN ||
               $criterion->operator === Operator::EQ);
     }
@@ -34,10 +35,11 @@ class SubtreeIn extends CriterionVisitor
      * Map field value to a proper Solr representation.
      *
      * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Subtree $criterion
      *
      * @return string
      */
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
     {
         return '(' .
             implode(

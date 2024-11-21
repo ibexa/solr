@@ -10,12 +10,13 @@ namespace Ibexa\Solr\Query\Image\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 
 final class Width extends AbstractImageRangeVisitor
 {
     private const SEARCH_FIELD_WIDTH = 'width';
 
-    public function canVisit(Criterion $criterion): bool
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return $criterion instanceof Criterion\Image\Width
             && (

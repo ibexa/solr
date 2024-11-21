@@ -68,7 +68,7 @@ class NativeQueryConverter extends QueryConverter
     {
         $params = [
             'q' => '{!lucene}' . $this->criterionVisitor->visit($query->query),
-            'fq' => '{!lucene}' . $this->criterionVisitor->visit($query->filter),
+            'fq' => '{!lucene}' . ($query->filter ? $this->criterionVisitor->visit($query->filter) : ''),
             'sort' => $this->getSortClauses($query->sortClauses),
             'start' => $query->offset,
             'rows' => $query->limit,

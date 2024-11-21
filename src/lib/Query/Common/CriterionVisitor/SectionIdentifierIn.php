@@ -10,11 +10,12 @@ namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 class SectionIdentifierIn extends CriterionVisitor
 {
-    public function canVisit(Criterion $criterion): bool
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return
             $criterion instanceof Criterion\SectionIdentifier &&
@@ -24,7 +25,10 @@ class SectionIdentifierIn extends CriterionVisitor
             );
     }
 
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null): string
+    /**
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\SectionIdentifier $criterion
+     */
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         return sprintf(
             '(%s)',

@@ -10,6 +10,7 @@ namespace Ibexa\Solr\Query\Location\CriterionVisitor\Location;
 
 use Ibexa\Contracts\Core\Repository\PermissionResolver;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use LogicException;
 
@@ -24,14 +25,17 @@ final class IsBookmarked extends CriterionVisitor
         $this->permissionResolver = $permissionResolver;
     }
 
-    public function canVisit(Criterion $criterion): bool
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return $criterion instanceof Criterion\Location\IsBookmarked
             && $criterion->operator === Criterion\Operator::EQ;
     }
 
+    /**
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Location\IsBookmarked $criterion
+     */
     public function visit(
-        Criterion $criterion,
+        CriterionInterface $criterion,
         CriterionVisitor $subVisitor = null
     ): string {
         if (!is_array($criterion->value)) {

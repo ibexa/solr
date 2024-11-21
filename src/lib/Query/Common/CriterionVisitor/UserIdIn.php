@@ -10,11 +10,12 @@ namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 final class UserIdIn extends CriterionVisitor
 {
-    public function canVisit(Criterion $criterion): bool
+    public function canVisit(CriterionInterface $criterion): bool
     {
         if (!$criterion instanceof Criterion\UserId) {
             return false;
@@ -23,7 +24,10 @@ final class UserIdIn extends CriterionVisitor
         return in_array($criterion->operator ?? Operator::IN, [Operator::IN, Operator::EQ], true);
     }
 
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null): string
+    /**
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\UserId $criterion
+     */
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         return sprintf(
             '(%s)',
