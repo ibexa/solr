@@ -177,7 +177,7 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
     {
         $sourceContentId = $sourceContent->versionInfo->contentInfo->id;
         $relations = $this->contentHandler->loadRelationList(
-            $sourceContent->versionInfo->contentInfo->id,
+            $sourceContentId,
             $this->contentHandler->countRelations($sourceContentId)
         );
 
