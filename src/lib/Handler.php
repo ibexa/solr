@@ -173,7 +173,7 @@ class Handler implements VersatileHandler
      *
      * @return \Ibexa\Contracts\Core\Persistence\Content
      */
-    public function findSingle(Criterion $filter, array $languageFilter = [])
+    public function findSingle(Query\CriterionInterface $filter, array $languageFilter = [])
     {
         $query = new Query();
         $query->filter = $filter;

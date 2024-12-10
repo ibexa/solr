@@ -9,6 +9,7 @@ namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 /**
@@ -48,7 +49,7 @@ class Aggregate extends CriterionVisitor
      *
      * @return bool
      */
-    public function canVisit(Criterion $criterion)
+    public function canVisit(CriterionInterface $criterion)
     {
         return true;
     }
@@ -62,7 +63,7 @@ class Aggregate extends CriterionVisitor
      *
      * @return string
      */
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
     {
         foreach ($this->visitors as $visitor) {
             if ($visitor->canVisit($criterion)) {
@@ -70,6 +71,6 @@ class Aggregate extends CriterionVisitor
             }
         }
 
-        throw new NotImplementedException('No visitor available for: ' . \get_class($criterion) . ' with operator ' . $criterion->operator);
+        throw new NotImplementedException('No visitor available for: ' . \get_class($criterion));
     }
 }

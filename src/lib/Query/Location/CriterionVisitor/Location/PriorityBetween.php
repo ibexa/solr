@@ -9,6 +9,7 @@ namespace Ibexa\Solr\Query\Location\CriterionVisitor\Location;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 /**
@@ -21,7 +22,7 @@ class PriorityBetween extends CriterionVisitor
      *
      * @return bool
      */
-    public function canVisit(Criterion $criterion)
+    public function canVisit(CriterionInterface $criterion)
     {
         return
             $criterion instanceof Criterion\Location\Priority &&
@@ -38,10 +39,11 @@ class PriorityBetween extends CriterionVisitor
      * Map field value to a proper Solr representation.
      *
      * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Location\Priority $criterion
      *
      * @return string
      */
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
     {
         $start = $criterion->value[0];
         $end = isset($criterion->value[1]) ? $criterion->value[1] : null;

@@ -9,17 +9,21 @@ declare(strict_types=1);
 namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 final class CompositeCriterion extends CriterionVisitor
 {
-    public function canVisit(Criterion $criterion): bool
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return $criterion instanceof Criterion\CompositeCriterion;
     }
 
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
+    /**
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CompositeCriterion $criterion
+     */
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
-        return $subVisitor->visit($criterion->criteria, $subVisitor);
+        return $subVisitor?->visit($criterion->criteria, $subVisitor) ?? '';
     }
 }

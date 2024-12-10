@@ -256,11 +256,6 @@ parameters:
 			path: src/lib/CoreFilter/NativeCoreFilter.php
 
 		-
-			message: "#^Method Ibexa\\\\Solr\\\\CoreFilter\\\\NativeCoreFilter\\:\\:getLanguageFilter\\(\\) should return Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Query\\\\Criterion but returns Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Query\\\\Criterion\\\\CustomField\\|Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Query\\\\Criterion\\\\LogicalAnd\\|Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Query\\\\Criterion\\\\LogicalNot\\|Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Query\\\\Criterion\\\\LogicalOr\\|false\\.$#"
-			count: 1
-			path: src/lib/CoreFilter/NativeCoreFilter.php
-
-		-
 			message: "#^Parameter \\#2 \\$languageCode of method Ibexa\\\\Solr\\\\DocumentMapper\\\\NativeDocumentMapper\\:\\:generateContentDocumentId\\(\\) expects string\\|null, int\\|string given\\.$#"
 			count: 1
 			path: src/lib/DocumentMapper/NativeDocumentMapper.php
@@ -786,16 +781,6 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/Aggregate.php
 
 		-
-			message: "#^Access to an undefined property Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Query\\\\Criterion\\:\\:\\$criteria\\.$#"
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/CompositeCriterion.php
-
-		-
-			message: "#^Cannot call method visit\\(\\) on Ibexa\\\\Contracts\\\\Solr\\\\Query\\\\CriterionVisitor\\|null\\.$#"
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/CompositeCriterion.php
-
-		-
 			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/ContentIdIn.php
@@ -1079,11 +1064,6 @@ parameters:
 			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
 			count: 1
 			path: src/lib/Query/Content/CriterionVisitor/ParentLocationIdIn.php
-
-		-
-			message: "#^Instanceof between Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Query\\\\Criterion and Ibexa\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Query\\\\Criterion\\\\PermissionSubtree will always evaluate to false\\.$#"
-			count: 1
-			path: src/lib/Query/Content/CriterionVisitor/SubtreeIn.php
 
 		-
 			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string given\\.$#"
