@@ -67,7 +67,7 @@ class NativeQueryConverter extends QueryConverter
     public function convert(Query $query, array $languageSettings = [])
     {
         $params = [
-            'q' => '{!lucene}' . $this->criterionVisitor->visit($query->query),
+            'q' => '{!lucene}' . ($query->query !== null ? $this->criterionVisitor->visit($query->query) : ''),
             'fq' => '{!lucene}' . ($query->filter !== null ? $this->criterionVisitor->visit($query->filter) : ''),
             'sort' => $this->getSortClauses($query->sortClauses),
             'start' => $query->offset,
