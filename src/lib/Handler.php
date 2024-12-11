@@ -14,6 +14,7 @@ use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\LocationQuery;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
 use Ibexa\Contracts\Core\Search\VersatileHandler;
 use Ibexa\Contracts\Solr\DocumentMapper;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
@@ -126,19 +127,7 @@ class Handler implements VersatileHandler
         $this->resultExtractor = $contentResultExtractor;
     }
 
-    /**
-     * Finds content objects for the given query.
-     *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException if Query criterion is not applicable to its target
-     *
-     * @param array $languageFilter - a map of language related filters specifying languages query will be performed on.
-     *        Also used to define which field languages are loaded for the returned content.
-     *        Currently supports: <code>array("languages" => array(<language1>,..), "useAlwaysAvailable" => bool)</code>
-     *                            useAlwaysAvailable defaults to true to avoid exceptions on missing translations.
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult
-     */
-    public function findContent(Query $query, array $languageFilter = [])
+    public function findContent(Query $query, array $languageFilter = []): SearchResult
     {
         $query = clone $query;
         $query->filter = $query->filter ?: new Criterion\MatchAll();
@@ -159,21 +148,7 @@ class Handler implements VersatileHandler
         );
     }
 
-    /**
-     * Performs a query for a single content object.
-     *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException if the object was not found by the query or due to permissions
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException if Criterion is not applicable to its target
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException if there is more than than one result matching the criterions
-     *
-     * @param array $languageFilter - a map of language related filters specifying languages query will be performed on.
-     *        Also used to define which field languages are loaded for the returned content.
-     *        Currently supports: <code>array("languages" => array(<language1>,..), "useAlwaysAvailable" => bool)</code>
-     *                            useAlwaysAvailable defaults to true to avoid exceptions on missing translations.
-     *
-     * @return \Ibexa\Contracts\Core\Persistence\Content
-     */
-    public function findSingle(Query\CriterionInterface $filter, array $languageFilter = [])
+    public function findSingle(Query\CriterionInterface $filter, array $languageFilter = []): Content\ContentInfo
     {
         $query = new Query();
         $query->filter = $filter;
@@ -202,17 +177,7 @@ class Handler implements VersatileHandler
         return $first->valueObject;
     }
 
-    /**
-     * Finds Locations for the given $query.
-     *
-     * @param array $languageFilter - a map of language related filters specifying languages query will be performed on.
-     *        Also used to define which field languages are loaded for the returned content.
-     *        Currently supports: <code>array("languages" => array(<language1>,..), "useAlwaysAvailable" => bool)</code>
-     *                            useAlwaysAvailable defaults to true to avoid exceptions on missing translations.
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult
-     */
-    public function findLocations(LocationQuery $query, array $languageFilter = [])
+    public function findLocations(LocationQuery $query, array $languageFilter = []): SearchResult
     {
         $query = clone $query;
         $query->query = $query->query ?: new Criterion\MatchAll();
