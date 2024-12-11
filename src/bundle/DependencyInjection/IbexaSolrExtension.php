@@ -11,6 +11,7 @@ use Ibexa\Bundle\Solr\ApiLoader\BoostFactorProviderFactory;
 use Ibexa\Bundle\Solr\ApiLoader\SolrEngineFactory;
 use Ibexa\Solr\FieldMapper\BoostFactorProvider;
 use Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy;
+use Ibexa\Solr\Gateway\Endpoint;
 use Ibexa\Solr\Gateway\UpdateSerializerInterface;
 use Ibexa\Solr\Handler;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -30,67 +31,45 @@ class IbexaSolrExtension extends ConfigurableExtension
     /**
      * Main Solr search handler service ID.
      *
-     * @var string
+     * @phpstan-var class-string
      */
-    public const ENGINE_ID = Handler::class;
+    public const string ENGINE_ID = Handler::class;
 
     /**
      * Configured core gateway service ID.
      *
      * Not using service alias since alias can't be passed for decoration.
-     *
-     * @var string
      */
-    public const GATEWAY_ID = 'ibexa.solr.gateway.native';
+    public const string GATEWAY_ID = 'ibexa.solr.gateway.native';
 
     /**
      * Configured core filter service ID.
      *
      * Not using service alias since alias can't be passed for decoration.
-     *
-     * @var string
      */
-    public const CORE_FILTER_ID = 'ibexa.solr.core_filter.native';
+    public const string CORE_FILTER_ID = 'ibexa.solr.core_filter.native';
 
     /**
      * Configured core endpoint resolver service ID.
      *
      * Not using service alias since alias can't be passed for decoration.
-     *
-     * @var string
      */
-    public const ENDPOINT_RESOLVER_ID = 'ibexa.solr.gateway.endpoint_resolver.native';
+    public const string ENDPOINT_RESOLVER_ID = 'ibexa.solr.gateway.endpoint_resolver.native';
 
-    /**
-     * Endpoint class.
-     *
-     * @var string
-     */
-    public const ENDPOINT_CLASS = 'Ibexa\\Solr\\Gateway\\Endpoint';
+    /** @phpstan-var class-string */
+    public const string ENDPOINT_CLASS = Endpoint::class;
 
-    /**
-     * Endpoint service tag.
-     *
-     * @var string
-     */
-    public const ENDPOINT_TAG = 'ibexa.search.solr.endpoint';
+    public const string ENDPOINT_TAG = 'ibexa.search.solr.endpoint';
 
-    /**
-     * @var string
-     */
-    public const BOOST_FACTOR_PROVIDER_ID = BoostFactorProvider::class;
+    /** @phpstan-var class-string */
+    public const string BOOST_FACTOR_PROVIDER_ID = BoostFactorProvider::class;
 
-    /**
-     * @var string
-     */
-    public const STANDALONE_DISTRIBUTION_STRATEGY_ID = 'ibexa.solr.gateway.distribution_strategy.abstract_standalone';
+    public const string STANDALONE_DISTRIBUTION_STRATEGY_ID = 'ibexa.solr.gateway.distribution_strategy.abstract_standalone';
 
-    /**
-     * @var string
-     */
-    public const CLOUD_DISTRIBUTION_STRATEGY_ID = CloudDistributionStrategy::class;
+    /** @phpstan-var class-string */
+    public const string CLOUD_DISTRIBUTION_STRATEGY_ID = CloudDistributionStrategy::class;
 
-    public const GATEWAY_UPDATE_SERIALIZER_TAG = 'ibexa.solr.gateway.serializer.update';
+    public const string GATEWAY_UPDATE_SERIALIZER_TAG = 'ibexa.solr.gateway.serializer.update';
 
     public function getAlias(): string
     {
