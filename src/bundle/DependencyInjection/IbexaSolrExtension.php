@@ -20,12 +20,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 
 /**
  * @phpstan-type SolrHttpClientConfigArray = array{timeout: int, max_retries: int}
  */
-class IbexaSolrExtension extends Extension
+class IbexaSolrExtension extends ConfigurableExtension
 {
     /**
      * Main Solr search handler service ID.
@@ -103,15 +103,13 @@ class IbexaSolrExtension extends Extension
     }
 
     /**
+     * @param array<string, mixed> $mergedConfig
+     *
      * @throws \InvalidArgumentException When provided tag is not defined in this extension
      * @throws \Exception
      */
-    public function load(array $configs, ContainerBuilder $container): void
+    public function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
-        $configuration = $this->getConfiguration($configs, $container);
-        assert($configuration !== null);
-        $config = $this->processConfiguration($configuration, $configs);
-
         // Loading configuration from lib/Resources/config/container
         $loader = new YamlFileLoader(
             $container,
@@ -125,7 +123,7 @@ class IbexaSolrExtension extends Extension
         );
         $loader->load('services.yml');
 
-        $this->processConnectionConfiguration($container, $config);
+        $this->processConnectionConfiguration($container, $mergedConfig);
 
         $container
             ->registerForAutoconfiguration(UpdateSerializerInterface::class)
