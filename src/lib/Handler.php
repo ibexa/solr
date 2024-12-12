@@ -139,6 +139,7 @@ class Handler implements VersatileHandler
             DocumentMapper::DOCUMENT_TYPE_IDENTIFIER_CONTENT
         );
 
+        /** @phpstan-var \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult<\Ibexa\Contracts\Core\Persistence\Content\ContentInfo> */
         return $this->contentResultExtractor->extract(
             $this->gateway->findContent($query, $languageFilter),
             $query->facetBuilders,
@@ -162,19 +163,20 @@ class Handler implements VersatileHandler
             DocumentMapper::DOCUMENT_TYPE_IDENTIFIER_CONTENT
         );
 
+        /** @phpstan-var \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult<\Ibexa\Contracts\Core\Persistence\Content\ContentInfo> $result */
         $result = $this->resultExtractor->extract(
             $this->gateway->findContent($query, $languageFilter)
         );
 
-        if (!$result->totalCount) {
+        if (!$result->totalCount || empty($result->searchHits)) {
             throw new NotFoundException('Content', 'findSingle() found no content for the given $filter');
-        } elseif ($result->totalCount > 1) {
+        }
+
+        if ($result->totalCount > 1) {
             throw new InvalidArgumentException('totalCount', 'findSingle() found more then one Content item for the given $filter');
         }
 
-        $first = reset($result->searchHits);
-
-        return $first->valueObject;
+        return reset($result->searchHits)->valueObject;
     }
 
     public function findLocations(LocationQuery $query, array $languageFilter = []): SearchResult
@@ -188,6 +190,7 @@ class Handler implements VersatileHandler
             DocumentMapper::DOCUMENT_TYPE_IDENTIFIER_LOCATION
         );
 
+        /** @phpstan-var \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult<\Ibexa\Contracts\Core\Persistence\Content\Location> */
         return $this->locationResultExtractor->extract(
             $this->gateway->findLocations($query, $languageFilter),
             $query->facetBuilders,
