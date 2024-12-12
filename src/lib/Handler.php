@@ -176,6 +176,7 @@ class Handler implements VersatileHandler
             throw new InvalidArgumentException('totalCount', 'findSingle() found more then one Content item for the given $filter');
         }
 
+        /** @phpstan-ignore-next-line */
         return reset($result->searchHits)->valueObject;
     }
 

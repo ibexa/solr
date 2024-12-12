@@ -184,9 +184,6 @@ abstract class ResultExtractor
         return $facets;
     }
 
-    /**
-     * @phpstan-return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit<\Ibexa\Contracts\Core\Repository\Values\ValueObject>
-     */
     protected function extractSearchHit(stdClass $doc, array $languageFilter): SearchHit
     {
         return new SearchHit(
