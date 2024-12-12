@@ -50,7 +50,7 @@ abstract class ResultExtractor
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation[] $aggregations
      * @param array $languageFilter
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult<\Ibexa\Contracts\Core\Repository\Values\ValueObject>
      */
     public function extract(
         $data,
@@ -184,6 +184,9 @@ abstract class ResultExtractor
         return $facets;
     }
 
+    /**
+     * @phpstan-return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit<\Ibexa\Contracts\Core\Repository\Values\ValueObject>
+     */
     protected function extractSearchHit(stdClass $doc, array $languageFilter): SearchHit
     {
         return new SearchHit(
