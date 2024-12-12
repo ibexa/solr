@@ -56,91 +56,6 @@ parameters:
 			path: src/bundle/DependencyInjection/Configuration.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\IbexaSolrExtension\\:\\:buildBoostFactorMap\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaSolrExtension.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\IbexaSolrExtension\\:\\:buildBoostFactorMap\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaSolrExtension.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\IbexaSolrExtension\\:\\:configureBoostMap\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaSolrExtension.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\IbexaSolrExtension\\:\\:configureBoostMap\\(\\) has parameter \\$connectionParams with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaSolrExtension.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\IbexaSolrExtension\\:\\:configureIndexingDepth\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaSolrExtension.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\IbexaSolrExtension\\:\\:configureIndexingDepth\\(\\) has parameter \\$connectionParams with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaSolrExtension.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\IbexaSolrExtension\\:\\:configureSearchServices\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaSolrExtension.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\IbexaSolrExtension\\:\\:configureSearchServices\\(\\) has parameter \\$connectionParams with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaSolrExtension.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\IbexaSolrExtension\\:\\:defineEndpoint\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaSolrExtension.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\IbexaSolrExtension\\:\\:defineEndpoint\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaSolrExtension.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\IbexaSolrExtension\\:\\:getConfiguration\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaSolrExtension.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\IbexaSolrExtension\\:\\:load\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaSolrExtension.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\IbexaSolrExtension\\:\\:load\\(\\) has parameter \\$configs with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaSolrExtension.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\IbexaSolrExtension\\:\\:processConnectionConfiguration\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaSolrExtension.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\DependencyInjection\\\\IbexaSolrExtension\\:\\:processConnectionConfiguration\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaSolrExtension.php
-
-		-
-			message: "#^Parameter \\#1 \\$configuration of method Symfony\\\\Component\\\\DependencyInjection\\\\Extension\\\\Extension\\:\\:processConfiguration\\(\\) expects Symfony\\\\Component\\\\Config\\\\Definition\\\\ConfigurationInterface, Symfony\\\\Component\\\\Config\\\\Definition\\\\ConfigurationInterface\\|null given\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaSolrExtension.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Solr\\\\IbexaSolrBundle\\:\\:build\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/bundle/IbexaSolrBundle.php
-
-		-
 			message: "#^Method Ibexa\\\\Contracts\\\\Solr\\\\Query\\\\CriterionVisitor\\:\\:escapeQuote\\(\\) should return string but returns string\\|null\\.$#"
 			count: 1
 			path: src/contracts/Query/CriterionVisitor.php
@@ -179,61 +94,6 @@ parameters:
 			message: "#^Method Ibexa\\\\Contracts\\\\Solr\\\\ResultExtractor\\\\AggregationResultExtractor\\\\TermAggregationKeyMapper\\:\\:map\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/contracts/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Container\\\\Compiler\\\\AggregateCriterionVisitorPass\\:\\:addHandlers\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/lib/Container/Compiler/AggregateCriterionVisitorPass.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Container\\\\Compiler\\\\AggregateCriterionVisitorPass\\:\\:addHandlers\\(\\) has parameter \\$handlers with no type specified\\.$#"
-			count: 1
-			path: src/lib/Container/Compiler/AggregateCriterionVisitorPass.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Container\\\\Compiler\\\\AggregateCriterionVisitorPass\\:\\:process\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/lib/Container/Compiler/AggregateCriterionVisitorPass.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Container\\\\Compiler\\\\AggregateFacetBuilderVisitorPass\\:\\:process\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/lib/Container/Compiler/AggregateFacetBuilderVisitorPass.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Container\\\\Compiler\\\\AggregateFacetBuilderVisitorPass\\:\\:processVisitors\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/lib/Container/Compiler/AggregateFacetBuilderVisitorPass.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Container\\\\Compiler\\\\AggregateFacetBuilderVisitorPass\\:\\:processVisitors\\(\\) has parameter \\$name with no type specified\\.$#"
-			count: 1
-			path: src/lib/Container/Compiler/AggregateFacetBuilderVisitorPass.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Container\\\\Compiler\\\\AggregateSortClauseVisitorPass\\:\\:addHandlers\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/lib/Container/Compiler/AggregateSortClauseVisitorPass.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Container\\\\Compiler\\\\AggregateSortClauseVisitorPass\\:\\:addHandlers\\(\\) has parameter \\$handlers with no type specified\\.$#"
-			count: 1
-			path: src/lib/Container/Compiler/AggregateSortClauseVisitorPass.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Container\\\\Compiler\\\\AggregateSortClauseVisitorPass\\:\\:process\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/lib/Container/Compiler/AggregateSortClauseVisitorPass.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Container\\\\Compiler\\\\BaseFieldMapperPass\\:\\:process\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/lib/Container/Compiler/BaseFieldMapperPass.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Container\\\\Compiler\\\\EndpointRegistryPass\\:\\:process\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/lib/Container/Compiler/EndpointRegistryPass.php
 
 		-
 			message: "#^Method Ibexa\\\\Solr\\\\CoreFilter\\:\\:apply\\(\\) has no return type specified\\.$#"
@@ -616,11 +476,6 @@ parameters:
 			path: src/lib/Handler.php
 
 		-
-			message: "#^Cannot access property \\$valueObject on Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Search\\\\SearchHit\\|false\\.$#"
-			count: 1
-			path: src/lib/Handler.php
-
-		-
 			message: "#^Method Ibexa\\\\Solr\\\\Handler\\:\\:bulkIndexContent\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: src/lib/Handler.php
@@ -671,11 +526,6 @@ parameters:
 			path: src/lib/Handler.php
 
 		-
-			message: "#^Method Ibexa\\\\Solr\\\\Handler\\:\\:findSingle\\(\\) should return Ibexa\\\\Contracts\\\\Core\\\\Persistence\\\\Content but returns Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\ValueObject\\.$#"
-			count: 1
-			path: src/lib/Handler.php
-
-		-
 			message: "#^Method Ibexa\\\\Solr\\\\Handler\\:\\:generateDocument\\(\\) should return Ibexa\\\\Contracts\\\\Core\\\\Search\\\\Document but returns array\\<Ibexa\\\\Contracts\\\\Core\\\\Search\\\\Document\\>\\.$#"
 			count: 1
 			path: src/lib/Handler.php
@@ -718,11 +568,6 @@ parameters:
 		-
 			message: "#^Parameter \\#1 \\$documents of method Ibexa\\\\Solr\\\\Gateway\\:\\:bulkIndexDocuments\\(\\) expects array\\<array\\<Ibexa\\\\Contracts\\\\Core\\\\Search\\\\Document\\>\\>, array\\<Ibexa\\\\Contracts\\\\Core\\\\Search\\\\Document\\> given\\.$#"
 			count: 1
-			path: src/lib/Handler.php
-
-		-
-			message: "#^Return type \\(Ibexa\\\\Contracts\\\\Core\\\\Persistence\\\\Content\\) of method Ibexa\\\\Solr\\\\Handler\\:\\:findSingle\\(\\) should be compatible with return type \\(Ibexa\\\\Contracts\\\\Core\\\\Persistence\\\\Content\\\\ContentInfo\\) of method Ibexa\\\\Contracts\\\\Core\\\\Search\\\\Handler\\:\\:findSingle\\(\\)$#"
-			count: 2
 			path: src/lib/Handler.php
 
 		-
