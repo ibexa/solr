@@ -14,6 +14,7 @@ use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\LocationQuery;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
 use Ibexa\Contracts\Core\Search\VersatileHandler;
 use Ibexa\Contracts\Solr\DocumentMapper;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
@@ -126,19 +127,7 @@ class Handler implements VersatileHandler
         $this->resultExtractor = $contentResultExtractor;
     }
 
-    /**
-     * Finds content objects for the given query.
-     *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException if Query criterion is not applicable to its target
-     *
-     * @param array $languageFilter - a map of language related filters specifying languages query will be performed on.
-     *        Also used to define which field languages are loaded for the returned content.
-     *        Currently supports: <code>array("languages" => array(<language1>,..), "useAlwaysAvailable" => bool)</code>
-     *                            useAlwaysAvailable defaults to true to avoid exceptions on missing translations.
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult
-     */
-    public function findContent(Query $query, array $languageFilter = [])
+    public function findContent(Query $query, array $languageFilter = []): SearchResult
     {
         $query = clone $query;
         $query->filter = $query->filter ?: new Criterion\MatchAll();
@@ -150,6 +139,7 @@ class Handler implements VersatileHandler
             DocumentMapper::DOCUMENT_TYPE_IDENTIFIER_CONTENT
         );
 
+        /** @phpstan-var \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult<\Ibexa\Contracts\Core\Persistence\Content\ContentInfo> */
         return $this->contentResultExtractor->extract(
             $this->gateway->findContent($query, $languageFilter),
             $query->facetBuilders,
@@ -159,21 +149,7 @@ class Handler implements VersatileHandler
         );
     }
 
-    /**
-     * Performs a query for a single content object.
-     *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException if the object was not found by the query or due to permissions
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException if Criterion is not applicable to its target
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException if there is more than than one result matching the criterions
-     *
-     * @param array $languageFilter - a map of language related filters specifying languages query will be performed on.
-     *        Also used to define which field languages are loaded for the returned content.
-     *        Currently supports: <code>array("languages" => array(<language1>,..), "useAlwaysAvailable" => bool)</code>
-     *                            useAlwaysAvailable defaults to true to avoid exceptions on missing translations.
-     *
-     * @return \Ibexa\Contracts\Core\Persistence\Content
-     */
-    public function findSingle(Query\CriterionInterface $filter, array $languageFilter = [])
+    public function findSingle(Query\CriterionInterface $filter, array $languageFilter = []): Content\ContentInfo
     {
         $query = new Query();
         $query->filter = $filter;
@@ -187,32 +163,23 @@ class Handler implements VersatileHandler
             DocumentMapper::DOCUMENT_TYPE_IDENTIFIER_CONTENT
         );
 
+        /** @phpstan-var \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult<\Ibexa\Contracts\Core\Persistence\Content\ContentInfo> $result */
         $result = $this->resultExtractor->extract(
             $this->gateway->findContent($query, $languageFilter)
         );
 
-        if (!$result->totalCount) {
+        if (!$result->totalCount || empty($result->searchHits)) {
             throw new NotFoundException('Content', 'findSingle() found no content for the given $filter');
-        } elseif ($result->totalCount > 1) {
+        }
+
+        if ($result->totalCount > 1) {
             throw new InvalidArgumentException('totalCount', 'findSingle() found more then one Content item for the given $filter');
         }
 
-        $first = reset($result->searchHits);
-
-        return $first->valueObject;
+        return reset($result->searchHits)->valueObject;
     }
 
-    /**
-     * Finds Locations for the given $query.
-     *
-     * @param array $languageFilter - a map of language related filters specifying languages query will be performed on.
-     *        Also used to define which field languages are loaded for the returned content.
-     *        Currently supports: <code>array("languages" => array(<language1>,..), "useAlwaysAvailable" => bool)</code>
-     *                            useAlwaysAvailable defaults to true to avoid exceptions on missing translations.
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult
-     */
-    public function findLocations(LocationQuery $query, array $languageFilter = [])
+    public function findLocations(LocationQuery $query, array $languageFilter = []): SearchResult
     {
         $query = clone $query;
         $query->query = $query->query ?: new Criterion\MatchAll();
@@ -223,6 +190,7 @@ class Handler implements VersatileHandler
             DocumentMapper::DOCUMENT_TYPE_IDENTIFIER_LOCATION
         );
 
+        /** @phpstan-var \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult<\Ibexa\Contracts\Core\Persistence\Content\Location> */
         return $this->locationResultExtractor->extract(
             $this->gateway->findLocations($query, $languageFilter),
             $query->facetBuilders,
