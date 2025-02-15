@@ -511,21 +511,6 @@ parameters:
 			path: src/lib/Handler.php
 
 		-
-			message: "#^Method Ibexa\\\\Solr\\\\Handler\\:\\:findContent\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Handler.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Handler\\:\\:findLocations\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Handler.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Handler\\:\\:findSingle\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Handler.php
-
-		-
 			message: "#^Method Ibexa\\\\Solr\\\\Handler\\:\\:generateDocument\\(\\) should return Ibexa\\\\Contracts\\\\Core\\\\Search\\\\Document but returns array\\<Ibexa\\\\Contracts\\\\Core\\\\Search\\\\Document\\>\\.$#"
 			count: 1
 			path: src/lib/Handler.php
@@ -741,7 +726,7 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/SectionIn.php
 
 		-
-			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(bool\\|float\\|int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: non\\-falsy\\-string given\\.$#"
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(bool\\|float\\|int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: \\(lowercase\\-string&non\\-falsy\\-string\\) given\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/UserEmailIn.php
 
@@ -761,7 +746,7 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/UserIdIn.php
 
 		-
-			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(bool\\|float\\|int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: non\\-falsy\\-string given\\.$#"
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(bool\\|float\\|int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: \\(lowercase\\-string&non\\-falsy\\-string\\) given\\.$#"
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/UserLoginIn.php
 
