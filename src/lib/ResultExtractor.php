@@ -14,7 +14,6 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SpellcheckResult;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Solr\Gateway\EndpointRegistry;
-use Ibexa\Solr\Query\FacetFieldVisitor;
 use stdClass;
 
 /**
@@ -23,9 +22,6 @@ use stdClass;
  */
 abstract class ResultExtractor
 {
-    /** @var \Ibexa\Solr\Query\FacetFieldVisitor */
-    protected $facetBuilderVisitor;
-
     /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor */
     protected $aggregationResultExtractor;
 
@@ -33,11 +29,9 @@ abstract class ResultExtractor
     protected $endpointRegistry;
 
     public function __construct(
-        FacetFieldVisitor $facetBuilderVisitor,
         AggregationResultExtractor $aggregationResultExtractor,
         EndpointRegistry $endpointRegistry
     ) {
-        $this->facetBuilderVisitor = $facetBuilderVisitor;
         $this->aggregationResultExtractor = $aggregationResultExtractor;
         $this->endpointRegistry = $endpointRegistry;
     }
@@ -46,7 +40,6 @@ abstract class ResultExtractor
      * Extracts search result from $data returned by Solr backend.
      *
      * @param mixed $data
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder[] $facetBuilders
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation[] $aggregations
      * @param array $languageFilter
      *
@@ -54,7 +47,6 @@ abstract class ResultExtractor
      */
     public function extract(
         $data,
-        array $facetBuilders = [],
         array $aggregations = [],
         array $languageFilter = [],
         ?Spellcheck $spellcheck = null
@@ -67,7 +59,6 @@ abstract class ResultExtractor
             ]
         );
 
-        $result->facets = $this->extractFacets($data, $facetBuilders, $languageFilter);
         $result->aggregations = $this->extractAggregations($data, $aggregations, $languageFilter);
         $result->spellcheck = $this->extractSpellcheck($data, $spellcheck);
 
@@ -143,50 +134,6 @@ abstract class ResultExtractor
         return new AggregationResultCollection($aggregationsResults);
     }
 
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder[] $facetBuilders
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\Facet[]
-     */
-    protected function extractFacets(stdClass $data, array $facetBuilders, array $languageFilter): array
-    {
-        $facets = [];
-
-        if (isset($data->facet_counts)) {
-            // We'll first need to generate id's for facet builders to match against fields, as also done for
-            // visit stage in NativeQueryConverter.
-            $facetBuildersById = [];
-            foreach ($facetBuilders as $facetBuilder) {
-                $facetBuildersById[spl_object_hash($facetBuilder)] = $facetBuilder;
-            }
-
-            foreach ($data->facet_counts as $facetCounts) {
-                foreach ($facetCounts as $field => $facet) {
-                    if (empty($facetBuildersById[$field])) {
-                        @trigger_error(
-                            'Not setting id of field using FacetFieldVisitor::visitBuilder will not be supported in 4.0'
-                            . ', as it makes it impossible to exactly identify which facets belongs to which builder.'
-                            . "\nMake sure to adapt your visitor for the following field: $field"
-                            . "\nExample: 'facet.field' => \"{!ex=dt key=\$id}$field\",",
-                            E_USER_DEPRECATED
-                        );
-                    }
-
-                    $facets[] = $this->facetBuilderVisitor->mapField(
-                        $field,
-                        (array)$facet,
-                        $facetBuildersById[$field] ?? null
-                    );
-                }
-            }
-        }
-
-        return $facets;
-    }
-
-    /**
-     * @phpstan-return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit<\Ibexa\Contracts\Core\Repository\Values\ValueObject>
-     */
     protected function extractSearchHit(stdClass $doc, array $languageFilter): SearchHit
     {
         return new SearchHit(

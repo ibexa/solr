@@ -11,7 +11,6 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Contracts\Solr\Query\SortClauseVisitor;
-use Ibexa\Solr\Query\FacetFieldVisitor;
 use Ibexa\Solr\Query\QueryConverter;
 
 /**
@@ -34,13 +33,6 @@ class NativeQueryConverter extends QueryConverter
     protected $sortClauseVisitor;
 
     /**
-     * Facet builder visitor.
-     *
-     * @var \Ibexa\Solr\Query\FacetFieldVisitor
-     */
-    protected $facetBuilderVisitor;
-
-    /**
      * @var \Ibexa\Contracts\Solr\Query\AggregationVisitor
      */
     private $aggregationVisitor;
@@ -50,17 +42,14 @@ class NativeQueryConverter extends QueryConverter
      *
      * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $criterionVisitor
      * @param \Ibexa\Contracts\Solr\Query\SortClauseVisitor $sortClauseVisitor
-     * @param \Ibexa\Solr\Query\FacetFieldVisitor $facetBuilderVisitor
      */
     public function __construct(
         CriterionVisitor $criterionVisitor,
         SortClauseVisitor $sortClauseVisitor,
-        FacetFieldVisitor $facetBuilderVisitor,
         AggregationVisitor $aggregationVisitor
     ) {
         $this->criterionVisitor = $criterionVisitor;
         $this->sortClauseVisitor = $sortClauseVisitor;
-        $this->facetBuilderVisitor = $facetBuilderVisitor;
         $this->aggregationVisitor = $aggregationVisitor;
     }
 
@@ -75,13 +64,6 @@ class NativeQueryConverter extends QueryConverter
             'fl' => '*,score,[shard]',
             'wt' => 'json',
         ];
-
-        $facetParams = $this->getFacetParams($query->facetBuilders);
-        if (!empty($facetParams)) {
-            $params['facet'] = 'true';
-            $params['facet.sort'] = 'count';
-            $params = array_merge_recursive($facetParams, $params);
-        }
 
         if (!empty($query->aggregations)) {
             $aggregations = [];
@@ -127,43 +109,5 @@ class NativeQueryConverter extends QueryConverter
                 $sortClauses
             )
         );
-    }
-
-    /**
-     * Converts an array of facet builder objects to a Solr query parameters representation.
-     *
-     * This method uses spl_object_hash() to get id of each and every facet builder, as this
-     * is expected by {@link \Ibexa\Solr\ResultExtractor}.
-     *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder[] $facetBuilders
-     *
-     * @return array
-     */
-    private function getFacetParams(array $facetBuilders)
-    {
-        $facetSets = array_map(
-            function ($facetBuilder) {
-                return $this->facetBuilderVisitor->visitBuilder($facetBuilder, spl_object_hash($facetBuilder));
-            },
-            $facetBuilders
-        );
-
-        $facetParams = [];
-
-        // In case when facet sets contain same keys, merge them in an array
-        foreach ($facetSets as $facetSet) {
-            foreach ($facetSet as $key => $value) {
-                if (isset($facetParams[$key])) {
-                    if (!is_array($facetParams[$key])) {
-                        $facetParams[$key] = [$facetParams[$key]];
-                    }
-                    $facetParams[$key][] = $value;
-                } else {
-                    $facetParams[$key] = $value;
-                }
-            }
-        }
-
-        return $facetParams;
     }
 }

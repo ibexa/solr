@@ -761,57 +761,12 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/UserMetadataIn.php
 
 		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\FacetBuilderVisitor\\\\Aggregate\\:\\:addVisitor\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/lib/Query/Common/FacetBuilderVisitor/Aggregate.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\FacetBuilderVisitor\\\\Aggregate\\:\\:mapField\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/FacetBuilderVisitor/Aggregate.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\FacetBuilderVisitor\\\\ContentType\\:\\:mapField\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/FacetBuilderVisitor/ContentType.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\FacetBuilderVisitor\\\\ContentType\\:\\:visitBuilder\\(\\) should return array\\<string\\> but returns array\\<string, int\\|string\\>\\.$#"
-			count: 1
-			path: src/lib/Query/Common/FacetBuilderVisitor/ContentType.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\FacetBuilderVisitor\\\\Section\\:\\:mapField\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/FacetBuilderVisitor/Section.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\FacetBuilderVisitor\\\\Section\\:\\:visitBuilder\\(\\) should return array\\<string\\> but returns array\\<string, int\\|string\\>\\.$#"
-			count: 1
-			path: src/lib/Query/Common/FacetBuilderVisitor/Section.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\FacetBuilderVisitor\\\\User\\:\\:mapField\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/FacetBuilderVisitor/User.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\FacetBuilderVisitor\\\\User\\:\\:visitBuilder\\(\\) should return array\\<string\\> but returns array\\<string, int\\|string\\>\\.$#"
-			count: 1
-			path: src/lib/Query/Common/FacetBuilderVisitor/User.php
-
-		-
 			message: "#^Default value of the parameter \\#2 \\$languageSettings \\(array\\{\\}\\) of method Ibexa\\\\Solr\\\\Query\\\\Common\\\\QueryConverter\\\\NativeQueryConverter\\:\\:convert\\(\\) is incompatible with type array\\{languages\\: array\\<string\\>\\}\\.$#"
 			count: 1
 			path: src/lib/Query/Common/QueryConverter/NativeQueryConverter.php
 
 		-
 			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\QueryConverter\\\\NativeQueryConverter\\:\\:convert\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/Common/QueryConverter/NativeQueryConverter.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\Common\\\\QueryConverter\\\\NativeQueryConverter\\:\\:getFacetParams\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/lib/Query/Common/QueryConverter/NativeQueryConverter.php
 
@@ -911,26 +866,6 @@ parameters:
 			path: src/lib/Query/Content/CriterionVisitor/Visibility.php
 
 		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\FacetBuilderVisitor\\:\\:map\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/FacetBuilderVisitor.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\FacetBuilderVisitor\\:\\:mapData\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/FacetBuilderVisitor.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\FacetBuilderVisitor\\:\\:mapData\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/FacetBuilderVisitor.php
-
-		-
-			message: "#^Method Ibexa\\\\Solr\\\\Query\\\\FacetFieldVisitor\\:\\:mapField\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Query/FacetFieldVisitor.php
-
-		-
 			message: "#^Argument of an invalid type array\\<bool\\|float\\|int\\|string\\>\\|bool\\|float\\|int\\|string supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/Ancestor.php
@@ -1011,17 +946,12 @@ parameters:
 			path: src/lib/ResultExtractor.php
 
 		-
-			message: "#^Method Ibexa\\\\Solr\\\\ResultExtractor\\:\\:extractFacets\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/ResultExtractor.php
-
-		-
 			message: "#^Method Ibexa\\\\Solr\\\\ResultExtractor\\:\\:extractSearchHit\\(\\) has parameter \\$languageFilter with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/lib/ResultExtractor.php
 
 		-
-			message: "#^Parameter \\#3 \\$facetBuilder of method Ibexa\\\\Solr\\\\Query\\\\FacetFieldVisitor\\:\\:mapField\\(\\) expects Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Query\\\\FacetBuilder, Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Query\\\\FacetBuilder\\|null given\\.$#"
+			message: "#^Method Ibexa\\\\Solr\\\\ResultExtractor\\:\\:extractSearchHit\\(\\) return type with generic class Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Search\\\\SearchHit does not specify its types\\: T$#"
 			count: 1
 			path: src/lib/ResultExtractor.php
 
@@ -1419,11 +1349,6 @@ parameters:
 			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Container\\\\Compiler\\\\AggregateCriterionVisitorPassTest\\:\\:testAddVisitor\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: tests/lib/Container/Compiler/AggregateCriterionVisitorPassTest.php
-
-		-
-			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Container\\\\Compiler\\\\AggregateFacetBuilderVisitorPassTest\\:\\:testAddVisitor\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: tests/lib/Container/Compiler/AggregateFacetBuilderVisitorPassTest.php
 
 		-
 			message: "#^Method Ibexa\\\\Tests\\\\Solr\\\\Container\\\\Compiler\\\\AggregateSortClauseVisitorPassTest\\:\\:testAddVisitor\\(\\) has no return type specified\\.$#"
