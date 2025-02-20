@@ -326,11 +326,6 @@ parameters:
 			path: src/lib/Gateway/DistributionStrategy/StandaloneDistributionStrategy.php
 
 		-
-			message: "#^Method Ibexa\\\\Solr\\\\Gateway\\\\Endpoint\\:\\:__construct\\(\\) has parameter \\$properties with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Gateway/Endpoint.php
-
-		-
 			message: "#^Method Ibexa\\\\Solr\\\\Gateway\\\\EndpointRegistry\\:\\:registerEndpoint\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: src/lib/Gateway/EndpointRegistry.php
