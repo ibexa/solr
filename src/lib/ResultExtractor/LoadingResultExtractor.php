@@ -11,7 +11,6 @@ use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Solr\Gateway\EndpointRegistry;
-use Ibexa\Solr\Query\FacetFieldVisitor;
 use Ibexa\Solr\ResultExtractor;
 use RuntimeException;
 
@@ -38,14 +37,13 @@ class LoadingResultExtractor extends ResultExtractor
     public function __construct(
         ContentHandler $contentHandler,
         LocationHandler $locationHandler,
-        FacetFieldVisitor $facetFieldVisitor,
         AggregationResultExtractor $aggregationResultExtractor,
         EndpointRegistry $endpointRegistry
     ) {
         $this->contentHandler = $contentHandler;
         $this->locationHandler = $locationHandler;
 
-        parent::__construct($facetFieldVisitor, $aggregationResultExtractor, $endpointRegistry);
+        parent::__construct($aggregationResultExtractor, $endpointRegistry);
     }
 
     /**

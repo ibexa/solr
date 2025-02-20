@@ -142,7 +142,6 @@ class Handler implements VersatileHandler
         /** @phpstan-var \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult<\Ibexa\Contracts\Core\Persistence\Content\ContentInfo> */
         return $this->contentResultExtractor->extract(
             $this->gateway->findContent($query, $languageFilter),
-            $query->facetBuilders,
             $query->aggregations,
             $languageFilter,
             $query->spellcheck
@@ -193,7 +192,6 @@ class Handler implements VersatileHandler
         /** @phpstan-var \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult<\Ibexa\Contracts\Core\Persistence\Content\Location> */
         return $this->locationResultExtractor->extract(
             $this->gateway->findLocations($query, $languageFilter),
-            $query->facetBuilders,
             $query->aggregations,
             $languageFilter,
             $query->spellcheck
@@ -448,7 +446,6 @@ class Handler implements VersatileHandler
     {
         switch ($capabilityFlag) {
             case SearchService::CAPABILITY_SCORING:
-            case SearchService::CAPABILITY_FACETS:
             case SearchService::CAPABILITY_CUSTOM_FIELDS:
             case SearchService::CAPABILITY_SPELLCHECK:
             case SearchService::CAPABILITY_ADVANCED_FULLTEXT:
