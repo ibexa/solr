@@ -71,15 +71,6 @@ class Handler implements VersatileHandler
     protected $mapper;
 
     /**
-     * Result extractor.
-     *
-     * @deprecated since eZ Platform 3.2.0, to be removed in Ibexa 4.0.0. Use $contentResultExtractor or $locationResultExtractor instead of $resultExtractor.
-     *
-     * @var \Ibexa\Solr\ResultExtractor
-     */
-    protected $resultExtractor;
-
-    /**
      * Content result extractor.
      *
      * @var \Ibexa\Solr\ResultExtractor
@@ -122,9 +113,6 @@ class Handler implements VersatileHandler
         $this->contentResultExtractor = $contentResultExtractor;
         $this->locationResultExtractor = $locationResultExtractor;
         $this->coreFilter = $coreFilter;
-
-        // For BC these are still set
-        $this->resultExtractor = $contentResultExtractor;
     }
 
     public function findContent(Query $query, array $languageFilter = []): SearchResult
@@ -163,7 +151,7 @@ class Handler implements VersatileHandler
         );
 
         /** @phpstan-var \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult<\Ibexa\Contracts\Core\Persistence\Content\ContentInfo> $result */
-        $result = $this->resultExtractor->extract(
+        $result = $this->contentResultExtractor->extract(
             $this->gateway->findContent($query, $languageFilter)
         );
 
@@ -324,7 +312,7 @@ class Handler implements VersatileHandler
             ]
         );
 
-        $searchResult = $this->resultExtractor->extract(
+        $searchResult = $this->locationResultExtractor->extract(
             $this->gateway->searchAllEndpoints($query)
         );
 
@@ -353,7 +341,7 @@ class Handler implements VersatileHandler
             ]
         );
 
-        $searchResult = $this->resultExtractor->extract(
+        $searchResult = $this->locationResultExtractor->extract(
             $this->gateway->searchAllEndpoints($query)
         );
 

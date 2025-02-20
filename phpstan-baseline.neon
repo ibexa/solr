@@ -446,11 +446,6 @@ parameters:
 			path: src/lib/Gateway/Native.php
 
 		-
-			message: "#^Class Ibexa\\\\Solr\\\\Gateway\\\\UpdateSerializer extends @final class Ibexa\\\\Solr\\\\Gateway\\\\UpdateSerializer\\\\XmlUpdateSerializer\\.$#"
-			count: 1
-			path: src/lib/Gateway/UpdateSerializer.php
-
-		-
 			message: "#^Method Ibexa\\\\Solr\\\\Gateway\\\\UpdateSerializer\\\\JsonUpdateSerializer\\:\\:buildValue\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/lib/Gateway/UpdateSerializer/JsonUpdateSerializer.php

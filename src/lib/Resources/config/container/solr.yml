@@ -103,11 +103,6 @@ services:
             - '@ibexa.solr.query.location.sort_clause_visitor.aggregate'
             - '@ibexa.solr.query.location.aggregation_visitor.dispatcher'
 
-    Ibexa\Solr\Gateway\UpdateSerializer:
-        arguments:
-            - '@Ibexa\Core\Search\Common\FieldValueMapper\Aggregate'
-            - '@Ibexa\Core\Search\Common\FieldNameGenerator'
-
     ibexa.solr.gateway.distribution_strategy.standalone:
         class: Ibexa\Solr\Gateway\DistributionStrategy\StandaloneDistributionStrategy
         arguments:
