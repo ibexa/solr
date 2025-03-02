@@ -1,6 +1,7 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Anonymous function should return array\\<string\\> but returns array\\<string\\>\\|false\\.$#"
+			message: '#^Anonymous function should return array\<uppercase\-string\> but returns array\<uppercase\-string\>\|false\.$#'
+			identifier: return.type
 			count: 1
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationResultExtractorTest.php
