@@ -31,19 +31,8 @@ class FullTextTest extends TestCase
         $fieldNames = array_keys($fieldTypes);
         $fieldNameResolver = $this->getMockBuilder(FieldNameResolver::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getFieldNames', 'getFieldTypes'])
+            ->setMethods(['getFieldTypes'])
             ->getMock();
-
-        $fieldNameResolver
-            ->expects(self::any())
-            ->method('getFieldNames')
-            ->with(
-                self::isInstanceOf(Criterion::class),
-                self::isType('string')
-            )
-            ->willReturn(
-                $fieldNames
-            );
 
         $fieldNameResolver
             ->expects(self::any())
