@@ -28,7 +28,6 @@ class FullTextTest extends TestCase
 {
     protected function getFullTextCriterionVisitor(array $fieldTypes = [], int $maxDepth = 0)
     {
-        $fieldNames = array_keys($fieldTypes);
         $fieldNameResolver = $this->getMockBuilder(FieldNameResolver::class)
             ->disableOriginalConstructor()
             ->setMethods(['getFieldTypes'])
