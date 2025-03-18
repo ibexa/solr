@@ -26,7 +26,7 @@ class MapLocationDistanceRange extends MapLocation
      *
      * @return bool
      */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return
             $criterion instanceof Criterion\MapLocationDistance &&
@@ -47,7 +47,7 @@ class MapLocationDistanceRange extends MapLocation
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         $criterion->value = (array)$criterion->value;
 

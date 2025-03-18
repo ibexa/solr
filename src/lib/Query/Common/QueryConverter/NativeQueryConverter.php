@@ -20,22 +20,15 @@ class NativeQueryConverter extends QueryConverter
 {
     /**
      * Query visitor.
-     *
-     * @var \Ibexa\Contracts\Solr\Query\CriterionVisitor
      */
-    protected $criterionVisitor;
+    protected CriterionVisitor $criterionVisitor;
 
     /**
      * Sort clause visitor.
-     *
-     * @var \Ibexa\Contracts\Solr\Query\SortClauseVisitor
      */
-    protected $sortClauseVisitor;
+    protected SortClauseVisitor $sortClauseVisitor;
 
-    /**
-     * @var \Ibexa\Contracts\Solr\Query\AggregationVisitor
-     */
-    private $aggregationVisitor;
+    private AggregationVisitor $aggregationVisitor;
 
     /**
      * Construct from visitors.
@@ -53,7 +46,10 @@ class NativeQueryConverter extends QueryConverter
         $this->aggregationVisitor = $aggregationVisitor;
     }
 
-    public function convert(Query $query, array $languageSettings = [])
+    /**
+     * @return mixed[]
+     */
+    public function convert(Query $query, array $languageSettings = []): array
     {
         $params = [
             'q' => '{!lucene}' . ($query->query !== null ? $this->criterionVisitor->visit($query->query) : ''),
@@ -100,7 +96,7 @@ class NativeQueryConverter extends QueryConverter
      *
      * @return string
      */
-    private function getSortClauses(array $sortClauses)
+    private function getSortClauses(array $sortClauses): string
     {
         return implode(
             ', ',

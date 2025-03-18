@@ -34,7 +34,7 @@ class IsMainLocation extends CriterionVisitor
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         return 'is_main_location_b:' . ($criterion->value[0] === Criterion\Location\IsMainLocation::MAIN ? 'true' : 'false');
     }

@@ -14,6 +14,7 @@ use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\LocationQuery;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CustomField;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
 use Ibexa\Contracts\Core\Search\VersatileHandler;
 use Ibexa\Contracts\Solr\DocumentMapper;
@@ -51,45 +52,33 @@ class Handler implements VersatileHandler
 
     /**
      * Content locator gateway.
-     *
-     * @var \Ibexa\Solr\Gateway
      */
-    protected $gateway;
+    protected Gateway $gateway;
 
     /**
      * Content handler.
-     *
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Handler
      */
-    protected $contentHandler;
+    protected ContentHandler $contentHandler;
 
     /**
      * Document mapper.
-     *
-     * @var \Ibexa\Contracts\Solr\DocumentMapper
      */
-    protected $mapper;
+    protected DocumentMapper $mapper;
 
     /**
      * Content result extractor.
-     *
-     * @var \Ibexa\Solr\ResultExtractor
      */
-    protected $contentResultExtractor;
+    protected ResultExtractor $contentResultExtractor;
 
     /**
      * Location result extractor.
-     *
-     * @var \Ibexa\Solr\ResultExtractor
      */
-    protected $locationResultExtractor;
+    protected ResultExtractor $locationResultExtractor;
 
     /**
      * Core filter service.
-     *
-     * @var \Ibexa\Solr\CoreFilter
      */
-    protected $coreFilter;
+    protected CoreFilter $coreFilter;
 
     /**
      * Creates a new content handler.
@@ -202,7 +191,7 @@ class Handler implements VersatileHandler
     /**
      * Indexes a content object.
      */
-    public function indexContent(Content $content)
+    public function indexContent(Content $content): void
     {
         $this->gateway->bulkIndexDocuments([$this->mapper->mapContentBlock($content)]);
     }
@@ -224,7 +213,7 @@ class Handler implements VersatileHandler
      *
      * @param \Ibexa\Contracts\Core\Persistence\Content[] $contentObjects
      */
-    public function bulkIndexContent(array $contentObjects)
+    public function bulkIndexContent(array $contentObjects): void
     {
         $documents = [];
 
@@ -244,7 +233,7 @@ class Handler implements VersatileHandler
     /**
      * Indexes a Location in the index storage.
      */
-    public function indexLocation(Location $location)
+    public function indexLocation(Location $location): void
     {
         // Does nothing: in this implementation Locations are indexed as
         //               a part of Content document block
@@ -256,7 +245,7 @@ class Handler implements VersatileHandler
      * @param int $contentId
      * @param int|null $versionId
      */
-    public function deleteContent($contentId, $versionId = null)
+    public function deleteContent($contentId, $versionId = null): void
     {
         $idPrefix = $this->mapper->generateContentDocumentId($contentId);
 
@@ -269,7 +258,7 @@ class Handler implements VersatileHandler
      * @param mixed $locationId
      * @param mixed $contentId
      */
-    public function deleteLocation($locationId, $contentId)
+    public function deleteLocation($locationId, $contentId): void
     {
         $this->deleteAllItemsWithoutAdditionalLocation($locationId);
         $this->updateAllElementsWithAdditionalLocation($locationId);
@@ -278,7 +267,7 @@ class Handler implements VersatileHandler
     /**
      * Purges all contents from the index.
      */
-    public function purgeIndex()
+    public function purgeIndex(): void
     {
         $this->gateway->purgeIndex();
     }
@@ -294,7 +283,7 @@ class Handler implements VersatileHandler
      *
      * @param bool $flush
      */
-    public function commit($flush = false)
+    public function commit($flush = false): void
     {
         $this->gateway->commit($flush);
     }
@@ -366,7 +355,7 @@ class Handler implements VersatileHandler
      *
      * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query
      */
-    protected function prepareQuery($limit = self::DEFAULT_QUERY_LIMIT)
+    protected function prepareQuery($limit = self::DEFAULT_QUERY_LIMIT): Query
     {
         return new Query(
             [
@@ -380,11 +369,11 @@ class Handler implements VersatileHandler
     /**
      * @param int $locationId
      *
-     * @return Criterion\CustomField
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CustomField
      */
-    protected function allItemsWithinLocation($locationId)
+    protected function allItemsWithinLocation($locationId): CustomField
     {
-        return new Criterion\CustomField(
+        return new CustomField(
             'location_path_string_mid',
             Criterion\Operator::EQ,
             "/.*\\/{$locationId}\\/.*/"
@@ -394,11 +383,11 @@ class Handler implements VersatileHandler
     /**
      * @param int $locationId
      *
-     * @return Criterion\CustomField
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CustomField
      */
-    protected function allItemsWithinLocationWithAdditionalLocation($locationId)
+    protected function allItemsWithinLocationWithAdditionalLocation($locationId): CustomField
     {
-        return new Criterion\CustomField(
+        return new CustomField(
             'location_path_string_mid',
             Criterion\Operator::EQ,
             "/@&~(.*\\/{$locationId}\\/.*)/"
@@ -425,7 +414,7 @@ class Handler implements VersatileHandler
      *
      * @param \Ibexa\Contracts\Core\Search\Document[] $documents
      */
-    public function bulkIndexDocuments(array $documents)
+    public function bulkIndexDocuments(array $documents): void
     {
         $this->gateway->bulkIndexDocuments($documents);
     }

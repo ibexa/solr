@@ -39,7 +39,7 @@ class Aggregate extends CriterionVisitor
     /**
      * Adds visitor.
      */
-    public function addVisitor(CriterionVisitor $visitor)
+    public function addVisitor(CriterionVisitor $visitor): void
     {
         $this->visitors[] = $visitor;
     }
@@ -49,7 +49,7 @@ class Aggregate extends CriterionVisitor
      *
      * @return bool
      */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return true;
     }

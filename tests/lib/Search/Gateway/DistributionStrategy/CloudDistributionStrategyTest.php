@@ -12,18 +12,19 @@ use Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy;
 use Ibexa\Solr\Gateway\Endpoint;
 use Ibexa\Solr\Gateway\EndpointRegistry;
 use Ibexa\Solr\Gateway\EndpointResolver;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class CloudDistributionStrategyTest extends TestCase
 {
     /** @var \Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy */
-    private $distributionStrategy;
+    private CloudDistributionStrategy $distributionStrategy;
 
     /** @var \Ibexa\Solr\Gateway\EndpointResolver|\PHPUnit\Framework\MockObject\MockObject */
-    private $endpointResolver;
+    private MockObject $endpointResolver;
 
     /** @var \Ibexa\Solr\Gateway\EndpointRegistry|\PHPUnit\Framework\MockObject\MockObject */
-    private $endpointRegistry;
+    private MockObject $endpointRegistry;
 
     protected function setUp(): void
     {
@@ -32,7 +33,7 @@ class CloudDistributionStrategyTest extends TestCase
         $this->endpointRegistry = $this->createMock(EndpointRegistry::class);
         $this->endpointRegistry
             ->method('getEndpoint')
-            ->willReturnCallback(static function ($name) {
+            ->willReturnCallback(static function (string $name): Endpoint {
                 return new Endpoint([
                     'core' => 'collection_' . $name,
                 ]);

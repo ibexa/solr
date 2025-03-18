@@ -37,12 +37,12 @@ class Indexer extends IncrementalIndexer
         return 'Ibexa Solr Search Engine';
     }
 
-    public function purge()
+    public function purge(): void
     {
         $this->searchHandler->purgeIndex();
     }
 
-    public function updateSearchIndex(array $contentIds, $commit)
+    public function updateSearchIndex(array $contentIds, $commit): void
     {
         $documents = [];
         $contentHandler = $this->persistenceHandler->contentHandler();

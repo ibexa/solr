@@ -10,6 +10,7 @@ namespace Ibexa\Tests\Solr\Search\Query\Common\AggregationVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 abstract class AbstractAggregationVisitorTest extends TestCase
@@ -22,7 +23,7 @@ abstract class AbstractAggregationVisitorTest extends TestCase
     protected $visitor;
 
     /** @var \Ibexa\Contracts\Solr\Query\AggregationVisitor|\PHPUnit\Framework\MockObject\MockObject */
-    protected $dispatcherVisitor;
+    protected MockObject $dispatcherVisitor;
 
     protected function setUp(): void
     {

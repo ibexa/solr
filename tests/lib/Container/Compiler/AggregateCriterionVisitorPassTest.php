@@ -35,7 +35,7 @@ class AggregateCriterionVisitorPassTest extends AbstractCompilerPassTestCase
         $container->addCompilerPass(new AggregateCriterionVisitorPass());
     }
 
-    public function testAddVisitor()
+    public function testAddVisitor(): void
     {
         $serviceId = 'service_id';
         $def = new Definition();

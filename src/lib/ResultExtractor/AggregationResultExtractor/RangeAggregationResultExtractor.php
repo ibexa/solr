@@ -19,11 +19,9 @@ use stdClass;
 
 final class RangeAggregationResultExtractor implements AggregationResultExtractor
 {
-    /** @var string */
-    private $aggregationClass;
+    private string $aggregationClass;
 
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper */
-    private $keyMapper;
+    private RangeAggregationKeyMapper $keyMapper;
 
     public function __construct(string $aggregationClass, RangeAggregationKeyMapper $keyMapper)
     {

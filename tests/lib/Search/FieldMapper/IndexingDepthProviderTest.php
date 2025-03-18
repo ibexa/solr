@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 class IndexingDepthProviderTest extends TestCase
 {
-    public function testGetMaxDepthForContentType()
+    public function testGetMaxDepthForContentType(): void
     {
         $indexingDepthProvider = $this->createIndexingDepthProvider();
 
@@ -27,7 +27,7 @@ class IndexingDepthProviderTest extends TestCase
         ));
     }
 
-    public function testGetMaxDepthForContentTypeReturnsDefaultValue()
+    public function testGetMaxDepthForContentTypeReturnsDefaultValue(): void
     {
         $indexingDepthProvider = $this->createIndexingDepthProvider();
 
@@ -36,7 +36,7 @@ class IndexingDepthProviderTest extends TestCase
         ));
     }
 
-    public function testGetMaxDepth()
+    public function testGetMaxDepth(): void
     {
         self::assertEquals(2, $this->createIndexingDepthProvider()->getMaxDepth());
     }
@@ -49,7 +49,7 @@ class IndexingDepthProviderTest extends TestCase
         ], 0);
     }
 
-    private function getContentTypeStub($identifier): SPIContentType
+    private function getContentTypeStub(string $identifier): SPIContentType
     {
         return new SPIContentType([
             'identifier' => $identifier,

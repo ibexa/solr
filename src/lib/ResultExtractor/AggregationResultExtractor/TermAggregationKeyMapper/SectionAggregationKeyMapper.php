@@ -16,8 +16,7 @@ use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregat
 
 final class SectionAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    /** @var \Ibexa\Contracts\Core\Repository\SectionService */
-    private $sectionService;
+    private SectionService $sectionService;
 
     public function __construct(SectionService $sectionService)
     {

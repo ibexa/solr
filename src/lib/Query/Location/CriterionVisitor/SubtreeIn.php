@@ -22,7 +22,7 @@ class SubtreeIn extends CriterionVisitor
      *
      * @return bool
      */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return
             $criterion instanceof Criterion\Subtree &&
@@ -40,13 +40,13 @@ class SubtreeIn extends CriterionVisitor
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         return '(' .
             implode(
                 ' OR ',
                 array_map(
-                    static function ($value) {
+                    static function ($value): string {
                         return 'path_string_id:' . str_replace('/', '\\/', $value) . '*';
                     },
                     $criterion->value

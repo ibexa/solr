@@ -30,7 +30,7 @@ class Id extends SortClauseVisitor
      *
      * @return string
      */
-    public function visit(SortClause $sortClause)
+    public function visit(SortClause $sortClause): string
     {
         return 'location_id_normalized_i' . $this->getDirection($sortClause);
     }

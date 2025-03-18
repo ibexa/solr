@@ -30,7 +30,7 @@ class ContentId extends SortClauseVisitor
      *
      * @return string
      */
-    public function visit(SortClause $sortClause)
+    public function visit(SortClause $sortClause): string
     {
         return 'content_id_normalized_i' . $this->getDirection($sortClause);
     }

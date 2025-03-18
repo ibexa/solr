@@ -23,15 +23,10 @@ class ContentTypeIdentifierIn extends CriterionVisitor
 {
     /**
      * ContentType handler.
-     *
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Type\Handler
      */
-    protected $contentTypeHandler;
+    protected Handler $contentTypeHandler;
 
-    /**
-     * @var \Psr\Log\LoggerInterface
-     */
-    protected $logger;
+    protected LoggerInterface $logger;
 
     /**
      * Create from content type handler and field registry.
@@ -47,7 +42,7 @@ class ContentTypeIdentifierIn extends CriterionVisitor
      *
      * @return bool
      */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return
             $criterion instanceof Criterion\ContentTypeIdentifier
@@ -65,7 +60,7 @@ class ContentTypeIdentifierIn extends CriterionVisitor
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         $validIds = [];
         $invalidIdentifiers = [];
@@ -97,7 +92,7 @@ class ContentTypeIdentifierIn extends CriterionVisitor
             implode(
                 ' OR ',
                 array_map(
-                    static function ($value) {
+                    static function (string $value): string {
                         return 'content_type_id_id:"' . $value . '"';
                     },
                     $validIds

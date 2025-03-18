@@ -34,7 +34,7 @@ class LogicalNot extends CriterionVisitor
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         if (!isset($criterion->criteria[0]) ||
              (\count($criterion->criteria) > 1)) {

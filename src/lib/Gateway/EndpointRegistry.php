@@ -39,7 +39,7 @@ class EndpointRegistry
      * @param string $name
      * @param \Ibexa\Solr\Gateway\Endpoint $endpoint
      */
-    public function registerEndpoint($name, Endpoint $endpoint)
+    public function registerEndpoint($name, Endpoint $endpoint): void
     {
         $this->endpoint[$name] = $endpoint;
     }
@@ -65,7 +65,7 @@ class EndpointRegistry
      *
      * @return \Ibexa\Solr\Gateway\Endpoint
      */
-    public function getFirstEndpoint()
+    public function getFirstEndpoint(): Endpoint
     {
         if (empty($this->endpoint)) {
             throw new OutOfBoundsException("No Endpoint registered at all'.");

@@ -17,24 +17,18 @@ class BoostFactorProvider
 {
     /**
      * Internal map key used to access Content field boost factors.
-     *
-     * @var string
      */
-    private static $keyContentFields = 'content-fields';
+    private static string $keyContentFields = 'content-fields';
 
     /**
      * Internal map key used to access meta field boost factors.
-     *
-     * @var string
      */
-    private static $keyMetaFields = 'meta-fields';
+    private static string $keyMetaFields = 'meta-fields';
 
     /**
      * Internal map wildcard type key.
-     *
-     * @var string
      */
-    private static $keyAny = '*';
+    private static string $keyAny = '*';
 
     /**
      * Internal map of field boost factors.
@@ -69,17 +63,13 @@ class BoostFactorProvider
      *     ],
      * ];
      * ```
-     *
-     * @var array
      */
-    private $map;
+    private array $map;
 
     /**
      * Boost factor to be used if no mapping is found.
-     *
-     * @var float
      */
-    private $defaultBoostFactor = 1.0;
+    private float $defaultBoostFactor = 1.0;
 
     public function __construct(array $map = [])
     {

@@ -17,12 +17,12 @@ use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
  */
 class BlockDocumentsMetaFields extends ContentTranslationFieldMapper
 {
-    public function accept(Content $content, $languageCode)
+    public function accept(Content $content, $languageCode): bool
     {
         return true;
     }
 
-    public function mapFields(Content $content, $languageCode)
+    public function mapFields(Content $content, $languageCode): array
     {
         return [
             new Field(

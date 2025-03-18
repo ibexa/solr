@@ -16,12 +16,13 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\Rang
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationResultExtractor;
+use PHPUnit\Framework\MockObject\MockObject;
 use stdClass;
 
 final class RangeAggregationResultExtractorTest extends AbstractAggregationResultExtractorTest
 {
     /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper|\PHPUnit\Framework\MockObject\MockObject */
-    private $keyMapper;
+    private MockObject $keyMapper;
 
     protected function setUp(): void
     {

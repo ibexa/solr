@@ -23,25 +23,14 @@ class FullText extends CriterionVisitor
 {
     /**
      * Field map.
-     *
-     * @var \Ibexa\Core\Search\Common\FieldNameResolver
      */
-    protected $fieldNameResolver;
+    protected FieldNameResolver $fieldNameResolver;
 
-    /**
-     * @var \QueryTranslator\Languages\Galach\Tokenizer
-     */
-    protected $tokenizer;
+    protected Tokenizer $tokenizer;
 
-    /**
-     * @var \QueryTranslator\Languages\Galach\Parser
-     */
-    protected $parser;
+    protected Parser $parser;
 
-    /**
-     * @var \QueryTranslator\Languages\Galach\Generators\ExtendedDisMax
-     */
-    protected $generator;
+    protected ExtendedDisMax $generator;
 
     /**
      * @var int
@@ -97,7 +86,7 @@ class FullText extends CriterionVisitor
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\FullText $criterion */
         $tokenSequence = $this->tokenizer->tokenize($criterion->value);
@@ -115,7 +104,7 @@ class FullText extends CriterionVisitor
         return "{!edismax v='{$queryStringEscaped}' qf='{$queryFields}' uf=-*}";
     }
 
-    private function getQueryFields(Criterion $criterion)
+    private function getQueryFields(Criterion $criterion): string
     {
         /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\FullText $criterion */
         $queryFields = ['meta_content__text_t'];

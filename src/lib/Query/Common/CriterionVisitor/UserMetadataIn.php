@@ -23,7 +23,7 @@ class UserMetadataIn extends CriterionVisitor
      *
      * @return bool
      */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return
             $criterion instanceof Criterion\UserMetadata &&
@@ -41,7 +41,7 @@ class UserMetadataIn extends CriterionVisitor
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         switch ($criterion->target) {
             case Criterion\UserMetadata::MODIFIER:
@@ -62,7 +62,7 @@ class UserMetadataIn extends CriterionVisitor
             implode(
                 ' OR ',
                 array_map(
-                    static function ($value) use ($solrField) {
+                    static function ($value) use ($solrField): string {
                         return "{$solrField}:\"{$value}\"";
                     },
                     $criterion->value

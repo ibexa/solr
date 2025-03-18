@@ -7,6 +7,7 @@
 
 namespace Ibexa\Solr\ResultExtractor;
 
+use Ibexa\Contracts\Core\Persistence\Content\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
@@ -22,17 +23,13 @@ class LoadingResultExtractor extends ResultExtractor
 {
     /**
      * Content handler.
-     *
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Handler
      */
-    protected $contentHandler;
+    protected Handler $contentHandler;
 
     /**
      * Location handler.
-     *
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Location\Handler
      */
-    protected $locationHandler;
+    protected LocationHandler $locationHandler;
 
     public function __construct(
         ContentHandler $contentHandler,

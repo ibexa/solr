@@ -12,10 +12,7 @@ use Ibexa\Contracts\Core\Persistence\Content\Type as ContentType;
 
 class IndexingDepthProvider
 {
-    /**
-     * @var array
-     */
-    private $contentTypeMap;
+    private array $contentTypeMap;
 
     /**
      * @var int

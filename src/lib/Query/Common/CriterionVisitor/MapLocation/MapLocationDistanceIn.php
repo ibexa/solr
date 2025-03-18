@@ -26,7 +26,7 @@ class MapLocationDistanceIn extends MapLocation
      *
      * @return bool
      */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return
             $criterion instanceof Criterion\MapLocationDistance &&
@@ -44,7 +44,7 @@ class MapLocationDistanceIn extends MapLocation
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Value\MapLocationValue $location */
         $location = $criterion->valueData;

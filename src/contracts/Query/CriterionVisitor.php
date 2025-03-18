@@ -144,7 +144,7 @@ abstract class CriterionVisitor
 
         return preg_replace_callback(
             '/([' . $reservedCharacters . '])/',
-            static function ($matches) {
+            static function ($matches): string {
                 return '\\' . $matches[0];
             },
             $string

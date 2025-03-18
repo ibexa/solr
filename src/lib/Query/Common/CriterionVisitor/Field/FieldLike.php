@@ -26,7 +26,7 @@ class FieldLike extends Field
      *
      * @return bool
      */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return $criterion instanceof Criterion\Field && $criterion->operator === Operator::LIKE;
     }
@@ -41,7 +41,7 @@ class FieldLike extends Field
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         $searchFields = $this->getSearchFields($criterion);
 

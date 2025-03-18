@@ -15,6 +15,7 @@ use Ibexa\Solr\Query\Common\QueryTranslator\Generator\WordVisitor;
 use Ibexa\Solr\Query\Content\CriterionVisitor\FullText;
 use Ibexa\Tests\Solr\Search\TestCase;
 use QueryTranslator\Languages\Galach\Generators;
+use QueryTranslator\Languages\Galach\Generators\ExtendedDisMax;
 use QueryTranslator\Languages\Galach\Parser;
 use QueryTranslator\Languages\Galach\TokenExtractor\Text;
 use QueryTranslator\Languages\Galach\Tokenizer;
@@ -26,7 +27,7 @@ use QueryTranslator\Languages\Galach\Tokenizer;
  */
 class FullTextTest extends TestCase
 {
-    protected function getFullTextCriterionVisitor(array $fieldTypes = [], int $maxDepth = 0)
+    protected function getFullTextCriterionVisitor(array $fieldTypes = [], int $maxDepth = 0): FullText
     {
         $fieldNameResolver = $this->getMockBuilder(FieldNameResolver::class)
             ->disableOriginalConstructor()
@@ -57,7 +58,7 @@ class FullTextTest extends TestCase
     /**
      * @return \QueryTranslator\Languages\Galach\Tokenizer
      */
-    protected function getTokenizer()
+    protected function getTokenizer(): Tokenizer
     {
         return new Tokenizer(
             new Text()
@@ -67,7 +68,7 @@ class FullTextTest extends TestCase
     /**
      * @return \QueryTranslator\Languages\Galach\Parser
      */
-    protected function getParser()
+    protected function getParser(): Parser
     {
         return new Parser();
     }
@@ -75,9 +76,9 @@ class FullTextTest extends TestCase
     /**
      * @return \QueryTranslator\Languages\Galach\Generators\ExtendedDisMax
      */
-    protected function getGenerator()
+    protected function getGenerator(): ExtendedDisMax
     {
-        return new Generators\ExtendedDisMax(
+        return new ExtendedDisMax(
             new Generators\Common\Aggregate(
                 [
                     new Generators\Lucene\Common\Group(),
@@ -96,7 +97,7 @@ class FullTextTest extends TestCase
         );
     }
 
-    public function testVisitSimple()
+    public function testVisitSimple(): void
     {
         $visitor = $this->getFullTextCriterionVisitor();
 
@@ -108,7 +109,7 @@ class FullTextTest extends TestCase
         );
     }
 
-    public function testVisitSimpleMultipleWords()
+    public function testVisitSimpleMultipleWords(): void
     {
         $visitor = $this->getFullTextCriterionVisitor();
 
@@ -120,7 +121,7 @@ class FullTextTest extends TestCase
         );
     }
 
-    public function testVisitFuzzy()
+    public function testVisitFuzzy(): void
     {
         $visitor = $this->getFullTextCriterionVisitor();
 
@@ -133,7 +134,7 @@ class FullTextTest extends TestCase
         );
     }
 
-    public function testVisitFuzzyMultipleWords()
+    public function testVisitFuzzyMultipleWords(): void
     {
         $visitor = $this->getFullTextCriterionVisitor();
 
@@ -146,7 +147,7 @@ class FullTextTest extends TestCase
         );
     }
 
-    public function testVisitBoost()
+    public function testVisitBoost(): void
     {
         $ftTextLine = new SearchField();
         $visitor = $this->getFullTextCriterionVisitor(
@@ -165,7 +166,7 @@ class FullTextTest extends TestCase
         );
     }
 
-    public function testVisitBoostMultipleWords()
+    public function testVisitBoostMultipleWords(): void
     {
         $ftTextLine = new SearchField();
         $visitor = $this->getFullTextCriterionVisitor(
@@ -184,7 +185,7 @@ class FullTextTest extends TestCase
         );
     }
 
-    public function testVisitBoostUnknownField()
+    public function testVisitBoostUnknownField(): void
     {
         $visitor = $this->getFullTextCriterionVisitor();
 
@@ -199,7 +200,7 @@ class FullTextTest extends TestCase
         );
     }
 
-    public function testVisitBoostUnknownFieldMultipleWords()
+    public function testVisitBoostUnknownFieldMultipleWords(): void
     {
         $visitor = $this->getFullTextCriterionVisitor();
 
@@ -214,7 +215,7 @@ class FullTextTest extends TestCase
         );
     }
 
-    public function testVisitFuzzyBoost()
+    public function testVisitFuzzyBoost(): void
     {
         $stringField = new StringField();
         $visitor = $this->getFullTextCriterionVisitor(
@@ -233,7 +234,7 @@ class FullTextTest extends TestCase
         );
     }
 
-    public function testVisitFuzzyBoostMultipleWords()
+    public function testVisitFuzzyBoostMultipleWords(): void
     {
         $stringField = new StringField();
         $visitor = $this->getFullTextCriterionVisitor(
@@ -252,7 +253,7 @@ class FullTextTest extends TestCase
         );
     }
 
-    public function testVisitErrorCorrection()
+    public function testVisitErrorCorrection(): void
     {
         $visitor = $this->getFullTextCriterionVisitor();
 
@@ -264,7 +265,7 @@ class FullTextTest extends TestCase
         );
     }
 
-    public function testVisitWithRelated()
+    public function testVisitWithRelated(): void
     {
         $visitor = $this->getFullTextCriterionVisitor([], 3);
 

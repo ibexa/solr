@@ -10,9 +10,11 @@ namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Type as ContentType;
 use Ibexa\Contracts\Core\Persistence\Content\Type\FieldDefinition;
+use Ibexa\Contracts\Core\Persistence\Content\Type\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Ibexa\Contracts\Core\Search\Field;
 use Ibexa\Contracts\Core\Search\FieldType;
+use Ibexa\Contracts\Core\Search\FieldType\TextField;
 use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
 use Ibexa\Core\Search\Common\FieldNameGenerator;
 use Ibexa\Core\Search\Common\FieldRegistry;
@@ -23,25 +25,13 @@ use Ibexa\Solr\FieldMapper\BoostFactorProvider;
  */
 class BlockDocumentsContentFields extends ContentTranslationFieldMapper
 {
-    /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Type\Handler
-     */
-    protected $contentTypeHandler;
+    protected Handler $contentTypeHandler;
 
-    /**
-     * @var \Ibexa\Core\Search\Common\FieldRegistry
-     */
-    protected $fieldRegistry;
+    protected FieldRegistry $fieldRegistry;
 
-    /**
-     * @var \Ibexa\Core\Search\Common\FieldNameGenerator
-     */
-    protected $fieldNameGenerator;
+    protected FieldNameGenerator $fieldNameGenerator;
 
-    /**
-     * @var \Ibexa\Solr\FieldMapper\BoostFactorProvider
-     */
-    protected $boostFactorProvider;
+    protected BoostFactorProvider $boostFactorProvider;
 
     public function __construct(
         ContentTypeHandler $contentTypeHandler,
@@ -55,12 +45,15 @@ class BlockDocumentsContentFields extends ContentTranslationFieldMapper
         $this->boostFactorProvider = $boostFactorProvider;
     }
 
-    public function accept(Content $content, $languageCode)
+    public function accept(Content $content, $languageCode): bool
     {
         return true;
     }
 
-    public function mapFields(Content $content, $languageCode)
+    /**
+     * @return \Ibexa\Contracts\Core\Search\Field[]
+     */
+    public function mapFields(Content $content, $languageCode): array
     {
         $fields = [];
         $contentType = $this->contentTypeHandler->load(
@@ -114,8 +107,8 @@ class BlockDocumentsContentFields extends ContentTranslationFieldMapper
         ContentType $contentType,
         FieldDefinition $fieldDefinition,
         FieldType $fieldType
-    ) {
-        if (!$fieldType instanceof FieldType\TextField) {
+    ): FieldType|TextField {
+        if (!$fieldType instanceof TextField) {
             return $fieldType;
         }
 

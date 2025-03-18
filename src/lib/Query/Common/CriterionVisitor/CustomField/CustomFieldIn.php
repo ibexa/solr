@@ -22,7 +22,7 @@ class CustomFieldIn extends CriterionVisitor
      *
      * @return bool
      */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return
             $criterion instanceof Criterion\CustomField &&
@@ -41,7 +41,7 @@ class CustomFieldIn extends CriterionVisitor
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         $queries = [];
         $values = (array)$criterion->value;
@@ -59,7 +59,7 @@ class CustomFieldIn extends CriterionVisitor
         return '(' . implode(' OR ', $queries) . ')';
     }
 
-    private function isRegExp($preparedValue)
+    private function isRegExp($preparedValue): int|false
     {
         return preg_match('#^/.*/$#', $preparedValue);
     }

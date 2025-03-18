@@ -116,14 +116,14 @@ class Configuration implements ConfigurationInterface
             ->prototype('array')
                 ->beforeNormalization()
                     ->ifTrue(
-                        static function ($v) {
+                        static function ($v): bool {
                             return
                                 !empty($v['mapping']) && !\is_array($v['mapping'])
                             ;
                         }
                     )
                     ->then(
-                        static function ($v) {
+                        static function (array $v) {
                             // If single endpoint is set for Content mapping, use it as default
                             // mapping for Content index
                             $v['mapping'] = [
@@ -136,7 +136,7 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->beforeNormalization()
                     ->ifTrue(
-                        static function ($v) {
+                        static function ($v): bool {
                             return
                                 empty($v['entry_endpoints']) &&
                                 (
@@ -149,7 +149,7 @@ class Configuration implements ConfigurationInterface
                     )
                     ->then(
                         // If entry endpoints are not provided use mapping endpoints
-                        static function ($v) {
+                        static function (array $v) {
                             $endpointSet = [];
 
                             if (!empty($v['mapping']['translations'])) {
@@ -318,7 +318,7 @@ class Configuration implements ConfigurationInterface
                                 ->useAttributeAsKey('content_type_identifier')
                                 ->beforeNormalization()
                                     ->always(
-                                        static function (array $v) {
+                                        static function (array $v): array {
                                             $valuesMapped = [];
                                             foreach ($v as $key => $value) {
                                                 if (\is_array($value)) {
@@ -354,7 +354,7 @@ class Configuration implements ConfigurationInterface
                                 ->useAttributeAsKey('content_type_identifier')
                                 ->beforeNormalization()
                                     ->always(
-                                        static function (array $v) {
+                                        static function (array $v): array {
                                             $valuesMapped = [];
                                             foreach ($v as $key => $value) {
                                                 if (\is_array($value)) {
@@ -373,7 +373,7 @@ class Configuration implements ConfigurationInterface
                                     ->useAttributeAsKey('meta_field_name')
                                     ->validate()
                                         ->ifTrue(
-                                            function (array $v) {
+                                            function (array $v): bool {
                                                 foreach (array_keys($v) as $key) {
                                                     if (!\in_array($key, $this->metaFieldNames, true)) {
                                                         return true;

@@ -34,7 +34,7 @@ class Random extends SortClauseVisitor
      *
      * @return string
      */
-    public function visit(SortClause $sortClause)
+    public function visit(SortClause $sortClause): string
     {
         $seed = $sortClause->targetData->seed ?? mt_rand();
 

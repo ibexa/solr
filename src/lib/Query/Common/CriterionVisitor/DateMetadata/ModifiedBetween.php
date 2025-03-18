@@ -23,7 +23,7 @@ class ModifiedBetween extends DateMetadata
      *
      * @return bool
      */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return
             $criterion instanceof Criterion\DateMetadata &&
@@ -43,7 +43,7 @@ class ModifiedBetween extends DateMetadata
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         $start = $this->getSolrTime($criterion->value[0]);
         $end = isset($criterion->value[1]) ? $this->getSolrTime($criterion->value[1]) : null;

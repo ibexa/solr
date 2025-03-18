@@ -35,7 +35,7 @@ class SectionIdentifierIn extends CriterionVisitor
             implode(
                 ' OR ',
                 array_map(
-                    static function (string $value) {
+                    static function (string $value): string {
                         return 'content_section_identifier_id:"' . $value . '"';
                     },
                     (array) $criterion->value

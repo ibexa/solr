@@ -8,6 +8,7 @@
 namespace Ibexa\Solr\FieldMapper\LocationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Bookmark\Handler as BookmarkHandler;
+use Ibexa\Contracts\Core\Persistence\Content\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
@@ -21,10 +22,7 @@ use Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper;
  */
 class LocationDocumentBaseFields extends LocationFieldMapper
 {
-    /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Handler
-     */
-    protected $contentHandler;
+    protected Handler $contentHandler;
 
     protected ContentTypeHandler $contentTypeHandler;
 
@@ -40,12 +38,12 @@ class LocationDocumentBaseFields extends LocationFieldMapper
         $this->contentTypeHandler = $contentTypeHandler;
     }
 
-    public function accept(Location $location)
+    public function accept(Location $location): bool
     {
         return true;
     }
 
-    public function mapFields(Location $location)
+    public function mapFields(Location $location): array
     {
         $contentInfo = $this->contentHandler->loadContentInfo($location->contentId);
         $contentType = $this->contentTypeHandler->load($contentInfo->contentTypeId);

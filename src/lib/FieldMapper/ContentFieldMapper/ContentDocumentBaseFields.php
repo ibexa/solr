@@ -18,12 +18,12 @@ use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
  */
 class ContentDocumentBaseFields extends ContentFieldMapper
 {
-    public function accept(Content $content)
+    public function accept(Content $content): bool
     {
         return true;
     }
 
-    public function mapFields(Content $content)
+    public function mapFields(Content $content): array
     {
         return [
             new Field(

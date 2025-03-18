@@ -23,46 +23,29 @@ class Native extends Gateway
 {
     /**
      * HTTP client to communicate with Solr server.
-     *
-     * @var \Ibexa\Solr\Gateway\HttpClient
      */
-    protected $client;
+    protected HttpClient $client;
 
-    /**
-     * @var \Ibexa\Solr\Gateway\EndpointResolver
-     */
-    protected $endpointResolver;
+    protected EndpointResolver $endpointResolver;
 
     /**
      * Endpoint registry service.
-     *
-     * @var \Ibexa\Solr\Gateway\EndpointRegistry
      */
-    protected $endpointRegistry;
+    protected EndpointRegistry $endpointRegistry;
 
     /**
      * Content Query converter.
-     *
-     * @var \Ibexa\Solr\Query\QueryConverter
      */
-    protected $contentQueryConverter;
+    protected QueryConverter $contentQueryConverter;
 
     /**
      * Location Query converter.
-     *
-     * @var \Ibexa\Solr\Query\QueryConverter
      */
-    protected $locationQueryConverter;
+    protected QueryConverter $locationQueryConverter;
 
-    /**
-     * @var \Ibexa\Solr\Gateway\UpdateSerializerInterface
-     */
-    protected $updateSerializer;
+    protected UpdateSerializerInterface $updateSerializer;
 
-    /**
-     * @var \Ibexa\Solr\Gateway\DistributionStrategy
-     */
-    protected $distributionStrategy;
+    protected DistributionStrategy $distributionStrategy;
 
     public function __construct(
         HttpClient $client,
@@ -145,7 +128,7 @@ class Native extends Gateway
      *
      * @return string
      */
-    protected function generateQueryString(array $parameters)
+    protected function generateQueryString(array $parameters): string|array
     {
         $removedArrayCharacters = preg_replace(
             '/%5B[0-9]+%5D=/',
@@ -167,7 +150,7 @@ class Native extends Gateway
      *
      * @return string
      */
-    protected function getSearchTargets($languageSettings)
+    protected function getSearchTargets(array $languageSettings): string
     {
         if ($this->endpointResolver instanceof SingleEndpointResolver && !$this->endpointResolver->hasMultipleEndpoints()) {
             return '';
@@ -192,7 +175,7 @@ class Native extends Gateway
      *
      * @return string
      */
-    protected function getAllSearchTargets()
+    protected function getAllSearchTargets(): string
     {
         if ($this->endpointResolver instanceof SingleEndpointResolver && !$this->endpointResolver->hasMultipleEndpoints()) {
             return '';
@@ -323,7 +306,7 @@ class Native extends Gateway
      *
      * @param string $query
      */
-    public function deleteByQuery($query)
+    public function deleteByQuery($query): void
     {
         $endpoints = $this->endpointResolver->getEndpoints();
 
@@ -347,7 +330,7 @@ class Native extends Gateway
      *
      * Purges all contents from the index
      */
-    public function purgeIndex()
+    public function purgeIndex(): void
     {
         $endpoints = $this->endpointResolver->getEndpoints();
 
@@ -363,7 +346,7 @@ class Native extends Gateway
      *
      * @todo error handling
      */
-    protected function purgeEndpoint($endpoint)
+    protected function purgeEndpoint(Endpoint $endpoint)
     {
         $this->client->request(
             'POST',
@@ -387,7 +370,7 @@ class Native extends Gateway
      *
      * @param bool $flush
      */
-    public function commit($flush = false)
+    public function commit($flush = false): void
     {
         $payload = $flush ?
             '<commit/>' :

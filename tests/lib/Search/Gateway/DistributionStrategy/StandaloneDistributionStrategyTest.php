@@ -18,13 +18,13 @@ use PHPUnit\Framework\TestCase;
 class StandaloneDistributionStrategyTest extends TestCase
 {
     /** @var \Ibexa\Solr\Gateway\DistributionStrategy\StandaloneDistributionStrategy */
-    private $distributionStrategy;
+    private StandaloneDistributionStrategy $distributionStrategy;
 
     /** @var \Ibexa\Solr\Gateway\EndpointRegistry|\PHPUnit\Framework\MockObject\MockObject */
-    private $endpointRegistry;
+    private MockObject $endpointRegistry;
 
     /** @var \Ibexa\Solr\Gateway\EndpointResolver|\PHPUnit\Framework\MockObject\MockObject */
-    private $endpointResolver;
+    private MockObject $endpointResolver;
 
     protected function setUp(): void
     {
@@ -85,7 +85,7 @@ class StandaloneDistributionStrategyTest extends TestCase
         $endpointRegistry = $this->createMock(EndpointRegistry::class);
         $endpointRegistry
             ->method('getEndpoint')
-            ->willReturnCallback(function ($name) {
+            ->willReturnCallback(function ($name): MockObject {
                 $endpoint = $this->createMock(Endpoint::class);
                 $endpoint->method('getIdentifier')->willReturn('127.0.0.' . \ord($name) . ':8983/solr/collection1');
 

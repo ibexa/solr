@@ -13,8 +13,7 @@ use Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolve
 
 final class SearchFieldAggregationFieldResolver implements AggregationFieldResolver
 {
-    /** @var string */
-    private $searchIndexFieldName;
+    private string $searchIndexFieldName;
 
     public function __construct(string $searchIndexFieldName)
     {

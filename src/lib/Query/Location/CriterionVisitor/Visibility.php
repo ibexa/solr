@@ -22,7 +22,7 @@ class Visibility extends CriterionVisitor
      *
      * @return bool
      */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return $criterion instanceof Criterion\Visibility && $criterion->operator === Operator::EQ;
     }
@@ -35,7 +35,7 @@ class Visibility extends CriterionVisitor
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         return 'invisible_b:' . ($criterion->value[0] === Criterion\Visibility::HIDDEN ? 'true' : 'false');
     }

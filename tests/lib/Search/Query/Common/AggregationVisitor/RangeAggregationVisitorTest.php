@@ -14,11 +14,12 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Range;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver;
 use Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor;
+use PHPUnit\Framework\MockObject\MockObject;
 
 final class RangeAggregationVisitorTest extends AbstractAggregationVisitorTest
 {
     /** @var \Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver|\PHPUnit\Framework\MockObject\MockObject */
-    private $aggregationFieldResolver;
+    private MockObject $aggregationFieldResolver;
 
     protected function setUp(): void
     {

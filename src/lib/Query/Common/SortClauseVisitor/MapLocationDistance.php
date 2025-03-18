@@ -26,10 +26,8 @@ class MapLocationDistance extends SortClauseVisitor
 
     /**
      * Field name resolver.
-     *
-     * @var \Ibexa\Core\Search\Common\FieldNameResolver
      */
-    protected $fieldNameResolver;
+    protected FieldNameResolver $fieldNameResolver;
 
     /**
      * Create from field name resolver and field name.
@@ -88,7 +86,7 @@ class MapLocationDistance extends SortClauseVisitor
      *
      * @return string
      */
-    public function visit(SortClause $sortClause)
+    public function visit(SortClause $sortClause): string
     {
         /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\Target\MapLocationTarget $target */
         $target = $sortClause->targetData;

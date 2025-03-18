@@ -20,7 +20,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     /**
      * @var \Ibexa\Bundle\Solr\DependencyInjection\IbexaSolrExtension
      */
-    private $extension;
+    private IbexaSolrExtension $extension;
 
     protected function setUp(): void
     {
@@ -39,13 +39,13 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         return [];
     }
 
-    public function testEmpty()
+    public function testEmpty(): void
     {
         $this->load();
         $this->expectNotToPerformAssertions();
     }
 
-    public function dataProviderForTestEndpoint()
+    public function dataProviderForTestEndpoint(): array
     {
         return [
             [
@@ -136,7 +136,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
      * @param array $endpointValues
      * @param array $expectedArgument
      */
-    public function testEndpoint($endpointName, $endpointValues, $expectedArgument)
+    public function testEndpoint(string $endpointName, array $endpointValues, array $expectedArgument): void
     {
         $this->load(['endpoints' => [$endpointName => $endpointValues]]);
 
@@ -152,7 +152,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testEndpointCoreRequired()
+    public function testEndpointCoreRequired(): void
     {
         $this->expectException(InvalidConfigurationException::class);
 
@@ -167,7 +167,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function dataProviderForTestConnection()
+    public function dataProviderForTestConnection(): array
     {
         return [
             [
@@ -223,7 +223,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         }
     }
 
-    public function testConnection()
+    public function testConnection(): void
     {
         $configurationValues = [
             'connections' => [
@@ -287,7 +287,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testConnectionEndpointDefaults()
+    public function testConnectionEndpointDefaults(): void
     {
         $configurationValues = [
             'connections' => [
@@ -347,7 +347,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testConnectionEndpointUniqueDefaults()
+    public function testConnectionEndpointUniqueDefaults(): void
     {
         $configurationValues = [
             'connections' => [
@@ -405,7 +405,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testConnectionMappingDefaults()
+    public function testConnectionMappingDefaults(): void
     {
         $configurationValues = [
             'connections' => [
@@ -452,7 +452,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function dataProvideForTestBoostFactorMap()
+    public function dataProvideForTestBoostFactorMap(): array
     {
         return [
             [
@@ -642,7 +642,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     /**
      * @dataProvider dataProvideForTestBoostFactorMap
      */
-    public function testBoostFactorMap(array $configuration, array $map)
+    public function testBoostFactorMap(array $configuration, array $map): void
     {
         $this->load($configuration);
 

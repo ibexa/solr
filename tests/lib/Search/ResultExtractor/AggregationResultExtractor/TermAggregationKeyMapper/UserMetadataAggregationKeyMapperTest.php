@@ -15,6 +15,7 @@ use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\Core\Repository\Values\User\UserGroup;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\UserMetadataAggregationKeyMapper;
 use Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\AggregationResultExtractorTestUtils;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class UserMetadataAggregationKeyMapperTest extends TestCase
@@ -23,10 +24,10 @@ final class UserMetadataAggregationKeyMapperTest extends TestCase
     private const EXAMPLE_USER_GROUP_IDS = [1, 2, 3];
 
     /** @var \Ibexa\Contracts\Core\Repository\UserService|\PHPUnit\Framework\MockObject\MockObject */
-    private $userService;
+    private MockObject $userService;
 
     /** @var \Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\UserMetadataAggregationKeyMapper */
-    private $mapper;
+    private UserMetadataAggregationKeyMapper $mapper;
 
     protected function setUp(): void
     {

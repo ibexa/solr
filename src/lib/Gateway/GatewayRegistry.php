@@ -16,7 +16,7 @@ use OutOfBoundsException;
 final class GatewayRegistry
 {
     /** @var \Ibexa\Solr\Gateway[] */
-    private $gateways;
+    private array $gateways;
 
     /**
      * @param \Ibexa\Solr\Gateway[] $gateways

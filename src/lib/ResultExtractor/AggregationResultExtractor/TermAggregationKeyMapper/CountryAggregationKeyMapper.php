@@ -14,8 +14,7 @@ use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregat
 
 final class CountryAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    /** @var array */
-    private $countriesInfo;
+    private array $countriesInfo;
 
     /**
      * @param array $countriesInfo Array of countries data

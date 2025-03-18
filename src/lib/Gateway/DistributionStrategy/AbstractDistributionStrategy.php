@@ -17,15 +17,10 @@ abstract class AbstractDistributionStrategy implements DistributionStrategy
 {
     /**
      * Endpoint registry service.
-     *
-     * @var \Ibexa\Solr\Gateway\EndpointRegistry
      */
-    protected $endpointRegistry;
+    protected EndpointRegistry $endpointRegistry;
 
-    /**
-     * @var \Ibexa\Solr\Gateway\EndpointResolver
-     */
-    protected $endpointResolver;
+    protected EndpointResolver $endpointResolver;
 
     public function __construct(EndpointRegistry $endpointRegistry, EndpointResolver $endpointResolver)
     {

@@ -13,6 +13,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Language;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\LanguageAggregationKeyMapper;
 use Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\AggregationResultExtractorTestUtils;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class LanguageAggregationKeyMapperTest extends TestCase
@@ -20,10 +21,10 @@ final class LanguageAggregationKeyMapperTest extends TestCase
     private const EXAMPLE_LANGUAGE_CODES = [];
 
     /** @var \Ibexa\Contracts\Core\Repository\LanguageService|\PHPUnit\Framework\MockObject\MockObject */
-    private $languageService;
+    private MockObject $languageService;
 
     /** @var \Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\CountryAggregationKeyMapper */
-    private $mapper;
+    private LanguageAggregationKeyMapper $mapper;
 
     protected function setUp(): void
     {

@@ -30,7 +30,7 @@ class SectionName extends SortClauseVisitor
      *
      * @return string
      */
-    public function visit(SortClause $sortClause)
+    public function visit(SortClause $sortClause): string
     {
         return 'content_section_name_s' . $this->getDirection($sortClause);
     }

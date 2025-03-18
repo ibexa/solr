@@ -24,23 +24,17 @@ class SolrEngineFactory
     /** @var string */
     private $searchEngineClass;
 
-    /** @var \Ibexa\Solr\Gateway\GatewayRegistry */
-    private $gatewayRegistry;
+    private GatewayRegistry $gatewayRegistry;
 
-    /** @var \Ibexa\Solr\CoreFilter\CoreFilterRegistry */
-    private $coreFilterRegistry;
+    private CoreFilterRegistry $coreFilterRegistry;
 
-    /** @var \Ibexa\Contracts\Core\Persistence\Content\Handler */
-    private $contentHandler;
+    private Handler $contentHandler;
 
-    /** @var \Ibexa\Contracts\Solr\DocumentMapper */
-    private $documentMapper;
+    private DocumentMapper $documentMapper;
 
-    /** @var \Ibexa\Solr\ResultExtractor */
-    private $contentResultExtractor;
+    private ResultExtractor $contentResultExtractor;
 
-    /** @var \Ibexa\Solr\ResultExtractor */
-    private $locationResultExtractor;
+    private ResultExtractor $locationResultExtractor;
 
     public function __construct(
         RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,

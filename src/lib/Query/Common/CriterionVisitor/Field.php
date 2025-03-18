@@ -23,15 +23,10 @@ abstract class Field extends CriterionVisitor
 {
     /**
      * Field map.
-     *
-     * @var \Ibexa\Core\Search\Common\FieldNameResolver
      */
-    protected $fieldNameResolver;
+    protected FieldNameResolver $fieldNameResolver;
 
-    /**
-     * @var \Ibexa\Core\Search\Common\FieldValueMapper
-     */
-    protected $fieldValueMapper;
+    protected FieldValueMapper $fieldValueMapper;
 
     public function __construct(FieldNameResolver $fieldNameResolver, FieldValueMapper $fieldValueMapper)
     {

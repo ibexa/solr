@@ -20,15 +20,9 @@ class IndexingDepthProviderFactory implements ContainerAwareInterface
 
     private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider;
 
-    /**
-     * @var string
-     */
-    private $defaultConnection;
+    private string $defaultConnection;
 
-    /**
-     * @var string
-     */
-    private $indexingDepthProviderClass;
+    private string $indexingDepthProviderClass;
 
     public function __construct(
         RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,

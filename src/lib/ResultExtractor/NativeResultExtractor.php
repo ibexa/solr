@@ -45,7 +45,7 @@ class NativeResultExtractor extends ResultExtractor
      *
      * @return \Ibexa\Contracts\Core\Persistence\Content\ContentInfo
      */
-    protected function extractContentInfoFromHit($hit)
+    protected function extractContentInfoFromHit($hit): ContentInfo
     {
         $contentInfo = new ContentInfo(
             [
@@ -76,7 +76,7 @@ class NativeResultExtractor extends ResultExtractor
      *
      * @return \Ibexa\Contracts\Core\Persistence\Content\Location
      */
-    protected function extractLocationFromHit($hit)
+    protected function extractLocationFromHit($hit): Location
     {
         return new Location(
             [

@@ -19,11 +19,9 @@ use stdClass;
 
 final class TermAggregationResultExtractor implements AggregationResultExtractor
 {
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper */
-    private $keyMapper;
+    private ?TermAggregationKeyMapper $keyMapper;
 
-    /** @var string */
-    private $aggregationClass;
+    private string $aggregationClass;
 
     public function __construct(string $aggregationClass, TermAggregationKeyMapper $keyMapper = null)
     {

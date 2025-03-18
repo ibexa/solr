@@ -15,7 +15,7 @@ use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 final class DispatcherAggregationVisitor implements AggregationVisitor
 {
     /** @var iterable<\Ibexa\Contracts\Solr\Query\AggregationVisitor> */
-    private $visitors;
+    private iterable $visitors;
 
     /**
      * @param iterable<\Ibexa\Contracts\Solr\Query\AggregationVisitor> $visitors

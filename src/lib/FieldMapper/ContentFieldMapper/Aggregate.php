@@ -36,17 +36,20 @@ class Aggregate extends ContentFieldMapper
     /**
      * Adds given $mapper to the internal array as the next one in priority.
      */
-    public function addMapper(ContentFieldMapper $mapper)
+    public function addMapper(ContentFieldMapper $mapper): void
     {
         $this->mappers[] = $mapper;
     }
 
-    public function accept(Content $content)
+    public function accept(Content $content): bool
     {
         return true;
     }
 
-    public function mapFields(Content $content)
+    /**
+     * @return mixed[]
+     */
+    public function mapFields(Content $content): array
     {
         $fields = [];
 
