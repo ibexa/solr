@@ -830,6 +830,9 @@ class NativeEndpointResolverTest extends TestCase
         }
     }
 
+    /**
+     * @return array{string[], string|null, string|null, array<string, mixed>, string}[]
+     */
     public function providerForTestGetSearchTargetsThrowsRuntimeException(): array
     {
         return [
@@ -947,6 +950,9 @@ class NativeEndpointResolverTest extends TestCase
         }
     }
 
+    /**
+     * @return array{string[], string|null, string|null, string[]}[]
+     */
     public function providerForTestGetEndpoints(): array
     {
         return [

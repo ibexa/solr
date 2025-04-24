@@ -44,7 +44,7 @@ class ParentLocationIdIn extends CriterionVisitor
             implode(
                 ' OR ',
                 array_map(
-                    static function (string $id): string {
+                    static function (bool|float|int|string $id): string {
                         return 'location_parent_id_mid:"' . $id . '"';
                     },
                     $criterion->value

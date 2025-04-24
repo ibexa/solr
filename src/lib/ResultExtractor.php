@@ -37,7 +37,7 @@ abstract class ResultExtractor
     /**
      * Extracts search result from $data returned by Solr backend.
      *
-     * @param mixed $data
+     * @param \stdClass $data
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation[] $aggregations
      * @param array $languageFilter
      *

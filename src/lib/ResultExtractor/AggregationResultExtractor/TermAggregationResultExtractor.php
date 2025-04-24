@@ -19,7 +19,7 @@ use stdClass;
 
 final class TermAggregationResultExtractor implements AggregationResultExtractor
 {
-    private ?TermAggregationKeyMapper $keyMapper;
+    private TermAggregationKeyMapper $keyMapper;
 
     private string $aggregationClass;
 

@@ -19,6 +19,9 @@ use Ibexa\Tests\Solr\Search\TestCase;
  */
 class BoostFactorProviderTest extends TestCase
 {
+    /**
+     * @return array{array<string, mixed>, string, string, float}[]
+     */
     public function providerForTestGetContentFieldBoostFactor(): array
     {
         return [
@@ -132,6 +135,9 @@ class BoostFactorProviderTest extends TestCase
         self::assertEquals($expectedBoostFactor, $boostFactor);
     }
 
+    /**
+     * @return array{array<string, mixed>, string, string, float}[]
+     */
     public function providerForTestGetContentMetaFieldBoostFactor(): array
     {
         return [

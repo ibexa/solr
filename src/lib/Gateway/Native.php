@@ -125,10 +125,8 @@ class Native extends Gateway
      *
      * Array markers, possibly added for the facet parameters,
      * will be removed from the result.
-     *
-     * @return string
      */
-    protected function generateQueryString(array $parameters): string|array
+    protected function generateQueryString(array $parameters): string
     {
         $removedArrayCharacters = preg_replace(
             '/%5B[0-9]+%5D=/',
@@ -136,9 +134,7 @@ class Native extends Gateway
             http_build_query($parameters)
         );
 
-        $removedDuplicatedEscapingForUrlPath = str_replace('%5C%5C%2F', '%5C%2F', $removedArrayCharacters);
-
-        return $removedDuplicatedEscapingForUrlPath;
+        return str_replace('%5C%5C%2F', '%5C%2F', $removedArrayCharacters);
     }
 
     /**

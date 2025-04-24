@@ -185,11 +185,9 @@ class NativeDocumentMapper implements DocumentMapper
      * Returns an array of fields for the given $content and $languageCode, to be added to the
      * corresponding block documents.
      *
-     * @param string $languageCode
-     *
      * @return \Ibexa\Contracts\Core\Search\Field[]
      */
-    private function getBlockTranslationFields(Content $content, int|string $languageCode)
+    private function getBlockTranslationFields(Content $content, string $languageCode)
     {
         $fields = [];
 
@@ -221,11 +219,9 @@ class NativeDocumentMapper implements DocumentMapper
      * Returns an array of fields for the given $content and $languageCode, to be added to the
      * corresponding Content document.
      *
-     * @param string $languageCode
-     *
      * @return \Ibexa\Contracts\Core\Search\Field[]
      */
-    private function getContentTranslationFields(Content $content, int|string $languageCode)
+    private function getContentTranslationFields(Content $content, string $languageCode)
     {
         $fields = [];
 

@@ -29,11 +29,17 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         parent::setUp();
     }
 
+    /**
+     * @return \Symfony\Component\DependencyInjection\Extension\ExtensionInterface[]
+     */
     protected function getContainerExtensions(): array
     {
         return [$this->extension];
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     protected function getMinimalConfiguration(): array
     {
         return [];
@@ -45,6 +51,9 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         $this->expectNotToPerformAssertions();
     }
 
+    /**
+     * @phpstan-return list<array{string, array<string, mixed>, array<string, mixed>}>
+     */
     public function dataProviderForTestEndpoint(): array
     {
         return [
@@ -133,8 +142,8 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
      * @dataProvider dataProviderForTestEndpoint
      *
      * @param string $endpointName
-     * @param array $endpointValues
-     * @param array $expectedArgument
+     * @param array<string, mixed> $endpointValues
+     * @param array<string, mixed> $expectedArgument
      */
     public function testEndpoint(string $endpointName, array $endpointValues, array $expectedArgument): void
     {
@@ -167,6 +176,9 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         );
     }
 
+    /**
+     * @phpstan-return list<array<array-key, mixed>>
+     */
     public function dataProviderForTestConnection(): array
     {
         return [
@@ -452,6 +464,9 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         );
     }
 
+    /**
+     * @phpstan-return list<array{array<string, mixed>, array<string, mixed>}>
+     */
     public function dataProvideForTestBoostFactorMap(): array
     {
         return [

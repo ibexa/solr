@@ -46,7 +46,7 @@ class ContentIdIn extends CriterionVisitor
             implode(
                 ' OR ',
                 array_map(
-                    static function (string $value): string {
+                    static function (bool|float|int|string $value): string {
                         return 'content_id_id:"' . $value . '"';
                     },
                     $criterion->value

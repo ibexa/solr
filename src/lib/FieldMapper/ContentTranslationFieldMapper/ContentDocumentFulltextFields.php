@@ -97,7 +97,7 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
-    private function doMapFields(Content $content, ContentType $contentType, $languageCode, $maxDepth, float|int $depth = 0): array
+    private function doMapFields(Content $content, ContentType $contentType, $languageCode, $maxDepth, int $depth = 0): array
     {
         $fields = [];
 
@@ -153,7 +153,7 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
-    private function doMapRelatedFields(Content $sourceContent, $languageCode, $maxDepth, int|float $depth): array
+    private function doMapRelatedFields(Content $sourceContent, $languageCode, $maxDepth, int $depth): array
     {
         $sourceContentId = $sourceContent->versionInfo->contentInfo->id;
         $relations = $this->contentHandler->loadRelationList(
@@ -200,8 +200,6 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
 
     /**
      * Return index field type for the given $contentType.
-     *
-     * @return \Ibexa\Contracts\Core\Search\FieldType
      */
     private function getIndexFieldType(ContentType $contentType): TextField
     {

@@ -46,7 +46,7 @@ class ContentTypeGroupIdIn extends CriterionVisitor
             implode(
                 ' OR ',
                 array_map(
-                    static function (string $value): string {
+                    static function (bool|float|int|string $value): string {
                         return 'content_type_group_ids_mid:"' . $value . '"';
                     },
                     // TODO this should have been casted by criterion???

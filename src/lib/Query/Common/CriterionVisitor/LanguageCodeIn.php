@@ -41,7 +41,7 @@ class LanguageCodeIn extends CriterionVisitor
     public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         $languageCodeExpressions = array_map(
-            static function (string $value): string {
+            static function (bool|float|int|string $value): string {
                 return 'content_language_codes_ms:"' . $value . '"';
             },
             $criterion->value
