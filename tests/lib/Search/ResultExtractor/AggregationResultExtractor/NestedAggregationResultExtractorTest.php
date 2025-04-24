@@ -20,10 +20,8 @@ final class NestedAggregationResultExtractorTest extends TestCase
 {
     private const EXAMPLE_NESTED_RESULT_KEY = 'foo';
 
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $innerResultExtractor;
+    private AggregationResultExtractor&MockObject $innerResultExtractor;
 
-    /** @var \Ibexa\Solr\ResultExtractor\AggregationResultExtractor\NestedAggregationResultExtractor */
     private NestedAggregationResultExtractor $resultExtractor;
 
     protected function setUp(): void

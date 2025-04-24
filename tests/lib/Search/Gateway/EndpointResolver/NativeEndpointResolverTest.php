@@ -924,7 +924,7 @@ class NativeEndpointResolverTest extends TestCase
      */
     public function testGetSearchTargetsThrowsRuntimeException(
         array $endpointMap,
-        $defaultEndpoint,
+        ?string $defaultEndpoint,
         ?string $mainLanguagesEndpoint,
         array $languageSettings,
         string $message

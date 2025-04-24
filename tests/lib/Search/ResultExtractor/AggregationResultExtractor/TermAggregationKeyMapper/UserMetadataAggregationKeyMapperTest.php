@@ -23,8 +23,7 @@ final class UserMetadataAggregationKeyMapperTest extends TestCase
     private const EXAMPLE_USER_IDS = [1, 2, 3];
     private const EXAMPLE_USER_GROUP_IDS = [1, 2, 3];
 
-    /** @var \Ibexa\Contracts\Core\Repository\UserService|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $userService;
+    private UserService&MockObject $userService;
 
     /** @var \Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\UserMetadataAggregationKeyMapper */
     private UserMetadataAggregationKeyMapper $mapper;

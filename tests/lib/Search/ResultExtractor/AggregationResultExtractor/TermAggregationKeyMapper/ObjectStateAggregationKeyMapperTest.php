@@ -19,10 +19,8 @@ use PHPUnit\Framework\TestCase;
 
 final class ObjectStateAggregationKeyMapperTest extends TestCase
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ObjectStateService|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $objectStateService;
+    private ObjectStateService&MockObject $objectStateService;
 
-    /** @var \Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\ObjectStateAggregationKeyMapper */
     private ObjectStateAggregationKeyMapper $mapper;
 
     protected function setUp(): void

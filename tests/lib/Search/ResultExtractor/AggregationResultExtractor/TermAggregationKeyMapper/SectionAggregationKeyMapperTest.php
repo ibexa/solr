@@ -20,10 +20,8 @@ final class SectionAggregationKeyMapperTest extends TestCase
 {
     private const EXAMPLE_SECTION_IDS = [1, 2, 3];
 
-    /** @var \Ibexa\Contracts\Core\Repository\SectionService|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $sectionService;
+    private SectionService&MockObject $sectionService;
 
-    /** @var \Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\SectionAggregationKeyMapper */
     private SectionAggregationKeyMapper $mapper;
 
     protected function setUp(): void

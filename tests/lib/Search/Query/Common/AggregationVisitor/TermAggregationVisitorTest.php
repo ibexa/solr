@@ -17,8 +17,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 final class TermAggregationVisitorTest extends AbstractAggregationVisitorTest
 {
-    /** @var \Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $aggregationFieldResolver;
+    private AggregationFieldResolver&MockObject $aggregationFieldResolver;
 
     protected function setUp(): void
     {

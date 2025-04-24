@@ -20,8 +20,7 @@ use stdClass;
 
 final class TermAggregationResultExtractorTest extends AbstractAggregationResultExtractorTest
 {
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $keyMapper;
+    private TermAggregationKeyMapper&MockObject $keyMapper;
 
     protected function setUp(): void
     {

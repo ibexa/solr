@@ -20,8 +20,7 @@ final class ContentTypeAggregationKeyMapperTest extends TestCase
 {
     private const EXAMPLE_CONTENT_TYPE_IDS = [1, 2, 3];
 
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $contentTypeService;
+    private ContentTypeService&MockObject $contentTypeService;
 
     protected function setUp(): void
     {

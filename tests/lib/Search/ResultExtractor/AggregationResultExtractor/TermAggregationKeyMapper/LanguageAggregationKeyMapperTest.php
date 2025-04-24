@@ -20,10 +20,8 @@ final class LanguageAggregationKeyMapperTest extends TestCase
 {
     private const EXAMPLE_LANGUAGE_CODES = [];
 
-    /** @var \Ibexa\Contracts\Core\Repository\LanguageService|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $languageService;
+    private LanguageService&MockObject $languageService;
 
-    /** @var \Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\CountryAggregationKeyMapper */
     private LanguageAggregationKeyMapper $mapper;
 
     protected function setUp(): void

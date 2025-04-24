@@ -20,10 +20,8 @@ final class LocationAggregationKeyMapperTest extends TestCase
 {
     private const EXAMPLE_LOCATION_IDS = ['2', '54', '47'];
 
-    /** @var \Ibexa\Contracts\Core\Repository\LocationService|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $locationService;
+    private LocationService&MockObject $locationService;
 
-    /** @var \Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\LocationAggregationKeyMapper */
     private LocationAggregationKeyMapper $mapper;
 
     protected function setUp(): void

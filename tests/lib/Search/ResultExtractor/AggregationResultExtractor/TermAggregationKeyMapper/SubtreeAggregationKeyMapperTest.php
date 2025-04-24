@@ -20,8 +20,7 @@ final class SubtreeAggregationKeyMapperTest extends TestCase
 {
     private const EXAMPLE_PATH_STRING = '/1/2/54/';
 
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $locationAggregationKeyMapper;
+    private TermAggregationKeyMapper&MockObject $locationAggregationKeyMapper;
 
     protected function setUp(): void
     {

@@ -21,8 +21,7 @@ use stdClass;
 
 final class RangeAggregationResultExtractorTest extends AbstractAggregationResultExtractorTest
 {
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $keyMapper;
+    private RangeAggregationKeyMapper&MockObject $keyMapper;
 
     protected function setUp(): void
     {

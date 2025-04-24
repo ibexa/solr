@@ -20,8 +20,7 @@ final class ContentTypeGroupAggregationKeyMapperTest extends TestCase
 {
     private const EXAMPLE_CONTENT_TYPE_GROUPS_IDS = ['1', '2', '3'];
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $contentTypeService;
+    private ContentTypeService&MockObject $contentTypeService;
 
     protected function setUp(): void
     {
