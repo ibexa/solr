@@ -12,16 +12,14 @@ use Exception;
 use Ibexa\Contracts\Core\Persistence\Content\ContentInfo;
 use Ibexa\Contracts\Core\Persistence\Handler as PersistenceHandler;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Search\Handler as SearchHandler;
 use Ibexa\Core\Search\Common\IncrementalIndexer;
 use Ibexa\Solr\Handler as SolrSearchHandler;
 use Psr\Log\LoggerInterface;
 
 class Indexer extends IncrementalIndexer
 {
-    /**
-     * @var \Ibexa\Solr\Handler
-     */
-    protected $searchHandler;
+    protected SearchHandler $searchHandler;
 
     public function __construct(
         LoggerInterface $logger,
