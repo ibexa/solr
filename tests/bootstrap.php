@@ -4,7 +4,6 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-
 use Ibexa\Core\Persistence\Legacy\Content\Gateway\DoctrineDatabase;
 use Ibexa\Core\Persistence\Legacy\Content\Gateway\DoctrineDatabase\QueryBuilder;
 use Ibexa\Core\Repository\ContentService;
