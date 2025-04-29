@@ -17,8 +17,7 @@ use Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor;
 
 final class ContentFieldAggregationVisitorFactory
 {
-    /** @var \Ibexa\Core\Search\Common\FieldNameResolver */
-    private $fieldNameResolver;
+    private FieldNameResolver $fieldNameResolver;
 
     public function __construct(FieldNameResolver $fieldNameResolver)
     {

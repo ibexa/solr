@@ -26,30 +26,16 @@ final class FullTextFactory
 {
     /**
      * Field map.
-     *
-     * @var \Ibexa\Core\Search\Common\FieldNameResolver
      */
-    private $fieldNameResolver;
+    private FieldNameResolver $fieldNameResolver;
 
-    /**
-     * @var \QueryTranslator\Languages\Galach\Tokenizer
-     */
-    private $tokenizer;
+    private Tokenizer $tokenizer;
 
-    /**
-     * @var \QueryTranslator\Languages\Galach\Parser
-     */
-    private $parser;
+    private Parser $parser;
 
-    /**
-     * @var \QueryTranslator\Languages\Galach\Generators\ExtendedDisMax
-     */
-    private $generator;
+    private ExtendedDisMax $generator;
 
-    /**
-     * @var \Ibexa\Solr\FieldMapper\IndexingDepthProvider
-     */
-    private $indexingDepthProvider;
+    private IndexingDepthProvider $indexingDepthProvider;
 
     /**
      * Create from content type handler and field registry.

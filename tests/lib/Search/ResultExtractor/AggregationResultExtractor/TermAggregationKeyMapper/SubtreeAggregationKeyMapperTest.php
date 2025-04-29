@@ -13,14 +13,14 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Location\Su
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\SubtreeAggregationKeyMapper;
 use Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\AggregationResultExtractorTestUtils;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class SubtreeAggregationKeyMapperTest extends TestCase
 {
     private const EXAMPLE_PATH_STRING = '/1/2/54/';
 
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper|\PHPUnit\Framework\MockObject\MockObject */
-    private $locationAggregationKeyMapper;
+    private TermAggregationKeyMapper&MockObject $locationAggregationKeyMapper;
 
     protected function setUp(): void
     {

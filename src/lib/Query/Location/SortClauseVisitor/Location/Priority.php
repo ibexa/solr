@@ -30,7 +30,7 @@ class Priority extends SortClauseVisitor
      *
      * @return string
      */
-    public function visit(SortClause $sortClause)
+    public function visit(SortClause $sortClause): string
     {
         return 'priority_i' . $this->getDirection($sortClause);
     }

@@ -22,7 +22,7 @@ class LanguageCodeIn extends CriterionVisitor
      *
      * @return bool
      */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return
             $criterion instanceof Criterion\LanguageCode &&
@@ -38,10 +38,10 @@ class LanguageCodeIn extends CriterionVisitor
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         $languageCodeExpressions = array_map(
-            static function ($value) {
+            static function (bool|float|int|string $value): string {
                 return 'content_language_codes_ms:"' . $value . '"';
             },
             $criterion->value

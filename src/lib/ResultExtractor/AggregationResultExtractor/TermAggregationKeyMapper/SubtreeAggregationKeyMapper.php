@@ -13,8 +13,7 @@ use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregat
 
 final class SubtreeAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper */
-    private $locationAggregationKeyMapper;
+    private TermAggregationKeyMapper $locationAggregationKeyMapper;
 
     public function __construct(TermAggregationKeyMapper $locationAggregationKeyMapper)
     {

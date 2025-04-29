@@ -30,7 +30,7 @@ class DatePublished extends SortClauseVisitor
      *
      * @return string
      */
-    public function visit(SortClause $sortClause)
+    public function visit(SortClause $sortClause): string
     {
         return 'content_publication_date_dt' . $this->getDirection($sortClause);
     }

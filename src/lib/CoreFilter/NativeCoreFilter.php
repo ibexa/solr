@@ -77,10 +77,8 @@ class NativeCoreFilter extends CoreFilter
 
     /**
      * Indicates presence of main languages index.
-     *
-     * @var bool
      */
-    private $hasMainLanguagesEndpoint;
+    private bool $hasMainLanguagesEndpoint;
 
     public function __construct(EndpointResolver $endpointResolver)
     {
@@ -89,7 +87,7 @@ class NativeCoreFilter extends CoreFilter
         );
     }
 
-    public function apply(Query $query, array $languageSettings, $documentTypeIdentifier)
+    public function apply(Query $query, array $languageSettings, $documentTypeIdentifier): void
     {
         $languages = (
             empty($languageSettings['languages']) ?
@@ -267,7 +265,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @return string[]
      */
-    private function getExcludedLanguageCodes(array $languageCodes, $selectedLanguageCode = null)
+    private function getExcludedLanguageCodes(array $languageCodes, $selectedLanguageCode = null): array
     {
         $excludedLanguageCodes = [];
 

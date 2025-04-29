@@ -14,11 +14,9 @@ use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 
 final class SubtreeTermAggregationVisitor implements AggregationVisitor
 {
-    /** @var string */
-    private $pathStringFieldName;
+    private string $pathStringFieldName;
 
-    /** @var string */
-    private $locationIdFieldName;
+    private string $locationIdFieldName;
 
     public function __construct(string $pathStringFieldName, string $locationIdFieldName)
     {

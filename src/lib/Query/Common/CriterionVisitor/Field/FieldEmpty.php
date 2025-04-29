@@ -24,10 +24,7 @@ use Ibexa\Solr\Query\Common\CriterionVisitor\Field;
  */
 final class FieldEmpty extends Field
 {
-    /**
-     * @var \Ibexa\Core\Search\Common\FieldNameGenerator
-     */
-    private $fieldNameGenerator;
+    private FieldNameGenerator $fieldNameGenerator;
 
     public function __construct(
         FieldNameResolver $fieldNameResolver,

@@ -35,7 +35,7 @@ class Ancestor extends CriterionVisitor
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         $idSet = [];
         foreach ($criterion->value as $value) {
@@ -48,7 +48,7 @@ class Ancestor extends CriterionVisitor
             implode(
                 ' OR ',
                 array_map(
-                    static function ($value) {
+                    static function (string $value): string {
                         return 'location_id:"' . $value . '"';
                     },
                     array_keys($idSet)

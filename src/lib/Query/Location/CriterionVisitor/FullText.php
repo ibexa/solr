@@ -24,7 +24,7 @@ class FullText extends ContentFullText
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         $condition = $this->escapeQuote(parent::visit($criterion, $subVisitor));
 

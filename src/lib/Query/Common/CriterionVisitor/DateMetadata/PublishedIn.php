@@ -46,12 +46,12 @@ class PublishedIn extends DateMetadata
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         return implode(
             ' OR ',
             array_map(
-                function ($value) {
+                function ($value): string {
                     return 'content_publication_date_dt:"' . $this->getSolrTime($value) . '"';
                 },
                 $criterion->value

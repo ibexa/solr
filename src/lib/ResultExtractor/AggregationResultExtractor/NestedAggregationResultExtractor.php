@@ -15,11 +15,9 @@ use stdClass;
 
 final class NestedAggregationResultExtractor implements AggregationResultExtractor
 {
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor */
-    private $innerResultExtractor;
+    private AggregationResultExtractor $innerResultExtractor;
 
-    /** @var string */
-    private $nestedResultKey;
+    private string $nestedResultKey;
 
     public function __construct(AggregationResultExtractor $innerResultExtractor, string $nestedResultKey)
     {

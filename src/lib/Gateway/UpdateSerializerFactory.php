@@ -13,7 +13,7 @@ use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
 class UpdateSerializerFactory
 {
     /** @var \Ibexa\Solr\Gateway\UpdateSerializerInterface[]|iterable */
-    private $serializers;
+    private iterable $serializers;
 
     /**
      * @param iterable<\Ibexa\Solr\Gateway\UpdateSerializerInterface> $serializers

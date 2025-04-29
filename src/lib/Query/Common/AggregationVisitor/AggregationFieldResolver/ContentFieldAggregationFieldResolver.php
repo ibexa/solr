@@ -16,11 +16,9 @@ use RuntimeException;
 
 final class ContentFieldAggregationFieldResolver implements AggregationFieldResolver
 {
-    /** @var \Ibexa\Core\Search\Common\FieldNameResolver */
-    private $fieldNameResolver;
+    private FieldNameResolver $fieldNameResolver;
 
-    /** @var string */
-    private $searchFieldName;
+    private string $searchFieldName;
 
     public function __construct(FieldNameResolver $fieldNameResolver, string $searchFieldName)
     {

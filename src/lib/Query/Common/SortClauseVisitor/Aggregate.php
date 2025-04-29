@@ -38,7 +38,7 @@ class Aggregate extends SortClauseVisitor
     /**
      * Adds visitor.
      */
-    public function addVisitor(SortClauseVisitor $visitor)
+    public function addVisitor(SortClauseVisitor $visitor): void
     {
         $this->visitors[] = $visitor;
     }
@@ -48,7 +48,7 @@ class Aggregate extends SortClauseVisitor
      *
      * @return bool
      */
-    public function canVisit(SortClause $sortClause)
+    public function canVisit(SortClause $sortClause): bool
     {
         return true;
     }

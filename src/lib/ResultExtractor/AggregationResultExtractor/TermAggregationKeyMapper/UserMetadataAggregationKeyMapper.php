@@ -18,8 +18,7 @@ use InvalidArgumentException;
 
 final class UserMetadataAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
-    private $userService;
+    private UserService $userService;
 
     public function __construct(UserService $userService)
     {

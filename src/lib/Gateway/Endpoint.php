@@ -94,7 +94,7 @@ class Endpoint extends ValueObject
      *
      * @return string
      */
-    public function getIdentifier()
+    public function getIdentifier(): string
     {
         return "{$this->host}:{$this->port}{$this->path}/{$this->core}";
     }
@@ -104,7 +104,7 @@ class Endpoint extends ValueObject
      *
      * @return string
      */
-    public function getURL()
+    public function getURL(): string
     {
         $authorization = (!empty($this->user) ? "{$this->user}:{$this->pass}@" : '');
 

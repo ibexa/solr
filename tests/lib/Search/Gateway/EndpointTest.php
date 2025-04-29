@@ -16,7 +16,7 @@ use Ibexa\Tests\Solr\Search\TestCase;
  */
 class EndpointTest extends TestCase
 {
-    public function testEndpointDsnParsingWithAll()
+    public function testEndpointDsnParsingWithAll(): void
     {
         $actual = new Endpoint(['dsn' => 'https://jura:pura@10.10.10.10:5434/jolr', 'core' => 'core0']);
         $expected = new Endpoint([
@@ -32,7 +32,7 @@ class EndpointTest extends TestCase
         self::assertEquals($expected, $actual);
     }
 
-    public function testEndpointDsnParsingWithoutUser()
+    public function testEndpointDsnParsingWithoutUser(): void
     {
         $actual = new Endpoint(['dsn' => 'https://10.10.10.10:5434/jolr', 'core' => 'core0']);
         $expected = new Endpoint([
@@ -48,7 +48,7 @@ class EndpointTest extends TestCase
         self::assertEquals($expected, $actual);
     }
 
-    public function testEndpointDsnParsingWithFragment()
+    public function testEndpointDsnParsingWithFragment(): void
     {
         $actual = new Endpoint(['dsn' => 'https://10.10.10.10:5434/jolr#core1']);
         $expected = new Endpoint([
@@ -64,7 +64,7 @@ class EndpointTest extends TestCase
         self::assertEquals($expected, $actual);
     }
 
-    public function testEndpointDsnParsingOverridesAllIfSet()
+    public function testEndpointDsnParsingOverridesAllIfSet(): void
     {
         $actual = new Endpoint([
             'dsn' => 'https://jura:pura@10.10.10.10:5434/jolr#core1',
@@ -89,7 +89,7 @@ class EndpointTest extends TestCase
         self::assertEquals($expected, $actual);
     }
 
-    public function testEndpointDsnParsingWithQuery()
+    public function testEndpointDsnParsingWithQuery(): void
     {
         $this->expectException(PropertyNotFoundException::class);
 

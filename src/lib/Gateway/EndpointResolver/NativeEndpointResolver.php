@@ -21,7 +21,7 @@ class NativeEndpointResolver implements EndpointResolver, SingleEndpointResolver
      *
      * @var string[]
      */
-    private $entryEndpoints;
+    private array $entryEndpoints;
 
     /**
      * Holds a map of translations to Endpoint names, with language code as key
@@ -36,7 +36,7 @@ class NativeEndpointResolver implements EndpointResolver, SingleEndpointResolver
      *
      * @var string[]
      */
-    private $endpointMap;
+    private array $endpointMap;
 
     /**
      * Holds a name of the default Endpoint used for translations, if configured.
@@ -79,7 +79,7 @@ class NativeEndpointResolver implements EndpointResolver, SingleEndpointResolver
         $this->mainLanguagesEndpoint = $mainLanguagesEndpoint;
     }
 
-    public function getEntryEndpoint()
+    public function getEntryEndpoint(): string
     {
         if (empty($this->entryEndpoints)) {
             throw new RuntimeException('No entry endpoints defined');

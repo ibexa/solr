@@ -17,7 +17,7 @@ use stdClass;
 final class DispatcherAggregationResultExtractor implements AggregationResultExtractor
 {
     /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor[] */
-    private $extractors;
+    private iterable $extractors;
 
     /**
      * @param \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor[] $extractors

@@ -35,7 +35,7 @@ class AggregateSortClauseVisitorPassTest extends AbstractCompilerPassTestCase
         $container->addCompilerPass(new AggregateSortClauseVisitorPass());
     }
 
-    public function testAddVisitor()
+    public function testAddVisitor(): void
     {
         $serviceId = 'service_id';
         $def = new Definition();

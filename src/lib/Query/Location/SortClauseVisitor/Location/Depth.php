@@ -30,7 +30,7 @@ class Depth extends SortClauseVisitor
      *
      * @return string
      */
-    public function visit(SortClause $sortClause)
+    public function visit(SortClause $sortClause): string
     {
         return 'depth_i' . $this->getDirection($sortClause);
     }

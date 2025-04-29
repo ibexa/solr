@@ -36,17 +36,20 @@ class Aggregate extends ContentTranslationFieldMapper
     /**
      * Adds given $mapper to the internal array as the next one in priority.
      */
-    public function addMapper(ContentTranslationFieldMapper $mapper)
+    public function addMapper(ContentTranslationFieldMapper $mapper): void
     {
         $this->mappers[] = $mapper;
     }
 
-    public function accept(Content $content, $languageCode)
+    public function accept(Content $content, $languageCode): bool
     {
         return true;
     }
 
-    public function mapFields(Content $content, $languageCode)
+    /**
+     * @return mixed[]
+     */
+    public function mapFields(Content $content, $languageCode): array
     {
         $fields = [];
 

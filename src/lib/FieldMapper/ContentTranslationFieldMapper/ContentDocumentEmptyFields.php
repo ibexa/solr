@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content\Type\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Ibexa\Contracts\Core\Search\Field;
 use Ibexa\Contracts\Core\Search\FieldType;
@@ -23,20 +24,11 @@ class ContentDocumentEmptyFields extends ContentTranslationFieldMapper
 {
     public const IS_EMPTY_NAME = 'is_empty';
 
-    /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Type\Handler
-     */
-    private $contentTypeHandler;
+    private Handler $contentTypeHandler;
 
-    /**
-     * @var \Ibexa\Core\Search\Common\FieldNameGenerator
-     */
-    private $fieldNameGenerator;
+    private FieldNameGenerator $fieldNameGenerator;
 
-    /**
-     * @var \Ibexa\Core\Persistence\FieldTypeRegistry
-     */
-    private $fieldTypeRegistry;
+    private FieldTypeRegistry $fieldTypeRegistry;
 
     public function __construct(
         ContentTypeHandler $contentTypeHandler,
@@ -53,7 +45,7 @@ class ContentDocumentEmptyFields extends ContentTranslationFieldMapper
      *
      * @return bool
      */
-    public function accept(Content $content, $languageCode)
+    public function accept(Content $content, $languageCode): bool
     {
         return true;
     }
@@ -63,7 +55,7 @@ class ContentDocumentEmptyFields extends ContentTranslationFieldMapper
      *
      * @return \Ibexa\Contracts\Core\Search\Field[]
      */
-    public function mapFields(Content $content, $languageCode)
+    public function mapFields(Content $content, $languageCode): array
     {
         $fields = [];
         $contentType = $this->contentTypeHandler->load(

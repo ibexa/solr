@@ -16,8 +16,7 @@ use stdClass;
 
 final class StatsAggregationResultExtractor implements AggregationResultExtractor
 {
-    /** @var string */
-    private $aggregationClass;
+    private string $aggregationClass;
 
     public function __construct(string $aggregationClass)
     {

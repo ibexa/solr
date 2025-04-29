@@ -38,7 +38,7 @@ class JsonUpdateSerializerTest extends TestCase
     ];
 
     /** @var \Ibexa\Solr\Gateway\UpdateSerializer\JsonUpdateSerializer */
-    private $serializer;
+    private JsonUpdateSerializer $serializer;
 
     public function getDataForTestSerialize(): iterable
     {

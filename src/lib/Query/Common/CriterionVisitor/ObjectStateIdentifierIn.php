@@ -37,7 +37,7 @@ class ObjectStateIdentifierIn extends CriterionVisitor
             implode(
                 ' OR ',
                 array_map(
-                    function (string $value) use ($target) {
+                    function (string $value) use ($target): string {
                         return sprintf(
                             'content_object_state_identifiers_ms:%s',
                             $this->escapeExpressions("{$target}:{$value}", true)

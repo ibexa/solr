@@ -25,11 +25,9 @@ class Stream implements HttpClient, LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    /** @var int */
-    private $connectionTimeout;
+    private int $connectionTimeout;
 
-    /** @var \Symfony\Contracts\HttpClient\HttpClientInterface */
-    private $client;
+    private HttpClientInterface $client;
 
     /**
      * @param int $timeout Timeout for connection in seconds.
@@ -74,9 +72,9 @@ class Stream implements HttpClient, LoggerAwareInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
     private function getResponseMessage(
-        $method,
+        string $method,
         Endpoint $endpoint,
-        $path,
+        string $path,
         Message $message
     ): Message {
         if ($endpoint->user !== null) {

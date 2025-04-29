@@ -8,6 +8,7 @@
 namespace Ibexa\Solr\FieldMapper\ContentFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content\Location\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
 use Ibexa\Contracts\Core\Persistence\Content\ObjectState\Handler as ObjectStateHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Section\Handler as SectionHandler;
@@ -22,25 +23,13 @@ use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
  */
 class BlockDocumentsBaseContentFields extends ContentFieldMapper
 {
-    /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Location\Handler
-     */
-    protected $locationHandler;
+    protected Handler $locationHandler;
 
-    /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Type\Handler
-     */
-    protected $contentTypeHandler;
+    protected ContentTypeHandler $contentTypeHandler;
 
-    /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\ObjectState\Handler
-     */
-    protected $objectStateHandler;
+    protected ObjectStateHandler $objectStateHandler;
 
-    /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Section\Handler
-     */
-    protected $sectionHandler;
+    protected SectionHandler $sectionHandler;
 
     public function __construct(
         LocationHandler $locationHandler,
@@ -54,12 +43,12 @@ class BlockDocumentsBaseContentFields extends ContentFieldMapper
         $this->sectionHandler = $sectionHandler;
     }
 
-    public function accept(Content $content)
+    public function accept(Content $content): bool
     {
         return true;
     }
 
-    public function mapFields(Content $content)
+    public function mapFields(Content $content): array
     {
         $versionInfo = $content->versionInfo;
         $contentInfo = $content->versionInfo->contentInfo;
@@ -203,7 +192,7 @@ class BlockDocumentsBaseContentFields extends ContentFieldMapper
      *
      * @return array
      */
-    protected function getObjectStateIds($contentId)
+    protected function getObjectStateIds($contentId): array
     {
         $objectStateIds = [];
 

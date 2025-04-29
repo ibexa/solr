@@ -17,7 +17,7 @@ use RuntimeException;
  */
 class NativeEndpointResolverTest extends TestCase
 {
-    public function testGetEntryEndpoint()
+    public function testGetEntryEndpoint(): void
     {
         $entryEndpoints = [
             'endpoint2',
@@ -33,7 +33,7 @@ class NativeEndpointResolverTest extends TestCase
         );
     }
 
-    public function testGetEntryEndpointThrowsRuntimeException()
+    public function testGetEntryEndpointThrowsRuntimeException(): void
     {
         $this->expectException(RuntimeException::class);
         $entryEndpoints = [];
@@ -43,7 +43,7 @@ class NativeEndpointResolverTest extends TestCase
         $endpointResolver->getEntryEndpoint();
     }
 
-    public function testGetIndexingTarget()
+    public function testGetIndexingTarget(): void
     {
         $endpointMap = [
             'eng-GB' => 'endpoint3',
@@ -57,7 +57,7 @@ class NativeEndpointResolverTest extends TestCase
         );
     }
 
-    public function testGetIndexingTargetReturnsDefaultEndpoint()
+    public function testGetIndexingTargetReturnsDefaultEndpoint(): void
     {
         $endpointMap = [];
         $defaultEndpoint = 'endpoint4';
@@ -70,14 +70,14 @@ class NativeEndpointResolverTest extends TestCase
         );
     }
 
-    public function getIndexingTargetThrowsRuntimeException()
+    public function getIndexingTargetThrowsRuntimeException(): void
     {
         $endpointResolver = $this->getEndpointResolver();
 
         $endpointResolver->getIndexingTarget('ger-DE');
     }
 
-    public function testGetMainLanguagesEndpoint()
+    public function testGetMainLanguagesEndpoint(): void
     {
         $mainLanguagesEndpoint = 'endpoint5';
 
@@ -89,14 +89,14 @@ class NativeEndpointResolverTest extends TestCase
         );
     }
 
-    public function testGetMainLanguagesEndpointReturnsNull()
+    public function testGetMainLanguagesEndpointReturnsNull(): void
     {
         $endpointResolver = $this->getEndpointResolver();
 
         self::assertNull($endpointResolver->getMainLanguagesEndpoint());
     }
 
-    public function providerForTestGetSearchTargets()
+    public function providerForTestGetSearchTargets(): array
     {
         return [
             // Will return all endpoints (for always available fallback without main languages endpoint)
@@ -807,13 +807,13 @@ class NativeEndpointResolverTest extends TestCase
      * @param bool $expectedIsMultiple
      */
     public function testGetSearchTargets(
-        $endpointMap,
-        $defaultEndpoint,
-        $mainLanguagesEndpoint,
-        $languageSettings,
-        $expected,
-        $expectedIsMultiple = true
-    ) {
+        array $endpointMap,
+        ?string $defaultEndpoint,
+        ?string $mainLanguagesEndpoint,
+        array $languageSettings,
+        array $expected,
+        bool $expectedIsMultiple = true
+    ): void {
         $endpointResolver = $this->getEndpointResolver(
             [],
             $endpointMap,
@@ -830,7 +830,10 @@ class NativeEndpointResolverTest extends TestCase
         }
     }
 
-    public function providerForTestGetSearchTargetsThrowsRuntimeException()
+    /**
+     * @return array{string[], string|null, string|null, array<string, mixed>, string}[]
+     */
+    public function providerForTestGetSearchTargetsThrowsRuntimeException(): array
     {
         return [
             // Will try to return all endpoints
@@ -923,12 +926,12 @@ class NativeEndpointResolverTest extends TestCase
      * @param string $message
      */
     public function testGetSearchTargetsThrowsRuntimeException(
-        $endpointMap,
-        $defaultEndpoint,
-        $mainLanguagesEndpoint,
-        $languageSettings,
-        $message
-    ) {
+        array $endpointMap,
+        ?string $defaultEndpoint,
+        ?string $mainLanguagesEndpoint,
+        array $languageSettings,
+        string $message
+    ): void {
         $this->expectException(RuntimeException::class);
 
         $endpointResolver = $this->getEndpointResolver(
@@ -947,7 +950,10 @@ class NativeEndpointResolverTest extends TestCase
         }
     }
 
-    public function providerForTestGetEndpoints()
+    /**
+     * @return array{string[], string|null, string|null, string[]}[]
+     */
+    public function providerForTestGetEndpoints(): array
     {
         return [
             [
@@ -1020,11 +1026,11 @@ class NativeEndpointResolverTest extends TestCase
      * @param string[] $expected
      */
     public function testGetEndpoints(
-        $endpointMap,
-        $defaultEndpoint,
-        $mainLanguagesEndpoint,
-        $expected
-    ) {
+        array $endpointMap,
+        ?string $defaultEndpoint,
+        ?string $mainLanguagesEndpoint,
+        array $expected
+    ): void {
         $endpointResolver = $this->getEndpointResolver(
             [],
             $endpointMap,
@@ -1037,7 +1043,7 @@ class NativeEndpointResolverTest extends TestCase
         self::assertEquals($expected, $endpoints);
     }
 
-    public function testGetEndpointsThrowsRuntimeException()
+    public function testGetEndpointsThrowsRuntimeException(): void
     {
         $this->expectException(RuntimeException::class);
         $endpointResolver = $this->getEndpointResolver(
@@ -1055,7 +1061,7 @@ class NativeEndpointResolverTest extends TestCase
         array $endpointMap = [],
         $defaultEndpoint = null,
         $mainLanguagesEndpoint = null
-    ) {
+    ): NativeEndpointResolver {
         return new NativeEndpointResolver(
             $entryEndpoints,
             $endpointMap,

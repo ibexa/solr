@@ -23,7 +23,7 @@ class ModifiedIn extends DateMetadata
      *
      * @return bool
      */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return
             $criterion instanceof Criterion\DateMetadata &&
@@ -42,7 +42,7 @@ class ModifiedIn extends DateMetadata
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         $values = [];
         foreach ($criterion->value as $value) {

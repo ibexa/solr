@@ -14,11 +14,9 @@ use Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolve
 
 final class TermAggregationVisitor extends AbstractTermAggregationVisitor
 {
-    /** @var string */
-    private $aggregationClass;
+    private string $aggregationClass;
 
-    /** @var \Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver */
-    private $aggregationFieldResolver;
+    private AggregationFieldResolver $aggregationFieldResolver;
 
     public function __construct(string $aggregationClass, AggregationFieldResolver $aggregationFieldResolver)
     {

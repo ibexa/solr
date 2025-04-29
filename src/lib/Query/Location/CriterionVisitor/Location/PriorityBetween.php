@@ -22,7 +22,7 @@ class PriorityBetween extends CriterionVisitor
      *
      * @return bool
      */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return
             $criterion instanceof Criterion\Location\Priority &&
@@ -43,7 +43,7 @@ class PriorityBetween extends CriterionVisitor
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         $start = $criterion->value[0];
         $end = isset($criterion->value[1]) ? $criterion->value[1] : null;

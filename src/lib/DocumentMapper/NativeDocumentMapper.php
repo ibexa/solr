@@ -9,6 +9,7 @@ namespace Ibexa\Solr\DocumentMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
+use Ibexa\Contracts\Core\Persistence\Content\Location\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
 use Ibexa\Contracts\Core\Search\Document;
 use Ibexa\Contracts\Solr\DocumentMapper;
@@ -21,37 +22,20 @@ use Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper;
  */
 class NativeDocumentMapper implements DocumentMapper
 {
-    /**
-     * @var \Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper
-     */
-    private $blockFieldMapper;
+    private ContentFieldMapper $blockFieldMapper;
 
-    /**
-     * @var \Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper
-     */
-    private $blockTranslationFieldMapper;
+    private ContentTranslationFieldMapper $blockTranslationFieldMapper;
 
-    /**
-     * @var \Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper
-     */
-    private $contentFieldMapper;
+    private ContentFieldMapper $contentFieldMapper;
 
-    /**
-     * @var \Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper
-     */
-    private $contentTranslationFieldMapper;
+    private ContentTranslationFieldMapper $contentTranslationFieldMapper;
 
-    /**
-     * @var \Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper
-     */
-    private $locationFieldMapper;
+    private LocationFieldMapper $locationFieldMapper;
 
     /**
      * Location handler.
-     *
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Location\Handler
      */
-    protected $locationHandler;
+    protected Handler $locationHandler;
 
     /**
      * Creates a new document mapper.
@@ -77,7 +61,7 @@ class NativeDocumentMapper implements DocumentMapper
      *
      * @return \Ibexa\Contracts\Core\Search\Document[]
      */
-    public function mapContentBlock(Content $content)
+    public function mapContentBlock(Content $content): array
     {
         $contentInfo = $content->versionInfo->contentInfo;
         $locations = $this->locationHandler->loadLocationsByContent($contentInfo->id);
@@ -155,7 +139,7 @@ class NativeDocumentMapper implements DocumentMapper
      *
      * @return string
      */
-    public function generateContentDocumentId($contentId, $languageCode = null)
+    public function generateContentDocumentId($contentId, $languageCode = null): string
     {
         return strtolower("content{$contentId}lang{$languageCode}");
     }
@@ -175,7 +159,7 @@ class NativeDocumentMapper implements DocumentMapper
      *
      * @return string
      */
-    public function generateLocationDocumentId($locationId, $languageCode = null)
+    public function generateLocationDocumentId($locationId, $languageCode = null): string
     {
         return strtolower("location{$locationId}lang{$languageCode}");
     }
@@ -201,11 +185,9 @@ class NativeDocumentMapper implements DocumentMapper
      * Returns an array of fields for the given $content and $languageCode, to be added to the
      * corresponding block documents.
      *
-     * @param string $languageCode
-     *
      * @return \Ibexa\Contracts\Core\Search\Field[]
      */
-    private function getBlockTranslationFields(Content $content, $languageCode)
+    private function getBlockTranslationFields(Content $content, string $languageCode)
     {
         $fields = [];
 
@@ -237,11 +219,9 @@ class NativeDocumentMapper implements DocumentMapper
      * Returns an array of fields for the given $content and $languageCode, to be added to the
      * corresponding Content document.
      *
-     * @param string $languageCode
-     *
      * @return \Ibexa\Contracts\Core\Search\Field[]
      */
-    private function getContentTranslationFields(Content $content, $languageCode)
+    private function getContentTranslationFields(Content $content, string $languageCode)
     {
         $fields = [];
 

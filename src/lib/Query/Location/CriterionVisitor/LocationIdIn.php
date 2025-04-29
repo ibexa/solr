@@ -22,7 +22,7 @@ class LocationIdIn extends CriterionVisitor
      *
      * @return bool
      */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return
             $criterion instanceof Criterion\LocationId &&
@@ -38,13 +38,13 @@ class LocationIdIn extends CriterionVisitor
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         return '(' .
             implode(
                 ' OR ',
                 array_map(
-                    static function ($value) {
+                    static function (bool|float|int|string $value): string {
                         return 'location_id:"' . $value . '"';
                     },
                     $criterion->value

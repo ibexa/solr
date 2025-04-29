@@ -15,12 +15,12 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\Term
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor;
+use PHPUnit\Framework\MockObject\MockObject;
 use stdClass;
 
 final class TermAggregationResultExtractorTest extends AbstractAggregationResultExtractorTest
 {
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper|\PHPUnit\Framework\MockObject\MockObject */
-    private $keyMapper;
+    private TermAggregationKeyMapper&MockObject $keyMapper;
 
     protected function setUp(): void
     {

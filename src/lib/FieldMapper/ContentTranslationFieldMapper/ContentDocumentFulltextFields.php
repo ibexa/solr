@@ -8,11 +8,13 @@
 namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Type as ContentType;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Ibexa\Contracts\Core\Search\Field;
 use Ibexa\Contracts\Core\Search\FieldType;
+use Ibexa\Contracts\Core\Search\FieldType\TextField;
 use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
 use Ibexa\Core\Search\Common\FieldNameGenerator;
 use Ibexa\Core\Search\Common\FieldRegistry;
@@ -26,47 +28,25 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
 {
     /**
      * Field name, untyped.
-     *
-     * @var string
      */
-    private static $fieldName = 'meta_content__text';
+    private static string $fieldName = 'meta_content__text';
 
     /**
      * Field of related content name, untyped.
-     *
-     * @var string
      */
-    private static $relatedContentFieldName = 'meta_related_content_%d__text';
+    private static string $relatedContentFieldName = 'meta_related_content_%d__text';
 
-    /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Type\Handler
-     */
-    protected $contentTypeHandler;
+    protected ContentTypeHandler $contentTypeHandler;
 
-    /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Handler
-     */
-    protected $contentHandler;
+    protected Handler $contentHandler;
 
-    /**
-     * @var \Ibexa\Core\Search\Common\FieldRegistry
-     */
-    protected $fieldRegistry;
+    protected FieldRegistry $fieldRegistry;
 
-    /**
-     * @var \Ibexa\Core\Search\Common\FieldNameGenerator
-     */
-    protected $fieldNameGenerator;
+    protected FieldNameGenerator $fieldNameGenerator;
 
-    /**
-     * @var \Ibexa\Solr\FieldMapper\BoostFactorProvider
-     */
-    protected $boostFactorProvider;
+    protected BoostFactorProvider $boostFactorProvider;
 
-    /**
-     * @var \Ibexa\Solr\FieldMapper\IndexingDepthProvider
-     */
-    protected $indexingDepthProvider;
+    protected IndexingDepthProvider $indexingDepthProvider;
 
     public function __construct(
         ContentTypeHandler $contentTypeHandler,
@@ -87,7 +67,7 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
     /**
      * {@inheritdoc}
      */
-    public function accept(Content $content, $languageCode)
+    public function accept(Content $content, $languageCode): bool
     {
         return true;
     }
@@ -117,7 +97,7 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
-    private function doMapFields(Content $content, ContentType $contentType, $languageCode, $maxDepth, $depth = 0)
+    private function doMapFields(Content $content, ContentType $contentType, $languageCode, $maxDepth, int $depth = 0): array
     {
         $fields = [];
 
@@ -173,7 +153,7 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
-    private function doMapRelatedFields(Content $sourceContent, $languageCode, $maxDepth, $depth)
+    private function doMapRelatedFields(Content $sourceContent, $languageCode, $maxDepth, int $depth): array
     {
         $sourceContentId = $sourceContent->versionInfo->contentInfo->id;
         $relations = $this->contentHandler->loadRelationList(
@@ -220,12 +200,10 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
 
     /**
      * Return index field type for the given $contentType.
-     *
-     * @return \Ibexa\Contracts\Core\Search\FieldType
      */
-    private function getIndexFieldType(ContentType $contentType)
+    private function getIndexFieldType(ContentType $contentType): TextField
     {
-        $newFieldType = new FieldType\TextField();
+        $newFieldType = new TextField();
         $newFieldType->boost = $this->boostFactorProvider->getContentMetaFieldBoostFactor(
             $contentType,
             'text'

@@ -22,11 +22,9 @@ use stdClass;
  */
 abstract class ResultExtractor
 {
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor */
-    protected $aggregationResultExtractor;
+    protected AggregationResultExtractor $aggregationResultExtractor;
 
-    /** @var \Ibexa\Solr\Gateway\EndpointRegistry */
-    protected $endpointRegistry;
+    protected EndpointRegistry $endpointRegistry;
 
     public function __construct(
         AggregationResultExtractor $aggregationResultExtractor,
@@ -39,14 +37,14 @@ abstract class ResultExtractor
     /**
      * Extracts search result from $data returned by Solr backend.
      *
-     * @param mixed $data
+     * @param \stdClass $data
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation[] $aggregations
      * @param array $languageFilter
      *
      * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult<\Ibexa\Contracts\Core\Repository\Values\ValueObject>
      */
     public function extract(
-        $data,
+        stdClass $data,
         array $aggregations = [],
         array $languageFilter = [],
         ?Spellcheck $spellcheck = null

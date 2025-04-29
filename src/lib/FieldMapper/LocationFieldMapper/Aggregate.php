@@ -36,17 +36,20 @@ class Aggregate extends LocationFieldMapper
     /**
      * Adds given $mapper to the internal array as the next one in priority.
      */
-    public function addMapper(LocationFieldMapper $mapper)
+    public function addMapper(LocationFieldMapper $mapper): void
     {
         $this->mappers[] = $mapper;
     }
 
-    public function accept(Location $location)
+    public function accept(Location $location): bool
     {
         return true;
     }
 
-    public function mapFields(Location $location)
+    /**
+     * @return mixed[]
+     */
+    public function mapFields(Location $location): array
     {
         $fields = [];
 

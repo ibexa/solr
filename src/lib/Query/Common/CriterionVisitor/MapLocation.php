@@ -19,10 +19,8 @@ abstract class MapLocation extends CriterionVisitor
 {
     /**
      * Field map.
-     *
-     * @var \Ibexa\Core\Search\Common\FieldNameResolver
      */
-    protected $fieldNameResolver;
+    protected FieldNameResolver $fieldNameResolver;
 
     /**
      * Identifier of the field type that criterion can handle.

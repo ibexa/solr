@@ -20,7 +20,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     /**
      * @var \Ibexa\Bundle\Solr\DependencyInjection\IbexaSolrExtension
      */
-    private $extension;
+    private IbexaSolrExtension $extension;
 
     protected function setUp(): void
     {
@@ -29,23 +29,32 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         parent::setUp();
     }
 
+    /**
+     * @return \Symfony\Component\DependencyInjection\Extension\ExtensionInterface[]
+     */
     protected function getContainerExtensions(): array
     {
         return [$this->extension];
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     protected function getMinimalConfiguration(): array
     {
         return [];
     }
 
-    public function testEmpty()
+    public function testEmpty(): void
     {
         $this->load();
         $this->expectNotToPerformAssertions();
     }
 
-    public function dataProviderForTestEndpoint()
+    /**
+     * @phpstan-return list<array{string, array<string, mixed>, array<string, mixed>}>
+     */
+    public function dataProviderForTestEndpoint(): array
     {
         return [
             [
@@ -133,10 +142,10 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
      * @dataProvider dataProviderForTestEndpoint
      *
      * @param string $endpointName
-     * @param array $endpointValues
-     * @param array $expectedArgument
+     * @param array<string, mixed> $endpointValues
+     * @param array<string, mixed> $expectedArgument
      */
-    public function testEndpoint($endpointName, $endpointValues, $expectedArgument)
+    public function testEndpoint(string $endpointName, array $endpointValues, array $expectedArgument): void
     {
         $this->load(['endpoints' => [$endpointName => $endpointValues]]);
 
@@ -152,7 +161,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testEndpointCoreRequired()
+    public function testEndpointCoreRequired(): void
     {
         $this->expectException(InvalidConfigurationException::class);
 
@@ -167,7 +176,10 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function dataProviderForTestConnection()
+    /**
+     * @phpstan-return list<array<array-key, mixed>>
+     */
+    public function dataProviderForTestConnection(): array
     {
         return [
             [
@@ -223,7 +235,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         }
     }
 
-    public function testConnection()
+    public function testConnection(): void
     {
         $configurationValues = [
             'connections' => [
@@ -287,7 +299,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testConnectionEndpointDefaults()
+    public function testConnectionEndpointDefaults(): void
     {
         $configurationValues = [
             'connections' => [
@@ -347,7 +359,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testConnectionEndpointUniqueDefaults()
+    public function testConnectionEndpointUniqueDefaults(): void
     {
         $configurationValues = [
             'connections' => [
@@ -405,7 +417,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testConnectionMappingDefaults()
+    public function testConnectionMappingDefaults(): void
     {
         $configurationValues = [
             'connections' => [
@@ -452,7 +464,10 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function dataProvideForTestBoostFactorMap()
+    /**
+     * @phpstan-return list<array{array<string, mixed>, array<string, mixed>}>
+     */
+    public function dataProvideForTestBoostFactorMap(): array
     {
         return [
             [
@@ -642,7 +657,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     /**
      * @dataProvider dataProvideForTestBoostFactorMap
      */
-    public function testBoostFactorMap(array $configuration, array $map)
+    public function testBoostFactorMap(array $configuration, array $map): void
     {
         $this->load($configuration);
 

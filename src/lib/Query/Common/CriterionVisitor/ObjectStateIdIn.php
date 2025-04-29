@@ -22,7 +22,7 @@ class ObjectStateIdIn extends CriterionVisitor
      *
      * @return bool
      */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return
             $criterion instanceof Criterion\ObjectStateId &&
@@ -40,13 +40,13 @@ class ObjectStateIdIn extends CriterionVisitor
      *
      * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         return '(' .
             implode(
                 ' OR ',
                 array_map(
-                    static function ($value) {
+                    static function (bool|float|int|string $value): string {
                         // TODO this should not be multiple???
                         return 'content_object_state_ids_mid:"' . $value . '"';
                     },

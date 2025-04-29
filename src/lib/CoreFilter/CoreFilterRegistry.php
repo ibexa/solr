@@ -13,7 +13,7 @@ use OutOfBoundsException;
 final class CoreFilterRegistry
 {
     /** @var \Ibexa\Solr\CoreFilter[] */
-    private $coreFilters;
+    private array $coreFilters;
 
     /**
      * @param \Ibexa\Solr\CoreFilter[] $coreFilters

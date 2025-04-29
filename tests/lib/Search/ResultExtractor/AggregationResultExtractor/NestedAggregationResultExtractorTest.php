@@ -12,6 +12,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\NestedAggregationResultExtractor;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -19,11 +20,9 @@ final class NestedAggregationResultExtractorTest extends TestCase
 {
     private const EXAMPLE_NESTED_RESULT_KEY = 'foo';
 
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor|\PHPUnit\Framework\MockObject\MockObject */
-    private $innerResultExtractor;
+    private AggregationResultExtractor&MockObject $innerResultExtractor;
 
-    /** @var \Ibexa\Solr\ResultExtractor\AggregationResultExtractor\NestedAggregationResultExtractor */
-    private $resultExtractor;
+    private NestedAggregationResultExtractor $resultExtractor;
 
     protected function setUp(): void
     {

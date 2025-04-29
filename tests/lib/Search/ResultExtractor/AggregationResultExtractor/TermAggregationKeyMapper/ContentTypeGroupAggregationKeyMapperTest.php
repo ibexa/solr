@@ -13,14 +13,14 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeGroup;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\ContentTypeGroupAggregationKeyMapper;
 use Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\AggregationResultExtractorTestUtils;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class ContentTypeGroupAggregationKeyMapperTest extends TestCase
 {
     private const EXAMPLE_CONTENT_TYPE_GROUPS_IDS = ['1', '2', '3'];
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject */
-    private $contentTypeService;
+    private ContentTypeService&MockObject $contentTypeService;
 
     protected function setUp(): void
     {

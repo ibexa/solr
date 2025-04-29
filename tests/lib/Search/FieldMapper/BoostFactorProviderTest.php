@@ -7,7 +7,9 @@
 
 namespace Ibexa\Tests\Solr\Search\FieldMapper;
 
+use Ibexa\Contracts\Core\Persistence\Content\Type;
 use Ibexa\Contracts\Core\Persistence\Content\Type as SPIContentType;
+use Ibexa\Contracts\Core\Persistence\Content\Type\FieldDefinition;
 use Ibexa\Contracts\Core\Persistence\Content\Type\FieldDefinition as SPIFieldDefinition;
 use Ibexa\Solr\FieldMapper\BoostFactorProvider;
 use Ibexa\Tests\Solr\Search\TestCase;
@@ -17,7 +19,10 @@ use Ibexa\Tests\Solr\Search\TestCase;
  */
 class BoostFactorProviderTest extends TestCase
 {
-    public function providerForTestGetContentFieldBoostFactor()
+    /**
+     * @return array{array<string, mixed>, string, string, float}[]
+     */
+    public function providerForTestGetContentFieldBoostFactor(): array
     {
         return [
             [
@@ -116,10 +121,10 @@ class BoostFactorProviderTest extends TestCase
      */
     public function testGetContentFieldBoostFactor(
         array $map,
-        $contentTypeIdentifier,
-        $fieldDefinitionIdentifier,
-        $expectedBoostFactor
-    ) {
+        string $contentTypeIdentifier,
+        string $fieldDefinitionIdentifier,
+        float $expectedBoostFactor
+    ): void {
         $provider = $this->getFieldBoostProvider($map);
 
         $boostFactor = $provider->getContentFieldBoostFactor(
@@ -130,7 +135,10 @@ class BoostFactorProviderTest extends TestCase
         self::assertEquals($expectedBoostFactor, $boostFactor);
     }
 
-    public function providerForTestGetContentMetaFieldBoostFactor()
+    /**
+     * @return array{array<string, mixed>, string, string, float}[]
+     */
+    public function providerForTestGetContentMetaFieldBoostFactor(): array
     {
         return [
             [
@@ -242,10 +250,10 @@ class BoostFactorProviderTest extends TestCase
      */
     public function testGetContentMetaFieldBoostFactor(
         array $map,
-        $contentTypeIdentifier,
-        $fieldName,
-        $expectedBoostFactor
-    ) {
+        string $contentTypeIdentifier,
+        string $fieldName,
+        float $expectedBoostFactor
+    ): void {
         $provider = $this->getFieldBoostProvider($map);
 
         $boostFactor = $provider->getContentMetaFieldBoostFactor(
@@ -256,12 +264,12 @@ class BoostFactorProviderTest extends TestCase
         self::assertEquals($expectedBoostFactor, $boostFactor);
     }
 
-    protected function getFieldBoostProvider(array $map)
+    protected function getFieldBoostProvider(array $map): BoostFactorProvider
     {
         return new BoostFactorProvider($map);
     }
 
-    protected function getContentTypeStub($identifier)
+    protected function getContentTypeStub($identifier): Type
     {
         return new SPIContentType(
             [
@@ -270,7 +278,7 @@ class BoostFactorProviderTest extends TestCase
         );
     }
 
-    protected function getFieldDefinitionStub($identifier)
+    protected function getFieldDefinitionStub($identifier): FieldDefinition
     {
         return new SPIFieldDefinition(
             [
