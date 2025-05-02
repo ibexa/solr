@@ -8,7 +8,6 @@
 namespace Ibexa\Tests\Solr\SetupFactory;
 
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\FetchMode;
 use Ibexa\Bundle\Solr\DependencyInjection\IbexaSolrExtension;
 use Ibexa\Contracts\Core\Persistence\Content\Handler;
 use Ibexa\Contracts\Core\Repository\Repository;
