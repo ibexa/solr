@@ -42,6 +42,6 @@ class IbexaSolrBundle extends Bundle
             $this->extension = new IbexaSolrExtension();
         }
 
-        return $this->extension;
+        return $this->extension ?: null;
     }
 }
