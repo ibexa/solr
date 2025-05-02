@@ -134,7 +134,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
             ->select('id')
             ->from(ContentGateway::CONTENT_ITEM_TABLE);
 
-        $contentIds = array_map('intval', $query->execute()->fetchAll(FetchMode::COLUMN));
+        $contentIds = array_map('intval', $query->executeQuery()->fetchFirstColumn());
 
         $contentItems = $contentHandler->loadContentList($contentIds);
 
