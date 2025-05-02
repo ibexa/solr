@@ -11,6 +11,7 @@ use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
 use Ibexa\Bundle\Solr\DependencyInjection\IbexaSolrExtension;
 use Ibexa\Contracts\Core\Persistence\Content\Handler;
+use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Contracts\Core\Test\Repository\SetupFactory\Legacy as CoreLegacySetupFactory;
 use Ibexa\Core\Base\Container\Compiler\Search\AggregateFieldValueMapperPass;
 use Ibexa\Core\Base\Container\Compiler\Search\FieldRegistryPass;
@@ -49,7 +50,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
      *
      * @return \Ibexa\Contracts\Core\Repository\Repository
      */
-    public function getRepository($initializeFromScratch = true)
+    public function getRepository($initializeFromScratch = true): Repository
     {
         // Load repository first so all initialization steps are done
         $repository = parent::getRepository($initializeFromScratch);
