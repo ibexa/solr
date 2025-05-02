@@ -1759,12 +1759,6 @@ parameters:
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationResultExtractorTest.php
 
 		-
-			message: '#^Cannot call method fetchAll\(\) on Doctrine\\DBAL\\Result\|int\|string\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/lib/SetupFactory/LegacySetupFactory.php
-
-		-
 			message: '#^Parameter \#1 \$contentObjects of method Ibexa\\Solr\\Handler\:\:bulkIndexContent\(\) expects array\<Ibexa\\Contracts\\Core\\Persistence\\Content\>, iterable\<Ibexa\\Contracts\\Core\\Persistence\\Content\> given\.$#'
 			identifier: argument.type
 			count: 1
