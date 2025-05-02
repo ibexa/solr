@@ -8,17 +8,14 @@
 namespace Ibexa\Bundle\Solr\ApiLoader;
 
 use Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface;
-use Ibexa\Solr\FieldMapper\BoostFactorProvider;
-use LogicException;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * BoostFactorProvider service factory takes into account boost factor semantic configuration.
  */
-class BoostFactorProviderFactory implements ContainerAwareInterface
+class BoostFactorProviderFactory
 {
-    use ContainerAwareTrait;
+    private ContainerInterface $container;
 
     private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider;
 
@@ -37,10 +34,12 @@ class BoostFactorProviderFactory implements ContainerAwareInterface
      * @param string $boostFactorProviderClass
      */
     public function __construct(
+        ContainerInterface $container,
         RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
         $defaultConnection,
         $boostFactorProviderClass
     ) {
+        $this->container = $container;
         $this->repositoryConfigurationProvider = $repositoryConfigurationProvider;
         $this->defaultConnection = $defaultConnection;
         $this->boostFactorProviderClass = $boostFactorProviderClass;
@@ -48,10 +47,6 @@ class BoostFactorProviderFactory implements ContainerAwareInterface
 
     public function buildService()
     {
-        if ($this->container === null) {
-            throw new LogicException(sprintf('Unable to build %s due to missing container reference', BoostFactorProvider::class));
-        }
-
         $repositoryConfig = $this->repositoryConfigurationProvider->getRepositoryConfig();
 
         $connection = $this->defaultConnection;

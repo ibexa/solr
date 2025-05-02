@@ -44,19 +44,17 @@ services:
 
     Ibexa\Bundle\Solr\ApiLoader\BoostFactorProviderFactory:
         arguments:
+            - '@service_container'
             - '@Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider'
             - "%ibexa.solr.default_connection%"
-            - Ibexa\Solr\FieldMapper\BoostFactorProvider
-        calls:
-            - [setContainer, ["@service_container"]]
+            - 'Ibexa\Solr\FieldMapper\BoostFactorProvider'
 
     Ibexa\Bundle\Solr\ApiLoader\IndexingDepthProviderFactory:
         arguments:
+            - '@service_container'
             - '@Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider'
             - "%ibexa.solr.default_connection%"
             - Ibexa\Solr\FieldMapper\IndexingDepthProvider
-        calls:
-            - [setContainer, ["@service_container"]]
 
     Ibexa\Solr\FieldMapper\IndexingDepthProvider:
         class: Ibexa\Solr\FieldMapper\IndexingDepthProvider
