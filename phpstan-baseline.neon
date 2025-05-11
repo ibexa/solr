@@ -781,7 +781,7 @@ parameters:
 			path: src/lib/Query/Common/SortClauseVisitor/Field.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\SortClauseVisitor\\Field\:\:getSortFieldName\(\) should return array but returns false\|null\.$#'
+			message: '#^Method Ibexa\\Solr\\Query\\Common\\SortClauseVisitor\\Field\:\:getSortFieldName\(\) should return array but returns string\|null\.$#'
 			identifier: return.type
 			count: 1
 			path: src/lib/Query/Common/SortClauseVisitor/Field.php
@@ -793,7 +793,7 @@ parameters:
 			path: src/lib/Query/Common/SortClauseVisitor/MapLocationDistance.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\SortClauseVisitor\\MapLocationDistance\:\:getSortFieldName\(\) should return array but returns false\|null\.$#'
+			message: '#^Method Ibexa\\Solr\\Query\\Common\\SortClauseVisitor\\MapLocationDistance\:\:getSortFieldName\(\) should return array but returns string\|null\.$#'
 			identifier: return.type
 			count: 1
 			path: src/lib/Query/Common/SortClauseVisitor/MapLocationDistance.php
