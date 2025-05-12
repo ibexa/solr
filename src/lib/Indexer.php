@@ -19,7 +19,6 @@ use Psr\Log\LoggerInterface;
 
 class Indexer extends IncrementalIndexer
 {
-    /** @var \Ibexa\Solr\Handler */
     protected SearchHandler $searchHandler;
 
     public function __construct(
