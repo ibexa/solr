@@ -7,12 +7,12 @@ services:
   ibexa.solr.query.content.aggregation_visitor.dispatcher:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\DispatcherAggregationVisitor
     arguments:
-      $visitors: !tagged ibexa.search.solr.query.content.aggregation.visitor
+      $visitors: !tagged_iterator ibexa.search.solr.query.content.aggregation.visitor
 
   ibexa.solr.query.location.aggregation_visitor.dispatcher:
     class: Ibexa\Solr\Query\Common\AggregationVisitor\DispatcherAggregationVisitor
     arguments:
-      $visitors: !tagged ibexa.search.solr.query.location.aggregation.visitor
+      $visitors: !tagged_iterator ibexa.search.solr.query.location.aggregation.visitor
 
   ### Factories
 
