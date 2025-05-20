@@ -6,9 +6,11 @@
  */
 namespace Ibexa\Solr\Query\Common\QueryConverter;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\EmbeddingQuery;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
+use Ibexa\Contracts\Solr\Query\EmbeddingVisitor;
 use Ibexa\Contracts\Solr\Query\SortClauseVisitor;
 use Ibexa\Solr\Query\FacetFieldVisitor;
 use Ibexa\Solr\Query\QueryConverter;
@@ -44,6 +46,8 @@ class NativeQueryConverter extends QueryConverter
      */
     private $aggregationVisitor;
 
+    private EmbeddingVisitor $embeddingVisitor;
+
     /**
      * Construct from visitors.
      *
@@ -55,25 +59,31 @@ class NativeQueryConverter extends QueryConverter
         CriterionVisitor $criterionVisitor,
         SortClauseVisitor $sortClauseVisitor,
         FacetFieldVisitor $facetBuilderVisitor,
-        AggregationVisitor $aggregationVisitor
+        AggregationVisitor $aggregationVisitor,
+        EmbeddingVisitor $embeddingVisitor
     ) {
         $this->criterionVisitor = $criterionVisitor;
         $this->sortClauseVisitor = $sortClauseVisitor;
         $this->facetBuilderVisitor = $facetBuilderVisitor;
         $this->aggregationVisitor = $aggregationVisitor;
+        $this->embeddingVisitor = $embeddingVisitor;
     }
 
     public function convert(Query $query, array $languageSettings = [])
     {
         $params = [
             'q' => '{!lucene}' . $this->criterionVisitor->visit($query->query),
-            'fq' => '{!lucene}' . $this->criterionVisitor->visit($query->filter),
+            'fq' => ['{!lucene}' . $this->criterionVisitor->visit($query->filter)],
             'sort' => $this->getSortClauses($query->sortClauses),
             'start' => $query->offset,
             'rows' => $query->limit,
             'fl' => '*,score,[shard]',
             'wt' => 'json',
         ];
+
+        if ($query instanceof EmbeddingQuery && $query->getEmbedding() !== null) {
+            $params['fq'][] = $this->embeddingVisitor->visit($query->getEmbedding(), $query->limit);
+        }
 
         $facetParams = $this->getFacetParams($query->facetBuilders);
         if (!empty($facetParams)) {
