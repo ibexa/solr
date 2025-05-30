@@ -757,12 +757,6 @@ parameters:
 			path: src/lib/Query/Common/QueryConverter/NativeQueryConverter.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\QueryTranslator\\Generator\\WordVisitor\:\:escapeWord\(\) should return string but returns string\|null\.$#'
-			identifier: return.type
-			count: 1
-			path: src/lib/Query/Common/QueryTranslator/Generator/WordVisitor.php
-
-		-
 			message: '#^Method Ibexa\\Contracts\\Solr\\Query\\SortClauseVisitor\:\:visit\(\) invoked with 2 parameters, 1 required\.$#'
 			identifier: arguments.count
 			count: 1
@@ -1703,48 +1697,6 @@ parameters:
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/SubtreeAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\UserMetadataAggregationKeyMapperTest\:\:createExpectedResultForUserGroupKey\(\) has parameter \$userGroupsIds with no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/UserMetadataAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\UserMetadataAggregationKeyMapperTest\:\:createExpectedResultForUserGroupKey\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/UserMetadataAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\UserMetadataAggregationKeyMapperTest\:\:createExpectedResultForUserKey\(\) has parameter \$userIds with no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/UserMetadataAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\UserMetadataAggregationKeyMapperTest\:\:createExpectedResultForUserKey\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/UserMetadataAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\UserMetadataAggregationKeyMapperTest\:\:dataProviderForTestMapUser\(\) return type has no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/UserMetadataAggregationKeyMapperTest.php
-
-		-
-			message: '#^Parameter \#1 \$aggregation of method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\UserMetadataAggregationKeyMapper\:\:map\(\) expects Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\\UserMetadataTermAggregation, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation given\.$#'
-			identifier: argument.type
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/UserMetadataAggregationKeyMapperTest.php
-
-		-
-			message: '#^Parameter \#3 \$keys of method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\UserMetadataAggregationKeyMapper\:\:map\(\) expects array\<string\>, array\<int, int\> given\.$#'
-			identifier: argument.type
-			count: 2
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/UserMetadataAggregationKeyMapperTest.php
 
 		-
 			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationResultExtractorTest\:\:dataProviderForTestCanVisit\(\) return type has no value type specified in iterable type iterable\.$#'

@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ContentTypeGroupAggregationKeyMapperTest extends TestCase
 {
-    private const EXAMPLE_CONTENT_TYPE_GROUPS_IDS = ['1', '2', '3'];
+    private const array EXAMPLE_CONTENT_TYPE_GROUPS_IDS = ['1', '2', '3'];
 
     private ContentTypeService&MockObject $contentTypeService;
 
@@ -55,17 +55,17 @@ final class ContentTypeGroupAggregationKeyMapperTest extends TestCase
     {
         $expectedContentTypesGroups = [];
 
-        foreach (self::EXAMPLE_CONTENT_TYPE_GROUPS_IDS as $i => $id) {
+        $map = [];
+        foreach (self::EXAMPLE_CONTENT_TYPE_GROUPS_IDS as $id) {
             $contentTypeGroup = $this->createContentTypeGroupWithIds((int)$id);
-
-            $this->contentTypeService
-                ->expects(self::at($i))
-                ->method('loadContentTypeGroup')
-                ->with((int)$id, [])
-                ->willReturn($contentTypeGroup);
-
             $expectedContentTypesGroups[$id] = $contentTypeGroup;
+
+            $map[] = [(int)$id, [], $contentTypeGroup];
         }
+
+        $this->contentTypeService
+            ->method('loadContentTypeGroup')
+            ->willReturnMap($map);
 
         return $expectedContentTypesGroups;
     }

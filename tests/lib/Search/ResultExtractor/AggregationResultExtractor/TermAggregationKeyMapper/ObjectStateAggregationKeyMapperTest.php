@@ -12,6 +12,7 @@ use Ibexa\Contracts\Core\Repository\ObjectStateService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ObjectStateTermAggregation;
 use Ibexa\Contracts\Core\Repository\Values\ObjectState\ObjectState;
 use Ibexa\Contracts\Core\Repository\Values\ObjectState\ObjectStateGroup;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\ObjectStateAggregationKeyMapper;
 use Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\AggregationResultExtractorTestUtils;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -58,17 +59,24 @@ final class ObjectStateAggregationKeyMapperTest extends TestCase
             ->willReturn($objectStateGroup);
 
         $expectedObjectStates = [];
-        foreach ($objectStateIdentifiers as $i => $objectStateIdentifier) {
+        $map = [];
+        foreach ($objectStateIdentifiers as $objectStateIdentifier) {
             $objectState = $this->createMock(ObjectState::class);
-
-            $this->objectStateService
-                ->expects(self::at($i + 1))
-                ->method('loadObjectStateByIdentifier')
-                ->with($objectStateGroup, $objectStateIdentifier, [])
-                ->willReturn($objectState);
-
             $expectedObjectStates[] = $objectState;
+            $map[$objectStateIdentifier] = $objectState;
         }
+
+        $this->objectStateService
+            ->method('loadObjectStateByIdentifier')
+            ->willReturnCallback(
+                static function ($group, $identifier, $options) use ($objectStateGroup, $map) {
+                    if ($group === $objectStateGroup && isset($map[$identifier]) && $options === []) {
+                        return $map[$identifier];
+                    }
+
+                    throw new InvalidArgumentException('identifier', "Unexpected arguments: $identifier");
+                }
+            );
 
         return $expectedObjectStates;
     }
