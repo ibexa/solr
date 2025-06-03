@@ -104,7 +104,7 @@ services:
     Ibexa\Solr\Query\Common\CriterionVisitor\MapLocation\MapLocationDistanceIn:
         arguments:
             - '@Ibexa\Core\Search\Common\FieldNameResolver'
-            - 'ezgmaplocation'
+            - 'ibexa_gmap_location'
             - 'value_location'
         tags:
             - {name: ibexa.search.solr.query.content.criterion.visitor}
@@ -113,7 +113,7 @@ services:
     Ibexa\Solr\Query\Common\CriterionVisitor\MapLocation\MapLocationDistanceRange:
         arguments:
             - '@Ibexa\Core\Search\Common\FieldNameResolver'
-            - 'ezgmaplocation'
+            - 'ibexa_gmap_location'
             - 'value_location'
         tags:
             - {name: ibexa.search.solr.query.content.criterion.visitor}

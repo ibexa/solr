@@ -62,7 +62,7 @@ final class UserDocumentFields extends ContentFieldMapper
     private function getUserField(SPIContent $content): ?SPIContent\Field
     {
         foreach ($content->fields as $field) {
-            if ($field->type === 'ezuser') {
+            if ($field->type === 'ibexa_user') {
                 return $field;
             }
         }
