@@ -29,10 +29,10 @@ class MapLocationDistanceRange extends MapLocation
         return
             $criterion instanceof Criterion\MapLocationDistance &&
             ($criterion->operator === Operator::LT ||
-              $criterion->operator === Operator::LTE ||
-              $criterion->operator === Operator::GT ||
-              $criterion->operator === Operator::GTE ||
-              $criterion->operator === Operator::BETWEEN);
+                $criterion->operator === Operator::LTE ||
+                $criterion->operator === Operator::GT ||
+                $criterion->operator === Operator::GTE ||
+                $criterion->operator === Operator::BETWEEN);
     }
 
     /**
@@ -47,15 +47,18 @@ class MapLocationDistanceRange extends MapLocation
      */
     public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
     {
-        $criterion->value = (array)$criterion->value;
+        if (is_array($criterion->value)) {
+            $minDistance = $criterion->value[0];
+            $maxDistance = $criterion->value[1] ?? 63510;
+        } else {
+            $minDistance = 0;
+            $maxDistance = $criterion->value;
+        }
 
-        $start = $criterion->value[0];
-        $end = isset($criterion->value[1]) ? $criterion->value[1] : 63510;
-
-        if (($criterion->operator === Operator::LT) ||
-            ($criterion->operator === Operator::LTE)) {
-            $end = $start;
-            $start = null;
+        $sign = '';
+        if (($criterion->operator === Operator::GT) ||
+            ($criterion->operator === Operator::GTE)) {
+            $sign = '-';
         }
 
         $searchFields = $this->getSearchFields(
@@ -77,17 +80,25 @@ class MapLocationDistanceRange extends MapLocation
 
         $queries = [];
         foreach ($searchFields as $name => $fieldType) {
-            // @todo in future it should become possible to specify ranges directly on the filter (donut shape)
-            $query = sprintf('{!geofilt sfield=%s pt=%F,%F d=%s}', $name, $location->latitude, $location->longitude, $end);
-            if ($start !== null) {
-                $query = sprintf("{!frange l=%F}{$query}", $start);
+            if ($criterion->operator === Operator::BETWEEN) {
+                $query = sprintf(
+                    '{!geofilt sfield=%s pt=%F,%F d=%s} AND -{!geofilt sfield=%s pt=%F,%F d=%s}',
+                    $name,
+                    $location->latitude,
+                    $location->longitude,
+                    $maxDistance,
+                    $name,
+                    $location->latitude,
+                    $location->longitude,
+                    $minDistance
+                );
+            } else {
+                $query = sprintf('%s{!geofilt sfield=%s pt=%F,%F d=%s}', $sign, $name, $location->latitude, $location->longitude, $maxDistance);
             }
 
-            $queries[] = "{$query} AND {$name}_0_coordinate:[* TO *]";
+            $queries[] = "{$query} AND {$name}:[* TO *]";
         }
 
         return '(' . implode(' OR ', $queries) . ')';
     }
 }
-
-class_alias(MapLocationDistanceRange::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\MapLocation\MapLocationDistanceRange');

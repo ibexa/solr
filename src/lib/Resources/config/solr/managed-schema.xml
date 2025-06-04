@@ -82,7 +82,12 @@ should not remove or drastically change the existing definitions.
 
     <fieldtype name="ignored" stored="false" indexed="false" multiValued="true" class="solr.StrField" />
     <fieldType name="point" class="solr.PointType" dimension="2" subFieldSuffix="_d"/>
-    <fieldType name="location" class="solr.LatLonPointSpatialField" sortMissingLast="true"/>
+    <fieldType name="location"
+               class="solr.LatLonPointSpatialField"
+               indexed="true"
+               stored="true"
+               docValues="true"
+               sortMissingLast="true"/>
 
     <!-- for 1536-dim models (ada-002 & 3-small) -->
     <fieldType name="vector_1536"
@@ -140,8 +145,6 @@ should not remove or drastically change the existing definitions.
     <dynamicField name="*_d" type="double" indexed="true" stored="true"/>
     <dynamicField name="*_dt" type="date" indexed="true" stored="true"/>
     <dynamicField name="*_gl" type="location" indexed="true" stored="true"/>
-    <dynamicField name="*_gl_0_coordinate" type="double" indexed="true" stored="true"/>
-    <dynamicField name="*_gl_1_coordinate" type="double" indexed="true" stored="true"/>
 
    <!--
         This field is required to allow random sorting

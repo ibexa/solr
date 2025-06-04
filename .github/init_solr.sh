@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
 SOLR_VERSION=${SOLR_VERSION:-'9.8.1'}
 
 if [[ "${SOLR_VERSION}" =~ ^9\. ]]; then
-    default_config_files[1]='src/lib/Resources/config/solr/managed-schema.xml'
+    default_config_files[1]="${SCRIPT_DIR}/../src/lib/Resources/config/solr/managed-schema.xml"
 else
-    default_config_files[1]='src/lib/Resources/config/solr/schema.xml'
+    default_config_files[1]="${SCRIPT_DIR}/../src/lib/Resources/config/solr/schema.xml"
 fi
 
-default_config_files[2]='src/lib/Resources/config/solr/custom-fields-types.xml'
-default_config_files[3]='src/lib/Resources/config/solr/language-fieldtypes.xml'
+default_config_files[2]="${SCRIPT_DIR}/../src/lib/Resources/config/solr/custom-fields-types.xml"
+default_config_files[3]="${SCRIPT_DIR}/../src/lib/Resources/config/solr/language-fieldtypes.xml"
 
 default_cores[0]='core0'
 default_cores[1]='core1'
@@ -119,8 +121,8 @@ copy_file() {
 create_dir() {
     local dir_name=$1
 
-    if [ ! -d ${dir_name} ] ; then
-        mkdir ${dir_name} || exit_on_error "Couldn't create directory '${dir_name}'"
+    if [ ! -d "${dir_name}" ] ; then
+        mkdir -p "${dir_name}" || exit_on_error "Couldn't create directory '${dir_name}'"
         echo "Created directory '${dir_name}'"
     fi
 }
