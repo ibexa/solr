@@ -154,7 +154,7 @@ solr_run() {
     echo "Running with version ${SOLR_VERSION} in standalone mode"
     echo "Starting solr on port ${SOLR_PORT}..."
 
-    ./${SOLR_INSTALL_DIR}/bin/solr -p ${SOLR_PORT} -s ${SOLR_HOME} -Dsolr.disable.shardsWhitelist=true || exit_on_error "Can't start Solr"
+    ./${SOLR_INSTALL_DIR}/bin/solr start --host 0.0.0.0 -p ${SOLR_PORT} -s ${SOLR_HOME} -Dsolr.jetty.host=0.0.0.0 -Dsolr.disable.allowUrls=true -Dsolr.disable.shardsWhitelist=true || exit_on_error "Can't start Solr"
 
     echo "Started"
 
