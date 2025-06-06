@@ -637,6 +637,12 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/DateMetadata/PublishedIn.php
 
 		-
+			message: '#^Parameter \#2 \$fieldDefinitionIdentifier of method Ibexa\\Core\\Search\\Common\\FieldNameResolver\:\:getFieldTypes\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Query/Common/CriterionVisitor/Field.php
+
+		-
 			message: '#^Method Ibexa\\Solr\\Query\\Common\\CriterionVisitor\\Field\:\:getSearchFields\(\) invoked with 2 parameters, 1 required\.$#'
 			identifier: arguments.count
 			count: 1
@@ -673,6 +679,18 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/MapLocation.php
 
 		-
+			message: '#^Parameter \#2 \$fieldDefinitionIdentifier of method Ibexa\\Solr\\Query\\Common\\CriterionVisitor\\MapLocation\:\:getSearchFields\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Query/Common/CriterionVisitor/MapLocation/MapLocationDistanceIn.php
+
+		-
+			message: '#^Parameter \#2 \$fieldDefinitionIdentifier of method Ibexa\\Solr\\Query\\Common\\CriterionVisitor\\MapLocation\:\:getSearchFields\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Query/Common/CriterionVisitor/MapLocation/MapLocationDistanceRange.php
+
+		-
 			message: '#^Parameter \#2 \$array of function array_map expects array, array\<bool\|float\|int\|string\>\|bool\|float\|int\|string given\.$#'
 			identifier: argument.type
 			count: 1
@@ -681,12 +699,6 @@ parameters:
 		-
 			message: '#^Parameter \#1 \$callback of function array_map expects \(callable\(bool\|float\|int\|string\)\: mixed\)\|null, Closure\(string\)\: non\-falsy\-string given\.$#'
 			identifier: argument.type
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/ObjectStateIdentifierIn.php
-
-		-
-			message: '#^Property Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Criterion\:\:\$target \(string\) on left side of \?\? is not nullable\.$#'
-			identifier: nullCoalesce.property
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/ObjectStateIdentifierIn.php
 
@@ -715,32 +727,14 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/UserEmailIn.php
 
 		-
-			message: '#^Property Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Criterion\:\:\$operator \(string\) on left side of \?\? is not nullable\.$#'
-			identifier: nullCoalesce.property
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/UserEmailIn.php
-
-		-
 			message: '#^Parameter \#1 \$callback of function array_map expects \(callable\(bool\|float\|int\|string\)\: mixed\)\|null, Closure\(string\)\: non\-falsy\-string given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/UserIdIn.php
 
 		-
-			message: '#^Property Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Criterion\:\:\$operator \(string\) on left side of \?\? is not nullable\.$#'
-			identifier: nullCoalesce.property
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/UserIdIn.php
-
-		-
 			message: '#^Parameter \#1 \$callback of function array_map expects \(callable\(bool\|float\|int\|string\)\: mixed\)\|null, Closure\(string\)\: \(lowercase\-string&non\-falsy\-string\) given\.$#'
 			identifier: argument.type
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/UserLoginIn.php
-
-		-
-			message: '#^Property Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Criterion\:\:\$operator \(string\) on left side of \?\? is not nullable\.$#'
-			identifier: nullCoalesce.property
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/UserLoginIn.php
 
@@ -851,6 +845,12 @@ parameters:
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/lib/Query/Content/CriterionVisitor/Visibility.php
+
+		-
+			message: '#^Parameter \#2 \$fieldDefinitionIdentifier of method Ibexa\\Core\\Search\\Common\\FieldNameResolver\:\:getFieldTypes\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Query/Image/CriterionVisitor/AbstractImageVisitor.php
 
 		-
 			message: '#^Argument of an invalid type array\<bool\|float\|int\|string\>\|bool\|float\|int\|string supplied for foreach, only iterables are supported\.$#'
@@ -1029,6 +1029,12 @@ parameters:
 		-
 			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationResultExtractor\:\:extract\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/ResultExtractor/AggregationResultExtractor/RangeAggregationResultExtractor.php
+
+		-
+			message: '#^Parameter \#1 \$key of class Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResultEntry constructor expects Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\\Range\<mixed\>, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\\Range\<covariant mixed\> given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/lib/ResultExtractor/AggregationResultExtractor/RangeAggregationResultExtractor.php
 
@@ -1521,6 +1527,12 @@ parameters:
 		-
 			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationResultExtractorTest\:\:dataProviderForTestExtract\(\) return type has no value type specified in iterable type iterable\.$#'
 			identifier: missingType.iterableValue
+			count: 1
+			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationResultExtractorTest.php
+
+		-
+			message: '#^Parameter \#2 \$entries of class Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResult constructor expects iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResultEntry\<string\|null\>\>, array\{Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResultEntry\<string\|null\>, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResultEntry\<string\>, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResultEntry\<string\|null\>\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationResultExtractorTest.php
 

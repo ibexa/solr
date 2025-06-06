@@ -40,15 +40,15 @@ final class DateMetadataRangeAggregationVisitorTest extends AbstractAggregationV
     public function dataProviderForVisit(): iterable
     {
         $ranges = [
-            new Range(
+            Range::ofDateTime(
                 null,
                 new DateTime('2018-01-01 00:00:00')
             ),
-            new Range(
+            Range::ofDateTime(
                 new DateTime('2018-01-01 00:00:00'),
                 new DateTime('2019-01-01 00:00:00')
             ),
-            new Range(
+            Range::ofDateTime(
                 new DateTime('2019-01-01 00:00:00'),
                 null
             ),

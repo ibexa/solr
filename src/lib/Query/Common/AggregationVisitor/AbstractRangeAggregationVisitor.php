@@ -13,10 +13,13 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 
+/**
+ * @phpstan-template TRangeAggregation of \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation
+ */
 abstract class AbstractRangeAggregationVisitor implements AggregationVisitor
 {
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation $aggregation
+     * @phpstan-param TRangeAggregation $aggregation
      */
     public function visit(
         AggregationVisitor $dispatcherVisitor,
@@ -43,6 +46,9 @@ abstract class AbstractRangeAggregationVisitor implements AggregationVisitor
         ];
     }
 
+    /**
+     * @phpstan-param TRangeAggregation $aggregation
+     */
     abstract protected function getTargetField(AbstractRangeAggregation $aggregation): string;
 
     private function formatRangeValue($value): string
