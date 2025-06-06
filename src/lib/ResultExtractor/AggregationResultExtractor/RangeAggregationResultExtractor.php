@@ -17,25 +17,35 @@ use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
 use stdClass;
 
+/**
+ * @phpstan-template TAggregation of \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation
+ */
 final class RangeAggregationResultExtractor implements AggregationResultExtractor
 {
+    /** @phpstan-var class-string<TAggregation> */
     private string $aggregationClass;
 
     private RangeAggregationKeyMapper $keyMapper;
 
+    /**
+     * @phpstan-param class-string<TAggregation> $aggregationClass
+     */
     public function __construct(string $aggregationClass, RangeAggregationKeyMapper $keyMapper)
     {
         $this->aggregationClass = $aggregationClass;
         $this->keyMapper = $keyMapper;
     }
 
+    /**
+     * @phpstan-param TAggregation $aggregation
+     */
     public function canVisit(Aggregation $aggregation, array $languageFilter): bool
     {
         return $aggregation instanceof $this->aggregationClass;
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation $aggregation
+     * @phpstan-param TAggregation $aggregation
      */
     public function extract(Aggregation $aggregation, array $languageFilter, stdClass $data): AggregationResult
     {
@@ -52,7 +62,8 @@ final class RangeAggregationResultExtractor implements AggregationResultExtracto
 
             foreach ($aggregation->getRanges() as $range) {
                 if ($range->getFrom() == $a && $range->getTo() == $b) {
-                    $entries[] = new RangeAggregationResultEntry($range, $bucket->count);
+                    $entry = new RangeAggregationResultEntry($range, $bucket->count);
+                    $entries[] = $entry;
                     break;
                 }
             }
@@ -66,8 +77,8 @@ final class RangeAggregationResultExtractor implements AggregationResultExtracto
     /**
      * Ensures that results entries are in the exact same order as they ware defined in aggregation.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation $aggregation
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\RangeAggregationResultEntry[] $entries
+     * @phpstan-param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation<mixed> $aggregation
+     * @phpstan-param \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\RangeAggregationResultEntry<mixed>[] $entries
      */
     private function sort(AbstractRangeAggregation $aggregation, array &$entries): void
     {

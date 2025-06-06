@@ -13,6 +13,9 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRan
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\DateMetadataRangeAggregation;
 use RuntimeException;
 
+/**
+ * @phpstan-extends \Ibexa\Solr\Query\Common\AggregationVisitor\AbstractRangeAggregationVisitor<\Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\DateMetadataRangeAggregation>
+ */
 final class DateMetadataRangeAggregationVisitor extends AbstractRangeAggregationVisitor
 {
     public function canVisit(Aggregation $aggregation, array $languageFilter): bool
