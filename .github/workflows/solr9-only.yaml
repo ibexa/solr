@@ -9,7 +9,7 @@ on:
 
 jobs:
     solr9-test:
-        name: "Solr 9.8.1 PR Test"
+        name: "Solr 9.2.1 PR Test"
         runs-on: ubuntu-22.04
         strategy:
             fail-fast: false
@@ -21,7 +21,7 @@ jobs:
                     - 'cloud'
         env:
             CORES_SETUP: ${{ matrix.cores-setup }}
-            SOLR_VERSION: '9.8.1'
+            SOLR_VERSION: '9.2.1'
 
         steps:
             - if: matrix.cores-setup == 'cloud'
