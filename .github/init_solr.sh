@@ -6,11 +6,12 @@ SOLR_VERSION=${SOLR_VERSION:-'9.8.1'}
 
 if [[ "${SOLR_VERSION}" =~ ^9\. ]]; then
     default_config_files[1]="${SCRIPT_DIR}/../src/lib/Resources/config/solr/managed-schema.xml"
+    default_config_files[2]="${SCRIPT_DIR}/../src/lib/Resources/config/solr/custom-fields-types-solr9.xml"
 else
     default_config_files[1]="${SCRIPT_DIR}/../src/lib/Resources/config/solr/schema.xml"
+    default_config_files[2]="${SCRIPT_DIR}/../src/lib/Resources/config/solr/custom-fields-types.xml"
 fi
 
-default_config_files[2]="${SCRIPT_DIR}/../src/lib/Resources/config/solr/custom-fields-types.xml"
 default_config_files[3]="${SCRIPT_DIR}/../src/lib/Resources/config/solr/language-fieldtypes.xml"
 
 default_cores[0]='core0'
@@ -154,7 +155,11 @@ solr_run() {
     echo "Running with version ${SOLR_VERSION} in standalone mode"
     echo "Starting solr on port ${SOLR_PORT}..."
 
-    ./${SOLR_INSTALL_DIR}/bin/solr start --host 0.0.0.0 -p ${SOLR_PORT} -s ${SOLR_HOME} -Dsolr.jetty.host=0.0.0.0 -Dsolr.disable.allowUrls=true -Dsolr.disable.shardsWhitelist=true || exit_on_error "Can't start Solr"
+    if [[ "${SOLR_VERSION}" =~ ^9\. ]]; then
+        ./${SOLR_INSTALL_DIR}/bin/solr start -p ${SOLR_PORT} -s ${SOLR_HOME} || exit_on_error "Can't start Solr"
+    else
+        ./${SOLR_INSTALL_DIR}/bin/solr -p ${SOLR_PORT} -s ${SOLR_HOME} -Dsolr.disable.shardsWhitelist=true || exit_on_error "Can't start Solr"
+    fi
 
     echo "Started"
 
@@ -179,11 +184,7 @@ solr_create_core() {
     core_name=$1
     config_dir=$2
 
-    if [[ "$SOLR_VERSION" =~ ^9\. ]]; then
-        solr_port_flag="--solr-url http://localhost:${SOLR_PORT}/solr"
-    else
-        solr_port_flag="-p ${SOLR_PORT}"
-    fi
+    solr_port_flag="-p ${SOLR_PORT}"
 
     abs_conf_dir="$(pwd)/${config_dir}"
 
@@ -315,6 +316,20 @@ if [ "$SOLR_CLOUD" = "no" ]; then
     else
         TEMPLATE_CONF="template"
     fi
+
+    echo "Generating Solr configuration in ${SOLR_INSTALL_DIR}/server/${SOLR_HOME}/${TEMPLATE_CONF}"
+
+    if [[ "${CORES_SETUP:-}" == "dedicated" || "${SOLR_CLOUD:-}" == "no" ]]; then
+        # dedicated mode: point at the local core path
+        ALLOW_URLS="localhost:${SOLR_PORT}/solr"
+    elif [[ "${SOLR_CLOUD:-}" == "yes" && ${#default_nodes[@]} -gt 0 ]]; then
+        # SolrCloud mode: join all nodes host:port
+        ALLOW_URLS=$(IFS=,; echo "${default_nodes[*]}")
+    else
+        # fallback: single node without core-path
+        ALLOW_URLS="localhost:${SOLR_PORT}"
+    fi
+    export ALLOW_URLS
 
     $SCRIPT_DIR/../bin/generate-solr-config.sh \
             --solr-install-dir="${SOLR_INSTALL_DIR}" \
