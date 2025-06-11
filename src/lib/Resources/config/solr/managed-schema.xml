@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE schema [
 <!ENTITY langfields SYSTEM "language-fieldtypes.xml">
-<!ENTITY customfields SYSTEM "custom-fields-types.xml">
+<!ENTITY customfields SYSTEM "custom-fields-types-solr9.xml">
 ]>
 <!--
 This is the Solr schema file. This file should be named "schema.xml" and should
