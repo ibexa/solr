@@ -47,6 +47,53 @@ class MapLocationDistanceRange extends MapLocation
      */
     public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
     {
+        if (!$this->isSolrInMaxVersion('9.3.0')) {
+            return $this->visitForSolr9($criterion);
+        }
+        $criterion->value = (array)$criterion->value;
+
+        $start = $criterion->value[0];
+        $end = isset($criterion->value[1]) ? $criterion->value[1] : 63510;
+
+        if (($criterion->operator === Operator::LT) ||
+            ($criterion->operator === Operator::LTE)) {
+            $end = $start;
+            $start = null;
+        }
+
+        $searchFields = $this->getSearchFields(
+            $criterion,
+            $criterion->target,
+            $this->fieldTypeIdentifier,
+            $this->fieldName
+        );
+
+        if (empty($searchFields)) {
+            throw new InvalidArgumentException(
+                '$criterion->target',
+                "No searchable Fields found for the provided Criterion target '{$criterion->target}'."
+            );
+        }
+
+        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Value\MapLocationValue $location */
+        $location = $criterion->valueData;
+
+        $queries = [];
+        foreach ($searchFields as $name => $fieldType) {
+            // @todo in future it should become possible to specify ranges directly on the filter (donut shape)
+            $query = sprintf('{!geofilt sfield=%s pt=%F,%F d=%s}', $name, $location->latitude, $location->longitude, $end);
+            if ($start !== null) {
+                $query = sprintf("{!frange l=%F}{$query}", $start);
+            }
+
+            $queries[] = "{$query} AND {$name}_0_coordinate:[* TO *]";
+        }
+
+        return '(' . implode(' OR ', $queries) . ')';
+    }
+
+    private function visitForSolr9(Criterion $criterion): string
+    {
         if (is_array($criterion->value)) {
             $minDistance = $criterion->value[0];
             $maxDistance = $criterion->value[1] ?? 63510;
@@ -100,5 +147,15 @@ class MapLocationDistanceRange extends MapLocation
         }
 
         return '(' . implode(' OR ', $queries) . ')';
+    }
+
+    private function isSolrInMaxVersion(string $maxVersion): bool
+    {
+        $version = getenv('SOLR_VERSION');
+        if (is_string($version) && !empty($version)) {
+            return version_compare($version, $maxVersion, '<');
+        }
+
+        return true;
     }
 }
