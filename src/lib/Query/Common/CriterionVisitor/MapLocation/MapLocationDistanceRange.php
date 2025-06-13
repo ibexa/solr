@@ -29,10 +29,10 @@ class MapLocationDistanceRange extends MapLocation
         return
             $criterion instanceof Criterion\MapLocationDistance &&
             ($criterion->operator === Operator::LT ||
-              $criterion->operator === Operator::LTE ||
-              $criterion->operator === Operator::GT ||
-              $criterion->operator === Operator::GTE ||
-              $criterion->operator === Operator::BETWEEN);
+                $criterion->operator === Operator::LTE ||
+                $criterion->operator === Operator::GT ||
+                $criterion->operator === Operator::GTE ||
+                $criterion->operator === Operator::BETWEEN);
     }
 
     /**
@@ -47,6 +47,9 @@ class MapLocationDistanceRange extends MapLocation
      */
     public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
     {
+        if (!$this->isSolrInMaxVersion('9.3.0')) {
+            return $this->visitForSolr9($criterion);
+        }
         $criterion->value = (array)$criterion->value;
 
         $start = $criterion->value[0];
@@ -88,6 +91,71 @@ class MapLocationDistanceRange extends MapLocation
 
         return '(' . implode(' OR ', $queries) . ')';
     }
-}
 
-class_alias(MapLocationDistanceRange::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\MapLocation\MapLocationDistanceRange');
+    private function visitForSolr9(Criterion $criterion): string
+    {
+        if (is_array($criterion->value)) {
+            $minDistance = $criterion->value[0];
+            $maxDistance = $criterion->value[1] ?? 63510;
+        } else {
+            $minDistance = 0;
+            $maxDistance = $criterion->value;
+        }
+
+        $sign = '';
+        if (($criterion->operator === Operator::GT) ||
+            ($criterion->operator === Operator::GTE)) {
+            $sign = '-';
+        }
+
+        $searchFields = $this->getSearchFields(
+            $criterion,
+            $criterion->target,
+            $this->fieldTypeIdentifier,
+            $this->fieldName
+        );
+
+        if (empty($searchFields)) {
+            throw new InvalidArgumentException(
+                '$criterion->target',
+                "No searchable Fields found for the provided Criterion target '{$criterion->target}'."
+            );
+        }
+
+        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Value\MapLocationValue $location */
+        $location = $criterion->valueData;
+
+        $queries = [];
+        foreach ($searchFields as $name => $fieldType) {
+            if ($criterion->operator === Operator::BETWEEN) {
+                $query = sprintf(
+                    '{!geofilt sfield=%s pt=%F,%F d=%s} AND -{!geofilt sfield=%s pt=%F,%F d=%s}',
+                    $name,
+                    $location->latitude,
+                    $location->longitude,
+                    $maxDistance,
+                    $name,
+                    $location->latitude,
+                    $location->longitude,
+                    $minDistance
+                );
+            } else {
+                $query = sprintf('%s{!geofilt sfield=%s pt=%F,%F d=%s}', $sign, $name, $location->latitude, $location->longitude, $maxDistance);
+            }
+
+            $queries[] = "{$query} AND {$name}:[* TO *]";
+        }
+
+        return '(' . implode(' OR ', $queries) . ')';
+    }
+
+    private function isSolrInMaxVersion(string $maxVersion): bool
+    {
+        $version = getenv('SOLR_VERSION');
+        if (is_string($version) && !empty($version)) {
+            return version_compare($version, $maxVersion, '<');
+        }
+
+        return true;
+    }
+}

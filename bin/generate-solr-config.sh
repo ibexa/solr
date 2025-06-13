@@ -7,6 +7,7 @@ DESTINATION_DIR=.platform/configsets/solr8/conf
 SOLR_VERSION=8.11.1
 FORCE=false
 SOLR_INSTALL_DIR=""
+ALLOW_URLS_CLI=""
 
 show_help() {
     cat << EOF
@@ -65,6 +66,9 @@ for i in "$@"; do
             SOLR_INSTALL_DIR="${i#*=}"
             SOLR_INSTALL_DIR="${SOLR_INSTALL_DIR/#\~/$HOME}"
             ;;
+        --allow-urls)
+            ALLOW_URLS_CLI="$2"; shift 2
+            ;;
         -h|--help)
             show_help
             exit 0
@@ -76,6 +80,7 @@ for i in "$@"; do
     esac
 done
 
+: "${ALLOW_URLS_CLI:=${ALLOW_URLS:-}}"
 
 if [ `whoami` == "root" ]; then
     echo "Error : Do not run this script as root"
@@ -112,8 +117,30 @@ cp -a ${EZ_BUNDLE_PATH}/src/lib/Resources/config/solr/* $DESTINATION_DIR
 cp ${SOLR_INSTALL_DIR}/server/solr/configsets/_default/conf/{solrconfig.xml,stopwords.txt,synonyms.txt} $DESTINATION_DIR
 
 if [[ ! $DESTINATION_DIR =~ ^\.platform ]]; then
-    # If we are not targeting .platform(.sh) config, we also output default solr.xml
-    cp -f ${SOLR_INSTALL_DIR}/server/solr/solr.xml $DESTINATION_DIR/..
+
+    if [[ "${SOLR_VERSION}" =~ ^9\. ]]; then
+        cp -f ${SOLR_INSTALL_DIR}/server/solr/solr.xml $DESTINATION_DIR/../..
+
+        URL_LIST="${ALLOW_URLS_CLI//,/ }"
+        SOLR_XML_PATH="${DESTINATION_DIR}/../../solr.xml"
+
+        if [[ -f "$SOLR_XML_PATH" ]]; then
+            # backup original
+            cp "$SOLR_XML_PATH" "${SOLR_XML_PATH}.bak"
+            # replace inner text of the allowUrls element
+            sed -i \
+              -e "s|\(<str name=\"allowUrls\">\)[^<]*\(<\/str>\)|\1${URL_LIST}\2|" \
+              "$SOLR_XML_PATH"
+            echo "NOTE: Updated <str name=\"allowUrls\"> to: ${URL_LIST}"
+        else
+            echo "WARNING: solr.xml not found at '$SOLR_XML_PATH'; skipping allowUrls patch"
+        fi
+    else
+        # If we are not targeting .platform(.sh) config, we also output default solr.xml
+        echo "Copying ${SOLR_INSTALL_DIR}/server/solr/solr.xml to $DESTINATION_DIR/.."
+
+        cp -f ${SOLR_INSTALL_DIR}/server/solr/solr.xml $DESTINATION_DIR/..
+    fi
 else
     echo "NOTE: Skipped copying ${SOLR_INSTALL_DIR}/server/solr/solr.xml given destination dir is a '.platform/' config folder"
 fi

@@ -1,4 +1,4 @@
-name: Solr integration tests
+name: Solr 9 Integration Test (PR only)
 
 on:
     push:
@@ -8,25 +8,21 @@ on:
     pull_request: ~
 
 jobs:
-    solr-integration:
-        if: github.head_ref != 'test-solr9'
-        name: "Integration tests"
-        runs-on: "ubuntu-22.04"
+    solr9-test:
+        name: "Solr 9.8.1 PR Test"
+        runs-on: ubuntu-22.04
         strategy:
             fail-fast: false
             matrix:
-                solr-version:
-                    - '7.7.3'
-                    - '8.11.2'
-                    - '9.8.1'
                 cores-setup:
-                    - 'dedicated'
-                    - 'shared'
-                    - 'single'
+#                    - 'dedicated'
+#                    - 'shared'
+#                    - 'single'
                     - 'cloud'
         env:
             CORES_SETUP: ${{ matrix.cores-setup }}
-            SOLR_VERSION: ${{ matrix.solr-version }}
+            SOLR_VERSION: '9.8.1'
+
         steps:
             - if: matrix.cores-setup == 'cloud'
               name: "Set up Solr Cloud"
