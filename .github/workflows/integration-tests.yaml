@@ -9,7 +9,6 @@ on:
 
 jobs:
     solr-integration:
-        if: github.head_ref != 'test-solr9'
         name: "Integration tests"
         runs-on: "ubuntu-22.04"
         strategy:
