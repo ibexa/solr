@@ -10,6 +10,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Core\Search\Common\FieldNameResolver;
 use Ibexa\Solr\Query\Common\CriterionVisitor\MapLocation;
 
 /**
@@ -17,6 +18,19 @@ use Ibexa\Solr\Query\Common\CriterionVisitor\MapLocation;
  */
 class MapLocationDistanceRange extends MapLocation
 {
+    private string $solrVersion;
+
+    public function __construct(
+        FieldNameResolver $fieldNameResolver,
+        $fieldTypeIdentifier,
+        $fieldName,
+        string $solrVersion
+    ) {
+        parent::__construct($fieldNameResolver, $fieldTypeIdentifier, $fieldName);
+
+        $this->solrVersion = $solrVersion;
+    }
+
     /**
      * Check if visitor is applicable to current criterion.
      *
@@ -151,11 +165,6 @@ class MapLocationDistanceRange extends MapLocation
 
     private function isSolrInMaxVersion(string $maxVersion): bool
     {
-        $version = getenv('SOLR_VERSION');
-        if (is_string($version) && !empty($version)) {
-            return version_compare($version, $maxVersion, '<');
-        }
-
-        return true;
+        return version_compare($this->solrVersion, $maxVersion, '<');
     }
 }
