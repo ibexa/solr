@@ -225,6 +225,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     public function testConnection()
     {
         $configurationValues = [
+            'version' => '9.8.1',
             'connections' => [
                 'connection1' => [
                     'entry_endpoints' => [
@@ -249,6 +250,11 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasParameter(
             'ibexa.solr.default_connection',
             'connection1'
+        );
+
+        $this->assertContainerBuilderHasParameter(
+            'ibexa.solr.version',
+            '9.8.1'
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
@@ -308,6 +314,11 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasParameter(
             'ibexa.solr.default_connection',
             'connection1'
+        );
+
+        $this->assertContainerBuilderHasParameter(
+            'ibexa.solr.version',
+            '7.7.3'
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
