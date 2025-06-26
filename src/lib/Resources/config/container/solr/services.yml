@@ -28,8 +28,7 @@ services:
         arguments:
             $client: '@ibexa.solr.http_client'
 
-    ibexa.solr.query.content.embedding_visitor.aggregate:
-        class: Ibexa\Solr\Query\Common\EmbeddingVisitor\Aggregate
+    Ibexa\Solr\Query\Common\EmbeddingVisitor\Aggregate:
         arguments:
             $visitors: !tagged ibexa.search.solr.query.content.embedding.visitor
 

@@ -10,7 +10,7 @@ use Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Embedding;
 use Ibexa\Contracts\Solr\Query\EmbeddingVisitor;
 
-class Aggregate extends EmbeddingVisitor
+final class Aggregate extends EmbeddingVisitor
 {
     /**
      * @var iterable<\Ibexa\Contracts\Solr\Query\EmbeddingVisitor>
