@@ -100,6 +100,7 @@ services:
             - '@ibexa.solr.query.content.sort_clause_visitor.aggregate'
             - '@ibexa.solr.query.content.facet_builder_visitor.aggregate'
             - '@ibexa.solr.query.content.aggregation_visitor.dispatcher'
+            - '@Ibexa\Solr\Query\Common\EmbeddingVisitor\Aggregate'
 
     ibexa.solr.query_converter.location:
         class: Ibexa\Solr\Query\Common\QueryConverter\NativeQueryConverter
@@ -108,6 +109,7 @@ services:
             - '@ibexa.solr.query.location.sort_clause_visitor.aggregate'
             - '@ibexa.solr.query.location.facet_builder_visitor.aggregate'
             - '@ibexa.solr.query.location.aggregation_visitor.dispatcher'
+            - '@Ibexa\Solr\Query\Common\EmbeddingVisitor\Aggregate'
 
     Ibexa\Solr\Gateway\UpdateSerializer:
         arguments:

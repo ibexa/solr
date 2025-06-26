@@ -28,6 +28,10 @@ services:
         arguments:
             $client: '@ibexa.solr.http_client'
 
+    Ibexa\Solr\Query\Common\EmbeddingVisitor\Aggregate:
+        arguments:
+            $visitors: !tagged ibexa.search.solr.query.content.embedding.visitor
+
     # Note: services tagged with 'ibexa.search.solr.query.content.criterion.visitor'
     # are registered to this one using compilation pass
     ibexa.solr.query.content.criterion_visitor.aggregate:
