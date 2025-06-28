@@ -18,12 +18,12 @@
         "ext-xmlwriter": "*",
         "ibexa/core": "~5.0.x-dev",
         "netgen/query-translator": "^1.0.2",
-        "symfony/config": "^7.2",
-        "symfony/console": "^7.2",
-        "symfony/dependency-injection": "^7.2",
-        "symfony/framework-bundle": "^7.2",
-        "symfony/http-client": "^7.2",
-        "symfony/http-kernel": "^7.2"
+        "symfony/config": "^7.3",
+        "symfony/console": "^7.3",
+        "symfony/dependency-injection": "^7.3",
+        "symfony/framework-bundle": "^7.3",
+        "symfony/http-client": "^7.3",
+        "symfony/http-kernel": "^7.3"
     },
     "require-dev": {
         "ibexa/code-style": "~2.0.0",
@@ -34,7 +34,7 @@
         "phpstan/phpstan-phpunit": "^2.0",
         "phpstan/phpstan-symfony": "^2.0",
         "phpunit/phpunit": "^9.6",
-        "symfony/phpunit-bridge": "^7.2"
+        "symfony/phpunit-bridge": "^7.3"
     },
     "autoload": {
         "psr-4": {
