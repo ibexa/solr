@@ -23,7 +23,7 @@ final class ObjectStateGroupAggregationVisitorTest extends AbstractAggregationVi
     public function dataProviderForCanVisit(): iterable
     {
         yield 'true' => [
-            new ObjectStateTermAggregation('foo', 'ez_lock'),
+            new ObjectStateTermAggregation('foo', 'ibexa_lock'),
             self::EXAMPLE_LANGUAGE_FILTER,
             true,
         ];
@@ -38,18 +38,18 @@ final class ObjectStateGroupAggregationVisitorTest extends AbstractAggregationVi
     public function dataProviderForVisit(): iterable
     {
         yield 'defaults' => [
-            new ObjectStateTermAggregation('foo', 'ez_lock'),
+            new ObjectStateTermAggregation('foo', 'ibexa_lock'),
             self::EXAMPLE_LANGUAGE_FILTER,
             [
                 'type' => 'terms',
                 'field' => 'content_object_state_identifiers_ms',
-                'prefix' => 'ez_lock:',
+                'prefix' => 'ibexa_lock:',
                 'limit' => ObjectStateTermAggregation::DEFAULT_LIMIT,
                 'mincount' => ObjectStateTermAggregation::DEFAULT_MIN_COUNT,
             ],
         ];
 
-        $aggregation = new ObjectStateTermAggregation('foo', 'ez_lock');
+        $aggregation = new ObjectStateTermAggregation('foo', 'ibexa_lock');
         $aggregation->setLimit(100);
         $aggregation->setMinCount(10);
 
@@ -59,7 +59,7 @@ final class ObjectStateGroupAggregationVisitorTest extends AbstractAggregationVi
             [
                 'type' => 'terms',
                 'field' => 'content_object_state_identifiers_ms',
-                'prefix' => 'ez_lock:',
+                'prefix' => 'ibexa_lock:',
                 'limit' => 100,
                 'mincount' => 10,
             ],

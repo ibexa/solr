@@ -33,16 +33,16 @@ final class ObjectStateAggregationKeyMapperTest extends TestCase
     public function testMap(): void
     {
         $expectedObjectStates = array_combine(
-            ['ez_lock:unlocked', 'ez_lock:locked'],
-            $this->configureObjectStateService('ez_lock', ['unlocked', 'locked'])
+            ['ibexa_lock:unlocked', 'ibexa_lock:locked'],
+            $this->configureObjectStateService('ibexa_lock', ['unlocked', 'locked'])
         );
 
         self::assertEquals(
             $expectedObjectStates,
             $this->mapper->map(
-                new ObjectStateTermAggregation('aggregation', 'ez_lock'),
+                new ObjectStateTermAggregation('aggregation', 'ibexa_lock'),
                 AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
-                ['ez_lock:unlocked', 'ez_lock:locked']
+                ['ibexa_lock:unlocked', 'ibexa_lock:locked']
             )
         );
     }
