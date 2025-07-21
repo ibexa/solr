@@ -17,14 +17,8 @@ use Ibexa\Solr\Query\Content\CriterionVisitor\FullText as ContentFullText;
  */
 class FullText extends ContentFullText
 {
-    /**
-     * Map field value to a proper Solr representation.
-     *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
-     *
-     * @return string
-     */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    #[\Override]
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $condition = $this->escapeQuote(parent::visit($criterion, $subVisitor));
 

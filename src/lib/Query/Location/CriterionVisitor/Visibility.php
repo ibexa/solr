@@ -17,25 +17,15 @@ use Ibexa\Contracts\Solr\Query\CriterionVisitor;
  */
 class Visibility extends CriterionVisitor
 {
-    /**
-     * Check if visitor is applicable to current criterion.
-     *
-     * @return bool
-     */
     public function canVisit(CriterionInterface $criterion): bool
     {
         return $criterion instanceof Criterion\Visibility && $criterion->operator === Operator::EQ;
     }
 
     /**
-     * Map field value to a proper Solr representation.
-     *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Visibility $criterion
-     *
-     * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         return 'invisible_b:' . ($criterion->value[0] === Criterion\Visibility::HIDDEN ? 'true' : 'false');
     }

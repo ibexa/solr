@@ -11,13 +11,11 @@ namespace Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationK
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
-final class SubtreeAggregationKeyMapper implements TermAggregationKeyMapper
+final readonly class SubtreeAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    private TermAggregationKeyMapper $locationAggregationKeyMapper;
-
-    public function __construct(TermAggregationKeyMapper $locationAggregationKeyMapper)
-    {
-        $this->locationAggregationKeyMapper = $locationAggregationKeyMapper;
+    public function __construct(
+        private TermAggregationKeyMapper $locationAggregationKeyMapper
+    ) {
     }
 
     /**
@@ -26,13 +24,14 @@ final class SubtreeAggregationKeyMapper implements TermAggregationKeyMapper
     public function map(Aggregation $aggregation, array $languageFilter, array $keys): array
     {
         $ancestors = $this->getAncestors($aggregation->getPathString());
-        $keys = array_filter($keys, static function ($key) use ($ancestors): bool {
-            return !in_array($key, $ancestors);
-        });
+        $keys = array_filter($keys, static fn ($key): bool => !in_array($key, $ancestors));
 
         return $this->locationAggregationKeyMapper->map($aggregation, $languageFilter, array_values($keys));
     }
 
+    /**
+     * @return list<string>
+     */
     private function getAncestors(string $pathString): array
     {
         $ancestors = explode('/', trim($pathString, '/'));

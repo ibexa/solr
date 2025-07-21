@@ -23,6 +23,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 final class IbexaSolrTestKernel extends BaseIbexaTestKernel
 {
+    #[\Override]
     public function registerBundles(): iterable
     {
         yield from parent::registerBundles();
@@ -30,6 +31,7 @@ final class IbexaSolrTestKernel extends BaseIbexaTestKernel
         yield new IbexaSolrBundle();
     }
 
+    #[\Override]
     protected static function getExposedServicesById(): iterable
     {
         yield from parent::getExposedServicesById();
@@ -37,6 +39,7 @@ final class IbexaSolrTestKernel extends BaseIbexaTestKernel
         yield SolrHandler::class => Handler::class;
     }
 
+    #[\Override]
     public function registerContainerConfiguration(LoaderInterface $loader): void
     {
         parent::registerContainerConfiguration($loader);

@@ -21,26 +21,20 @@ use Psr\Log\NullLogger;
  */
 class ContentTypeIdentifierIn extends CriterionVisitor
 {
-    /**
-     * ContentType handler.
-     */
-    protected Handler $contentTypeHandler;
-
     protected LoggerInterface $logger;
 
     /**
      * Create from content type handler and field registry.
      */
-    public function __construct(Handler $contentTypeHandler, LoggerInterface $logger = null)
-    {
-        $this->contentTypeHandler = $contentTypeHandler;
+    public function __construct(
+        protected readonly Handler $contentTypeHandler,
+        ?LoggerInterface $logger = null
+    ) {
         $this->logger = $logger ?? new NullLogger();
     }
 
     /**
      * Check if visitor is applicable to current criterion.
-     *
-     * @return bool
      */
     public function canVisit(CriterionInterface $criterion): bool
     {
@@ -56,11 +50,8 @@ class ContentTypeIdentifierIn extends CriterionVisitor
      * Map field value to a proper Solr representation.
      *
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\ContentTypeIdentifier $criterion
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
-     *
-     * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $validIds = [];
         $invalidIdentifiers = [];
@@ -69,7 +60,7 @@ class ContentTypeIdentifierIn extends CriterionVisitor
         foreach ($criterion->value as $identifier) {
             try {
                 $validIds[] = $contentTypeHandler->loadByIdentifier((string) $identifier)->id;
-            } catch (NotFoundException $e) {
+            } catch (NotFoundException) {
                 // Filter out non-existing content types, but track for code below
                 $invalidIdentifiers[] = $identifier;
             }
@@ -92,9 +83,7 @@ class ContentTypeIdentifierIn extends CriterionVisitor
             implode(
                 ' OR ',
                 array_map(
-                    static function (string $value): string {
-                        return 'content_type_id_id:"' . $value . '"';
-                    },
+                    static fn (string $value): string => 'content_type_id_id:"' . $value . '"',
                     $validIds
                 )
             ) .

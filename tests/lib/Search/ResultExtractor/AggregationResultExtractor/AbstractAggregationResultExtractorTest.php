@@ -16,11 +16,10 @@ use stdClass;
 
 abstract class AbstractAggregationResultExtractorTest extends TestCase
 {
-    protected const EXAMPLE_AGGREGATION_NAME = 'custom_aggregation';
-    protected const EXAMPLE_LANGUAGE_FILTER = [];
+    protected const string EXAMPLE_AGGREGATION_NAME = 'custom_aggregation';
+    protected const array EXAMPLE_LANGUAGE_FILTER = [];
 
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor */
-    protected $extractor;
+    protected AggregationResultExtractor $extractor;
 
     protected function setUp(): void
     {
@@ -31,6 +30,8 @@ abstract class AbstractAggregationResultExtractorTest extends TestCase
 
     /**
      * @dataProvider dataProviderForTestCanVisit
+     *
+     * @param array{languages: string[]} $languageFilter
      */
     public function testCanVisit(
         Aggregation $aggregation,
@@ -47,6 +48,8 @@ abstract class AbstractAggregationResultExtractorTest extends TestCase
 
     /**
      * @dataProvider dataProviderForTestExtract
+     *
+     * @param array{languages: string[]} $languageFilter
      */
     public function testExtract(
         Aggregation $aggregation,

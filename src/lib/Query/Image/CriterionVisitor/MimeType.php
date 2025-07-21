@@ -14,7 +14,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 
 final class MimeType extends AbstractImageTermsVisitor
 {
-    private const SEARCH_FIELD_MIME_TYPE = 'mime_type';
+    private const string SEARCH_FIELD_MIME_TYPE = 'mime_type';
 
     public function canVisit(CriterionInterface $criterion): bool
     {

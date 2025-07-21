@@ -10,7 +10,6 @@ namespace Ibexa\Solr\DocumentMapper;
 use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler;
-use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
 use Ibexa\Contracts\Core\Search\Document;
 use Ibexa\Contracts\Solr\DocumentMapper;
 use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
@@ -22,38 +21,17 @@ use Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper;
  */
 class NativeDocumentMapper implements DocumentMapper
 {
-    private ContentFieldMapper $blockFieldMapper;
-
-    private ContentTranslationFieldMapper $blockTranslationFieldMapper;
-
-    private ContentFieldMapper $contentFieldMapper;
-
-    private ContentTranslationFieldMapper $contentTranslationFieldMapper;
-
-    private LocationFieldMapper $locationFieldMapper;
-
-    /**
-     * Location handler.
-     */
-    protected Handler $locationHandler;
-
     /**
      * Creates a new document mapper.
      */
     public function __construct(
-        ContentFieldMapper $blockFieldMapper,
-        ContentTranslationFieldMapper $blockTranslationFieldMapper,
-        ContentFieldMapper $contentFieldMapper,
-        ContentTranslationFieldMapper $contentTranslationFieldMapper,
-        LocationFieldMapper $locationFieldMapper,
-        LocationHandler $locationHandler
+        private readonly ContentFieldMapper $blockFieldMapper,
+        private readonly ContentTranslationFieldMapper $blockTranslationFieldMapper,
+        private readonly ContentFieldMapper $contentFieldMapper,
+        private readonly ContentTranslationFieldMapper $contentTranslationFieldMapper,
+        private readonly LocationFieldMapper $locationFieldMapper,
+        protected readonly Handler $locationHandler
     ) {
-        $this->blockFieldMapper = $blockFieldMapper;
-        $this->blockTranslationFieldMapper = $blockTranslationFieldMapper;
-        $this->contentFieldMapper = $contentFieldMapper;
-        $this->contentTranslationFieldMapper = $contentTranslationFieldMapper;
-        $this->locationFieldMapper = $locationFieldMapper;
-        $this->locationHandler = $locationHandler;
     }
 
     /**
@@ -84,7 +62,7 @@ class NativeDocumentMapper implements DocumentMapper
             foreach ($locations as $location) {
                 $translationLocationDocuments[] = new Document(
                     [
-                        'id' => $this->generateLocationDocumentId($location->id, $languageCode),
+                        'id' => $this->generateLocationDocumentId((int)$location->id, $languageCode),
                         'fields' => array_merge(
                             $blockFields,
                             $locationFieldsMap[$location->id],
@@ -104,7 +82,7 @@ class NativeDocumentMapper implements DocumentMapper
             $documents[] = new Document(
                 [
                     'id' => $this->generateContentDocumentId(
-                        $contentInfo->id,
+                        (int)$contentInfo->id,
                         $languageCode
                     ),
                     'languageCode' => $languageCode,
@@ -133,13 +111,8 @@ class NativeDocumentMapper implements DocumentMapper
      * The above is useful when targeting all Content's documents, without
      * the knowledge of it's translations, and thanks to "lang" string it will not
      * risk matching other documents (as was the case in EZP-26484).
-     *
-     * @param int|string $contentId
-     * @param string|null $languageCode
-     *
-     * @return string
      */
-    public function generateContentDocumentId($contentId, $languageCode = null): string
+    public function generateContentDocumentId(int $contentId, ?string $languageCode = null): string
     {
         return strtolower("content{$contentId}lang{$languageCode}");
     }
@@ -153,13 +126,8 @@ class NativeDocumentMapper implements DocumentMapper
      * The above is useful when targeting all Location's documents, without
      * the knowledge of it's translations, and thanks to "lang" string it will not
      * risk matching other documents (as was the case in EZP-26484).
-     *
-     * @param int|string $locationId
-     * @param string|null $languageCode
-     *
-     * @return string
      */
-    public function generateLocationDocumentId($locationId, $languageCode = null): string
+    public function generateLocationDocumentId(int $locationId, ?string $languageCode = null): string
     {
         return strtolower("location{$locationId}lang{$languageCode}");
     }
@@ -170,7 +138,7 @@ class NativeDocumentMapper implements DocumentMapper
      *
      * @return \Ibexa\Contracts\Core\Search\Field[]
      */
-    private function getBlockFields(Content $content)
+    private function getBlockFields(Content $content): array
     {
         $fields = [];
 
@@ -187,7 +155,7 @@ class NativeDocumentMapper implements DocumentMapper
      *
      * @return \Ibexa\Contracts\Core\Search\Field[]
      */
-    private function getBlockTranslationFields(Content $content, string $languageCode)
+    private function getBlockTranslationFields(Content $content, string $languageCode): array
     {
         $fields = [];
 
@@ -204,7 +172,7 @@ class NativeDocumentMapper implements DocumentMapper
      *
      * @return \Ibexa\Contracts\Core\Search\Field[]
      */
-    private function getContentFields(Content $content)
+    private function getContentFields(Content $content): array
     {
         $fields = [];
 
@@ -221,7 +189,7 @@ class NativeDocumentMapper implements DocumentMapper
      *
      * @return \Ibexa\Contracts\Core\Search\Field[]
      */
-    private function getContentTranslationFields(Content $content, string $languageCode)
+    private function getContentTranslationFields(Content $content, string $languageCode): array
     {
         $fields = [];
 
@@ -238,7 +206,7 @@ class NativeDocumentMapper implements DocumentMapper
      *
      * @return \Ibexa\Contracts\Core\Search\Field[]
      */
-    private function getLocationFields(Location $location)
+    private function getLocationFields(Location $location): array
     {
         $fields = [];
 

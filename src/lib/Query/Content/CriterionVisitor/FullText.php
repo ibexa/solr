@@ -22,58 +22,28 @@ use QueryTranslator\Languages\Galach\Tokenizer;
 class FullText extends CriterionVisitor
 {
     /**
-     * Field map.
-     */
-    protected FieldNameResolver $fieldNameResolver;
-
-    protected Tokenizer $tokenizer;
-
-    protected Parser $parser;
-
-    protected ExtendedDisMax $generator;
-
-    /**
-     * @var int
-     */
-    protected $maxDepth;
-
-    /**
      * Create from content type handler and field registry.
-     *
-     * @param int $maxDepth
      */
     public function __construct(
-        FieldNameResolver $fieldNameResolver,
-        Tokenizer $tokenizer,
-        Parser $parser,
-        ExtendedDisMax $generator,
-        $maxDepth = 0
+        protected readonly FieldNameResolver $fieldNameResolver,
+        protected readonly Tokenizer $tokenizer,
+        protected readonly Parser $parser,
+        protected readonly ExtendedDisMax $generator,
+        protected readonly int $maxDepth = 0
     ) {
-        $this->fieldNameResolver = $fieldNameResolver;
-        $this->tokenizer = $tokenizer;
-        $this->parser = $parser;
-        $this->generator = $generator;
-        $this->maxDepth = $maxDepth;
     }
 
     /**
      * Get field type information.
      *
-     * @param string $fieldDefinitionIdentifier
-     *
-     * @return array
+     * @return array<string, \Ibexa\Contracts\Core\Search\FieldType>
      */
-    protected function getSearchFields(Criterion $criterion, $fieldDefinitionIdentifier)
+    protected function getSearchFields(Criterion $criterion, string $fieldDefinitionIdentifier): array
     {
         return $this->fieldNameResolver->getFieldTypes($criterion, $fieldDefinitionIdentifier);
     }
 
-    /**
-     * Check if visitor is applicable to current criterion.
-     *
-     * @return bool
-     */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return $criterion instanceof FullTextCriterion;
     }
@@ -81,12 +51,9 @@ class FullText extends CriterionVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\FullText $criterion
-     *
-     * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\FullText $criterion */
         $tokenSequence = $this->tokenizer->tokenize($criterion->value);
@@ -129,6 +96,6 @@ class FullText extends CriterionVisitor
      */
     private function getBoostFactorForRelatedContent(int $depth): float
     {
-        return 1.0 / pow(2.0, $depth);
+        return 1.0 / 2.0 ** $depth;
     }
 }

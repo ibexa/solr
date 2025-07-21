@@ -19,8 +19,6 @@ class ContentIdIn extends CriterionVisitor
 {
     /**
      * Check if visitor is applicable to current criterion.
-     *
-     * @return bool
      */
     public function canVisit(CriterionInterface $criterion): bool
     {
@@ -36,19 +34,14 @@ class ContentIdIn extends CriterionVisitor
      * Map field value to a proper Solr representation.
      *
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\ContentId $criterion
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
-     *
-     * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         return '(' .
             implode(
                 ' OR ',
                 array_map(
-                    static function (bool|float|int|string $value): string {
-                        return 'content_id_id:"' . $value . '"';
-                    },
+                    static fn (bool|float|int|string $value): string => 'content_id_id:"' . $value . '"',
                     $criterion->value
                 )
             ) .

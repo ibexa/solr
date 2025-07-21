@@ -10,7 +10,7 @@ namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor;
 
 final class AggregationResultExtractorTestUtils
 {
-    public const EXAMPLE_LANGUAGE_FILTER = [
+    public const array EXAMPLE_LANGUAGE_FILTER = [
         'languageCode' => 'eng-GB',
         'useAlwaysAvailable' => false,
     ];

@@ -28,16 +28,14 @@ final class UserLoginIn extends CriterionVisitor
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\UserLogin $criterion
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         return sprintf(
             '(%s)',
             implode(
                 ' OR ',
                 array_map(
-                    static function (string $value): string {
-                        return 'user_login_id:"' . hash(UserDocumentFields::HASHING_ALGORITHM, $value) . '"';
-                    },
+                    static fn (string $value): string => 'user_login_id:"' . hash(UserDocumentFields::HASHING_ALGORITHM, $value) . '"',
                     (array) $criterion->value
                 )
             )

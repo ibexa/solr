@@ -12,13 +12,11 @@ use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
-final class LocationAggregationKeyMapper implements TermAggregationKeyMapper
+final readonly class LocationAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    private LocationService $locationService;
-
-    public function __construct(LocationService $locationService)
-    {
-        $this->locationService = $locationService;
+    public function __construct(
+        private LocationService $locationService
+    ) {
     }
 
     public function map(Aggregation $aggregation, array $languageFilter, array $keys): array

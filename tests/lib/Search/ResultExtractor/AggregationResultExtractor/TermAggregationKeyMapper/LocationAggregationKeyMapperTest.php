@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 
 final class LocationAggregationKeyMapperTest extends TestCase
 {
-    private const EXAMPLE_LOCATION_IDS = ['2', '54', '47'];
+    private const array EXAMPLE_LOCATION_IDS = ['2', '54', '47'];
 
     private LocationService&MockObject $locationService;
 
@@ -32,7 +32,7 @@ final class LocationAggregationKeyMapperTest extends TestCase
 
     public function testMap(): void
     {
-        $expectedLocations = $this->createExpectedLocations(self::EXAMPLE_LOCATION_IDS);
+        $expectedLocations = $this->createExpectedLocations();
 
         $this->locationService
             ->method('loadLocationList')
@@ -52,10 +52,13 @@ final class LocationAggregationKeyMapperTest extends TestCase
         );
     }
 
-    private function createExpectedLocations(iterable $locationIds): array
+    /**
+     * @return array<int, \Ibexa\Contracts\Core\Repository\Values\Content\Location>
+     */
+    private function createExpectedLocations(): array
     {
         $locations = [];
-        foreach ($locationIds as $locationId) {
+        foreach (self::EXAMPLE_LOCATION_IDS as $locationId) {
             $locationId = (int)$locationId;
 
             $location = $this->createMock(Location::class);

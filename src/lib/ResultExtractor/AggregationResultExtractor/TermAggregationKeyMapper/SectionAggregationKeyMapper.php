@@ -14,19 +14,15 @@ use Ibexa\Contracts\Core\Repository\SectionService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
-final class SectionAggregationKeyMapper implements TermAggregationKeyMapper
+final readonly class SectionAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    private SectionService $sectionService;
-
-    public function __construct(SectionService $sectionService)
-    {
-        $this->sectionService = $sectionService;
+    public function __construct(
+        private SectionService $sectionService
+    ) {
     }
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\SectionTermAggregation $aggregation
-     * @param array $languageFilter
-     * @param string[] $keys
      *
      * @return \Ibexa\Contracts\Core\Repository\Values\Content\Section[]
      */
@@ -36,7 +32,7 @@ final class SectionAggregationKeyMapper implements TermAggregationKeyMapper
         foreach ($keys as $key) {
             try {
                 $result[$key] = $this->sectionService->loadSection((int)$key);
-            } catch (NotFoundException | UnauthorizedException $e) {
+            } catch (NotFoundException | UnauthorizedException) {
                 // Skip missing section
             }
         }

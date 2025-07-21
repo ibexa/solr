@@ -19,19 +19,13 @@ abstract class ContentTranslationFieldMapper
 {
     /**
      * Indicates if the mapper accepts given $content and $languageCode for mapping.
-     *
-     * @param string $languageCode
-     *
-     * @return bool
      */
-    abstract public function accept(SPIContent $content, $languageCode);
+    abstract public function accept(SPIContent $content, string $languageCode): bool;
 
     /**
      * Maps given $content for $languageCode to an array of search fields.
      *
-     * @param string $languageCode
-     *
-     * @return \Ibexa\Contracts\Core\Search\Field[]
+     * @return list<\Ibexa\Contracts\Core\Search\Field>
      */
-    abstract public function mapFields(SPIContent $content, $languageCode);
+    abstract public function mapFields(SPIContent $content, string $languageCode): array;
 }

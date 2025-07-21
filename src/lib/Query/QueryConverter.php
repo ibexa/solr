@@ -17,12 +17,12 @@ abstract class QueryConverter
     /**
      * Map query to a proper Solr representation.
      *
-     * @phpstan-param array{languages: string[]} $languageSettings
+     * @phpstan-param array{languages?: string[], languageCode?: string, useAlwaysAvailable?: bool} $languageSettings
      *
-     * @param array $languageSettings - a map of filters for the returned fields.
+     * @param array<string, mixed> $languageSettings - a map of filters for the returned fields.
      *        Currently supported: <code>array("languages" => array(<language1>,..))</code>.
      *
-     * @return array
+     * @return array<mixed>
      */
-    abstract public function convert(Query $query, array $languageSettings = []);
+    abstract public function convert(Query $query, array $languageSettings = []): array;
 }

@@ -30,55 +30,43 @@ class NativeCoreFilter extends CoreFilter
     /**
      * Name of the Solr backend field holding document type identifier
      * ('content' or 'location').
-     *
-     * @var string
      */
-    public const FIELD_DOCUMENT_TYPE = 'document_type_id';
+    public const string FIELD_DOCUMENT_TYPE = 'document_type_id';
 
     /**
      * Name of the Solr backend field holding list of all translation's Content
      * language codes.
-     *
-     * @var string
      */
-    public const FIELD_LANGUAGES = 'content_language_codes_ms';
+    public const string FIELD_LANGUAGES = 'content_language_codes_ms';
 
     /**
      * Name of the Solr backend field holding language code of the indexed
      * translation.
-     *
-     * @var string
      */
-    public const FIELD_LANGUAGE = 'meta_indexed_language_code_s';
+    public const string FIELD_LANGUAGE = 'meta_indexed_language_code_s';
 
     /**
      * Name of the Solr backend field indicating if the indexed translation
      * is in the main language.
-     *
-     * @var string
      */
-    public const FIELD_IS_MAIN_LANGUAGE = 'meta_indexed_is_main_translation_b';
+    public const string FIELD_IS_MAIN_LANGUAGE = 'meta_indexed_is_main_translation_b';
 
     /**
      * Name of the Solr backend field indicating if the indexed translation
      * is always available.
-     *
-     * @var string
      */
-    public const FIELD_IS_ALWAYS_AVAILABLE = 'meta_indexed_is_main_translation_and_always_available_b';
+    public const string FIELD_IS_ALWAYS_AVAILABLE = 'meta_indexed_is_main_translation_and_always_available_b';
 
     /**
      * Name of the Solr backend field indicating if the indexed document is
      * located in the main translations index.
-     *
-     * @var string
      */
-    public const FIELD_IS_MAIN_LANGUAGES_INDEX = 'meta_indexed_main_translation_b';
+    public const string FIELD_IS_MAIN_LANGUAGES_INDEX = 'meta_indexed_main_translation_b';
 
     /**
      * Indicates presence of main languages index.
      */
-    private bool $hasMainLanguagesEndpoint;
+    private readonly bool $hasMainLanguagesEndpoint;
 
     public function __construct(EndpointResolver $endpointResolver)
     {
@@ -87,7 +75,7 @@ class NativeCoreFilter extends CoreFilter
         );
     }
 
-    public function apply(Query $query, array $languageSettings, $documentTypeIdentifier): void
+    public function apply(Query $query, array $languageSettings, string $documentTypeIdentifier): void
     {
         $languages = (
             empty($languageSettings['languages']) ?
@@ -124,7 +112,7 @@ class NativeCoreFilter extends CoreFilter
      * The condition ensures the same Content will be matched only once across all
      * targeted translation endpoints.
      *
-     * @param string[] $languageCodes
+     * @param list<string> $languageCodes
      */
     private function getCoreCriterion(
         array $languageCodes,
@@ -161,7 +149,7 @@ class NativeCoreFilter extends CoreFilter
     /**
      * Returns criteria for prioritized languages fallback.
      *
-     * @param string[] $languageCodes
+     * @param list<string> $languageCodes
      */
     private function getLanguageFilter(array $languageCodes): Query\CriterionInterface
     {
@@ -215,7 +203,9 @@ class NativeCoreFilter extends CoreFilter
     /**
      * Returns criteria for always available translation fallback.
      *
-     * @param string[] $languageCodes
+     * @param list<string> $languageCodes
+     *
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidCriterionArgumentException
      */
     private function getAlwaysAvailableFilter(
         array $languageCodes,
@@ -260,12 +250,11 @@ class NativeCoreFilter extends CoreFilter
      *
      * If $selectedLanguageCode is omitted, all languages will be returned.
      *
-     * @param string[] $languageCodes
-     * @param string|null $selectedLanguageCode
+     * @param list<string> $languageCodes
      *
-     * @return string[]
+     * @return list<string>
      */
-    private function getExcludedLanguageCodes(array $languageCodes, $selectedLanguageCode = null): array
+    private function getExcludedLanguageCodes(array $languageCodes, ?string $selectedLanguageCode = null): array
     {
         $excludedLanguageCodes = [];
 

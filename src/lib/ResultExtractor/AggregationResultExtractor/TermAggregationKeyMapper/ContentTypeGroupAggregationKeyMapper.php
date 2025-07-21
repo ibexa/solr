@@ -13,18 +13,15 @@ use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
-final class ContentTypeGroupAggregationKeyMapper implements TermAggregationKeyMapper
+final readonly class ContentTypeGroupAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    private ContentTypeService $contentTypeService;
-
-    public function __construct(ContentTypeService $contentTypeService)
-    {
-        $this->contentTypeService = $contentTypeService;
+    public function __construct(
+        private ContentTypeService $contentTypeService
+    ) {
     }
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ContentTypeGroupTermAggregation $aggregation
-     * @param string[] $keys
      *
      * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeGroup[]
      */
@@ -35,7 +32,7 @@ final class ContentTypeGroupAggregationKeyMapper implements TermAggregationKeyMa
         foreach ($keys as $key) {
             try {
                 $result[$key] = $this->contentTypeService->loadContentTypeGroup((int)$key);
-            } catch (NotFoundException $e) {
+            } catch (NotFoundException) {
                 // Skip missing content type groups
             }
         }

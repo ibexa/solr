@@ -10,7 +10,6 @@ namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler;
-use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Ibexa\Contracts\Core\Search\Field;
 use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
@@ -22,40 +21,21 @@ use Ibexa\Core\Search\Common\FieldNameGenerator;
  */
 class ContentDocumentEmptyFields extends ContentTranslationFieldMapper
 {
-    public const IS_EMPTY_NAME = 'is_empty';
-
-    private Handler $contentTypeHandler;
-
-    private FieldNameGenerator $fieldNameGenerator;
-
-    private FieldTypeRegistry $fieldTypeRegistry;
+    public const string IS_EMPTY_NAME = 'is_empty';
 
     public function __construct(
-        ContentTypeHandler $contentTypeHandler,
-        FieldNameGenerator $fieldNameGenerator,
-        FieldTypeRegistry $fieldTypeRegistry
+        private readonly Handler $contentTypeHandler,
+        private readonly FieldNameGenerator $fieldNameGenerator,
+        private readonly FieldTypeRegistry $fieldTypeRegistry
     ) {
-        $this->contentTypeHandler = $contentTypeHandler;
-        $this->fieldNameGenerator = $fieldNameGenerator;
-        $this->fieldTypeRegistry = $fieldTypeRegistry;
     }
 
-    /**
-     * @param string $languageCode
-     *
-     * @return bool
-     */
-    public function accept(Content $content, $languageCode): bool
+    public function accept(Content $content, string $languageCode): bool
     {
         return true;
     }
 
-    /**
-     * @param string $languageCode
-     *
-     * @return \Ibexa\Contracts\Core\Search\Field[]
-     */
-    public function mapFields(Content $content, $languageCode): array
+    public function mapFields(Content $content, string $languageCode): array
     {
         $fields = [];
         $contentType = $this->contentTypeHandler->load(

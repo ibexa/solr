@@ -9,7 +9,6 @@ namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler;
-use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Ibexa\Contracts\Core\Search\Field;
 use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
@@ -25,24 +24,18 @@ class ContentDocumentTranslatedContentNameField extends ContentTranslationFieldM
      */
     private static string $fieldName = 'meta_content__name';
 
-    protected Handler $contentTypeHandler;
-
-    protected BoostFactorProvider $boostFactorProvider;
-
     public function __construct(
-        ContentTypeHandler $contentTypeHandler,
-        BoostFactorProvider $boostFactorProvider
+        protected readonly Handler $contentTypeHandler,
+        protected readonly BoostFactorProvider $boostFactorProvider
     ) {
-        $this->contentTypeHandler = $contentTypeHandler;
-        $this->boostFactorProvider = $boostFactorProvider;
     }
 
-    public function accept(Content $content, $languageCode): bool
+    public function accept(Content $content, string $languageCode): bool
     {
         return true;
     }
 
-    public function mapFields(Content $content, $languageCode): array
+    public function mapFields(Content $content, string $languageCode): array
     {
         if (!isset($content->versionInfo->names[$languageCode])) {
             return [];

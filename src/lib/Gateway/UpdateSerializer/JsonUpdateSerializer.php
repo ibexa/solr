@@ -35,6 +35,9 @@ final class JsonUpdateSerializer extends UpdateSerializer implements UpdateSeria
         return json_encode($data, JSON_THROW_ON_ERROR);
     }
 
+    /**
+     * @return array<string, array<mixed>>
+     */
     private function mapDocumentToData(Document $document): array
     {
         $data['id'] = $this->fieldValueMapper->map(
@@ -58,12 +61,7 @@ final class JsonUpdateSerializer extends UpdateSerializer implements UpdateSeria
         return 'json';
     }
 
-    /**
-     * @param mixed|null $value
-     *
-     * @return mixed
-     */
-    private function buildValue($value, string $fieldName, array $data)
+    private function buildValue(mixed $value, string $fieldName, array $data): mixed
     {
         return !array_key_exists($fieldName, $data) || !is_array($data[$fieldName])
             ? $value

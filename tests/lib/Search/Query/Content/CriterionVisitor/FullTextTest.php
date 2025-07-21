@@ -27,6 +27,9 @@ use QueryTranslator\Languages\Galach\Tokenizer;
  */
 class FullTextTest extends TestCase
 {
+    /**
+     * @param array<string, mixed> $fieldTypes
+     */
     protected function getFullTextCriterionVisitor(array $fieldTypes = [], int $maxDepth = 0): FullText
     {
         $fieldNameResolver = $this->getMockBuilder(FieldNameResolver::class)
@@ -55,9 +58,6 @@ class FullTextTest extends TestCase
         );
     }
 
-    /**
-     * @return \QueryTranslator\Languages\Galach\Tokenizer
-     */
     protected function getTokenizer(): Tokenizer
     {
         return new Tokenizer(
@@ -65,17 +65,11 @@ class FullTextTest extends TestCase
         );
     }
 
-    /**
-     * @return \QueryTranslator\Languages\Galach\Parser
-     */
     protected function getParser(): Parser
     {
         return new Parser();
     }
 
-    /**
-     * @return \QueryTranslator\Languages\Galach\Generators\ExtendedDisMax
-     */
     protected function getGenerator(): ExtendedDisMax
     {
         return new ExtendedDisMax(

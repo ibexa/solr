@@ -21,7 +21,7 @@ class Aggregate extends SortClauseVisitor
      *
      * @var \Ibexa\Contracts\Solr\Query\SortClauseVisitor[]
      */
-    protected $visitors = [];
+    protected array $visitors = [];
 
     /**
      * Construct from optional visitor array.
@@ -35,9 +35,6 @@ class Aggregate extends SortClauseVisitor
         }
     }
 
-    /**
-     * Adds visitor.
-     */
     public function addVisitor(SortClauseVisitor $visitor): void
     {
         $this->visitors[] = $visitor;
@@ -45,8 +42,6 @@ class Aggregate extends SortClauseVisitor
 
     /**
      * Check if visitor is applicable to current sortClause.
-     *
-     * @return bool
      */
     public function canVisit(SortClause $sortClause): bool
     {
@@ -57,10 +52,8 @@ class Aggregate extends SortClauseVisitor
      * Map field value to a proper Solr representation.
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException
-     *
-     * @return string
      */
-    public function visit(SortClause $sortClause)
+    public function visit(SortClause $sortClause): string
     {
         foreach ($this->visitors as $visitor) {
             if ($visitor->canVisit($sortClause)) {
@@ -68,6 +61,6 @@ class Aggregate extends SortClauseVisitor
             }
         }
 
-        throw new NotImplementedException('No visitor available for: ' . \get_class($sortClause));
+        throw new NotImplementedException('No visitor available for: ' . $sortClause::class);
     }
 }

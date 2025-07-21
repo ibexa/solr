@@ -15,15 +15,13 @@ use PHPUnit\Framework\TestCase;
 
 abstract class AbstractAggregationVisitorTest extends TestCase
 {
-    protected const EXAMPLE_LANGUAGE_FILTER = [
+    protected const array EXAMPLE_LANGUAGE_FILTER = [
         'languages' => ['eng-GB'],
     ];
 
-    /** @var \Ibexa\Contracts\Solr\Query\AggregationVisitor */
-    protected $visitor;
+    protected AggregationVisitor $visitor;
 
-    /** @var \Ibexa\Contracts\Solr\Query\AggregationVisitor|\PHPUnit\Framework\MockObject\MockObject */
-    protected MockObject $dispatcherVisitor;
+    protected AggregationVisitor&MockObject $dispatcherVisitor;
 
     protected function setUp(): void
     {
@@ -34,7 +32,7 @@ abstract class AbstractAggregationVisitorTest extends TestCase
     abstract protected function createVisitor(): AggregationVisitor;
 
     /**
-     * @param array{languages: string[]} $languageFilter
+     * @param array{languages?: string[], languageCode?: string, useAlwaysAvailable?: bool} $languageFilter
      *
      * @dataProvider dataProviderForCanVisit
      */
@@ -50,10 +48,10 @@ abstract class AbstractAggregationVisitorTest extends TestCase
     }
 
     /**
-     * @return iterable<array{
-     *     \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
-     *     array{languages: string[]},
-     *     bool,
+     * @return iterable<string, array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     1: array{languages: string[]},
+     *     2: bool
      * }>
      */
     abstract public function dataProviderForCanVisit(): iterable;
@@ -78,11 +76,7 @@ abstract class AbstractAggregationVisitorTest extends TestCase
     }
 
     /**
-     * @return iterable<array{
-     *     \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
-     *     array{languages: string[]},
-     *     array<mixed>,
-     * }>
+     * @return iterable<string, array<mixed>>
      */
     abstract public function dataProviderForVisit(): iterable;
 

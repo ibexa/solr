@@ -15,21 +15,11 @@ use Ibexa\Contracts\Solr\Query\SortClauseVisitor;
  */
 class DateModified extends SortClauseVisitor
 {
-    /**
-     * Check if visitor is applicable to current sortClause.
-     *
-     * @return bool
-     */
-    public function canVisit(SortClause $sortClause)
+    public function canVisit(SortClause $sortClause): bool
     {
         return $sortClause instanceof SortClause\DateModified;
     }
 
-    /**
-     * Map field value to a proper Solr representation.
-     *
-     * @return string
-     */
     public function visit(SortClause $sortClause): string
     {
         return 'content_modification_date_dt' . $this->getDirection($sortClause);

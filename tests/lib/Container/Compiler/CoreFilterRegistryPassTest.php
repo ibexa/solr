@@ -16,6 +16,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class CoreFilterRegistryPassTest extends AbstractCompilerPassTestCase
 {
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

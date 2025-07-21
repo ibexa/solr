@@ -17,11 +17,6 @@ use Ibexa\Contracts\Solr\Query\CriterionVisitor;
  */
 class ParentLocationIdIn extends CriterionVisitor
 {
-    /**
-     * Check if visitor is applicable to current criterion.
-     *
-     * @return bool
-     */
     public function canVisit(CriterionInterface $criterion): bool
     {
         return
@@ -33,22 +28,15 @@ class ParentLocationIdIn extends CriterionVisitor
     }
 
     /**
-     * Map field value to a proper Solr representation.
-     *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\ParentLocationId $criterion
-     *
-     * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         return '(' .
             implode(
                 ' OR ',
                 array_map(
-                    static function (bool|float|int|string $value): string {
-                        return 'parent_id_id:"' . $value . '"';
-                    },
+                    static fn (bool|float|int|string $value): string => 'parent_id_id:"' . $value . '"',
                     $criterion->value
                 )
             ) .

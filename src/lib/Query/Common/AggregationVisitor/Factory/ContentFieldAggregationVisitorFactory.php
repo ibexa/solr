@@ -15,13 +15,11 @@ use Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor;
 use Ibexa\Solr\Query\Common\AggregationVisitor\StatsAggregationVisitor;
 use Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor;
 
-final class ContentFieldAggregationVisitorFactory
+final readonly class ContentFieldAggregationVisitorFactory
 {
-    private FieldNameResolver $fieldNameResolver;
-
-    public function __construct(FieldNameResolver $fieldNameResolver)
-    {
-        $this->fieldNameResolver = $fieldNameResolver;
+    public function __construct(
+        private FieldNameResolver $fieldNameResolver
+    ) {
     }
 
     public function createRangeAggregationVisitor(

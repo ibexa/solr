@@ -14,7 +14,13 @@ use stdClass;
 
 interface AggregationResultExtractor
 {
+    /**
+     * @param array{languages?: string[], languageCode?: string, useAlwaysAvailable?: bool} $languageFilter
+     */
     public function canVisit(Aggregation $aggregation, array $languageFilter): bool;
 
+    /**
+     * @param array{languages?: string[], languageCode?: string, useAlwaysAvailable?: bool} $languageFilter
+     */
     public function extract(Aggregation $aggregation, array $languageFilter, stdClass $data): AggregationResult;
 }

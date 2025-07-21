@@ -15,10 +15,8 @@ use XMLWriter;
 
 /**
  * @internal
- *
- * @final
  */
-class XmlUpdateSerializer extends UpdateSerializer implements UpdateSerializerInterface
+final class XmlUpdateSerializer extends UpdateSerializer implements UpdateSerializerInterface
 {
     public function serialize(array $documents): string
     {

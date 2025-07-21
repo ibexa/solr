@@ -15,14 +15,14 @@ interface AggregationVisitor
     /**
      * Check if visitor is applicable to current aggreagtion.
      *
-     * @phpstan-param array{languages: string[]} $languageFilter
+     * @phpstan-param array{languages?: string[], languageCode?: string, useAlwaysAvailable?: bool} $languageFilter
      */
     public function canVisit(Aggregation $aggregation, array $languageFilter): bool;
 
     /**
-     * @phpstan-param array{languages: string[]} $languageFilter
+     * @phpstan-param array{languages?: string[], languageCode?: string, useAlwaysAvailable?: bool} $languageFilter
      *
-     * @return string[]
+     * @return array<string, mixed>
      */
     public function visit(
         AggregationVisitor $dispatcherVisitor,

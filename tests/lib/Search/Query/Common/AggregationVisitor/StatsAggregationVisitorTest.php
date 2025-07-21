@@ -17,9 +17,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 final class StatsAggregationVisitorTest extends AbstractAggregationVisitorTest
 {
-    /** @var \Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $aggregationFieldResolver;
+    private AggregationFieldResolver&MockObject $aggregationFieldResolver;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->aggregationFieldResolver = $this->createMock(AggregationFieldResolver::class);
@@ -36,6 +36,13 @@ final class StatsAggregationVisitorTest extends AbstractAggregationVisitorTest
         return new StatsAggregationVisitor(AbstractStatsAggregation::class, $this->aggregationFieldResolver);
     }
 
+    /**
+     * @return iterable<string, array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     1: array{languages: string[]},
+     *     2: bool
+     * }>
+     */
     public function dataProviderForCanVisit(): iterable
     {
         yield 'true' => [
@@ -51,6 +58,22 @@ final class StatsAggregationVisitorTest extends AbstractAggregationVisitorTest
         ];
     }
 
+    /**
+     * @return iterable<array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractStatsAggregation,
+     *     1: array{languages: string[]},
+     *     2: array{
+     *         type: string,
+     *         q: string,
+     *         facet: array{
+     *             sum: string,
+     *             min: string,
+     *             max: string,
+     *             avg: string
+     *         }
+     *     }
+     * }>
+     */
     public function dataProviderForVisit(): iterable
     {
         yield [

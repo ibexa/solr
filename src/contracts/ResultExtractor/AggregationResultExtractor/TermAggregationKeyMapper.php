@@ -12,5 +12,11 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 
 interface TermAggregationKeyMapper
 {
+    /**
+     * @param array{languages?: string[], languageCode?: string, useAlwaysAvailable?: bool} $languageFilter
+     * @param array<mixed> $keys
+     *
+     * @return array<mixed>
+     */
     public function map(Aggregation $aggregation, array $languageFilter, array $keys): array;
 }

@@ -15,6 +15,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class AggregateSortClauseVisitorPassTest extends AbstractCompilerPassTestCase
 {
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

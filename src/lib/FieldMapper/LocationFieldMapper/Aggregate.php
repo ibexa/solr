@@ -20,11 +20,10 @@ class Aggregate extends LocationFieldMapper
      *
      * @var \Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper[]
      */
-    protected $mappers = [];
+    protected array $mappers = [];
 
     /**
-     * @param \Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper[] $mappers
-     *        An array of mappers, sorted by priority.
+     * @param \Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper[] $mappers An array of mappers, sorted by priority.
      */
     public function __construct(array $mappers = [])
     {
@@ -46,9 +45,6 @@ class Aggregate extends LocationFieldMapper
         return true;
     }
 
-    /**
-     * @return mixed[]
-     */
     public function mapFields(Location $location): array
     {
         $fields = [];

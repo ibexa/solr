@@ -10,6 +10,7 @@ namespace Ibexa\Tests\Solr\CoreFilter;
 use Ibexa\Solr\CoreFilter;
 use Ibexa\Solr\CoreFilter\CoreFilterRegistry;
 use OutOfBoundsException;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class CoreFilterRegistryTest extends TestCase
@@ -79,10 +80,7 @@ class CoreFilterRegistryTest extends TestCase
         self::assertCount(1, $registry->getCoreFilters());
     }
 
-    /**
-     * @return \Ibexa\Solr\CoreFilter|\PHPUnit\Framework\MockObject\MockObject
-     */
-    private function getCoreFilterMock(): CoreFilter
+    private function getCoreFilterMock(): CoreFilter&MockObject
     {
         return $this->createMock(CoreFilter::class);
     }

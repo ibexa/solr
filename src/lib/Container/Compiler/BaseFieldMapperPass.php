@@ -19,12 +19,12 @@ abstract class BaseFieldMapperPass implements CompilerPassInterface
     /**
      * Service ID of the aggregate plugin.
      */
-    public const AGGREGATE_MAPPER_SERVICE_ID = null;
+    public const string AGGREGATE_MAPPER_SERVICE_ID = '';
 
     /**
      * Service tag of plugins registering to the aggregate one.
      */
-    public const AGGREGATE_MAPPER_SERVICE_TAG = null;
+    public const string AGGREGATE_MAPPER_SERVICE_TAG = '';
 
     public function process(ContainerBuilder $container): void
     {

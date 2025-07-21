@@ -28,7 +28,7 @@ class ObjectStateIdentifierIn extends CriterionVisitor
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\ObjectStateIdentifier $criterion
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $target = $criterion->target ?? '*';
 
@@ -37,12 +37,10 @@ class ObjectStateIdentifierIn extends CriterionVisitor
             implode(
                 ' OR ',
                 array_map(
-                    function (string $value) use ($target): string {
-                        return sprintf(
-                            'content_object_state_identifiers_ms:%s',
-                            $this->escapeExpressions("{$target}:{$value}", true)
-                        );
-                    },
+                    fn (string $value): string => sprintf(
+                        'content_object_state_identifiers_ms:%s',
+                        $this->escapeExpressions("{$target}:{$value}", true)
+                    ),
                     (array)$criterion->value
                 )
             )
