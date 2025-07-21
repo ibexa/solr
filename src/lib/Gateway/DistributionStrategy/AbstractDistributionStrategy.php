@@ -15,17 +15,10 @@ use Ibexa\Solr\Gateway\SingleEndpointResolver;
 
 abstract class AbstractDistributionStrategy implements DistributionStrategy
 {
-    /**
-     * Endpoint registry service.
-     */
-    protected EndpointRegistry $endpointRegistry;
-
-    protected EndpointResolver $endpointResolver;
-
-    public function __construct(EndpointRegistry $endpointRegistry, EndpointResolver $endpointResolver)
-    {
-        $this->endpointRegistry = $endpointRegistry;
-        $this->endpointResolver = $endpointResolver;
+    public function __construct(
+        protected readonly EndpointRegistry $endpointRegistry,
+        protected readonly EndpointResolver $endpointResolver
+    ) {
     }
 
     public function getSearchParameters(array $parameters, ?array $languageSettings = null): array
@@ -45,5 +38,11 @@ abstract class AbstractDistributionStrategy implements DistributionStrategy
         return $parameters;
     }
 
+    /**
+     * @param array<string, mixed> $parameters
+     * @param list<string> $searchTargets
+     *
+     * @return array<string, mixed>
+     */
     abstract protected function appendSearchTargets(array $parameters, array $searchTargets): array;
 }

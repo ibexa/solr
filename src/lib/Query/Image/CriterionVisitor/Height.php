@@ -14,7 +14,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 
 final class Height extends AbstractImageRangeVisitor
 {
-    private const SEARCH_FIELD_HEIGHT = 'height';
+    private const string SEARCH_FIELD_HEIGHT = 'height';
 
     public function canVisit(CriterionInterface $criterion): bool
     {

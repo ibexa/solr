@@ -14,17 +14,14 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use stdClass;
 
-final class DispatcherAggregationResultExtractor implements AggregationResultExtractor
+final readonly class DispatcherAggregationResultExtractor implements AggregationResultExtractor
 {
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor[] */
-    private iterable $extractors;
-
     /**
      * @param \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor[] $extractors
      */
-    public function __construct(iterable $extractors)
-    {
-        $this->extractors = $extractors;
+    public function __construct(
+        private iterable $extractors
+    ) {
     }
 
     public function canVisit(Aggregation $aggregation, array $languageFilter): bool
@@ -38,7 +35,7 @@ final class DispatcherAggregationResultExtractor implements AggregationResultExt
 
         if ($extractor === null) {
             throw new NotImplementedException(
-                'No result extractor available for aggregation: ' . get_class($aggregation)
+                'No result extractor available for aggregation: ' . $aggregation::class
             );
         }
 

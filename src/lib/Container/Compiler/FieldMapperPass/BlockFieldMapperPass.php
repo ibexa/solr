@@ -14,6 +14,6 @@ use Ibexa\Solr\Container\Compiler\BaseFieldMapperPass;
  */
 class BlockFieldMapperPass extends BaseFieldMapperPass
 {
-    public const AGGREGATE_MAPPER_SERVICE_ID = 'ibexa.solr.field_mapper.block';
-    public const AGGREGATE_MAPPER_SERVICE_TAG = 'ibexa.search.solr.field.mapper.block';
+    public const string AGGREGATE_MAPPER_SERVICE_ID = 'ibexa.solr.field_mapper.block';
+    public const string AGGREGATE_MAPPER_SERVICE_TAG = 'ibexa.search.solr.field.mapper.block';
 }

@@ -9,7 +9,6 @@ namespace Ibexa\Solr\FieldMapper\ContentFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler;
-use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
 use Ibexa\Contracts\Core\Persistence\Content\ObjectState\Handler as ObjectStateHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Section\Handler as SectionHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
@@ -23,24 +22,12 @@ use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
  */
 class BlockDocumentsBaseContentFields extends ContentFieldMapper
 {
-    protected Handler $locationHandler;
-
-    protected ContentTypeHandler $contentTypeHandler;
-
-    protected ObjectStateHandler $objectStateHandler;
-
-    protected SectionHandler $sectionHandler;
-
     public function __construct(
-        LocationHandler $locationHandler,
-        ContentTypeHandler $contentTypeHandler,
-        ObjectStateHandler $objectStateHandler,
-        SectionHandler $sectionHandler
+        protected readonly Handler $locationHandler,
+        protected readonly ContentTypeHandler $contentTypeHandler,
+        protected readonly ObjectStateHandler $objectStateHandler,
+        protected readonly SectionHandler $sectionHandler
     ) {
-        $this->locationHandler = $locationHandler;
-        $this->contentTypeHandler = $contentTypeHandler;
-        $this->objectStateHandler = $objectStateHandler;
-        $this->sectionHandler = $sectionHandler;
     }
 
     public function accept(Content $content): bool
@@ -57,7 +44,7 @@ class BlockDocumentsBaseContentFields extends ContentFieldMapper
         // Locations hierarchy. We index all ancestor Location Content ids of all
         // Locations of an owner.
         $ancestorLocationsContentIds = $this->getAncestorLocationsContentIds(
-            $contentInfo->ownerId
+            (int)$contentInfo->ownerId
         );
         // Add owner user id as it can also be considered as user group.
         $ancestorLocationsContentIds[] = $contentInfo->ownerId;
@@ -174,12 +161,12 @@ class BlockDocumentsBaseContentFields extends ContentFieldMapper
             ),
             new Field(
                 'content_object_state_ids',
-                $this->getObjectStateIds($contentInfo->id),
+                $this->getObjectStateIds((int)$contentInfo->id),
                 new FieldType\MultipleIdentifierField()
             ),
             new Field(
                 'content_object_state_identifiers',
-                $this->getObjectStateIdentifiers($contentInfo->id),
+                $this->getObjectStateIdentifiers((int)$contentInfo->id),
                 new FieldType\MultipleStringField()
             ),
         ];
@@ -188,11 +175,9 @@ class BlockDocumentsBaseContentFields extends ContentFieldMapper
     /**
      * Returns an array of object state ids of a Content with given $contentId.
      *
-     * @param int|string $contentId
-     *
-     * @return array
+     * @return list<int>
      */
-    protected function getObjectStateIds($contentId): array
+    protected function getObjectStateIds(int $contentId): array
     {
         $objectStateIds = [];
 
@@ -202,7 +187,7 @@ class BlockDocumentsBaseContentFields extends ContentFieldMapper
                     $contentId,
                     $objectStateGroup->id
                 )->id;
-            } catch (NotFoundException $e) {
+            } catch (NotFoundException) {
                 // // Ignore empty object state groups
             }
         }
@@ -211,7 +196,7 @@ class BlockDocumentsBaseContentFields extends ContentFieldMapper
     }
 
     /**
-     * @return string[]
+     * @return list<string>
      */
     protected function getObjectStateIdentifiers(int $contentId): array
     {
@@ -237,11 +222,9 @@ class BlockDocumentsBaseContentFields extends ContentFieldMapper
      *
      * Used to determine user groups of a user with $contentId.
      *
-     * @param int|string $contentId
-     *
-     * @return array
+     * @return list<int>
      */
-    protected function getAncestorLocationsContentIds($contentId)
+    protected function getAncestorLocationsContentIds(int $contentId): array
     {
         $locations = $this->locationHandler->loadLocationsByContent($contentId);
         $ancestorLocationContentIds = [];

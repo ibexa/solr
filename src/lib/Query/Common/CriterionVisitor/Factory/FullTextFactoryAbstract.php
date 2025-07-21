@@ -26,33 +26,15 @@ use QueryTranslator\Languages\Galach\Tokenizer;
 abstract class FullTextFactoryAbstract
 {
     /**
-     * Field map.
-     */
-    protected FieldNameResolver $fieldNameResolver;
-
-    protected Tokenizer $tokenizer;
-
-    protected Parser $parser;
-
-    protected ExtendedDisMax $generator;
-
-    protected IndexingDepthProvider $indexingDepthProvider;
-
-    /**
      * Create from content type handler and field registry.
      */
     public function __construct(
-        FieldNameResolver $fieldNameResolver,
-        Tokenizer $tokenizer,
-        Parser $parser,
-        ExtendedDisMax $generator,
-        IndexingDepthProvider $indexingDepthProvider
+        protected readonly FieldNameResolver $fieldNameResolver,
+        protected readonly Tokenizer $tokenizer,
+        protected readonly Parser $parser,
+        protected readonly ExtendedDisMax $generator,
+        protected readonly IndexingDepthProvider $indexingDepthProvider
     ) {
-        $this->fieldNameResolver = $fieldNameResolver;
-        $this->tokenizer = $tokenizer;
-        $this->parser = $parser;
-        $this->generator = $generator;
-        $this->indexingDepthProvider = $indexingDepthProvider;
     }
 
     /**

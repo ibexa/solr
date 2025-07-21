@@ -11,8 +11,8 @@ use Ibexa\Contracts\Core\Persistence\ValueObject;
 
 /**
  * @property-read string $scheme
- * @property-read string $user
- * @property-read string $pass
+ * @property-read string|null $user
+ * @property-read string|null $pass
  * @property-read string $host
  * @property-read int $port
  * @property-read string $path
@@ -22,61 +22,49 @@ class Endpoint extends ValueObject
 {
     /**
      * Holds scheme, 'http' or 'https'.
-     *
-     * @var string
      */
-    protected $scheme;
+    protected string $scheme;
 
     /**
      * Holds basic HTTP authentication username.
-     *
-     * @var string
      */
-    protected $user;
+    protected ?string $user = null;
 
     /**
      * Holds basic HTTP authentication password.
-     *
-     * @var string
      */
-    protected $pass;
+    protected ?string $pass = null;
 
     /**
      * Holds hostname.
-     *
-     * @var string
      */
-    protected $host;
+    protected string $host;
 
     /**
      * Holds port number.
-     *
-     * @var int
      */
-    protected $port;
+    protected string $port;
 
     /**
      * Holds path.
-     *
-     * @var string
      */
-    protected $path;
+    protected string $path;
 
     /**
      * Holds core name.
-     *
-     * @var string
      */
-    protected $core;
+    protected string $core;
 
     /**
      * Parse DSN settings if present, otherwise take parameters as is.
+     *
+     * @param array<string, mixed> $properties
      */
     public function __construct(array $properties = [])
     {
         // If dns is defined parse it to individual parts
         if (!empty($properties['dsn'])) {
-            $properties = parse_url($properties['dsn']) + $properties;
+            $properties = parse_url((string) $properties['dsn']) + $properties;
             unset($properties['dsn']);
 
             // if dns contained fragment we set that on core config, query however will result in exception.
@@ -91,8 +79,6 @@ class Endpoint extends ValueObject
 
     /**
      * Returns Endpoint's identifier, to be used for targeting specific logical indexes.
-     *
-     * @return string
      */
     public function getIdentifier(): string
     {
@@ -101,8 +87,6 @@ class Endpoint extends ValueObject
 
     /**
      * Returns full HTTP URL of the Endpoint.
-     *
-     * @return string
      */
     public function getURL(): string
     {

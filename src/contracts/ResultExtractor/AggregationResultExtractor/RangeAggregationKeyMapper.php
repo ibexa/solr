@@ -12,5 +12,8 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 
 interface RangeAggregationKeyMapper
 {
-    public function map(Aggregation $aggregation, array $languageFilter, string $key);
+    /**
+     * @param array{languages?: string[], languageCode?: string, useAlwaysAvailable?: bool} $languageFilter
+     */
+    public function map(Aggregation $aggregation, array $languageFilter, string $key): mixed;
 }

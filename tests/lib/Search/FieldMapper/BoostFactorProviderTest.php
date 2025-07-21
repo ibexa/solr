@@ -115,9 +115,7 @@ class BoostFactorProviderTest extends TestCase
     /**
      * @dataProvider providerForTestGetContentFieldBoostFactor
      *
-     * @param string $contentTypeIdentifier
-     * @param string $fieldDefinitionIdentifier
-     * @param float $expectedBoostFactor
+     * @param array{meta-fields: array<string, array<string, float>>} $map
      */
     public function testGetContentFieldBoostFactor(
         array $map,
@@ -244,9 +242,7 @@ class BoostFactorProviderTest extends TestCase
     /**
      * @dataProvider providerForTestGetContentMetaFieldBoostFactor
      *
-     * @param string $contentTypeIdentifier
-     * @param string $fieldName
-     * @param float $expectedBoostFactor
+     * @param array{meta-fields: array<string, array<string, float>>} $map
      */
     public function testGetContentMetaFieldBoostFactor(
         array $map,
@@ -264,12 +260,15 @@ class BoostFactorProviderTest extends TestCase
         self::assertEquals($expectedBoostFactor, $boostFactor);
     }
 
+    /**
+     * @param array{meta-fields: array<string, array<string, float>>} $map
+     */
     protected function getFieldBoostProvider(array $map): BoostFactorProvider
     {
         return new BoostFactorProvider($map);
     }
 
-    protected function getContentTypeStub($identifier): Type
+    protected function getContentTypeStub(string $identifier): Type
     {
         return new SPIContentType(
             [
@@ -278,7 +277,7 @@ class BoostFactorProviderTest extends TestCase
         );
     }
 
-    protected function getFieldDefinitionStub($identifier): FieldDefinition
+    protected function getFieldDefinitionStub(string $identifier): FieldDefinition
     {
         return new SPIFieldDefinition(
             [

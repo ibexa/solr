@@ -12,20 +12,13 @@ use Ibexa\Contracts\Core\Persistence\Content\Type as ContentType;
 
 class IndexingDepthProvider
 {
-    private array $contentTypeMap;
-
     /**
-     * @var int
+     * @param array<string, int> $contentTypeMap
      */
-    private $defaultIndexingDepth;
-
-    /**
-     * @param int $defaultIndexingDepth
-     */
-    public function __construct(array $contentTypeMap = [], $defaultIndexingDepth = 1)
-    {
-        $this->contentTypeMap = $contentTypeMap;
-        $this->defaultIndexingDepth = $defaultIndexingDepth;
+    public function __construct(
+        private array $contentTypeMap = [],
+        private readonly int $defaultIndexingDepth = 1
+    ) {
     }
 
     /**
@@ -33,11 +26,7 @@ class IndexingDepthProvider
      */
     public function getMaxDepthForContent(ContentType $contentType): int
     {
-        if (isset($this->contentTypeMap[$contentType->identifier])) {
-            return $this->contentTypeMap[$contentType->identifier];
-        }
-
-        return $this->defaultIndexingDepth;
+        return $this->contentTypeMap[$contentType->identifier] ?? $this->defaultIndexingDepth;
     }
 
     public function getMaxDepth(): int

@@ -20,7 +20,7 @@ class Aggregate extends ContentFieldMapper
      *
      * @var \Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper[]
      */
-    protected $mappers = [];
+    protected array $mappers = [];
 
     /**
      * @param \Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper[] $mappers
@@ -46,9 +46,6 @@ class Aggregate extends ContentFieldMapper
         return true;
     }
 
-    /**
-     * @return mixed[]
-     */
     public function mapFields(Content $content): array
     {
         $fields = [];

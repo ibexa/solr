@@ -28,16 +28,14 @@ class SectionIdentifierIn extends CriterionVisitor
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\SectionIdentifier $criterion
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         return sprintf(
             '(%s)',
             implode(
                 ' OR ',
                 array_map(
-                    static function (string $value): string {
-                        return 'content_section_identifier_id:"' . $value . '"';
-                    },
+                    static fn (string $value): string => 'content_section_identifier_id:"' . $value . '"',
                     (array) $criterion->value
                 )
             )

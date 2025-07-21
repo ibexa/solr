@@ -13,13 +13,11 @@ use Ibexa\Contracts\Core\Repository\ObjectStateService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
-final class ObjectStateAggregationKeyMapper implements TermAggregationKeyMapper
+final readonly class ObjectStateAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    private ObjectStateService $objectStateService;
-
-    public function __construct(ObjectStateService $objectStateService)
-    {
-        $this->objectStateService = $objectStateService;
+    public function __construct(
+        private ObjectStateService $objectStateService
+    ) {
     }
 
     /**
@@ -33,14 +31,14 @@ final class ObjectStateAggregationKeyMapper implements TermAggregationKeyMapper
 
         $mapped = [];
         foreach ($keys as $key) {
-            list(, $stateIdentifier) = explode(':', $key, 2);
+            [, $stateIdentifier] = explode(':', (string) $key, 2);
 
             try {
                 $mapped[$key] = $this->objectStateService->loadObjectStateByIdentifier(
                     $objectStateGroup,
                     $stateIdentifier
                 );
-            } catch (NotFoundException $e) {
+            } catch (NotFoundException) {
                 // Skip non-existing object states
             }
         }

@@ -20,6 +20,13 @@ final class UserMetadataTermAggregationVisitorTest extends AbstractAggregationVi
         return new UserMetadataTermAggregationVisitor();
     }
 
+    /**
+     * @return iterable<string, array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     1: array{languages: string[]},
+     *     2: bool
+     * }>
+     */
     public function dataProviderForCanVisit(): iterable
     {
         yield 'true' => [
@@ -35,6 +42,18 @@ final class UserMetadataTermAggregationVisitorTest extends AbstractAggregationVi
         ];
     }
 
+    /**
+     * @return iterable<string, array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     1: array{languages: string[]},
+     *     2: array{
+     *         type: string,
+     *         field: string,
+     *         limit: int,
+     *         mincount: int
+     *     }
+     * }>
+     */
     public function dataProviderForVisit(): iterable
     {
         yield UserMetadataTermAggregation::OWNER => [

@@ -18,7 +18,7 @@ use stdClass;
 
 final class NestedAggregationResultExtractorTest extends TestCase
 {
-    private const EXAMPLE_NESTED_RESULT_KEY = 'foo';
+    private const string EXAMPLE_NESTED_RESULT_KEY = 'foo';
 
     private AggregationResultExtractor&MockObject $innerResultExtractor;
 

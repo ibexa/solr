@@ -22,7 +22,7 @@ class Aggregate extends CriterionVisitor
      *
      * @var \Ibexa\Contracts\Solr\Query\CriterionVisitor[]
      */
-    protected $visitors = [];
+    protected array $visitors = [];
 
     /**
      * Construct from optional visitor array.
@@ -46,8 +46,6 @@ class Aggregate extends CriterionVisitor
 
     /**
      * Check if visitor is applicable to current criterion.
-     *
-     * @return bool
      */
     public function canVisit(CriterionInterface $criterion): bool
     {
@@ -58,12 +56,8 @@ class Aggregate extends CriterionVisitor
      * Map field value to a proper Solr representation.
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException
-     *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
-     *
-     * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
         foreach ($this->visitors as $visitor) {
             if ($visitor->canVisit($criterion)) {
@@ -71,6 +65,6 @@ class Aggregate extends CriterionVisitor
             }
         }
 
-        throw new NotImplementedException('No visitor available for: ' . \get_class($criterion));
+        throw new NotImplementedException('No visitor available for: ' . $criterion::class);
     }
 }

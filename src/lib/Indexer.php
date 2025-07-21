@@ -31,7 +31,7 @@ class Indexer extends IncrementalIndexer
         parent::__construct($logger, $persistenceHandler, $connection, $searchHandler);
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'Ibexa Solr Search Engine';
     }
@@ -41,6 +41,9 @@ class Indexer extends IncrementalIndexer
         $this->searchHandler->purgeIndex();
     }
 
+    /**
+     * @param bool $commit
+     */
     public function updateSearchIndex(array $contentIds, $commit): void
     {
         $documents = [];
@@ -54,7 +57,7 @@ class Indexer extends IncrementalIndexer
                 } else {
                     $this->searchHandler->deleteContent($contentId);
                 }
-            } catch (NotFoundException $e) {
+            } catch (NotFoundException) {
                 $this->searchHandler->deleteContent($contentId);
             } catch (Exception $e) {
                 $context = [

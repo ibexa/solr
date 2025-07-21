@@ -17,11 +17,6 @@ use Ibexa\Contracts\Solr\Query\CriterionVisitor;
  */
 class PriorityBetween extends CriterionVisitor
 {
-    /**
-     * Check if visitor is applicable to current criterion.
-     *
-     * @return bool
-     */
     public function canVisit(CriterionInterface $criterion): bool
     {
         return
@@ -36,17 +31,12 @@ class PriorityBetween extends CriterionVisitor
     }
 
     /**
-     * Map field value to a proper Solr representation.
-     *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Location\Priority $criterion
-     *
-     * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $start = $criterion->value[0];
-        $end = isset($criterion->value[1]) ? $criterion->value[1] : null;
+        $end = $criterion->value[1] ?? null;
 
         if (
             ($criterion->operator === Operator::LT) ||

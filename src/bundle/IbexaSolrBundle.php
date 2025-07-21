@@ -36,6 +36,7 @@ class IbexaSolrBundle extends Bundle
         $container->addCompilerPass(new CoreFilterRegistryPass());
     }
 
+    #[\Override]
     public function getContainerExtension(): ?ExtensionInterface
     {
         if (!isset($this->extension)) {

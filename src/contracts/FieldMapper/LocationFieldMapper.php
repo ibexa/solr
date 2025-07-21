@@ -18,15 +18,13 @@ abstract class LocationFieldMapper
 {
     /**
      * Indicates if the mapper accepts given $location for mapping.
-     *
-     * @return bool
      */
-    abstract public function accept(SPILocation $location);
+    abstract public function accept(SPILocation $location): bool;
 
     /**
      * Maps given $location to an array of search fields.
      *
-     * @return \Ibexa\Contracts\Core\Search\Field[]
+     * @return list<\Ibexa\Contracts\Core\Search\Field>
      */
-    abstract public function mapFields(SPILocation $location);
+    abstract public function mapFields(SPILocation $location): array;
 }

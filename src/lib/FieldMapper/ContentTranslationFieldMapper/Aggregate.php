@@ -20,11 +20,10 @@ class Aggregate extends ContentTranslationFieldMapper
      *
      * @var \Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper[]
      */
-    protected $mappers = [];
+    protected array $mappers = [];
 
     /**
-     * @param \Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper[] $mappers
-     *        An array of mappers, sorted by priority.
+     * @param \Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper[] $mappers An array of mappers, sorted by priority.
      */
     public function __construct(array $mappers = [])
     {
@@ -41,15 +40,12 @@ class Aggregate extends ContentTranslationFieldMapper
         $this->mappers[] = $mapper;
     }
 
-    public function accept(Content $content, $languageCode): bool
+    public function accept(Content $content, string $languageCode): bool
     {
         return true;
     }
 
-    /**
-     * @return mixed[]
-     */
-    public function mapFields(Content $content, $languageCode): array
+    public function mapFields(Content $content, string $languageCode): array
     {
         $fields = [];
 

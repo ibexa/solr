@@ -20,8 +20,6 @@ class UserMetadataIn extends CriterionVisitor
 {
     /**
      * Check if visitor is applicable to current criterion.
-     *
-     * @return bool
      */
     public function canVisit(CriterionInterface $criterion): bool
     {
@@ -37,34 +35,21 @@ class UserMetadataIn extends CriterionVisitor
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException
      *
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\UserMetadata $criterion
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
-     *
-     * @return string
      */
     public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
     {
-        switch ($criterion->target) {
-            case Criterion\UserMetadata::MODIFIER:
-                $solrField = 'content_version_creator_user_id_id';
-                break;
-            case Criterion\UserMetadata::OWNER:
-                $solrField = 'content_owner_user_id_id';
-                break;
-            case Criterion\UserMetadata::GROUP:
-                $solrField = 'content_owner_user_group_ids_mid';
-                break;
-
-            default:
-                throw new NotImplementedException('No visitor available for target: ' . $criterion->target . ' with operator: ' . $criterion->operator);
-        }
+        $solrField = match ($criterion->target) {
+            Criterion\UserMetadata::MODIFIER => 'content_version_creator_user_id_id',
+            Criterion\UserMetadata::OWNER => 'content_owner_user_id_id',
+            Criterion\UserMetadata::GROUP => 'content_owner_user_group_ids_mid',
+            default => throw new NotImplementedException('No visitor available for target: ' . $criterion->target . ' with operator: ' . $criterion->operator),
+        };
 
         return '(' .
             implode(
                 ' OR ',
                 array_map(
-                    static function ($value) use ($solrField): string {
-                        return "{$solrField}:\"{$value}\"";
-                    },
+                    static fn ($value): string => "{$solrField}:\"{$value}\"",
                     $criterion->value
                 )
             ) .

@@ -18,7 +18,7 @@ abstract class CoreFilter
     /**
      * Applies conditions on the $query using given $languageSettings.
      *
-     * @param string $documentTypeIdentifier
+     * @param array<string, mixed> $languageSettings
      */
-    abstract public function apply(Query $query, array $languageSettings, $documentTypeIdentifier);
+    abstract public function apply(Query $query, array $languageSettings, string $documentTypeIdentifier): void;
 }

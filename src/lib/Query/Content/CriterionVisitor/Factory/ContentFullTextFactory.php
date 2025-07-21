@@ -21,11 +21,6 @@ use Ibexa\Solr\Query\Content\CriterionVisitor\FullText;
  */
 final class ContentFullTextFactory extends FullTextFactoryAbstract
 {
-    /**
-     * Create FullText Criterion Visitor.
-     *
-     * @return \Ibexa\Contracts\Solr\Query\CriterionVisitor|\Ibexa\Solr\Query\Content\CriterionVisitor\FullText
-     */
     public function createCriterionVisitor(): CriterionVisitor
     {
         return new FullText(

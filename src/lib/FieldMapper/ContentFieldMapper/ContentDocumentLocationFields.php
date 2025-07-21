@@ -11,7 +11,6 @@ use Ibexa\Contracts\Core\Persistence\Bookmark\Handler as BookmarkHandler;
 use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler;
-use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
 use Ibexa\Contracts\Core\Search\Field;
 use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
@@ -21,16 +20,10 @@ use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
  */
 class ContentDocumentLocationFields extends ContentFieldMapper
 {
-    protected Handler $locationHandler;
-
-    private BookmarkHandler $bookmarkHandler;
-
     public function __construct(
-        BookmarkHandler $bookmarkHandler,
-        LocationHandler $locationHandler
+        private readonly BookmarkHandler $bookmarkHandler,
+        protected readonly Handler $locationHandler
     ) {
-        $this->bookmarkHandler = $bookmarkHandler;
-        $this->locationHandler = $locationHandler;
     }
 
     public function accept(Content $content): bool
@@ -38,9 +31,6 @@ class ContentDocumentLocationFields extends ContentFieldMapper
         return true;
     }
 
-    /**
-     * @return \Ibexa\Contracts\Core\Search\Field[]
-     */
     public function mapFields(Content $content): array
     {
         $locations = $this->locationHandler->loadLocationsByContent($content->versionInfo->contentInfo->id);
@@ -94,7 +84,7 @@ class ContentDocumentLocationFields extends ContentFieldMapper
             );
             $fields[] = new Field(
                 'location_ancestors',
-                $locationData['ancestors'],
+                $locationData['ancestors'] ?? [],
                 new FieldType\MultipleIdentifierField()
             );
 
@@ -152,6 +142,9 @@ class ContentDocumentLocationFields extends ContentFieldMapper
         return $fields;
     }
 
+    /**
+     * @return list<string>
+     */
     private function getAncestors(Location $location): array
     {
         $ancestorsIds = explode('/', trim($location->pathString, '/'));

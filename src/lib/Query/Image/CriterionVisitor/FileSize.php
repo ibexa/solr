@@ -14,7 +14,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 
 final class FileSize extends AbstractImageRangeVisitor
 {
-    private const SEARCH_FIELD_FILE_SIZE = 'file_size';
+    private const string SEARCH_FIELD_FILE_SIZE = 'file_size';
 
     public function canVisit(CriterionInterface $criterion): bool
     {

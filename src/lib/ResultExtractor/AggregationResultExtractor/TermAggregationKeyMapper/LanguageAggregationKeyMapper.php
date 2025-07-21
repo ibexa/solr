@@ -12,13 +12,11 @@ use Ibexa\Contracts\Core\Repository\LanguageService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
-final class LanguageAggregationKeyMapper implements TermAggregationKeyMapper
+final readonly class LanguageAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    private LanguageService $languageService;
-
-    public function __construct(LanguageService $languageService)
-    {
-        $this->languageService = $languageService;
+    public function __construct(
+        private LanguageService $languageService
+    ) {
     }
 
     public function map(Aggregation $aggregation, array $languageFilter, array $keys): array

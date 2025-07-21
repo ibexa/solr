@@ -17,12 +17,7 @@ use RuntimeException;
  */
 class LogicalOr extends CriterionVisitor
 {
-    /**
-     * CHeck if visitor is applicable to current criterion.
-     *
-     * @return bool
-     */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return $criterion instanceof Criterion\LogicalOr;
     }
@@ -31,11 +26,8 @@ class LogicalOr extends CriterionVisitor
      * Map field value to a proper Solr representation.
      *
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalOr $criterion
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
-     *
-     * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): false|string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalAnd $criterion */
         if (!isset($criterion->criteria[0])) {
@@ -43,14 +35,12 @@ class LogicalOr extends CriterionVisitor
         }
 
         $subCriteria = array_map(
-            static function ($value) use ($subVisitor) {
-                return $subVisitor->visit($value);
-            },
+            static fn (CriterionInterface $value): string => $subVisitor->visit($value),
             $criterion->criteria
         );
 
         if (\count($subCriteria) === 1) {
-            return reset($subCriteria);
+            return $subCriteria[array_key_first($subCriteria)];
         }
 
         return '(' . implode(' OR ', $subCriteria) . ')';

@@ -17,22 +17,17 @@ use PHPUnit\Framework\TestCase;
 
 class StandaloneDistributionStrategyTest extends TestCase
 {
-    /** @var \Ibexa\Solr\Gateway\DistributionStrategy\StandaloneDistributionStrategy */
     private StandaloneDistributionStrategy $distributionStrategy;
 
-    /** @var \Ibexa\Solr\Gateway\EndpointRegistry|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $endpointRegistry;
-
-    /** @var \Ibexa\Solr\Gateway\EndpointResolver|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $endpointResolver;
+    private EndpointResolver&MockObject $endpointResolver;
 
     protected function setUp(): void
     {
-        $this->endpointRegistry = $this->createEndpointRegistry();
+        $endpointRegistry = $this->createEndpointRegistry();
         $this->endpointResolver = $this->createMock(EndpointResolver::class);
 
         $this->distributionStrategy = new StandaloneDistributionStrategy(
-            $this->endpointRegistry,
+            $endpointRegistry,
             $this->endpointResolver
         );
     }
@@ -80,7 +75,7 @@ class StandaloneDistributionStrategyTest extends TestCase
         ], $this->distributionStrategy->getSearchParameters($parameters, $languagesSettings));
     }
 
-    private function createEndpointRegistry(): MockObject
+    private function createEndpointRegistry(): EndpointRegistry&MockObject
     {
         $endpointRegistry = $this->createMock(EndpointRegistry::class);
         $endpointRegistry

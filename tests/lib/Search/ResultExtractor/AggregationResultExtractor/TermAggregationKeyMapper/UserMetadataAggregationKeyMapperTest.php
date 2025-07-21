@@ -90,7 +90,7 @@ final class UserMetadataAggregationKeyMapperTest extends TestCase
 
         $this->userService
             ->method('loadUser')
-            ->willReturnCallback(static fn ($userId) => $users[$userId] ?? throw new InvalidArgumentException('userId', "Unexpected user ID: $userId"));
+            ->willReturnCallback(static fn ($userId): \PHPUnit\Framework\MockObject\MockObject => $users[$userId] ?? throw new InvalidArgumentException('userId', "Unexpected user ID: $userId"));
 
         return $users;
     }
@@ -110,7 +110,7 @@ final class UserMetadataAggregationKeyMapperTest extends TestCase
         $this->userService
             ->expects(self::any())
             ->method('loadUserGroup')
-            ->willReturnCallback(static fn ($userGroupId) => $userGroups[$userGroupId] ?? throw new InvalidArgumentException('userGroupId', "Unexpected user group ID: $userGroupId"));
+            ->willReturnCallback(static fn ($userGroupId): \PHPUnit\Framework\MockObject\MockObject => $userGroups[$userGroupId] ?? throw new InvalidArgumentException('userGroupId', "Unexpected user group ID: $userGroupId"));
 
         return $userGroups;
     }

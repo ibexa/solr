@@ -19,12 +19,12 @@ class EndpointRegistry
      *
      * @var array<string, Endpoint>
      */
-    protected $endpoint = [];
+    protected array $endpoint = [];
 
     /**
      * Construct from optional array of Endpoints.
      *
-     * @param \Ibexa\Solr\Gateway\Endpoint[] $endpoints
+     * @param array<string, \Ibexa\Solr\Gateway\Endpoint> $endpoints
      */
     public function __construct(array $endpoints = [])
     {
@@ -35,23 +35,16 @@ class EndpointRegistry
 
     /**
      * Registers $endpoint with $name.
-     *
-     * @param string $name
-     * @param \Ibexa\Solr\Gateway\Endpoint $endpoint
      */
-    public function registerEndpoint($name, Endpoint $endpoint): void
+    public function registerEndpoint(string $name, Endpoint $endpoint): void
     {
         $this->endpoint[$name] = $endpoint;
     }
 
     /**
      * Get Endpoint with $name.
-     *
-     * @param string $name
-     *
-     * @return \Ibexa\Solr\Gateway\Endpoint
      */
-    public function getEndpoint($name)
+    public function getEndpoint(string $name): Endpoint
     {
         if (!isset($this->endpoint[$name])) {
             throw new OutOfBoundsException("No endpoint registered for '{$name}'.");
@@ -61,9 +54,7 @@ class EndpointRegistry
     }
 
     /**
-     * Get first Endpoint, for usecases where there is only one.
-     *
-     * @return \Ibexa\Solr\Gateway\Endpoint
+     * Gets first Endpoint, for use cases where there is only one.
      */
     public function getFirstEndpoint(): Endpoint
     {

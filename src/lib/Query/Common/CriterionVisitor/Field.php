@@ -21,17 +21,10 @@ use Ibexa\Core\Search\Common\FieldValueMapper;
  */
 abstract class Field extends CriterionVisitor
 {
-    /**
-     * Field map.
-     */
-    protected FieldNameResolver $fieldNameResolver;
-
-    protected FieldValueMapper $fieldValueMapper;
-
-    public function __construct(FieldNameResolver $fieldNameResolver, FieldValueMapper $fieldValueMapper)
-    {
-        $this->fieldNameResolver = $fieldNameResolver;
-        $this->fieldValueMapper = $fieldValueMapper;
+    public function __construct(
+        protected readonly FieldNameResolver $fieldNameResolver,
+        protected readonly FieldValueMapper $fieldValueMapper
+    ) {
     }
 
     /**
@@ -39,7 +32,7 @@ abstract class Field extends CriterionVisitor
      *
      * @return \Ibexa\Contracts\Core\Search\FieldType[] Array of field types indexed by name.
      */
-    protected function getSearchFields(Criterion $criterion)
+    protected function getSearchFields(Criterion $criterion): array
     {
         return $this->fieldNameResolver->getFieldTypes(
             $criterion,
@@ -49,13 +42,8 @@ abstract class Field extends CriterionVisitor
 
     /**
      * Map search field value to solr value using FieldValueMapper.
-     *
-     * @param mixed $value
-     * @param \Ibexa\Contracts\Core\Search\FieldType $searchFieldType
-     *
-     * @return mixed
      */
-    protected function mapSearchFieldValue($value, FieldType $searchFieldType = null)
+    protected function mapSearchFieldValue(mixed $value, ?FieldType $searchFieldType = null): mixed
     {
         if (null === $searchFieldType) {
             return $value;

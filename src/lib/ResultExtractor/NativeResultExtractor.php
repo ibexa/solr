@@ -11,6 +11,7 @@ use Ibexa\Contracts\Core\Persistence\Content\ContentInfo;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
 use Ibexa\Solr\ResultExtractor;
 use RuntimeException;
+use stdClass;
 
 /**
  * The Native Result Extractor extracts the value object from the data
@@ -19,15 +20,9 @@ use RuntimeException;
 class NativeResultExtractor extends ResultExtractor
 {
     /**
-     * Extracts value object from $hit returned by Solr backend.
-     *
-     * @throws \RuntimeException If search $hit could not be handled
-     *
-     * @param mixed $hit
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ValueObject
+     * @throws \RuntimeException
      */
-    public function extractHit($hit)
+    public function extractHit(stdClass $hit): ContentInfo|Location
     {
         if ($hit->document_type_id === 'content') {
             return $this->extractContentInfoFromHit($hit);
@@ -41,11 +36,23 @@ class NativeResultExtractor extends ResultExtractor
     }
 
     /**
-     * @param mixed $hit
-     *
-     * @return \Ibexa\Contracts\Core\Persistence\Content\ContentInfo
+     * @param object{
+     *     document_type_id: string,
+     *     content_id_id: int|string,
+     *     content_name_s: string,
+     *     content_type_id_id: int|string,
+     *     content_section_id_id: int|string,
+     *     content_version_no_i: int,
+     *     content_owner_user_id_id: int|string,
+     *     content_modification_date_dt: string,
+     *     content_publication_date_dt: string,
+     *     content_always_available_b: bool,
+     *     content_remote_id_id: string,
+     *     content_main_language_code_s: string,
+     *     main_location_id?: int|string
+     * }&\stdClass $hit
      */
-    protected function extractContentInfoFromHit($hit): ContentInfo
+    protected function extractContentInfoFromHit(stdClass $hit): ContentInfo
     {
         $contentInfo = new ContentInfo(
             [
@@ -55,8 +62,8 @@ class NativeResultExtractor extends ResultExtractor
                 'sectionId' => (int)$hit->content_section_id_id,
                 'currentVersionNo' => $hit->content_version_no_i,
                 'ownerId' => (int)$hit->content_owner_user_id_id,
-                'modificationDate' => strtotime($hit->content_modification_date_dt),
-                'publicationDate' => strtotime($hit->content_publication_date_dt),
+                'modificationDate' => strtotime((string) $hit->content_modification_date_dt),
+                'publicationDate' => strtotime((string) $hit->content_publication_date_dt),
                 'alwaysAvailable' => $hit->content_always_available_b,
                 'remoteId' => $hit->content_remote_id_id,
                 'mainLanguageCode' => $hit->content_main_language_code_s,
@@ -72,11 +79,21 @@ class NativeResultExtractor extends ResultExtractor
     }
 
     /**
-     * @param mixed $hit
-     *
-     * @return \Ibexa\Contracts\Core\Persistence\Content\Location
+     * @param object{
+     *     location_id: int|string,
+     *     priority_i: int,
+     *     hidden_b: bool,
+     *     invisible_b: bool,
+     *     remote_id_id: string,
+     *     content_id_id: int|string,
+     *     parent_id_id: int|string,
+     *     path_string_id: string,
+     *     depth_i: int,
+     *     sort_field_id: int|string,
+     *     sort_order_id: int|string
+     * }&\stdClass $hit
      */
-    protected function extractLocationFromHit($hit): Location
+    protected function extractLocationFromHit(stdClass $hit): Location
     {
         return new Location(
             [

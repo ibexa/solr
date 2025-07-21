@@ -22,10 +22,17 @@ final class DateMetadataRangeAggregationVisitorTest extends AbstractAggregationV
         return new DateMetadataRangeAggregationVisitor();
     }
 
+    /**
+     * @return iterable<string, array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     1: array{languages: string[]},
+     *     2: bool
+     * }>
+     */
     public function dataProviderForCanVisit(): iterable
     {
         yield 'true' => [
-             new DateMetadataRangeAggregation('foo', DateMetadataRangeAggregation::PUBLISHED, []),
+            new DateMetadataRangeAggregation('foo', DateMetadataRangeAggregation::PUBLISHED, []),
             self::EXAMPLE_LANGUAGE_FILTER,
             true,
         ];
@@ -37,6 +44,20 @@ final class DateMetadataRangeAggregationVisitorTest extends AbstractAggregationV
         ];
     }
 
+    /**
+     * @return iterable<string, array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\DateMetadataRangeAggregation,
+     *     1: array{languages: string[]},
+     *     2: array{
+     *         type: string,
+     *         q: string,
+     *         facet: array<string, array{
+     *             type: string,
+     *             q: string
+     *         }>
+     *     }
+     * }>
+     */
     public function dataProviderForVisit(): iterable
     {
         $ranges = [

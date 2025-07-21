@@ -21,76 +21,25 @@ use RuntimeException;
  */
 class Native extends Gateway
 {
-    /**
-     * HTTP client to communicate with Solr server.
-     */
-    protected HttpClient $client;
-
-    protected EndpointResolver $endpointResolver;
-
-    /**
-     * Endpoint registry service.
-     */
-    protected EndpointRegistry $endpointRegistry;
-
-    /**
-     * Content Query converter.
-     */
-    protected QueryConverter $contentQueryConverter;
-
-    /**
-     * Location Query converter.
-     */
-    protected QueryConverter $locationQueryConverter;
-
-    protected UpdateSerializerInterface $updateSerializer;
-
-    protected DistributionStrategy $distributionStrategy;
-
     public function __construct(
-        HttpClient $client,
-        EndpointResolver $endpointResolver,
-        EndpointRegistry $endpointRegistry,
-        QueryConverter $contentQueryConverter,
-        QueryConverter $locationQueryConverter,
-        UpdateSerializerInterface $updateSerializer,
-        DistributionStrategy $distributionStrategy
+        protected readonly HttpClient $client,
+        protected readonly EndpointResolver $endpointResolver,
+        protected readonly EndpointRegistry $endpointRegistry,
+        protected readonly QueryConverter $contentQueryConverter,
+        protected readonly QueryConverter $locationQueryConverter,
+        protected readonly UpdateSerializerInterface $updateSerializer,
+        protected readonly DistributionStrategy $distributionStrategy
     ) {
-        $this->client = $client;
-        $this->endpointResolver = $endpointResolver;
-        $this->endpointRegistry = $endpointRegistry;
-        $this->contentQueryConverter = $contentQueryConverter;
-        $this->locationQueryConverter = $locationQueryConverter;
-        $this->updateSerializer = $updateSerializer;
-        $this->distributionStrategy = $distributionStrategy;
     }
 
-    /**
-     * Returns search hits for the given query.
-     *
-     * @phpstan-param array{languages: string[]} $languageSettings
-     *
-     * @param array $languageSettings - a map of filters for the returned fields.
-     *        Currently supported: <code>array("languages" => array(<language1>,..))</code>.
-     *
-     * @return mixed
-     */
-    public function findContent(Query $query, array $languageSettings = [])
+    public function findContent(Query $query, array $languageSettings = []): mixed
     {
         $parameters = $this->contentQueryConverter->convert($query, $languageSettings);
 
         return $this->internalFind($parameters, $languageSettings);
     }
 
-    /**
-     * Returns search hits for the given query.
-     *
-     * @param array $languageSettings - a map of filters for the returned fields.
-     *        Currently supported: <code>array("languages" => array(<language1>,..))</code>.
-     *
-     * @return mixed
-     */
-    public function findLocations(Query $query, array $languageSettings = [])
+    public function findLocations(Query $query, array $languageSettings = []): mixed
     {
         $parameters = $this->locationQueryConverter->convert($query);
 
@@ -100,19 +49,17 @@ class Native extends Gateway
     /**
      * Returns search hits for the given array of Solr query parameters.
      *
-     * @param array $languageSettings - a map of filters for the returned fields.
+     * @param array<string, mixed> $languageSettings - a map of filters for the returned fields.
      *        Currently supported: <code>array("languages" => array(<language1>,..))</code>.
-     *
-     * @return mixed
      */
-    protected function internalFind(array $parameters, array $languageSettings = [])
+    protected function internalFind(array $parameters, array $languageSettings = []): mixed
     {
         $parameters = $this->distributionStrategy->getSearchParameters($parameters, $languageSettings);
 
         return $this->search($parameters);
     }
 
-    public function searchAllEndpoints(Query $query)
+    public function searchAllEndpoints(Query $query): mixed
     {
         $parameters = $this->contentQueryConverter->convert($query);
         $parameters = $this->distributionStrategy->getSearchParameters($parameters);
@@ -125,6 +72,8 @@ class Native extends Gateway
      *
      * Array markers, possibly added for the facet parameters,
      * will be removed from the result.
+     *
+     * @param array<string, mixed> $parameters
      */
     protected function generateQueryString(array $parameters): string
     {
@@ -142,9 +91,7 @@ class Native extends Gateway
      *
      * Only return endpoints if there are more then one configured, as this is meant for use on shard parameter.
      *
-     * @param array $languageSettings
-     *
-     * @return string
+     * @param array<string, mixed> $languageSettings
      */
     protected function getSearchTargets(array $languageSettings): string
     {
@@ -168,8 +115,6 @@ class Native extends Gateway
      * Returns all search targets without language constraint.
      *
      * Only return endpoints if there are more then one configured, as this is meant for use on shard parameter.
-     *
-     * @return string
      */
     protected function getAllSearchTargets(): string
     {
@@ -199,7 +144,7 @@ class Native extends Gateway
      * - On large amounts of data make sure to iterate with several calls to this function with a limited
      *   set of documents, amount you have memory for depends on server, size of documents, & PHP version.
      *
-     * @param \Ibexa\Contracts\Core\Search\Document[][] $documents
+     * @param array<string, list<\Ibexa\Contracts\Core\Search\Document>> $documents
      */
     public function bulkIndexDocuments(array $documents): void
     {
@@ -238,10 +183,8 @@ class Native extends Gateway
 
     /**
      * Returns version of the $document to be indexed in the always available core.
-     *
-     * @return \Ibexa\Contracts\Core\Search\Document
      */
-    protected function getMainTranslationDocument(Document $document)
+    protected function getMainTranslationDocument(Document $document): Document
     {
         // Clone to prevent mutation
         $document = clone $document;
@@ -274,10 +217,9 @@ class Native extends Gateway
     }
 
     /**
-     * @param \Ibexa\Solr\Gateway\Endpoint $endpoint
      * @param \Ibexa\Contracts\Core\Search\Document[] $documents
      */
-    protected function doBulkIndexDocuments(Endpoint $endpoint, array $documents)
+    protected function doBulkIndexDocuments(Endpoint $endpoint, array $documents): void
     {
         $updates = $this->updateSerializer->serialize($documents);
         $result = $this->client->request(
@@ -292,17 +234,18 @@ class Native extends Gateway
             )
         );
 
-        if ($result->headers['status'] !== 200) {
-            throw new RuntimeException('Wrong HTTP status received from Solr: ' . $result->headers['status'] . ' on ' . $endpoint->getURL() . "\n" . var_export($endpoint, true) . "\n" . var_export($result, true) . "\n" . var_export($updates, true));
+        if ((int)$result->headers['status'] !== 200) {
+            throw new RuntimeException('Wrong HTTP status received from Solr: '
+                . (string)$result->headers['status'] . ' on ' . $endpoint->getURL()
+                . "\n" . var_export($endpoint, true) . "\n" . var_export($result, true)
+                . "\n" . var_export($updates, true));
         }
     }
 
     /**
      * Deletes documents by the given $query.
-     *
-     * @param string $query
      */
-    public function deleteByQuery($query): void
+    public function deleteByQuery(string $query): void
     {
         $endpoints = $this->endpointResolver->getEndpoints();
 
@@ -338,11 +281,9 @@ class Native extends Gateway
     }
 
     /**
-     * @param $endpoint
-     *
      * @todo error handling
      */
-    protected function purgeEndpoint(Endpoint $endpoint)
+    protected function purgeEndpoint(Endpoint $endpoint): void
     {
         $this->client->request(
             'POST',
@@ -363,10 +304,8 @@ class Native extends Gateway
      * This will perform Solr 'soft commit', which means there is no guarantee that data
      * is actually written to the stable storage, it is only made available for search.
      * Passing true will also write the data to the safe storage, ensuring durability.
-     *
-     * @param bool $flush
      */
-    public function commit($flush = false): void
+    public function commit(bool $flush = false): void
     {
         $payload = $flush ?
             '<commit/>' :
@@ -385,18 +324,20 @@ class Native extends Gateway
                 )
             );
 
-            if ($result->headers['status'] !== 200) {
-                throw new RuntimeException('Wrong HTTP status received from Solr: ' . $result->headers['status'] . var_export($result, true));
+            if ((int)$result->headers['status'] !== 200) {
+                throw new RuntimeException(
+                    'Wrong HTTP status received from Solr: '
+                    . (string)$result->headers['status']
+                    . var_export($result, true)
+                );
             }
         }
     }
 
     /**
      * Perform request to client to search for records with query string.
-     *
-     * @return mixed
      */
-    protected function search(array $parameters)
+    protected function search(array $parameters): mixed
     {
         $queryString = $this->generateQueryString($parameters);
 

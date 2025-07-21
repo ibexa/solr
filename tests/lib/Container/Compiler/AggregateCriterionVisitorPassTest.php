@@ -15,6 +15,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class AggregateCriterionVisitorPassTest extends AbstractCompilerPassTestCase
 {
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

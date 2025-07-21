@@ -15,6 +15,6 @@ use Ibexa\Solr\FieldMapper\LocationFieldMapper\Aggregate;
  */
 class LocationFieldMapperPass extends BaseFieldMapperPass
 {
-    public const AGGREGATE_MAPPER_SERVICE_ID = Aggregate::class;
-    public const AGGREGATE_MAPPER_SERVICE_TAG = 'ibexa.search.solr.field.mapper.location';
+    public const string AGGREGATE_MAPPER_SERVICE_ID = Aggregate::class;
+    public const string AGGREGATE_MAPPER_SERVICE_TAG = 'ibexa.search.solr.field.mapper.location';
 }

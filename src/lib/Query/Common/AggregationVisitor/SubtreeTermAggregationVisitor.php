@@ -12,16 +12,12 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Location\SubtreeTermAggregation;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 
-final class SubtreeTermAggregationVisitor implements AggregationVisitor
+final readonly class SubtreeTermAggregationVisitor implements AggregationVisitor
 {
-    private string $pathStringFieldName;
-
-    private string $locationIdFieldName;
-
-    public function __construct(string $pathStringFieldName, string $locationIdFieldName)
-    {
-        $this->pathStringFieldName = $pathStringFieldName;
-        $this->locationIdFieldName = $locationIdFieldName;
+    public function __construct(
+        private string $pathStringFieldName,
+        private string $locationIdFieldName
+    ) {
     }
 
     public function canVisit(Aggregation $aggregation, array $languageFilter): bool

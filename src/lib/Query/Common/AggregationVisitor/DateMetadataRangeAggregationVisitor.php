@@ -28,13 +28,10 @@ final class DateMetadataRangeAggregationVisitor extends AbstractRangeAggregation
      */
     protected function getTargetField(AbstractRangeAggregation $aggregation): string
     {
-        switch ($aggregation->getType()) {
-            case DateMetadataRangeAggregation::PUBLISHED:
-                return 'content_publication_date_dt';
-            case DateMetadataRangeAggregation::MODIFIED:
-                return 'content_modification_date_dt';
-            default:
-                throw new RuntimeException("Unsupported DateMetadataRangeAggregation type {$aggregation->getType()}");
-        }
+        return match ($aggregation->getType()) {
+            DateMetadataRangeAggregation::PUBLISHED => 'content_publication_date_dt',
+            DateMetadataRangeAggregation::MODIFIED => 'content_modification_date_dt',
+            default => throw new RuntimeException("Unsupported DateMetadataRangeAggregation type {$aggregation->getType()}"),
+        };
     }
 }

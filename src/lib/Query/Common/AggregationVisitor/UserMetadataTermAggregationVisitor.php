@@ -25,18 +25,14 @@ final class UserMetadataTermAggregationVisitor extends AbstractTermAggregationVi
      */
     protected function getTargetField(AbstractTermAggregation $aggregation): string
     {
-        switch ($aggregation->getType()) {
-            case UserMetadataTermAggregation::OWNER:
-                return 'content_owner_user_id_id';
-            case UserMetadataTermAggregation::GROUP:
-                return 'content_owner_user_group_ids_mid';
-            case UserMetadataTermAggregation::MODIFIER:
-                return 'content_version_creator_user_id_id';
-            default:
-                throw new InvalidArgumentException(
-                    '$type',
-                    'Unsupported UserMetadataTermAggregation type: ' . $aggregation->getType()
-                );
-        }
+        return match ($aggregation->getType()) {
+            UserMetadataTermAggregation::OWNER => 'content_owner_user_id_id',
+            UserMetadataTermAggregation::GROUP => 'content_owner_user_group_ids_mid',
+            UserMetadataTermAggregation::MODIFIER => 'content_version_creator_user_id_id',
+            default => throw new InvalidArgumentException(
+                '$type',
+                'Unsupported UserMetadataTermAggregation type: ' . $aggregation->getType()
+            ),
+        };
     }
 }

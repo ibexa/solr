@@ -16,18 +16,15 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\UserMetadat
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 use InvalidArgumentException;
 
-final class UserMetadataAggregationKeyMapper implements TermAggregationKeyMapper
+final readonly class UserMetadataAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    private UserService $userService;
-
-    public function __construct(UserService $userService)
-    {
-        $this->userService = $userService;
+    public function __construct(
+        private UserService $userService
+    ) {
     }
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation $aggregation
-     * @param string[] $keys
      *
      * @return \Ibexa\Contracts\Core\Repository\Values\User\User[]
      */
@@ -39,7 +36,7 @@ final class UserMetadataAggregationKeyMapper implements TermAggregationKeyMapper
         foreach ($keys as $key) {
             try {
                 $results[$key] = $loader((int)$key);
-            } catch (NotFoundException | UnauthorizedException $e) {
+            } catch (NotFoundException | UnauthorizedException) {
                 // Skip missing users / user groups
             }
         }
@@ -50,20 +47,17 @@ final class UserMetadataAggregationKeyMapper implements TermAggregationKeyMapper
     private function resolveKeyLoader(Aggregation $aggregation): callable
     {
         $type = $aggregation->getType();
-        switch ($type) {
-            case UserMetadataTermAggregation::OWNER:
-            case UserMetadataTermAggregation::MODIFIER:
-                return [$this->userService, 'loadUser'];
-            case UserMetadataTermAggregation::GROUP:
-                return [$this->userService, 'loadUserGroup'];
-        }
 
-        throw new InvalidArgumentException(sprintf(
-            'Expected one of: "%s". Received "%s"',
-            implode('", "', [
-                UserMetadataTermAggregation::OWNER, UserMetadataTermAggregation::MODIFIER, UserMetadataTermAggregation::GROUP,
-            ]),
-            $type,
-        ));
+        return match ($type) {
+            UserMetadataTermAggregation::OWNER, UserMetadataTermAggregation::MODIFIER => $this->userService->loadUser(...),
+            UserMetadataTermAggregation::GROUP => $this->userService->loadUserGroup(...),
+            default => throw new InvalidArgumentException(sprintf(
+                'Expected one of: "%s". Received "%s"',
+                implode('", "', [
+                    UserMetadataTermAggregation::OWNER, UserMetadataTermAggregation::MODIFIER, UserMetadataTermAggregation::GROUP,
+                ]),
+                $type,
+            )),
+        };
     }
 }

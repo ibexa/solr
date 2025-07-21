@@ -19,8 +19,6 @@ use Symfony\Component\DependencyInjection\Reference;
 class EndpointRegistryPass implements CompilerPassInterface
 {
     /**
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     *
      * @throws \LogicException
      */
     public function process(ContainerBuilder $container): void

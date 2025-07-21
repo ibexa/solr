@@ -18,37 +18,13 @@ use Ibexa\Solr\Query\QueryConverter;
  */
 class NativeQueryConverter extends QueryConverter
 {
-    /**
-     * Query visitor.
-     */
-    protected CriterionVisitor $criterionVisitor;
-
-    /**
-     * Sort clause visitor.
-     */
-    protected SortClauseVisitor $sortClauseVisitor;
-
-    private AggregationVisitor $aggregationVisitor;
-
-    /**
-     * Construct from visitors.
-     *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $criterionVisitor
-     * @param \Ibexa\Contracts\Solr\Query\SortClauseVisitor $sortClauseVisitor
-     */
     public function __construct(
-        CriterionVisitor $criterionVisitor,
-        SortClauseVisitor $sortClauseVisitor,
-        AggregationVisitor $aggregationVisitor
+        protected readonly CriterionVisitor $criterionVisitor,
+        protected readonly SortClauseVisitor $sortClauseVisitor,
+        private readonly AggregationVisitor $aggregationVisitor
     ) {
-        $this->criterionVisitor = $criterionVisitor;
-        $this->sortClauseVisitor = $sortClauseVisitor;
-        $this->aggregationVisitor = $aggregationVisitor;
     }
 
-    /**
-     * @return mixed[]
-     */
     public function convert(Query $query, array $languageSettings = []): array
     {
         $params = [
@@ -93,15 +69,13 @@ class NativeQueryConverter extends QueryConverter
      * Converts an array of sort clause objects to a proper Solr representation.
      *
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause[] $sortClauses
-     *
-     * @return string
      */
     private function getSortClauses(array $sortClauses): string
     {
         return implode(
             ', ',
             array_map(
-                [$this->sortClauseVisitor, 'visit'],
+                $this->sortClauseVisitor->visit(...),
                 $sortClauses
             )
         );

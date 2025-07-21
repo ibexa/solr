@@ -17,35 +17,16 @@ use Ibexa\Core\Search\Common\FieldNameResolver;
  */
 class Field extends SortClauseVisitor
 {
-    /**
-     * Field name resolver.
-     */
-    protected FieldNameResolver $fieldNameResolver;
-
-    /**
-     * Create from field name resolver.
-     *
-     * @param \Ibexa\Core\Search\Common\FieldNameResolver $fieldNameResolver
-     */
-    public function __construct(FieldNameResolver $fieldNameResolver)
-    {
-        $this->fieldNameResolver = $fieldNameResolver;
+    public function __construct(
+        protected readonly FieldNameResolver $fieldNameResolver
+    ) {
     }
 
-    /**
-     * Get sort field name.
-     *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
-     * @param string $contentTypeIdentifier
-     * @param string $fieldDefinitionIdentifier
-     *
-     * @return array
-     */
     protected function getSortFieldName(
         SortClause $sortClause,
-        $contentTypeIdentifier,
-        $fieldDefinitionIdentifier
-    ) {
+        string $contentTypeIdentifier,
+        string $fieldDefinitionIdentifier
+    ): ?string {
         return $this->fieldNameResolver->getSortFieldName(
             $sortClause,
             $contentTypeIdentifier,
@@ -53,14 +34,7 @@ class Field extends SortClauseVisitor
         );
     }
 
-    /**
-     * Check if visitor is applicable to the $sortClause.
-     *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
-     *
-     * @return bool
-     */
-    public function canVisit(SortClause $sortClause)
+    public function canVisit(SortClause $sortClause): bool
     {
         return $sortClause instanceof SortClause\Field;
     }
@@ -68,12 +42,7 @@ class Field extends SortClauseVisitor
     /**
      * Map the $sortClause to a proper Solr representation.
      *
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException If no sortable fields are
-     *         found for the given sort clause target.
-     *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
-     *
-     * @return string
+     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException If no sortable fields are found for the given sort clause target.
      */
     public function visit(SortClause $sortClause): string
     {

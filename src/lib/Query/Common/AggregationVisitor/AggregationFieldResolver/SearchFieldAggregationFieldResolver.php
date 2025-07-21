@@ -11,13 +11,11 @@ namespace Ibexa\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver;
 
-final class SearchFieldAggregationFieldResolver implements AggregationFieldResolver
+final readonly class SearchFieldAggregationFieldResolver implements AggregationFieldResolver
 {
-    private string $searchIndexFieldName;
-
-    public function __construct(string $searchIndexFieldName)
-    {
-        $this->searchIndexFieldName = $searchIndexFieldName;
+    public function __construct(
+        private string $searchIndexFieldName
+    ) {
     }
 
     public function resolveTargetField(Aggregation $aggregation): string

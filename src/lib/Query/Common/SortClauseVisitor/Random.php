@@ -17,22 +17,14 @@ class Random extends SortClauseVisitor
 {
     /**
      * Check if visitor is applicable to current sortClause.
-     *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
-     *
-     * @return bool
      */
-    public function canVisit(SortClause $sortClause)
+    public function canVisit(SortClause $sortClause): bool
     {
         return $sortClause instanceof SortClause\Random;
     }
 
     /**
      * Map field value to a proper Solr representation.
-     *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
-     *
-     * @return string
      */
     public function visit(SortClause $sortClause): string
     {

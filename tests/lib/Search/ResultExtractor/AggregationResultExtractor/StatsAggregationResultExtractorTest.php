@@ -22,6 +22,13 @@ final class StatsAggregationResultExtractorTest extends AbstractAggregationResul
         return new StatsAggregationResultExtractor(AbstractStatsAggregation::class);
     }
 
+    /**
+     * @return iterable<string, array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     1: array{},
+     *     2: bool
+     * }>
+     */
     public function dataProviderForTestCanVisit(): iterable
     {
         yield 'true' => [
@@ -37,6 +44,14 @@ final class StatsAggregationResultExtractorTest extends AbstractAggregationResul
         ];
     }
 
+    /**
+     * @return iterable<string, array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     1: array{},
+     *     2: \stdClass,
+     *     3: \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\StatsAggregationResult
+     * }>
+     */
     public function dataProviderForTestExtract(): iterable
     {
         $aggregation = $this->createMock(AbstractStatsAggregation::class);

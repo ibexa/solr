@@ -12,19 +12,15 @@ use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
-final class ContentTypeAggregationKeyMapper implements TermAggregationKeyMapper
+final readonly class ContentTypeAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    private ContentTypeService $contentTypeService;
-
-    public function __construct(ContentTypeService $contentTypeService)
-    {
-        $this->contentTypeService = $contentTypeService;
+    public function __construct(
+        private ContentTypeService $contentTypeService
+    ) {
     }
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ContentTypeTermAggregation $aggregation
-     * @param array $languageFilter
-     * @param string[] $keys
      *
      * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType[]
      */

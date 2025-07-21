@@ -9,31 +9,20 @@ declare(strict_types=1);
 namespace Ibexa\Bundle\Solr\ApiLoader;
 
 use Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface;
+use Ibexa\Solr\FieldMapper\IndexingDepthProvider;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class IndexingDepthProviderFactory
+readonly class IndexingDepthProviderFactory
 {
-    private ContainerInterface $container;
-
-    private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider;
-
-    private string $defaultConnection;
-
-    private string $indexingDepthProviderClass;
-
     public function __construct(
-        ContainerInterface $container,
-        RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
-        string $defaultConnection,
-        string $indexingDepthProviderClass
+        private ContainerInterface $container,
+        private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
+        private string $defaultConnection,
+        private string $indexingDepthProviderClass
     ) {
-        $this->container = $container;
-        $this->repositoryConfigurationProvider = $repositoryConfigurationProvider;
-        $this->defaultConnection = $defaultConnection;
-        $this->indexingDepthProviderClass = $indexingDepthProviderClass;
     }
 
-    public function buildService()
+    public function buildService(): IndexingDepthProvider
     {
         $repositoryConfig = $this->repositoryConfigurationProvider->getRepositoryConfig();
 
@@ -42,6 +31,7 @@ class IndexingDepthProviderFactory
             $connection = $repositoryConfig['search']['connection'];
         }
 
+        /** @var \Ibexa\Solr\FieldMapper\IndexingDepthProvider */
         return new $this->indexingDepthProviderClass(
             $this->container->getParameter(
                 "ibexa.solr.connection.{$connection}.indexing_depth.map"

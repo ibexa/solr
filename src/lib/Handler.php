@@ -45,63 +45,22 @@ use Ibexa\Core\Base\Exceptions\NotFoundException;
 class Handler implements VersatileHandler
 {
     /* Solr's maxBooleanClauses config value is 1024 */
-    public const SOLR_BULK_REMOVE_LIMIT = 1000;
+    public const int SOLR_BULK_REMOVE_LIMIT = 1000;
     /* 16b max unsigned integer value due to Solr (JVM) limitations */
-    public const SOLR_MAX_QUERY_LIMIT = 65535;
-    public const DEFAULT_QUERY_LIMIT = 1000;
-
-    /**
-     * Content locator gateway.
-     */
-    protected Gateway $gateway;
-
-    /**
-     * Content handler.
-     */
-    protected ContentHandler $contentHandler;
-
-    /**
-     * Document mapper.
-     */
-    protected DocumentMapper $mapper;
-
-    /**
-     * Content result extractor.
-     */
-    protected ResultExtractor $contentResultExtractor;
-
-    /**
-     * Location result extractor.
-     */
-    protected ResultExtractor $locationResultExtractor;
-
-    /**
-     * Core filter service.
-     */
-    protected CoreFilter $coreFilter;
+    public const int SOLR_MAX_QUERY_LIMIT = 65535;
+    public const int DEFAULT_QUERY_LIMIT = 1000;
 
     /**
      * Creates a new content handler.
-     *
-     * @param \Ibexa\Solr\Gateway $gateway
-     * @param \Ibexa\Contracts\Solr\DocumentMapper $mapper
-     * @param \Ibexa\Solr\ResultExtractor $resultExtractor
-     * @param \Ibexa\Solr\CoreFilter $coreFilter
      */
     public function __construct(
-        Gateway $gateway,
-        ContentHandler $contentHandler,
-        DocumentMapper $mapper,
-        ResultExtractor $contentResultExtractor,
-        ResultExtractor $locationResultExtractor,
-        CoreFilter $coreFilter
+        protected Gateway $gateway,
+        protected ContentHandler $contentHandler,
+        protected DocumentMapper $mapper,
+        protected ResultExtractor $contentResultExtractor,
+        protected ResultExtractor $locationResultExtractor,
+        protected CoreFilter $coreFilter
     ) {
-        $this->gateway = $gateway;
-        $this->contentHandler = $contentHandler;
-        $this->mapper = $mapper;
-        $this->contentResultExtractor = $contentResultExtractor;
-        $this->locationResultExtractor = $locationResultExtractor;
-        $this->coreFilter = $coreFilter;
     }
 
     public function findContent(Query $query, array $languageFilter = []): SearchResult
@@ -180,10 +139,8 @@ class Handler implements VersatileHandler
      *
      * @param string $prefix
      * @param string[] $fieldPaths
-     * @param int $limit
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion $filter
      */
-    public function suggest($prefix, $fieldPaths = [], $limit = 10, Criterion $filter = null)
+    public function suggest($prefix, $fieldPaths = [], $limit = 10, Criterion $filter = null): never
     {
         throw new \Exception('@todo: Not implemented yet.');
     }
@@ -220,7 +177,7 @@ class Handler implements VersatileHandler
         foreach ($contentObjects as $content) {
             try {
                 $documents[] = $this->mapper->mapContentBlock($content);
-            } catch (NotFoundException $ex) {
+            } catch (NotFoundException) {
                 // ignore content objects without assigned state id
             }
         }
@@ -247,7 +204,7 @@ class Handler implements VersatileHandler
      */
     public function deleteContent($contentId, $versionId = null): void
     {
-        $idPrefix = $this->mapper->generateContentDocumentId($contentId);
+        $idPrefix = $this->mapper->generateContentDocumentId((int)$contentId);
 
         $this->gateway->deleteByQuery("_root_:{$idPrefix}*");
     }
@@ -260,8 +217,8 @@ class Handler implements VersatileHandler
      */
     public function deleteLocation($locationId, $contentId): void
     {
-        $this->deleteAllItemsWithoutAdditionalLocation($locationId);
-        $this->updateAllElementsWithAdditionalLocation($locationId);
+        $this->deleteAllItemsWithoutAdditionalLocation((int)$locationId);
+        $this->updateAllElementsWithAdditionalLocation((int)$locationId);
     }
 
     /**
@@ -280,18 +237,13 @@ class Handler implements VersatileHandler
      * Passing true will also write the data to the safe storage, ensuring durability.
      *
      * @see bulkIndexContent() For info on why this is not on an SPI Interface yet.
-     *
-     * @param bool $flush
      */
-    public function commit($flush = false): void
+    public function commit(bool $flush = false): void
     {
         $this->gateway->commit($flush);
     }
 
-    /**
-     * @param $locationId
-     */
-    protected function deleteAllItemsWithoutAdditionalLocation($locationId)
+    protected function deleteAllItemsWithoutAdditionalLocation(int $locationId): void
     {
         $query = $this->prepareQuery(self::SOLR_MAX_QUERY_LIMIT);
         $query->filter = new Criterion\LogicalAnd(
@@ -308,7 +260,7 @@ class Handler implements VersatileHandler
         $contentDocumentIds = [];
 
         foreach ($searchResult->searchHits as $hit) {
-            $contentDocumentIds[] = $this->mapper->generateContentDocumentId($hit->valueObject->id) . '*';
+            $contentDocumentIds[] = $this->mapper->generateContentDocumentId((int)$hit->valueObject->id) . '*';
         }
 
         foreach (array_chunk(array_unique($contentDocumentIds), self::SOLR_BULK_REMOVE_LIMIT) as $ids) {
@@ -317,10 +269,7 @@ class Handler implements VersatileHandler
         }
     }
 
-    /**
-     * @param $locationId
-     */
-    protected function updateAllElementsWithAdditionalLocation($locationId)
+    protected function updateAllElementsWithAdditionalLocation(int $locationId): void
     {
         $query = $this->prepareQuery(self::SOLR_MAX_QUERY_LIMIT);
         $query->filter = new Criterion\LogicalAnd(
@@ -338,7 +287,7 @@ class Handler implements VersatileHandler
         foreach ($searchResult->searchHits as $searchHit) {
             try {
                 $contentInfo = $this->contentHandler->loadContentInfo($searchHit->valueObject->id);
-            } catch (NotFoundException $e) {
+            } catch (NotFoundException) {
                 continue;
             }
 
@@ -350,12 +299,8 @@ class Handler implements VersatileHandler
 
     /**
      * Prepare standard query for delete purpose.
-     *
-     * @param int $limit
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query
      */
-    protected function prepareQuery($limit = self::DEFAULT_QUERY_LIMIT): Query
+    protected function prepareQuery(int $limit = self::DEFAULT_QUERY_LIMIT): Query
     {
         return new Query(
             [
@@ -366,12 +311,7 @@ class Handler implements VersatileHandler
         );
     }
 
-    /**
-     * @param int $locationId
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CustomField
-     */
-    protected function allItemsWithinLocation($locationId): CustomField
+    protected function allItemsWithinLocation(int $locationId): CustomField
     {
         return new CustomField(
             'location_path_string_mid',
@@ -382,8 +322,6 @@ class Handler implements VersatileHandler
 
     /**
      * @param int $locationId
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CustomField
      */
     protected function allItemsWithinLocationWithAdditionalLocation($locationId): CustomField
     {
@@ -397,9 +335,9 @@ class Handler implements VersatileHandler
     /**
      * Generate search document for Content object to be indexed by a search engine.
      *
-     * @return \Ibexa\Contracts\Core\Search\Document
+     * @return list<\Ibexa\Contracts\Core\Search\Document>
      */
-    public function generateDocument(Content $content)
+    public function generateDocument(Content $content): array
     {
         return $this->mapper->mapContentBlock($content);
     }
@@ -412,7 +350,7 @@ class Handler implements VersatileHandler
      * - On large amounts of data make sure to iterate with several calls to this function with a limited
      *   set of content objects, amount you have memory for depends on server, size of objects, & PHP version.
      *
-     * @param \Ibexa\Contracts\Core\Search\Document[] $documents
+     * @param \Ibexa\Contracts\Core\Search\Document[][] $documents
      */
     public function bulkIndexDocuments(array $documents): void
     {
@@ -421,16 +359,10 @@ class Handler implements VersatileHandler
 
     public function supports(int $capabilityFlag): bool
     {
-        switch ($capabilityFlag) {
-            case SearchService::CAPABILITY_SCORING:
-            case SearchService::CAPABILITY_CUSTOM_FIELDS:
-            case SearchService::CAPABILITY_SPELLCHECK:
-            case SearchService::CAPABILITY_ADVANCED_FULLTEXT:
-            case SearchService::CAPABILITY_AGGREGATIONS:
-                return true;
-            default:
-                return false;
-        }
+        return match ($capabilityFlag) {
+            SearchService::CAPABILITY_SCORING, SearchService::CAPABILITY_CUSTOM_FIELDS, SearchService::CAPABILITY_SPELLCHECK, SearchService::CAPABILITY_ADVANCED_FULLTEXT, SearchService::CAPABILITY_AGGREGATIONS => true,
+            default => false,
+        };
     }
 
     /**

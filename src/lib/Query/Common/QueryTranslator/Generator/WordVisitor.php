@@ -16,7 +16,11 @@ use QueryTranslator\Values\Node;
  */
 class WordVisitor extends WordBase
 {
-    public function visit(Node $node, Visitor $subVisitor = null, $options = null): string
+    /**
+     * @param array<string, mixed>|null $options
+     */
+    #[\Override]
+    public function visit(Node $node, ?Visitor $subVisitor = null, $options = null): string
     {
         $word = parent::visit($node, $subVisitor, $options);
 
@@ -33,6 +37,8 @@ class WordVisitor extends WordBase
      *
      * Note: additionally to what is defined above we also escape blank space,
      * and we don't escape an asterisk.
+     *
+     * @param string $string
      */
     protected function escapeWord($string): ?string
     {

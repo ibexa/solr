@@ -16,16 +16,10 @@ use Ibexa\Core\Search\Common\FieldNameResolver;
 
 abstract class AbstractImageVisitor extends CriterionVisitor
 {
-    private FieldNameResolver $fieldNameResolver;
-
-    private Type $imageFieldType;
-
     public function __construct(
-        FieldNameResolver $fieldNameResolver,
-        Type $imageFieldType
+        private readonly FieldNameResolver $fieldNameResolver,
+        private readonly Type $imageFieldType
     ) {
-        $this->fieldNameResolver = $fieldNameResolver;
-        $this->imageFieldType = $imageFieldType;
     }
 
     abstract protected function getSearchFieldName(): string;
@@ -33,7 +27,7 @@ abstract class AbstractImageVisitor extends CriterionVisitor
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Image\AbstractImageRangeCriterion $criterion
      *
-     * @return array<string>
+     * @return list<string>
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
@@ -48,7 +42,7 @@ abstract class AbstractImageVisitor extends CriterionVisitor
             )
         );
 
-        if (empty($searchFieldNames)) {
+        if ($searchFieldNames === []) {
             throw new InvalidArgumentException(
                 '$criterion->target',
                 "No searchable Fields found for the provided Criterion target '{$criterion->target}'."

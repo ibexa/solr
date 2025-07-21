@@ -14,51 +14,22 @@ use Ibexa\Solr\CoreFilter\CoreFilterRegistry;
 use Ibexa\Solr\Gateway\GatewayRegistry;
 use Ibexa\Solr\ResultExtractor;
 
-class SolrEngineFactory
+readonly class SolrEngineFactory
 {
-    private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider;
-
-    /** @var string */
-    private $defaultConnection;
-
-    /** @var string */
-    private $searchEngineClass;
-
-    private GatewayRegistry $gatewayRegistry;
-
-    private CoreFilterRegistry $coreFilterRegistry;
-
-    private Handler $contentHandler;
-
-    private DocumentMapper $documentMapper;
-
-    private ResultExtractor $contentResultExtractor;
-
-    private ResultExtractor $locationResultExtractor;
-
     public function __construct(
-        RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
-        $defaultConnection,
-        $searchEngineClass,
-        GatewayRegistry $gatewayRegistry,
-        CoreFilterRegistry $coreFilterRegistry,
-        Handler $contentHandler,
-        DocumentMapper $documentMapper,
-        ResultExtractor $contentResultExtractor,
-        ResultExtractor $locationResultExtractor
+        private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
+        private string $defaultConnection,
+        private string $searchEngineClass,
+        private GatewayRegistry $gatewayRegistry,
+        private CoreFilterRegistry $coreFilterRegistry,
+        private Handler $contentHandler,
+        private DocumentMapper $documentMapper,
+        private ResultExtractor $contentResultExtractor,
+        private ResultExtractor $locationResultExtractor
     ) {
-        $this->repositoryConfigurationProvider = $repositoryConfigurationProvider;
-        $this->defaultConnection = $defaultConnection;
-        $this->searchEngineClass = $searchEngineClass;
-        $this->gatewayRegistry = $gatewayRegistry;
-        $this->coreFilterRegistry = $coreFilterRegistry;
-        $this->contentHandler = $contentHandler;
-        $this->documentMapper = $documentMapper;
-        $this->contentResultExtractor = $contentResultExtractor;
-        $this->locationResultExtractor = $locationResultExtractor;
     }
 
-    public function buildEngine()
+    public function buildEngine(): \Ibexa\Solr\Handler
     {
         $repositoryConfig = $this->repositoryConfigurationProvider->getRepositoryConfig();
 
@@ -67,6 +38,7 @@ class SolrEngineFactory
         $gateway = $this->gatewayRegistry->getGateway($connection);
         $coreFilter = $this->coreFilterRegistry->getCoreFilter($connection);
 
+        /** @var \Ibexa\Solr\Handler */
         return new $this->searchEngineClass(
             $gateway,
             $this->contentHandler,

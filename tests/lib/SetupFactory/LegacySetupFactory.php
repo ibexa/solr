@@ -31,9 +31,9 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
  */
 class LegacySetupFactory extends CoreLegacySetupFactory
 {
-    public const CONFIGURATION_FILES_MAP = SolrTestContainerBuilder::CONFIGURATION_FILES_MAP;
+    public const array CONFIGURATION_FILES_MAP = SolrTestContainerBuilder::CONFIGURATION_FILES_MAP;
 
-    private SolrTestContainerBuilder $containerBuilder;
+    private readonly SolrTestContainerBuilder $containerBuilder;
 
     public function __construct()
     {
@@ -44,12 +44,9 @@ class LegacySetupFactory extends CoreLegacySetupFactory
 
     /**
      * Returns a configured repository for testing.
-     *
-     * @param bool $initializeFromScratch
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Repository
      */
-    public function getRepository($initializeFromScratch = true): Repository
+    #[\Override]
+    public function getRepository(bool $initializeFromScratch = true): Repository
     {
         // Load repository first so all initialization steps are done
         $repository = parent::getRepository($initializeFromScratch);
@@ -64,6 +61,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
     /**
      * @throws \Exception
      */
+    #[\Override]
     protected function externalBuildContainer(ContainerBuilder $containerBuilder): void
     {
         parent::externalBuildContainer($containerBuilder);

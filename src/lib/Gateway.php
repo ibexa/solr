@@ -18,29 +18,23 @@ abstract class Gateway
     /**
      * Returns search hits for the given query.
      *
-     * @param array $fieldFilters - a map of filters for the returned fields.
+     * @param array<string, mixed> $fieldFilters - a map of filters for the returned fields.
      *        Currently supported: <code>array("languages" => array(<language1>,..))</code>.
-     *
-     * @return mixed
      */
-    abstract public function findContent(Query $query, array $fieldFilters = []);
+    abstract public function findContent(Query $query, array $fieldFilters = []): mixed;
 
     /**
      * Returns search hits for the given query.
      *
-     * @param array $fieldFilters - a map of filters for the returned fields.
+     * @param array<string, mixed> $fieldFilters - a map of filters for the returned fields.
      *        Currently supported: <code>array("languages" => array(<language1>,..))</code>.
-     *
-     * @return mixed
      */
-    abstract public function findLocations(Query $query, array $fieldFilters = []);
+    abstract public function findLocations(Query $query, array $fieldFilters = []): mixed;
 
     /**
      * Returns all search hits for given query, that will be performed on all endpoints.
-     *
-     * @return mixed
      */
-    abstract public function searchAllEndpoints(Query $query);
+    abstract public function searchAllEndpoints(Query $query): mixed;
 
     /**
      * Indexes an array of documents.
@@ -54,15 +48,13 @@ abstract class Gateway
 
     /**
      * Deletes documents by the given $query.
-     *
-     * @param string $query
      */
-    abstract public function deleteByQuery($query);
+    abstract public function deleteByQuery(string $query);
 
     /**
      * Purges all contents from the index.
      */
-    abstract public function purgeIndex();
+    abstract public function purgeIndex(): void;
 
     /**
      * Commits the data to the Solr index, making it available for search.
@@ -70,8 +62,6 @@ abstract class Gateway
      * This will perform Solr 'soft commit', which means there is no guarantee that data
      * is actually written to the stable storage, it is only made available for search.
      * Passing true will also write the data to the safe storage, ensuring durability.
-     *
-     * @param bool $flush
      */
-    abstract public function commit($flush = false);
+    abstract public function commit(bool $flush = false): void;
 }

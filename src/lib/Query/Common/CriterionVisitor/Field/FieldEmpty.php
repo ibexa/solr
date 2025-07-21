@@ -24,16 +24,12 @@ use Ibexa\Solr\Query\Common\CriterionVisitor\Field;
  */
 final class FieldEmpty extends Field
 {
-    private FieldNameGenerator $fieldNameGenerator;
-
     public function __construct(
         FieldNameResolver $fieldNameResolver,
         FieldValueMapper $fieldValueMapper,
-        FieldNameGenerator $fieldNameGenerator
+        private readonly FieldNameGenerator $fieldNameGenerator
     ) {
         parent::__construct($fieldNameResolver, $fieldValueMapper);
-
-        $this->fieldNameGenerator = $fieldNameGenerator;
     }
 
     /**
@@ -50,9 +46,8 @@ final class FieldEmpty extends Field
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException If no searchable fields are found for the given criterion target.
      *
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\IsFieldEmpty $criterion
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $searchFields = $this->getSearchFields($criterion);
 

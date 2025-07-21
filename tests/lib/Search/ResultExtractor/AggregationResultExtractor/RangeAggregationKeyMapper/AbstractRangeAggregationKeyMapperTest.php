@@ -10,16 +10,19 @@ namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\Ran
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 abstract class AbstractRangeAggregationKeyMapperTest extends TestCase
 {
-    protected const EXAMPLE_LANGUAGE_FILTER = [];
+    protected const array EXAMPLE_LANGUAGE_FILTER = [];
 
     /**
      * @dataProvider dataProviderForTestMap
+     *
+     * @param array{} $languageFilter
      */
-    final public function testMap(Aggregation $aggregation, array $languageFilter, string $key, $expectedResult): void
+    final public function testMap(Aggregation $aggregation, array $languageFilter, string $key, mixed $expectedResult): void
     {
         $mapper = $this->createRangeAggregationKeyMapper();
 
@@ -29,11 +32,19 @@ abstract class AbstractRangeAggregationKeyMapperTest extends TestCase
         );
     }
 
+    /**
+     * @return iterable<string, array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation&\PHPUnit\Framework\MockObject\MockObject,
+     *     1: array{},
+     *     2: string,
+     *     3: mixed,
+     * }>
+     */
     abstract public function dataProviderForTestMap(): iterable;
 
     abstract protected function createRangeAggregationKeyMapper(): RangeAggregationKeyMapper;
 
-    protected function createAggregationMock(): Aggregation
+    protected function createAggregationMock(): Aggregation&MockObject
     {
         return $this->createMock(Aggregation::class);
     }

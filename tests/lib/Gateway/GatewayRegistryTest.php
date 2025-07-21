@@ -10,6 +10,7 @@ namespace Ibexa\Tests\Solr\Gateway;
 use Ibexa\Solr\Gateway;
 use Ibexa\Solr\Gateway\GatewayRegistry;
 use OutOfBoundsException;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class GatewayRegistryTest extends TestCase
@@ -81,10 +82,7 @@ class GatewayRegistryTest extends TestCase
         self::assertCount(1, $registry->getGateways());
     }
 
-    /**
-     * @return \Ibexa\Solr\Gateway|\PHPUnit\Framework\MockObject\MockObject
-     */
-    private function getGatewayMock(): Gateway
+    private function getGatewayMock(): Gateway&MockObject
     {
         return $this->createMock(Gateway::class);
     }

@@ -23,18 +23,13 @@ final class RangeAggregationResultExtractorTest extends AbstractAggregationResul
 {
     private RangeAggregationKeyMapper&MockObject $keyMapper;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->keyMapper = $this->createMock(RangeAggregationKeyMapper::class);
         $this->keyMapper
             ->method('map')
-            ->willReturnCallback(static function (
-                Aggregation $aggregation,
-                array $languageFilter,
-                string $key
-            ): ?string {
-                return $key !== '*' ? $key : null;
-            });
+            ->willReturnCallback(static fn (Aggregation $aggregation, array $languageFilter, string $key): ?string => $key !== '*' ? $key : null);
 
         $this->extractor = $this->createExtractor();
     }
@@ -44,6 +39,13 @@ final class RangeAggregationResultExtractorTest extends AbstractAggregationResul
         return new RangeAggregationResultExtractor(AbstractRangeAggregation::class, $this->keyMapper);
     }
 
+    /**
+     * @return iterable<string, array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     1: array{},
+     *     2: bool
+     * }>
+     */
     public function dataProviderForTestCanVisit(): iterable
     {
         yield 'true' => [
@@ -59,6 +61,14 @@ final class RangeAggregationResultExtractorTest extends AbstractAggregationResul
         ];
     }
 
+    /**
+     * @return iterable<string, array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     1: array{},
+     *     2: \stdClass,
+     *     3: \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\RangeAggregationResult
+     * }>
+     */
     public function dataProviderForTestExtract(): iterable
     {
         $aggregation = $this->createMock(AbstractRangeAggregation::class);

@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 final class GatewayRegistryPass implements CompilerPassInterface
 {
-    public const GATEWAY_SERVICE_TAG = 'ibexa.search.solr.gateway';
+    public const string GATEWAY_SERVICE_TAG = 'ibexa.search.solr.gateway';
 
     public function process(ContainerBuilder $container): void
     {

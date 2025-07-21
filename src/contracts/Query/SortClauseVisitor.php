@@ -15,25 +15,19 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
 abstract class SortClauseVisitor
 {
     /**
-     * CHeck if visitor is applicable to current sort clause.
-     *
-     * @return bool
+     * Check if visitor is applicable to current sort clause.
      */
-    abstract public function canVisit(SortClause $sortClause);
+    abstract public function canVisit(SortClause $sortClause): bool;
 
     /**
      * Map field value to a proper Solr representation.
-     *
-     * @return string
      */
-    abstract public function visit(SortClause $sortClause);
+    abstract public function visit(SortClause $sortClause): string;
 
     /**
      * Get solr sort direction for sort clause.
-     *
-     * @return string
      */
-    protected function getDirection(SortClause $sortClause)
+    protected function getDirection(SortClause $sortClause): string
     {
         return ' ' . ($sortClause->direction === 'descending' ? 'desc' : 'asc');
     }

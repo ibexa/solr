@@ -71,6 +71,7 @@ class IbexaSolrExtension extends ConfigurableExtension
 
     public const string GATEWAY_UPDATE_SERIALIZER_TAG = 'ibexa.solr.gateway.serializer.update';
 
+    #[\Override]
     public function getAlias(): string
     {
         return 'ibexa_solr';
@@ -125,10 +126,9 @@ class IbexaSolrExtension extends ConfigurableExtension
                 $config['default_connection']
             );
         } elseif (!empty($config['connections'])) {
-            reset($config['connections']);
             $container->setParameter(
                 "{$alias}.default_connection",
-                key($config['connections'])
+                array_key_first($config['connections'])
             );
         }
 
@@ -265,6 +265,7 @@ class IbexaSolrExtension extends ConfigurableExtension
     /**
      * @param array<array<mixed>> $config
      */
+    #[\Override]
     public function getConfiguration(array $config, ContainerBuilder $container): ?ConfigurationInterface
     {
         return new Configuration($this->getAlias());

@@ -7,6 +7,7 @@
 
 namespace Ibexa\Solr\Gateway\EndpointResolver;
 
+use Ibexa\Solr\Gateway\Endpoint;
 use Ibexa\Solr\Gateway\EndpointResolver;
 use Ibexa\Solr\Gateway\SingleEndpointResolver;
 use RuntimeException;
@@ -17,66 +18,42 @@ use RuntimeException;
 class NativeEndpointResolver implements EndpointResolver, SingleEndpointResolver
 {
     /**
-     * Holds an array of Solr entry endpoint names.
-     *
-     * @var string[]
-     */
-    private array $entryEndpoints;
-
-    /**
-     * Holds a map of translations to Endpoint names, with language code as key
-     * and Endpoint name as value.
-     *
-     * <code>
-     *  array(
-     *      "cro-HR" => "endpoint1",
-     *      "eng-GB" => "endpoint2",
-     *  );
-     * </code>
-     *
-     * @var string[]
-     */
-    private array $endpointMap;
-
-    /**
-     * Holds a name of the default Endpoint used for translations, if configured.
-     *
-     * @var string|null
-     */
-    private $defaultEndpoint;
-
-    /**
-     * Holds a name of the Endpoint used to index translations in main languages, if configured.
-     *
-     * @var string|null
-     */
-    private $mainLanguagesEndpoint;
-
-    /**
      * Result of hasMultipleEndpoints() once called the first time.
-     *
-     * @var bool|null
      */
-    protected $hasMultiple = null;
+    protected ?bool $hasMultiple = null;
 
     /**
      * Create from Endpoint names.
      *
-     * @param string[] $entryEndpoints
-     * @param string[] $endpointMap
-     * @param string|null $defaultEndpoint
-     * @param string|null $mainLanguagesEndpoint
+     * @param list<string> $entryEndpoints
+     * @param array<string, string> $endpointMap
      */
     public function __construct(
-        array $entryEndpoints = [],
-        array $endpointMap = [],
-        $defaultEndpoint = null,
-        $mainLanguagesEndpoint = null
+        /**
+         * Holds an array of Solr entry endpoint names.
+         */
+        private array $entryEndpoints = [],
+        /**
+         * Holds a map of translations to Endpoint names, with language code as key
+         * and Endpoint name as value.
+         *
+         * <code>
+         *  array(
+         *      "cro-HR" => "endpoint1",
+         *      "eng-GB" => "endpoint2",
+         *  );
+         * </code>
+         */
+        private readonly array $endpointMap = [],
+        /**
+         * Holds a name of the default Endpoint used for translations, if configured.
+         */
+        private readonly ?string $defaultEndpoint = null,
+        /**
+         * Holds a name of the Endpoint used to index translations in main languages, if configured.
+         */
+        private readonly ?string $mainLanguagesEndpoint = null
     ) {
-        $this->entryEndpoints = $entryEndpoints;
-        $this->endpointMap = $endpointMap;
-        $this->defaultEndpoint = $defaultEndpoint;
-        $this->mainLanguagesEndpoint = $mainLanguagesEndpoint;
     }
 
     public function getEntryEndpoint(): string
@@ -88,7 +65,7 @@ class NativeEndpointResolver implements EndpointResolver, SingleEndpointResolver
         return reset($this->entryEndpoints);
     }
 
-    public function getIndexingTarget($languageCode)
+    public function getIndexingTarget(string $languageCode): string
     {
         if (isset($this->endpointMap[$languageCode])) {
             return $this->endpointMap[$languageCode];
@@ -101,12 +78,12 @@ class NativeEndpointResolver implements EndpointResolver, SingleEndpointResolver
         throw new RuntimeException("Language '{$languageCode}' is not mapped to Solr endpoint");
     }
 
-    public function getMainLanguagesEndpoint()
+    public function getMainLanguagesEndpoint(): ?string
     {
         return $this->mainLanguagesEndpoint;
     }
 
-    public function getSearchTargets(array $languageSettings)
+    public function getSearchTargets(array $languageSettings): array
     {
         $languages = (
             empty($languageSettings['languages']) ?
@@ -145,7 +122,7 @@ class NativeEndpointResolver implements EndpointResolver, SingleEndpointResolver
         return array_keys($targetSet);
     }
 
-    public function getEndpoints()
+    public function getEndpoints(): array
     {
         $endpointSet = array_flip($this->endpointMap);
 
@@ -164,12 +141,7 @@ class NativeEndpointResolver implements EndpointResolver, SingleEndpointResolver
         return array_keys($endpointSet);
     }
 
-    /**
-     * Returns true if current configurations has several endpoints.
-     *
-     * @return bool
-     */
-    public function hasMultipleEndpoints()
+    public function hasMultipleEndpoints(): bool
     {
         if ($this->hasMultiple !== null) {
             return $this->hasMultiple;

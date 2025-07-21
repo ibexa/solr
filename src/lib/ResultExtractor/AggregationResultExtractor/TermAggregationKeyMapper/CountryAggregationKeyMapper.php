@@ -12,16 +12,14 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\CountryTermAggregation;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
-final class CountryAggregationKeyMapper implements TermAggregationKeyMapper
+final readonly class CountryAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    private array $countriesInfo;
-
     /**
-     * @param array $countriesInfo Array of countries data
+     * @param array<string, array{Name: string, Alpha2: string, Alpha3: string, IDC: string}> $countriesInfo Array of countries data
      */
-    public function __construct(array $countriesInfo)
-    {
-        $this->countriesInfo = $countriesInfo;
+    public function __construct(
+        private array $countriesInfo
+    ) {
     }
 
     /**
@@ -45,18 +43,13 @@ final class CountryAggregationKeyMapper implements TermAggregationKeyMapper
             return null;
         }
 
-        switch ($aggregation->getType()) {
-            case CountryTermAggregation::TYPE_NAME:
-                return $countryInfo['Name'];
-            case CountryTermAggregation::TYPE_IDC:
-                return $countryInfo['IDC'];
-            case CountryTermAggregation::TYPE_ALPHA_2:
-                return $countryInfo['Alpha2'];
-            case CountryTermAggregation::TYPE_ALPHA_3:
-                return $countryInfo['Alpha3'];
-            default:
-                return null;
-        }
+        return match ($aggregation->getType()) {
+            CountryTermAggregation::TYPE_NAME => $countryInfo['Name'],
+            CountryTermAggregation::TYPE_IDC => $countryInfo['IDC'],
+            CountryTermAggregation::TYPE_ALPHA_2 => $countryInfo['Alpha2'],
+            CountryTermAggregation::TYPE_ALPHA_3 => $countryInfo['Alpha3'],
+            default => null,
+        };
     }
 
     private function findCountryInfoByIDC(int $idc): ?array

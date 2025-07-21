@@ -1,70 +1,10 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Method Ibexa\\Bundle\\Solr\\ApiLoader\\BoostFactorProviderFactory\:\:buildService\(\) has no return type specified\.$#'
+			message: '#^Method Ibexa\\Contracts\\Solr\\Query\\CriterionVisitor\:\:canVisit\(\) has no return type specified\.$#'
 			identifier: missingType.return
 			count: 1
-			path: src/bundle/ApiLoader/BoostFactorProviderFactory.php
-
-		-
-			message: '#^Method Ibexa\\Bundle\\Solr\\ApiLoader\\IndexingDepthProviderFactory\:\:buildService\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/bundle/ApiLoader/IndexingDepthProviderFactory.php
-
-		-
-			message: '#^Method Ibexa\\Bundle\\Solr\\ApiLoader\\SolrEngineFactory\:\:__construct\(\) has parameter \$defaultConnection with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/bundle/ApiLoader/SolrEngineFactory.php
-
-		-
-			message: '#^Method Ibexa\\Bundle\\Solr\\ApiLoader\\SolrEngineFactory\:\:__construct\(\) has parameter \$searchEngineClass with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/bundle/ApiLoader/SolrEngineFactory.php
-
-		-
-			message: '#^Method Ibexa\\Bundle\\Solr\\ApiLoader\\SolrEngineFactory\:\:buildEngine\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/bundle/ApiLoader/SolrEngineFactory.php
-
-		-
-			message: '#^Method Ibexa\\Bundle\\Solr\\DependencyInjection\\Configuration\:\:__construct\(\) has parameter \$rootNodeName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/bundle/DependencyInjection/Configuration.php
-
-		-
-			message: '#^Method Ibexa\\Bundle\\Solr\\DependencyInjection\\Configuration\:\:addConnectionsSection\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/bundle/DependencyInjection/Configuration.php
-
-		-
-			message: '#^Method Ibexa\\Bundle\\Solr\\DependencyInjection\\Configuration\:\:addEndpointsSection\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/bundle/DependencyInjection/Configuration.php
-
-		-
-			message: '#^Property Ibexa\\Bundle\\Solr\\DependencyInjection\\Configuration\:\:\$defaultEndpointValues type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/bundle/DependencyInjection/Configuration.php
-
-		-
-			message: '#^Property Ibexa\\Bundle\\Solr\\DependencyInjection\\Configuration\:\:\$metaFieldNames has no type specified\.$#'
-			identifier: missingType.property
-			count: 1
-			path: src/bundle/DependencyInjection/Configuration.php
-
-		-
-			message: '#^Property Ibexa\\Bundle\\Solr\\DependencyInjection\\Configuration\:\:\$rootNodeName has no type specified\.$#'
-			identifier: missingType.property
-			count: 1
-			path: src/bundle/DependencyInjection/Configuration.php
+			path: src/contracts/Query/CriterionVisitor.php
 
 		-
 			message: '#^Method Ibexa\\Contracts\\Solr\\Query\\CriterionVisitor\:\:escapeQuote\(\) should return string but returns string\|null\.$#'
@@ -73,64 +13,10 @@ parameters:
 			path: src/contracts/Query/CriterionVisitor.php
 
 		-
-			message: '#^Method Ibexa\\Contracts\\Solr\\ResultExtractor\\AggregationResultExtractor\:\:canVisit\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/contracts/ResultExtractor/AggregationResultExtractor.php
-
-		-
-			message: '#^Method Ibexa\\Contracts\\Solr\\ResultExtractor\\AggregationResultExtractor\:\:extract\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/contracts/ResultExtractor/AggregationResultExtractor.php
-
-		-
-			message: '#^Method Ibexa\\Contracts\\Solr\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationKeyMapper\:\:map\(\) has no return type specified\.$#'
+			message: '#^Method Ibexa\\Contracts\\Solr\\Query\\CriterionVisitor\:\:visit\(\) has no return type specified\.$#'
 			identifier: missingType.return
 			count: 1
-			path: src/contracts/ResultExtractor/AggregationResultExtractor/RangeAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Contracts\\Solr\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/contracts/ResultExtractor/AggregationResultExtractor/RangeAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Contracts\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\:\:map\(\) has parameter \$keys with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/contracts/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Contracts\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/contracts/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Contracts\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\:\:map\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/contracts/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\CoreFilter\:\:apply\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/CoreFilter.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\CoreFilter\:\:apply\(\) has parameter \$languageSettings with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/CoreFilter.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\CoreFilter\\NativeCoreFilter\:\:apply\(\) has parameter \$languageSettings with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/CoreFilter/NativeCoreFilter.php
+			path: src/contracts/Query/CriterionVisitor.php
 
 		-
 			message: '#^Parameter \#2 \$languageCode of method Ibexa\\Solr\\DocumentMapper\\NativeDocumentMapper\:\:generateContentDocumentId\(\) expects string\|null, int\|string given\.$#'
@@ -157,52 +43,10 @@ parameters:
 			path: src/lib/DocumentMapper/NativeDocumentMapper.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\FieldMapper\\BoostFactorProvider\:\:__construct\(\) has parameter \$map with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldMapper/BoostFactorProvider.php
-
-		-
-			message: '#^Property Ibexa\\Solr\\FieldMapper\\BoostFactorProvider\:\:\$map type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldMapper/BoostFactorProvider.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\FieldMapper\\ContentFieldMapper\\BlockDocumentsBaseContentFields\:\:getAncestorLocationsContentIds\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldMapper/ContentFieldMapper/BlockDocumentsBaseContentFields.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\FieldMapper\\ContentFieldMapper\\BlockDocumentsBaseContentFields\:\:getObjectStateIds\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldMapper/ContentFieldMapper/BlockDocumentsBaseContentFields.php
-
-		-
-			message: '#^Parameter \#1 \$contentId of method Ibexa\\Contracts\\Core\\Persistence\\Content\\Location\\Handler\:\:loadLocationsByContent\(\) expects int, int\|string given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/FieldMapper/ContentFieldMapper/BlockDocumentsBaseContentFields.php
-
-		-
 			message: '#^Parameter \#1 \$locationId of method Ibexa\\Contracts\\Core\\Persistence\\Content\\Location\\Handler\:\:load\(\) expects int, string given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/lib/FieldMapper/ContentFieldMapper/BlockDocumentsBaseContentFields.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\FieldMapper\\ContentFieldMapper\\ContentDocumentLocationFields\:\:getAncestors\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldMapper/ContentFieldMapper/ContentDocumentLocationFields.php
-
-		-
-			message: '#^Offset ''ancestors'' might not exist on array\{ids\: non\-empty\-list\<mixed\>, parent_ids\: non\-empty\-list\<mixed\>, remote_ids\: non\-empty\-list\<mixed\>, path_strings\: non\-empty\-list\<string\>, ancestors\?\: non\-empty\-list\}\.$#'
-			identifier: offsetAccess.notFound
-			count: 1
-			path: src/lib/FieldMapper/ContentFieldMapper/ContentDocumentLocationFields.php
 
 		-
 			message: '#^Property Ibexa\\Contracts\\Core\\Search\\FieldType\:\:\$boost \(int\) does not accept float\.$#'
@@ -223,31 +67,7 @@ parameters:
 			path: src/lib/FieldMapper/ContentTranslationFieldMapper/ContentDocumentFulltextFields.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\FieldMapper\\IndexingDepthProvider\:\:__construct\(\) has parameter \$contentTypeMap with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldMapper/IndexingDepthProvider.php
-
-		-
-			message: '#^Property Ibexa\\Solr\\FieldMapper\\IndexingDepthProvider\:\:\$contentTypeMap type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldMapper/IndexingDepthProvider.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\FieldMapper\\LocationFieldMapper\\LocationDocumentBaseFields\:\:getAncestors\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldMapper/LocationFieldMapper/LocationDocumentBaseFields.php
-
-		-
 			message: '#^Method Ibexa\\Solr\\Gateway\:\:bulkIndexDocuments\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Gateway.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\:\:commit\(\) has no return type specified\.$#'
 			identifier: missingType.return
 			count: 1
 			path: src/lib/Gateway.php
@@ -259,64 +79,10 @@ parameters:
 			path: src/lib/Gateway.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\Gateway\:\:findContent\(\) has parameter \$fieldFilters with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\:\:findLocations\(\) has parameter \$fieldFilters with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\:\:purgeIndex\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Gateway.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\DistributionStrategy\:\:getSearchParameters\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Gateway/DistributionStrategy.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\DistributionStrategy\:\:getSearchParameters\(\) has parameter \$languageSettings with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/DistributionStrategy.php
-
-		-
 			message: '#^Method Ibexa\\Solr\\Gateway\\DistributionStrategy\:\:getSearchParameters\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/lib/Gateway/DistributionStrategy.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\DistributionStrategy\\AbstractDistributionStrategy\:\:appendSearchTargets\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/DistributionStrategy/AbstractDistributionStrategy.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\DistributionStrategy\\AbstractDistributionStrategy\:\:appendSearchTargets\(\) has parameter \$searchTargets with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/DistributionStrategy/AbstractDistributionStrategy.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\DistributionStrategy\\AbstractDistributionStrategy\:\:appendSearchTargets\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/DistributionStrategy/AbstractDistributionStrategy.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\DistributionStrategy\\AbstractDistributionStrategy\:\:getSearchParameters\(\) has parameter \$languageSettings with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/DistributionStrategy/AbstractDistributionStrategy.php
 
 		-
 			message: '#^Method Ibexa\\Solr\\Gateway\\DistributionStrategy\\AbstractDistributionStrategy\:\:getSearchParameters\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
@@ -325,111 +91,15 @@ parameters:
 			path: src/lib/Gateway/DistributionStrategy/AbstractDistributionStrategy.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\DistributionStrategy\\AbstractDistributionStrategy\:\:getSearchParameters\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
+			message: '#^Parameter \#1 \$headers of class Ibexa\\Solr\\Gateway\\Message constructor expects array\<string, list\<string\>\|string\>, non\-empty\-array\<string, ''1\.1''\|int\|list\<string\>\> given\.$#'
+			identifier: argument.type
 			count: 1
-			path: src/lib/Gateway/DistributionStrategy/AbstractDistributionStrategy.php
+			path: src/lib/Gateway/HttpClient/Stream.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\DistributionStrategy\\CloudDistributionStrategy\:\:appendSearchTargets\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/DistributionStrategy/CloudDistributionStrategy.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\DistributionStrategy\\CloudDistributionStrategy\:\:appendSearchTargets\(\) has parameter \$searchTargets with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/DistributionStrategy/CloudDistributionStrategy.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\DistributionStrategy\\CloudDistributionStrategy\:\:appendSearchTargets\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/DistributionStrategy/CloudDistributionStrategy.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\DistributionStrategy\\StandaloneDistributionStrategy\:\:appendSearchTargets\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/DistributionStrategy/StandaloneDistributionStrategy.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\DistributionStrategy\\StandaloneDistributionStrategy\:\:appendSearchTargets\(\) has parameter \$searchTargets with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/DistributionStrategy/StandaloneDistributionStrategy.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\DistributionStrategy\\StandaloneDistributionStrategy\:\:appendSearchTargets\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/DistributionStrategy/StandaloneDistributionStrategy.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\EndpointResolver\:\:getSearchTargets\(\) has parameter \$languageSettings with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/EndpointResolver.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\EndpointResolver\\NativeEndpointResolver\:\:getSearchTargets\(\) has parameter \$languageSettings with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/EndpointResolver/NativeEndpointResolver.php
-
-		-
-			message: '#^Return type \(string\) of method Ibexa\\Solr\\Gateway\\EndpointResolver\\NativeEndpointResolver\:\:getEntryEndpoint\(\) should be compatible with return type \(Ibexa\\Solr\\Gateway\\Endpoint\) of method Ibexa\\Solr\\Gateway\\EndpointResolver\:\:getEntryEndpoint\(\)$#'
-			identifier: method.childReturnType
-			count: 1
-			path: src/lib/Gateway/EndpointResolver/NativeEndpointResolver.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\Message\:\:__construct\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/Message.php
-
-		-
-			message: '#^Property Ibexa\\Solr\\Gateway\\Message\:\:\$headers type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/Message.php
-
-		-
-			message: '#^Default value of the parameter \#2 \$languageSettings \(array\{\}\) of method Ibexa\\Solr\\Gateway\\Native\:\:findContent\(\) is incompatible with type array\{languages\: array\<string\>\}\.$#'
-			identifier: parameter.defaultValue
-			count: 1
-			path: src/lib/Gateway/Native.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\Native\:\:doBulkIndexDocuments\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Gateway/Native.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\Native\:\:findLocations\(\) has parameter \$languageSettings with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/Native.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\Native\:\:generateQueryString\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/Native.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\Native\:\:getSearchTargets\(\) has parameter \$languageSettings with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/Native.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\Native\:\:internalFind\(\) has parameter \$languageSettings with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
+			message: '#^Cannot cast list\<string\>\|string to string\.$#'
+			identifier: cast.string
+			count: 2
 			path: src/lib/Gateway/Native.php
 
 		-
@@ -439,20 +109,8 @@ parameters:
 			path: src/lib/Gateway/Native.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\Native\:\:purgeEndpoint\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Gateway/Native.php
-
-		-
 			message: '#^Method Ibexa\\Solr\\Gateway\\Native\:\:search\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/Native.php
-
-		-
-			message: '#^Parameter \#1 \$name of method Ibexa\\Solr\\Gateway\\EndpointRegistry\:\:getEndpoint\(\) expects string, Ibexa\\Solr\\Gateway\\Endpoint given\.$#'
-			identifier: argument.type
 			count: 1
 			path: src/lib/Gateway/Native.php
 
@@ -475,12 +133,6 @@ parameters:
 			path: src/lib/Gateway/UpdateSerializer/JsonUpdateSerializer.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\Gateway\\UpdateSerializer\\JsonUpdateSerializer\:\:mapDocumentToData\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Gateway/UpdateSerializer/JsonUpdateSerializer.php
-
-		-
 			message: '#^Parameter \#2 \$value of method XMLWriter\:\:writeAttribute\(\) expects string, int given\.$#'
 			identifier: argument.type
 			count: 1
@@ -493,76 +145,10 @@ parameters:
 			path: src/lib/Handler.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\Handler\:\:deleteAllItemsWithoutAdditionalLocation\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Handler.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Handler\:\:deleteAllItemsWithoutAdditionalLocation\(\) has parameter \$locationId with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/lib/Handler.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Handler\:\:generateDocument\(\) should return Ibexa\\Contracts\\Core\\Search\\Document but returns array\<Ibexa\\Contracts\\Core\\Search\\Document\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/lib/Handler.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Handler\:\:suggest\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Handler.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Handler\:\:updateAllElementsWithAdditionalLocation\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Handler.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Handler\:\:updateAllElementsWithAdditionalLocation\(\) has parameter \$locationId with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/lib/Handler.php
-
-		-
-			message: '#^PHPDoc tag @param references unknown parameter\: \$resultExtractor$#'
-			identifier: parameter.notFound
-			count: 1
-			path: src/lib/Handler.php
-
-		-
-			message: '#^Parameter \#1 \$documents of method Ibexa\\Solr\\Gateway\:\:bulkIndexDocuments\(\) expects array\<array\<Ibexa\\Contracts\\Core\\Search\\Document\>\>, array\<Ibexa\\Contracts\\Core\\Search\\Document\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/Handler.php
-
-		-
 			message: '#^Method Ibexa\\Solr\\Query\\Common\\AggregationVisitor\\AbstractRangeAggregationVisitor\:\:formatRangeValue\(\) has parameter \$value with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1
 			path: src/lib/Query/Common/AggregationVisitor/AbstractRangeAggregationVisitor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\AggregationVisitor\\AbstractRangeAggregationVisitor\:\:visit\(\) should return array\<string\> but returns array\<string, array\<string, array\<string, string\>\>\|string\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/AbstractRangeAggregationVisitor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\AggregationVisitor\\AbstractStatsAggregationVisitor\:\:visit\(\) should return array\<string\> but returns array\<string, array\<string, string\>\|string\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/AbstractStatsAggregationVisitor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\AggregationVisitor\\AbstractTermAggregationVisitor\:\:visit\(\) should return array\<string\> but returns array\<string, int\|string\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/AbstractTermAggregationVisitor.php
 
 		-
 			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\:\:getFieldName\(\)\.$#'
@@ -575,18 +161,6 @@ parameters:
 			identifier: parameter.phpDocType
 			count: 1
 			path: src/lib/Query/Common/AggregationVisitor/AggregationFieldResolver/RawAggregationFieldResolver.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\AggregationVisitor\\ObjectStateAggregationVisitor\:\:visit\(\) should return array\<string\> but returns array\<string, int\|string\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/ObjectStateAggregationVisitor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\AggregationVisitor\\SubtreeTermAggregationVisitor\:\:visit\(\) should return array\<string\> but returns array\<string, array\<string, array\<string, int\|string\>\>\|string\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/lib/Query/Common/AggregationVisitor/SubtreeTermAggregationVisitor.php
 
 		-
 			message: '#^Parameter \#2 \$array of function array_map expects array, array\<bool\|float\|int\|string\>\|bool\|float\|int\|string given\.$#'
@@ -643,12 +217,6 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/Field.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\CriterionVisitor\\Field\:\:getSearchFields\(\) invoked with 2 parameters, 1 required\.$#'
-			identifier: arguments.count
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/Field/FieldRelation.php
-
-		-
 			message: '#^Parameter \#2 \$array of function array_map expects array, array\<bool\|float\|int\|string\>\|bool\|float\|int\|string given\.$#'
 			identifier: argument.type
 			count: 1
@@ -671,12 +239,6 @@ parameters:
 			identifier: method.nonObject
 			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/LogicalOr.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\CriterionVisitor\\MapLocation\:\:getSearchFields\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/MapLocation.php
 
 		-
 			message: '#^Parameter \#2 \$fieldDefinitionIdentifier of method Ibexa\\Solr\\Query\\Common\\CriterionVisitor\\MapLocation\:\:getSearchFields\(\) expects string, string\|null given\.$#'
@@ -745,64 +307,16 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/UserMetadataIn.php
 
 		-
-			message: '#^Default value of the parameter \#2 \$languageSettings \(array\{\}\) of method Ibexa\\Solr\\Query\\Common\\QueryConverter\\NativeQueryConverter\:\:convert\(\) is incompatible with type array\{languages\: array\<string\>\}\.$#'
-			identifier: parameter.defaultValue
-			count: 1
-			path: src/lib/Query/Common/QueryConverter/NativeQueryConverter.php
-
-		-
 			message: '#^Method Ibexa\\Contracts\\Solr\\Query\\SortClauseVisitor\:\:visit\(\) invoked with 2 parameters, 1 required\.$#'
 			identifier: arguments.count
 			count: 1
 			path: src/lib/Query/Common/SortClauseVisitor/Aggregate.php
 
 		-
-			message: '#^Binary operation "\." between array and string results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: src/lib/Query/Common/SortClauseVisitor/Field.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\SortClauseVisitor\\Field\:\:getSortFieldName\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Query/Common/SortClauseVisitor/Field.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\SortClauseVisitor\\Field\:\:getSortFieldName\(\) should return array but returns string\|null\.$#'
-			identifier: return.type
-			count: 1
-			path: src/lib/Query/Common/SortClauseVisitor/Field.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\SortClauseVisitor\\MapLocationDistance\:\:getSortFieldName\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Query/Common/SortClauseVisitor/MapLocationDistance.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\SortClauseVisitor\\MapLocationDistance\:\:getSortFieldName\(\) should return array but returns string\|null\.$#'
-			identifier: return.type
-			count: 1
-			path: src/lib/Query/Common/SortClauseVisitor/MapLocationDistance.php
-
-		-
-			message: '#^Part \$fieldName \(array\) of encapsed string cannot be cast to string\.$#'
-			identifier: encapsedStringPart.nonString
-			count: 1
-			path: src/lib/Query/Common/SortClauseVisitor/MapLocationDistance.php
-
-		-
 			message: '#^Argument of an invalid type array\<bool\|float\|int\|string\>\|bool\|float\|int\|string supplied for foreach, only iterables are supported\.$#'
 			identifier: foreach.nonIterable
 			count: 1
 			path: src/lib/Query/Content/CriterionVisitor/Ancestor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Query\\Content\\CriterionVisitor\\FullText\:\:getSearchFields\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Query/Content/CriterionVisitor/FullText.php
 
 		-
 			message: '#^Parameter \#1 \$string of method QueryTranslator\\Languages\\Galach\\Tokenizer\:\:tokenize\(\) expects string, array\<bool\|float\|int\|string\>\|bool\|float\|int\|string given\.$#'
@@ -829,13 +343,13 @@ parameters:
 			path: src/lib/Query/Content/CriterionVisitor/ParentLocationIdIn.php
 
 		-
-			message: '#^Parameter \#2 \$array of function array_map expects array, array\<bool\|float\|int\|string\>\|bool\|float\|int\|string given\.$#'
+			message: '#^Parameter \#1 \$callback of function array_map expects \(callable\(bool\|float\|int\|string\)\: mixed\)\|null, Closure\(string\)\: non\-falsy\-string given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/lib/Query/Content/CriterionVisitor/SubtreeIn.php
 
 		-
-			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, bool\|float\|int\|string given\.$#'
+			message: '#^Parameter \#2 \$array of function array_map expects array, array\<bool\|float\|int\|string\>\|bool\|float\|int\|string given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/lib/Query/Content/CriterionVisitor/SubtreeIn.php
@@ -907,13 +421,13 @@ parameters:
 			path: src/lib/Query/Location/CriterionVisitor/ParentLocationIdIn.php
 
 		-
-			message: '#^Parameter \#2 \$array of function array_map expects array, array\<bool\|float\|int\|string\>\|bool\|float\|int\|string given\.$#'
+			message: '#^Parameter \#1 \$callback of function array_map expects \(callable\(bool\|float\|int\|string\)\: mixed\)\|null, Closure\(string\)\: non\-falsy\-string given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/SubtreeIn.php
 
 		-
-			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, bool\|float\|int\|string given\.$#'
+			message: '#^Parameter \#2 \$array of function array_map expects array, array\<bool\|float\|int\|string\>\|bool\|float\|int\|string given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/SubtreeIn.php
@@ -925,52 +439,42 @@ parameters:
 			path: src/lib/Query/Location/CriterionVisitor/Visibility.php
 
 		-
-			message: '#^Default value of the parameter \#2 \$languageSettings \(array\{\}\) of method Ibexa\\Solr\\Query\\QueryConverter\:\:convert\(\) is incompatible with type array\{languages\: array\<string\>\}\.$#'
-			identifier: parameter.defaultValue
-			count: 1
-			path: src/lib/Query/QueryConverter.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Query\\QueryConverter\:\:convert\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Query/QueryConverter.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\:\:extract\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\:\:extractAggregations\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\:\:extractSearchHit\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor.php
-
-		-
 			message: '#^Method Ibexa\\Solr\\ResultExtractor\:\:extractSearchHit\(\) return type with generic class Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\SearchHit does not specify its types\: T$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/ResultExtractor.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\DispatcherAggregationResultExtractor\:\:canVisit\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
+			message: '''
+				#^PHPDoc tag @param has invalid value \(\\stdClass\{
+				    document_type_id\: string,
+				    content_id_id\: int\|string,
+				    content_name_s\: string,
+				    content_type_id_id\: int\|string,
+				    content_section_id_id\: int\|string,
+				    content_version_no_i\: int,
+				    content_owner_user_id_id\: int\|string,
+				    content_modification_date_dt\: string,
+				    content_publication_date_dt\: string,
+				    content_always_available_b\: bool,
+				    content_remote_id_id\: string,
+				    content_main_language_code_s\: string,
+				    main_location_id\?\: int\|string,
+				    location_id\: int\|string,
+				    priority_i\: int,
+				    hidden_b\: bool,
+				    invisible_b\: bool,
+				    remote_id_id\: string,
+				    parent_id_id\: int\|string,
+				    path_string_id\: string,
+				    depth_i\: int,
+				    sort_field_id\: int\|string,
+				    sort_order_id\: int\|string
+				\}&\\stdClass \$hit\)\: Unexpected token "\{", expected variable at offset 163 on line 5$#
+			'''
+			identifier: phpDoc.parseError
 			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/DispatcherAggregationResultExtractor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\DispatcherAggregationResultExtractor\:\:extract\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/DispatcherAggregationResultExtractor.php
+			path: src/lib/ResultExtractor.php
 
 		-
 			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\DispatcherAggregationResultExtractor\:\:findExtractor\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
@@ -979,56 +483,8 @@ parameters:
 			path: src/lib/ResultExtractor/AggregationResultExtractor/DispatcherAggregationResultExtractor.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\NestedAggregationResultExtractor\:\:canVisit\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/NestedAggregationResultExtractor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\NestedAggregationResultExtractor\:\:extract\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/NestedAggregationResultExtractor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationKeyMapper\\DateTimeRangeAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/RangeAggregationKeyMapper/DateTimeRangeAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationKeyMapper\\FloatRangeAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/RangeAggregationKeyMapper/FloatRangeAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationKeyMapper\\IntRangeAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/RangeAggregationKeyMapper/IntRangeAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationKeyMapper\\NullRangeAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/RangeAggregationKeyMapper/NullRangeAggregationKeyMapper.php
-
-		-
 			message: '#^Argument of an invalid type stdClass supplied for foreach, only iterables are supported\.$#'
 			identifier: foreach.nonIterable
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/RangeAggregationResultExtractor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationResultExtractor\:\:canVisit\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/RangeAggregationResultExtractor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationResultExtractor\:\:extract\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: src/lib/ResultExtractor/AggregationResultExtractor/RangeAggregationResultExtractor.php
 
@@ -1039,68 +495,8 @@ parameters:
 			path: src/lib/ResultExtractor/AggregationResultExtractor/RangeAggregationResultExtractor.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\StatsAggregationResultExtractor\:\:canVisit\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/StatsAggregationResultExtractor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\StatsAggregationResultExtractor\:\:extract\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/StatsAggregationResultExtractor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\AuthorAggregationKeyMapper\:\:map\(\) has parameter \$keys with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/AuthorAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\AuthorAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/AuthorAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\BooleanAggregationKeyMapper\:\:map\(\) has parameter \$keys with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/BooleanAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\BooleanAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/BooleanAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\BooleanAggregationKeyMapper\:\:map\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/BooleanAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ContentTypeAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/ContentTypeAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ContentTypeGroupAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/ContentTypeGroupAggregationKeyMapper.php
-
-		-
 			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\:\:getType\(\)\.$#'
 			identifier: method.notFound
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/CountryAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\CountryAggregationKeyMapper\:\:__construct\(\) has parameter \$countriesInfo with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/CountryAggregationKeyMapper.php
 
@@ -1111,178 +507,22 @@ parameters:
 			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/CountryAggregationKeyMapper.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\CountryAggregationKeyMapper\:\:map\(\) has parameter \$keys with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/CountryAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\CountryAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/CountryAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\CountryAggregationKeyMapper\:\:map\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/CountryAggregationKeyMapper.php
-
-		-
-			message: '#^Property Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\CountryAggregationKeyMapper\:\:\$countriesInfo type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/CountryAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\InvertedBooleanAggregationKeyMapper\:\:map\(\) has parameter \$keys with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/InvertedBooleanAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\InvertedBooleanAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/InvertedBooleanAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\InvertedBooleanAggregationKeyMapper\:\:map\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/InvertedBooleanAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\LanguageAggregationKeyMapper\:\:map\(\) has parameter \$keys with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/LanguageAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\LanguageAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/LanguageAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\LanguageAggregationKeyMapper\:\:map\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/LanguageAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\LocationAggregationKeyMapper\:\:map\(\) has parameter \$keys with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/LocationAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\LocationAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/LocationAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\LocationAggregationKeyMapper\:\:map\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/LocationAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\NullAggregationKeyMapper\:\:map\(\) has parameter \$keys with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/NullAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\NullAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/NullAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\NullAggregationKeyMapper\:\:map\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/NullAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ObjectStateAggregationKeyMapper\:\:map\(\) has parameter \$keys with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/ObjectStateAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ObjectStateAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/ObjectStateAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ObjectStateAggregationKeyMapper\:\:map\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/ObjectStateAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\SectionAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/SectionAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\SubtreeAggregationKeyMapper\:\:getAncestors\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/SubtreeAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\SubtreeAggregationKeyMapper\:\:map\(\) has parameter \$keys with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/SubtreeAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\SubtreeAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/SubtreeAggregationKeyMapper.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\SubtreeAggregationKeyMapper\:\:map\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/SubtreeAggregationKeyMapper.php
-
-		-
 			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\:\:getType\(\)\.$#'
 			identifier: method.notFound
 			count: 1
 			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/UserMetadataAggregationKeyMapper.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\UserMetadataAggregationKeyMapper\:\:map\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
+			message: '#^Parameter \#1 \$hit of method Ibexa\\Solr\\ResultExtractor\\NativeResultExtractor\:\:extractContentInfoFromHit\(\) expects object\{document_type_id\: string, content_id_id\: int\|string, content_name_s\: string, content_type_id_id\: int\|string, content_section_id_id\: int\|string, content_version_no_i\: int, content_owner_user_id_id\: int\|string, content_modification_date_dt\: string, content_publication_date_dt\: string, content_always_available_b\: bool, content_remote_id_id\: string, content_main_language_code_s\: string, main_location_id\?\: int\|string\}&stdClass, stdClass given\.$#'
+			identifier: argument.type
 			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/UserMetadataAggregationKeyMapper.php
+			path: src/lib/ResultExtractor/NativeResultExtractor.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationResultExtractor\:\:canVisit\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
+			message: '#^Parameter \#1 \$hit of method Ibexa\\Solr\\ResultExtractor\\NativeResultExtractor\:\:extractLocationFromHit\(\) expects object\{location_id\: int\|string, priority_i\: int, hidden_b\: bool, invisible_b\: bool, remote_id_id\: string, content_id_id\: int\|string, parent_id_id\: int\|string, path_string_id\: string, depth_i\: int, sort_field_id\: int\|string, sort_order_id\: int\|string\}&stdClass, stdClass given\.$#'
+			identifier: argument.type
 			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationResultExtractor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationResultExtractor\:\:extract\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationResultExtractor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationResultExtractor\:\:getKeys\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationResultExtractor.php
+			path: src/lib/ResultExtractor/NativeResultExtractor.php
 
 		-
 			message: '#^Method Ibexa\\Tests\\Bundle\\Solr\\DependencyInjection\\IbexaSolrExtensionExtensionTest\:\:testBoostFactorMap\(\) has parameter \$configuration with no value type specified in iterable type array\.$#'
@@ -1333,86 +573,8 @@ parameters:
 			path: tests/lib/Gateway/GatewayRegistryTest.php
 
 		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Gateway\\UpdateSerializerFactoryTest\:\:getDataForTestGetSerializer\(\) return type has no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Gateway/UpdateSerializerFactoryTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\FieldMapper\\BoostFactorProviderTest\:\:getContentTypeStub\(\) has parameter \$identifier with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/Search/FieldMapper/BoostFactorProviderTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\FieldMapper\\BoostFactorProviderTest\:\:getFieldBoostProvider\(\) has parameter \$map with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/FieldMapper/BoostFactorProviderTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\FieldMapper\\BoostFactorProviderTest\:\:getFieldDefinitionStub\(\) has parameter \$identifier with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/Search/FieldMapper/BoostFactorProviderTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\FieldMapper\\BoostFactorProviderTest\:\:testGetContentFieldBoostFactor\(\) has parameter \$map with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/FieldMapper/BoostFactorProviderTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\FieldMapper\\BoostFactorProviderTest\:\:testGetContentMetaFieldBoostFactor\(\) has parameter \$map with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/FieldMapper/BoostFactorProviderTest.php
-
-		-
-			message: '#^Parameter \#1 \$endpointRegistry of class Ibexa\\Solr\\Gateway\\DistributionStrategy\\StandaloneDistributionStrategy constructor expects Ibexa\\Solr\\Gateway\\EndpointRegistry, PHPUnit\\Framework\\MockObject\\MockObject given\.$#'
-			identifier: argument.type
-			count: 1
-			path: tests/lib/Search/Gateway/DistributionStrategy/StandaloneDistributionStrategyTest.php
-
-		-
-			message: '#^Property Ibexa\\Tests\\Solr\\Search\\Gateway\\DistributionStrategy\\StandaloneDistributionStrategyTest\:\:\$endpointRegistry \(Ibexa\\Solr\\Gateway\\EndpointRegistry&PHPUnit\\Framework\\MockObject\\MockObject\) does not accept PHPUnit\\Framework\\MockObject\\MockObject\.$#'
-			identifier: assign.propertyType
-			count: 1
-			path: tests/lib/Search/Gateway/DistributionStrategy/StandaloneDistributionStrategyTest.php
-
-		-
 			message: '#^Instanceof between Ibexa\\Solr\\Gateway\\EndpointResolver\\NativeEndpointResolver and Ibexa\\Solr\\Gateway\\SingleEndpointResolver will always evaluate to true\.$#'
 			identifier: instanceof.alwaysTrue
-			count: 1
-			path: tests/lib/Search/Gateway/EndpointResolver/NativeEndpointResolverTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\Gateway\\EndpointResolver\\NativeEndpointResolverTest\:\:getEndpointResolver\(\) has parameter \$defaultEndpoint with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/Search/Gateway/EndpointResolver/NativeEndpointResolverTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\Gateway\\EndpointResolver\\NativeEndpointResolverTest\:\:getEndpointResolver\(\) has parameter \$endpointMap with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/Gateway/EndpointResolver/NativeEndpointResolverTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\Gateway\\EndpointResolver\\NativeEndpointResolverTest\:\:getEndpointResolver\(\) has parameter \$entryEndpoints with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/Gateway/EndpointResolver/NativeEndpointResolverTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\Gateway\\EndpointResolver\\NativeEndpointResolverTest\:\:getEndpointResolver\(\) has parameter \$mainLanguagesEndpoint with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/Search/Gateway/EndpointResolver/NativeEndpointResolverTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\Gateway\\EndpointResolver\\NativeEndpointResolverTest\:\:providerForTestGetSearchTargets\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: tests/lib/Search/Gateway/EndpointResolver/NativeEndpointResolverTest.php
 
@@ -1429,10 +591,10 @@ parameters:
 			path: tests/lib/Search/Gateway/EndpointResolver/NativeEndpointResolverTest.php
 
 		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\Query\\Content\\CriterionVisitor\\FullTextTest\:\:getFullTextCriterionVisitor\(\) has parameter \$fieldTypes with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
+			message: '#^Method Ibexa\\Tests\\Solr\\Search\\Query\\Common\\AggregationVisitor\\RangeAggregationVisitorTest\:\:dataProviderForVisit\(\) return type with generic class Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\\AbstractRangeAggregation does not specify its types\: TValue$#'
+			identifier: missingType.generics
 			count: 1
-			path: tests/lib/Search/Query/Content/CriterionVisitor/FullTextTest.php
+			path: tests/lib/Search/Query/Common/AggregationVisitor/RangeAggregationVisitorTest.php
 
 		-
 			message: '#^PHPDoc tag @var with type Ibexa\\Core\\Search\\Common\\FieldNameResolver is not subtype of native type PHPUnit\\Framework\\MockObject\\MockObject\.$#'
@@ -1453,80 +615,14 @@ parameters:
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/AbstractAggregationResultExtractorTest.php
 
 		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\AbstractAggregationResultExtractorTest\:\:testCanVisit\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/AbstractAggregationResultExtractorTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\AbstractAggregationResultExtractorTest\:\:testExtract\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/AbstractAggregationResultExtractorTest.php
-
-		-
 			message: '#^Call to an undefined method Ibexa\\Contracts\\Solr\\ResultExtractor\\AggregationResultExtractor\:\:method\(\)\.$#'
 			identifier: method.notFound
 			count: 1
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/DispatcherAggregationResultExtractorTest.php
 
 		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\DispatcherAggregationResultExtractorTest\:\:createExtractorMockWithCanVisit\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/DispatcherAggregationResultExtractorTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationKeyMapper\\AbstractRangeAggregationKeyMapperTest\:\:dataProviderForTestMap\(\) return type has no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationKeyMapper/AbstractRangeAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationKeyMapper\\AbstractRangeAggregationKeyMapperTest\:\:testMap\(\) has parameter \$expectedResult with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationKeyMapper/AbstractRangeAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationKeyMapper\\AbstractRangeAggregationKeyMapperTest\:\:testMap\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationKeyMapper/AbstractRangeAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationKeyMapper\\DateTimeRangeAggregationKeyMapperTest\:\:dataProviderForTestMap\(\) return type has no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationKeyMapper/DateTimeRangeAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationKeyMapper\\FloatRangeAggregationKeyMapperTest\:\:dataProviderForTestMap\(\) return type has no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationKeyMapper/FloatRangeAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationKeyMapper\\IntRangeAggregationKeyMapperTest\:\:dataProviderForTestMap\(\) return type has no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationKeyMapper/IntRangeAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationKeyMapper\\NullRangeAggregationKeyMapperTest\:\:dataProviderForTestMap\(\) return type has no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationKeyMapper/NullRangeAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationResultExtractorTest\:\:dataProviderForTestCanVisit\(\) return type has no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationResultExtractorTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationResultExtractorTest\:\:dataProviderForTestExtract\(\) return type has no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
+			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationResultExtractorTest\:\:dataProviderForTestExtract\(\) return type with generic class Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResult does not specify its types\: TValue$#'
+			identifier: missingType.generics
 			count: 1
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationResultExtractorTest.php
 
@@ -1537,70 +633,10 @@ parameters:
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationResultExtractorTest.php
 
 		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\StatsAggregationResultExtractorTest\:\:dataProviderForTestCanVisit\(\) return type has no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/StatsAggregationResultExtractorTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\StatsAggregationResultExtractorTest\:\:dataProviderForTestExtract\(\) return type has no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/StatsAggregationResultExtractorTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\AuthorAggregationKeyMapperTest\:\:dataProviderForTestMap\(\) return type has no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/AuthorAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\AuthorAggregationKeyMapperTest\:\:testMap\(\) has parameter \$expectedResult with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/AuthorAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\AuthorAggregationKeyMapperTest\:\:testMap\(\) has parameter \$keys with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/AuthorAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\AuthorAggregationKeyMapperTest\:\:testMap\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/AuthorAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ContentTypeAggregationKeyMapperTest\:\:createContentTypesList\(\) has parameter \$ids with no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/ContentTypeAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ContentTypeAggregationKeyMapperTest\:\:createContentTypesList\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/ContentTypeAggregationKeyMapperTest.php
-
-		-
 			message: '#^Parameter \#1 \$aggregation of method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ContentTypeAggregationKeyMapper\:\:map\(\) expects Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\\ContentTypeTermAggregation, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation&PHPUnit\\Framework\\MockObject\\MockObject given\.$#'
 			identifier: argument.type
 			count: 1
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/ContentTypeAggregationKeyMapperTest.php
-
-		-
-			message: '#^Parameter \#3 \$keys of method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ContentTypeAggregationKeyMapper\:\:map\(\) expects array\<string\>, array\<int, int\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/ContentTypeAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ContentTypeGroupAggregationKeyMapperTest\:\:createExpectedLanguages\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/ContentTypeGroupAggregationKeyMapperTest.php
 
 		-
 			message: '#^Parameter \#1 \$aggregation of method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ContentTypeGroupAggregationKeyMapper\:\:map\(\) expects Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\\ContentTypeGroupTermAggregation, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation&PHPUnit\\Framework\\MockObject\\MockObject given\.$#'
@@ -1609,82 +645,10 @@ parameters:
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/ContentTypeGroupAggregationKeyMapperTest.php
 
 		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\CountryAggregationKeyMapperTest\:\:dataProviderForTestMap\(\) return type has no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/CountryAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\CountryAggregationKeyMapperTest\:\:testMap\(\) has parameter \$expectedResult with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/CountryAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\CountryAggregationKeyMapperTest\:\:testMap\(\) has parameter \$keys with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/CountryAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\CountryAggregationKeyMapperTest\:\:testMap\(\) has parameter \$languageFilter with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/CountryAggregationKeyMapperTest.php
-
-		-
 			message: '#^Parameter \#1 \$aggregation of method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\CountryAggregationKeyMapper\:\:map\(\) expects Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\\Field\\CountryTermAggregation, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation given\.$#'
 			identifier: argument.type
 			count: 1
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/CountryAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\LanguageAggregationKeyMapperTest\:\:configureLanguageServiceMock\(\) has parameter \$languageCodes with no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/LanguageAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\LanguageAggregationKeyMapperTest\:\:configureLanguageServiceMock\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/LanguageAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\LocationAggregationKeyMapperTest\:\:createExpectedLocations\(\) has parameter \$locationIds with no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/LocationAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\LocationAggregationKeyMapperTest\:\:createExpectedLocations\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/LocationAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ObjectStateAggregationKeyMapperTest\:\:configureObjectStateService\(\) has parameter \$objectStateIdentifiers with no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/ObjectStateAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ObjectStateAggregationKeyMapperTest\:\:configureObjectStateService\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/ObjectStateAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\SectionAggregationKeyMapperTest\:\:configureSectionServiceMock\(\) has parameter \$sectionIds with no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/SectionAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\SectionAggregationKeyMapperTest\:\:configureSectionServiceMock\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/SectionAggregationKeyMapperTest.php
 
 		-
 			message: '#^Parameter \#1 \$aggregation of method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\SectionAggregationKeyMapper\:\:map\(\) expects Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\\SectionTermAggregation, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation&PHPUnit\\Framework\\MockObject\\MockObject given\.$#'
@@ -1693,32 +657,8 @@ parameters:
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/SectionAggregationKeyMapperTest.php
 
 		-
-			message: '#^Parameter \#3 \$keys of method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\SectionAggregationKeyMapper\:\:map\(\) expects array\<string\>, array\<int, int\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/SectionAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\SubtreeAggregationKeyMapperTest\:\:createExpectedLocations\(\) has parameter \$locationIds with no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/SubtreeAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\SubtreeAggregationKeyMapperTest\:\:createExpectedLocations\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/SubtreeAggregationKeyMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationResultExtractorTest\:\:dataProviderForTestCanVisit\(\) return type has no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationResultExtractorTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationResultExtractorTest\:\:dataProviderForTestExtract\(\) return type has no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
+			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationResultExtractorTest\:\:dataProviderForTestExtract\(\) return type with generic class Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\TermAggregationResult does not specify its types\: TKey$#'
+			identifier: missingType.generics
 			count: 1
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationResultExtractorTest.php
 

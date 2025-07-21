@@ -17,11 +17,9 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
  */
 class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
 {
-    /**
-     * @var \Ibexa\Bundle\Solr\DependencyInjection\IbexaSolrExtension
-     */
     private IbexaSolrExtension $extension;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->extension = new IbexaSolrExtension();
@@ -40,6 +38,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     /**
      * @return array<string, mixed>
      */
+    #[\Override]
     protected function getMinimalConfiguration(): array
     {
         return [];
@@ -141,7 +140,6 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     /**
      * @dataProvider dataProviderForTestEndpoint
      *
-     * @param string $endpointName
      * @param array<string, mixed> $endpointValues
      * @param array<string, mixed> $expectedArgument
      */
@@ -218,8 +216,6 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     }
 
     /**
-     * @param array $configurationValues
-     *
      * @dataProvider dataProviderForTestConnection
      */
     public function testConnectionLoad(array $configurationValues): void

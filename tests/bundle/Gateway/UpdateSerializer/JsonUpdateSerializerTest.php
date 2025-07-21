@@ -22,7 +22,7 @@ use PHPUnit\Framework\TestCase;
  */
 class JsonUpdateSerializerTest extends TestCase
 {
-    public const FIELD_NAME_GENERATOR_MAP = [
+    public const array FIELD_NAME_GENERATOR_MAP = [
         'ez_integer' => 'i',
         'ez_minteger' => 'mi',
         'ez_id' => 'id',
@@ -37,7 +37,6 @@ class JsonUpdateSerializerTest extends TestCase
         'ez_fulltext' => 'fulltext',
     ];
 
-    /** @var \Ibexa\Solr\Gateway\UpdateSerializer\JsonUpdateSerializer */
     private JsonUpdateSerializer $serializer;
 
     public function getDataForTestSerialize(): iterable

@@ -20,8 +20,6 @@ class ModifiedIn extends DateMetadata
 {
     /**
      * Check if visitor is applicable to current criterion.
-     *
-     * @return bool
      */
     public function canVisit(CriterionInterface $criterion): bool
     {
@@ -38,11 +36,8 @@ class ModifiedIn extends DateMetadata
      * Map field value to a proper Solr representation.
      *
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\DateMetadata $criterion
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
-     *
-     * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $values = [];
         foreach ($criterion->value as $value) {

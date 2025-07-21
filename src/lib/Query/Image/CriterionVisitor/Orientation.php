@@ -14,7 +14,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 
 final class Orientation extends AbstractImageTermsVisitor
 {
-    private const SEARCH_FIELD_ORIENTATION = 'orientation';
+    private const string SEARCH_FIELD_ORIENTATION = 'orientation';
 
     public function canVisit(CriterionInterface $criterion): bool
     {

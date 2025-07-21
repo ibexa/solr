@@ -19,6 +19,7 @@ final class TermAggregationVisitorTest extends AbstractAggregationVisitorTest
 {
     private AggregationFieldResolver&MockObject $aggregationFieldResolver;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->aggregationFieldResolver = $this->createMock(AggregationFieldResolver::class);
@@ -35,6 +36,13 @@ final class TermAggregationVisitorTest extends AbstractAggregationVisitorTest
         return new TermAggregationVisitor(AbstractTermAggregation::class, $this->aggregationFieldResolver);
     }
 
+    /**
+     * @return iterable<string, array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     1: array{languages: string[]},
+     *     2: bool
+     * }>
+     */
     public function dataProviderForCanVisit(): iterable
     {
         yield 'true' => [
@@ -50,6 +58,18 @@ final class TermAggregationVisitorTest extends AbstractAggregationVisitorTest
         ];
     }
 
+    /**
+     * @return iterable<array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractTermAggregation,
+     *     1: array<string, list<string>>,
+     *     2: array{
+     *         type: string,
+     *         field: string,
+     *         limit: int,
+     *         mincount: int
+     *     }
+     * }>
+     */
     public function dataProviderForVisit(): iterable
     {
         $aggregation = $this->createMock(AbstractTermAggregation::class);

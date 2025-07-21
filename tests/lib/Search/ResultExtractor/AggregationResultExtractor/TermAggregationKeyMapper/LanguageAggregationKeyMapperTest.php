@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 
 final class LanguageAggregationKeyMapperTest extends TestCase
 {
-    private const EXAMPLE_LANGUAGE_CODES = [];
+    private const array EXAMPLE_LANGUAGE_CODES = [];
 
     private LanguageService&MockObject $languageService;
 
@@ -52,6 +52,11 @@ final class LanguageAggregationKeyMapperTest extends TestCase
         );
     }
 
+    /**
+     * @param iterable<string> $languageCodes
+     *
+     * @return list<string>
+     */
     private function configureLanguageServiceMock(iterable $languageCodes): array
     {
         $languages = [];

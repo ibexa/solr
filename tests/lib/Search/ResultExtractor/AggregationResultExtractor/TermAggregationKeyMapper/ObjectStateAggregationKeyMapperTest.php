@@ -47,6 +47,11 @@ final class ObjectStateAggregationKeyMapperTest extends TestCase
         );
     }
 
+    /**
+     * @param iterable<string> $objectStateIdentifiers
+     *
+     * @return array<\Ibexa\Contracts\Core\Repository\Values\ObjectState\ObjectState>
+     */
     private function configureObjectStateService(
         string $objectStateGroupIdentifier,
         iterable $objectStateIdentifiers
@@ -69,7 +74,7 @@ final class ObjectStateAggregationKeyMapperTest extends TestCase
         $this->objectStateService
             ->method('loadObjectStateByIdentifier')
             ->willReturnCallback(
-                static function ($group, $identifier, $options) use ($objectStateGroup, $map) {
+                static function ($group, $identifier, $options) use ($objectStateGroup, $map): \Ibexa\Contracts\Core\Repository\Values\ObjectState\ObjectState&\PHPUnit\Framework\MockObject\MockObject {
                     if ($group === $objectStateGroup && isset($map[$identifier]) && $options === []) {
                         return $map[$identifier];
                     }

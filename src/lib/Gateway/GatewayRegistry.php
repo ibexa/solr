@@ -15,19 +15,16 @@ use OutOfBoundsException;
  */
 final class GatewayRegistry
 {
-    /** @var \Ibexa\Solr\Gateway[] */
-    private array $gateways;
-
     /**
-     * @param \Ibexa\Solr\Gateway[] $gateways
+     * @param array<string, \Ibexa\Solr\Gateway> $gateways
      */
-    public function __construct(array $gateways = [])
-    {
-        $this->gateways = $gateways;
+    public function __construct(
+        private array $gateways = []
+    ) {
     }
 
     /**
-     * @return \Ibexa\Solr\Gateway[]
+     * @return array<string, \Ibexa\Solr\Gateway>
      */
     public function getGateways(): array
     {
@@ -35,7 +32,7 @@ final class GatewayRegistry
     }
 
     /**
-     * @param \Ibexa\Solr\Gateway[] $gateways
+     * @param array<string, \Ibexa\Solr\Gateway> $gateways
      */
     public function setGateways(array $gateways): void
     {

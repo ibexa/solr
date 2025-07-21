@@ -14,6 +14,6 @@ use Ibexa\Solr\Container\Compiler\BaseFieldMapperPass;
  */
 class ContentFieldMapperPass extends BaseFieldMapperPass
 {
-    public const AGGREGATE_MAPPER_SERVICE_ID = 'ibexa.solr.field_mapper.content';
-    public const AGGREGATE_MAPPER_SERVICE_TAG = 'ibexa.search.solr.field.mapper.content';
+    public const string AGGREGATE_MAPPER_SERVICE_ID = 'ibexa.solr.field_mapper.content';
+    public const string AGGREGATE_MAPPER_SERVICE_TAG = 'ibexa.search.solr.field.mapper.content';
 }

@@ -25,33 +25,19 @@ class Stream implements HttpClient, LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    private int $connectionTimeout;
-
-    private HttpClientInterface $client;
-
     /**
      * @param int $timeout Timeout for connection in seconds.
      */
-    public function __construct(HttpClientInterface $client, int $timeout = 10)
-    {
-        $this->client = $client;
-        $this->connectionTimeout = $timeout;
+    public function __construct(
+        private readonly HttpClientInterface $client,
+        private readonly int $timeout = 10
+    ) {
         $this->setLogger(new NullLogger());
     }
 
-    /**
-     * Execute an HTTP request to the remote server.
-     *
-     * Returns the result from the remote server.
-     *
-     * @param string $method
-     * @param string $path
-     *
-     * @return \Ibexa\Solr\Gateway\Message
-     */
-    public function request($method, Endpoint $endpoint, $path, Message $message = null): Message
+    public function request(string $method, Endpoint $endpoint, string $path, ?Message $message = null): Message
     {
-        $message = $message ?? new Message();
+        $message ??= new Message();
 
         try {
             return $this->getResponseMessage(
@@ -86,7 +72,7 @@ class Stream implements HttpClient, LoggerAwareInterface
             $endpoint->getURL() . $path,
             [
                 'headers' => $message->headers,
-                'timeout' => $this->connectionTimeout,
+                'timeout' => $this->timeout,
                 'body' => $message->body,
             ]
         );

@@ -17,19 +17,15 @@ abstract class DateMetadata extends CriterionVisitor
 {
     /**
      * Map value to a proper Solr date representation.
-     *
-     * @param mixed $value
-     *
-     * @return string
      */
-    protected function getSolrTime($value)
+    protected function getSolrTime(mixed $value): string
     {
         if (is_numeric($value)) {
             $date = new \DateTime("@{$value}");
         } else {
             try {
                 $date = new \DateTime($value);
-            } catch (Exception $e) {
+            } catch (Exception) {
                 throw new \InvalidArgumentException('Invalid date provided: ' . $value);
             }
         }

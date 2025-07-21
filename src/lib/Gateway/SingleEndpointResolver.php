@@ -14,8 +14,6 @@ interface SingleEndpointResolver
 {
     /**
      * Returns true if current configurations has several endpoints.
-     *
-     * @return bool
      */
-    public function hasMultipleEndpoints();
+    public function hasMultipleEndpoints(): bool;
 }

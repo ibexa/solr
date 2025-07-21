@@ -16,7 +16,7 @@ abstract class AbstractImageTermsVisitor extends AbstractImageVisitor
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Image\AbstractImageRangeCriterion $criterion
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $queries = [];
         /** @var array<string>|string $criterionValue */

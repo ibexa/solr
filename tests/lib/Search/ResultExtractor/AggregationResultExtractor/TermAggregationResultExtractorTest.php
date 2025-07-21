@@ -22,18 +22,13 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
 {
     private TermAggregationKeyMapper&MockObject $keyMapper;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->keyMapper = $this->createMock(TermAggregationKeyMapper::class);
         $this->keyMapper
             ->method('map')
-            ->willReturnCallback(static function (
-                Aggregation $aggregation,
-                array $languageFilter,
-                array $keys
-            ): array {
-                return array_combine($keys, array_map('strtoupper', $keys));
-            });
+            ->willReturnCallback(static fn (Aggregation $aggregation, array $languageFilter, array $keys): array => array_combine($keys, array_map('strtoupper', $keys)));
 
         $this->extractor = $this->createExtractor();
     }
@@ -46,6 +41,13 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
         );
     }
 
+    /**
+     * @return iterable<string, array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     1: array{},
+     *     2: bool
+     * }>
+     */
     public function dataProviderForTestCanVisit(): iterable
     {
         yield 'true' => [
@@ -61,6 +63,14 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
         ];
     }
 
+    /**
+     * @return iterable<string, array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     1: array{},
+     *     2: \stdClass,
+     *     3: \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResult
+     * }>
+     */
     public function dataProviderForTestExtract(): iterable
     {
         $aggregation = $this->createMock(AbstractTermAggregation::class);

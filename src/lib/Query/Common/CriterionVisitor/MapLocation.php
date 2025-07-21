@@ -18,53 +18,29 @@ use Ibexa\Core\Search\Common\FieldNameResolver;
 abstract class MapLocation extends CriterionVisitor
 {
     /**
-     * Field map.
-     */
-    protected FieldNameResolver $fieldNameResolver;
-
-    /**
-     * Identifier of the field type that criterion can handle.
-     *
-     * @var string
-     */
-    protected $fieldTypeIdentifier;
-
-    /**
-     * Name of the field type's indexed field that criterion can handle.
-     *
-     * @var string
-     */
-    protected $fieldName;
-
-    /**
      * Create from FieldNameResolver, FieldType identifier and field name.
      *
-     * @param string $fieldTypeIdentifier
-     * @param string $fieldName
+     * @param string $fieldTypeIdentifier Identifier of the field type that criterion can handle.
+     * @param string $fieldName Name of the field type's indexed field that criterion can handle.
      */
-    public function __construct(FieldNameResolver $fieldNameResolver, $fieldTypeIdentifier, $fieldName)
-    {
-        $this->fieldTypeIdentifier = $fieldTypeIdentifier;
-        $this->fieldName = $fieldName;
-
-        $this->fieldNameResolver = $fieldNameResolver;
+    public function __construct(
+        protected FieldNameResolver $fieldNameResolver,
+        protected string $fieldTypeIdentifier,
+        protected string $fieldName
+    ) {
     }
 
     /**
      * Get array of search fields.
      *
-     * @param string $fieldDefinitionIdentifier
-     * @param string $fieldTypeIdentifier
-     * @param string $name
-     *
-     * @return array
+     * @return array<string, \Ibexa\Contracts\Core\Search\FieldType>
      */
     protected function getSearchFields(
         CriterionInterface $criterion,
-        $fieldDefinitionIdentifier,
-        $fieldTypeIdentifier = null,
-        $name = null
-    ) {
+        string $fieldDefinitionIdentifier,
+        ?string $fieldTypeIdentifier = null,
+        ?string $name = null
+    ): array {
         return $this->fieldNameResolver->getFieldTypes(
             $criterion,
             $fieldDefinitionIdentifier,

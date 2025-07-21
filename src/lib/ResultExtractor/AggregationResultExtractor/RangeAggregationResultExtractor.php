@@ -20,20 +20,16 @@ use stdClass;
 /**
  * @phpstan-template TAggregation of \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation
  */
-final class RangeAggregationResultExtractor implements AggregationResultExtractor
+final readonly class RangeAggregationResultExtractor implements AggregationResultExtractor
 {
-    /** @phpstan-var class-string<TAggregation> */
-    private string $aggregationClass;
-
-    private RangeAggregationKeyMapper $keyMapper;
-
     /**
      * @phpstan-param class-string<TAggregation> $aggregationClass
      */
-    public function __construct(string $aggregationClass, RangeAggregationKeyMapper $keyMapper)
-    {
-        $this->aggregationClass = $aggregationClass;
-        $this->keyMapper = $keyMapper;
+    public function __construct(
+        /** @phpstan-var class-string<TAggregation> */
+        private string $aggregationClass,
+        private RangeAggregationKeyMapper $keyMapper
+    ) {
     }
 
     /**
@@ -52,7 +48,7 @@ final class RangeAggregationResultExtractor implements AggregationResultExtracto
         $entries = [];
 
         foreach ($data as $key => $bucket) {
-            if ($key === 'count' || strpos($key, '_') === false) {
+            if ($key === 'count' || !str_contains($key, '_')) {
                 continue;
             }
 
@@ -84,12 +80,7 @@ final class RangeAggregationResultExtractor implements AggregationResultExtracto
     {
         $order = $aggregation->getRanges();
 
-        $comparator = static function (
-            RangeAggregationResultEntry $a,
-            RangeAggregationResultEntry $b
-        ) use ($order): int {
-            return array_search($a->getKey(), $order) <=> array_search($b->getKey(), $order);
-        };
+        $comparator = (static fn (RangeAggregationResultEntry $a, RangeAggregationResultEntry $b): int => array_search($a->getKey(), $order) <=> array_search($b->getKey(), $order));
 
         usort($entries, $comparator);
     }

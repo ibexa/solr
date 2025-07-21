@@ -10,5 +10,10 @@ namespace Ibexa\Solr\Gateway;
 
 interface DistributionStrategy
 {
-    public function getSearchParameters(array $parameters, ?array $languageSettings = null);
+    /**
+     * @param array<string, mixed> $languageSettings
+     *
+     * @return array<string, mixed>
+     */
+    public function getSearchParameters(array $parameters, ?array $languageSettings = null): array;
 }

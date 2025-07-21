@@ -18,15 +18,13 @@ abstract class ContentFieldMapper
 {
     /**
      * Indicates if the mapper accepts the given $content for mapping.
-     *
-     * @return bool
      */
-    abstract public function accept(SPIContent $content);
+    abstract public function accept(SPIContent $content): bool;
 
     /**
      * Maps given $content to an array of search fields.
      *
-     * @return \Ibexa\Contracts\Core\Search\Field[]
+     * @return list<\Ibexa\Contracts\Core\Search\Field>
      */
-    abstract public function mapFields(SPIContent $content);
+    abstract public function mapFields(SPIContent $content): array;
 }

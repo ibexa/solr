@@ -16,12 +16,7 @@ use Ibexa\Contracts\Solr\Query\CriterionVisitor;
  */
 class MatchAll extends CriterionVisitor
 {
-    /**
-     * CHeck if visitor is applicable to current criterion.
-     *
-     * @return bool
-     */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return $criterion instanceof Criterion\MatchAll;
     }
@@ -30,11 +25,8 @@ class MatchAll extends CriterionVisitor
      * Map field value to a proper Solr representation.
      *
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\MatchAll $criterion
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
-     *
-     * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         return '*:*';
     }

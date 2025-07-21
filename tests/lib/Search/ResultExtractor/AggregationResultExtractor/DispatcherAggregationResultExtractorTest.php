@@ -18,16 +18,16 @@ use stdClass;
 
 final class DispatcherAggregationResultExtractorTest extends TestCase
 {
-    private const EXAMPLE_LANGUAGE_FILTER = [];
+    private const array EXAMPLE_LANGUAGE_FILTER = [];
 
     public function testSupportsReturnsTrue(): void
     {
         $aggregation = $this->createMock(Aggregation::class);
 
         $dispatcher = new DispatcherAggregationResultExtractor([
-            $this->createExtractorMockWithCanVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false),
-            $this->createExtractorMockWithCanVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER, true),
-            $this->createExtractorMockWithCanVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false),
+            $this->createExtractorMockWithCanVisit($aggregation, false),
+            $this->createExtractorMockWithCanVisit($aggregation, true),
+            $this->createExtractorMockWithCanVisit($aggregation, false),
         ]);
 
         self::assertTrue($dispatcher->canVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER));
@@ -38,9 +38,9 @@ final class DispatcherAggregationResultExtractorTest extends TestCase
         $aggregation = $this->createMock(Aggregation::class);
 
         $dispatcher = new DispatcherAggregationResultExtractor([
-            $this->createExtractorMockWithCanVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false),
-            $this->createExtractorMockWithCanVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false),
-            $this->createExtractorMockWithCanVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false),
+            $this->createExtractorMockWithCanVisit($aggregation, false),
+            $this->createExtractorMockWithCanVisit($aggregation, false),
+            $this->createExtractorMockWithCanVisit($aggregation, false),
         ]);
 
         self::assertFalse($dispatcher->canVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER));
@@ -51,9 +51,9 @@ final class DispatcherAggregationResultExtractorTest extends TestCase
         $aggregation = $this->createMock(Aggregation::class);
         $data = new stdClass();
 
-        $extractorA = $this->createExtractorMockWithCanVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false);
-        $extractorB = $this->createExtractorMockWithCanVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER, true);
-        $extractorC = $this->createExtractorMockWithCanVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false);
+        $extractorA = $this->createExtractorMockWithCanVisit($aggregation, false);
+        $extractorB = $this->createExtractorMockWithCanVisit($aggregation, true);
+        $extractorC = $this->createExtractorMockWithCanVisit($aggregation, false);
 
         $dispatcher = new DispatcherAggregationResultExtractor([$extractorA, $extractorB, $extractorC]);
 
@@ -78,9 +78,9 @@ final class DispatcherAggregationResultExtractorTest extends TestCase
         $aggregation = $this->createMock(Aggregation::class);
 
         $dispatcher = new DispatcherAggregationResultExtractor([
-            $this->createExtractorMockWithCanVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false),
-            $this->createExtractorMockWithCanVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false),
-            $this->createExtractorMockWithCanVisit($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false),
+            $this->createExtractorMockWithCanVisit($aggregation, false),
+            $this->createExtractorMockWithCanVisit($aggregation, false),
+            $this->createExtractorMockWithCanVisit($aggregation, false),
         ]);
 
         $dispatcher->extract($aggregation, self::EXAMPLE_LANGUAGE_FILTER, new stdClass());
@@ -88,11 +88,10 @@ final class DispatcherAggregationResultExtractorTest extends TestCase
 
     private function createExtractorMockWithCanVisit(
         Aggregation $aggregation,
-        array $languageFilter,
         bool $supports
     ): AggregationResultExtractor {
         $extractor = $this->createMock(AggregationResultExtractor::class);
-        $extractor->method('canVisit')->with($aggregation, $languageFilter)->willReturn($supports);
+        $extractor->method('canVisit')->with($aggregation, self::EXAMPLE_LANGUAGE_FILTER)->willReturn($supports);
 
         return $extractor;
     }

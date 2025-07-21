@@ -21,7 +21,7 @@ final class AuthorAggregationKeyMapper implements TermAggregationKeyMapper
     {
         $results = [];
         foreach ($keys as $key) {
-            $properties = json_decode($key, true);
+            $properties = json_decode((string) $key, true);
             if ($properties !== false) {
                 $results[$key] = new Author($properties);
             }

@@ -35,6 +35,12 @@ final class IsUserEnabledTest extends BaseCriterionVisitorTestCase
         return new Criterion\IsUserEnabled();
     }
 
+    /**
+     * @return iterable<string, array{
+     *     0: string,
+     *     1: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\IsUserEnabled
+     * }>
+     */
     protected function provideDataForTestVisit(): iterable
     {
         yield 'Query for enabled user' => [

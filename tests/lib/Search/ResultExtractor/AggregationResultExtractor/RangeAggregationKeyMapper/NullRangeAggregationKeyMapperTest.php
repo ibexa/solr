@@ -13,6 +13,14 @@ use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMap
 
 final class NullRangeAggregationKeyMapperTest extends AbstractRangeAggregationKeyMapperTest
 {
+    /**
+     * @return iterable<string, array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation&\PHPUnit\Framework\MockObject\MockObject,
+     *     1: array{},
+     *     2: string,
+     *     3: ?string,
+     * }>
+     */
     public function dataProviderForTestMap(): iterable
     {
         yield 'null' => [

@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
  */
 final class SolrTestContainerBuilder
 {
-    public const CONFIGURATION_FILES_MAP = [
+    public const array CONFIGURATION_FILES_MAP = [
         SearchServiceTranslationLanguageFallbackTest::SETUP_DEDICATED => 'multicore_dedicated.yml',
         SearchServiceTranslationLanguageFallbackTest::SETUP_SHARED => 'multicore_shared.yml',
         SearchServiceTranslationLanguageFallbackTest::SETUP_SINGLE => 'single_core.yml',

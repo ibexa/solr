@@ -15,14 +15,12 @@ namespace Ibexa\Solr\Gateway\DistributionStrategy;
  */
 final class StandaloneDistributionStrategy extends AbstractDistributionStrategy
 {
-    private const SHARD_SEPARATOR = ',';
-    private const SHARD_PARAMETER = 'shards';
+    private const string SHARD_SEPARATOR = ',';
+    private const string SHARD_PARAMETER = 'shards';
 
     protected function appendSearchTargets(array $parameters, array $searchTargets): array
     {
-        $shards = array_map(function (string $endpointName) {
-            return $this->endpointRegistry->getEndpoint($endpointName)->getIdentifier();
-        }, $searchTargets);
+        $shards = array_map(fn (string $endpointName) => $this->endpointRegistry->getEndpoint($endpointName)->getIdentifier(), $searchTargets);
 
         $parameters[self::SHARD_PARAMETER] = implode(self::SHARD_SEPARATOR, $shards);
 
