@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 final class CoreFilterRegistryPass implements CompilerPassInterface
 {
-    public const CORE_FILTER_SERVICE_TAG = 'ibexa.search.solr.core.filter';
+    public const string CORE_FILTER_SERVICE_TAG = 'ibexa.search.solr.core.filter';
 
     public function process(ContainerBuilder $container): void
     {

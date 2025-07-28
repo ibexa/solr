@@ -15,12 +15,19 @@ use Ibexa\Solr\Query\Common\AggregationVisitor\SubtreeTermAggregationVisitor;
 
 final class SubtreeTermAggregationVisitorTest extends AbstractAggregationVisitorTest
 {
-    private const EXAMPLE_AGGREGATION_NAME = 'custom_aggregation';
-    private const EXAMPLE_PATH_STRING = '/1/2/';
+    private const string EXAMPLE_AGGREGATION_NAME = 'custom_aggregation';
+    private const string EXAMPLE_PATH_STRING = '/1/2/';
 
-    private const EXAMPLE_PATH_STRING_FIELD_NAME = 'path_string_id';
-    private const EXAMPLE_LOCATION_ID_FIELD_NAME = 'location_id_id';
+    private const string EXAMPLE_PATH_STRING_FIELD_NAME = 'path_string_id';
+    private const string EXAMPLE_LOCATION_ID_FIELD_NAME = 'location_id_id';
 
+    /**
+     * @return iterable<string, array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     1: array{languages: string[]},
+     *     2: bool
+     * }>
+     */
     public function dataProviderForCanVisit(): iterable
     {
         yield 'true' => [
@@ -39,6 +46,24 @@ final class SubtreeTermAggregationVisitorTest extends AbstractAggregationVisitor
         ];
     }
 
+    /**
+     * @return iterable<array{
+     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Location\SubtreeTermAggregation,
+     *     1: array{languages: string[]},
+     *     2: array{
+     *         type: string,
+     *         q: string,
+     *         facet: array{
+     *             nested: array{
+     *                 type: string,
+     *                 field: string,
+     *                 limit: int,
+     *                 mincount: int
+     *             }
+     *         }
+     *     }
+     * }>
+     */
     public function dataProviderForVisit(): iterable
     {
         yield [

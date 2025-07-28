@@ -7,7 +7,6 @@
 
 namespace Ibexa\Contracts\Solr\Query;
 
-use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 
@@ -18,17 +17,13 @@ abstract class CriterionVisitor
 {
     /**
      * CHeck if visitor is applicable to current criterion.
-     *
-     * @return bool
      */
     abstract public function canVisit(CriterionInterface $criterion);
 
     /**
      * Map field value to a proper Solr representation.
-     *
-     * @return string
      */
-    abstract public function visit(CriterionInterface $criterion, self $subVisitor = null);
+    abstract public function visit(CriterionInterface $criterion, ?self $subVisitor = null);
 
     /**
      * Get Solr range.
@@ -41,14 +36,8 @@ abstract class CriterionVisitor
      * - case Operator::LT:
      * - case Operator::LTE:
      * - case Operator::BETWEEN:
-     *
-     * @param mixed $operator
-     * @param mixed $start
-     * @param mixed $end
-     *
-     * @return string
      */
-    protected function getRange($operator, $start, $end)
+    protected function getRange(string $operator, mixed $start, mixed $end): string
     {
         $startBrace = '[';
         $startValue = '*';
@@ -91,35 +80,22 @@ abstract class CriterionVisitor
 
     /**
      * Converts given $value to the appropriate Solr string representation.
-     *
-     * @param mixed $value
-     *
-     * @return string
      */
-    protected function toString($value)
+    protected function toString(mixed $value): string
     {
-        switch (\gettype($value)) {
-            case 'boolean':
-                return $value ? 'true' : 'false';
-            case 'double':
-                return sprintf('%F', $value);
-
-            default:
-                return (string)$value;
-        }
+        return match (\gettype($value)) {
+            'boolean' => $value ? 'true' : 'false',
+            'double' => sprintf('%F', $value),
+            default => (string)$value,
+        };
     }
 
     /**
      * Escapes given $string for wrapping inside single or double quotes.
      *
      * Does not include quotes in the returned string, this needs to be done by the consumer code.
-     *
-     * @param string $string
-     * @param bool $doubleQuote
-     *
-     * @return string
      */
-    protected function escapeQuote($string, $doubleQuote = false)
+    protected function escapeQuote(string $string, bool $doubleQuote = false): string
     {
         $pattern = ($doubleQuote ? '/("|\\\)/' : '/(\'|\\\)/');
 
@@ -129,12 +105,9 @@ abstract class CriterionVisitor
     /**
      * Escapes value for use in expressions.
      *
-     * @param string $string
      * @param bool $allowWildcard Allow "*" in expression.
-     *
-     * @return mixed
      */
-    protected function escapeExpressions($string, $allowWildcard = false)
+    protected function escapeExpressions(string $string, bool $allowWildcard = false): ?string
     {
         if ($allowWildcard) {
             $reservedCharacters = preg_quote('+-&|!(){}[]^"~?:\\ ');
@@ -144,9 +117,7 @@ abstract class CriterionVisitor
 
         return preg_replace_callback(
             '/([' . $reservedCharacters . '])/',
-            static function ($matches): string {
-                return '\\' . $matches[0];
-            },
+            static fn (array $matches): string => '\\' . $matches[0],
             $string
         );
     }

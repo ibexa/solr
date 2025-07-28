@@ -22,48 +22,22 @@ use QueryTranslator\Languages\Galach\Tokenizer;
  *
  * @internal
  */
-final class FullTextFactory
+final readonly class FullTextFactory
 {
     /**
-     * Field map.
-     */
-    private FieldNameResolver $fieldNameResolver;
-
-    private Tokenizer $tokenizer;
-
-    private Parser $parser;
-
-    private ExtendedDisMax $generator;
-
-    private IndexingDepthProvider $indexingDepthProvider;
-
-    /**
      * Create from content type handler and field registry.
-     *
-     * @param \Ibexa\Core\Search\Common\FieldNameResolver $fieldNameResolver
-     * @param \QueryTranslator\Languages\Galach\Tokenizer $tokenizer
-     * @param \QueryTranslator\Languages\Galach\Parser $parser
-     * @param \QueryTranslator\Languages\Galach\Generators\ExtendedDisMax $generator
-     * @param \Ibexa\Solr\FieldMapper\IndexingDepthProvider $indexingDepthProvider
      */
     public function __construct(
-        FieldNameResolver $fieldNameResolver,
-        Tokenizer $tokenizer,
-        Parser $parser,
-        ExtendedDisMax $generator,
-        IndexingDepthProvider $indexingDepthProvider
+        private FieldNameResolver $fieldNameResolver,
+        private Tokenizer $tokenizer,
+        private Parser $parser,
+        private ExtendedDisMax $generator,
+        private IndexingDepthProvider $indexingDepthProvider
     ) {
-        $this->fieldNameResolver = $fieldNameResolver;
-        $this->tokenizer = $tokenizer;
-        $this->parser = $parser;
-        $this->generator = $generator;
-        $this->indexingDepthProvider = $indexingDepthProvider;
     }
 
     /**
      * Create FullText Criterion Visitor.
-     *
-     * @return \Ibexa\Solr\Query\Content\CriterionVisitor\FullText
      */
     public function createCriterionVisitor(): FullText
     {

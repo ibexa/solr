@@ -96,6 +96,19 @@ class NativeEndpointResolverTest extends TestCase
         self::assertNull($endpointResolver->getMainLanguagesEndpoint());
     }
 
+    /**
+     * @return array<int, array{
+     *     0: array<string, string>,
+     *     1: string|null,
+     *     2: string|null,
+     *     3: array{
+     *          languages?: array<string>,
+     *          useAlwaysAvailable?: bool
+     *     },
+     *     4: array<string>,
+     *     5?: bool
+     * }>
+     */
     public function providerForTestGetSearchTargets(): array
     {
         return [
@@ -800,11 +813,7 @@ class NativeEndpointResolverTest extends TestCase
      * @dataProvider providerForTestGetSearchTargets
      *
      * @param string[] $endpointMap
-     * @param string|null $defaultEndpoint
-     * @param string|null $mainLanguagesEndpoint
-     * @param array $languageSettings
      * @param string[] $expected
-     * @param bool $expectedIsMultiple
      */
     public function testGetSearchTargets(
         array $endpointMap,
@@ -831,7 +840,16 @@ class NativeEndpointResolverTest extends TestCase
     }
 
     /**
-     * @return array{string[], string|null, string|null, array<string, mixed>, string}[]
+     * @return array<int, array{
+     *     0: array<string, string>,
+     *     1: string|null,
+     *     2: string|null,
+     *     3: array{
+     *          languages?: array<string>,
+     *          useAlwaysAvailable?: bool
+     *     },
+     *     4: string
+     * }>
      */
     public function providerForTestGetSearchTargetsThrowsRuntimeException(): array
     {
@@ -920,10 +938,6 @@ class NativeEndpointResolverTest extends TestCase
      * @dataProvider providerForTestGetSearchTargetsThrowsRuntimeException
      *
      * @param string[] $endpointMap
-     * @param string|null $defaultEndpoint
-     * @param string|null $mainLanguagesEndpoint
-     * @param array $languageSettings
-     * @param string $message
      */
     public function testGetSearchTargetsThrowsRuntimeException(
         array $endpointMap,
@@ -1021,8 +1035,6 @@ class NativeEndpointResolverTest extends TestCase
      * @dataProvider providerForTestGetEndpoints
      *
      * @param string[] $endpointMap
-     * @param string|null $defaultEndpoint
-     * @param string|null $mainLanguagesEndpoint
      * @param string[] $expected
      */
     public function testGetEndpoints(
@@ -1056,11 +1068,17 @@ class NativeEndpointResolverTest extends TestCase
         $endpointResolver->getEndpoints();
     }
 
+    /**
+     * @dataProvider providerForTestGetEndpoints
+     *
+     * @param list<string> $entryEndpoints
+     * @param array<string, string> $endpointMap
+     */
     protected function getEndpointResolver(
         array $entryEndpoints = [],
         array $endpointMap = [],
-        $defaultEndpoint = null,
-        $mainLanguagesEndpoint = null
+        ?string $defaultEndpoint = null,
+        ?string $mainLanguagesEndpoint = null
     ): NativeEndpointResolver {
         return new NativeEndpointResolver(
             $entryEndpoints,

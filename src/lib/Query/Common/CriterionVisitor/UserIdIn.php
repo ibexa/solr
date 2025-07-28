@@ -27,16 +27,14 @@ final class UserIdIn extends CriterionVisitor
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\UserId $criterion
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         return sprintf(
             '(%s)',
             implode(
                 ' OR ',
                 array_map(
-                    static function (string $value): string {
-                        return 'content_id_id:"' . $value . '"';
-                    },
+                    static fn (string $value): string => 'content_id_id:"' . $value . '"',
                     (array) $criterion->value
                 )
             )

@@ -20,17 +20,13 @@ interface DocumentMapper
 {
     /**
      * Identifier of Content documents.
-     *
-     * @var string
      */
-    public const DOCUMENT_TYPE_IDENTIFIER_CONTENT = 'content';
+    public const string DOCUMENT_TYPE_IDENTIFIER_CONTENT = 'content';
 
     /**
      * Identifier of Location documents.
-     *
-     * @var string
      */
-    public const DOCUMENT_TYPE_IDENTIFIER_LOCATION = 'location';
+    public const string DOCUMENT_TYPE_IDENTIFIER_LOCATION = 'location';
 
     /**
      * Maps given Content and it's Locations to a collection of nested Documents,
@@ -38,9 +34,9 @@ interface DocumentMapper
      *
      * Each Content Document contains nested Documents representing it's Locations.
      *
-     * @return \Ibexa\Contracts\Core\Search\Document[]
+     * @return list<\Ibexa\Contracts\Core\Search\Document>
      */
-    public function mapContentBlock(Content $content);
+    public function mapContentBlock(Content $content): array;
 
     /**
      * Generates the Solr backend document ID for Content object.
@@ -49,13 +45,8 @@ interface DocumentMapper
      * of all Content's documents (there will be one document per translation).
      * The above is useful when targeting all Content's documents, without
      * the knowledge of it's translations.
-     *
-     * @param int|string $contentId
-     * @param string $languageCode
-     *
-     * @return string
      */
-    public function generateContentDocumentId($contentId, $languageCode = null);
+    public function generateContentDocumentId(int $contentId, ?string $languageCode = null): string;
 
     /**
      * Generates the Solr backend document ID for Location object.
@@ -64,11 +55,6 @@ interface DocumentMapper
      * of all Location's documents (there will be one document per translation).
      * The above is useful when targeting all Location's documents, without
      * the knowledge of it's Content's translations.
-     *
-     * @param int|string $locationId
-     * @param string $languageCode
-     *
-     * @return string
      */
-    public function generateLocationDocumentId($locationId, $languageCode = null);
+    public function generateLocationDocumentId(int $locationId, ?string $languageCode = null): string;
 }

@@ -16,13 +16,11 @@ use LogicException;
 
 final class IsBookmarked extends CriterionVisitor
 {
-    private const SEARCH_FIELD = 'location_bookmarked_user_ids_mid';
+    private const string SEARCH_FIELD = 'location_bookmarked_user_ids_mid';
 
-    private PermissionResolver $permissionResolver;
-
-    public function __construct(PermissionResolver $permissionResolver)
-    {
-        $this->permissionResolver = $permissionResolver;
+    public function __construct(
+        private readonly PermissionResolver $permissionResolver
+    ) {
     }
 
     public function canVisit(CriterionInterface $criterion): bool
@@ -36,7 +34,7 @@ final class IsBookmarked extends CriterionVisitor
      */
     public function visit(
         CriterionInterface $criterion,
-        CriterionVisitor $subVisitor = null
+        ?CriterionVisitor $subVisitor = null
     ): string {
         if (!is_array($criterion->value)) {
             throw new LogicException(sprintf(

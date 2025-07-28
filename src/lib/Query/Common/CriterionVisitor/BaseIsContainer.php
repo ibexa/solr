@@ -28,7 +28,7 @@ abstract class BaseIsContainer extends CriterionVisitor
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\IsContainer $criterion
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $value = $criterion->value;
 

@@ -31,57 +31,56 @@ class BoostFactorProvider
     private static string $keyAny = '*';
 
     /**
-     * Internal map of field boost factors.
-     *
-     * ```php
-     * $map = [
-     *     'content-fields' => [
-     *         '*' => [
-     *             'title' => 1.5,
-     *             'name' = 2.5,
-     *         ],
-     *         'article' => [
-     *             'title' => 3.0,
-     *             '*' => 2.0,
-     *         ],
-     *         'news' => [
-     *             'description' => 3.0,
-     *         ],
-     *     ],
-     *     'meta-fields' => [
-     *         '*' => [
-     *             'name' = 2.5,
-     *             'text' => 1.5,
-     *         ],
-     *         'article' => [
-     *             'name' => 3.0,
-     *             '*' => 2.0,
-     *         ],
-     *         'news' => [
-     *             'text' => 2.0,
-     *         ],
-     *     ],
-     * ];
-     * ```
-     */
-    private array $map;
-
-    /**
      * Boost factor to be used if no mapping is found.
      */
     private float $defaultBoostFactor = 1.0;
 
-    public function __construct(array $map = [])
-    {
-        $this->map = $map;
+    /**
+     * @param array<string, mixed> $map
+     */
+    public function __construct(
+        /**
+         * Internal map of field boost factors.
+         *
+         * ```php
+         * $map = [
+         *     'content-fields' => [
+         *         '*' => [
+         *             'title' => 1.5,
+         *             'name' = 2.5,
+         *         ],
+         *         'article' => [
+         *             'title' => 3.0,
+         *             '*' => 2.0,
+         *         ],
+         *         'news' => [
+         *             'description' => 3.0,
+         *         ],
+         *     ],
+         *     'meta-fields' => [
+         *         '*' => [
+         *             'name' = 2.5,
+         *             'text' => 1.5,
+         *         ],
+         *         'article' => [
+         *             'name' => 3.0,
+         *             '*' => 2.0,
+         *         ],
+         *         'news' => [
+         *             'text' => 2.0,
+         *         ],
+         *     ],
+         * ];
+         * ```
+         */
+        private array $map = []
+    ) {
     }
 
     /**
      * Get boost factor for a Content field by the given $contentType and $fieldDefinition.
-     *
-     * @return float
      */
-    public function getContentFieldBoostFactor(ContentType $contentType, FieldDefinition $fieldDefinition)
+    public function getContentFieldBoostFactor(ContentType $contentType, FieldDefinition $fieldDefinition): float
     {
         $typeIdentifier = $contentType->identifier;
         $fieldIdentifier = $fieldDefinition->identifier;
@@ -94,21 +93,13 @@ class BoostFactorProvider
             $fieldIdentifier = self::$keyAny;
         }
 
-        if (isset($this->map[self::$keyContentFields][$typeIdentifier][$fieldIdentifier])) {
-            return $this->map[self::$keyContentFields][$typeIdentifier][$fieldIdentifier];
-        }
-
-        return $this->defaultBoostFactor;
+        return $this->map[self::$keyContentFields][$typeIdentifier][$fieldIdentifier] ?? $this->defaultBoostFactor;
     }
 
     /**
      * Get boost factor for a Content meta field by the given $fieldName.
-     *
-     * @param string $fieldName
-     *
-     * @return float
      */
-    public function getContentMetaFieldBoostFactor(ContentType $contentType, $fieldName)
+    public function getContentMetaFieldBoostFactor(ContentType $contentType, string $fieldName): float
     {
         $typeIdentifier = $contentType->identifier;
 
@@ -120,10 +111,6 @@ class BoostFactorProvider
             $fieldName = self::$keyAny;
         }
 
-        if (isset($this->map[self::$keyMetaFields][$typeIdentifier][$fieldName])) {
-            return $this->map[self::$keyMetaFields][$typeIdentifier][$fieldName];
-        }
-
-        return $this->defaultBoostFactor;
+        return $this->map[self::$keyMetaFields][$typeIdentifier][$fieldName] ?? $this->defaultBoostFactor;
     }
 }

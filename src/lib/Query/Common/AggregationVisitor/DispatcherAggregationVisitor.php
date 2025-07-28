@@ -12,17 +12,14 @@ use Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 
-final class DispatcherAggregationVisitor implements AggregationVisitor
+final readonly class DispatcherAggregationVisitor implements AggregationVisitor
 {
-    /** @var iterable<\Ibexa\Contracts\Solr\Query\AggregationVisitor> */
-    private iterable $visitors;
-
     /**
      * @param iterable<\Ibexa\Contracts\Solr\Query\AggregationVisitor> $visitors
      */
-    public function __construct(iterable $visitors)
-    {
-        $this->visitors = $visitors;
+    public function __construct(
+        private iterable $visitors
+    ) {
     }
 
     public function canVisit(Aggregation $aggregation, array $languageFilter): bool
@@ -39,7 +36,7 @@ final class DispatcherAggregationVisitor implements AggregationVisitor
 
         if ($visitor === null) {
             throw new NotImplementedException(
-                'No visitor available for: ' . get_class($aggregation)
+                'No visitor available for: ' . $aggregation::class
             );
         }
 
@@ -47,7 +44,7 @@ final class DispatcherAggregationVisitor implements AggregationVisitor
     }
 
     /**
-     * @param array{languages: string[]} $languageFilter
+     * @param array{languages?: string[], languageCode?: string, useAlwaysAvailable?: bool} $languageFilter
      */
     private function findVisitor(Aggregation $aggregation, array $languageFilter): ?AggregationVisitor
     {

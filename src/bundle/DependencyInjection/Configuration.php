@@ -13,17 +13,15 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    public const SOLR_HTTP_CLIENT_DEFAULT_TIMEOUT = 10;
-    public const SOLR_HTTP_CLIENT_DEFAULT_MAX_RETRIES = 3;
-
-    protected $rootNodeName;
+    public const int SOLR_HTTP_CLIENT_DEFAULT_TIMEOUT = 10;
+    public const int SOLR_HTTP_CLIENT_DEFAULT_MAX_RETRIES = 3;
 
     /**
      * Holds default endpoint values.
      *
-     * @var array
+     * @var array<string, string|int|null>
      */
-    protected $defaultEndpointValues = [
+    protected array $defaultEndpointValues = [
         'scheme' => 'http',
         'host' => '127.0.0.1',
         'port' => 8983,
@@ -32,14 +30,15 @@ class Configuration implements ConfigurationInterface
         'path' => '/solr',
     ];
 
-    protected $metaFieldNames = [
+    /** @var list<string> */
+    protected array $metaFieldNames = [
         'name',
         'text',
     ];
 
-    public function __construct($rootNodeName)
-    {
-        $this->rootNodeName = $rootNodeName;
+    public function __construct(
+        protected string $rootNodeName
+    ) {
     }
 
     public function getConfigTreeBuilder(): TreeBuilder
@@ -58,7 +57,7 @@ class Configuration implements ConfigurationInterface
     /**
      * Adds endpoints definition.
      */
-    protected function addEndpointsSection(ArrayNodeDefinition $node)
+    protected function addEndpointsSection(ArrayNodeDefinition $node): void
     {
         $node->children()
             ->arrayNode('endpoints')
@@ -103,7 +102,7 @@ class Configuration implements ConfigurationInterface
      *
      * @throws \RuntimeException
      */
-    protected function addConnectionsSection(ArrayNodeDefinition $node)
+    protected function addConnectionsSection(ArrayNodeDefinition $node): void
     {
         $node->children()
             ->scalarNode('default_connection')
@@ -116,11 +115,7 @@ class Configuration implements ConfigurationInterface
             ->prototype('array')
                 ->beforeNormalization()
                     ->ifTrue(
-                        static function ($v): bool {
-                            return
-                                !empty($v['mapping']) && !\is_array($v['mapping'])
-                            ;
-                        }
+                        static fn ($v): bool => !empty($v['mapping']) && !\is_array($v['mapping'])
                     )
                     ->then(
                         static function (array $v) {
@@ -136,16 +131,12 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->beforeNormalization()
                     ->ifTrue(
-                        static function ($v): bool {
-                            return
-                                empty($v['entry_endpoints']) &&
-                                (
-                                    !empty($v['mapping']['translations']) ||
-                                    !empty($v['mapping']['default']) ||
-                                    !empty($v['mapping']['main_translations'])
-                                )
-                            ;
-                        }
+                        static fn ($v): bool => empty($v['entry_endpoints']) &&
+                        (
+                            !empty($v['mapping']['translations']) ||
+                            !empty($v['mapping']['default']) ||
+                            !empty($v['mapping']['main_translations'])
+                        )
                     )
                     ->then(
                         // If entry endpoints are not provided use mapping endpoints

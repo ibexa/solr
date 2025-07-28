@@ -17,11 +17,6 @@ use Ibexa\Contracts\Solr\Query\CriterionVisitor;
  */
 class SubtreeIn extends CriterionVisitor
 {
-    /**
-     * CHeck if visitor is applicable to current criterion.
-     *
-     * @return bool
-     */
     public function canVisit(CriterionInterface $criterion): bool
     {
         return
@@ -33,20 +28,15 @@ class SubtreeIn extends CriterionVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Subtree $criterion
-     *
-     * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         return '(' .
             implode(
                 ' OR ',
                 array_map(
-                    static function ($value): string {
-                        return 'location_path_string_mid:' . str_replace('/', '\\/', $value) . '*';
-                    },
+                    static fn (string $value): string => 'location_path_string_mid:' . str_replace('/', '\\/', $value) . '*',
                     $criterion->value
                 )
             ) .

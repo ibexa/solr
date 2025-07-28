@@ -16,11 +16,11 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 final class DispatcherAggregationVisitorTest extends TestCase
 {
-    private const EXAMPLE_LANGUAGE_FILTER = [
+    private const array EXAMPLE_LANGUAGE_FILTER = [
         'languages' => ['eng-GB'],
     ];
 
-    private const EXAMPLE_VISITOR_RESULT = [
+    private const array EXAMPLE_VISITOR_RESULT = [
         'type' => 'terms',
         'field' => 'foo',
         'limit' => 100,

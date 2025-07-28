@@ -17,14 +17,11 @@ use PHPUnit\Framework\TestCase;
 
 class CloudDistributionStrategyTest extends TestCase
 {
-    /** @var \Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy */
     private CloudDistributionStrategy $distributionStrategy;
 
-    /** @var \Ibexa\Solr\Gateway\EndpointResolver|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $endpointResolver;
+    private EndpointResolver&MockObject $endpointResolver;
 
-    /** @var \Ibexa\Solr\Gateway\EndpointRegistry|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $endpointRegistry;
+    private EndpointRegistry&MockObject $endpointRegistry;
 
     protected function setUp(): void
     {
@@ -33,11 +30,9 @@ class CloudDistributionStrategyTest extends TestCase
         $this->endpointRegistry = $this->createMock(EndpointRegistry::class);
         $this->endpointRegistry
             ->method('getEndpoint')
-            ->willReturnCallback(static function (string $name): Endpoint {
-                return new Endpoint([
-                    'core' => 'collection_' . $name,
-                ]);
-            });
+            ->willReturnCallback(static fn (string $name): Endpoint => new Endpoint([
+                'core' => 'collection_' . $name,
+            ]));
 
         $this->distributionStrategy = new CloudDistributionStrategy(
             $this->endpointRegistry,

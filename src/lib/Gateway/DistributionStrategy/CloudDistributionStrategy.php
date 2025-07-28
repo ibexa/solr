@@ -15,14 +15,12 @@ namespace Ibexa\Solr\Gateway\DistributionStrategy;
  */
 final class CloudDistributionStrategy extends AbstractDistributionStrategy
 {
-    private const COLLECTION_SEPARATOR = ',';
-    private const COLLECTION_PARAMETER = 'collection';
+    private const string COLLECTION_SEPARATOR = ',';
+    private const string COLLECTION_PARAMETER = 'collection';
 
     protected function appendSearchTargets(array $parameters, array $searchTargets): array
     {
-        $collections = array_map(function (string $endpointName) {
-            return $this->endpointRegistry->getEndpoint($endpointName)->core;
-        }, $searchTargets);
+        $collections = array_map(fn (string $endpointName) => $this->endpointRegistry->getEndpoint($endpointName)->core, $searchTargets);
 
         $parameters[self::COLLECTION_PARAMETER] = implode(self::COLLECTION_SEPARATOR, $collections);
 

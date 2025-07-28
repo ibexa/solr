@@ -8,44 +8,26 @@
 namespace Ibexa\Bundle\Solr\ApiLoader;
 
 use Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface;
+use Ibexa\Solr\FieldMapper\BoostFactorProvider;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * BoostFactorProvider service factory takes into account boost factor semantic configuration.
  */
-class BoostFactorProviderFactory
+readonly class BoostFactorProviderFactory
 {
-    private ContainerInterface $container;
-
-    private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider;
-
     /**
-     * @var string
-     */
-    private $defaultConnection;
-
-    /**
-     * @var string
-     */
-    private $boostFactorProviderClass;
-
-    /**
-     * @param string $defaultConnection
-     * @param string $boostFactorProviderClass
+     * @param class-string<\Ibexa\Solr\FieldMapper\BoostFactorProvider> $boostFactorProviderClass
      */
     public function __construct(
-        ContainerInterface $container,
-        RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
-        $defaultConnection,
-        $boostFactorProviderClass
+        private ContainerInterface $container,
+        private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
+        private string $defaultConnection,
+        private string $boostFactorProviderClass
     ) {
-        $this->container = $container;
-        $this->repositoryConfigurationProvider = $repositoryConfigurationProvider;
-        $this->defaultConnection = $defaultConnection;
-        $this->boostFactorProviderClass = $boostFactorProviderClass;
     }
 
-    public function buildService()
+    public function buildService(): BoostFactorProvider
     {
         $repositoryConfig = $this->repositoryConfigurationProvider->getRepositoryConfig();
 
@@ -55,7 +37,7 @@ class BoostFactorProviderFactory
         }
 
         return new $this->boostFactorProviderClass(
-            $this->container->getParameter(
+            (array)$this->container->getParameter(
                 "ibexa.solr.connection.{$connection}.boost_factor_map_id"
             )
         );

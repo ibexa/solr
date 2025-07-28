@@ -12,6 +12,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResultColle
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SpellcheckResult;
+use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Solr\Gateway\EndpointRegistry;
 use stdClass;
@@ -22,24 +23,17 @@ use stdClass;
  */
 abstract class ResultExtractor
 {
-    protected AggregationResultExtractor $aggregationResultExtractor;
-
-    protected EndpointRegistry $endpointRegistry;
-
     public function __construct(
-        AggregationResultExtractor $aggregationResultExtractor,
-        EndpointRegistry $endpointRegistry
+        protected AggregationResultExtractor $aggregationResultExtractor,
+        protected EndpointRegistry $endpointRegistry
     ) {
-        $this->aggregationResultExtractor = $aggregationResultExtractor;
-        $this->endpointRegistry = $endpointRegistry;
     }
 
     /**
      * Extracts search result from $data returned by Solr backend.
      *
-     * @param \stdClass $data
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation[] $aggregations
-     * @param array $languageFilter
+     * @param array{languages?: string[], languageCode?: string, useAlwaysAvailable?: bool} $languageFilter
      *
      * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult<\Ibexa\Contracts\Core\Repository\Values\ValueObject>
      */
@@ -61,7 +55,7 @@ abstract class ResultExtractor
         $result->spellcheck = $this->extractSpellcheck($data, $spellcheck);
 
         foreach ($data->response->docs as $doc) {
-            $result->searchHits[] = $this->extractSearchHit($doc, $languageFilter);
+            $result->searchHits[] = $this->extractSearchHit($doc);
         }
 
         return $result;
@@ -69,35 +63,48 @@ abstract class ResultExtractor
 
     /**
      * Extracts value object from $hit returned by Solr backend.
-     *
      * Needs to be implemented by the concrete ResultExtractor.
      *
-     * @param mixed $hit
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ValueObject
+     * @param \stdClass{
+     *     document_type_id: string,
+     *     content_id_id: int|string,
+     *     content_name_s: string,
+     *     content_type_id_id: int|string,
+     *     content_section_id_id: int|string,
+     *     content_version_no_i: int,
+     *     content_owner_user_id_id: int|string,
+     *     content_modification_date_dt: string,
+     *     content_publication_date_dt: string,
+     *     content_always_available_b: bool,
+     *     content_remote_id_id: string,
+     *     content_main_language_code_s: string,
+     *     main_location_id?: int|string,
+     *     location_id: int|string,
+     *     priority_i: int,
+     *     hidden_b: bool,
+     *     invisible_b: bool,
+     *     remote_id_id: string,
+     *     parent_id_id: int|string,
+     *     path_string_id: string,
+     *     depth_i: int,
+     *     sort_field_id: int|string,
+     *     sort_order_id: int|string
+     * }&\stdClass $hit
      */
-    abstract public function extractHit($hit);
+    abstract public function extractHit(stdClass $hit): ValueObject;
 
     /**
      * Returns language code of the Content's translation of the matched document.
-     *
-     * @param mixed $hit
-     *
-     * @return string
      */
-    protected function getMatchedLanguageCode($hit)
+    protected function getMatchedLanguageCode(mixed $hit): string
     {
         return $hit->meta_indexed_language_code_s;
     }
 
     /**
      * Returns the identifier of the logical index (shard) of the matched document.
-     *
-     * @param mixed $hit
-     *
-     * @return string
      */
-    protected function getIndexIdentifier($hit)
+    protected function getIndexIdentifier(stdClass $hit): string
     {
         // In single core setup, shard parameter is not set on request to avoid issues in environments that does not
         // know about own dns, which means it's not set here either
@@ -110,6 +117,7 @@ abstract class ResultExtractor
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation[] $aggregations
+     * @param array{languages?: string[], languageCode?: string, useAlwaysAvailable?: bool} $languageFilter
      */
     protected function extractAggregations(
         stdClass $data,
@@ -132,7 +140,7 @@ abstract class ResultExtractor
         return new AggregationResultCollection($aggregationsResults);
     }
 
-    protected function extractSearchHit(stdClass $doc, array $languageFilter): SearchHit
+    protected function extractSearchHit(stdClass $doc): SearchHit
     {
         return new SearchHit(
             [

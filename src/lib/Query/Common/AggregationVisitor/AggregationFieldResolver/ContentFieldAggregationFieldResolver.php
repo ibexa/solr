@@ -14,22 +14,18 @@ use Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolve
 use Ibexa\Core\Search\Common\FieldNameResolver;
 use RuntimeException;
 
-final class ContentFieldAggregationFieldResolver implements AggregationFieldResolver
+final readonly class ContentFieldAggregationFieldResolver implements AggregationFieldResolver
 {
-    private FieldNameResolver $fieldNameResolver;
-
-    private string $searchFieldName;
-
-    public function __construct(FieldNameResolver $fieldNameResolver, string $searchFieldName)
-    {
-        $this->fieldNameResolver = $fieldNameResolver;
-        $this->searchFieldName = $searchFieldName;
+    public function __construct(
+        private FieldNameResolver $fieldNameResolver,
+        private string $searchFieldName
+    ) {
     }
 
     public function resolveTargetField(Aggregation $aggregation): string
     {
         if (!($aggregation instanceof FieldAggregation)) {
-            throw new RuntimeException('Expected instance of ' . FieldAggregation::class . ' , got ' . get_class($aggregation));
+            throw new RuntimeException('Expected instance of ' . FieldAggregation::class . ' , got ' . $aggregation::class);
         }
 
         $searchFieldName = $this->fieldNameResolver->getAggregationFieldName(

@@ -9,7 +9,6 @@ namespace Ibexa\Solr\FieldMapper\LocationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Bookmark\Handler as BookmarkHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Handler;
-use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Ibexa\Contracts\Core\Search\Field;
@@ -22,20 +21,11 @@ use Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper;
  */
 class LocationDocumentBaseFields extends LocationFieldMapper
 {
-    protected Handler $contentHandler;
-
-    protected ContentTypeHandler $contentTypeHandler;
-
-    private BookmarkHandler $bookmarkHandler;
-
     public function __construct(
-        BookmarkHandler $bookmarkHandler,
-        ContentHandler $contentHandler,
-        ContentTypeHandler $contentTypeHandler
+        private readonly BookmarkHandler $bookmarkHandler,
+        protected readonly Handler $contentHandler,
+        protected readonly ContentTypeHandler $contentTypeHandler
     ) {
-        $this->bookmarkHandler = $bookmarkHandler;
-        $this->contentHandler = $contentHandler;
-        $this->contentTypeHandler = $contentTypeHandler;
     }
 
     public function accept(Location $location): bool
@@ -133,6 +123,9 @@ class LocationDocumentBaseFields extends LocationFieldMapper
         ];
     }
 
+    /**
+     * @return list<string>
+     */
     private function getAncestors(Location $location): array
     {
         $ancestorsIds = explode('/', trim($location->pathString, '/'));

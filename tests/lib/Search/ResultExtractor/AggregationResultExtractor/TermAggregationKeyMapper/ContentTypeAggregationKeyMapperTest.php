@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ContentTypeAggregationKeyMapperTest extends TestCase
 {
-    private const EXAMPLE_CONTENT_TYPE_IDS = [1, 2, 3];
+    private const array EXAMPLE_CONTENT_TYPE_IDS = [1, 2, 3];
 
     private ContentTypeService&MockObject $contentTypeService;
 
@@ -51,6 +51,11 @@ final class ContentTypeAggregationKeyMapperTest extends TestCase
         );
     }
 
+    /**
+     * @param list<int> $ids
+     *
+     * @return list<\Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType>
+     */
     private function createContentTypesList(iterable $ids): array
     {
         $contentTypes = [];

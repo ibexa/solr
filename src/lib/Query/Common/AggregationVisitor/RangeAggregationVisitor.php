@@ -19,14 +19,10 @@ use Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolve
  */
 final class RangeAggregationVisitor extends AbstractRangeAggregationVisitor
 {
-    private string $aggregationClass;
-
-    private AggregationFieldResolver $aggregationFieldResolver;
-
-    public function __construct(string $aggregationClass, AggregationFieldResolver $aggregationFieldResolver)
-    {
-        $this->aggregationClass = $aggregationClass;
-        $this->aggregationFieldResolver = $aggregationFieldResolver;
+    public function __construct(
+        private readonly string $aggregationClass,
+        private readonly AggregationFieldResolver $aggregationFieldResolver
+    ) {
     }
 
     /**

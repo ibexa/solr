@@ -17,20 +17,19 @@ use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregat
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\NullAggregationKeyMapper;
 use stdClass;
 
-final class TermAggregationResultExtractor implements AggregationResultExtractor
+final readonly class TermAggregationResultExtractor implements AggregationResultExtractor
 {
     private TermAggregationKeyMapper $keyMapper;
 
-    private string $aggregationClass;
-
-    public function __construct(string $aggregationClass, TermAggregationKeyMapper $keyMapper = null)
-    {
+    public function __construct(
+        private string $aggregationClass,
+        TermAggregationKeyMapper $keyMapper = null
+    ) {
         if ($keyMapper === null) {
             $keyMapper = new NullAggregationKeyMapper();
         }
 
         $this->keyMapper = $keyMapper;
-        $this->aggregationClass = $aggregationClass;
     }
 
     public function canVisit(Aggregation $aggregation, array $languageFilter): bool
@@ -64,6 +63,9 @@ final class TermAggregationResultExtractor implements AggregationResultExtractor
         return new TermAggregationResult($aggregation->getName(), $entries);
     }
 
+    /**
+     * @return list<string|int>
+     */
     private function getKeys(stdClass $data): array
     {
         $keys = [];

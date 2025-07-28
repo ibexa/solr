@@ -13,16 +13,12 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use stdClass;
 
-final class NestedAggregationResultExtractor implements AggregationResultExtractor
+final readonly class NestedAggregationResultExtractor implements AggregationResultExtractor
 {
-    private AggregationResultExtractor $innerResultExtractor;
-
-    private string $nestedResultKey;
-
-    public function __construct(AggregationResultExtractor $innerResultExtractor, string $nestedResultKey)
-    {
-        $this->innerResultExtractor = $innerResultExtractor;
-        $this->nestedResultKey = $nestedResultKey;
+    public function __construct(
+        private AggregationResultExtractor $innerResultExtractor,
+        private string $nestedResultKey
+    ) {
     }
 
     public function canVisit(Aggregation $aggregation, array $languageFilter): bool

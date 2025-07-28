@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 
 final class SubtreeAggregationKeyMapperTest extends TestCase
 {
-    private const EXAMPLE_PATH_STRING = '/1/2/54/';
+    private const string EXAMPLE_PATH_STRING = '/1/2/54/';
 
     private TermAggregationKeyMapper&MockObject $locationAggregationKeyMapper;
 
@@ -53,6 +53,11 @@ final class SubtreeAggregationKeyMapperTest extends TestCase
         );
     }
 
+    /**
+     * @param iterable<int> $locationIds
+     *
+     * @return array<int, \Ibexa\Contracts\Core\Repository\Values\Content\Location>
+     */
     private function createExpectedLocations(iterable $locationIds): array
     {
         $locations = [];

@@ -9,7 +9,6 @@ namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Handler;
-use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Type as ContentType;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Ibexa\Contracts\Core\Search\Field;
@@ -36,46 +35,22 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
      */
     private static string $relatedContentFieldName = 'meta_related_content_%d__text';
 
-    protected ContentTypeHandler $contentTypeHandler;
-
-    protected Handler $contentHandler;
-
-    protected FieldRegistry $fieldRegistry;
-
-    protected FieldNameGenerator $fieldNameGenerator;
-
-    protected BoostFactorProvider $boostFactorProvider;
-
-    protected IndexingDepthProvider $indexingDepthProvider;
-
     public function __construct(
-        ContentTypeHandler $contentTypeHandler,
-        ContentHandler $contentHandler,
-        FieldRegistry $fieldRegistry,
-        FieldNameGenerator $fieldNameGenerator,
-        BoostFactorProvider $boostFactorProvider,
-        IndexingDepthProvider $indexingDepthProvider
+        protected readonly ContentTypeHandler $contentTypeHandler,
+        protected readonly Handler $contentHandler,
+        protected readonly FieldRegistry $fieldRegistry,
+        protected readonly FieldNameGenerator $fieldNameGenerator,
+        protected readonly BoostFactorProvider $boostFactorProvider,
+        protected readonly IndexingDepthProvider $indexingDepthProvider
     ) {
-        $this->contentTypeHandler = $contentTypeHandler;
-        $this->contentHandler = $contentHandler;
-        $this->fieldRegistry = $fieldRegistry;
-        $this->fieldNameGenerator = $fieldNameGenerator;
-        $this->boostFactorProvider = $boostFactorProvider;
-        $this->indexingDepthProvider = $indexingDepthProvider;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function accept(Content $content, $languageCode): bool
+    public function accept(Content $content, string $languageCode): bool
     {
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function mapFields(Content $content, $languageCode)
+    public function mapFields(Content $content, string $languageCode): array
     {
         $contentType = $this->contentTypeHandler->load(
             $content->versionInfo->contentInfo->contentTypeId
@@ -89,16 +64,17 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
     }
 
     /**
-     * @param string $languageCode
-     * @param int $maxDepth
-     * @param int $depth
-     *
-     * @return \Ibexa\Contracts\Core\Search\Field[]
+     * @return list<\Ibexa\Contracts\Core\Search\Field>
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
-    private function doMapFields(Content $content, ContentType $contentType, $languageCode, $maxDepth, int $depth = 0): array
-    {
+    private function doMapFields(
+        Content $content,
+        ContentType $contentType,
+        string $languageCode,
+        int $maxDepth,
+        int $depth = 0
+    ): array {
         $fields = [];
 
         foreach ($content->fields as $field) {
@@ -147,7 +123,6 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
      *
      * @param string $languageCode
      * @param int $maxDepth
-     * @param int $depth
      *
      * @return \Ibexa\Contracts\Core\Search\Field[]
      *
@@ -162,15 +137,11 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
         );
 
         $relatedContents = $this->contentHandler->loadContentList(
-            array_map(static function (Content\Relation $relation) {
-                return $relation->destinationContentId;
-            }, $relations)
+            array_map(static fn (Content\Relation $relation): int => $relation->destinationContentId, $relations)
         );
 
         $contentTypes = $this->contentTypeHandler->loadContentTypeList(
-            array_map(static function (Content $content) {
-                return $content->versionInfo->contentInfo->contentTypeId;
-            }, $relatedContents)
+            array_map(static fn (Content $content): int => $content->versionInfo->contentInfo->contentTypeId, $relatedContents)
         );
 
         $fields = [];

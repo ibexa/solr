@@ -18,8 +18,8 @@ use PHPUnit\Framework\TestCase;
  */
 final class UpdateSerializerFactoryTest extends TestCase
 {
-    private const FORMAT_FOO = 'foo';
-    private const FORMAT_BAR = 'bar';
+    private const string FORMAT_FOO = 'foo';
+    private const string FORMAT_BAR = 'bar';
 
     /**
      * @dataProvider getDataForTestGetSerializer
@@ -52,6 +52,13 @@ final class UpdateSerializerFactoryTest extends TestCase
         $factory->getSerializer(self::FORMAT_BAR);
     }
 
+    /**
+     * @return iterable<string, array{
+     *     0: array<\Ibexa\Solr\Gateway\UpdateSerializerInterface>,
+     *     1: \Ibexa\Solr\Gateway\UpdateSerializerInterface,
+     *     2: string
+     * }>
+     */
     public function getDataForTestGetSerializer(): iterable
     {
         $fooSerializerMock = $this->createMock(UpdateSerializerInterface::class);

@@ -14,7 +14,7 @@ use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 final class IsUserEnabled extends CriterionVisitor
 {
-    private const SEARCH_FIELD = 'user_is_enabled_b';
+    private const string SEARCH_FIELD = 'user_is_enabled_b';
 
     public function canVisit(CriterionInterface $criterion): bool
     {
@@ -24,7 +24,7 @@ final class IsUserEnabled extends CriterionVisitor
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\IsUserEnabled $criterion
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $value = $criterion->value;
         if (!is_array($value) || !is_bool($value[0])) {

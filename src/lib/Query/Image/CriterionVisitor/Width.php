@@ -14,7 +14,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 
 final class Width extends AbstractImageRangeVisitor
 {
-    private const SEARCH_FIELD_WIDTH = 'width';
+    private const string SEARCH_FIELD_WIDTH = 'width';
 
     public function canVisit(CriterionInterface $criterion): bool
     {

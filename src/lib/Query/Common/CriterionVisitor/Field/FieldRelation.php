@@ -23,8 +23,6 @@ class FieldRelation extends Field
      * Check if visitor is applicable to current criterion.
      *
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion $criterion
-     *
-     * @return bool
      */
     public function canVisit(CriterionInterface $criterion): bool
     {
@@ -38,15 +36,12 @@ class FieldRelation extends Field
      * Map field value to a proper Solr representation.
      *
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\FieldRelation $criterion
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
-     *
-     * @return string
      *
      * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException If no searchable fields are found for the given criterion target.
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
-        $searchFields = $this->getSearchFields($criterion, $criterion->target);
+        $searchFields = $this->getSearchFields($criterion);
 
         if (empty($searchFields)) {
             throw new InvalidArgumentException(
@@ -67,14 +62,10 @@ class FieldRelation extends Field
             }
         }
 
-        switch ($criterion->operator) {
-            case Operator::CONTAINS:
-                $op = ' AND ';
-                break;
-            case Operator::IN:
-            default:
-                $op = ' OR ';
-        }
+        $op = match ($criterion->operator) {
+            Operator::CONTAINS => ' AND ',
+            default => ' OR ',
+        };
 
         return '(' . implode($op, $queries) . ')';
     }

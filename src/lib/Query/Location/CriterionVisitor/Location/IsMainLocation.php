@@ -16,25 +16,15 @@ use Ibexa\Contracts\Solr\Query\CriterionVisitor;
  */
 class IsMainLocation extends CriterionVisitor
 {
-    /**
-     * Check if visitor is applicable to current criterion.
-     *
-     * @return bool
-     */
-    public function canVisit(CriterionInterface $criterion)
+    public function canVisit(CriterionInterface $criterion): bool
     {
         return $criterion instanceof Criterion\Location\IsMainLocation;
     }
 
     /**
-     * Map field value to a proper Solr representation.
-     *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Location\IsMainLocation $criterion
-     *
-     * @return string
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         return 'is_main_location_b:' . ($criterion->value[0] === Criterion\Location\IsMainLocation::MAIN ? 'true' : 'false');
     }

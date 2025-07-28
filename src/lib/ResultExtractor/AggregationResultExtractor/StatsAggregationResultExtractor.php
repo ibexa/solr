@@ -14,13 +14,11 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\Stat
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use stdClass;
 
-final class StatsAggregationResultExtractor implements AggregationResultExtractor
+final readonly class StatsAggregationResultExtractor implements AggregationResultExtractor
 {
-    private string $aggregationClass;
-
-    public function __construct(string $aggregationClass)
-    {
-        $this->aggregationClass = $aggregationClass;
+    public function __construct(
+        private string $aggregationClass
+    ) {
     }
 
     public function canVisit(Aggregation $aggregation, array $languageFilter): bool

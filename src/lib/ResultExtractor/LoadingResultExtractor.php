@@ -8,12 +8,13 @@
 namespace Ibexa\Solr\ResultExtractor;
 
 use Ibexa\Contracts\Core\Persistence\Content\Handler;
-use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
+use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Solr\Gateway\EndpointRegistry;
 use Ibexa\Solr\ResultExtractor;
 use RuntimeException;
+use stdClass;
 
 /**
  * The Loading Result Extractor extracts the value object from the Solr search hit data
@@ -21,38 +22,20 @@ use RuntimeException;
  */
 class LoadingResultExtractor extends ResultExtractor
 {
-    /**
-     * Content handler.
-     */
-    protected Handler $contentHandler;
-
-    /**
-     * Location handler.
-     */
-    protected LocationHandler $locationHandler;
-
     public function __construct(
-        ContentHandler $contentHandler,
-        LocationHandler $locationHandler,
-        AggregationResultExtractor $aggregationResultExtractor,
-        EndpointRegistry $endpointRegistry
+        protected readonly Handler $contentHandler,
+        protected readonly LocationHandler $locationHandler,
+        protected AggregationResultExtractor $aggregationResultExtractor,
+        protected EndpointRegistry $endpointRegistry
     ) {
-        $this->contentHandler = $contentHandler;
-        $this->locationHandler = $locationHandler;
-
         parent::__construct($aggregationResultExtractor, $endpointRegistry);
     }
 
     /**
-     * Extracts value object from $hit returned by Solr backend.
-     *
-     * @throws \RuntimeException If search $hit could not be handled
-     *
-     * @param mixed $hit
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ValueObject
+     * @throws \RuntimeException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
-    public function extractHit($hit)
+    public function extractHit(stdClass $hit): ValueObject
     {
         if ($hit->document_type_id === 'content') {
             return $this->contentHandler->loadContentInfo($hit->content_id_id);

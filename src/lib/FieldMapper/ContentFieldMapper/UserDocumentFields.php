@@ -16,7 +16,7 @@ use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
 final class UserDocumentFields extends ContentFieldMapper
 {
     /** @internal */
-    public const HASHING_ALGORITHM = 'sha256';
+    public const string HASHING_ALGORITHM = 'sha256';
 
     public function accept(SPIContent $content): bool
     {

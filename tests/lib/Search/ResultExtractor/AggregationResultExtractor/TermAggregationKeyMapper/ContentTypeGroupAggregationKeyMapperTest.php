@@ -51,6 +51,9 @@ final class ContentTypeGroupAggregationKeyMapperTest extends TestCase
         return $contentTypeGroup;
     }
 
+    /**
+     * @return array<int, \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeGroup>
+     */
     private function createExpectedLanguages(): array
     {
         $expectedContentTypesGroups = [];
