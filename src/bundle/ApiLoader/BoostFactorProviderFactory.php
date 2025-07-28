@@ -16,6 +16,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 readonly class BoostFactorProviderFactory
 {
+    /**
+     * @param class-string<\Ibexa\Solr\FieldMapper\BoostFactorProvider> $boostFactorProviderClass
+     */
     public function __construct(
         private ContainerInterface $container,
         private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
@@ -33,9 +36,8 @@ readonly class BoostFactorProviderFactory
             $connection = $repositoryConfig['search']['connection'];
         }
 
-        /** @var \Ibexa\Solr\FieldMapper\BoostFactorProvider */
         return new $this->boostFactorProviderClass(
-            $this->container->getParameter(
+            (array)$this->container->getParameter(
                 "ibexa.solr.connection.{$connection}.boost_factor_map_id"
             )
         );

@@ -16,6 +16,9 @@ use Ibexa\Solr\ResultExtractor;
 
 readonly class SolrEngineFactory
 {
+    /**
+     * @param class-string<\Ibexa\Solr\Handler> $searchEngineClass
+     */
     public function __construct(
         private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
         private string $defaultConnection,
@@ -38,7 +41,6 @@ readonly class SolrEngineFactory
         $gateway = $this->gatewayRegistry->getGateway($connection);
         $coreFilter = $this->coreFilterRegistry->getCoreFilter($connection);
 
-        /** @var \Ibexa\Solr\Handler */
         return new $this->searchEngineClass(
             $gateway,
             $this->contentHandler,

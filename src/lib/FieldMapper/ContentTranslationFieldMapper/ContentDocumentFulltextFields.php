@@ -137,11 +137,11 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
         );
 
         $relatedContents = $this->contentHandler->loadContentList(
-            array_map(static fn (Content\Relation $relation) => $relation->destinationContentId, $relations)
+            array_map(static fn (Content\Relation $relation): int => $relation->destinationContentId, $relations)
         );
 
         $contentTypes = $this->contentTypeHandler->loadContentTypeList(
-            array_map(static fn (Content $content) => $content->versionInfo->contentInfo->contentTypeId, $relatedContents)
+            array_map(static fn (Content $content): int => $content->versionInfo->contentInfo->contentTypeId, $relatedContents)
         );
 
         $fields = [];

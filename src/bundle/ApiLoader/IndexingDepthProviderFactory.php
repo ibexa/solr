@@ -14,6 +14,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 readonly class IndexingDepthProviderFactory
 {
+    /**
+     * @param class-string<\Ibexa\Solr\FieldMapper\IndexingDepthProvider> $indexingDepthProviderClass
+     */
     public function __construct(
         private ContainerInterface $container,
         private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
@@ -31,12 +34,11 @@ readonly class IndexingDepthProviderFactory
             $connection = $repositoryConfig['search']['connection'];
         }
 
-        /** @var \Ibexa\Solr\FieldMapper\IndexingDepthProvider */
         return new $this->indexingDepthProviderClass(
-            $this->container->getParameter(
+            (array)$this->container->getParameter(
                 "ibexa.solr.connection.{$connection}.indexing_depth.map"
             ),
-            $this->container->getParameter(
+            (int)$this->container->getParameter(
                 "ibexa.solr.connection.{$connection}.indexing_depth.default"
             )
         );
