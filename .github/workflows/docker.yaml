@@ -34,8 +34,18 @@ jobs:
       - name: Extract version & image name
         id: vars
         run: |
-          raw_tag=${GITHUB_REF#refs/tags/}         # e.g. v1.4.0
-          version=${raw_tag#v}                     # e.g. 1.4.0
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            raw_tag="${GITHUB_REF#refs/tags/}"
+            version="${raw_tag#v}"
+          else
+            # ----- Branch / PR fallback -----
+            branch="${GITHUB_REF#refs/heads/}"
+            # Replace / and uppercase chars with safe lowercase dashes
+            safe_branch=$(echo "$branch" | tr '[:upper:]/' '[:lower:]-')
+            sha=${GITHUB_SHA::8}
+            raw_tag="${safe_branch}-${sha}"
+            version="$raw_tag"
+          fi
           image_repo="ghcr.io/${GITHUB_REPOSITORY,,}"
           echo "raw_tag=$raw_tag"       >> "$GITHUB_OUTPUT"
           echo "version=$version"       >> "$GITHUB_OUTPUT"
