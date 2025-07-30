@@ -9,11 +9,11 @@ be in the conf directory under the solr home (i.e. ./solr/conf/schema.xml by
 default) or located where the classloader for the Solr webapp can find it.
 
 It provides the default types and definitions for a functional Solr based
-search in eZ Publish 5. You may extend it with your own definitions, but you
+search in Ibexa DXP. You may extend it with your own definitions, but you
 should not remove or drastically change the existing definitions.
 -->
 
-<schema name="eZ Publish 5 base schema" version="1.5">
+<schema name="Ibexa DXP base schema" version="1.5">
     <!--
     language specific field types are included here, there should be at least
     a field type with the name "text" be defined"
