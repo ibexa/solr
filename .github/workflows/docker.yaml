@@ -3,9 +3,9 @@ name: Build & Push to GHCR
 on:
   workflow_dispatch:
   push:
-    tags:
-      - 'v*'
-      - '!v*-alpha*'
+    # tags:
+    #   - 'v*'
+    #   - '!v*-alpha*'
 
 jobs:
   build:
