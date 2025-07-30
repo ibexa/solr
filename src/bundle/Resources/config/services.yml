@@ -2,6 +2,7 @@ parameters:
     ibexa.solr.default_connection: ~
     ibexa.solr.http_client.timeout: !php/const \Ibexa\Bundle\Solr\DependencyInjection\Configuration::SOLR_HTTP_CLIENT_DEFAULT_TIMEOUT
     ibexa.solr.http_client.max_retries: !php/const \Ibexa\Bundle\Solr\DependencyInjection\Configuration::SOLR_HTTP_CLIENT_DEFAULT_MAX_RETRIES
+    ibexa.solr.version: !php/const \Ibexa\Bundle\Solr\DependencyInjection\Configuration::SOLR_DEFAULT_VERSION
 
 services:
     ibexa.solr.http_client.retryable:
