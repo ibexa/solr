@@ -18,6 +18,8 @@ use Ibexa\Solr\Query\Common\CriterionVisitor\MapLocation;
  */
 class MapLocationDistanceRange extends MapLocation
 {
+    private const MAX_EARTH_DISTANCE_KM = 63510;
+
     private string $solrVersion;
 
     public function __construct(
@@ -67,7 +69,7 @@ class MapLocationDistanceRange extends MapLocation
         $criterion->value = (array)$criterion->value;
 
         $start = $criterion->value[0];
-        $end = isset($criterion->value[1]) ? $criterion->value[1] : 63510;
+        $end = isset($criterion->value[1]) ? $criterion->value[1] : self::MAX_EARTH_DISTANCE_KM;
 
         if (($criterion->operator === Operator::LT) ||
             ($criterion->operator === Operator::LTE)) {
@@ -110,7 +112,7 @@ class MapLocationDistanceRange extends MapLocation
     {
         if (is_array($criterion->value)) {
             $minDistance = $criterion->value[0];
-            $maxDistance = $criterion->value[1] ?? 63510;
+            $maxDistance = $criterion->value[1] ?? self::MAX_EARTH_DISTANCE_KM;
         } else {
             $minDistance = 0;
             $maxDistance = $criterion->value;
