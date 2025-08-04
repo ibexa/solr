@@ -115,6 +115,7 @@ services:
             - '@Ibexa\Core\Search\Common\FieldNameResolver'
             - 'ibexa_gmap_location'
             - 'value_location'
+            - '%ibexa.solr.version%'
         tags:
             - {name: ibexa.search.solr.query.content.criterion.visitor}
             - {name: ibexa.search.solr.query.location.criterion.visitor}

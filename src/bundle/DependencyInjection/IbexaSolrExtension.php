@@ -132,6 +132,13 @@ class IbexaSolrExtension extends ConfigurableExtension
             );
         }
 
+        if (isset($config['version'])) {
+            $container->setParameter(
+                "{$alias}.version",
+                $config['version']
+            );
+        }
+
         foreach ($config['connections'] as $name => $params) {
             $this->configureSearchServices($container, $name, $params);
             $this->configureBoostMap($container, $name, $params);

@@ -88,6 +88,8 @@ class LegacySetupFactory extends CoreLegacySetupFactory
             ->registerForAutoconfiguration(UpdateSerializerInterface::class)
             ->addTag(IbexaSolrExtension::GATEWAY_UPDATE_SERIALIZER_TAG);
 
+        $containerBuilder->setParameter('ibexa.solr.version', getenv('SOLR_VERSION'));
+
         $this->configureSymfonyHttpClient($containerBuilder);
     }
 
