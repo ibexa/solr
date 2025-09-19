@@ -41,16 +41,10 @@ class Stream implements HttpClient, LoggerAwareInterface
     }
 
     /**
-     * Execute an HTTP request to the remote server.
-     *
-     * Returns the result from the remote server.
-     *
      * @param string $method
      * @param string $path
-     *
-     * @return \Ibexa\Solr\Gateway\Message
      */
-    public function request($method, Endpoint $endpoint, $path, Message $message = null): Message
+    public function request($method, Endpoint $endpoint, $path, ?Message $message = null): Message
     {
         $message = $message ?? new Message();
 

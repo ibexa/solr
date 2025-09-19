@@ -47,13 +47,9 @@ final class FieldEmpty extends Field
     }
 
     /**
-     * Map field value to a proper Solr representation.
-     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException If no searchable fields are found for the given criterion target.
-     *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      */
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $searchFields = $this->getSearchFields($criterion);
 

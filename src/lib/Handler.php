@@ -232,14 +232,11 @@ class Handler implements VersatileHandler
     }
 
     /**
-     * Suggests a list of values for the given prefix.
-     *
      * @param string $prefix
      * @param string[] $fieldPaths
      * @param int $limit
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion $filter
      */
-    public function suggest($prefix, $fieldPaths = [], $limit = 10, Criterion $filter = null)
+    public function suggest($prefix, $fieldPaths = [], $limit = 10, ?Criterion $filter = null)
     {
         throw new \Exception('@todo: Not implemented yet.');
     }

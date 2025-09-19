@@ -61,7 +61,7 @@ class Aggregate extends CriterionVisitor
      *
      * @return string
      */
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null)
     {
         foreach ($this->visitors as $visitor) {
             if ($visitor->canVisit($criterion)) {

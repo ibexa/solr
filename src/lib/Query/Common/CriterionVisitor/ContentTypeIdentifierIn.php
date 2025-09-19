@@ -34,7 +34,7 @@ class ContentTypeIdentifierIn extends CriterionVisitor
     /**
      * Create from content type handler and field registry.
      */
-    public function __construct(Handler $contentTypeHandler, LoggerInterface $logger = null)
+    public function __construct(Handler $contentTypeHandler, ?LoggerInterface $logger = null)
     {
         $this->contentTypeHandler = $contentTypeHandler;
         $this->logger = $logger ?? new NullLogger();
@@ -62,7 +62,7 @@ class ContentTypeIdentifierIn extends CriterionVisitor
      *
      * @return string
      */
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null)
     {
         $validIds = [];
         $invalidIdentifiers = [];

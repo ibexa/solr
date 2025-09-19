@@ -30,15 +30,11 @@ class UserMetadataIn extends CriterionVisitor
     }
 
     /**
-     * Map field value to a proper Solr representation.
-     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException
-     *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
      *
      * @return string
      */
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null)
     {
         switch ($criterion->target) {
             case Criterion\UserMetadata::MODIFIER:

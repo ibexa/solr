@@ -34,13 +34,9 @@ class PriorityBetween extends CriterionVisitor
     }
 
     /**
-     * Map field value to a proper Solr representation.
-     *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
-     *
      * @return string
      */
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null)
     {
         $start = $criterion->value[0];
         $end = isset($criterion->value[1]) ? $criterion->value[1] : null;

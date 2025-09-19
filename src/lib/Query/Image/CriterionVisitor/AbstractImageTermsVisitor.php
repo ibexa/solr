@@ -13,7 +13,7 @@ use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 abstract class AbstractImageTermsVisitor extends AbstractImageVisitor
 {
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $queries = [];
         /** @var array<string>|string $criterionValue */

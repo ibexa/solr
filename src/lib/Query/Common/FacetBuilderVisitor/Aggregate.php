@@ -50,7 +50,7 @@ class Aggregate extends FacetBuilderVisitor implements FacetFieldVisitor
      * @deprecated Internal support for nullable $facetBuilder will be removed in 2.0, here now to support facetBuilders
      *             that has not adapted yet.
      */
-    public function mapField($field, array $data, FacetBuilder $facetBuilder = null)
+    public function mapField($field, array $data, ?FacetBuilder $facetBuilder = null)
     {
         foreach ($this->visitors as $visitor) {
             if ($facetBuilder && $visitor instanceof FacetFieldVisitor && $visitor->canVisit($facetBuilder)) {

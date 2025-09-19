@@ -24,7 +24,7 @@ final class UserLoginIn extends CriterionVisitor
         return in_array($criterion->operator ?? Operator::IN, [Operator::IN, Operator::EQ], true);
     }
 
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         return sprintf(
             '(%s)',

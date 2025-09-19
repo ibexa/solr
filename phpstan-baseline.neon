@@ -1015,36 +1015,6 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/LanguageCodeIn.php
 
 		-
-			message: '#^Cannot call method visit\(\) on Ibexa\\Contracts\\Solr\\Query\\CriterionVisitor\|null\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/LogicalAnd.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\CriterionVisitor\\LogicalAnd\:\:visit\(\) should return string but returns false\.$#'
-			identifier: return.type
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/LogicalAnd.php
-
-		-
-			message: '#^Cannot call method visit\(\) on Ibexa\\Contracts\\Solr\\Query\\CriterionVisitor\|null\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/LogicalNot.php
-
-		-
-			message: '#^Cannot call method visit\(\) on Ibexa\\Contracts\\Solr\\Query\\CriterionVisitor\|null\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/LogicalOr.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\CriterionVisitor\\LogicalOr\:\:visit\(\) should return string but returns false\.$#'
-			identifier: return.type
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/LogicalOr.php
-
-		-
 			message: '#^Method Ibexa\\Solr\\Query\\Common\\CriterionVisitor\\MapLocation\:\:getSearchFields\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
