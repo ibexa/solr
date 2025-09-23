@@ -55,9 +55,6 @@ class ContentTypeIdentifierIn extends CriterionVisitor
             );
     }
 
-    /**
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
-     */
     public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $validIds = [];
