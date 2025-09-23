@@ -33,10 +33,7 @@ class PriorityBetween extends CriterionVisitor
             );
     }
 
-    /**
-     * @return string
-     */
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $start = $criterion->value[0];
         $end = isset($criterion->value[1]) ? $criterion->value[1] : null;

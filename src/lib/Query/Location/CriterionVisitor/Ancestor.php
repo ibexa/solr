@@ -25,10 +25,7 @@ class Ancestor extends CriterionVisitor
         return $criterion instanceof AncestorCriterion;
     }
 
-    /**
-     * @return string
-     */
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $idSet = [];
         foreach ($criterion->value as $value) {

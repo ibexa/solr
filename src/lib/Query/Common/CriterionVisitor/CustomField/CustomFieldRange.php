@@ -33,10 +33,7 @@ class CustomFieldRange extends CriterionVisitor
             );
     }
 
-    /**
-     * @return string
-     */
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $values = (array)$criterion->value;
         $start = $values[0];

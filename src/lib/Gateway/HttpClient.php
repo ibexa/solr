@@ -11,14 +11,7 @@ namespace Ibexa\Solr\Gateway;
  */
 interface HttpClient
 {
-    /**
-     * @param string $method
-     * @param \Ibexa\Solr\Gateway\Endpoint $endpoint
-     * @param string $path
-     *
-     * @return \Ibexa\Solr\Gateway\Message
-     */
-    public function request($method, Endpoint $endpoint, $path, ?Message $message = null);
+    public function request(string $method, Endpoint $endpoint, string $path, ?Message $message = null): Message;
 }
 
 class_alias(HttpClient::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\HttpClient');

@@ -25,10 +25,7 @@ class Visibility extends CriterionVisitor
         return $criterion instanceof Criterion\Visibility && $criterion->operator === Operator::EQ;
     }
 
-    /**
-     * @return string
-     */
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         return 'location_visible_b:' . ($criterion->value[0] === Criterion\Visibility::VISIBLE ? 'true' : 'false');
     }

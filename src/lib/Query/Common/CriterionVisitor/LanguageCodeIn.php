@@ -28,10 +28,7 @@ class LanguageCodeIn extends CriterionVisitor
               $criterion->operator === Operator::EQ);
     }
 
-    /**
-     * @return string
-     */
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $languageCodeExpressions = array_map(
             static function ($value) {

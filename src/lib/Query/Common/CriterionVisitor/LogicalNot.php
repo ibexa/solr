@@ -25,10 +25,7 @@ class LogicalNot extends CriterionVisitor
         return $criterion instanceof Criterion\LogicalNot;
     }
 
-    /**
-     * @return string
-     */
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         if (!isset($criterion->criteria[0]) ||
              (\count($criterion->criteria) > 1)) {

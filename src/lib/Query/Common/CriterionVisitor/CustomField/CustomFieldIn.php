@@ -31,10 +31,7 @@ class CustomFieldIn extends CriterionVisitor
             );
     }
 
-    /**
-     * @return string
-     */
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $queries = [];
         $values = (array)$criterion->value;

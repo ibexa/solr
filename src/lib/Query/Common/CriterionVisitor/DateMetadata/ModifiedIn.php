@@ -32,10 +32,7 @@ class ModifiedIn extends DateMetadata
             );
     }
 
-    /**
-     * @return string
-     */
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $values = [];
         foreach ($criterion->value as $value) {

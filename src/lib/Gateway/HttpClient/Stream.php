@@ -40,11 +40,7 @@ class Stream implements HttpClient, LoggerAwareInterface
         $this->setLogger(new NullLogger());
     }
 
-    /**
-     * @param string $method
-     * @param string $path
-     */
-    public function request($method, Endpoint $endpoint, $path, ?Message $message = null): Message
+    public function request(string $method, Endpoint $endpoint, string $path, ?Message $message = null): Message
     {
         $message = $message ?? new Message();
 
@@ -67,9 +63,9 @@ class Stream implements HttpClient, LoggerAwareInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
     private function getResponseMessage(
-        $method,
+        string $method,
         Endpoint $endpoint,
-        $path,
+        string $path,
         Message $message
     ): Message {
         if ($endpoint->user !== null) {

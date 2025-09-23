@@ -53,10 +53,8 @@ class MapLocationDistanceRange extends MapLocation
 
     /**
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException If no searchable fields are found for the given criterion target.
-     *
-     * @return string
      */
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         if (!$this->isSolrInMaxVersion('9.3.0')) {
             return $this->visitForSolr9($criterion);

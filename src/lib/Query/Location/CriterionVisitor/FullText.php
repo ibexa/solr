@@ -15,10 +15,7 @@ use Ibexa\Solr\Query\Content\CriterionVisitor\FullText as ContentFullText;
  */
 class FullText extends ContentFullText
 {
-    /**
-     * @return string
-     */
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $condition = $this->escapeQuote(parent::visit($criterion, $subVisitor));
 

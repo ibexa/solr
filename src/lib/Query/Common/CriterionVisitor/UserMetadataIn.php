@@ -31,10 +31,8 @@ class UserMetadataIn extends CriterionVisitor
 
     /**
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException
-     *
-     * @return string
      */
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         switch ($criterion->target) {
             case Criterion\UserMetadata::MODIFIER:
