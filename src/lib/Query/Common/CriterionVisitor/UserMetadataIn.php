@@ -30,13 +30,11 @@ class UserMetadataIn extends CriterionVisitor
     }
 
     /**
-     * Map field value to a proper Solr representation.
-     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException
      *
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\UserMetadata $criterion
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $solrField = match ($criterion->target) {
             Criterion\UserMetadata::MODIFIER => 'content_version_creator_user_id_id',

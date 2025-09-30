@@ -53,11 +53,9 @@ class Aggregate extends CriterionVisitor
     }
 
     /**
-     * Map field value to a proper Solr representation.
-     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         foreach ($this->visitors as $visitor) {
             if ($visitor->canVisit($criterion)) {

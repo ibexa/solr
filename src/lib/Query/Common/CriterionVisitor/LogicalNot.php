@@ -10,6 +10,7 @@ namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
+use RuntimeException;
 
 /**
  * Visits the LogicalNot criterion.
@@ -30,7 +31,11 @@ class LogicalNot extends CriterionVisitor
     {
         if (!isset($criterion->criteria[0]) ||
              (\count($criterion->criteria) > 1)) {
-            throw new \RuntimeException('Invalid aggregation in LogicalNot criterion.');
+            throw new RuntimeException('Invalid aggregation in LogicalNot criterion.');
+        }
+
+        if (null === $subVisitor) {
+            throw new RuntimeException('Sub visitor is required for LogicalNot criterion.');
         }
 
         return '(*:* NOT ' . $subVisitor->visit($criterion->criteria[0]) . ')';

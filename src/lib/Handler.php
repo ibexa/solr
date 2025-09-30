@@ -135,12 +135,10 @@ class Handler implements VersatileHandler
     }
 
     /**
-     * Suggests a list of values for the given prefix.
-     *
      * @param string $prefix
      * @param string[] $fieldPaths
      */
-    public function suggest($prefix, $fieldPaths = [], $limit = 10, Criterion $filter = null): never
+    public function suggest($prefix, $fieldPaths = [], $limit = 10, ?Criterion $filter = null): never
     {
         throw new \Exception('@todo: Not implemented yet.');
     }

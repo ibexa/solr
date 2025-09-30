@@ -34,6 +34,10 @@ class LogicalOr extends CriterionVisitor
             throw new RuntimeException('Invalid aggregation in LogicalOr criterion.');
         }
 
+        if (null === $subVisitor) {
+            throw new RuntimeException('Sub visitor is required for LogicalOr criterion.');
+        }
+
         $subCriteria = array_map(
             static fn (CriterionInterface $value): string => $subVisitor->visit($value),
             $criterion->criteria

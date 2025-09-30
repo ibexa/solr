@@ -37,6 +37,10 @@ class LogicalAnd extends CriterionVisitor
             throw new RuntimeException('Invalid aggregation in LogicalAnd criterion.');
         }
 
+        if (null === $subVisitor) {
+            throw new RuntimeException('Sub visitor is required for LogicalAnd criterion.');
+        }
+
         $subCriteria = array_map(
             static fn (CriterionInterface $value): string => $subVisitor->visit($value),
             $criterion->criteria

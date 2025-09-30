@@ -23,7 +23,7 @@ final readonly class TermAggregationResultExtractor implements AggregationResult
 
     public function __construct(
         private string $aggregationClass,
-        TermAggregationKeyMapper $keyMapper = null
+        ?TermAggregationKeyMapper $keyMapper = null
     ) {
         if ($keyMapper === null) {
             $keyMapper = new NullAggregationKeyMapper();

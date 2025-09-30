@@ -223,24 +223,6 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/LanguageCodeIn.php
 
 		-
-			message: '#^Cannot call method visit\(\) on Ibexa\\Contracts\\Solr\\Query\\CriterionVisitor\|null\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/LogicalAnd.php
-
-		-
-			message: '#^Cannot call method visit\(\) on Ibexa\\Contracts\\Solr\\Query\\CriterionVisitor\|null\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/LogicalNot.php
-
-		-
-			message: '#^Cannot call method visit\(\) on Ibexa\\Contracts\\Solr\\Query\\CriterionVisitor\|null\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/LogicalOr.php
-
-		-
 			message: '#^Parameter \#2 \$fieldDefinitionIdentifier of method Ibexa\\Solr\\Query\\Common\\CriterionVisitor\\MapLocation\:\:getSearchFields\(\) expects string, string\|null given\.$#'
 			identifier: argument.type
 			count: 1
