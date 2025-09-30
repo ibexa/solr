@@ -32,7 +32,7 @@ final class IsBookmarked extends CriterionVisitor
 
     public function visit(
         Criterion $criterion,
-        CriterionVisitor $subVisitor = null
+        ?CriterionVisitor $subVisitor = null
     ): string {
         if (!is_array($criterion->value)) {
             throw new LogicException(sprintf(

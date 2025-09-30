@@ -24,14 +24,7 @@ class IsMainLocation extends CriterionVisitor
         return $criterion instanceof Criterion\Location\IsMainLocation;
     }
 
-    /**
-     * Map field value to a proper Solr representation.
-     *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
-     *
-     * @return string
-     */
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         return 'is_main_location_b:' . ($criterion->value[0] === Criterion\Location\IsMainLocation::MAIN ? 'true' : 'false');
     }

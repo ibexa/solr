@@ -25,18 +25,15 @@ class LogicalOr extends CriterionVisitor
         return $criterion instanceof Criterion\LogicalOr;
     }
 
-    /**
-     * Map field value to a proper Solr representation.
-     *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
-     *
-     * @return string
-     */
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalAnd $criterion */
         if (!isset($criterion->criteria[0])) {
             throw new RuntimeException('Invalid aggregation in LogicalOr criterion.');
+        }
+
+        if (null === $subVisitor) {
+            throw new RuntimeException('Sub visitor is required for LogicalOr criterion.');
         }
 
         $subCriteria = array_map(

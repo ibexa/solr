@@ -52,14 +52,11 @@ abstract class Field extends CriterionVisitor
     }
 
     /**
-     * Map search field value to solr value using FieldValueMapper.
-     *
      * @param mixed $value
-     * @param \Ibexa\Contracts\Core\Search\FieldType $searchFieldType
      *
      * @return mixed
      */
-    protected function mapSearchFieldValue($value, FieldType $searchFieldType = null)
+    protected function mapSearchFieldValue($value, ?FieldType $searchFieldType = null)
     {
         if (null === $searchFieldType) {
             return $value;

@@ -15,7 +15,7 @@ use QueryTranslator\Values\Node;
  */
 class WordVisitor extends WordBase
 {
-    public function visit(Node $node, Visitor $subVisitor = null, $options = null)
+    public function visit(Node $node, ?Visitor $subVisitor = null, $options = null)
     {
         $word = parent::visit($node, $subVisitor, $options);
 

@@ -25,7 +25,7 @@ final class TermAggregationResultExtractor implements AggregationResultExtractor
     /** @var string */
     private $aggregationClass;
 
-    public function __construct(string $aggregationClass, TermAggregationKeyMapper $keyMapper = null)
+    public function __construct(string $aggregationClass, ?TermAggregationKeyMapper $keyMapper = null)
     {
         if ($keyMapper === null) {
             $keyMapper = new NullAggregationKeyMapper();

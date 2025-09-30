@@ -32,14 +32,7 @@ class ModifiedIn extends DateMetadata
             );
     }
 
-    /**
-     * Map field value to a proper Solr representation.
-     *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
-     *
-     * @return string
-     */
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $values = [];
         foreach ($criterion->value as $value) {

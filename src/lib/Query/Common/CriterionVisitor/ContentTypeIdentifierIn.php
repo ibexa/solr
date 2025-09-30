@@ -34,7 +34,7 @@ class ContentTypeIdentifierIn extends CriterionVisitor
     /**
      * Create from content type handler and field registry.
      */
-    public function __construct(Handler $contentTypeHandler, LoggerInterface $logger = null)
+    public function __construct(Handler $contentTypeHandler, ?LoggerInterface $logger = null)
     {
         $this->contentTypeHandler = $contentTypeHandler;
         $this->logger = $logger ?? new NullLogger();
@@ -55,14 +55,7 @@ class ContentTypeIdentifierIn extends CriterionVisitor
             );
     }
 
-    /**
-     * Map field value to a proper Solr representation.
-     *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $subVisitor
-     *
-     * @return string
-     */
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null)
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $validIds = [];
         $invalidIdentifiers = [];

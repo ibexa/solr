@@ -22,13 +22,9 @@ abstract class CriterionVisitor
     abstract public function canVisit(Criterion $criterion);
 
     /**
-     * Map field value to a proper Solr representation.
-     *
-     * @param CriterionVisitor $subVisitor
-     *
      * @return string
      */
-    abstract public function visit(Criterion $criterion, self $subVisitor = null);
+    abstract public function visit(Criterion $criterion, ?self $subVisitor = null);
 
     /**
      * Get Solr range.

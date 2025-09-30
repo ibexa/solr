@@ -13,7 +13,7 @@ use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 abstract class AbstractImageRangeVisitor extends AbstractImageVisitor
 {
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         /** @var array{0: int, 1?: int|null} $criterionValue */
         $criterionValue = $criterion->value;

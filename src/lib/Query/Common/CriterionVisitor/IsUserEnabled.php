@@ -20,7 +20,7 @@ final class IsUserEnabled extends CriterionVisitor
         return $criterion instanceof Criterion\IsUserEnabled;
     }
 
-    public function visit(Criterion $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         $value = $criterion->value;
         if (!is_array($value) || !is_bool($value[0])) {
