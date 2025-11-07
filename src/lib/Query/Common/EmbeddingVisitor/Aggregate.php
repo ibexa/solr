@@ -12,9 +12,7 @@ use Ibexa\Contracts\Solr\Query\EmbeddingVisitor;
 
 final class Aggregate extends EmbeddingVisitor
 {
-    /**
-     * @var iterable<\Ibexa\Contracts\Solr\Query\EmbeddingVisitor>
-     */
+    /** @var iterable<\Ibexa\Contracts\Solr\Query\EmbeddingVisitor> */
     protected iterable $visitors = [];
 
     /**
@@ -43,7 +41,7 @@ final class Aggregate extends EmbeddingVisitor
             }
         }
 
-        throw new NotImplementedException('No visitor available for: ' . \get_class($embedding));
+        throw new NotImplementedException('No visitor available for: ' . get_class($embedding));
     }
 
     private function findVisitor(Embedding $embedding): ?EmbeddingVisitor
