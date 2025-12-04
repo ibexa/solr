@@ -7,9 +7,11 @@
 
 namespace Ibexa\Solr\Query\Common\QueryConverter;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\EmbeddingQuery;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
+use Ibexa\Contracts\Solr\Query\EmbeddingVisitor;
 use Ibexa\Contracts\Solr\Query\SortClauseVisitor;
 use Ibexa\Solr\Query\QueryConverter;
 
@@ -21,7 +23,8 @@ class NativeQueryConverter extends QueryConverter
     public function __construct(
         protected readonly CriterionVisitor $criterionVisitor,
         protected readonly SortClauseVisitor $sortClauseVisitor,
-        private readonly AggregationVisitor $aggregationVisitor
+        private readonly AggregationVisitor $aggregationVisitor,
+        private readonly EmbeddingVisitor $embeddingVisitor
     ) {
     }
 
@@ -29,13 +32,17 @@ class NativeQueryConverter extends QueryConverter
     {
         $params = [
             'q' => '{!lucene}' . ($query->query !== null ? $this->criterionVisitor->visit($query->query) : ''),
-            'fq' => '{!lucene}' . ($query->filter !== null ? $this->criterionVisitor->visit($query->filter) : ''),
+            'fq' => ['{!lucene}' . ($query->filter !== null ? $this->criterionVisitor->visit($query->filter) : '')],
             'sort' => $this->getSortClauses($query->sortClauses),
             'start' => $query->offset,
             'rows' => $query->limit,
             'fl' => '*,score,[shard]',
             'wt' => 'json',
         ];
+
+        if ($query instanceof EmbeddingQuery && $query->getEmbedding() !== null) {
+            $params['fq'][] = $this->embeddingVisitor->visit($query->getEmbedding(), $query->limit);
+        }
 
         if (!empty($query->aggregations)) {
             $aggregations = [];

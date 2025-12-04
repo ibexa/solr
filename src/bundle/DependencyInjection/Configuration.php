@@ -11,6 +11,9 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
+/**
+ * @phpstan-type TRootNode ArrayNodeDefinition<TreeBuilder<'array'>>
+ */
 class Configuration implements ConfigurationInterface
 {
     public const int SOLR_HTTP_CLIENT_DEFAULT_TIMEOUT = 10;
@@ -42,6 +45,9 @@ class Configuration implements ConfigurationInterface
     ) {
     }
 
+    /**
+     * @phpstan-return TreeBuilder<'array'>
+     */
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder($this->rootNodeName);
@@ -56,7 +62,7 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * Adds endpoints definition.
+     * @phpstan-param TRootNode $node
      */
     protected function addEndpointsSection(ArrayNodeDefinition $node): void
     {
@@ -99,7 +105,7 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * Adds connections definition.
+     * @phpstan-param TRootNode $node
      *
      * @throws \RuntimeException
      */
@@ -394,6 +400,9 @@ class Configuration implements ConfigurationInterface
         ->end();
     }
 
+    /**
+     * @phpstan-param TRootNode $node
+     */
     private function addHttpClientConfigurationSection(ArrayNodeDefinition $node): void
     {
         $node->children()
