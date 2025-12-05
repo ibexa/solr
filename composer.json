@@ -1,7 +1,7 @@
 {
     "name": "ibexa/solr",
     "description": "Solr search engine implementation for Ibexa",
-    "license": "GPL-2.0-only",
+    "license": ["(GPL-2.0-only or proprietary)"],
     "type": "ibexa-bundle",
     "replace": {
         "ezsystems/ezplatform-solr-search-engine": "*"
