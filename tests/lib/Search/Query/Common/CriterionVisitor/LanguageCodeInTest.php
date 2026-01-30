@@ -13,7 +13,7 @@ use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Solr\Query\Common\CriterionVisitor\LanguageCodeIn;
 use Ibexa\Tests\Solr\Search\Query\BaseCriterionVisitorTestCase;
 
-class LanguageCodeInTest extends BaseCriterionVisitorTestCase
+final class LanguageCodeInTest extends BaseCriterionVisitorTestCase
 {
     protected function getVisitor(): CriterionVisitor
     {
@@ -25,6 +25,9 @@ class LanguageCodeInTest extends BaseCriterionVisitorTestCase
         return new LanguageCode('eng-GB');
     }
 
+    /**
+     * @return iterable<string, array{0: string, 1: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LanguageCode}>
+     */
     public function provideDataForTestVisit(): iterable
     {
         yield 'Single language, match always available' => [
