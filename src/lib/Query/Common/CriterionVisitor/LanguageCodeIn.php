@@ -35,16 +35,23 @@ class LanguageCodeIn extends CriterionVisitor
      */
     public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
-        $languageCodeExpressions = array_map(
-            static fn (bool|float|int|string $value): string => 'content_language_codes_ms:"' . $value . '"',
-            $criterion->value
+        /** @var Criterion\LanguageCode $criterion */
+        $values = is_array($criterion->value) ? $criterion->value : [$criterion->value];
+        // content_language_codes_ms is a string field which uses LowerCaseFilter.
+        // Since {!terms} bypasses analysis, we must manually lowercase the values to match the index.
+        $values = array_map(static function (bool|float|int|string $value): string {
+            return strtolower((string)$value);
+        }, $values);
+
+        $termsQuery = sprintf(
+            '_query_:"{!terms f=content_language_codes_ms}%s"',
+            implode(',', $values)
         );
 
-        /** @var Criterion\LanguageCode $criterion */
         if ($criterion->matchAlwaysAvailable) {
-            $languageCodeExpressions[] = 'content_always_available_b:true';
+            return '(' . $termsQuery . ' OR content_always_available_b:true)';
         }
 
-        return '(' . implode(' OR ', $languageCodeExpressions) . ')';
+        return $termsQuery;
     }
 }

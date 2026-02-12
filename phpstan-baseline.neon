@@ -217,12 +217,6 @@ parameters:
 			path: src/lib/Query/Common/CriterionVisitor/Field.php
 
 		-
-			message: '#^Parameter \#2 \$array of function array_map expects array, array\<bool\|float\|int\|string\>\|bool\|float\|int\|string given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/LanguageCodeIn.php
-
-		-
 			message: '#^Parameter \#2 \$fieldDefinitionIdentifier of method Ibexa\\Solr\\Query\\Common\\CriterionVisitor\\MapLocation\:\:getSearchFields\(\) expects string, string\|null given\.$#'
 			identifier: argument.type
 			count: 1
