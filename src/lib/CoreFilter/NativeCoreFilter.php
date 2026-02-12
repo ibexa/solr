@@ -9,6 +9,7 @@ namespace Ibexa\Solr\CoreFilter;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CustomField;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LanguageCode;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalAnd;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalNot;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalOr;
@@ -182,7 +183,7 @@ class NativeCoreFilter extends CoreFilter
                     [
                         $condition,
                         new LogicalNot(
-                            new CustomField(self::FIELD_LANGUAGES, Operator::IN, $excluded)
+                            new LanguageCode($excluded, false)
                         ),
                     ]
                 );
