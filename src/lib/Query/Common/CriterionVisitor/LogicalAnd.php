@@ -30,7 +30,7 @@ class LogicalAnd extends CriterionVisitor
      *
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalAnd $criterion
      */
-    public function visit(CriterionInterface $criterion, CriterionVisitor $subVisitor = null): string
+    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
     {
         /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalAnd $criterion */
         if (!isset($criterion->criteria[0])) {
