@@ -163,6 +163,12 @@ should not remove or drastically change the existing definitions.
     <!-- 3072-dim suffix for 3-large -->
     <dynamicField name="*_3large_dv" type="vector_3072"/>
 
+    <!-- Generic dimension-based suffix: any model-specific suffix ending with 1536_dv -->
+    <dynamicField name="*_1536_dv" type="vector_1536"/>
+
+    <!-- Generic dimension-based suffix: any model-specific suffix ending with 3072_dv -->
+    <dynamicField name="*_3072_dv" type="vector_3072"/>
+
     <!--
       This field is required since Solr 4
     -->
