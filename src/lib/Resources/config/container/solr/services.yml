@@ -32,32 +32,30 @@ services:
         arguments:
             $visitors: !tagged ibexa.search.solr.query.content.embedding.visitor
 
-    # Note: services tagged with 'ibexa.search.solr.query.content.criterion.visitor'
     ibexa.solr.query.content.criterion_visitor.aggregate:
         class: Ibexa\Solr\Query\Common\CriterionVisitor\Aggregate
         arguments:
             $visitors: !tagged_iterator ibexa.search.solr.query.content.criterion.visitor
 
-    # Note: services tagged with 'ibexa.search.solr.query.content.sort_clause.visitor'
-    # are registered to this one using compilation pass
     ibexa.solr.query.content.sort_clause_visitor.aggregate:
         class: Ibexa\Solr\Query\Common\SortClauseVisitor\Aggregate
+        arguments:
+            $visitors: !tagged_iterator ibexa.search.solr.query.content.sort_clause.visitor
 
     # Note: services tagged with 'ibexa.search.solr.query.content.facet_builder.visitor'
     # are registered to this one using compilation pass
     ibexa.solr.query.content.facet_builder_visitor.aggregate:
         class: Ibexa\Solr\Query\Common\FacetBuilderVisitor\Aggregate
 
-    # Note: services tagged with 'ibexa.search.solr.query.location.criterion.visitor'
     ibexa.solr.query.location.criterion_visitor.aggregate:
         class: Ibexa\Solr\Query\Common\CriterionVisitor\Aggregate
         arguments:
             $visitors: !tagged_iterator ibexa.search.solr.query.location.criterion.visitor
 
-    # Note: services tagged with 'ibexa.search.solr.query.location.sort_clause.visitor'
-    # are registered to this one using compilation pass
     ibexa.solr.query.location.sort_clause_visitor.aggregate:
         class: Ibexa\Solr\Query\Common\SortClauseVisitor\Aggregate
+        arguments:
+            $visitors: !tagged_iterator ibexa.search.solr.query.location.sort_clause.visitor
 
     # Note: services tagged with 'ibexa.search.solr.query.location.facet_builder.visitor'
     # are registered to this one using compilation pass
