@@ -18,28 +18,18 @@ class Aggregate extends CriterionVisitor
     /**
      * Array of available visitors.
      *
-     * @var \Ibexa\Contracts\Solr\Query\CriterionVisitor[]
+     * @var iterable<\Ibexa\Contracts\Solr\Query\CriterionVisitor>
      */
     protected $visitors = [];
 
     /**
      * Construct from optional visitor array.
      *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor[] $visitors
+     * @param iterable<\Ibexa\Contracts\Solr\Query\CriterionVisitor> $visitors
      */
-    public function __construct(array $visitors = [])
+    public function __construct(iterable $visitors)
     {
-        foreach ($visitors as $visitor) {
-            $this->addVisitor($visitor);
-        }
-    }
-
-    /**
-     * Adds visitor.
-     */
-    public function addVisitor(CriterionVisitor $visitor)
-    {
-        $this->visitors[] = $visitor;
+        $this->visitors = $visitors;
     }
 
     /**

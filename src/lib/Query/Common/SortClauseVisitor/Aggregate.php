@@ -18,28 +18,16 @@ class Aggregate extends SortClauseVisitor
     /**
      * Array of available visitors.
      *
-     * @var \Ibexa\Contracts\Solr\Query\SortClauseVisitor[]
+     * @var iterable<\Ibexa\Contracts\Solr\Query\SortClauseVisitor>
      */
     protected $visitors = [];
 
     /**
-     * Construct from optional visitor array.
-     *
-     * @param \Ibexa\Contracts\Solr\Query\SortClauseVisitor[] $visitors
+     * @param iterable<\Ibexa\Contracts\Solr\Query\SortClauseVisitor> $visitors
      */
-    public function __construct(array $visitors = [])
+    public function __construct(iterable $visitors = [])
     {
-        foreach ($visitors as $visitor) {
-            $this->addVisitor($visitor);
-        }
-    }
-
-    /**
-     * Adds visitor.
-     */
-    public function addVisitor(SortClauseVisitor $visitor)
-    {
-        $this->visitors[] = $visitor;
+        $this->visitors = $visitors;
     }
 
     /**
