@@ -217,24 +217,6 @@ parameters:
 			path: src/contracts/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\Container\\Compiler\\AggregateCriterionVisitorPass\:\:addHandlers\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Container/Compiler/AggregateCriterionVisitorPass.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Container\\Compiler\\AggregateCriterionVisitorPass\:\:addHandlers\(\) has parameter \$handlers with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/lib/Container/Compiler/AggregateCriterionVisitorPass.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Container\\Compiler\\AggregateCriterionVisitorPass\:\:process\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Container/Compiler/AggregateCriterionVisitorPass.php
-
-		-
 			message: '#^Method Ibexa\\Solr\\Container\\Compiler\\AggregateFacetBuilderVisitorPass\:\:process\(\) has no return type specified\.$#'
 			identifier: missingType.return
 			count: 1
@@ -917,12 +899,6 @@ parameters:
 			identifier: return.type
 			count: 1
 			path: src/lib/Query/Common/AggregationVisitor/SubtreeTermAggregationVisitor.php
-
-		-
-			message: '#^Method Ibexa\\Solr\\Query\\Common\\CriterionVisitor\\Aggregate\:\:addVisitor\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Query/Common/CriterionVisitor/Aggregate.php
 
 		-
 			message: '#^Access to an undefined property Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Criterion\:\:\$criteria\.$#'
@@ -1871,12 +1847,6 @@ parameters:
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/bundle/Gateway/UpdateSerializer/JsonUpdateSerializerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Container\\Compiler\\AggregateCriterionVisitorPassTest\:\:testAddVisitor\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Container/Compiler/AggregateCriterionVisitorPassTest.php
 
 		-
 			message: '#^Method Ibexa\\Tests\\Solr\\Container\\Compiler\\AggregateFacetBuilderVisitorPassTest\:\:testAddVisitor\(\) has no return type specified\.$#'
