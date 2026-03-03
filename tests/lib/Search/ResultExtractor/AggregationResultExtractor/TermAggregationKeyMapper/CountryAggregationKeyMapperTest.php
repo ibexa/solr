@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 final class CountryAggregationKeyMapperTest extends TestCase
 {
-    private const EXAMPLE_RAW_KEYS = [93, 94, 55];
+    private const EXAMPLE_RAW_KEYS = ['AFG', 'ARG', 'BRA'];
 
     /**
      * Example country info entries from "ibexa.field_type.country.data" parameter.
@@ -70,9 +70,9 @@ final class CountryAggregationKeyMapperTest extends TestCase
             AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
             self::EXAMPLE_RAW_KEYS,
             [
-                93 => 'AFG',
-                94 => 'ARG',
-                55 => 'BRA',
+                'AFG' => 'AFG',
+                'ARG' => 'ARG',
+                'BRA' => 'BRA',
             ],
         ];
 
@@ -81,9 +81,9 @@ final class CountryAggregationKeyMapperTest extends TestCase
             AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
             self::EXAMPLE_RAW_KEYS,
             [
-                93 => 'AF',
-                94 => 'AR',
-                55 => 'BR',
+                'AFG' => 'AF',
+                'ARG' => 'AR',
+                'BRA' => 'BR',
             ],
         ];
 
@@ -92,9 +92,9 @@ final class CountryAggregationKeyMapperTest extends TestCase
             AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
             self::EXAMPLE_RAW_KEYS,
             [
-                93 => 'AFG',
-                94 => 'ARG',
-                55 => 'BRA',
+                'AFG' => 'AFG',
+                'ARG' => 'ARG',
+                'BRA' => 'BRA',
             ],
         ];
 
@@ -103,9 +103,9 @@ final class CountryAggregationKeyMapperTest extends TestCase
             AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
             self::EXAMPLE_RAW_KEYS,
             [
-                93 => 'Afghanistan',
-                94 => 'Argentina',
-                55 => 'Brazil',
+                'AFG' => 'Afghanistan',
+                'ARG' => 'Argentina',
+                'BRA' => 'Brazil',
             ],
         ];
 
@@ -114,9 +114,9 @@ final class CountryAggregationKeyMapperTest extends TestCase
             AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
             self::EXAMPLE_RAW_KEYS,
             [
-                93 => '93',
-                94 => '94',
-                55 => '55',
+                'AFG' => '93',
+                'ARG' => '94',
+                'BRA' => '55',
             ],
         ];
     }
