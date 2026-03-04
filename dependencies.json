@@ -2,7 +2,7 @@
   "recipesEndpoint": "",
   "packages": [
     {
-      "requirement": "dev-IBX-11402-CountryTermAggregation-mapper-fix as ~4.6.0@dev",
+      "requirement": "dev-IBX-11402-CountryTermAggregation-mapper-fix as 4.6.x-dev",
       "repositoryUrl": "https://github.com/ibexa/core",
       "package": "ibexa/core",
       "shouldBeAddedAsVCS": false
