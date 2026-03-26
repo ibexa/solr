@@ -1525,12 +1525,6 @@ parameters:
 			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/CountryAggregationKeyMapper.php
 
 		-
-			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\CountryAggregationKeyMapper\:\:findCountryInfoByIDC\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/CountryAggregationKeyMapper.php
-
-		-
 			message: '#^Method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\CountryAggregationKeyMapper\:\:map\(\) has parameter \$keys with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1

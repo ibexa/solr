@@ -43,9 +43,13 @@ jobs:
                   php-version: 7.4
                   coverage: none
 
-            - uses: ramsey/composer-install@v2
-              with:
-                  dependency-versions: highest
+            -   name: Install Composer dependencies
+                uses: ibexa/gh-workflows/actions/composer-install@main
+                with:
+                    gh-client-id: ${{ secrets.AUTOMATION_CLIENT_ID }}
+                    gh-client-secret: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
+                    satis-network-key: ${{ secrets.SATIS_NETWORK_KEY }}
+                    satis-network-token: ${{ secrets.SATIS_NETWORK_TOKEN }}
 
             - name: Init Solr
               run: ./.github/init_solr.sh
