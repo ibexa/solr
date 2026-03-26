@@ -7,9 +7,7 @@
 namespace Ibexa\Bundle\Solr;
 
 use Ibexa\Bundle\Solr\DependencyInjection\IbexaSolrExtension;
-use Ibexa\Solr\Container\Compiler\AggregateCriterionVisitorPass;
 use Ibexa\Solr\Container\Compiler\AggregateFacetBuilderVisitorPass;
-use Ibexa\Solr\Container\Compiler\AggregateSortClauseVisitorPass;
 use Ibexa\Solr\Container\Compiler\CoreFilterRegistryPass;
 use Ibexa\Solr\Container\Compiler\EndpointRegistryPass;
 use Ibexa\Solr\Container\Compiler\FieldMapperPass;
@@ -28,9 +26,7 @@ class IbexaSolrBundle extends Bundle
         $container->addCompilerPass(new FieldMapperPass\ContentFieldMapperPass());
         $container->addCompilerPass(new FieldMapperPass\ContentTranslationFieldMapperPass());
         $container->addCompilerPass(new FieldMapperPass\LocationFieldMapperPass());
-        $container->addCompilerPass(new AggregateCriterionVisitorPass());
         $container->addCompilerPass(new AggregateFacetBuilderVisitorPass());
-        $container->addCompilerPass(new AggregateSortClauseVisitorPass());
         $container->addCompilerPass(new EndpointRegistryPass());
         $container->addCompilerPass(new GatewayRegistryPass());
         $container->addCompilerPass(new CoreFilterRegistryPass());

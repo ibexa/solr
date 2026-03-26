@@ -79,9 +79,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
         $containerBuilder->addCompilerPass(new Compiler\FieldMapperPass\ContentFieldMapperPass());
         $containerBuilder->addCompilerPass(new Compiler\FieldMapperPass\ContentTranslationFieldMapperPass());
         $containerBuilder->addCompilerPass(new Compiler\FieldMapperPass\LocationFieldMapperPass());
-        $containerBuilder->addCompilerPass(new Compiler\AggregateCriterionVisitorPass());
         $containerBuilder->addCompilerPass(new Compiler\AggregateFacetBuilderVisitorPass());
-        $containerBuilder->addCompilerPass(new Compiler\AggregateSortClauseVisitorPass());
         $containerBuilder->addCompilerPass(new Compiler\EndpointRegistryPass());
         $containerBuilder->addCompilerPass(new AggregateFieldValueMapperPass());
         $containerBuilder->addCompilerPass(new FieldRegistryPass());
