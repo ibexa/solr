@@ -41,7 +41,7 @@ abstract class Field extends CriterionVisitor
     /**
      * Get array of search fields.
      *
-     * @return \Ibexa\Contracts\Core\Search\FieldType[] Array of field types indexed by name.
+     * @return array<string, \Ibexa\Contracts\Core\Search\FieldType|null> Array of field types indexed by name.
      */
     protected function getSearchFields(Criterion $criterion)
     {
