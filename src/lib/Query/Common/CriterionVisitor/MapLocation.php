@@ -33,7 +33,7 @@ abstract class MapLocation extends CriterionVisitor
     /**
      * Get array of search fields.
      *
-     * @return array<string, \Ibexa\Contracts\Core\Search\FieldType>
+     * @return array<string, \Ibexa\Contracts\Core\Search\FieldType|null>
      */
     protected function getSearchFields(
         CriterionInterface $criterion,

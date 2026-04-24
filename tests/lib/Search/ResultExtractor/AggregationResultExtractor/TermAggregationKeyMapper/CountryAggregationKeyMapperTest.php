@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 final class CountryAggregationKeyMapperTest extends TestCase
 {
-    private const array EXAMPLE_RAW_KEYS = [93, 94, 55];
+    private const array EXAMPLE_RAW_KEYS = ['AFG', 'ARG', 'BRA'];
 
     /**
      * Example country info entries from "ibexa.field_type.country.data" parameter.
@@ -46,8 +46,8 @@ final class CountryAggregationKeyMapperTest extends TestCase
      * @dataProvider dataProviderForTestMap
      *
      * @param array{languages: string[]} $languageFilter
-     * @param list<int> $keys
-     * @param array<int, string> $expectedResult
+     * @param list<string> $keys
+     * @param array<string, string> $expectedResult
      */
     public function testMap(
         Aggregation $aggregation,
@@ -71,8 +71,8 @@ final class CountryAggregationKeyMapperTest extends TestCase
      * @return iterable<string, array{
      *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\CountryTermAggregation,
      *     1: array{languageCode: string, useAlwaysAvailable: bool},
-     *     2: list<int>,
-     *     3: array<int, string>
+     *     2: list<string>,
+     *     3: array<string, string>
      * }>
      */
     public function dataProviderForTestMap(): iterable
@@ -82,9 +82,9 @@ final class CountryAggregationKeyMapperTest extends TestCase
             AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
             self::EXAMPLE_RAW_KEYS,
             [
-                93 => 'AFG',
-                94 => 'ARG',
-                55 => 'BRA',
+                'AFG' => 'AFG',
+                'ARG' => 'ARG',
+                'BRA' => 'BRA',
             ],
         ];
 
@@ -93,9 +93,9 @@ final class CountryAggregationKeyMapperTest extends TestCase
             AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
             self::EXAMPLE_RAW_KEYS,
             [
-                93 => 'AF',
-                94 => 'AR',
-                55 => 'BR',
+                'AFG' => 'AF',
+                'ARG' => 'AR',
+                'BRA' => 'BR',
             ],
         ];
 
@@ -104,9 +104,9 @@ final class CountryAggregationKeyMapperTest extends TestCase
             AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
             self::EXAMPLE_RAW_KEYS,
             [
-                93 => 'AFG',
-                94 => 'ARG',
-                55 => 'BRA',
+                'AFG' => 'AFG',
+                'ARG' => 'ARG',
+                'BRA' => 'BRA',
             ],
         ];
 
@@ -115,9 +115,9 @@ final class CountryAggregationKeyMapperTest extends TestCase
             AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
             self::EXAMPLE_RAW_KEYS,
             [
-                93 => 'Afghanistan',
-                94 => 'Argentina',
-                55 => 'Brazil',
+                'AFG' => 'Afghanistan',
+                'ARG' => 'Argentina',
+                'BRA' => 'Brazil',
             ],
         ];
 
@@ -126,9 +126,9 @@ final class CountryAggregationKeyMapperTest extends TestCase
             AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
             self::EXAMPLE_RAW_KEYS,
             [
-                93 => '93',
-                94 => '94',
-                55 => '55',
+                'AFG' => '93',
+                'ARG' => '94',
+                'BRA' => '55',
             ],
         ];
     }

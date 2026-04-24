@@ -36,7 +36,7 @@ class FullText extends CriterionVisitor
     /**
      * Get field type information.
      *
-     * @return array<string, \Ibexa\Contracts\Core\Search\FieldType>
+     * @return array<string, \Ibexa\Contracts\Core\Search\FieldType|null>
      */
     protected function getSearchFields(Criterion $criterion, string $fieldDefinitionIdentifier): array
     {

@@ -35,9 +35,9 @@ final readonly class CountryAggregationKeyMapper implements TermAggregationKeyMa
         return $results;
     }
 
-    private function mapKey(Aggregation $aggregation, int $key): ?string
+    private function mapKey(Aggregation $aggregation, string $key): ?string
     {
-        $countryInfo = $this->findCountryInfoByIDC($key);
+        $countryInfo = $this->findCountryInfoByAlpha3($key);
 
         if ($countryInfo === null) {
             return null;
@@ -52,10 +52,13 @@ final readonly class CountryAggregationKeyMapper implements TermAggregationKeyMa
         };
     }
 
-    private function findCountryInfoByIDC(int $idc): ?array
+    /**
+     * @return array{Name: string, Alpha2: string, Alpha3: string, IDC: string}|null
+     */
+    private function findCountryInfoByAlpha3(string $alpha3): ?array
     {
         foreach ($this->countriesInfo as $countryInfo) {
-            if ((int)$countryInfo['IDC'] === $idc) {
+            if (strtolower($countryInfo['Alpha3']) === strtolower($alpha3)) {
                 return $countryInfo;
             }
         }

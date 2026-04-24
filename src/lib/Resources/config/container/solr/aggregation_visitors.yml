@@ -91,7 +91,7 @@ services:
     factory: ['@Ibexa\Solr\Query\Common\AggregationVisitor\Factory\ContentFieldAggregationVisitorFactory', 'createTermAggregationVisitor']
     arguments:
       $aggregationClass: 'Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\CountryTermAggregation'
-      $searchIndexFieldName: 'idc'
+      $searchIndexFieldName: 'alpha3'
     tags:
       - { name: ibexa.search.solr.query.content.aggregation.visitor }
       - { name: ibexa.search.solr.query.location.aggregation.visitor }
