@@ -52,7 +52,7 @@ class Stream implements HttpClient, LoggerAwareInterface
                 $message
             );
         } catch (ExceptionInterface $e) {
-            throw new ConnectionException($endpoint->getURL(), $path, $method, $e);
+            throw new ConnectionException($endpoint->getIdentifier(), $path, $method, $e);
         }
     }
 
@@ -68,6 +68,8 @@ class Stream implements HttpClient, LoggerAwareInterface
         string $path,
         Message $message
     ): Message {
+        $headers = $message->headers;
+
         if ($endpoint->user !== null) {
             $headers['Authorization'] = 'Basic ' . base64_encode("{$endpoint->user}:{$endpoint->pass}");
         }
@@ -76,7 +78,7 @@ class Stream implements HttpClient, LoggerAwareInterface
             $method,
             $endpoint->getURL() . $path,
             [
-                'headers' => $message->headers,
+                'headers' => $headers,
                 'timeout' => $this->connectionTimeout,
                 'body' => $message->body,
             ]

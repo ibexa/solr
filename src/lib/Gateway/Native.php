@@ -313,7 +313,7 @@ class Native extends Gateway
         );
 
         if ($result->headers['status'] !== 200) {
-            throw new RuntimeException('Wrong HTTP status received from Solr: ' . $result->headers['status'] . ' on ' . $endpoint->getURL() . "\n" . var_export($endpoint, true) . "\n" . var_export($result, true) . "\n" . var_export($updates, true));
+            throw new RuntimeException('Wrong HTTP status received from Solr: ' . $result->headers['status'] . ' on ' . $endpoint->getIdentifier() . "\n" . var_export($result, true) . "\n" . var_export($updates, true));
         }
     }
 
