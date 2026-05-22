@@ -90,8 +90,6 @@ class Endpoint extends ValueObject
      */
     public function getURL(): string
     {
-        $authorization = (!empty($this->user) ? "{$this->user}:{$this->pass}@" : '');
-
-        return "{$this->scheme}://" . $authorization . $this->getIdentifier();
+        return "{$this->scheme}://" . $this->getIdentifier();
     }
 }
