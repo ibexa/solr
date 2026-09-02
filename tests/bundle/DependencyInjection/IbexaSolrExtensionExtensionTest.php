@@ -301,6 +301,28 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         );
     }
 
+    /**
+     * @phpstan-return array<string, array{string}>
+     */
+    public function dataProviderForTestVersion(): array
+    {
+        return [
+            'Solr 8' => ['8.11.2'],
+            'Solr 9' => ['9.10.1'],
+            'Solr 10' => ['10.0.0'],
+        ];
+    }
+
+    /**
+     * @dataProvider dataProviderForTestVersion
+     */
+    public function testVersion(string $version): void
+    {
+        $this->load(['version' => $version]);
+
+        $this->assertContainerBuilderHasParameter('ibexa.solr.version', $version);
+    }
+
     public function testConnectionEndpointDefaults(): void
     {
         $configurationValues = [
@@ -327,7 +349,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
 
         $this->assertContainerBuilderHasParameter(
             'ibexa.solr.version',
-            '7.7.3'
+            Configuration::SOLR_DEFAULT_VERSION
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
