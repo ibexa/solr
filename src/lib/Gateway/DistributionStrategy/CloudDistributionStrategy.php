@@ -11,7 +11,7 @@ namespace Ibexa\Solr\Gateway\DistributionStrategy;
 /**
  * Solr Cloud distributed search.
  *
- * @see https://lucene.apache.org/solr/guide/7_7/distributed-requests.html
+ * @see https://solr.apache.org/guide/solr/latest/deployment-guide/solrcloud-distributed-requests.html
  */
 final class CloudDistributionStrategy extends AbstractDistributionStrategy
 {

@@ -11,7 +11,7 @@ namespace Ibexa\Solr\Gateway\DistributionStrategy;
 /**
  * Standalone setup of distributed search.
  *
- * @see https://lucene.apache.org/solr/guide/7_7/distributed-search-with-index-sharding.html
+ * @see https://solr.apache.org/guide/solr/latest/deployment-guide/user-managed-distributed-search.html
  */
 final class StandaloneDistributionStrategy extends AbstractDistributionStrategy
 {

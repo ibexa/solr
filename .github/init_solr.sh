@@ -2,9 +2,9 @@
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-SOLR_VERSION=${SOLR_VERSION:-'9.8.1'}
+SOLR_VERSION=${SOLR_VERSION:-'9.10.1'}
 
-if [[ "${SOLR_VERSION}" =~ ^9\. ]]; then
+if [[ "${SOLR_VERSION}" =~ ^(9|10)\. ]]; then
     default_config_files[1]="${SCRIPT_DIR}/../src/lib/Resources/config/solr/managed-schema.xml"
     default_config_files[2]="${SCRIPT_DIR}/../src/lib/Resources/config/solr/custom-fields-types-solr9.xml"
 else
@@ -42,7 +42,7 @@ SOLR_CLOUD=${SOLR_CLOUD:-'no'}
 INSTALL_DIR="${SOLR_DIR}/${SOLR_VERSION}"
 HOME_DIR="${INSTALL_DIR}/server/${SOLR_HOME}"
 
-if [[ "${SOLR_VERSION}" =~ ^9\. ]]; then
+if [[ "${SOLR_VERSION}" =~ ^(9|10)\. ]]; then
     TEMPLATE_DIR="${HOME_DIR}/template/conf"
 else
     TEMPLATE_DIR="${HOME_DIR}/template"
@@ -60,7 +60,7 @@ fi
 download() {
     case ${SOLR_VERSION} in
         # PS!!: Append versions and don't remove old ones (except in major versions), used in integration tests from other packages!
-        9.*)
+        9.* | 10.*)
             url="https://archive.apache.org/dist/solr/solr/${SOLR_VERSION}/solr-${SOLR_VERSION}.tgz"
             ;;
         7.7.* | 8.* )
@@ -155,7 +155,10 @@ solr_run() {
     echo "Running with version ${SOLR_VERSION} in standalone mode"
     echo "Starting solr on port ${SOLR_PORT}..."
 
-    if [[ "${SOLR_VERSION}" =~ ^9\. ]]; then
+    if [[ "${SOLR_VERSION}" =~ ^10\. ]]; then
+        # Solr 10: SolrCloud is the default mode, standalone requires --user-managed (SOLR-17467); '-s' was repurposed for --solr-url
+        ./${SOLR_INSTALL_DIR}/bin/solr start --user-managed -p "${SOLR_PORT}" --solr-home "${SOLR_HOME}" || exit_on_error "Can't start Solr"
+    elif [[ "${SOLR_VERSION}" =~ ^9\. ]]; then
         ./${SOLR_INSTALL_DIR}/bin/solr start -p ${SOLR_PORT} -s ${SOLR_HOME} || exit_on_error "Can't start Solr"
     else
         ./${SOLR_INSTALL_DIR}/bin/solr -p ${SOLR_PORT} -s ${SOLR_HOME} -Dsolr.disable.shardsWhitelist=true || exit_on_error "Can't start Solr"
@@ -188,7 +191,12 @@ solr_create_core() {
 
     abs_conf_dir="$(pwd)/${config_dir}"
 
-    ./${SOLR_INSTALL_DIR}/bin/solr create_core ${solr_port_flag} -c ${core_name} -d "${abs_conf_dir}" || exit_on_error "Can't create core"
+    if [[ "${SOLR_VERSION}" =~ ^10\. ]]; then
+        # Solr 10: 'create_core' was removed in favour of 'create' addressed via --solr-url (SOLR-16893)
+        ./${SOLR_INSTALL_DIR}/bin/solr create -c "${core_name}" -d "${abs_conf_dir}" --solr-url "http://localhost:${SOLR_PORT}" || exit_on_error "Can't create core"
+    else
+        ./${SOLR_INSTALL_DIR}/bin/solr create_core ${solr_port_flag} -c ${core_name} -d "${abs_conf_dir}" || exit_on_error "Can't create core"
+    fi
 }
 
 solr_cloud_configure_nodes() {
@@ -225,12 +233,19 @@ solr_cloud_start_nodes() {
         local IFS=':'; read node_name node_port <<< "${node}"
         local node_dir="${HOME_DIR}/${node_name}"
 
+        if [[ "${SOLR_VERSION}" =~ ^10\. ]]; then
+            # Solr 10: SolrCloud is the default mode ('-cloud' removed, SOLR-17467), '-s' was repurposed for --solr-url, '-V' for --verbose
+            local start_args=(start --solr-home "${node_dir}" -p "${node_port}" --verbose)
+        else
+            local start_args=(start -cloud -s "${node_dir}" -p "${node_port}" -V)
+        fi
+
         if [[ ! ${ZOOKEEPER_HOST} ]] ; then
-            ${START_SCRIPT} start -cloud -s ${node_dir} -p ${node_port} -V || exit_on_error "Can't start node '${node_name}'"
+            ${START_SCRIPT} "${start_args[@]}" || exit_on_error "Can't start node '${node_name}'"
             # start script default
             ZOOKEEPER_HOST="localhost:$((node_port+1000))"
         else
-            ${START_SCRIPT} start -cloud -s ${node_dir} -p ${node_port} -z "${ZOOKEEPER_HOST}" -V || exit_on_error "Can't start node '${node_name}'"
+            ${START_SCRIPT} "${start_args[@]}" -z "${ZOOKEEPER_HOST}" || exit_on_error "Can't start node '${node_name}'"
         fi
     done
 }
@@ -258,7 +273,8 @@ solr_cloud_configure_collection() {
     # modify solrconfig.xml to remove section that doesn't agree with our schema
     sed -i.bak '/<updateRequestProcessorChain name="add-unknown-fields-to-the-schema".*/,/<\/updateRequestProcessorChain>/d' ${TEMPLATE_DIR}/solrconfig.xml
     # Adapt autoSoftCommit to have a recommended value
-    sed -i.bak 's/${solr.autoSoftCommit.maxTime:-1}/${solr.autoSoftCommit.maxTime:20}/' "${TEMPLATE_DIR}/solrconfig.xml" || exit_on_error "Can't modify file '${TEMPLATE_DIR}/solrconfig.xml'"
+    # upstream default was '-1' up to Solr 8 and '3000' since Solr 9, so match any value
+    sed -i.bak 's/${solr.autoSoftCommit.maxTime:[^}]*}/${solr.autoSoftCommit.maxTime:20}/' "${TEMPLATE_DIR}/solrconfig.xml" || exit_on_error "Can't modify file '${TEMPLATE_DIR}/solrconfig.xml'"
     # Configure spellcheck component
     sed -i.bak 's/<str name="field">_text_<\/str>/<str name="field">meta_content__text_t<\/str>/' "${TEMPLATE_DIR}/solrconfig.xml"
     # Add spellcheck component to /select handler
@@ -266,7 +282,12 @@ solr_cloud_configure_collection() {
 }
 
 solr_cloud_upload_collection_configuration() {
-    ${ZOOKEEPER_CLI_SCRIPT} -zkhost "${ZOOKEEPER_HOST}" -cmd upconfig -confname ${SOLR_CONFIGURATION_NAME} -confdir ${TEMPLATE_DIR} || exit_on_error "Can't upload configuration to Zookeeper"
+    if [[ "${SOLR_VERSION}" =~ ^10\. ]]; then
+        # Solr 10: zkcli.sh was removed in favour of 'bin/solr zk' (SOLR-14115)
+        ${START_SCRIPT} zk upconfig -z "${ZOOKEEPER_HOST}" -n ${SOLR_CONFIGURATION_NAME} -d ${TEMPLATE_DIR} || exit_on_error "Can't upload configuration to Zookeeper"
+    else
+        ${ZOOKEEPER_CLI_SCRIPT} -zkhost "${ZOOKEEPER_HOST}" -cmd upconfig -confname ${SOLR_CONFIGURATION_NAME} -confdir ${TEMPLATE_DIR} || exit_on_error "Can't upload configuration to Zookeeper"
+    fi
     echo "Uploaded configuration to Zookeeper"
 }
 
@@ -290,7 +311,6 @@ solr_cloud_create_collection() {
         "collection.configName=${SOLR_CONFIGURATION_NAME}"
         "createNodeSet=${nodes}"
         "shards=${shards}"
-        "maxShardsPerNode=${SOLR_MAX_SHARDS_PER_NODE}"
         "replicationFactor=${SOLR_REPLICATION_FACTOR}"
         "router.name=compositeId"
         "numShards=${shards_count}"
@@ -298,6 +318,11 @@ solr_cloud_create_collection() {
         "wt=json"
         "indent=on"
     )
+
+    # maxShardsPerNode was removed from the Collections API in Solr 9
+    if [[ ! "${SOLR_VERSION}" =~ ^(9|10)\. ]]; then
+        parameters+=("maxShardsPerNode=${SOLR_MAX_SHARDS_PER_NODE}")
+    fi
 
     echo "Creating collection with parameters:"
     echo "$(IFS=$'\n'; echo "${parameters[*]}")"
@@ -311,7 +336,7 @@ download
 
 if [ "$SOLR_CLOUD" = "no" ]; then
 
-    if [[ "${SOLR_VERSION}" =~ ^9\. ]]; then
+    if [[ "${SOLR_VERSION}" =~ ^(9|10)\. ]]; then
         TEMPLATE_CONF="template/conf"
     else
         TEMPLATE_CONF="template"
