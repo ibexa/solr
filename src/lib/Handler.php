@@ -215,41 +215,8 @@ class Handler implements VersatileHandler
      */
     public function deleteLocation($locationId, $contentId): void
     {
-        $query = $this->prepareQuery(self::SOLR_MAX_QUERY_LIMIT);
-        $query->filter = $this->allItemsWithinLocation((int)$locationId);
-
-        $searchResult = $this->locationResultExtractor->extract(
-            $this->gateway->searchAllEndpoints($query)
-        );
-
-        // Whether an item survived the Location removal is decided by the persistence layer, not by a Solr
-        // query: the "has an additional Location" regex used before relied on the Lucene complement
-        // operator (~), which is unavailable as of Lucene 10 (LUCENE-10010).
-        $contentDocumentIds = [];
-        $contentItems = [];
-        foreach ($searchResult->searchHits as $searchHit) {
-            try {
-                $contentInfo = $this->contentHandler->loadContentInfo($searchHit->valueObject->id);
-            } catch (NotFoundException) {
-                $contentDocumentIds[] = $this->mapper->generateContentDocumentId((int)$searchHit->valueObject->id) . '*';
-                continue;
-            }
-
-            // Content moved to trash together with the subtree still exists, but has no Locations
-            // left in the tree (a surviving Location would have been reassigned as the main one)
-            if ($contentInfo->mainLocationId === null) {
-                $contentDocumentIds[] = $this->mapper->generateContentDocumentId((int)$contentInfo->id) . '*';
-                continue;
-            }
-
-            $contentItems[$contentInfo->id] = $this->contentHandler->load($contentInfo->id, $contentInfo->currentVersionNo);
-        }
-
-        foreach (array_chunk(array_unique($contentDocumentIds), self::SOLR_BULK_REMOVE_LIMIT) as $ids) {
-            $this->gateway->deleteByQuery('_root_:(' . implode(' OR ', $ids) . ')');
-        }
-
-        $this->bulkIndexContent(array_values($contentItems));
+        $this->deleteAllItemsWithoutAdditionalLocation((int)$locationId);
+        $this->updateAllElementsWithAdditionalLocation((int)$locationId);
     }
 
     /**
@@ -274,6 +241,61 @@ class Handler implements VersatileHandler
         $this->gateway->commit($flush);
     }
 
+    protected function deleteAllItemsWithoutAdditionalLocation(int $locationId): void
+    {
+        $query = $this->prepareQuery(self::SOLR_MAX_QUERY_LIMIT);
+        $query->filter = new Criterion\LogicalAnd(
+            [
+                $this->allItemsWithinLocation($locationId),
+                new Criterion\LogicalNot($this->allItemsWithinLocationWithAdditionalLocation($locationId)),
+            ]
+        );
+
+        $searchResult = $this->locationResultExtractor->extract(
+            $this->gateway->searchAllEndpoints($query)
+        );
+
+        $contentDocumentIds = [];
+
+        foreach ($searchResult->searchHits as $hit) {
+            $contentDocumentIds[] = $this->mapper->generateContentDocumentId((int)$hit->valueObject->id) . '*';
+        }
+
+        foreach (array_chunk(array_unique($contentDocumentIds), self::SOLR_BULK_REMOVE_LIMIT) as $ids) {
+            $query = '_root_:(' . implode(' OR ', $ids) . ')';
+            $this->gateway->deleteByQuery($query);
+        }
+    }
+
+    protected function updateAllElementsWithAdditionalLocation(int $locationId): void
+    {
+        $query = $this->prepareQuery(self::SOLR_MAX_QUERY_LIMIT);
+        $query->filter = new Criterion\LogicalAnd(
+            [
+                $this->allItemsWithinLocation($locationId),
+                $this->allItemsWithinLocationWithAdditionalLocation($locationId),
+            ]
+        );
+
+        $searchResult = $this->locationResultExtractor->extract(
+            $this->gateway->searchAllEndpoints($query)
+        );
+
+        $contentItems = [];
+        foreach ($searchResult->searchHits as $searchHit) {
+            try {
+                $contentInfo = $this->contentHandler->loadContentInfo($searchHit->valueObject->id);
+                // load() may throw even though loadContentInfo() succeeded, as the persistence
+                // cache can serve a stale ContentInfo for content deleted a moment ago
+                $contentItems[] = $this->contentHandler->load($contentInfo->id, $contentInfo->currentVersionNo);
+            } catch (NotFoundException) {
+                continue;
+            }
+        }
+
+        $this->bulkIndexContent($contentItems);
+    }
+
     /**
      * Prepare standard query for delete purpose.
      */
@@ -294,6 +316,24 @@ class Handler implements VersatileHandler
             'location_path_string_mid',
             Criterion\Operator::EQ,
             "/.*\\/{$locationId}\\/.*/"
+        );
+    }
+
+    /**
+     * Matches Content documents having at least one Location outside the given Location subtree.
+     *
+     * Locations are indexed as child documents of Content, so this is a boolean NOT on a block-join
+     * child query. A single complement regex on the multivalued Content path field was used before,
+     * but the Lucene complement operator (~) is unavailable as of Lucene 10 (LUCENE-10010).
+     */
+    protected function allItemsWithinLocationWithAdditionalLocation(int $locationId): CustomField
+    {
+        // The CustomField visitor emits this value inside a quoted '_query_:"…"' clause, where the
+        // quoted-string parsing consumes one escaping level - hence the double backslash before slashes
+        return new CustomField(
+            '_query_',
+            Criterion\Operator::EQ,
+            "{!parent which=document_type_id:content}(+document_type_id:location -path_string_id:/.*\\\\/{$locationId}\\\\/.*/)"
         );
     }
 
