@@ -302,15 +302,15 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     }
 
     /**
-     * @phpstan-return array<string, array{string}>
+     * @return iterable<string, array{string}>
      */
-    public function dataProviderForTestVersion(): array
+    public function dataProviderForTestVersion(): iterable
     {
-        return [
-            'Solr 8' => ['8.11.2'],
-            'Solr 9' => ['9.10.1'],
-            'Solr 10' => ['10.0.0'],
-        ];
+        yield 'Solr 8' => ['8.11.2'];
+
+        yield 'Solr 9' => ['9.10.1'];
+
+        yield 'Solr 10' => ['10.0.0'];
     }
 
     /**
