@@ -22,6 +22,14 @@ jobs:
                     - 'shared'
                     - 'single'
                     - 'cloud'
+                include:
+                    # Solr 7.x uses the CMS garbage collector, removed in Java 14
+                    - solr-version: '7.7.3'
+                      java-version: '11'
+                    - solr-version: '8.11.2'
+                      java-version: '17'
+                    - solr-version: '9.8.1'
+                      java-version: '17'
         env:
             CORES_SETUP: ${{ matrix.cores-setup }}
             SOLR_VERSION: ${{ matrix.solr-version }}
@@ -49,7 +57,7 @@ jobs:
               uses: actions/setup-java@v6
               with:
                   distribution: 'temurin'
-                  java-version: '17'
+                  java-version: ${{ matrix.java-version }}
 
             - name: Init Solr
               run: ./.github/init_solr.sh
