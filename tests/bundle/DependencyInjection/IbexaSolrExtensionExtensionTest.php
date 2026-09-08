@@ -232,7 +232,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     public function testConnection(): void
     {
         $configurationValues = [
-            'version' => '9.8.1',
+            'version' => '10.0.0',
             'connections' => [
                 'connection1' => [
                     'entry_endpoints' => [
@@ -261,7 +261,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
 
         $this->assertContainerBuilderHasParameter(
             'ibexa.solr.version',
-            '9.8.1'
+            '10.0.0'
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
@@ -304,11 +304,9 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
      */
     public function dataProviderForTestVersion(): iterable
     {
-        yield 'Solr 8' => ['8.11.2'];
+        yield 'default version' => [Configuration::SOLR_DEFAULT_VERSION];
 
-        yield 'Solr 9' => ['9.10.1'];
-
-        yield 'Solr 10' => ['10.0.0'];
+        yield 'custom version' => ['10.1.0'];
     }
 
     /**
