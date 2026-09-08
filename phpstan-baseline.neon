@@ -225,7 +225,7 @@ parameters:
 		-
 			message: '#^Parameter \#2 \$fieldDefinitionIdentifier of method Ibexa\\Solr\\Query\\Common\\CriterionVisitor\\MapLocation\:\:getSearchFields\(\) expects string, string\|null given\.$#'
 			identifier: argument.type
-			count: 2
+			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/MapLocation/MapLocationDistanceRange.php
 
 		-
