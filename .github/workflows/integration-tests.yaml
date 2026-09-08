@@ -17,22 +17,15 @@ jobs:
                 php-version:
                     - '8.3'
                 solr-version:
-                    - '8.11.2'
-                    - '9.10.1'
                     - '10.0.0'
                 cores-setup:
                     - 'dedicated'
                     - 'shared'
                     - 'single'
                     - 'cloud'
-                # Solr requires Java 8+ (Solr 8), 11+ (Solr 9) and 21+ (Solr 10)
-                include:
-                    - solr-version: '8.11.2'
-                      java-version: '11'
-                    - solr-version: '9.10.1'
-                      java-version: '17'
-                    - solr-version: '10.0.0'
-                      java-version: '21'
+                # Solr 10 requires Java 21+
+                java-version:
+                    - '21'
         env:
             CORES_SETUP: ${{ matrix.cores-setup }}
             SOLR_VERSION: ${{ matrix.solr-version }}

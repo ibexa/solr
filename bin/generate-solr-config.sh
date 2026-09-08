@@ -4,7 +4,7 @@ set -e
 
 # Default parameters, if not overloaded by user arguments
 DESTINATION_DIR=.platform/configsets/solr8/conf
-SOLR_VERSION=9.10.1
+SOLR_VERSION=10.0.0
 FORCE=false
 SOLR_INSTALL_DIR=""
 ALLOW_URLS_CLI=""
@@ -21,7 +21,7 @@ Help (this text):
 Usage with Ibexa Cloud (arguments here can be skipped as they have default values):
 ./vendor/ibexa/solr/bin/generate-solr-config.sh \\
   --destination-dir=.platform/configsets/solr8/conf \\
-  --solr-version=9.10.1
+  --solr-version=10.0.0
 
 Usage with on-premise version of Solr:
 ./vendor/ibexa/solr/bin/generate-solr-config.sh \\
@@ -29,7 +29,7 @@ Usage with on-premise version of Solr:
   --solr-install-dir=/opt/solr
 
 Warning:
- This script only supports Solr 8 and higher (Solr 8, 9 and 10 are the supported versions) !!
+ This script only supports Solr 10 !!
 
 
 Arguments:
@@ -82,9 +82,9 @@ done
 
 : "${ALLOW_URLS_CLI:=${ALLOW_URLS:-}}"
 
-if [[ "${SOLR_VERSION}" =~ ^[0-7]\. ]]; then
-    echo -e "\033[1;31mError: Solr ${SOLR_VERSION} is not supported, use Solr 8, 9 or 10 \033[0m"
-    exit 1
+# Solr 10 is the only supported version; older ones remain usable for internal CI (init_solr.sh)
+if [[ ! "${SOLR_VERSION}" =~ ^10\. ]]; then
+    echo -e "\033[1;31mWarning: Solr ${SOLR_VERSION} is not supported, use Solr 10 \033[0m"
 fi
 
 if [ `whoami` == "root" ]; then
