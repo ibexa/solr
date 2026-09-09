@@ -3,7 +3,7 @@
 set -e
 
 # Default parameters, if not overloaded by user arguments
-DESTINATION_DIR=.platform/configsets/solr8/conf
+DESTINATION_DIR=.platform/configsets/solr10/conf
 SOLR_VERSION=10.0.0
 FORCE=false
 SOLR_INSTALL_DIR=""
@@ -20,7 +20,7 @@ Help (this text):
 
 Usage with Ibexa Cloud (arguments here can be skipped as they have default values):
 ./vendor/ibexa/solr/bin/generate-solr-config.sh \\
-  --destination-dir=.platform/configsets/solr8/conf \\
+  --destination-dir=.platform/configsets/solr10/conf \\
   --solr-version=10.0.0
 
 Usage with on-premise version of Solr:
@@ -34,7 +34,7 @@ Warning:
 
 Arguments:
   [--destination-dir=<dest.dir>]     : Location where solr config should be stored
-                                       Default value is .platform/configsets/solr8/conf
+                                       Default value is .platform/configsets/solr10/conf
   [-f|--force]                       : Overwrite destination-dir if it already exists
   [--solr-install-dir]               : Existing downloaded Solr install to copy base config from.
   [--solr-version]                   : Solr version to download & copy base config from, used only if --solr-install-dir is unset
