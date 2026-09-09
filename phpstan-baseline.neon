@@ -225,7 +225,7 @@ parameters:
 		-
 			message: '#^Parameter \#2 \$fieldDefinitionIdentifier of method Ibexa\\Solr\\Query\\Common\\CriterionVisitor\\MapLocation\:\:getSearchFields\(\) expects string, string\|null given\.$#'
 			identifier: argument.type
-			count: 2
+			count: 1
 			path: src/lib/Query/Common/CriterionVisitor/MapLocation/MapLocationDistanceRange.php
 
 		-
@@ -593,12 +593,6 @@ parameters:
 		-
 			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\RangeAggregationResultExtractorTest\:\:dataProviderForTestExtract\(\) return type with generic class Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResult does not specify its types\: TValue$#'
 			identifier: missingType.generics
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationResultExtractorTest.php
-
-		-
-			message: '#^Parameter \#2 \$entries of class Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResult constructor expects iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResultEntry\<string\|null\>\>, array\{Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResultEntry\<string\|null\>, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResultEntry\<string\>, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResultEntry\<string\|null\>\} given\.$#'
-			identifier: argument.type
 			count: 1
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationResultExtractorTest.php
 

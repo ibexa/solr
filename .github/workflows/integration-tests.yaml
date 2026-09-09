@@ -17,14 +17,15 @@ jobs:
                 php-version:
                     - '8.3'
                 solr-version:
-                    - '7.7.3'
-                    - '8.11.2'
-                    - '9.8.1'
+                    - '10.0.0'
                 cores-setup:
                     - 'dedicated'
                     - 'shared'
                     - 'single'
                     - 'cloud'
+                # Solr 10 requires Java 21+
+                java-version:
+                    - '21'
         env:
             CORES_SETUP: ${{ matrix.cores-setup }}
             SOLR_VERSION: ${{ matrix.solr-version }}
@@ -37,7 +38,13 @@ jobs:
               name: "Set up single core"
               run: echo "SOLR_CORES=collection1" >> $GITHUB_ENV
 
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v7
+
+            - name: Setup Java
+              uses: actions/setup-java@v6
+              with:
+                  distribution: 'temurin'
+                  java-version: ${{ matrix.java-version }}
 
             - name: Setup PHP Action
               uses: shivammathur/setup-php@v2

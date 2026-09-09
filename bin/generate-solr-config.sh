@@ -3,8 +3,8 @@
 set -e
 
 # Default parameters, if not overloaded by user arguments
-DESTINATION_DIR=.platform/configsets/solr8/conf
-SOLR_VERSION=8.11.1
+DESTINATION_DIR=.platform/configsets/solr10/conf
+SOLR_VERSION=10.0.0
 FORCE=false
 SOLR_INSTALL_DIR=""
 ALLOW_URLS_CLI=""
@@ -20,8 +20,8 @@ Help (this text):
 
 Usage with Ibexa Cloud (arguments here can be skipped as they have default values):
 ./vendor/ibexa/solr/bin/generate-solr-config.sh \\
-  --destination-dir=.platform/configsets/solr8/conf \\
-  --solr-version=8.11.1
+  --destination-dir=.platform/configsets/solr10/conf \\
+  --solr-version=10.0.0
 
 Usage with on-premise version of Solr:
 ./vendor/ibexa/solr/bin/generate-solr-config.sh \\
@@ -29,12 +29,12 @@ Usage with on-premise version of Solr:
   --solr-install-dir=/opt/solr
 
 Warning:
- This script only supports Solr 7 and higher !!
+ This script only supports Solr 10 !!
 
 
 Arguments:
   [--destination-dir=<dest.dir>]     : Location where solr config should be stored
-                                       Default value is .platform/configsets/solr8/conf
+                                       Default value is .platform/configsets/solr10/conf
   [-f|--force]                       : Overwrite destination-dir if it already exists
   [--solr-install-dir]               : Existing downloaded Solr install to copy base config from.
   [--solr-version]                   : Solr version to download & copy base config from, used only if --solr-install-dir is unset
@@ -82,6 +82,11 @@ done
 
 : "${ALLOW_URLS_CLI:=${ALLOW_URLS:-}}"
 
+# Solr 10 is the only supported version; older ones remain usable for internal CI (init_solr.sh)
+if [[ ! "${SOLR_VERSION}" =~ ^10\. ]]; then
+    echo -e "\033[1;31mWarning: Solr ${SOLR_VERSION} is not supported, use Solr 10 \033[0m"
+fi
+
 if [ `whoami` == "root" ]; then
     echo "Error : Do not run this script as root"
     exit 1
@@ -102,7 +107,13 @@ if [ "$SOLR_INSTALL_DIR" == "" ]; then
     # If we were not provided an existing install directory we'll temporarily download a version of solr to generate config.
     GENERATE_SOLR_TMPDIR=`mktemp -d`
     echo "Downloading solr bundle:"
-    curl https://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/solr-${SOLR_VERSION}.tgz > $GENERATE_SOLR_TMPDIR/solr-${SOLR_VERSION}.tgz
+    # Solr 9+ releases moved from dist/lucene/solr to dist/solr/solr
+    if [[ "${SOLR_VERSION}" =~ ^(9|10)\. ]]; then
+        SOLR_ARCHIVE_URL="https://archive.apache.org/dist/solr/solr/${SOLR_VERSION}/solr-${SOLR_VERSION}.tgz"
+    else
+        SOLR_ARCHIVE_URL="https://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/solr-${SOLR_VERSION}.tgz"
+    fi
+    curl ${SOLR_ARCHIVE_URL} > $GENERATE_SOLR_TMPDIR/solr-${SOLR_VERSION}.tgz
 
     echo "Untaring"
     cd $GENERATE_SOLR_TMPDIR
@@ -118,7 +129,7 @@ cp ${SOLR_INSTALL_DIR}/server/solr/configsets/_default/conf/{solrconfig.xml,stop
 
 if [[ ! $DESTINATION_DIR =~ ^\.platform ]]; then
 
-    if [[ "${SOLR_VERSION}" =~ ^9\. ]]; then
+    if [[ "${SOLR_VERSION}" =~ ^(9|10)\. ]]; then
         cp -f ${SOLR_INSTALL_DIR}/server/solr/solr.xml $DESTINATION_DIR/../..
 
         URL_LIST="${ALLOW_URLS_CLI//,/ }"
@@ -147,7 +158,8 @@ fi
 
 # Adapt autoSoftCommit to have a recommended value, and remove add-unknown-fields-to-the-schema
 sed -i.bak '/<updateRequestProcessorChain name="add-unknown-fields-to-the-schema".*/,/<\/updateRequestProcessorChain>/d' $DESTINATION_DIR/solrconfig.xml
-sed -i.bak 's/${solr.autoSoftCommit.maxTime:-1}/${solr.autoSoftCommit.maxTime:20}/' $DESTINATION_DIR/solrconfig.xml
+# upstream default was '-1' up to Solr 8 and '3000' since Solr 9, so match any value
+sed -i.bak 's/${solr.autoSoftCommit.maxTime:[^}]*}/${solr.autoSoftCommit.maxTime:20}/' $DESTINATION_DIR/solrconfig.xml
 # Configure spellcheck component
 sed -i.bak 's/<str name="field">_text_<\/str>/<str name="field">meta_content__text_t<\/str>/' $DESTINATION_DIR/solrconfig.xml
 # Add spellcheck component to /select handler
