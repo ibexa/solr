@@ -597,12 +597,6 @@ parameters:
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationResultExtractorTest.php
 
 		-
-			message: '#^Parameter \#2 \$entries of class Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResult constructor expects iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResultEntry\<string\|null\>\>, array\{Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResultEntry\<string\|null\>, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResultEntry\<string\>, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\AggregationResult\\RangeAggregationResultEntry\<string\|null\>\} given\.$#'
-			identifier: argument.type
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationResultExtractorTest.php
-
-		-
 			message: '#^Parameter \#1 \$aggregation of method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ContentTypeAggregationKeyMapper\:\:map\(\) expects Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\\ContentTypeTermAggregation, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation&PHPUnit\\Framework\\MockObject\\MockObject given\.$#'
 			identifier: argument.type
 			count: 1
