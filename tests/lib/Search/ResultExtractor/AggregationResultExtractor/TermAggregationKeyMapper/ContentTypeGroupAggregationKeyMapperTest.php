@@ -36,7 +36,7 @@ final class ContentTypeGroupAggregationKeyMapperTest extends TestCase
         self::assertEquals(
             $expectedContentTypesGroups,
             $mapper->map(
-                $this->createMock(Aggregation::class),
+                $this->createStub(Aggregation::class),
                 AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
                 self::EXAMPLE_CONTENT_TYPE_GROUPS_IDS
             )

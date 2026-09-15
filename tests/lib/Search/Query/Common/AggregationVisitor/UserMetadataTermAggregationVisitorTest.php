@@ -13,7 +13,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\UserMetadat
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use Ibexa\Solr\Query\Common\AggregationVisitor\UserMetadataTermAggregationVisitor;
 
-final class UserMetadataTermAggregationVisitorTest extends AbstractAggregationVisitorTest
+final class UserMetadataTermAggregationVisitorTest extends AbstractAggregationVisitorTestCase
 {
     protected function createVisitor(): AggregationVisitor
     {
@@ -27,7 +27,7 @@ final class UserMetadataTermAggregationVisitorTest extends AbstractAggregationVi
      *     2: bool
      * }>
      */
-    public function dataProviderForCanVisit(): iterable
+    public static function dataProviderForCanVisit(): iterable
     {
         yield 'true' => [
             new UserMetadataTermAggregation('foo', UserMetadataTermAggregation::OWNER),
@@ -36,7 +36,7 @@ final class UserMetadataTermAggregationVisitorTest extends AbstractAggregationVi
         ];
 
         yield 'false' => [
-            $this->createMock(Aggregation::class),
+            self::createStub(Aggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             false,
         ];
@@ -54,7 +54,7 @@ final class UserMetadataTermAggregationVisitorTest extends AbstractAggregationVi
      *     }
      * }>
      */
-    public function dataProviderForVisit(): iterable
+    public static function dataProviderForVisit(): iterable
     {
         yield UserMetadataTermAggregation::OWNER => [
             new UserMetadataTermAggregation('foo', UserMetadataTermAggregation::OWNER),

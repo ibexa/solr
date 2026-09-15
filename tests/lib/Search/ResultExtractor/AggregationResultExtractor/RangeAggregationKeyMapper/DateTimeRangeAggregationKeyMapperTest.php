@@ -12,19 +12,19 @@ use DateTimeImmutable;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\DateTimeRangeAggregationKeyMapper;
 
-final class DateTimeRangeAggregationKeyMapperTest extends AbstractRangeAggregationKeyMapperTest
+final class DateTimeRangeAggregationKeyMapperTest extends AbstractRangeAggregationKeyMapperTestCase
 {
-    public function dataProviderForTestMap(): iterable
+    public static function dataProviderForTestMap(): iterable
     {
         yield 'null' => [
-            $this->createAggregationMock(),
+            self::createAggregationMock(),
             self::EXAMPLE_LANGUAGE_FILTER,
             '*',
             null,
         ];
 
         yield 'date string' => [
-            $this->createAggregationMock(),
+            self::createAggregationMock(),
             self::EXAMPLE_LANGUAGE_FILTER,
             '2020-01-01T00:00:00Z',
             new DateTimeImmutable('2020-01-01T00:00:00Z'),

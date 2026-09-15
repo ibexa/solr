@@ -11,19 +11,19 @@ namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\Ran
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\IntRangeAggregationKeyMapper;
 
-final class IntRangeAggregationKeyMapperTest extends AbstractRangeAggregationKeyMapperTest
+final class IntRangeAggregationKeyMapperTest extends AbstractRangeAggregationKeyMapperTestCase
 {
-    public function dataProviderForTestMap(): iterable
+    public static function dataProviderForTestMap(): iterable
     {
         yield 'null' => [
-            $this->createAggregationMock(),
+            self::createAggregationMock(),
             self::EXAMPLE_LANGUAGE_FILTER,
             '*',
             null,
         ];
 
         yield 'int' => [
-            $this->createAggregationMock(),
+            self::createAggregationMock(),
             self::EXAMPLE_LANGUAGE_FILTER,
             '7',
             7,

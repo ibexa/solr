@@ -13,11 +13,14 @@ use OutOfBoundsException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[\PHPUnit\Framework\Attributes\CoversMethod(\Ibexa\Solr\CoreFilter\CoreFilterRegistry::class, 'addCoreFilter')]
+#[\PHPUnit\Framework\Attributes\CoversMethod(\Ibexa\Solr\CoreFilter\CoreFilterRegistry::class, 'getCoreFilter')]
+#[\PHPUnit\Framework\Attributes\CoversMethod(\Ibexa\Solr\Gateway\GatewayRegistry::class, 'getGateway')]
+#[\PHPUnit\Framework\Attributes\CoversMethod(\Ibexa\Solr\CoreFilter\CoreFilterRegistry::class, 'hasCoreFilter')]
+#[\PHPUnit\Framework\Attributes\CoversMethod(\Ibexa\Solr\CoreFilter\CoreFilterRegistry::class, 'setCoreFilters')]
+#[\PHPUnit\Framework\Attributes\CoversMethod(\Ibexa\Solr\CoreFilter\CoreFilterRegistry::class, 'getCoreFilters')]
 class CoreFilterRegistryTest extends TestCase
 {
-    /**
-     * @covers \Ibexa\Solr\CoreFilter\CoreFilterRegistry::addCoreFilter
-     */
     public function testAddCoreFilter(): void
     {
         $registry = new CoreFilterRegistry();
@@ -26,9 +29,6 @@ class CoreFilterRegistryTest extends TestCase
         self::assertCount(1, $registry->getCoreFilters());
     }
 
-    /**
-     * @covers \Ibexa\Solr\CoreFilter\CoreFilterRegistry::getCoreFilter
-     */
     public function testGetCoreFilter(): void
     {
         $registry = new CoreFilterRegistry(['connection1' => $this->getCoreFilterMock()]);
@@ -36,9 +36,6 @@ class CoreFilterRegistryTest extends TestCase
         self::assertInstanceOf(CoreFilter::class, $registry->getCoreFilter('connection1'));
     }
 
-    /**
-     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::getGateway
-     */
     public function testGetCoreFilterForMissingConnection(): void
     {
         $this->expectException(OutOfBoundsException::class);
@@ -47,9 +44,6 @@ class CoreFilterRegistryTest extends TestCase
         $registry->getCoreFilter('connection1');
     }
 
-    /**
-     * @covers \Ibexa\Solr\CoreFilter\CoreFilterRegistry::hasCoreFilter
-     */
     public function testHasCoreFilter(): void
     {
         $registry = new CoreFilterRegistry(['connection1' => $this->getCoreFilterMock()]);
@@ -57,9 +51,6 @@ class CoreFilterRegistryTest extends TestCase
         self::assertTrue($registry->hasCoreFilter('connection1'));
     }
 
-    /**
-     * @covers \Ibexa\Solr\CoreFilter\CoreFilterRegistry::setCoreFilters
-     */
     public function testSetCoreFilters(): void
     {
         $coreFilters = ['connection1' => $this->getCoreFilterMock()];
@@ -70,9 +61,6 @@ class CoreFilterRegistryTest extends TestCase
         self::assertEquals($coreFilters, $registry->getCoreFilters());
     }
 
-    /**
-     * @covers \Ibexa\Solr\CoreFilter\CoreFilterRegistry::getCoreFilters
-     */
     public function testGetCoreFilters(): void
     {
         $registry = new CoreFilterRegistry(['connection1' => $this->getCoreFilterMock()]);

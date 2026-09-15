@@ -22,7 +22,7 @@ final class DispatcherAggregationResultExtractorTest extends TestCase
 
     public function testSupportsReturnsTrue(): void
     {
-        $aggregation = $this->createMock(Aggregation::class);
+        $aggregation = $this->createStub(Aggregation::class);
 
         $dispatcher = new DispatcherAggregationResultExtractor([
             $this->createExtractorMockWithCanVisit($aggregation, false),
@@ -35,7 +35,7 @@ final class DispatcherAggregationResultExtractorTest extends TestCase
 
     public function testSupportsReturnsFalse(): void
     {
-        $aggregation = $this->createMock(Aggregation::class);
+        $aggregation = $this->createStub(Aggregation::class);
 
         $dispatcher = new DispatcherAggregationResultExtractor([
             $this->createExtractorMockWithCanVisit($aggregation, false),
@@ -48,7 +48,7 @@ final class DispatcherAggregationResultExtractorTest extends TestCase
 
     public function testExtract(): void
     {
-        $aggregation = $this->createMock(Aggregation::class);
+        $aggregation = $this->createStub(Aggregation::class);
         $data = new stdClass();
 
         $extractorA = $this->createExtractorMockWithCanVisit($aggregation, false);
@@ -57,7 +57,7 @@ final class DispatcherAggregationResultExtractorTest extends TestCase
 
         $dispatcher = new DispatcherAggregationResultExtractor([$extractorA, $extractorB, $extractorC]);
 
-        $expectedResult = $this->createMock(AggregationResult::class);
+        $expectedResult = $this->createStub(AggregationResult::class);
 
         $extractorB
             ->method('extract')
@@ -75,7 +75,7 @@ final class DispatcherAggregationResultExtractorTest extends TestCase
         $this->expectException(NotImplementedException::class);
         $this->expectExceptionMessage('No result extractor available for aggregation: ');
 
-        $aggregation = $this->createMock(Aggregation::class);
+        $aggregation = $this->createStub(Aggregation::class);
 
         $dispatcher = new DispatcherAggregationResultExtractor([
             $this->createExtractorMockWithCanVisit($aggregation, false),

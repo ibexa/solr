@@ -13,11 +13,13 @@ use OutOfBoundsException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[\PHPUnit\Framework\Attributes\CoversMethod(\Ibexa\Solr\Gateway\GatewayRegistry::class, 'addGateway')]
+#[\PHPUnit\Framework\Attributes\CoversMethod(\Ibexa\Solr\Gateway\GatewayRegistry::class, 'getGateway')]
+#[\PHPUnit\Framework\Attributes\CoversMethod(\Ibexa\Solr\Gateway\GatewayRegistry::class, 'hasGateway')]
+#[\PHPUnit\Framework\Attributes\CoversMethod(\Ibexa\Solr\Gateway\GatewayRegistry::class, 'setGateways')]
+#[\PHPUnit\Framework\Attributes\CoversMethod(\Ibexa\Solr\Gateway\GatewayRegistry::class, 'getGateways')]
 class GatewayRegistryTest extends TestCase
 {
-    /**
-     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::addGateway
-     */
     public function testAddGateway(): void
     {
         $registry = new GatewayRegistry();
@@ -26,9 +28,6 @@ class GatewayRegistryTest extends TestCase
         self::assertCount(1, $registry->getGateways());
     }
 
-    /**
-     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::getGateway
-     */
     public function testGetGateway(): void
     {
         $registry = new GatewayRegistry();
@@ -37,9 +36,6 @@ class GatewayRegistryTest extends TestCase
         self::assertInstanceOf(Gateway::class, $registry->getGateway('connection1'));
     }
 
-    /**
-     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::getGateway
-     */
     public function testGetGatewayForMissingConnection(): void
     {
         $this->expectException(OutOfBoundsException::class);
@@ -48,9 +44,6 @@ class GatewayRegistryTest extends TestCase
         $registry->getGateway('connection1');
     }
 
-    /**
-     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::hasGateway
-     */
     public function testHasGateway(): void
     {
         $registry = new GatewayRegistry();
@@ -59,9 +52,6 @@ class GatewayRegistryTest extends TestCase
         self::assertTrue($registry->hasGateway('connection1'));
     }
 
-    /**
-     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::setGateways
-     */
     public function testSetGateways(): void
     {
         $gateways = ['connection1' => $this->getGatewayMock()];
@@ -72,9 +62,6 @@ class GatewayRegistryTest extends TestCase
         self::assertEquals($gateways, $registry->getGateways());
     }
 
-    /**
-     * @covers \Ibexa\Solr\Gateway\GatewayRegistry::getGateways
-     */
     public function testGetGateways(): void
     {
         $registry = new GatewayRegistry(['connection1' => $this->getGatewayMock()]);

@@ -15,7 +15,7 @@ use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\StatsAggregationResultExtractor;
 use stdClass;
 
-final class StatsAggregationResultExtractorTest extends AbstractAggregationResultExtractorTest
+final class StatsAggregationResultExtractorTest extends AbstractAggregationResultExtractorTestCase
 {
     protected function createExtractor(): AggregationResultExtractor
     {
@@ -29,16 +29,16 @@ final class StatsAggregationResultExtractorTest extends AbstractAggregationResul
      *     2: bool
      * }>
      */
-    public function dataProviderForTestCanVisit(): iterable
+    public static function dataProviderForTestCanVisit(): iterable
     {
         yield 'true' => [
-            $this->createMock(AbstractStatsAggregation::class),
+            self::createStub(AbstractStatsAggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             true,
         ];
 
         yield 'false' => [
-            $this->createMock(Aggregation::class),
+            self::createStub(Aggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             false,
         ];
@@ -52,15 +52,15 @@ final class StatsAggregationResultExtractorTest extends AbstractAggregationResul
      *     3: \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\StatsAggregationResult
      * }>
      */
-    public function dataProviderForTestExtract(): iterable
+    public static function dataProviderForTestExtract(): iterable
     {
-        $aggregation = $this->createMock(AbstractStatsAggregation::class);
+        $aggregation = self::createStub(AbstractStatsAggregation::class);
         $aggregation->method('getName')->willReturn(self::EXAMPLE_AGGREGATION_NAME);
 
         yield 'defaults' => [
             $aggregation,
             self::EXAMPLE_LANGUAGE_FILTER,
-            $this->getEmptyRawData(),
+            self::getEmptyRawData(),
             new StatsAggregationResult(
                 self::EXAMPLE_AGGREGATION_NAME,
                 null,
@@ -74,7 +74,7 @@ final class StatsAggregationResultExtractorTest extends AbstractAggregationResul
         yield 'typical' => [
             $aggregation,
             self::EXAMPLE_LANGUAGE_FILTER,
-            $this->getTypicalRawData(),
+            self::getTypicalRawData(),
             new StatsAggregationResult(
                 self::EXAMPLE_AGGREGATION_NAME,
                 1000,
@@ -86,7 +86,7 @@ final class StatsAggregationResultExtractorTest extends AbstractAggregationResul
         ];
     }
 
-    private function getEmptyRawData(): stdClass
+    private static function getEmptyRawData(): stdClass
     {
         $data = new stdClass();
         $data->count = null;
@@ -98,7 +98,7 @@ final class StatsAggregationResultExtractorTest extends AbstractAggregationResul
         return $data;
     }
 
-    private function getTypicalRawData(): stdClass
+    private static function getTypicalRawData(): stdClass
     {
         $data = new stdClass();
         $data->count = 1000;
