@@ -29,7 +29,7 @@ final class DispatcherAggregationVisitorTest extends TestCase
 
     public function testCanVisitOnSupportedAggregation(): void
     {
-        $aggregation = $this->createMock(Aggregation::class);
+        $aggregation = self::createStub(Aggregation::class);
 
         $dispatcher = new DispatcherAggregationVisitor([
             $this->createVisitorMock($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false),
@@ -42,7 +42,7 @@ final class DispatcherAggregationVisitorTest extends TestCase
 
     public function testCanVisitOnNonSupportedAggregation(): void
     {
-        $aggregation = $this->createMock(Aggregation::class);
+        $aggregation = self::createStub(Aggregation::class);
 
         $dispatcher = new DispatcherAggregationVisitor([
             $this->createVisitorMock($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false),
@@ -55,7 +55,7 @@ final class DispatcherAggregationVisitorTest extends TestCase
 
     public function testVisit(): void
     {
-        $aggregation = $this->createMock(Aggregation::class);
+        $aggregation = self::createStub(Aggregation::class);
 
         $visitorA = $this->createVisitorMock($aggregation, self::EXAMPLE_LANGUAGE_FILTER, false);
         $visitorB = $this->createVisitorMock($aggregation, self::EXAMPLE_LANGUAGE_FILTER, true);

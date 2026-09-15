@@ -10,6 +10,7 @@ namespace Ibexa\Tests\Bundle\Solr\DependencyInjection;
 use Ibexa\Bundle\Solr\DependencyInjection\Configuration;
 use Ibexa\Bundle\Solr\DependencyInjection\IbexaSolrExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 /**
@@ -53,7 +54,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     /**
      * @phpstan-return list<array{string, array<string, mixed>, array<string, mixed>}>
      */
-    public function dataProviderForTestEndpoint(): array
+    public static function dataProviderForTestEndpoint(): array
     {
         return [
             [
@@ -138,11 +139,10 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     }
 
     /**
-     * @dataProvider dataProviderForTestEndpoint
-     *
      * @param array<string, mixed> $endpointValues
      * @param array<string, mixed> $expectedArgument
      */
+    #[DataProvider('dataProviderForTestEndpoint')]
     public function testEndpoint(string $endpointName, array $endpointValues, array $expectedArgument): void
     {
         $this->load(['endpoints' => [$endpointName => $endpointValues]]);
@@ -177,7 +177,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     /**
      * @phpstan-return list<array<array-key, mixed>>
      */
-    public function dataProviderForTestConnection(): array
+    public static function dataProviderForTestConnection(): array
     {
         return [
             [
@@ -215,9 +215,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         ];
     }
 
-    /**
-     * @dataProvider dataProviderForTestConnection
-     */
+    #[DataProvider('dataProviderForTestConnection')]
     public function testConnectionLoad(array $configurationValues): void
     {
         $this->load($configurationValues);
@@ -474,7 +472,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     /**
      * @phpstan-return list<array{array<string, mixed>, array<string, mixed>}>
      */
-    public function dataProvideForTestBoostFactorMap(): array
+    public static function dataProvideForTestBoostFactorMap(): array
     {
         return [
             [
@@ -661,9 +659,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         ];
     }
 
-    /**
-     * @dataProvider dataProvideForTestBoostFactorMap
-     */
+    #[DataProvider('dataProvideForTestBoostFactorMap')]
     public function testBoostFactorMap(array $configuration, array $map): void
     {
         $this->load($configuration);
@@ -675,10 +671,9 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     }
 
     /**
-     * @dataProvider getDataForTestHttpClientConfiguration
-     *
      * @phpstan-param SolrHttpClientConfigArray $config
      */
+    #[DataProvider('getDataForTestHttpClientConfiguration')]
     public function testHttpClientConfiguration(array $config): void
     {
         $this->load(
@@ -701,7 +696,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     /**
      * @return iterable<string, array<SolrHttpClientConfigArray>>
      */
-    public function getDataForTestHttpClientConfiguration(): iterable
+    public static function getDataForTestHttpClientConfiguration(): iterable
     {
         yield 'default values' => [
             [

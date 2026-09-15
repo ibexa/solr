@@ -11,10 +11,11 @@ namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-abstract class AbstractAggregationResultExtractorTest extends TestCase
+abstract class AbstractAggregationResultExtractorTestCase extends TestCase
 {
     protected const string EXAMPLE_AGGREGATION_NAME = 'custom_aggregation';
     protected const array EXAMPLE_LANGUAGE_FILTER = [];
@@ -29,10 +30,9 @@ abstract class AbstractAggregationResultExtractorTest extends TestCase
     abstract protected function createExtractor(): AggregationResultExtractor;
 
     /**
-     * @dataProvider dataProviderForTestCanVisit
-     *
      * @param array{languages: string[]} $languageFilter
      */
+    #[DataProvider('dataProviderForTestCanVisit')]
     public function testCanVisit(
         Aggregation $aggregation,
         array $languageFilter,
@@ -44,13 +44,12 @@ abstract class AbstractAggregationResultExtractorTest extends TestCase
         );
     }
 
-    abstract public function dataProviderForTestCanVisit(): iterable;
+    abstract public static function dataProviderForTestCanVisit(): iterable;
 
     /**
-     * @dataProvider dataProviderForTestExtract
-     *
      * @param array{languages: string[]} $languageFilter
      */
+    #[DataProvider('dataProviderForTestExtract')]
     public function testExtract(
         Aggregation $aggregation,
         array $languageFilter,
@@ -63,5 +62,5 @@ abstract class AbstractAggregationResultExtractorTest extends TestCase
         );
     }
 
-    abstract public function dataProviderForTestExtract(): iterable;
+    abstract public static function dataProviderForTestExtract(): iterable;
 }

@@ -11,23 +11,22 @@ namespace Ibexa\Tests\Solr\Gateway;
 use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
 use Ibexa\Solr\Gateway\UpdateSerializerFactory;
 use Ibexa\Solr\Gateway\UpdateSerializerInterface;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Ibexa\Solr\Gateway\UpdateSerializerFactory
- */
+#[CoversClass(UpdateSerializerFactory::class)]
 final class UpdateSerializerFactoryTest extends TestCase
 {
     private const string FORMAT_FOO = 'foo';
     private const string FORMAT_BAR = 'bar';
 
     /**
-     * @dataProvider getDataForTestGetSerializer
-     *
      * @param array<\Ibexa\Solr\Gateway\UpdateSerializerInterface> $serializers
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
+    #[DataProvider('getDataForTestGetSerializer')]
     public function testGetSerializer(
         array $serializers,
         UpdateSerializerInterface $expectedSerializer,
@@ -59,12 +58,12 @@ final class UpdateSerializerFactoryTest extends TestCase
      *     2: string
      * }>
      */
-    public function getDataForTestGetSerializer(): iterable
+    public static function getDataForTestGetSerializer(): iterable
     {
-        $fooSerializerMock = $this->createMock(UpdateSerializerInterface::class);
+        $fooSerializerMock = self::createStub(UpdateSerializerInterface::class);
         $fooSerializerMock->method('getSupportedFormat')->willReturn(self::FORMAT_FOO);
 
-        $barSerializerMock = $this->createMock(UpdateSerializerInterface::class);
+        $barSerializerMock = self::createStub(UpdateSerializerInterface::class);
         $barSerializerMock->method('getSupportedFormat')->willReturn(self::FORMAT_BAR);
 
         $serializers = [$fooSerializerMock, $barSerializerMock];

@@ -38,7 +38,7 @@ final class SectionAggregationKeyMapperTest extends TestCase
         self::assertEquals(
             $expectedSections,
             $this->mapper->map(
-                $this->createMock(Aggregation::class),
+                self::createStub(Aggregation::class),
                 AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
                 self::EXAMPLE_SECTION_IDS
             )

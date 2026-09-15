@@ -18,7 +18,7 @@ use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultE
 use PHPUnit\Framework\MockObject\MockObject;
 use stdClass;
 
-final class TermAggregationResultExtractorTest extends AbstractAggregationResultExtractorTest
+final class TermAggregationResultExtractorTest extends AbstractAggregationResultExtractorTestCase
 {
     private TermAggregationKeyMapper&MockObject $keyMapper;
 
@@ -48,16 +48,16 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
      *     2: bool
      * }>
      */
-    public function dataProviderForTestCanVisit(): iterable
+    public static function dataProviderForTestCanVisit(): iterable
     {
         yield 'true' => [
-            $this->createMock(AbstractTermAggregation::class),
+            self::createStub(AbstractTermAggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             true,
         ];
 
         yield 'false' => [
-            $this->createMock(Aggregation::class),
+            self::createStub(Aggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             false,
         ];
@@ -71,22 +71,22 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
      *     3: \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResult
      * }>
      */
-    public function dataProviderForTestExtract(): iterable
+    public static function dataProviderForTestExtract(): iterable
     {
-        $aggregation = $this->createMock(AbstractTermAggregation::class);
+        $aggregation = self::createStub(AbstractTermAggregation::class);
         $aggregation->method('getName')->willReturn(self::EXAMPLE_AGGREGATION_NAME);
 
         yield 'defaults' => [
             $aggregation,
             self::EXAMPLE_LANGUAGE_FILTER,
-            $this->createEmptyRawData(),
+            self::createEmptyRawData(),
             new TermAggregationResult(self::EXAMPLE_AGGREGATION_NAME, []),
         ];
 
         yield 'typical' => [
             $aggregation,
             self::EXAMPLE_LANGUAGE_FILTER,
-            $this->createTypicalRawData(),
+            self::createTypicalRawData(),
             new TermAggregationResult(
                 self::EXAMPLE_AGGREGATION_NAME,
                 [
@@ -98,7 +98,7 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
         ];
     }
 
-    private function createEmptyRawData(): stdClass
+    private static function createEmptyRawData(): stdClass
     {
         $data = new stdClass();
         $data->buckets = [];
@@ -106,18 +106,18 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
         return $data;
     }
 
-    private function createTypicalRawData(): stdClass
+    private static function createTypicalRawData(): stdClass
     {
         $data = new stdClass();
         $data->buckets = [];
-        $data->buckets[] = $this->createRawBucket('foo', 10);
-        $data->buckets[] = $this->createRawBucket('bar', 100);
-        $data->buckets[] = $this->createRawBucket('baz', 1000);
+        $data->buckets[] = self::createRawBucket('foo', 10);
+        $data->buckets[] = self::createRawBucket('bar', 100);
+        $data->buckets[] = self::createRawBucket('baz', 1000);
 
         return $data;
     }
 
-    private function createRawBucket(string $val, int $count): stdClass
+    private static function createRawBucket(string $val, int $count): stdClass
     {
         $bucket = new stdClass();
         $bucket->val = $val;

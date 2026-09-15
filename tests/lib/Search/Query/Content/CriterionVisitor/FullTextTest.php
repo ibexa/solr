@@ -14,6 +14,7 @@ use Ibexa\Core\Search\Common\FieldNameResolver;
 use Ibexa\Solr\Query\Common\QueryTranslator\Generator\WordVisitor;
 use Ibexa\Solr\Query\Content\CriterionVisitor\FullText;
 use Ibexa\Tests\Solr\Search\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 use QueryTranslator\Languages\Galach\Generators;
 use QueryTranslator\Languages\Galach\Generators\ExtendedDisMax;
 use QueryTranslator\Languages\Galach\Parser;
@@ -22,9 +23,8 @@ use QueryTranslator\Languages\Galach\Tokenizer;
 
 /**
  * Test case for FullText criterion visitor.
- *
- * @covers \Ibexa\Solr\Query\Content\CriterionVisitor\FullText
  */
+#[CoversClass(FullText::class)]
 class FullTextTest extends TestCase
 {
     /**
@@ -34,7 +34,6 @@ class FullTextTest extends TestCase
     {
         $fieldNameResolver = $this->getMockBuilder(FieldNameResolver::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getFieldTypes'])
             ->getMock();
 
         $fieldNameResolver
@@ -42,7 +41,7 @@ class FullTextTest extends TestCase
             ->method('getFieldTypes')
             ->with(
                 self::isInstanceOf(Criterion::class),
-                self::isType('string')
+                self::isString()
             )
             ->willReturn(
                 $fieldTypes

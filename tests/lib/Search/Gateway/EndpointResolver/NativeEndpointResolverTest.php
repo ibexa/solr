@@ -10,6 +10,7 @@ namespace Ibexa\Tests\Solr\Search\Gateway\EndpointResolver;
 use Ibexa\Solr\Gateway\EndpointResolver\NativeEndpointResolver;
 use Ibexa\Solr\Gateway\SingleEndpointResolver;
 use Ibexa\Tests\Solr\Search\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use RuntimeException;
 
 /**
@@ -109,7 +110,7 @@ class NativeEndpointResolverTest extends TestCase
      *     5?: bool
      * }>
      */
-    public function providerForTestGetSearchTargets(): array
+    public static function providerForTestGetSearchTargets(): array
     {
         return [
             // Will return all endpoints (for always available fallback without main languages endpoint)
@@ -810,11 +811,10 @@ class NativeEndpointResolverTest extends TestCase
     }
 
     /**
-     * @dataProvider providerForTestGetSearchTargets
-     *
      * @param string[] $endpointMap
      * @param string[] $expected
      */
+    #[DataProvider('providerForTestGetSearchTargets')]
     public function testGetSearchTargets(
         array $endpointMap,
         ?string $defaultEndpoint,
@@ -851,7 +851,7 @@ class NativeEndpointResolverTest extends TestCase
      *     4: string
      * }>
      */
-    public function providerForTestGetSearchTargetsThrowsRuntimeException(): array
+    public static function providerForTestGetSearchTargetsThrowsRuntimeException(): array
     {
         return [
             // Will try to return all endpoints
@@ -935,10 +935,9 @@ class NativeEndpointResolverTest extends TestCase
     }
 
     /**
-     * @dataProvider providerForTestGetSearchTargetsThrowsRuntimeException
-     *
      * @param string[] $endpointMap
      */
+    #[DataProvider('providerForTestGetSearchTargetsThrowsRuntimeException')]
     public function testGetSearchTargetsThrowsRuntimeException(
         array $endpointMap,
         ?string $defaultEndpoint,
@@ -967,7 +966,7 @@ class NativeEndpointResolverTest extends TestCase
     /**
      * @return array{string[], string|null, string|null, string[]}[]
      */
-    public function providerForTestGetEndpoints(): array
+    public static function providerForTestGetEndpoints(): array
     {
         return [
             [
@@ -1032,11 +1031,10 @@ class NativeEndpointResolverTest extends TestCase
     }
 
     /**
-     * @dataProvider providerForTestGetEndpoints
-     *
      * @param string[] $endpointMap
      * @param string[] $expected
      */
+    #[DataProvider('providerForTestGetEndpoints')]
     public function testGetEndpoints(
         array $endpointMap,
         ?string $defaultEndpoint,
@@ -1069,11 +1067,10 @@ class NativeEndpointResolverTest extends TestCase
     }
 
     /**
-     * @dataProvider providerForTestGetEndpoints
-     *
      * @param list<string> $entryEndpoints
      * @param array<string, string> $endpointMap
      */
+    #[DataProvider('providerForTestGetEndpoints')]
     protected function getEndpointResolver(
         array $entryEndpoints = [],
         array $endpointMap = [],

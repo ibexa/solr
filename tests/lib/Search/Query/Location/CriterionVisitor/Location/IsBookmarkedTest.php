@@ -14,11 +14,11 @@ use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Core\Repository\Values\User\UserReference;
 use Ibexa\Solr\Query\Location\CriterionVisitor\Location\IsBookmarked;
 use Ibexa\Tests\Solr\Search\Query\BaseCriterionVisitorTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 
-/**
- * @covers \Ibexa\Solr\Query\Location\CriterionVisitor\Location\IsBookmarked
- */
+#[CoversClass(IsBookmarked::class)]
 final class IsBookmarkedTest extends BaseCriterionVisitorTestCase
 {
     private const int USER_ID = 123;
@@ -33,10 +33,8 @@ final class IsBookmarkedTest extends BaseCriterionVisitorTestCase
         $this->visitor = new IsBookmarked($this->permissionResolver);
     }
 
-    /**
-     * @dataProvider provideDataForTestVisit
-     */
     #[\Override]
+    #[DataProvider('provideDataForTestVisit')]
     public function testVisit(
         string $expectedQuery,
         Criterion $criterion
@@ -55,7 +53,7 @@ final class IsBookmarkedTest extends BaseCriterionVisitorTestCase
      *     \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion
      * }>
      */
-    public function provideDataForTestVisit(): iterable
+    public static function provideDataForTestVisit(): iterable
     {
         yield 'Query for bookmarked locations' => [
             'location_bookmarked_user_ids_mid:"123"',
