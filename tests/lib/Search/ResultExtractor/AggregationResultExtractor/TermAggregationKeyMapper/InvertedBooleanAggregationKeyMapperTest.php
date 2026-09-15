@@ -25,7 +25,7 @@ final class InvertedBooleanAggregationKeyMapperTest extends TestCase
                 true => false,
             ],
             $mapper->map(
-                $this->createMock(Aggregation::class),
+                $this->createStub(Aggregation::class),
                 AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
                 [
                     false => false,

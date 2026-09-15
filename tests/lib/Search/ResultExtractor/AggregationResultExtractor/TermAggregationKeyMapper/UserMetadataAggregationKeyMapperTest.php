@@ -33,9 +33,7 @@ final class UserMetadataAggregationKeyMapperTest extends TestCase
         $this->mapper = new UserMetadataAggregationKeyMapper($this->userService);
     }
 
-    /**
-     * @dataProvider dataProviderForTestMapUser
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForTestMapUser')]
     public function testMapForUserKey(UserMetadataTermAggregation $aggregation): void
     {
         self::assertEquals(
@@ -51,7 +49,7 @@ final class UserMetadataAggregationKeyMapperTest extends TestCase
     /**
      * @return iterable<string, array{UserMetadataTermAggregation}>
      */
-    public function dataProviderForTestMapUser(): iterable
+    public static function dataProviderForTestMapUser(): iterable
     {
         yield UserMetadataTermAggregation::OWNER => [
             new UserMetadataTermAggregation('owner', UserMetadataTermAggregation::OWNER),

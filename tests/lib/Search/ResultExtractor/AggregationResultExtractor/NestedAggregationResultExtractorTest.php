@@ -35,7 +35,7 @@ final class NestedAggregationResultExtractorTest extends TestCase
 
     public function testCanVisit(): void
     {
-        $aggregation = $this->createMock(Aggregation::class);
+        $aggregation = $this->createStub(Aggregation::class);
 
         $this->innerResultExtractor
             ->expects(self::once())
@@ -53,12 +53,12 @@ final class NestedAggregationResultExtractorTest extends TestCase
 
     public function testExtract(): void
     {
-        $expectedResult = $this->createMock(AggregationResult::class);
+        $expectedResult = $this->createStub(AggregationResult::class);
 
         $data = new stdClass();
         $data->buckets = [/* Some data */];
 
-        $aggregation = $this->createMock(Aggregation::class);
+        $aggregation = $this->createStub(Aggregation::class);
 
         $this->innerResultExtractor
             ->expects(self::once())

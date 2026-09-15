@@ -13,7 +13,7 @@ use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-abstract class AbstractAggregationVisitorTest extends TestCase
+abstract class AbstractAggregationVisitorTestCase extends TestCase
 {
     protected const array EXAMPLE_LANGUAGE_FILTER = [
         'languages' => ['eng-GB'],
@@ -33,9 +33,8 @@ abstract class AbstractAggregationVisitorTest extends TestCase
 
     /**
      * @param array{languages?: string[], languageCode?: string, useAlwaysAvailable?: bool} $languageFilter
-     *
-     * @dataProvider dataProviderForCanVisit
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForCanVisit')]
     final public function testCanVisit(
         Aggregation $aggregation,
         array $languageFilter,
@@ -54,14 +53,13 @@ abstract class AbstractAggregationVisitorTest extends TestCase
      *     2: bool
      * }>
      */
-    abstract public function dataProviderForCanVisit(): iterable;
+    abstract public static function dataProviderForCanVisit(): iterable;
 
     /**
      * @param array{languages: string[]} $languageFilter
      * @param array<mixed> $expectedResult
-     *
-     * @dataProvider dataProviderForVisit
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForVisit')]
     final public function testVisit(
         Aggregation $aggregation,
         array $languageFilter,
@@ -78,7 +76,7 @@ abstract class AbstractAggregationVisitorTest extends TestCase
     /**
      * @return iterable<string, array<mixed>>
      */
-    abstract public function dataProviderForVisit(): iterable;
+    abstract public static function dataProviderForVisit(): iterable;
 
     /**
      * @param array{languages: string[]} $languageFilter

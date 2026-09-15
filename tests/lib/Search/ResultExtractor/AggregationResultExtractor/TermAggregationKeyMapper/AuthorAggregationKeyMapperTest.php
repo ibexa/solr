@@ -18,12 +18,11 @@ use PHPUnit\Framework\TestCase;
 final class AuthorAggregationKeyMapperTest extends TestCase
 {
     /**
-     * @dataProvider dataProviderForTestMap
-     *
      * @param array{languages: string[]} $languageFilter
      * @param list<string|int> $keys
      * @param array<string, \Ibexa\Core\FieldType\Author\Author> $expectedResult
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForTestMap')]
     public function testMap(
         Aggregation $aggregation,
         array $languageFilter,
@@ -50,7 +49,7 @@ final class AuthorAggregationKeyMapperTest extends TestCase
      *     3: array<string, \Ibexa\Core\FieldType\Author\Author>
      * }>
      */
-    public function dataProviderForTestMap(): iterable
+    public static function dataProviderForTestMap(): iterable
     {
         $input = [
             '{"name":"Boba Fett","email":"boba.fett@example.com"}',

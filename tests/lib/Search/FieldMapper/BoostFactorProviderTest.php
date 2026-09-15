@@ -22,7 +22,7 @@ class BoostFactorProviderTest extends TestCase
     /**
      * @return array{array<string, mixed>, string, string, float}[]
      */
-    public function providerForTestGetContentFieldBoostFactor(): array
+    public static function providerForTestGetContentFieldBoostFactor(): array
     {
         return [
             [
@@ -113,10 +113,9 @@ class BoostFactorProviderTest extends TestCase
     }
 
     /**
-     * @dataProvider providerForTestGetContentFieldBoostFactor
-     *
      * @param array{meta-fields: array<string, array<string, float>>} $map
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('providerForTestGetContentFieldBoostFactor')]
     public function testGetContentFieldBoostFactor(
         array $map,
         string $contentTypeIdentifier,
@@ -136,7 +135,7 @@ class BoostFactorProviderTest extends TestCase
     /**
      * @return array{array<string, mixed>, string, string, float}[]
      */
-    public function providerForTestGetContentMetaFieldBoostFactor(): array
+    public static function providerForTestGetContentMetaFieldBoostFactor(): array
     {
         return [
             [
@@ -240,10 +239,9 @@ class BoostFactorProviderTest extends TestCase
     }
 
     /**
-     * @dataProvider providerForTestGetContentMetaFieldBoostFactor
-     *
      * @param array{meta-fields: array<string, array<string, float>>} $map
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('providerForTestGetContentMetaFieldBoostFactor')]
     public function testGetContentMetaFieldBoostFactor(
         array $map,
         string $contentTypeIdentifier,

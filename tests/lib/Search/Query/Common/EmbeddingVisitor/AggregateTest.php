@@ -19,7 +19,7 @@ final class AggregateTest extends TestCase
 
     public function testCanVisitOnSupportedEmbedding(): void
     {
-        $embedding = $this->createMock(Embedding::class);
+        $embedding = $this->createStub(Embedding::class);
 
         $dispatcher = new Aggregate([
             $this->createVisitorMock($embedding, false),
@@ -32,7 +32,7 @@ final class AggregateTest extends TestCase
 
     public function testCanVisitOnNonSupportedEmbedding(): void
     {
-        $embedding = $this->createMock(Embedding::class);
+        $embedding = $this->createStub(Embedding::class);
 
         $dispatcher = new Aggregate([
             $this->createVisitorMock($embedding, false),
@@ -45,7 +45,7 @@ final class AggregateTest extends TestCase
 
     public function testVisit(): void
     {
-        $embedding = $this->createMock(Embedding::class);
+        $embedding = $this->createStub(Embedding::class);
 
         $visitorA = $this->createVisitorMock($embedding, false);
         $visitorB = $this->createVisitorMock($embedding, true);

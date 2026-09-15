@@ -26,7 +26,7 @@ final class NullAggregationKeyMapperTest extends TestCase
                 'baz' => 'baz',
             ],
             $mapper->map(
-                $this->createMock(Aggregation::class),
+                $this->createStub(Aggregation::class),
                 AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
                 ['foo', 'bar', 'baz']
             )

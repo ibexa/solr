@@ -43,12 +43,11 @@ final class CountryAggregationKeyMapperTest extends TestCase
     ];
 
     /**
-     * @dataProvider dataProviderForTestMap
-     *
      * @param array{languages: string[]} $languageFilter
      * @param list<string> $keys
      * @param array<string, string> $expectedResult
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForTestMap')]
     public function testMap(
         Aggregation $aggregation,
         array $languageFilter,
@@ -75,7 +74,7 @@ final class CountryAggregationKeyMapperTest extends TestCase
      *     3: array<string, string>
      * }>
      */
-    public function dataProviderForTestMap(): iterable
+    public static function dataProviderForTestMap(): iterable
     {
         yield 'default' => [
             new CountryTermAggregation('aggregation', 'product', 'country'),

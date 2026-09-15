@@ -573,16 +573,16 @@ parameters:
 			path: tests/lib/Search/Query/Content/CriterionVisitor/FullTextTest.php
 
 		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\AbstractAggregationResultExtractorTest\:\:dataProviderForTestCanVisit\(\) return type has no value type specified in iterable type iterable\.$#'
+			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\AbstractAggregationResultExtractorTestCase\:\:dataProviderForTestCanVisit\(\) return type has no value type specified in iterable type iterable\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/AbstractAggregationResultExtractorTest.php
+			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/AbstractAggregationResultExtractorTestCase.php
 
 		-
-			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\AbstractAggregationResultExtractorTest\:\:dataProviderForTestExtract\(\) return type has no value type specified in iterable type iterable\.$#'
+			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\AbstractAggregationResultExtractorTestCase\:\:dataProviderForTestExtract\(\) return type has no value type specified in iterable type iterable\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/AbstractAggregationResultExtractorTest.php
+			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/AbstractAggregationResultExtractorTestCase.php
 
 		-
 			message: '#^Call to an undefined method Ibexa\\Contracts\\Solr\\ResultExtractor\\AggregationResultExtractor\:\:method\(\)\.$#'
@@ -597,13 +597,13 @@ parameters:
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/RangeAggregationResultExtractorTest.php
 
 		-
-			message: '#^Parameter \#1 \$aggregation of method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ContentTypeAggregationKeyMapper\:\:map\(\) expects Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\\ContentTypeTermAggregation, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation&PHPUnit\\Framework\\MockObject\\MockObject given\.$#'
+			message: '#^Parameter \#1 \$aggregation of method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ContentTypeAggregationKeyMapper\:\:map\(\) expects Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\\ContentTypeTermAggregation, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation&PHPUnit\\Framework\\MockObject\\Stub given\.$#'
 			identifier: argument.type
 			count: 1
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/ContentTypeAggregationKeyMapperTest.php
 
 		-
-			message: '#^Parameter \#1 \$aggregation of method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ContentTypeGroupAggregationKeyMapper\:\:map\(\) expects Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\\ContentTypeGroupTermAggregation, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation&PHPUnit\\Framework\\MockObject\\MockObject given\.$#'
+			message: '#^Parameter \#1 \$aggregation of method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\ContentTypeGroupAggregationKeyMapper\:\:map\(\) expects Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\\ContentTypeGroupTermAggregation, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation&PHPUnit\\Framework\\MockObject\\Stub given\.$#'
 			identifier: argument.type
 			count: 1
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/ContentTypeGroupAggregationKeyMapperTest.php
@@ -615,7 +615,7 @@ parameters:
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/CountryAggregationKeyMapperTest.php
 
 		-
-			message: '#^Parameter \#1 \$aggregation of method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\SectionAggregationKeyMapper\:\:map\(\) expects Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\\SectionTermAggregation, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation&PHPUnit\\Framework\\MockObject\\MockObject given\.$#'
+			message: '#^Parameter \#1 \$aggregation of method Ibexa\\Solr\\ResultExtractor\\AggregationResultExtractor\\TermAggregationKeyMapper\\SectionAggregationKeyMapper\:\:map\(\) expects Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation\\SectionTermAggregation, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Query\\Aggregation&PHPUnit\\Framework\\MockObject\\Stub given\.$#'
 			identifier: argument.type
 			count: 1
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/SectionAggregationKeyMapperTest.php

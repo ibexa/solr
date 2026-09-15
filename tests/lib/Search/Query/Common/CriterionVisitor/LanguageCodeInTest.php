@@ -28,7 +28,7 @@ final class LanguageCodeInTest extends BaseCriterionVisitorTestCase
     /**
      * @return iterable<string, array{0: string, 1: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LanguageCode}>
      */
-    public function provideDataForTestVisit(): iterable
+    public static function provideDataForTestVisit(): iterable
     {
         yield 'Single language, match always available' => [
             '(_query_:"{!terms f=content_language_codes_ms}eng-gb" OR content_always_available_b:true)',

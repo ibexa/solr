@@ -25,15 +25,15 @@ abstract class BaseCriterionVisitorTestCase extends TestCase
      *     \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion
      * }>
      */
-    abstract protected function provideDataForTestVisit(): iterable;
+    abstract public static function provideDataForTestVisit(): iterable;
 
-    /**
-     * @dataProvider provideDataForTestCanVisit
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideDataForTestCanVisit')]
     public function testCanVisit(
         bool $expected,
-        Criterion $criterion
+        bool $useSupportedCriterion
     ): void {
+        $criterion = $useSupportedCriterion ? $this->getSupportedCriterion() : new TestCriterion();
+
         self::assertSame(
             $expected,
             $this->getVisitor()->canVisit($criterion)
@@ -41,27 +41,22 @@ abstract class BaseCriterionVisitorTestCase extends TestCase
     }
 
     /**
-     * @return iterable<array{
-     *     bool,
-     *     \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion
-     * }>
+     * @return iterable<array{bool, bool}>
      */
-    public function provideDataForTestCanVisit(): iterable
+    public static function provideDataForTestCanVisit(): iterable
     {
         yield 'Not supported criterion' => [
             false,
-            new TestCriterion(),
+            false,
         ];
 
         yield 'Supported criterion' => [
             true,
-            $this->getSupportedCriterion(),
+            true,
         ];
     }
 
-    /**
-     * @dataProvider provideDataForTestVisit
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideDataForTestVisit')]
     public function testVisit(
         string $expectedQuery,
         Criterion $criterion

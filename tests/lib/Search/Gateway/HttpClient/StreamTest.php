@@ -31,11 +31,10 @@ final class StreamTest extends TestCase
     }
 
     /**
-     * @dataProvider provideRequestData
-     *
      * @param array<string, mixed> $endpointConfig
      * @param array<string, string> $expectedHeaders
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideRequestData')]
     public function testRequest(
         string $httpMethod,
         array $endpointConfig,

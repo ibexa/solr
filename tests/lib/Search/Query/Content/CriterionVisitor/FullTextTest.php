@@ -22,9 +22,8 @@ use QueryTranslator\Languages\Galach\Tokenizer;
 
 /**
  * Test case for FullText criterion visitor.
- *
- * @covers \Ibexa\Solr\Query\Content\CriterionVisitor\FullText
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Ibexa\Solr\Query\Content\CriterionVisitor\FullText::class)]
 class FullTextTest extends TestCase
 {
     /**
@@ -34,7 +33,6 @@ class FullTextTest extends TestCase
     {
         $fieldNameResolver = $this->getMockBuilder(FieldNameResolver::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getFieldTypes'])
             ->getMock();
 
         $fieldNameResolver
@@ -42,7 +40,7 @@ class FullTextTest extends TestCase
             ->method('getFieldTypes')
             ->with(
                 self::isInstanceOf(Criterion::class),
-                self::isType('string')
+                self::isString()
             )
             ->willReturn(
                 $fieldTypes
