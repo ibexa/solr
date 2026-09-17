@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="./tests/bootstrap.php" colors="true" cacheDirectory=".phpunit.cache">
+<phpunit bootstrap="./tests/bootstrap.php" colors="true" cacheDirectory=".phpunit.cache" displayDetailsOnTestsThatTriggerDeprecations="true" failOnDeprecation="true">
   <php>
     <ini name="error_reporting" value="-1"/>
-    <env name="SYMFONY_DEPRECATIONS_HELPER" value="max[indirect]=92"/>
   </php>
   <testsuites>
     <testsuite name="Solr search engine tests">
       <directory suffix="Test.php">./tests/</directory>
     </testsuite>
   </testsuites>
-  <source>
+  <source baseline="phpunit.baseline.xml" ignoreIndirectDeprecations="false" ignoreSuppressionOfDeprecations="true">
     <include>
-      <directory>./bundle</directory>
-      <directory>./lib</directory>
+      <directory>./src/bundle</directory>
+      <directory>./src/lib</directory>
+      <directory>./src/contracts</directory>
     </include>
   </source>
 </phpunit>
