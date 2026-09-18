@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="./tests/bootstrap.php" colors="true" cacheDirectory=".phpunit.cache" displayDetailsOnTestsThatTriggerDeprecations="true" failOnDeprecation="true">
+<phpunit bootstrap="./tests/bootstrap.php" colors="true" cacheDirectory=".phpunit.cache" displayDetailsOnTestsThatTriggerDeprecations="true" failOnDeprecation="true" failOnWarning="true" failOnNotice="true">
   <php>
     <ini name="error_reporting" value="-1"/>
   </php>
