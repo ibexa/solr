@@ -15,11 +15,11 @@ use Ibexa\Contracts\Solr\DocumentMapper;
 use Ibexa\Core\Search\Common\FieldNameGenerator;
 use Ibexa\Core\Search\Common\FieldValueMapper;
 use Ibexa\Solr\Gateway\UpdateSerializer\JsonUpdateSerializer;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Ibexa\Solr\Gateway\UpdateSerializer\JsonUpdateSerializer
- */
+#[CoversClass(JsonUpdateSerializer::class)]
 class JsonUpdateSerializerTest extends TestCase
 {
     public const array FIELD_NAME_GENERATOR_MAP = [
@@ -39,7 +39,7 @@ class JsonUpdateSerializerTest extends TestCase
 
     private JsonUpdateSerializer $serializer;
 
-    public function getDataForTestSerialize(): iterable
+    public static function getDataForTestSerialize(): iterable
     {
         yield [
             [
@@ -152,10 +152,9 @@ class JsonUpdateSerializerTest extends TestCase
     }
 
     /**
-     * @dataProvider getDataForTestSerialize
-     *
      * @throws \JsonException
      */
+    #[DataProvider('getDataForTestSerialize')]
     public function testSerialize(array $expectedData, array $inputDocuments): void
     {
         self::assertSame(

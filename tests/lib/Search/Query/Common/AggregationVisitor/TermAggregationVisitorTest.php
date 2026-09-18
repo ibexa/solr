@@ -15,7 +15,7 @@ use Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolve
 use Ibexa\Solr\Query\Common\AggregationVisitor\TermAggregationVisitor;
 use PHPUnit\Framework\MockObject\MockObject;
 
-final class TermAggregationVisitorTest extends AbstractAggregationVisitorTest
+final class TermAggregationVisitorTest extends AbstractAggregationVisitorTestCase
 {
     private AggregationFieldResolver&MockObject $aggregationFieldResolver;
 
@@ -43,16 +43,16 @@ final class TermAggregationVisitorTest extends AbstractAggregationVisitorTest
      *     2: bool
      * }>
      */
-    public function dataProviderForCanVisit(): iterable
+    public static function dataProviderForCanVisit(): iterable
     {
         yield 'true' => [
-            $this->createMock(AbstractTermAggregation::class),
+            self::createStub(AbstractTermAggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             true,
         ];
 
         yield 'false' => [
-            $this->createMock(Aggregation::class),
+            self::createStub(Aggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             false,
         ];
@@ -70,9 +70,9 @@ final class TermAggregationVisitorTest extends AbstractAggregationVisitorTest
      *     }
      * }>
      */
-    public function dataProviderForVisit(): iterable
+    public static function dataProviderForVisit(): iterable
     {
-        $aggregation = $this->createMock(AbstractTermAggregation::class);
+        $aggregation = self::createStub(AbstractTermAggregation::class);
         $aggregation->method('getLimit')->willReturn(100);
         $aggregation->method('getMinCount')->willReturn(10);
 

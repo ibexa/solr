@@ -25,7 +25,7 @@ final class BooleanAggregationKeyMapperTest extends TestCase
                 true => true,
             ],
             $mapper->map(
-                $this->createMock(Aggregation::class),
+                self::createStub(Aggregation::class),
                 AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
                 [
                     false => false,

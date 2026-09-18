@@ -16,7 +16,7 @@ final class SearchFieldAggregationFieldResolverTest extends TestCase
 {
     public function testResolveTargetField(): void
     {
-        $aggregation = $this->createMock(Aggregation::class);
+        $aggregation = self::createStub(Aggregation::class);
 
         $aggregationFieldResolver = new SearchFieldAggregationFieldResolver('custom_field_id');
 

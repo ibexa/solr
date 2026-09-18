@@ -11,6 +11,7 @@ namespace Ibexa\Tests\Solr\Search\Gateway\HttpClient;
 use Ibexa\Solr\Gateway\Endpoint;
 use Ibexa\Solr\Gateway\HttpClient\Stream;
 use Ibexa\Solr\Gateway\Message;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
@@ -31,11 +32,10 @@ final class StreamTest extends TestCase
     }
 
     /**
-     * @dataProvider provideRequestData
-     *
      * @param array<string, mixed> $endpointConfig
      * @param array<string, string> $expectedHeaders
      */
+    #[DataProvider('provideRequestData')]
     public function testRequest(
         string $httpMethod,
         array $endpointConfig,

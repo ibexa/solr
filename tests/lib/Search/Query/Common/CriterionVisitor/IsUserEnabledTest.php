@@ -12,10 +12,9 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Solr\Query\Common\CriterionVisitor\IsUserEnabled;
 use Ibexa\Tests\Solr\Search\Query\BaseCriterionVisitorTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Ibexa\Solr\Query\Common\CriterionVisitor\IsUserEnabled
- */
+#[CoversClass(IsUserEnabled::class)]
 final class IsUserEnabledTest extends BaseCriterionVisitorTestCase
 {
     private CriterionVisitor $criterionVisitor;
@@ -41,7 +40,7 @@ final class IsUserEnabledTest extends BaseCriterionVisitorTestCase
      *     1: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\IsUserEnabled
      * }>
      */
-    protected function provideDataForTestVisit(): iterable
+    public static function provideDataForTestVisit(): iterable
     {
         yield 'Query for enabled user' => [
             'user_is_enabled_b:true',

@@ -19,7 +19,7 @@ use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationResult
 use PHPUnit\Framework\MockObject\MockObject;
 use stdClass;
 
-final class RangeAggregationResultExtractorTest extends AbstractAggregationResultExtractorTest
+final class RangeAggregationResultExtractorTest extends AbstractAggregationResultExtractorTestCase
 {
     private RangeAggregationKeyMapper&MockObject $keyMapper;
 
@@ -46,16 +46,16 @@ final class RangeAggregationResultExtractorTest extends AbstractAggregationResul
      *     2: bool
      * }>
      */
-    public function dataProviderForTestCanVisit(): iterable
+    public static function dataProviderForTestCanVisit(): iterable
     {
         yield 'true' => [
-            $this->createMock(AbstractRangeAggregation::class),
+            self::createStub(AbstractRangeAggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             true,
         ];
 
         yield 'false' => [
-            $this->createMock(Aggregation::class),
+            self::createStub(Aggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             false,
         ];
@@ -69,9 +69,9 @@ final class RangeAggregationResultExtractorTest extends AbstractAggregationResul
      *     3: \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\RangeAggregationResult
      * }>
      */
-    public function dataProviderForTestExtract(): iterable
+    public static function dataProviderForTestExtract(): iterable
     {
-        $aggregation = $this->createMock(AbstractRangeAggregation::class);
+        $aggregation = self::createStub(AbstractRangeAggregation::class);
         $aggregation->method('getName')->willReturn(self::EXAMPLE_AGGREGATION_NAME);
         $aggregation->method('getRanges')->willReturn([
             new Range(Range::INF, 10, 'a'),
@@ -82,14 +82,14 @@ final class RangeAggregationResultExtractorTest extends AbstractAggregationResul
         yield 'default' => [
             $aggregation,
             self::EXAMPLE_LANGUAGE_FILTER,
-            $this->createEmptyRawData(),
+            self::createEmptyRawData(),
             new RangeAggregationResult(self::EXAMPLE_AGGREGATION_NAME, []),
         ];
 
         yield 'typical' => [
             $aggregation,
             self::EXAMPLE_LANGUAGE_FILTER,
-            $this->createTypicalRawData(),
+            self::createTypicalRawData(),
             new RangeAggregationResult(
                 self::EXAMPLE_AGGREGATION_NAME,
                 [
@@ -101,7 +101,7 @@ final class RangeAggregationResultExtractorTest extends AbstractAggregationResul
         ];
     }
 
-    private function createEmptyRawData(): stdClass
+    private static function createEmptyRawData(): stdClass
     {
         $data = new stdClass();
         $data->buckets = [];
@@ -109,17 +109,17 @@ final class RangeAggregationResultExtractorTest extends AbstractAggregationResul
         return $data;
     }
 
-    private function createTypicalRawData(): stdClass
+    private static function createTypicalRawData(): stdClass
     {
         $data = new stdClass();
-        $data->{'*_10'} = $this->createRawBucket('*_10', 10);
-        $data->{'10_100'} = $this->createRawBucket('10_100', 100);
-        $data->{'100_*'} = $this->createRawBucket('100_*', 1000);
+        $data->{'*_10'} = self::createRawBucket('*_10', 10);
+        $data->{'10_100'} = self::createRawBucket('10_100', 100);
+        $data->{'100_*'} = self::createRawBucket('100_*', 1000);
 
         return $data;
     }
 
-    private function createRawBucket(string $val, int $count): stdClass
+    private static function createRawBucket(string $val, int $count): stdClass
     {
         $bucket = new stdClass();
         $bucket->val = $val;

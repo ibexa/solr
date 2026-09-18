@@ -16,7 +16,7 @@ use Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolve
 use Ibexa\Solr\Query\Common\AggregationVisitor\RangeAggregationVisitor;
 use PHPUnit\Framework\MockObject\MockObject;
 
-final class RangeAggregationVisitorTest extends AbstractAggregationVisitorTest
+final class RangeAggregationVisitorTest extends AbstractAggregationVisitorTestCase
 {
     private AggregationFieldResolver&MockObject $aggregationFieldResolver;
 
@@ -44,16 +44,16 @@ final class RangeAggregationVisitorTest extends AbstractAggregationVisitorTest
      *     2: bool
      * }>
      */
-    public function dataProviderForCanVisit(): iterable
+    public static function dataProviderForCanVisit(): iterable
     {
         yield 'true' => [
-            $this->createMock(AbstractRangeAggregation::class),
+            self::createStub(AbstractRangeAggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             true,
         ];
 
         yield 'false' => [
-            $this->createMock(Aggregation::class),
+            self::createStub(Aggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             false,
         ];
@@ -73,9 +73,9 @@ final class RangeAggregationVisitorTest extends AbstractAggregationVisitorTest
      *     }
      * }>
      */
-    public function dataProviderForVisit(): iterable
+    public static function dataProviderForVisit(): iterable
     {
-        $aggregation = $this->createMock(AbstractRangeAggregation::class);
+        $aggregation = self::createStub(AbstractRangeAggregation::class);
         $aggregation->method('getRanges')->willReturn([
             new Range(null, 10),
             new Range(10, 100),

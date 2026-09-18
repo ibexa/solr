@@ -45,7 +45,7 @@ final class LocationAggregationKeyMapperTest extends TestCase
                 $expectedLocations
             ),
             $this->mapper->map(
-                $this->createMock(Aggregation::class),
+                self::createStub(Aggregation::class),
                 AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER,
                 self::EXAMPLE_LOCATION_IDS
             )

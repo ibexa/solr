@@ -12,6 +12,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\CountryTermAggregation;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\CountryAggregationKeyMapper;
 use Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\AggregationResultExtractorTestUtils;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class CountryAggregationKeyMapperTest extends TestCase
@@ -43,12 +44,11 @@ final class CountryAggregationKeyMapperTest extends TestCase
     ];
 
     /**
-     * @dataProvider dataProviderForTestMap
-     *
      * @param array{languages: string[]} $languageFilter
      * @param list<string> $keys
      * @param array<string, string> $expectedResult
      */
+    #[DataProvider('dataProviderForTestMap')]
     public function testMap(
         Aggregation $aggregation,
         array $languageFilter,
@@ -75,7 +75,7 @@ final class CountryAggregationKeyMapperTest extends TestCase
      *     3: array<string, string>
      * }>
      */
-    public function dataProviderForTestMap(): iterable
+    public static function dataProviderForTestMap(): iterable
     {
         yield 'default' => [
             new CountryTermAggregation('aggregation', 'product', 'country'),

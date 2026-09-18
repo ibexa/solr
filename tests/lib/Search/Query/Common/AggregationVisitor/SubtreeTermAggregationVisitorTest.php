@@ -13,7 +13,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Location\Su
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use Ibexa\Solr\Query\Common\AggregationVisitor\SubtreeTermAggregationVisitor;
 
-final class SubtreeTermAggregationVisitorTest extends AbstractAggregationVisitorTest
+final class SubtreeTermAggregationVisitorTest extends AbstractAggregationVisitorTestCase
 {
     private const string EXAMPLE_AGGREGATION_NAME = 'custom_aggregation';
     private const string EXAMPLE_PATH_STRING = '/1/2/';
@@ -28,7 +28,7 @@ final class SubtreeTermAggregationVisitorTest extends AbstractAggregationVisitor
      *     2: bool
      * }>
      */
-    public function dataProviderForCanVisit(): iterable
+    public static function dataProviderForCanVisit(): iterable
     {
         yield 'true' => [
             new SubtreeTermAggregation(
@@ -40,7 +40,7 @@ final class SubtreeTermAggregationVisitorTest extends AbstractAggregationVisitor
         ];
 
         yield 'false' => [
-            $this->createMock(Aggregation::class),
+            self::createStub(Aggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             false,
         ];
@@ -64,7 +64,7 @@ final class SubtreeTermAggregationVisitorTest extends AbstractAggregationVisitor
      *     }
      * }>
      */
-    public function dataProviderForVisit(): iterable
+    public static function dataProviderForVisit(): iterable
     {
         yield [
             new SubtreeTermAggregation(

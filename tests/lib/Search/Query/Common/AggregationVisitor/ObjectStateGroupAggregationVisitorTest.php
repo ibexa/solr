@@ -13,7 +13,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ObjectState
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use Ibexa\Solr\Query\Common\AggregationVisitor\ObjectStateAggregationVisitor;
 
-final class ObjectStateGroupAggregationVisitorTest extends AbstractAggregationVisitorTest
+final class ObjectStateGroupAggregationVisitorTest extends AbstractAggregationVisitorTestCase
 {
     protected function createVisitor(): AggregationVisitor
     {
@@ -27,7 +27,7 @@ final class ObjectStateGroupAggregationVisitorTest extends AbstractAggregationVi
      *     2: bool
      * }>
      */
-    public function dataProviderForCanVisit(): iterable
+    public static function dataProviderForCanVisit(): iterable
     {
         yield 'true' => [
             new ObjectStateTermAggregation('foo', 'ibexa_lock'),
@@ -36,7 +36,7 @@ final class ObjectStateGroupAggregationVisitorTest extends AbstractAggregationVi
         ];
 
         yield 'false' => [
-            $this->createMock(Aggregation::class),
+            self::createStub(Aggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             false,
         ];
@@ -55,7 +55,7 @@ final class ObjectStateGroupAggregationVisitorTest extends AbstractAggregationVi
      *     }
      * }>
      */
-    public function dataProviderForVisit(): iterable
+    public static function dataProviderForVisit(): iterable
     {
         yield 'defaults' => [
             new ObjectStateTermAggregation('foo', 'ibexa_lock'),

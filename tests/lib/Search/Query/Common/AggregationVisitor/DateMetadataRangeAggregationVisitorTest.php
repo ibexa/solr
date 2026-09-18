@@ -15,7 +15,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Range;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use Ibexa\Solr\Query\Common\AggregationVisitor\DateMetadataRangeAggregationVisitor;
 
-final class DateMetadataRangeAggregationVisitorTest extends AbstractAggregationVisitorTest
+final class DateMetadataRangeAggregationVisitorTest extends AbstractAggregationVisitorTestCase
 {
     protected function createVisitor(): AggregationVisitor
     {
@@ -29,7 +29,7 @@ final class DateMetadataRangeAggregationVisitorTest extends AbstractAggregationV
      *     2: bool
      * }>
      */
-    public function dataProviderForCanVisit(): iterable
+    public static function dataProviderForCanVisit(): iterable
     {
         yield 'true' => [
             new DateMetadataRangeAggregation('foo', DateMetadataRangeAggregation::PUBLISHED, []),
@@ -38,7 +38,7 @@ final class DateMetadataRangeAggregationVisitorTest extends AbstractAggregationV
         ];
 
         yield 'false' => [
-            $this->createMock(Aggregation::class),
+            self::createStub(Aggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             false,
         ];
@@ -58,7 +58,7 @@ final class DateMetadataRangeAggregationVisitorTest extends AbstractAggregationV
      *     }
      * }>
      */
-    public function dataProviderForVisit(): iterable
+    public static function dataProviderForVisit(): iterable
     {
         $ranges = [
             Range::ofDateTime(
