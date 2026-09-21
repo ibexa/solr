@@ -302,7 +302,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     /**
      * @return iterable<string, array{string}>
      */
-    public function dataProviderForTestVersion(): iterable
+    public static function dataProviderForTestVersion(): iterable
     {
         yield 'default version' => [Configuration::SOLR_DEFAULT_VERSION];
 
