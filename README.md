@@ -8,7 +8,7 @@ This package contains the Solr search engine implementation for [Ibexa DXP](http
 
 ## Supported Solr versions
 
-Solr 10 is the only supported version. It requires Java 21
+Solr 10 is the only supported version. It requires Java 21+
 (see [Solr system requirements](https://solr.apache.org/guide/solr/latest/deployment-guide/system-requirements.html)).
 
 When upgrading a SolrCloud cluster, note that nodes refuse to join
