@@ -309,9 +309,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
         yield 'custom version' => ['10.1.0'];
     }
 
-    /**
-     * @dataProvider dataProviderForTestVersion
-     */
+    #[DataProvider('dataProviderForTestVersion')]
     public function testVersion(string $version): void
     {
         $this->load(['version' => $version]);
