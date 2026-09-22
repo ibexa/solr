@@ -20,7 +20,7 @@ final class StandaloneDistributionStrategy extends AbstractDistributionStrategy
 
     protected function appendSearchTargets(array $parameters, array $searchTargets): array
     {
-        $shards = array_map(fn (string $endpointName) => $this->endpointRegistry->getEndpoint($endpointName)->getIdentifier(), $searchTargets);
+        $shards = array_map(fn (string $endpointName): string => $this->endpointRegistry->getEndpoint($endpointName)->getIdentifier(), $searchTargets);
 
         $parameters[self::SHARD_PARAMETER] = implode(self::SHARD_SEPARATOR, $shards);
 
