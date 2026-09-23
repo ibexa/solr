@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<files version="1">
+ <file path="vendor/netgen/query-translator/lib/Languages/Galach/Generators/Common/Aggregate.php">
+  <line number="45" hash="59c050cc988d8c580e707cdc491d35251a0834dc">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Generators\Common\Aggregate::visit(): Implicitly marking parameter $subVisitor as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/netgen/query-translator/lib/Languages/Galach/Generators/Common/Visitor.php">
+  <line number="30" hash="7d0cdb2f271e97e2251be0b18d7d420a7b6b55bc">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Generators\Common\Visitor::visit(): Implicitly marking parameter $subVisitor as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/netgen/query-translator/lib/Languages/Galach/Generators/Lucene/Common/Group.php">
+  <line number="34" hash="e7f6e5126e1b3bb249ed7efb9497f88aaa6c7b71">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Generators\Lucene\Common\Group::__construct(): Implicitly marking parameter $domainFieldMap as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+  <line number="48" hash="59c050cc988d8c580e707cdc491d35251a0834dc">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Generators\Lucene\Common\Group::visit(): Implicitly marking parameter $subVisitor as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/netgen/query-translator/lib/Languages/Galach/Generators/Lucene/Common/LogicalAnd.php">
+  <line number="20" hash="59c050cc988d8c580e707cdc491d35251a0834dc">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Generators\Lucene\Common\LogicalAnd::visit(): Implicitly marking parameter $subVisitor as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/netgen/query-translator/lib/Languages/Galach/Generators/Lucene/Common/LogicalNot.php">
+  <line number="20" hash="59c050cc988d8c580e707cdc491d35251a0834dc">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Generators\Lucene\Common\LogicalNot::visit(): Implicitly marking parameter $subVisitor as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/netgen/query-translator/lib/Languages/Galach/Generators/Lucene/Common/LogicalOr.php">
+  <line number="20" hash="59c050cc988d8c580e707cdc491d35251a0834dc">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Generators\Lucene\Common\LogicalOr::visit(): Implicitly marking parameter $subVisitor as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/netgen/query-translator/lib/Languages/Galach/Generators/Lucene/Common/Mandatory.php">
+  <line number="20" hash="59c050cc988d8c580e707cdc491d35251a0834dc">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Generators\Lucene\Common\Mandatory::visit(): Implicitly marking parameter $subVisitor as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/netgen/query-translator/lib/Languages/Galach/Generators/Lucene/Common/Prohibited.php">
+  <line number="20" hash="59c050cc988d8c580e707cdc491d35251a0834dc">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Generators\Lucene\Common\Prohibited::visit(): Implicitly marking parameter $subVisitor as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/netgen/query-translator/lib/Languages/Galach/Generators/Lucene/Common/Phrase.php">
+  <line number="34" hash="e7f6e5126e1b3bb249ed7efb9497f88aaa6c7b71">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Generators\Lucene\Common\Phrase::__construct(): Implicitly marking parameter $domainFieldMap as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+  <line number="48" hash="59c050cc988d8c580e707cdc491d35251a0834dc">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Generators\Lucene\Common\Phrase::visit(): Implicitly marking parameter $subVisitor as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/netgen/query-translator/lib/Languages/Galach/Generators/Lucene/Common/Query.php">
+  <line number="20" hash="59c050cc988d8c580e707cdc491d35251a0834dc">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Generators\Lucene\Common\Query::visit(): Implicitly marking parameter $subVisitor as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/netgen/query-translator/lib/Languages/Galach/Generators/Lucene/Common/Tag.php">
+  <line number="34" hash="59c050cc988d8c580e707cdc491d35251a0834dc">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Generators\Lucene\Common\Tag::visit(): Implicitly marking parameter $subVisitor as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/netgen/query-translator/lib/Languages/Galach/Generators/Lucene/Common/WordBase.php">
+  <line number="34" hash="e7f6e5126e1b3bb249ed7efb9497f88aaa6c7b71">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Generators\Lucene\Common\WordBase::__construct(): Implicitly marking parameter $domainFieldMap as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+  <line number="48" hash="59c050cc988d8c580e707cdc491d35251a0834dc">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Generators\Lucene\Common\WordBase::visit(): Implicitly marking parameter $subVisitor as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/netgen/query-translator/lib/Languages/Galach/Generators/Lucene/Common/User.php">
+  <line number="34" hash="59c050cc988d8c580e707cdc491d35251a0834dc">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Generators\Lucene\Common\User::visit(): Implicitly marking parameter $subVisitor as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/netgen/query-translator/lib/Languages/Galach/Values/Node/Group.php">
+  <line number="34" hash="ceb043f6ab1e59b0d2e3038886d66ec328517fc4">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Values\Node\Group::__construct(): Implicitly marking parameter $tokenLeft as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Values\Node\Group::__construct(): Implicitly marking parameter $tokenRight as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/netgen/query-translator/lib/Languages/Galach/Values/Node/LogicalAnd.php">
+  <line number="30" hash="ceb043f6ab1e59b0d2e3038886d66ec328517fc4">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Values\Node\LogicalAnd::__construct(): Implicitly marking parameter $leftOperand as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Values\Node\LogicalAnd::__construct(): Implicitly marking parameter $rightOperand as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Values\Node\LogicalAnd::__construct(): Implicitly marking parameter $token as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/netgen/query-translator/lib/Languages/Galach/Values/Node/Mandatory.php">
+  <line number="24" hash="d21490473991881c6af8055de8545532b472f2e5">
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Values\Node\Mandatory::__construct(): Implicitly marking parameter $operand as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+   <issue><![CDATA[QueryTranslator\Languages\Galach\Values\Node\Mandatory::__construct(): Implicitly marking parameter $token as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+</files>
