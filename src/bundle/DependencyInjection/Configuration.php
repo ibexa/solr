@@ -129,7 +129,7 @@ class Configuration implements ConfigurationInterface
                         static fn ($v): bool => !empty($v['mapping']) && !\is_array($v['mapping'])
                     )
                     ->then(
-                        static function (array $v) {
+                        static function (array $v): array {
                             // If single endpoint is set for Content mapping, use it as default
                             // mapping for Content index
                             $v['mapping'] = [
@@ -151,7 +151,7 @@ class Configuration implements ConfigurationInterface
                     )
                     ->then(
                         // If entry endpoints are not provided use mapping endpoints
-                        static function (array $v) {
+                        static function (array $v): array {
                             $endpointSet = [];
 
                             if (!empty($v['mapping']['translations'])) {

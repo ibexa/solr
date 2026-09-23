@@ -20,7 +20,7 @@ final class CloudDistributionStrategy extends AbstractDistributionStrategy
 
     protected function appendSearchTargets(array $parameters, array $searchTargets): array
     {
-        $collections = array_map(fn (string $endpointName) => $this->endpointRegistry->getEndpoint($endpointName)->core, $searchTargets);
+        $collections = array_map(fn (string $endpointName): string => $this->endpointRegistry->getEndpoint($endpointName)->core, $searchTargets);
 
         $parameters[self::COLLECTION_PARAMETER] = implode(self::COLLECTION_SEPARATOR, $collections);
 
