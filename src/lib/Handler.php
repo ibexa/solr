@@ -285,11 +285,12 @@ class Handler implements VersatileHandler
         foreach ($searchResult->searchHits as $searchHit) {
             try {
                 $contentInfo = $this->contentHandler->loadContentInfo($searchHit->valueObject->id);
+                // load() may throw even though loadContentInfo() succeeded, as the persistence
+                // cache can serve a stale ContentInfo for content deleted a moment ago
+                $contentItems[] = $this->contentHandler->load($contentInfo->id, $contentInfo->currentVersionNo);
             } catch (NotFoundException) {
                 continue;
             }
-
-            $contentItems[] = $this->contentHandler->load($contentInfo->id, $contentInfo->currentVersionNo);
         }
 
         $this->bulkIndexContent($contentItems);
@@ -319,14 +320,20 @@ class Handler implements VersatileHandler
     }
 
     /**
-     * @param int $locationId
+     * Matches Content documents having at least one Location outside the given Location subtree.
+     *
+     * Locations are indexed as child documents of Content, so this is a boolean NOT on a block-join
+     * child query. A single complement regex on the multivalued Content path field was used before,
+     * but the Lucene complement operator (~) is unavailable as of Lucene 10 (LUCENE-10010).
      */
-    protected function allItemsWithinLocationWithAdditionalLocation($locationId): CustomField
+    protected function allItemsWithinLocationWithAdditionalLocation(int $locationId): CustomField
     {
+        // The CustomField visitor emits this value inside a quoted '_query_:"…"' clause, where the
+        // quoted-string parsing consumes one escaping level - hence the double backslash before slashes
         return new CustomField(
-            'location_path_string_mid',
+            '_query_',
             Criterion\Operator::EQ,
-            "/@&~(.*\\/{$locationId}\\/.*)/"
+            "{!parent which=document_type_id:content}(+document_type_id:location -path_string_id:/.*\\\\/{$locationId}\\\\/.*/)"
         );
     }
 

@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
 {
     public const int SOLR_HTTP_CLIENT_DEFAULT_TIMEOUT = 10;
     public const int SOLR_HTTP_CLIENT_DEFAULT_MAX_RETRIES = 3;
-    public const string SOLR_DEFAULT_VERSION = '7.7.3';
+    public const string SOLR_DEFAULT_VERSION = '10.0.0';
 
     /**
      * Holds default endpoint values.
@@ -113,7 +113,7 @@ class Configuration implements ConfigurationInterface
     {
         $node->children()
             ->scalarNode('version')
-                ->info('Version of the Solr Search Engine to use')
+                ->info('Version of the Solr Search Engine in use. Solr 10 is the only supported version')
                 ->defaultValue(self::SOLR_DEFAULT_VERSION)
             ->end()
             ->scalarNode('default_connection')
