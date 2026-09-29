@@ -13,8 +13,8 @@ parameters:
     ibexa.search.solr.entry_endpoints:
           - endpoint0
     ibexa.search.solr.cluster_endpoints:
-          eng-GB: endpoint0
-          eng-US: endpoint1
+          eng-US: endpoint0
+          eng-GB: endpoint1
           por-PT: endpoint2
           ger-DE: endpoint3
           nor-NO: endpoint4

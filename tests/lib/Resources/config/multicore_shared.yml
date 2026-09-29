@@ -13,7 +13,7 @@ parameters:
     ibexa.search.solr.entry_endpoints:
           - endpoint1
     ibexa.search.solr.cluster_endpoints:
-          eng-GB: endpoint3
+          eng-US: endpoint3
     ibexa.search.solr.default_endpoint: endpoint2
     ibexa.search.solr.main_translations_endpoint: endpoint0
     ibexa.search.solr.field_mapper.indexing_depth_provider.default: 2
