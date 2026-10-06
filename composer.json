@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "php": ">=8.3",
+        "php": ">=8.5",
         "ext-json": "*",
         "ext-xmlwriter": "*",
         "ibexa/core": "~6.0.x-dev",
