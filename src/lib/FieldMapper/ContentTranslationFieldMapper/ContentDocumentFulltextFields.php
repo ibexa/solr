@@ -4,12 +4,15 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Type as ContentType;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Search\Field;
 use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
@@ -38,32 +41,32 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
     private static $relatedContentFieldName = 'meta_related_content_%d__text';
 
     /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Type\Handler
+     * @var ContentTypeHandler
      */
     protected $contentTypeHandler;
 
     /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Handler
+     * @var Handler
      */
     protected $contentHandler;
 
     /**
-     * @var \Ibexa\Core\Search\Common\FieldRegistry
+     * @var FieldRegistry
      */
     protected $fieldRegistry;
 
     /**
-     * @var \Ibexa\Core\Search\Common\FieldNameGenerator
+     * @var FieldNameGenerator
      */
     protected $fieldNameGenerator;
 
     /**
-     * @var \Ibexa\Solr\FieldMapper\BoostFactorProvider
+     * @var BoostFactorProvider
      */
     protected $boostFactorProvider;
 
     /**
-     * @var \Ibexa\Solr\FieldMapper\IndexingDepthProvider
+     * @var IndexingDepthProvider
      */
     protected $indexingDepthProvider;
 
@@ -86,16 +89,20 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
     /**
      * {@inheritdoc}
      */
-    public function accept(Content $content, $languageCode)
-    {
+    public function accept(
+        Content $content,
+        $languageCode
+    ) {
         return true;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function mapFields(Content $content, $languageCode)
-    {
+    public function mapFields(
+        Content $content,
+        $languageCode
+    ) {
         $contentType = $this->contentTypeHandler->load(
             $content->versionInfo->contentInfo->contentTypeId
         );
@@ -112,12 +119,17 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
      * @param int $maxDepth
      * @param int $depth
      *
-     * @return \Ibexa\Contracts\Core\Search\Field[]
+     * @return Field[]
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws NotFoundException
      */
-    private function doMapFields(Content $content, ContentType $contentType, $languageCode, $maxDepth, $depth = 0)
-    {
+    private function doMapFields(
+        Content $content,
+        ContentType $contentType,
+        $languageCode,
+        $maxDepth,
+        $depth = 0
+    ) {
         $fields = [];
 
         foreach ($content->fields as $field) {
@@ -168,12 +180,16 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
      * @param int $maxDepth
      * @param int $depth
      *
-     * @return \Ibexa\Contracts\Core\Search\Field[]
+     * @return Field[]
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws NotFoundException
      */
-    private function doMapRelatedFields(Content $sourceContent, $languageCode, $maxDepth, $depth)
-    {
+    private function doMapRelatedFields(
+        Content $sourceContent,
+        $languageCode,
+        $maxDepth,
+        $depth
+    ) {
         $relations = $this->contentHandler->loadRelations($sourceContent->versionInfo->contentInfo->id);
 
         $relatedContents = $this->contentHandler->loadContentList(
@@ -216,7 +232,7 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
     /**
      * Return index field type for the given $contentType.
      *
-     * @return \Ibexa\Contracts\Core\Search\FieldType
+     * @return FieldType
      */
     private function getIndexFieldType(ContentType $contentType)
     {

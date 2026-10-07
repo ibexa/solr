@@ -18,8 +18,10 @@ final class CompositeCriterion extends CriterionVisitor
         return $criterion instanceof Criterion\CompositeCriterion;
     }
 
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        Criterion $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         return $subVisitor->visit($criterion->criteria, $subVisitor);
     }
 }

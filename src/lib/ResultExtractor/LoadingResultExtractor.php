@@ -4,10 +4,13 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\ResultExtractor;
 
+use Ibexa\Contracts\Core\Persistence\Content\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
+use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Solr\Gateway\EndpointRegistry;
 use Ibexa\Solr\Query\FacetFieldVisitor;
@@ -23,14 +26,14 @@ class LoadingResultExtractor extends ResultExtractor
     /**
      * Content handler.
      *
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Handler
+     * @var Handler
      */
     protected $contentHandler;
 
     /**
      * Location handler.
      *
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Location\Handler
+     * @var LocationHandler
      */
     protected $locationHandler;
 
@@ -50,11 +53,11 @@ class LoadingResultExtractor extends ResultExtractor
     /**
      * Extracts value object from $hit returned by Solr backend.
      *
-     * @throws \RuntimeException If search $hit could not be handled
+     * @throws RuntimeException If search $hit could not be handled
      *
      * @param mixed $hit
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ValueObject
+     * @return ValueObject
      */
     public function extractHit($hit)
     {

@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Location\CriterionVisitor\Location;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
@@ -30,8 +31,10 @@ class PriorityIn extends CriterionVisitor
             );
     }
 
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        Criterion $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $values = [];
         foreach ($criterion->value as $value) {
             $values[] = 'priority_i:"' . $value . '"';

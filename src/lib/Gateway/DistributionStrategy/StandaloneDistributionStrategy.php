@@ -18,8 +18,10 @@ final class StandaloneDistributionStrategy extends AbstractDistributionStrategy
     private const SHARD_SEPARATOR = ',';
     private const SHARD_PARAMETER = 'shards';
 
-    protected function appendSearchTargets(array $parameters, array $searchTargets): array
-    {
+    protected function appendSearchTargets(
+        array $parameters,
+        array $searchTargets
+    ): array {
         $shards = array_map(function (string $endpointName) {
             return $this->endpointRegistry->getEndpoint($endpointName)->getIdentifier();
         }, $searchTargets);

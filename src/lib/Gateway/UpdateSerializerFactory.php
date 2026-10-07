@@ -12,11 +12,11 @@ use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
 
 class UpdateSerializerFactory
 {
-    /** @var \Ibexa\Solr\Gateway\UpdateSerializerInterface[]|iterable */
+    /** @var UpdateSerializerInterface[]|iterable */
     private $serializers;
 
     /**
-     * @param iterable<\Ibexa\Solr\Gateway\UpdateSerializerInterface> $serializers
+     * @param iterable<UpdateSerializerInterface> $serializers
      */
     public function __construct(iterable $serializers)
     {

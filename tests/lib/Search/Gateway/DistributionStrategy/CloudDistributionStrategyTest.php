@@ -12,17 +12,18 @@ use Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy;
 use Ibexa\Solr\Gateway\Endpoint;
 use Ibexa\Solr\Gateway\EndpointRegistry;
 use Ibexa\Solr\Gateway\EndpointResolver;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class CloudDistributionStrategyTest extends TestCase
 {
-    /** @var \Ibexa\Solr\Gateway\DistributionStrategy\CloudDistributionStrategy */
+    /** @var CloudDistributionStrategy */
     private $distributionStrategy;
 
-    /** @var \Ibexa\Solr\Gateway\EndpointResolver|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var EndpointResolver|MockObject */
     private $endpointResolver;
 
-    /** @var \Ibexa\Solr\Gateway\EndpointRegistry|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var EndpointRegistry|MockObject */
     private $endpointRegistry;
 
     protected function setUp(): void

@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr;
 
 use Doctrine\DBAL\Connection;
@@ -18,7 +19,7 @@ use Psr\Log\LoggerInterface;
 class Indexer extends IncrementalIndexer
 {
     /**
-     * @var \Ibexa\Solr\Handler
+     * @var SolrSearchHandler
      */
     protected $searchHandler;
 
@@ -41,8 +42,10 @@ class Indexer extends IncrementalIndexer
         $this->searchHandler->purgeIndex();
     }
 
-    public function updateSearchIndex(array $contentIds, $commit)
-    {
+    public function updateSearchIndex(
+        array $contentIds,
+        $commit
+    ) {
         $documents = [];
         $contentHandler = $this->persistenceHandler->contentHandler();
         foreach ($contentIds as $contentId) {

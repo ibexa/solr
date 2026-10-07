@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\CriterionVisitor\CustomField;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
@@ -33,8 +34,10 @@ class CustomFieldRange extends CriterionVisitor
             );
     }
 
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        Criterion $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $values = (array)$criterion->value;
         $start = $values[0];
         $end = isset($values[1]) ? $values[1] : null;

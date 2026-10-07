@@ -11,6 +11,7 @@ namespace Ibexa\Solr\Query\Common\CriterionVisitor\Factory;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Core\Search\Common\FieldNameResolver;
 use Ibexa\Solr\FieldMapper\IndexingDepthProvider;
+use Ibexa\Solr\Query\Content\CriterionVisitor\FullText;
 use QueryTranslator\Languages\Galach\Generators\ExtendedDisMax;
 use QueryTranslator\Languages\Galach\Parser;
 use QueryTranslator\Languages\Galach\Tokenizer;
@@ -18,7 +19,7 @@ use QueryTranslator\Languages\Galach\Tokenizer;
 /**
  * Factory for FullText Criterion Visitor.
  *
- * @see \Ibexa\Solr\Query\Content\CriterionVisitor\FullText
+ * @see FullText
  * @see \Ibexa\Solr\Query\Location\CriterionVisitor\FullText
  *
  * @internal
@@ -28,27 +29,27 @@ abstract class FullTextFactoryAbstract
     /**
      * Field map.
      *
-     * @var \Ibexa\Core\Search\Common\FieldNameResolver
+     * @var FieldNameResolver
      */
     protected $fieldNameResolver;
 
     /**
-     * @var \QueryTranslator\Languages\Galach\Tokenizer
+     * @var Tokenizer
      */
     protected $tokenizer;
 
     /**
-     * @var \QueryTranslator\Languages\Galach\Parser
+     * @var Parser
      */
     protected $parser;
 
     /**
-     * @var \QueryTranslator\Languages\Galach\Generators\ExtendedDisMax
+     * @var ExtendedDisMax
      */
     protected $generator;
 
     /**
-     * @var \Ibexa\Solr\FieldMapper\IndexingDepthProvider
+     * @var IndexingDepthProvider
      */
     protected $indexingDepthProvider;
 

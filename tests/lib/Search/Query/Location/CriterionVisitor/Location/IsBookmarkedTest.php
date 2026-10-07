@@ -14,6 +14,7 @@ use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Core\Repository\Values\User\UserReference;
 use Ibexa\Solr\Query\Location\CriterionVisitor\Location\IsBookmarked;
 use Ibexa\Tests\Solr\Search\Query\BaseCriterionVisitorTestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * @covers \Ibexa\Solr\Query\Location\CriterionVisitor\Location\IsBookmarked
@@ -24,7 +25,7 @@ final class IsBookmarkedTest extends BaseCriterionVisitorTestCase
 
     private CriterionVisitor $visitor;
 
-    /** @var \Ibexa\Contracts\Core\Repository\PermissionResolver&\PHPUnit\Framework\MockObject\MockObject */
+    /** @var PermissionResolver&MockObject */
     private PermissionResolver $permissionResolver;
 
     protected function setUp(): void
@@ -51,7 +52,7 @@ final class IsBookmarkedTest extends BaseCriterionVisitorTestCase
     /**
      * @return iterable<array{
      *     string,
-     *     \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion
+     *     Criterion
      * }>
      */
     public function provideDataForTestVisit(): iterable

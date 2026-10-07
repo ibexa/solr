@@ -14,7 +14,7 @@ use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregat
 
 final class LanguageAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    /** @var \Ibexa\Contracts\Core\Repository\LanguageService */
+    /** @var LanguageService */
     private $languageService;
 
     public function __construct(LanguageService $languageService)
@@ -22,8 +22,11 @@ final class LanguageAggregationKeyMapper implements TermAggregationKeyMapper
         $this->languageService = $languageService;
     }
 
-    public function map(Aggregation $aggregation, array $languageFilter, array $keys): array
-    {
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        array $keys
+    ): array {
         $result = [];
 
         $languages = $this->languageService->loadLanguageListByCode($keys);

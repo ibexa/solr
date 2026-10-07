@@ -4,10 +4,13 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\QueryConverter;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\EmbeddingQuery;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Contracts\Solr\Query\EmbeddingVisitor;
@@ -23,26 +26,26 @@ class NativeQueryConverter extends QueryConverter
     /**
      * Query visitor.
      *
-     * @var \Ibexa\Contracts\Solr\Query\CriterionVisitor
+     * @var CriterionVisitor
      */
     protected $criterionVisitor;
 
     /**
      * Sort clause visitor.
      *
-     * @var \Ibexa\Contracts\Solr\Query\SortClauseVisitor
+     * @var SortClauseVisitor
      */
     protected $sortClauseVisitor;
 
     /**
      * Facet builder visitor.
      *
-     * @var \Ibexa\Solr\Query\FacetFieldVisitor
+     * @var FacetFieldVisitor
      */
     protected $facetBuilderVisitor;
 
     /**
-     * @var \Ibexa\Contracts\Solr\Query\AggregationVisitor
+     * @var AggregationVisitor
      */
     private $aggregationVisitor;
 
@@ -51,9 +54,9 @@ class NativeQueryConverter extends QueryConverter
     /**
      * Construct from visitors.
      *
-     * @param \Ibexa\Contracts\Solr\Query\CriterionVisitor $criterionVisitor
-     * @param \Ibexa\Contracts\Solr\Query\SortClauseVisitor $sortClauseVisitor
-     * @param \Ibexa\Solr\Query\FacetFieldVisitor $facetBuilderVisitor
+     * @param CriterionVisitor $criterionVisitor
+     * @param SortClauseVisitor $sortClauseVisitor
+     * @param FacetFieldVisitor $facetBuilderVisitor
      */
     public function __construct(
         CriterionVisitor $criterionVisitor,
@@ -69,8 +72,10 @@ class NativeQueryConverter extends QueryConverter
         $this->embeddingVisitor = $embeddingVisitor;
     }
 
-    public function convert(Query $query, array $languageSettings = [])
-    {
+    public function convert(
+        Query $query,
+        array $languageSettings = []
+    ) {
         $params = [
             'q' => '{!lucene}' . $this->criterionVisitor->visit($query->query),
             'fq' => ['{!lucene}' . $this->criterionVisitor->visit($query->filter)],
@@ -123,7 +128,7 @@ class NativeQueryConverter extends QueryConverter
     /**
      * Converts an array of sort clause objects to a proper Solr representation.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause[] $sortClauses
+     * @param SortClause[] $sortClauses
      *
      * @return string
      */
@@ -144,7 +149,7 @@ class NativeQueryConverter extends QueryConverter
      * This method uses spl_object_hash() to get id of each and every facet builder, as this
      * is expected by {@link \Ibexa\Solr\ResultExtractor}.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder[] $facetBuilders
+     * @param FacetBuilder[] $facetBuilders
      *
      * @return array
      */

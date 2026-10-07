@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\FieldMapper\LocationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content\Location;
@@ -17,12 +18,12 @@ class Aggregate extends LocationFieldMapper
     /**
      * An array of aggregated field mappers, sorted by priority.
      *
-     * @var \Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper[]
+     * @var LocationFieldMapper[]
      */
     protected $mappers = [];
 
     /**
-     * @param \Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper[] $mappers
+     * @param LocationFieldMapper[] $mappers
      *        An array of mappers, sorted by priority.
      */
     public function __construct(array $mappers = [])

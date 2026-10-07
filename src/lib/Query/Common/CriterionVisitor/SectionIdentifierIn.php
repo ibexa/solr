@@ -24,8 +24,10 @@ class SectionIdentifierIn extends CriterionVisitor
             );
     }
 
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        Criterion $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         return sprintf(
             '(%s)',
             implode(

@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\FieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content\Type as ContentType;
@@ -90,8 +91,10 @@ class BoostFactorProvider
      *
      * @return float
      */
-    public function getContentFieldBoostFactor(ContentType $contentType, FieldDefinition $fieldDefinition)
-    {
+    public function getContentFieldBoostFactor(
+        ContentType $contentType,
+        FieldDefinition $fieldDefinition
+    ) {
         $typeIdentifier = $contentType->identifier;
         $fieldIdentifier = $fieldDefinition->identifier;
 
@@ -117,8 +120,10 @@ class BoostFactorProvider
      *
      * @return float
      */
-    public function getContentMetaFieldBoostFactor(ContentType $contentType, $fieldName)
-    {
+    public function getContentMetaFieldBoostFactor(
+        ContentType $contentType,
+        $fieldName
+    ) {
         $typeIdentifier = $contentType->identifier;
 
         if (!isset($this->map[self::$keyMetaFields][$typeIdentifier])) {

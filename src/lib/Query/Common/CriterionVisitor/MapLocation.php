@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
@@ -18,7 +19,7 @@ abstract class MapLocation extends CriterionVisitor
     /**
      * Field map.
      *
-     * @var \Ibexa\Core\Search\Common\FieldNameResolver
+     * @var FieldNameResolver
      */
     protected $fieldNameResolver;
 
@@ -42,8 +43,11 @@ abstract class MapLocation extends CriterionVisitor
      * @param string $fieldTypeIdentifier
      * @param string $fieldName
      */
-    public function __construct(FieldNameResolver $fieldNameResolver, $fieldTypeIdentifier, $fieldName)
-    {
+    public function __construct(
+        FieldNameResolver $fieldNameResolver,
+        $fieldTypeIdentifier,
+        $fieldName
+    ) {
         $this->fieldTypeIdentifier = $fieldTypeIdentifier;
         $this->fieldName = $fieldName;
 

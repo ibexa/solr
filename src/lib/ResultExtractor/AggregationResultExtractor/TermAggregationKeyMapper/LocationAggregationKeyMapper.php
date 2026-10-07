@@ -14,7 +14,7 @@ use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregat
 
 final class LocationAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    /** @var \Ibexa\Contracts\Core\Repository\LocationService */
+    /** @var LocationService */
     private $locationService;
 
     public function __construct(LocationService $locationService)
@@ -22,8 +22,11 @@ final class LocationAggregationKeyMapper implements TermAggregationKeyMapper
         $this->locationService = $locationService;
     }
 
-    public function map(Aggregation $aggregation, array $languageFilter, array $keys): array
-    {
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        array $keys
+    ): array {
         $result = [];
 
         $locations = $this->locationService->loadLocationList(array_map('intval', $keys));

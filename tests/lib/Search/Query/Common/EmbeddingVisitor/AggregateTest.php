@@ -12,6 +12,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Embedding;
 use Ibexa\Contracts\Solr\Query\EmbeddingVisitor;
 use Ibexa\Solr\Query\Common\EmbeddingVisitor\Aggregate;
 use Ibexa\Tests\Solr\Search\TestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 
 final class AggregateTest extends TestCase
 {
@@ -65,7 +66,7 @@ final class AggregateTest extends TestCase
     }
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Solr\Query\EmbeddingVisitor
+     * @return MockObject&EmbeddingVisitor
      */
     private function createVisitorMock(
         Embedding $embedding,

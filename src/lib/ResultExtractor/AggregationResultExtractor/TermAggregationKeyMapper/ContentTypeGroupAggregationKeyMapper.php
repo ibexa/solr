@@ -11,11 +11,13 @@ namespace Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationK
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ContentTypeGroupTermAggregation;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeGroup;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
 final class ContentTypeGroupAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
+    /** @var ContentTypeService */
     private $contentTypeService;
 
     public function __construct(ContentTypeService $contentTypeService)
@@ -24,13 +26,16 @@ final class ContentTypeGroupAggregationKeyMapper implements TermAggregationKeyMa
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ContentTypeGroupTermAggregation $aggregation
+     * @param ContentTypeGroupTermAggregation $aggregation
      * @param string[] $keys
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeGroup[]
+     * @return ContentTypeGroup[]
      */
-    public function map(Aggregation $aggregation, array $languageFilter, array $keys): array
-    {
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        array $keys
+    ): array {
         $result = [];
 
         foreach ($keys as $key) {
