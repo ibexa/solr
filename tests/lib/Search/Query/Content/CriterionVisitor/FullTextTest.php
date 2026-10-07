@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\Solr\Search\Query\Content\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
@@ -14,6 +15,7 @@ use Ibexa\Solr\Query\Common\QueryTranslator\Generator\WordVisitor;
 use Ibexa\Solr\Query\Content\CriterionVisitor\FullText;
 use Ibexa\Tests\Solr\Search\TestCase;
 use QueryTranslator\Languages\Galach\Generators;
+use QueryTranslator\Languages\Galach\Generators\ExtendedDisMax;
 use QueryTranslator\Languages\Galach\Parser;
 use QueryTranslator\Languages\Galach\TokenExtractor\Text;
 use QueryTranslator\Languages\Galach\Tokenizer;
@@ -25,8 +27,10 @@ use QueryTranslator\Languages\Galach\Tokenizer;
  */
 class FullTextTest extends TestCase
 {
-    protected function getFullTextCriterionVisitor(array $fieldTypes = [], int $maxDepth = 0)
-    {
+    protected function getFullTextCriterionVisitor(
+        array $fieldTypes = [],
+        int $maxDepth = 0
+    ) {
         $fieldNames = array_keys($fieldTypes);
         $fieldNameResolver = $this->getMockBuilder(FieldNameResolver::class)
             ->disableOriginalConstructor()
@@ -55,7 +59,7 @@ class FullTextTest extends TestCase
                 $fieldTypes
             );
 
-        /** @var \Ibexa\Core\Search\Common\FieldNameResolver $fieldNameResolver */
+        /** @var FieldNameResolver $fieldNameResolver */
         return new FullText(
             $fieldNameResolver,
             $this->getTokenizer(),
@@ -66,7 +70,7 @@ class FullTextTest extends TestCase
     }
 
     /**
-     * @return \QueryTranslator\Languages\Galach\Tokenizer
+     * @return Tokenizer
      */
     protected function getTokenizer()
     {
@@ -76,7 +80,7 @@ class FullTextTest extends TestCase
     }
 
     /**
-     * @return \QueryTranslator\Languages\Galach\Parser
+     * @return Parser
      */
     protected function getParser()
     {
@@ -84,11 +88,11 @@ class FullTextTest extends TestCase
     }
 
     /**
-     * @return \QueryTranslator\Languages\Galach\Generators\ExtendedDisMax
+     * @return ExtendedDisMax
      */
     protected function getGenerator()
     {
-        return new Generators\ExtendedDisMax(
+        return new ExtendedDisMax(
             new Generators\Common\Aggregate(
                 [
                     new Generators\Lucene\Common\Group(),

@@ -4,11 +4,13 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Type as ContentType;
 use Ibexa\Contracts\Core\Persistence\Content\Type\FieldDefinition;
+use Ibexa\Contracts\Core\Persistence\Content\Type\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Ibexa\Contracts\Core\Search\Field;
 use Ibexa\Contracts\Core\Search\FieldType;
@@ -23,22 +25,22 @@ use Ibexa\Solr\FieldMapper\BoostFactorProvider;
 class BlockDocumentsContentFields extends ContentTranslationFieldMapper
 {
     /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Type\Handler
+     * @var Handler
      */
     protected $contentTypeHandler;
 
     /**
-     * @var \Ibexa\Core\Search\Common\FieldRegistry
+     * @var FieldRegistry
      */
     protected $fieldRegistry;
 
     /**
-     * @var \Ibexa\Core\Search\Common\FieldNameGenerator
+     * @var FieldNameGenerator
      */
     protected $fieldNameGenerator;
 
     /**
-     * @var \Ibexa\Solr\FieldMapper\BoostFactorProvider
+     * @var BoostFactorProvider
      */
     protected $boostFactorProvider;
 
@@ -54,13 +56,17 @@ class BlockDocumentsContentFields extends ContentTranslationFieldMapper
         $this->boostFactorProvider = $boostFactorProvider;
     }
 
-    public function accept(Content $content, $languageCode)
-    {
+    public function accept(
+        Content $content,
+        $languageCode
+    ) {
         return true;
     }
 
-    public function mapFields(Content $content, $languageCode)
-    {
+    public function mapFields(
+        Content $content,
+        $languageCode
+    ) {
         $fields = [];
         $contentType = $this->contentTypeHandler->load(
             $content->versionInfo->contentInfo->contentTypeId
@@ -107,7 +113,7 @@ class BlockDocumentsContentFields extends ContentTranslationFieldMapper
     /**
      * Return index field type for the given arguments.
      *
-     * @return \Ibexa\Contracts\Core\Search\FieldType
+     * @return FieldType
      */
     private function getIndexFieldType(
         ContentType $contentType,

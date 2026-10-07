@@ -18,7 +18,7 @@ use QueryTranslator\Languages\Galach\Tokenizer;
 /**
  * Factory for FullText Criterion Visitor.
  *
- * @see \Ibexa\Solr\Query\Content\CriterionVisitor\FullText
+ * @see FullText
  *
  * @internal
  */
@@ -27,38 +27,38 @@ final class FullTextFactory
     /**
      * Field map.
      *
-     * @var \Ibexa\Core\Search\Common\FieldNameResolver
+     * @var FieldNameResolver
      */
     private $fieldNameResolver;
 
     /**
-     * @var \QueryTranslator\Languages\Galach\Tokenizer
+     * @var Tokenizer
      */
     private $tokenizer;
 
     /**
-     * @var \QueryTranslator\Languages\Galach\Parser
+     * @var Parser
      */
     private $parser;
 
     /**
-     * @var \QueryTranslator\Languages\Galach\Generators\ExtendedDisMax
+     * @var ExtendedDisMax
      */
     private $generator;
 
     /**
-     * @var \Ibexa\Solr\FieldMapper\IndexingDepthProvider
+     * @var IndexingDepthProvider
      */
     private $indexingDepthProvider;
 
     /**
      * Create from content type handler and field registry.
      *
-     * @param \Ibexa\Core\Search\Common\FieldNameResolver $fieldNameResolver
-     * @param \QueryTranslator\Languages\Galach\Tokenizer $tokenizer
-     * @param \QueryTranslator\Languages\Galach\Parser $parser
-     * @param \QueryTranslator\Languages\Galach\Generators\ExtendedDisMax $generator
-     * @param \Ibexa\Solr\FieldMapper\IndexingDepthProvider $indexingDepthProvider
+     * @param FieldNameResolver $fieldNameResolver
+     * @param Tokenizer $tokenizer
+     * @param Parser $parser
+     * @param ExtendedDisMax $generator
+     * @param IndexingDepthProvider $indexingDepthProvider
      */
     public function __construct(
         FieldNameResolver $fieldNameResolver,
@@ -77,7 +77,7 @@ final class FullTextFactory
     /**
      * Create FullText Criterion Visitor.
      *
-     * @return \Ibexa\Solr\Query\Content\CriterionVisitor\FullText
+     * @return FullText
      */
     public function createCriterionVisitor(): FullText
     {

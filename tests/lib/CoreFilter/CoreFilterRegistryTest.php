@@ -4,11 +4,13 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\Solr\CoreFilter;
 
 use Ibexa\Solr\CoreFilter;
 use Ibexa\Solr\CoreFilter\CoreFilterRegistry;
 use OutOfBoundsException;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class CoreFilterRegistryTest extends TestCase
@@ -79,7 +81,7 @@ class CoreFilterRegistryTest extends TestCase
     }
 
     /**
-     * @return \Ibexa\Solr\CoreFilter|\PHPUnit\Framework\MockObject\MockObject
+     * @return CoreFilter|MockObject
      */
     private function getCoreFilterMock(): CoreFilter
     {

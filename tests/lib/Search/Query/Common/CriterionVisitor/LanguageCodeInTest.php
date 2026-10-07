@@ -26,7 +26,7 @@ final class LanguageCodeInTest extends BaseCriterionVisitorTestCase
     }
 
     /**
-     * @return iterable<string, array{0: string, 1: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LanguageCode}>
+     * @return iterable<string, array{0: string, 1: LanguageCode}>
      */
     public function provideDataForTestVisit(): iterable
     {

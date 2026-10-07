@@ -22,8 +22,10 @@ final class ContentName extends CriterionVisitor
             && $criterion->operator === Criterion\Operator::LIKE;
     }
 
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        Criterion $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         /** @var string $value */
         $value = $criterion->value;
         $searchField = 'meta_content__name_s';

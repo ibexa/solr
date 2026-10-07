@@ -13,16 +13,17 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Section;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\SectionAggregationKeyMapper;
 use Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\AggregationResultExtractorTestUtils;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class SectionAggregationKeyMapperTest extends TestCase
 {
     private const EXAMPLE_SECTION_IDS = [1, 2, 3];
 
-    /** @var \Ibexa\Contracts\Core\Repository\SectionService|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var SectionService|MockObject */
     private $sectionService;
 
-    /** @var \Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper\SectionAggregationKeyMapper */
+    /** @var SectionAggregationKeyMapper */
     private $mapper;
 
     protected function setUp(): void

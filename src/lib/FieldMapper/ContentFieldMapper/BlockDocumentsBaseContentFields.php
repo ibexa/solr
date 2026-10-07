@@ -4,9 +4,11 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\FieldMapper\ContentFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content\Location\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
 use Ibexa\Contracts\Core\Persistence\Content\ObjectState\Handler as ObjectStateHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Section\Handler as SectionHandler;
@@ -22,22 +24,22 @@ use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
 class BlockDocumentsBaseContentFields extends ContentFieldMapper
 {
     /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Location\Handler
+     * @var Handler
      */
     protected $locationHandler;
 
     /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Type\Handler
+     * @var ContentTypeHandler
      */
     protected $contentTypeHandler;
 
     /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\ObjectState\Handler
+     * @var ObjectStateHandler
      */
     protected $objectStateHandler;
 
     /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Section\Handler
+     * @var SectionHandler
      */
     protected $sectionHandler;
 

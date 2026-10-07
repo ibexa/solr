@@ -15,7 +15,7 @@ use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 abstract class AbstractTermAggregationVisitor implements AggregationVisitor
 {
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractTermAggregation $aggregation
+     * @param AbstractTermAggregation $aggregation
      */
     public function visit(
         AggregationVisitor $dispatcherVisitor,

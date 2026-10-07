@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Bundle\Solr\DependencyInjection;
 
 use Ibexa\Bundle\Solr\ApiLoader\BoostFactorProviderFactory;
@@ -104,14 +105,16 @@ class IbexaSolrExtension extends Extension
      * Loads a specific configuration.
      *
      * @param array $configs An array of configuration values
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container A ContainerBuilder instance
+     * @param ContainerBuilder $container A ContainerBuilder instance
      *
      * @throws \InvalidArgumentException When provided tag is not defined in this extension
      *
      * @api
      */
-    public function load(array $configs, ContainerBuilder $container)
-    {
+    public function load(
+        array $configs,
+        ContainerBuilder $container
+    ) {
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
 
@@ -139,11 +142,13 @@ class IbexaSolrExtension extends Extension
      * Processes connection configuration by flattening connection parameters
      * and setting them to the container as parameters.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param ContainerBuilder $container
      * @param array $config
      */
-    protected function processConnectionConfiguration(ContainerBuilder $container, array $config)
-    {
+    protected function processConnectionConfiguration(
+        ContainerBuilder $container,
+        array $config
+    ) {
         $alias = $this->getServicePrefix();
 
         if (isset($config['default_connection'])) {
@@ -194,12 +199,15 @@ class IbexaSolrExtension extends Extension
     /**
      * Creates needed search services for given connection name and parameters.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param ContainerBuilder $container
      * @param string $connectionName
      * @param array $connectionParams
      */
-    private function configureSearchServices(ContainerBuilder $container, $connectionName, $connectionParams)
-    {
+    private function configureSearchServices(
+        ContainerBuilder $container,
+        $connectionName,
+        $connectionParams
+    ) {
         $alias = $this->getServicePrefix();
 
         // Endpoint resolver
@@ -249,12 +257,15 @@ class IbexaSolrExtension extends Extension
     /**
      * Creates boost factor map parameter for a given $connectionName.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param ContainerBuilder $container
      * @param string $connectionName
      * @param array $connectionParams
      */
-    private function configureBoostMap(ContainerBuilder $container, $connectionName, $connectionParams)
-    {
+    private function configureBoostMap(
+        ContainerBuilder $container,
+        $connectionName,
+        $connectionParams
+    ) {
         $alias = $this->getServicePrefix();
         $boostFactorMap = $this->buildBoostFactorMap($connectionParams['boost_factors']);
         $boostFactorMapId = "{$alias}.connection.{$connectionName}.boost_factor_map_id";
@@ -265,12 +276,15 @@ class IbexaSolrExtension extends Extension
     /**
      * Creates indexing depth map parameter for a given $connectionName.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param ContainerBuilder $container
      * @param string $connectionName
      * @param array $connectionParams
      */
-    private function configureIndexingDepth(ContainerBuilder $container, $connectionName, $connectionParams)
-    {
+    private function configureIndexingDepth(
+        ContainerBuilder $container,
+        $connectionName,
+        $connectionParams
+    ) {
         $alias = $this->getServicePrefix();
 
         $defaultIndexingDepthId = "{$alias}.connection.{$connectionName}.indexing_depth.default";
@@ -283,12 +297,15 @@ class IbexaSolrExtension extends Extension
     /**
      * Creates Endpoint definition in the service container.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param ContainerBuilder $container
      * @param string $alias
      * @param array $params
      */
-    protected function defineEndpoint(ContainerBuilder $container, $alias, $params)
-    {
+    protected function defineEndpoint(
+        ContainerBuilder $container,
+        $alias,
+        $params
+    ) {
         $definition = new Definition(self::ENDPOINT_CLASS, [$params]);
         $definition->addTag(self::ENDPOINT_TAG, ['alias' => $alias]);
 
@@ -298,15 +315,17 @@ class IbexaSolrExtension extends Extension
         );
     }
 
-    public function getConfiguration(array $config, ContainerBuilder $container)
-    {
+    public function getConfiguration(
+        array $config,
+        ContainerBuilder $container
+    ) {
         return new Configuration($this->getAlias());
     }
 
     /**
      * Builds boost factor map from the given $config.
      *
-     * @see \Ibexa\Solr\FieldMapper\BoostFactorProvider::$map
+     * @see BoostFactorProvider::$map
      *
      * @param array $config
      *
@@ -339,8 +358,10 @@ class IbexaSolrExtension extends Extension
     /**
      * @phpstan-param SolrHttpClientConfigArray $httpClientConfig
      */
-    private function configureHttpClient(ContainerBuilder $container, array $httpClientConfig): void
-    {
+    private function configureHttpClient(
+        ContainerBuilder $container,
+        array $httpClientConfig
+    ): void {
         $container->setParameter('ibexa.solr.http_client.timeout', $httpClientConfig['timeout']);
         $container->setParameter(
             'ibexa.solr.http_client.max_retries',

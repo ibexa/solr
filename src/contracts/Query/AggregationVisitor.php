@@ -17,7 +17,10 @@ interface AggregationVisitor
      *
      * @phpstan-param array{languages: string[]} $languageFilter
      */
-    public function canVisit(Aggregation $aggregation, array $languageFilter): bool;
+    public function canVisit(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): bool;
 
     /**
      * @phpstan-param array{languages: string[]} $languageFilter

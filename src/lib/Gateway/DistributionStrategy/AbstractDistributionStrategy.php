@@ -18,23 +18,27 @@ abstract class AbstractDistributionStrategy implements DistributionStrategy
     /**
      * Endpoint registry service.
      *
-     * @var \Ibexa\Solr\Gateway\EndpointRegistry
+     * @var EndpointRegistry
      */
     protected $endpointRegistry;
 
     /**
-     * @var \Ibexa\Solr\Gateway\EndpointResolver
+     * @var EndpointResolver
      */
     protected $endpointResolver;
 
-    public function __construct(EndpointRegistry $endpointRegistry, EndpointResolver $endpointResolver)
-    {
+    public function __construct(
+        EndpointRegistry $endpointRegistry,
+        EndpointResolver $endpointResolver
+    ) {
         $this->endpointRegistry = $endpointRegistry;
         $this->endpointResolver = $endpointResolver;
     }
 
-    public function getSearchParameters(array $parameters, ?array $languageSettings = null): array
-    {
+    public function getSearchParameters(
+        array $parameters,
+        ?array $languageSettings = null
+    ): array {
         if ($this->endpointResolver instanceof SingleEndpointResolver && !$this->endpointResolver->hasMultipleEndpoints()) {
             return $parameters;
         }
@@ -50,7 +54,10 @@ abstract class AbstractDistributionStrategy implements DistributionStrategy
         return $parameters;
     }
 
-    abstract protected function appendSearchTargets(array $parameters, array $searchTargets): array;
+    abstract protected function appendSearchTargets(
+        array $parameters,
+        array $searchTargets
+    ): array;
 }
 
 class_alias(AbstractDistributionStrategy::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\DistributionStrategy\AbstractDistributionStrategy');

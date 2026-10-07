@@ -4,10 +4,12 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Contracts\Solr;
 
 use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
+use Ibexa\Contracts\Core\Search\Document;
 
 /**
  * Mapper maps Content and Location objects to a Document objects, representing a
@@ -37,7 +39,7 @@ interface DocumentMapper
      *
      * Each Content Document contains nested Documents representing it's Locations.
      *
-     * @return \Ibexa\Contracts\Core\Search\Document[]
+     * @return Document[]
      */
     public function mapContentBlock(Content $content);
 
@@ -54,7 +56,10 @@ interface DocumentMapper
      *
      * @return string
      */
-    public function generateContentDocumentId($contentId, $languageCode = null);
+    public function generateContentDocumentId(
+        $contentId,
+        $languageCode = null
+    );
 
     /**
      * Generates the Solr backend document ID for Location object.
@@ -69,7 +74,10 @@ interface DocumentMapper
      *
      * @return string
      */
-    public function generateLocationDocumentId($locationId, $languageCode = null);
+    public function generateLocationDocumentId(
+        $locationId,
+        $languageCode = null
+    );
 }
 
 class_alias(DocumentMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\DocumentMapper');

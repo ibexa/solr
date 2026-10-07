@@ -4,12 +4,14 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\Solr\SetupFactory;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
 use Ibexa\Bundle\Solr\DependencyInjection\IbexaSolrExtension;
 use Ibexa\Contracts\Core\Persistence\Content\Handler;
+use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Contracts\Core\Test\Repository\SetupFactory\Legacy as CoreLegacySetupFactory;
 use Ibexa\Core\Base\Container\Compiler\Search\AggregateFieldValueMapperPass;
 use Ibexa\Core\Base\Container\Compiler\Search\FieldRegistryPass;
@@ -46,7 +48,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
      *
      * @param bool $initializeFromScratch
      *
-     * @return \Ibexa\Contracts\Core\Repository\Repository
+     * @return Repository
      */
     public function getRepository($initializeFromScratch = true)
     {
@@ -96,7 +98,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
     private function getPersistenceContentHandler(
         ServiceContainer $serviceContainer
     ): Handler {
-        /** @var \Ibexa\Contracts\Core\Persistence\Content\Handler $contentHandler */
+        /** @var Handler $contentHandler */
         $contentHandler = $serviceContainer->get(Handler::class);
 
         return $contentHandler;
@@ -104,7 +106,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
 
     private function getSearchHandler(ServiceContainer $serviceContainer): SolrSearchHandler
     {
-        /** @var \Ibexa\Solr\Handler $searchHandler */
+        /** @var SolrSearchHandler $searchHandler */
         $searchHandler = $serviceContainer->get(SolrSearchHandler::class);
 
         return $searchHandler;
@@ -112,7 +114,7 @@ class LegacySetupFactory extends CoreLegacySetupFactory
 
     private function getDatabaseConnection(ServiceContainer $serviceContainer): Connection
     {
-        /** @var \Doctrine\DBAL\Connection $connection */
+        /** @var Connection $connection */
         $connection = $serviceContainer->get('ibexa.persistence.connection');
 
         return $connection;

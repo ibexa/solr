@@ -15,13 +15,15 @@ use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 
 final class UserMetadataTermAggregationVisitor extends AbstractTermAggregationVisitor
 {
-    public function canVisit(Aggregation $aggregation, array $languageFilter): bool
-    {
+    public function canVisit(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): bool {
         return $aggregation instanceof UserMetadataTermAggregation;
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation $aggregation
+     * @param UserMetadataTermAggregation $aggregation
      */
     protected function getTargetField(AbstractTermAggregation $aggregation): string
     {

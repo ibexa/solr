@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Gateway;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
@@ -23,43 +24,43 @@ class Native extends Gateway
     /**
      * HTTP client to communicate with Solr server.
      *
-     * @var \Ibexa\Solr\Gateway\HttpClient
+     * @var HttpClient
      */
     protected $client;
 
     /**
-     * @var \Ibexa\Solr\Gateway\EndpointResolver
+     * @var EndpointResolver
      */
     protected $endpointResolver;
 
     /**
      * Endpoint registry service.
      *
-     * @var \Ibexa\Solr\Gateway\EndpointRegistry
+     * @var EndpointRegistry
      */
     protected $endpointRegistry;
 
     /**
      * Content Query converter.
      *
-     * @var \Ibexa\Solr\Query\QueryConverter
+     * @var QueryConverter
      */
     protected $contentQueryConverter;
 
     /**
      * Location Query converter.
      *
-     * @var \Ibexa\Solr\Query\QueryConverter
+     * @var QueryConverter
      */
     protected $locationQueryConverter;
 
     /**
-     * @var \Ibexa\Solr\Gateway\UpdateSerializerInterface
+     * @var UpdateSerializerInterface
      */
     protected $updateSerializer;
 
     /**
-     * @var \Ibexa\Solr\Gateway\DistributionStrategy
+     * @var DistributionStrategy
      */
     protected $distributionStrategy;
 
@@ -91,8 +92,10 @@ class Native extends Gateway
      *
      * @return mixed
      */
-    public function findContent(Query $query, array $languageSettings = [])
-    {
+    public function findContent(
+        Query $query,
+        array $languageSettings = []
+    ) {
         $parameters = $this->contentQueryConverter->convert($query, $languageSettings);
 
         return $this->internalFind($parameters, $languageSettings);
@@ -106,8 +109,10 @@ class Native extends Gateway
      *
      * @return mixed
      */
-    public function findLocations(Query $query, array $languageSettings = [])
-    {
+    public function findLocations(
+        Query $query,
+        array $languageSettings = []
+    ) {
         $parameters = $this->locationQueryConverter->convert($query);
 
         return $this->internalFind($parameters, $languageSettings);
@@ -121,8 +126,10 @@ class Native extends Gateway
      *
      * @return mixed
      */
-    protected function internalFind(array $parameters, array $languageSettings = [])
-    {
+    protected function internalFind(
+        array $parameters,
+        array $languageSettings = []
+    ) {
         $parameters = $this->distributionStrategy->getSearchParameters($parameters, $languageSettings);
 
         return $this->search($parameters);
@@ -205,7 +212,7 @@ class Native extends Gateway
             }
         }
 
-        return  implode(',', $shards);
+        return implode(',', $shards);
     }
 
     /**
@@ -219,7 +226,7 @@ class Native extends Gateway
      * - On large amounts of data make sure to iterate with several calls to this function with a limited
      *   set of documents, amount you have memory for depends on server, size of documents, & PHP version.
      *
-     * @param \Ibexa\Contracts\Core\Search\Document[][] $documents
+     * @param Document[][] $documents
      */
     public function bulkIndexDocuments(array $documents): void
     {
@@ -259,7 +266,7 @@ class Native extends Gateway
     /**
      * Returns version of the $document to be indexed in the always available core.
      *
-     * @return \Ibexa\Contracts\Core\Search\Document
+     * @return Document
      */
     protected function getMainTranslationDocument(Document $document)
     {
@@ -294,11 +301,13 @@ class Native extends Gateway
     }
 
     /**
-     * @param \Ibexa\Solr\Gateway\Endpoint $endpoint
-     * @param \Ibexa\Contracts\Core\Search\Document[] $documents
+     * @param Endpoint $endpoint
+     * @param Document[] $documents
      */
-    protected function doBulkIndexDocuments(Endpoint $endpoint, array $documents)
-    {
+    protected function doBulkIndexDocuments(
+        Endpoint $endpoint,
+        array $documents
+    ) {
         $updates = $this->updateSerializer->serialize($documents);
         $result = $this->client->request(
             'POST',

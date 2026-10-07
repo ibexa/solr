@@ -25,8 +25,10 @@ class IndexingDepthProvider
     /**
      * @param int $defaultIndexingDepth
      */
-    public function __construct(array $contentTypeMap = [], $defaultIndexingDepth = 1)
-    {
+    public function __construct(
+        array $contentTypeMap = [],
+        $defaultIndexingDepth = 1
+    ) {
         $this->contentTypeMap = $contentTypeMap;
         $this->defaultIndexingDepth = $defaultIndexingDepth;
     }

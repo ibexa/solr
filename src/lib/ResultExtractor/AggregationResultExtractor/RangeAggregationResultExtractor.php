@@ -22,25 +22,32 @@ final class RangeAggregationResultExtractor implements AggregationResultExtracto
     /** @var string */
     private $aggregationClass;
 
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper */
+    /** @var RangeAggregationKeyMapper */
     private $keyMapper;
 
-    public function __construct(string $aggregationClass, RangeAggregationKeyMapper $keyMapper)
-    {
+    public function __construct(
+        string $aggregationClass,
+        RangeAggregationKeyMapper $keyMapper
+    ) {
         $this->aggregationClass = $aggregationClass;
         $this->keyMapper = $keyMapper;
     }
 
-    public function canVisit(Aggregation $aggregation, array $languageFilter): bool
-    {
+    public function canVisit(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): bool {
         return $aggregation instanceof $this->aggregationClass;
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation $aggregation
+     * @param AbstractRangeAggregation $aggregation
      */
-    public function extract(Aggregation $aggregation, array $languageFilter, stdClass $data): AggregationResult
-    {
+    public function extract(
+        Aggregation $aggregation,
+        array $languageFilter,
+        stdClass $data
+    ): AggregationResult {
         $entries = [];
 
         foreach ($data as $key => $bucket) {
@@ -68,11 +75,13 @@ final class RangeAggregationResultExtractor implements AggregationResultExtracto
     /**
      * Ensures that results entries are in the exact same order as they ware defined in aggregation.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation $aggregation
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\RangeAggregationResultEntry[] $entries
+     * @param AbstractRangeAggregation $aggregation
+     * @param RangeAggregationResultEntry[] $entries
      */
-    private function sort(AbstractRangeAggregation $aggregation, array &$entries): void
-    {
+    private function sort(
+        AbstractRangeAggregation $aggregation,
+        array &$entries
+    ): void {
         $order = $aggregation->getRanges();
 
         $comparator = static function (

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Gateway;
 
+use Ibexa\Contracts\Core\Search\Document;
+
 /**
  * Update serializer converts an array of document objects to the string format that can be posted
  * to Solr backend for indexing.
@@ -17,7 +19,7 @@ interface UpdateSerializerInterface
     /**
      * Create update request string for the given array of $documents.
      *
-     * @param \Ibexa\Contracts\Core\Search\Document[] $documents
+     * @param Document[] $documents
      */
     public function serialize(array $documents): string;
 

@@ -10,7 +10,10 @@ namespace Ibexa\Solr\Gateway;
 
 interface DistributionStrategy
 {
-    public function getSearchParameters(array $parameters, ?array $languageSettings = null);
+    public function getSearchParameters(
+        array $parameters,
+        ?array $languageSettings = null
+    );
 }
 
 class_alias(DistributionStrategy::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\DistributionStrategy');

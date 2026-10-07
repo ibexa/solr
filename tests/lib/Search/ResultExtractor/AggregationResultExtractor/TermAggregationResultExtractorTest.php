@@ -15,11 +15,12 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\Term
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor;
+use PHPUnit\Framework\MockObject\MockObject;
 use stdClass;
 
 final class TermAggregationResultExtractorTest extends AbstractAggregationResultExtractorTest
 {
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var TermAggregationKeyMapper|MockObject */
     private $keyMapper;
 
     protected function setUp(): void
@@ -107,8 +108,10 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
         return $data;
     }
 
-    private function createRawBucket(string $val, int $count): stdClass
-    {
+    private function createRawBucket(
+        string $val,
+        int $count
+    ): stdClass {
         $bucket = new stdClass();
         $bucket->val = $val;
         $bucket->count = $count;

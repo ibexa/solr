@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Gateway;
 
 /**
@@ -14,7 +15,7 @@ interface EndpointResolver
     /**
      * Returns name of the Endpoint used as entry point for distributed search.
      *
-     * @return \Ibexa\Solr\Gateway\Endpoint
+     * @return Endpoint
      */
     public function getEntryEndpoint();
 

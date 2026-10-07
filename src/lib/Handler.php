@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr;
 
 use Ibexa\Contracts\Core\Persistence\Content;
@@ -13,6 +14,8 @@ use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\LocationQuery;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
+use Ibexa\Contracts\Core\Search\Document;
 use Ibexa\Contracts\Core\Search\VersatileHandler;
 use Ibexa\Contracts\Solr\DocumentMapper;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
@@ -50,21 +53,21 @@ class Handler implements VersatileHandler
     /**
      * Content locator gateway.
      *
-     * @var \Ibexa\Solr\Gateway
+     * @var Gateway
      */
     protected $gateway;
 
     /**
      * Content handler.
      *
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Handler
+     * @var ContentHandler
      */
     protected $contentHandler;
 
     /**
      * Document mapper.
      *
-     * @var \Ibexa\Contracts\Solr\DocumentMapper
+     * @var DocumentMapper
      */
     protected $mapper;
 
@@ -73,38 +76,38 @@ class Handler implements VersatileHandler
      *
      * @deprecated since eZ Platform 3.2.0, to be removed in Ibexa 4.0.0. Use $contentResultExtractor or $locationResultExtractor instead of $resultExtractor.
      *
-     * @var \Ibexa\Solr\ResultExtractor
+     * @var ResultExtractor
      */
     protected $resultExtractor;
 
     /**
      * Content result extractor.
      *
-     * @var \Ibexa\Solr\ResultExtractor
+     * @var ResultExtractor
      */
     protected $contentResultExtractor;
 
     /**
      * Location result extractor.
      *
-     * @var \Ibexa\Solr\ResultExtractor
+     * @var ResultExtractor
      */
     protected $locationResultExtractor;
 
     /**
      * Core filter service.
      *
-     * @var \Ibexa\Solr\CoreFilter
+     * @var CoreFilter
      */
     protected $coreFilter;
 
     /**
      * Creates a new content handler.
      *
-     * @param \Ibexa\Solr\Gateway $gateway
-     * @param \Ibexa\Contracts\Solr\DocumentMapper $mapper
-     * @param \Ibexa\Solr\ResultExtractor $resultExtractor
-     * @param \Ibexa\Solr\CoreFilter $coreFilter
+     * @param Gateway $gateway
+     * @param DocumentMapper $mapper
+     * @param ResultExtractor $resultExtractor
+     * @param CoreFilter $coreFilter
      */
     public function __construct(
         Gateway $gateway,
@@ -135,10 +138,12 @@ class Handler implements VersatileHandler
      *        Currently supports: <code>array("languages" => array(<language1>,..), "useAlwaysAvailable" => bool)</code>
      *                            useAlwaysAvailable defaults to true to avoid exceptions on missing translations.
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult
+     * @return SearchResult
      */
-    public function findContent(Query $query, array $languageFilter = [])
-    {
+    public function findContent(
+        Query $query,
+        array $languageFilter = []
+    ) {
         $query = clone $query;
         $query->filter = $query->filter ?: new Criterion\MatchAll();
         $query->query = $query->query ?: new Criterion\MatchAll();
@@ -170,10 +175,12 @@ class Handler implements VersatileHandler
      *        Currently supports: <code>array("languages" => array(<language1>,..), "useAlwaysAvailable" => bool)</code>
      *                            useAlwaysAvailable defaults to true to avoid exceptions on missing translations.
      *
-     * @return \Ibexa\Contracts\Core\Persistence\Content
+     * @return Content
      */
-    public function findSingle(Criterion $filter, array $languageFilter = [])
-    {
+    public function findSingle(
+        Criterion $filter,
+        array $languageFilter = []
+    ) {
         $query = new Query();
         $query->filter = $filter;
         $query->query = new Criterion\MatchAll();
@@ -209,10 +216,12 @@ class Handler implements VersatileHandler
      *        Currently supports: <code>array("languages" => array(<language1>,..), "useAlwaysAvailable" => bool)</code>
      *                            useAlwaysAvailable defaults to true to avoid exceptions on missing translations.
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult
+     * @return SearchResult
      */
-    public function findLocations(LocationQuery $query, array $languageFilter = [])
-    {
+    public function findLocations(
+        LocationQuery $query,
+        array $languageFilter = []
+    ) {
         $query = clone $query;
         $query->query = $query->query ?: new Criterion\MatchAll();
 
@@ -236,8 +245,12 @@ class Handler implements VersatileHandler
      * @param string[] $fieldPaths
      * @param int $limit
      */
-    public function suggest($prefix, $fieldPaths = [], $limit = 10, ?Criterion $filter = null)
-    {
+    public function suggest(
+        $prefix,
+        $fieldPaths = [],
+        $limit = 10,
+        ?Criterion $filter = null
+    ) {
         throw new \Exception('@todo: Not implemented yet.');
     }
 
@@ -264,7 +277,7 @@ class Handler implements VersatileHandler
      *       sure we match the features of these.
      *       See also {@see Solr\Content\Search\Gateway\Native::bulkIndexContent} for further Solr specific info.
      *
-     * @param \Ibexa\Contracts\Core\Persistence\Content[] $contentObjects
+     * @param Content[] $contentObjects
      */
     public function bulkIndexContent(array $contentObjects)
     {
@@ -298,8 +311,10 @@ class Handler implements VersatileHandler
      * @param int $contentId
      * @param int|null $versionId
      */
-    public function deleteContent($contentId, $versionId = null)
-    {
+    public function deleteContent(
+        $contentId,
+        $versionId = null
+    ) {
         $idPrefix = $this->mapper->generateContentDocumentId($contentId);
 
         $this->gateway->deleteByQuery("_root_:{$idPrefix}*");
@@ -311,8 +326,10 @@ class Handler implements VersatileHandler
      * @param mixed $locationId
      * @param mixed $contentId
      */
-    public function deleteLocation($locationId, $contentId)
-    {
+    public function deleteLocation(
+        $locationId,
+        $contentId
+    ) {
         $this->deleteAllItemsWithoutAdditionalLocation($locationId);
         $this->updateAllElementsWithAdditionalLocation($locationId);
     }
@@ -406,7 +423,7 @@ class Handler implements VersatileHandler
      *
      * @param int $limit
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query
+     * @return Query
      */
     protected function prepareQuery($limit = self::DEFAULT_QUERY_LIMIT)
     {
@@ -450,7 +467,7 @@ class Handler implements VersatileHandler
     /**
      * Generate search document for Content object to be indexed by a search engine.
      *
-     * @return \Ibexa\Contracts\Core\Search\Document
+     * @return Document
      */
     public function generateDocument(Content $content)
     {
@@ -465,7 +482,7 @@ class Handler implements VersatileHandler
      * - On large amounts of data make sure to iterate with several calls to this function with a limited
      *   set of content objects, amount you have memory for depends on server, size of objects, & PHP version.
      *
-     * @param \Ibexa\Contracts\Core\Search\Document[] $documents
+     * @param Document[] $documents
      */
     public function bulkIndexDocuments(array $documents)
     {
@@ -490,8 +507,10 @@ class Handler implements VersatileHandler
     /**
      * Deletes a translation content object from the index.
      */
-    public function deleteTranslation(int $contentId, string $languageCode): void
-    {
+    public function deleteTranslation(
+        int $contentId,
+        string $languageCode
+    ): void {
         $this->gateway->deleteByQuery(
             "content_id_id:{$contentId} AND meta_indexed_language_code_s:{$languageCode}"
         );

@@ -13,10 +13,11 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractSta
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver;
 use Ibexa\Solr\Query\Common\AggregationVisitor\StatsAggregationVisitor;
+use PHPUnit\Framework\MockObject\MockObject;
 
 final class StatsAggregationVisitorTest extends AbstractAggregationVisitorTest
 {
-    /** @var \Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var AggregationFieldResolver|MockObject */
     private $aggregationFieldResolver;
 
     protected function setUp(): void

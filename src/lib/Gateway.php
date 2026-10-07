@@ -4,9 +4,11 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Search\Document;
 
 /**
  * The Content Search Gateway provides the implementation for one database to
@@ -22,7 +24,10 @@ abstract class Gateway
      *
      * @return mixed
      */
-    abstract public function findContent(Query $query, array $fieldFilters = []);
+    abstract public function findContent(
+        Query $query,
+        array $fieldFilters = []
+    );
 
     /**
      * Returns search hits for the given query.
@@ -32,7 +37,10 @@ abstract class Gateway
      *
      * @return mixed
      */
-    abstract public function findLocations(Query $query, array $fieldFilters = []);
+    abstract public function findLocations(
+        Query $query,
+        array $fieldFilters = []
+    );
 
     /**
      * Returns all search hits for given query, that will be performed on all endpoints.
@@ -47,7 +55,7 @@ abstract class Gateway
      * Documents are given as an array of the array of documents. The array of documents
      * holds documents for all translations of the particular entity.
      *
-     * @param \Ibexa\Contracts\Core\Search\Document[][] $documents
+     * @param Document[][] $documents
      */
     abstract public function bulkIndexDocuments(array $documents);
 

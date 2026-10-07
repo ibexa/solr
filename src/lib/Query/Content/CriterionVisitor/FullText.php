@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Content\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
@@ -22,22 +23,22 @@ class FullText extends CriterionVisitor
     /**
      * Field map.
      *
-     * @var \Ibexa\Core\Search\Common\FieldNameResolver
+     * @var FieldNameResolver
      */
     protected $fieldNameResolver;
 
     /**
-     * @var \QueryTranslator\Languages\Galach\Tokenizer
+     * @var Tokenizer
      */
     protected $tokenizer;
 
     /**
-     * @var \QueryTranslator\Languages\Galach\Parser
+     * @var Parser
      */
     protected $parser;
 
     /**
-     * @var \QueryTranslator\Languages\Galach\Generators\ExtendedDisMax
+     * @var ExtendedDisMax
      */
     protected $generator;
 
@@ -72,8 +73,10 @@ class FullText extends CriterionVisitor
      *
      * @return array
      */
-    protected function getSearchFields(Criterion $criterion, $fieldDefinitionIdentifier)
-    {
+    protected function getSearchFields(
+        Criterion $criterion,
+        $fieldDefinitionIdentifier
+    ) {
         return $this->fieldNameResolver->getFieldTypes($criterion, $fieldDefinitionIdentifier);
     }
 
@@ -87,9 +90,11 @@ class FullText extends CriterionVisitor
         return $criterion instanceof FullTextCriterion;
     }
 
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
-        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\FullText $criterion */
+    public function visit(
+        Criterion $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
+        /** @var FullTextCriterion $criterion */
         $tokenSequence = $this->tokenizer->tokenize($criterion->value);
         $syntaxTree = $this->parser->parse($tokenSequence);
 
@@ -107,7 +112,7 @@ class FullText extends CriterionVisitor
 
     private function getQueryFields(Criterion $criterion)
     {
-        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\FullText $criterion */
+        /** @var FullTextCriterion $criterion */
         $queryFields = ['meta_content__text_t'];
 
         for ($i = 1; $i <= $this->maxDepth; ++$i) {

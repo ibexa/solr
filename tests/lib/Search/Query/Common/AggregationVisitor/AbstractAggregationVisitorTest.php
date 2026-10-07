@@ -10,6 +10,7 @@ namespace Ibexa\Tests\Solr\Search\Query\Common\AggregationVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 abstract class AbstractAggregationVisitorTest extends TestCase
@@ -18,10 +19,10 @@ abstract class AbstractAggregationVisitorTest extends TestCase
         'languages' => ['eng-GB'],
     ];
 
-    /** @var \Ibexa\Contracts\Solr\Query\AggregationVisitor */
+    /** @var AggregationVisitor */
     protected $visitor;
 
-    /** @var \Ibexa\Contracts\Solr\Query\AggregationVisitor|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var AggregationVisitor|MockObject */
     protected $dispatcherVisitor;
 
     protected function setUp(): void
@@ -50,7 +51,7 @@ abstract class AbstractAggregationVisitorTest extends TestCase
 
     /**
      * @return iterable<array{
-     *     \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     Aggregation,
      *     array{languages: string[]},
      *     bool,
      * }>
@@ -78,7 +79,7 @@ abstract class AbstractAggregationVisitorTest extends TestCase
 
     /**
      * @return iterable<array{
-     *     \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     Aggregation,
      *     array{languages: string[]},
      *     array<mixed>,
      * }>

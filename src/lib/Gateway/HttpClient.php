@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Gateway;
 
 /**
@@ -11,7 +12,12 @@ namespace Ibexa\Solr\Gateway;
  */
 interface HttpClient
 {
-    public function request(string $method, Endpoint $endpoint, string $path, ?Message $message = null): Message;
+    public function request(
+        string $method,
+        Endpoint $endpoint,
+        string $path,
+        ?Message $message = null
+    ): Message;
 }
 
 class_alias(HttpClient::class, 'EzSystems\EzPlatformSolrSearchEngine\Gateway\HttpClient');

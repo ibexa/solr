@@ -4,9 +4,11 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Contracts\Solr\FieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content as SPIContent;
+use Ibexa\Contracts\Core\Search\Field;
 
 /**
  * Base class for Content document field mapper.
@@ -25,7 +27,7 @@ abstract class ContentFieldMapper
     /**
      * Maps given $content to an array of search fields.
      *
-     * @return \Ibexa\Contracts\Core\Search\Field[]
+     * @return Field[]
      */
     abstract public function mapFields(SPIContent $content);
 }

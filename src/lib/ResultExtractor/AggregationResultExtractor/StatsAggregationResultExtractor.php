@@ -24,13 +24,18 @@ final class StatsAggregationResultExtractor implements AggregationResultExtracto
         $this->aggregationClass = $aggregationClass;
     }
 
-    public function canVisit(Aggregation $aggregation, array $languageFilter): bool
-    {
+    public function canVisit(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): bool {
         return $aggregation instanceof $this->aggregationClass;
     }
 
-    public function extract(Aggregation $aggregation, array $languageFilter, stdClass $data): AggregationResult
-    {
+    public function extract(
+        Aggregation $aggregation,
+        array $languageFilter,
+        stdClass $data
+    ): AggregationResult {
         return new StatsAggregationResult(
             $aggregation->getName(),
             $data->count ?? null,

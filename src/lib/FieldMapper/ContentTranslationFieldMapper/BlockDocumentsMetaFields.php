@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
@@ -16,13 +17,17 @@ use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
  */
 class BlockDocumentsMetaFields extends ContentTranslationFieldMapper
 {
-    public function accept(Content $content, $languageCode)
-    {
+    public function accept(
+        Content $content,
+        $languageCode
+    ) {
         return true;
     }
 
-    public function mapFields(Content $content, $languageCode)
-    {
+    public function mapFields(
+        Content $content,
+        $languageCode
+    ) {
         return [
             new Field(
                 'meta_indexed_language_code',

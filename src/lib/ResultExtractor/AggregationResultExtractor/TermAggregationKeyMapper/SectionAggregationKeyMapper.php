@@ -12,11 +12,13 @@ use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\SectionService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\SectionTermAggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Section;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
 final class SectionAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    /** @var \Ibexa\Contracts\Core\Repository\SectionService */
+    /** @var SectionService */
     private $sectionService;
 
     public function __construct(SectionService $sectionService)
@@ -25,14 +27,17 @@ final class SectionAggregationKeyMapper implements TermAggregationKeyMapper
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\SectionTermAggregation $aggregation
+     * @param SectionTermAggregation $aggregation
      * @param array $languageFilter
      * @param string[] $keys
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Section[]
+     * @return Section[]
      */
-    public function map(Aggregation $aggregation, array $languageFilter, array $keys): array
-    {
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        array $keys
+    ): array {
         $result = [];
         foreach ($keys as $key) {
             try {
