@@ -10,7 +10,6 @@ namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Type as ContentType;
 use Ibexa\Contracts\Core\Persistence\Content\Type\FieldDefinition;
-use Ibexa\Contracts\Core\Persistence\Content\Type\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Ibexa\Contracts\Core\Search\Field;
 use Ibexa\Contracts\Core\Search\FieldType;
@@ -25,7 +24,7 @@ use Ibexa\Solr\FieldMapper\BoostFactorProvider;
 class BlockDocumentsContentFields extends ContentTranslationFieldMapper
 {
     /**
-     * @var Handler
+     * @var ContentTypeHandler
      */
     protected $contentTypeHandler;
 
