@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
-use Ibexa\Contracts\Core\Persistence\Content\Type\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Ibexa\Contracts\Core\Search\Field;
 use Ibexa\Contracts\Core\Search\FieldType;
@@ -25,7 +24,7 @@ class ContentDocumentEmptyFields extends ContentTranslationFieldMapper
     public const IS_EMPTY_NAME = 'is_empty';
 
     /**
-     * @var Handler
+     * @var ContentTypeHandler
      */
     private $contentTypeHandler;
 

@@ -8,7 +8,6 @@
 namespace Ibexa\Solr\FieldMapper\LocationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Bookmark\Handler as BookmarkHandler;
-use Ibexa\Contracts\Core\Persistence\Content\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
@@ -23,7 +22,7 @@ use Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper;
 class LocationDocumentBaseFields extends LocationFieldMapper
 {
     /**
-     * @var Handler
+     * @var ContentHandler
      */
     protected $contentHandler;
 

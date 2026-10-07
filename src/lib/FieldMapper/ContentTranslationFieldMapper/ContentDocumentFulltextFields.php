@@ -8,7 +8,6 @@
 namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
-use Ibexa\Contracts\Core\Persistence\Content\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Type as ContentType;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
@@ -46,7 +45,7 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
     protected $contentTypeHandler;
 
     /**
-     * @var Handler
+     * @var ContentHandler
      */
     protected $contentHandler;
 

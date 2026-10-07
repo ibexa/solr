@@ -8,7 +8,6 @@
 namespace Ibexa\Solr\FieldMapper\ContentTranslationFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
-use Ibexa\Contracts\Core\Persistence\Content\Type\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Ibexa\Contracts\Core\Search\Field;
 use Ibexa\Contracts\Core\Search\FieldType;
@@ -28,7 +27,7 @@ class ContentDocumentTranslatedContentNameField extends ContentTranslationFieldM
     private static $fieldName = 'meta_content__name';
 
     /**
-     * @var Handler
+     * @var ContentTypeHandler
      */
     protected $contentTypeHandler;
 

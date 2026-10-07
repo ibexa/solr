@@ -9,7 +9,6 @@ namespace Ibexa\Solr\DocumentMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
-use Ibexa\Contracts\Core\Persistence\Content\Location\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
 use Ibexa\Contracts\Core\Search\Document;
 use Ibexa\Contracts\Core\Search\Field;
@@ -51,7 +50,7 @@ class NativeDocumentMapper implements DocumentMapper
     /**
      * Location handler.
      *
-     * @var Handler
+     * @var LocationHandler
      */
     protected $locationHandler;
 

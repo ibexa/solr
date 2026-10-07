@@ -8,7 +8,6 @@
 namespace Ibexa\Solr\FieldMapper\ContentFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content;
-use Ibexa\Contracts\Core\Persistence\Content\Location\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
 use Ibexa\Contracts\Core\Persistence\Content\ObjectState\Handler as ObjectStateHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Section\Handler as SectionHandler;
@@ -24,7 +23,7 @@ use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
 class BlockDocumentsBaseContentFields extends ContentFieldMapper
 {
     /**
-     * @var Handler
+     * @var LocationHandler
      */
     protected $locationHandler;
 
