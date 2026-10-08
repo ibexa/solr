@@ -33,7 +33,12 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
                 array $languageFilter,
                 array $keys
             ): array {
-                return array_combine($keys, array_map('strtoupper', $keys));
+                $map = [];
+                foreach ($keys as $key) {
+                    $map[$key] = strtoupper($key);
+                }
+
+                return $map;
             });
 
         $this->extractor = $this->createExtractor();
