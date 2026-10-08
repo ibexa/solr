@@ -25,7 +25,7 @@ abstract class BaseCriterionVisitorTestCase extends TestCase
      *     Criterion
      * }>
      */
-    abstract protected function provideDataForTestVisit(): iterable;
+    abstract public function provideDataForTestVisit(): iterable;
 
     /**
      * @dataProvider provideDataForTestCanVisit

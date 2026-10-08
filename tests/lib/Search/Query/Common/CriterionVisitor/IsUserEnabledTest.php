@@ -35,7 +35,7 @@ final class IsUserEnabledTest extends BaseCriterionVisitorTestCase
         return new Criterion\IsUserEnabled();
     }
 
-    protected function provideDataForTestVisit(): iterable
+    public function provideDataForTestVisit(): iterable
     {
         yield 'Query for enabled user' => [
             'user_is_enabled_b:true',
