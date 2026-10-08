@@ -15,17 +15,17 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\Term
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use stdClass;
 
 final class TermAggregationResultExtractorTest extends AbstractAggregationResultExtractorTest
 {
-    /** @var TermAggregationKeyMapper|MockObject */
+    /** @var TermAggregationKeyMapper|Stub */
     private $keyMapper;
 
     protected function setUp(): void
     {
-        $this->keyMapper = $this->createMock(TermAggregationKeyMapper::class);
+        $this->keyMapper = $this->createStub(TermAggregationKeyMapper::class);
         $this->keyMapper
             ->method('map')
             ->willReturnCallback(static function (
@@ -55,13 +55,13 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
     public function dataProviderForTestCanVisit(): iterable
     {
         yield 'true' => [
-            $this->createMock(AbstractTermAggregation::class),
+            $this->createStub(AbstractTermAggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             true,
         ];
 
         yield 'false' => [
-            $this->createMock(Aggregation::class),
+            $this->createStub(Aggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             false,
         ];
@@ -69,7 +69,7 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
 
     public function dataProviderForTestExtract(): iterable
     {
-        $aggregation = $this->createMock(AbstractTermAggregation::class);
+        $aggregation = $this->createStub(AbstractTermAggregation::class);
         $aggregation->method('getName')->willReturn(self::EXAMPLE_AGGREGATION_NAME);
 
         yield 'defaults' => [
