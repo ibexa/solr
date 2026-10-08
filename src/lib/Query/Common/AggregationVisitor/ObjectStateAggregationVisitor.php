@@ -14,13 +14,15 @@ use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 
 final class ObjectStateAggregationVisitor implements AggregationVisitor
 {
-    public function canVisit(Aggregation $aggregation, array $languageFilter): bool
-    {
+    public function canVisit(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): bool {
         return $aggregation instanceof ObjectStateTermAggregation;
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ObjectStateTermAggregation $aggregation
+     * @param ObjectStateTermAggregation $aggregation
      */
     public function visit(
         AggregationVisitor $dispatcherVisitor,

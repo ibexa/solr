@@ -13,8 +13,11 @@ use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregat
 
 final class InvertedBooleanAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    public function map(Aggregation $aggregation, array $languageFilter, array $keys): array
-    {
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        array $keys
+    ): array {
         return [
             true => false,
             false => true,

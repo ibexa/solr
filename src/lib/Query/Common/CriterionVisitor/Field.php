@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
@@ -23,17 +24,19 @@ abstract class Field extends CriterionVisitor
     /**
      * Field map.
      *
-     * @var \Ibexa\Core\Search\Common\FieldNameResolver
+     * @var FieldNameResolver
      */
     protected $fieldNameResolver;
 
     /**
-     * @var \Ibexa\Core\Search\Common\FieldValueMapper
+     * @var FieldValueMapper
      */
     protected $fieldValueMapper;
 
-    public function __construct(FieldNameResolver $fieldNameResolver, FieldValueMapper $fieldValueMapper)
-    {
+    public function __construct(
+        FieldNameResolver $fieldNameResolver,
+        FieldValueMapper $fieldValueMapper
+    ) {
         $this->fieldNameResolver = $fieldNameResolver;
         $this->fieldValueMapper = $fieldValueMapper;
     }
@@ -41,7 +44,7 @@ abstract class Field extends CriterionVisitor
     /**
      * Get array of search fields.
      *
-     * @return array<string, \Ibexa\Contracts\Core\Search\FieldType|null> Array of field types indexed by name.
+     * @return array<string, FieldType|null> Array of field types indexed by name.
      */
     protected function getSearchFields(Criterion $criterion)
     {
@@ -56,8 +59,10 @@ abstract class Field extends CriterionVisitor
      *
      * @return mixed
      */
-    protected function mapSearchFieldValue($value, ?FieldType $searchFieldType = null)
-    {
+    protected function mapSearchFieldValue(
+        $value,
+        ?FieldType $searchFieldType = null
+    ) {
         if (null === $searchFieldType) {
             return $value;
         }

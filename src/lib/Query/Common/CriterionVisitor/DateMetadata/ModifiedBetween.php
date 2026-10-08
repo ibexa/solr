@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\CriterionVisitor\DateMetadata;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
@@ -33,8 +34,10 @@ class ModifiedBetween extends DateMetadata
               $criterion->operator === Operator::BETWEEN);
     }
 
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        Criterion $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $start = $this->getSolrTime($criterion->value[0]);
         $end = isset($criterion->value[1]) ? $this->getSolrTime($criterion->value[1]) : null;
 

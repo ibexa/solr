@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\SortClauseVisitor;
 
 use Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException;
@@ -18,12 +19,12 @@ class Aggregate extends SortClauseVisitor
     /**
      * Array of available visitors.
      *
-     * @var iterable<\Ibexa\Contracts\Solr\Query\SortClauseVisitor>
+     * @var iterable<SortClauseVisitor>
      */
     protected $visitors = [];
 
     /**
-     * @param iterable<\Ibexa\Contracts\Solr\Query\SortClauseVisitor> $visitors
+     * @param iterable<SortClauseVisitor> $visitors
      */
     public function __construct(iterable $visitors = [])
     {
@@ -43,7 +44,7 @@ class Aggregate extends SortClauseVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException
+     * @throws NotImplementedException
      *
      * @return string
      */

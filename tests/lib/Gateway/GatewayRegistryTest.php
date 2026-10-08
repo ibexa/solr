@@ -4,11 +4,13 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\Solr\Gateway;
 
 use Ibexa\Solr\Gateway;
 use Ibexa\Solr\Gateway\GatewayRegistry;
 use OutOfBoundsException;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class GatewayRegistryTest extends TestCase
@@ -81,7 +83,7 @@ class GatewayRegistryTest extends TestCase
     }
 
     /**
-     * @return \Ibexa\Solr\Gateway|\PHPUnit\Framework\MockObject\MockObject
+     * @return Gateway|MockObject
      */
     private function getGatewayMock(): Gateway
     {

@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Gateway;
 
 use Ibexa\Solr\Gateway;
@@ -14,11 +15,11 @@ use OutOfBoundsException;
  */
 final class GatewayRegistry
 {
-    /** @var \Ibexa\Solr\Gateway[] */
+    /** @var Gateway[] */
     private $gateways;
 
     /**
-     * @param \Ibexa\Solr\Gateway[] $gateways
+     * @param Gateway[] $gateways
      */
     public function __construct(array $gateways = [])
     {
@@ -26,7 +27,7 @@ final class GatewayRegistry
     }
 
     /**
-     * @return \Ibexa\Solr\Gateway[]
+     * @return Gateway[]
      */
     public function getGateways(): array
     {
@@ -34,7 +35,7 @@ final class GatewayRegistry
     }
 
     /**
-     * @param \Ibexa\Solr\Gateway[] $gateways
+     * @param Gateway[] $gateways
      */
     public function setGateways(array $gateways): void
     {
@@ -50,8 +51,10 @@ final class GatewayRegistry
         return $this->gateways[$connectionName];
     }
 
-    public function addGateway(string $connectionName, Gateway $gateway): void
-    {
+    public function addGateway(
+        string $connectionName,
+        Gateway $gateway
+    ): void {
         $this->gateways[$connectionName] = $gateway;
     }
 

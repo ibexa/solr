@@ -15,13 +15,15 @@ use RuntimeException;
 
 final class DateMetadataRangeAggregationVisitor extends AbstractRangeAggregationVisitor
 {
-    public function canVisit(Aggregation $aggregation, array $languageFilter): bool
-    {
+    public function canVisit(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): bool {
         return $aggregation instanceof DateMetadataRangeAggregation;
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\DateMetadataRangeAggregation $aggregation
+     * @param DateMetadataRangeAggregation $aggregation
      */
     protected function getTargetField(AbstractRangeAggregation $aggregation): string
     {

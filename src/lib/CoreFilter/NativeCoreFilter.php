@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\CoreFilter;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
@@ -89,8 +90,11 @@ class NativeCoreFilter extends CoreFilter
         );
     }
 
-    public function apply(Query $query, array $languageSettings, $documentTypeIdentifier)
-    {
+    public function apply(
+        Query $query,
+        array $languageSettings,
+        $documentTypeIdentifier
+    ) {
         $languages = (
             empty($languageSettings['languages']) ?
                 [] :
@@ -165,7 +169,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @param string[] $languageCodes
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion
+     * @return Criterion
      */
     private function getLanguageFilter(array $languageCodes)
     {
@@ -265,8 +269,10 @@ class NativeCoreFilter extends CoreFilter
      *
      * @return string[]
      */
-    private function getExcludedLanguageCodes(array $languageCodes, $selectedLanguageCode = null)
-    {
+    private function getExcludedLanguageCodes(
+        array $languageCodes,
+        $selectedLanguageCode = null
+    ) {
         $excludedLanguageCodes = [];
 
         foreach ($languageCodes as $languageCode) {

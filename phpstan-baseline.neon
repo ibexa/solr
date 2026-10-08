@@ -1207,12 +1207,6 @@ parameters:
 			path: src/lib/Query/Content/CriterionVisitor/SubtreeIn.php
 
 		-
-			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, bool\|float\|int\|string given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/Query/Content/CriterionVisitor/SubtreeIn.php
-
-		-
 			message: '#^Cannot access offset 0 on array\<bool\|float\|int\|string\>\|bool\|float\|int\|string\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
@@ -1298,12 +1292,6 @@ parameters:
 
 		-
 			message: '#^Parameter \#2 \$array of function array_map expects array, array\<bool\|float\|int\|string\>\|bool\|float\|int\|string given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/Query/Location/CriterionVisitor/SubtreeIn.php
-
-		-
-			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, bool\|float\|int\|string given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/lib/Query/Location/CriterionVisitor/SubtreeIn.php

@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\CriterionVisitor\DateMetadata;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
@@ -32,8 +33,10 @@ class ModifiedIn extends DateMetadata
             );
     }
 
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        Criterion $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $values = [];
         foreach ($criterion->value as $value) {
             $values[] = 'content_modification_date_dt:"' . $this->getSolrTime($value) . '"';

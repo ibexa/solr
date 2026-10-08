@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Gateway;
 
 use OutOfBoundsException;
@@ -23,7 +24,7 @@ class EndpointRegistry
     /**
      * Construct from optional array of Endpoints.
      *
-     * @param \Ibexa\Solr\Gateway\Endpoint[] $endpoints
+     * @param Endpoint[] $endpoints
      */
     public function __construct(array $endpoints = [])
     {
@@ -36,10 +37,12 @@ class EndpointRegistry
      * Registers $endpoint with $name.
      *
      * @param string $name
-     * @param \Ibexa\Solr\Gateway\Endpoint $endpoint
+     * @param Endpoint $endpoint
      */
-    public function registerEndpoint($name, Endpoint $endpoint)
-    {
+    public function registerEndpoint(
+        $name,
+        Endpoint $endpoint
+    ) {
         $this->endpoint[$name] = $endpoint;
     }
 
@@ -48,7 +51,7 @@ class EndpointRegistry
      *
      * @param string $name
      *
-     * @return \Ibexa\Solr\Gateway\Endpoint
+     * @return Endpoint
      */
     public function getEndpoint($name)
     {
@@ -62,7 +65,7 @@ class EndpointRegistry
     /**
      * Get first Endpoint, for usecases where there is only one.
      *
-     * @return \Ibexa\Solr\Gateway\Endpoint
+     * @return Endpoint
      */
     public function getFirstEndpoint()
     {

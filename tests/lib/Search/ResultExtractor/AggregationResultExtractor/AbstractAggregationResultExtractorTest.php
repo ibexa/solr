@@ -19,7 +19,7 @@ abstract class AbstractAggregationResultExtractorTest extends TestCase
     protected const EXAMPLE_AGGREGATION_NAME = 'custom_aggregation';
     protected const EXAMPLE_LANGUAGE_FILTER = [];
 
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor */
+    /** @var AggregationResultExtractor */
     protected $extractor;
 
     protected function setUp(): void

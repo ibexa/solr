@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Gateway\HttpClient;
 
 use Ibexa\Solr\Gateway\Endpoint;
@@ -12,13 +13,17 @@ use Ibexa\Solr\Gateway\Message;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * Simple PHP stream based HTTP client.
  *
- * @internal type-hint {@see \Ibexa\Solr\Gateway\HttpClient} instead.
+ * @internal type-hint {@see HttpClient} instead.
  */
 class Stream implements HttpClient, LoggerAwareInterface
 {
@@ -27,21 +32,27 @@ class Stream implements HttpClient, LoggerAwareInterface
     /** @var int */
     private $connectionTimeout;
 
-    /** @var \Symfony\Contracts\HttpClient\HttpClientInterface */
+    /** @var HttpClientInterface */
     private $client;
 
     /**
      * @param int $timeout Timeout for connection in seconds.
      */
-    public function __construct(HttpClientInterface $client, int $timeout = 10)
-    {
+    public function __construct(
+        HttpClientInterface $client,
+        int $timeout = 10
+    ) {
         $this->client = $client;
         $this->connectionTimeout = $timeout;
         $this->setLogger(new NullLogger());
     }
 
-    public function request(string $method, Endpoint $endpoint, string $path, ?Message $message = null): Message
-    {
+    public function request(
+        string $method,
+        Endpoint $endpoint,
+        string $path,
+        ?Message $message = null
+    ): Message {
         $message = $message ?? new Message();
 
         try {
@@ -57,10 +68,10 @@ class Stream implements HttpClient, LoggerAwareInterface
     }
 
     /**
-     * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
-     * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
-     * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
-     * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     private function getResponseMessage(
         string $method,

@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Bundle\Solr\ApiLoader;
 
 use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
@@ -20,7 +21,7 @@ class BoostFactorProviderFactory implements ContainerAwareInterface
     use ContainerAwareTrait;
 
     /**
-     * @var \Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider
+     * @var RepositoryConfigurationProvider
      */
     private $repositoryConfigurationProvider;
 

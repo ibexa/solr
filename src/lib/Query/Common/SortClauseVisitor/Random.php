@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\SortClauseVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
@@ -17,7 +18,7 @@ class Random extends SortClauseVisitor
     /**
      * Check if visitor is applicable to current sortClause.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
+     * @param SortClause $sortClause
      *
      * @return bool
      */
@@ -29,7 +30,7 @@ class Random extends SortClauseVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
+     * @param SortClause $sortClause
      *
      * @return string
      */

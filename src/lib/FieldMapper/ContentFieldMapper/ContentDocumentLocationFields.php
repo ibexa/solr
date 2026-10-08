@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\FieldMapper\ContentFieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Bookmark\Handler as BookmarkHandler;
@@ -20,7 +21,7 @@ use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
 class ContentDocumentLocationFields extends ContentFieldMapper
 {
     /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Location\Handler
+     * @var LocationHandler
      */
     protected $locationHandler;
 

@@ -4,10 +4,12 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\ResultExtractor;
 
 use Ibexa\Contracts\Core\Persistence\Content\ContentInfo;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Ibexa\Solr\ResultExtractor;
 use RuntimeException;
 
@@ -20,11 +22,11 @@ class NativeResultExtractor extends ResultExtractor
     /**
      * Extracts value object from $hit returned by Solr backend.
      *
-     * @throws \RuntimeException If search $hit could not be handled
+     * @throws RuntimeException If search $hit could not be handled
      *
      * @param mixed $hit
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ValueObject
+     * @return ValueObject
      */
     public function extractHit($hit)
     {
@@ -42,7 +44,7 @@ class NativeResultExtractor extends ResultExtractor
     /**
      * @param mixed $hit
      *
-     * @return \Ibexa\Contracts\Core\Persistence\Content\ContentInfo
+     * @return ContentInfo
      */
     protected function extractContentInfoFromHit($hit)
     {
@@ -73,7 +75,7 @@ class NativeResultExtractor extends ResultExtractor
     /**
      * @param mixed $hit
      *
-     * @return \Ibexa\Contracts\Core\Persistence\Content\Location
+     * @return Location
      */
     protected function extractLocationFromHit($hit)
     {

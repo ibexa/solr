@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\QueryTranslator\Generator;
 
 use QueryTranslator\Languages\Galach\Generators\Common\Visitor;
@@ -15,8 +16,11 @@ use QueryTranslator\Values\Node;
  */
 class WordVisitor extends WordBase
 {
-    public function visit(Node $node, ?Visitor $subVisitor = null, $options = null)
-    {
+    public function visit(
+        Node $node,
+        ?Visitor $subVisitor = null,
+        $options = null
+    ) {
         $word = parent::visit($node, $subVisitor, $options);
 
         if (isset($options['fuzziness'])) {

@@ -16,7 +16,7 @@ use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 abstract class AbstractRangeAggregationVisitor implements AggregationVisitor
 {
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation $aggregation
+     * @param AbstractRangeAggregation $aggregation
      */
     public function visit(
         AggregationVisitor $dispatcherVisitor,

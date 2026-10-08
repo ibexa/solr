@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Contracts\Solr\Query;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
@@ -24,7 +25,10 @@ abstract class CriterionVisitor
     /**
      * @return string
      */
-    abstract public function visit(Criterion $criterion, ?self $subVisitor = null);
+    abstract public function visit(
+        Criterion $criterion,
+        ?self $subVisitor = null
+    );
 
     /**
      * Get Solr range.
@@ -44,8 +48,11 @@ abstract class CriterionVisitor
      *
      * @return string
      */
-    protected function getRange($operator, $start, $end)
-    {
+    protected function getRange(
+        $operator,
+        $start,
+        $end
+    ) {
         $startBrace = '[';
         $startValue = '*';
         $endValue = '*';
@@ -115,8 +122,10 @@ abstract class CriterionVisitor
      *
      * @return string
      */
-    protected function escapeQuote($string, $doubleQuote = false)
-    {
+    protected function escapeQuote(
+        $string,
+        $doubleQuote = false
+    ) {
         $pattern = ($doubleQuote ? '/("|\\\)/' : '/(\'|\\\)/');
 
         return preg_replace($pattern, '\\\$1', $string);
@@ -130,8 +139,10 @@ abstract class CriterionVisitor
      *
      * @return mixed
      */
-    protected function escapeExpressions($string, $allowWildcard = false)
-    {
+    protected function escapeExpressions(
+        $string,
+        $allowWildcard = false
+    ) {
         if ($allowWildcard) {
             $reservedCharacters = preg_quote('+-&|!(){}[]^"~?:\\ ');
         } else {

@@ -4,9 +4,11 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\Facet;
 
 /**
  * Visits Solr results into correct facet and facet builder combination.
@@ -20,9 +22,13 @@ interface FacetFieldVisitor
      *
      * @param string $field
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\Facet
+     * @return Facet
      */
-    public function mapField($field, array $data, FacetBuilder $facetBuilder);
+    public function mapField(
+        $field,
+        array $data,
+        FacetBuilder $facetBuilder
+    );
 
     /**
      * Map field value to a proper Solr representation.
@@ -38,7 +44,10 @@ interface FacetFieldVisitor
      *
      * @return string[]
      */
-    public function visitBuilder(FacetBuilder $facetBuilder, $fieldId);
+    public function visitBuilder(
+        FacetBuilder $facetBuilder,
+        $fieldId
+    );
 }
 
 class_alias(FacetFieldVisitor::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\FacetFieldVisitor');

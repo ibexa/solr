@@ -4,9 +4,11 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\SortClauseVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\Target\MapLocationTarget;
 use Ibexa\Contracts\Solr\Query\SortClauseVisitor;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Ibexa\Core\Search\Common\FieldNameResolver;
@@ -26,18 +28,20 @@ class MapLocationDistance extends SortClauseVisitor
     /**
      * Field name resolver.
      *
-     * @var \Ibexa\Core\Search\Common\FieldNameResolver
+     * @var FieldNameResolver
      */
     protected $fieldNameResolver;
 
     /**
      * Create from field name resolver and field name.
      *
-     * @param \Ibexa\Core\Search\Common\FieldNameResolver $fieldNameResolver
+     * @param FieldNameResolver $fieldNameResolver
      * @param string $fieldName
      */
-    public function __construct(FieldNameResolver $fieldNameResolver, $fieldName)
-    {
+    public function __construct(
+        FieldNameResolver $fieldNameResolver,
+        $fieldName
+    ) {
         $this->fieldNameResolver = $fieldNameResolver;
         $this->fieldName = $fieldName;
     }
@@ -45,7 +49,7 @@ class MapLocationDistance extends SortClauseVisitor
     /**
      * Get sort field name.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
+     * @param SortClause $sortClause
      * @param string $contentTypeIdentifier
      * @param string $fieldDefinitionIdentifier
      * @param string $name
@@ -69,7 +73,7 @@ class MapLocationDistance extends SortClauseVisitor
     /**
      * Check if visitor is applicable to current sortClause.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
+     * @param SortClause $sortClause
      *
      * @return bool
      */
@@ -81,15 +85,15 @@ class MapLocationDistance extends SortClauseVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException If no sortable fields are found for the given sort clause target.
+     * @throws InvalidArgumentException If no sortable fields are found for the given sort clause target.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
+     * @param SortClause $sortClause
      *
      * @return string
      */
     public function visit(SortClause $sortClause)
     {
-        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\Target\MapLocationTarget $target */
+        /** @var MapLocationTarget $target */
         $target = $sortClause->targetData;
         $fieldName = $this->getSortFieldName(
             $sortClause,

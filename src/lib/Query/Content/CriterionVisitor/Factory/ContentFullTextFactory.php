@@ -15,7 +15,7 @@ use Ibexa\Solr\Query\Content\CriterionVisitor\FullText;
 /**
  * Factory for FullText Criterion Visitor.
  *
- * @see \Ibexa\Solr\Query\Content\CriterionVisitor\FullText
+ * @see FullText
  *
  * @internal
  */
@@ -24,7 +24,7 @@ final class ContentFullTextFactory extends FullTextFactoryAbstract
     /**
      * Create FullText Criterion Visitor.
      *
-     * @return \Ibexa\Contracts\Solr\Query\CriterionVisitor|\Ibexa\Solr\Query\Content\CriterionVisitor\FullText
+     * @return CriterionVisitor|FullText
      */
     public function createCriterionVisitor(): CriterionVisitor
     {

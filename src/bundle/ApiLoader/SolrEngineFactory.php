@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Bundle\Solr\ApiLoader;
 
 use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
@@ -15,7 +16,7 @@ use Ibexa\Solr\ResultExtractor;
 
 class SolrEngineFactory
 {
-    /** @var \Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider */
+    /** @var RepositoryConfigurationProvider */
     private $repositoryConfigurationProvider;
 
     /** @var string */
@@ -24,22 +25,22 @@ class SolrEngineFactory
     /** @var string */
     private $searchEngineClass;
 
-    /** @var \Ibexa\Solr\Gateway\GatewayRegistry */
+    /** @var GatewayRegistry */
     private $gatewayRegistry;
 
-    /** @var \Ibexa\Solr\CoreFilter\CoreFilterRegistry */
+    /** @var CoreFilterRegistry */
     private $coreFilterRegistry;
 
-    /** @var \Ibexa\Contracts\Core\Persistence\Content\Handler */
+    /** @var Handler */
     private $contentHandler;
 
-    /** @var \Ibexa\Contracts\Solr\DocumentMapper */
+    /** @var DocumentMapper */
     private $documentMapper;
 
-    /** @var \Ibexa\Solr\ResultExtractor */
+    /** @var ResultExtractor */
     private $contentResultExtractor;
 
-    /** @var \Ibexa\Solr\ResultExtractor */
+    /** @var ResultExtractor */
     private $locationResultExtractor;
 
     public function __construct(

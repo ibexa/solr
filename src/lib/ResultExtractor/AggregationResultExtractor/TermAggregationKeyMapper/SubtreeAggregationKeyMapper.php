@@ -13,7 +13,7 @@ use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregat
 
 final class SubtreeAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper */
+    /** @var TermAggregationKeyMapper */
     private $locationAggregationKeyMapper;
 
     public function __construct(TermAggregationKeyMapper $locationAggregationKeyMapper)
@@ -24,8 +24,11 @@ final class SubtreeAggregationKeyMapper implements TermAggregationKeyMapper
     /**
      * @param Aggregation\Location\SubtreeTermAggregation $aggregation
      */
-    public function map(Aggregation $aggregation, array $languageFilter, array $keys): array
-    {
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        array $keys
+    ): array {
         $ancestors = $this->getAncestors($aggregation->getPathString());
         $keys = array_filter($keys, static function ($key) use ($ancestors): bool {
             return !in_array($key, $ancestors);

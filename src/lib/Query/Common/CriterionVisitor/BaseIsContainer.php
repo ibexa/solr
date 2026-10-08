@@ -24,8 +24,10 @@ abstract class BaseIsContainer extends CriterionVisitor
         return $criterion instanceof Criterion\IsContainer && $criterion->operator === Operator::EQ;
     }
 
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        Criterion $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $value = $criterion->value;
 
         if (!is_array($value) || !is_bool($value[0])) {
