@@ -33,7 +33,7 @@ services:
 
     Ibexa\Bundle\Solr\ApiLoader\SolrEngineFactory:
         arguments:
-            $repositoryConfigurationProvider: '@Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider'
+            $repositoryConfigurationProvider: '@Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface'
             $defaultConnection: "%ibexa.solr.default_connection%"
             $searchEngineClass: Ibexa\Solr\Handler
             $gatewayRegistry: '@Ibexa\Solr\Gateway\GatewayRegistry'
@@ -46,14 +46,14 @@ services:
     Ibexa\Bundle\Solr\ApiLoader\BoostFactorProviderFactory:
         arguments:
             - '@service_container'
-            - '@Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider'
+            - '@Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface'
             - "%ibexa.solr.default_connection%"
             - 'Ibexa\Solr\FieldMapper\BoostFactorProvider'
 
     Ibexa\Bundle\Solr\ApiLoader\IndexingDepthProviderFactory:
         arguments:
             - '@service_container'
-            - '@Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider'
+            - '@Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface'
             - "%ibexa.solr.default_connection%"
             - Ibexa\Solr\FieldMapper\IndexingDepthProvider
 
