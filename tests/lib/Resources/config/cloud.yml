@@ -18,7 +18,7 @@ parameters:
           - default
           - main
     ibexa.search.solr.cluster_endpoints:
-          eng-GB: eng # cloud@shard0
+          eng-US: eng # cloud@shard0
           ger-DE: ger # cloud@shard3
     ibexa.search.solr.default_endpoint: default # cloud@shard2
     ibexa.search.solr.main_translations_endpoint: main # cloud@shard1
