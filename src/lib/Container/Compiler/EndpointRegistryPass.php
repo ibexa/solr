@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Container\Compiler;
 
 use Ibexa\Solr\Gateway\EndpointRegistry;
@@ -18,9 +19,9 @@ use Symfony\Component\DependencyInjection\Reference;
 class EndpointRegistryPass implements CompilerPassInterface
 {
     /**
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param ContainerBuilder $container
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function process(ContainerBuilder $container)
     {

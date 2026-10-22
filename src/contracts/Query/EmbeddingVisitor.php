@@ -14,5 +14,8 @@ abstract class EmbeddingVisitor
 {
     abstract public function canVisit(Embedding $embedding): bool;
 
-    abstract public function visit(Embedding $embedding, int $limit): string;
+    abstract public function visit(
+        Embedding $embedding,
+        int $limit
+    ): string;
 }

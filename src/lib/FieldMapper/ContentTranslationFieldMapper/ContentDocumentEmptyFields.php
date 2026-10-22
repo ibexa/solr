@@ -24,17 +24,17 @@ class ContentDocumentEmptyFields extends ContentTranslationFieldMapper
     public const IS_EMPTY_NAME = 'is_empty';
 
     /**
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Type\Handler
+     * @var ContentTypeHandler
      */
     private $contentTypeHandler;
 
     /**
-     * @var \Ibexa\Core\Search\Common\FieldNameGenerator
+     * @var FieldNameGenerator
      */
     private $fieldNameGenerator;
 
     /**
-     * @var \Ibexa\Core\Persistence\FieldTypeRegistry
+     * @var FieldTypeRegistry
      */
     private $fieldTypeRegistry;
 
@@ -53,18 +53,22 @@ class ContentDocumentEmptyFields extends ContentTranslationFieldMapper
      *
      * @return bool
      */
-    public function accept(Content $content, $languageCode)
-    {
+    public function accept(
+        Content $content,
+        $languageCode
+    ) {
         return true;
     }
 
     /**
      * @param string $languageCode
      *
-     * @return \Ibexa\Contracts\Core\Search\Field[]
+     * @return Field[]
      */
-    public function mapFields(Content $content, $languageCode)
-    {
+    public function mapFields(
+        Content $content,
+        $languageCode
+    ) {
         $fields = [];
         $contentType = $this->contentTypeHandler->load(
             $content->versionInfo->contentInfo->contentTypeId

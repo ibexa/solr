@@ -26,10 +26,13 @@ final class CountryAggregationKeyMapper implements TermAggregationKeyMapper
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\CountryTermAggregation $aggregation
+     * @param CountryTermAggregation $aggregation
      */
-    public function map(Aggregation $aggregation, array $languageFilter, array $keys): array
-    {
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        array $keys
+    ): array {
         $results = [];
         foreach ($keys as $key) {
             $results[$key] = $this->mapKey($aggregation, $key);
@@ -38,8 +41,10 @@ final class CountryAggregationKeyMapper implements TermAggregationKeyMapper
         return $results;
     }
 
-    private function mapKey(Aggregation $aggregation, string $key): ?string
-    {
+    private function mapKey(
+        Aggregation $aggregation,
+        string $key
+    ): ?string {
         $countryInfo = $this->findCountryInfoByAlpha3($key);
 
         if ($countryInfo === null) {

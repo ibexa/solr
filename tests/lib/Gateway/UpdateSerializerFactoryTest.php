@@ -24,7 +24,7 @@ final class UpdateSerializerFactoryTest extends TestCase
     /**
      * @dataProvider getDataForTestGetSerializer
      *
-     * @param array<\Ibexa\Solr\Gateway\UpdateSerializerInterface> $serializers
+     * @param array<UpdateSerializerInterface> $serializers
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */

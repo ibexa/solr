@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
@@ -23,7 +24,10 @@ abstract class QueryConverter
      *
      * @return array
      */
-    abstract public function convert(Query $query, array $languageSettings = []);
+    abstract public function convert(
+        Query $query,
+        array $languageSettings = []
+    );
 }
 
 class_alias(QueryConverter::class, 'EzSystems\EzPlatformSolrSearchEngine\Query\QueryConverter');

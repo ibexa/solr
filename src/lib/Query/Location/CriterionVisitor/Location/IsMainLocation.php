@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Location\CriterionVisitor\Location;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
@@ -24,8 +25,10 @@ class IsMainLocation extends CriterionVisitor
         return $criterion instanceof Criterion\Location\IsMainLocation;
     }
 
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        Criterion $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         return 'is_main_location_b:' . ($criterion->value[0] === Criterion\Location\IsMainLocation::MAIN ? 'true' : 'false');
     }
 }

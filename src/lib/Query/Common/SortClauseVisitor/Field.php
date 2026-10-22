@@ -4,9 +4,11 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\SortClauseVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\Target\FieldTarget;
 use Ibexa\Contracts\Solr\Query\SortClauseVisitor;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Ibexa\Core\Search\Common\FieldNameResolver;
@@ -19,14 +21,14 @@ class Field extends SortClauseVisitor
     /**
      * Field name resolver.
      *
-     * @var \Ibexa\Core\Search\Common\FieldNameResolver
+     * @var FieldNameResolver
      */
     protected $fieldNameResolver;
 
     /**
      * Create from field name resolver.
      *
-     * @param \Ibexa\Core\Search\Common\FieldNameResolver $fieldNameResolver
+     * @param FieldNameResolver $fieldNameResolver
      */
     public function __construct(FieldNameResolver $fieldNameResolver)
     {
@@ -36,7 +38,7 @@ class Field extends SortClauseVisitor
     /**
      * Get sort field name.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
+     * @param SortClause $sortClause
      * @param string $contentTypeIdentifier
      * @param string $fieldDefinitionIdentifier
      *
@@ -57,7 +59,7 @@ class Field extends SortClauseVisitor
     /**
      * Check if visitor is applicable to the $sortClause.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
+     * @param SortClause $sortClause
      *
      * @return bool
      */
@@ -69,16 +71,16 @@ class Field extends SortClauseVisitor
     /**
      * Map the $sortClause to a proper Solr representation.
      *
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException If no sortable fields are
+     * @throws InvalidArgumentException If no sortable fields are
      *         found for the given sort clause target.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause
+     * @param SortClause $sortClause
      *
      * @return string
      */
     public function visit(SortClause $sortClause)
     {
-        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\Target\FieldTarget $target */
+        /** @var FieldTarget $target */
         $target = $sortClause->targetData;
         $fieldName = $this->getSortFieldName(
             $sortClause,

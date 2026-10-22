@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Container\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -21,8 +22,10 @@ class AggregateFacetBuilderVisitorPass implements CompilerPassInterface
         $this->processVisitors($container, 'location');
     }
 
-    private function processVisitors(ContainerBuilder $container, $name = 'content')
-    {
+    private function processVisitors(
+        ContainerBuilder $container,
+        $name = 'content'
+    ) {
         if (!$container->hasDefinition("ibexa.solr.query.$name.facet_builder_visitor.aggregate")) {
             return;
         }

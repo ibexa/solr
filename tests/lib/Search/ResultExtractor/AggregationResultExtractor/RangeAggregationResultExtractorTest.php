@@ -16,11 +16,12 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\Rang
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationResultExtractor;
+use PHPUnit\Framework\MockObject\MockObject;
 use stdClass;
 
 final class RangeAggregationResultExtractorTest extends AbstractAggregationResultExtractorTest
 {
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var RangeAggregationKeyMapper|MockObject */
     private $keyMapper;
 
     protected function setUp(): void
@@ -109,8 +110,10 @@ final class RangeAggregationResultExtractorTest extends AbstractAggregationResul
         return $data;
     }
 
-    private function createRawBucket(string $val, int $count): stdClass
-    {
+    private function createRawBucket(
+        string $val,
+        int $count
+    ): stdClass {
         $bucket = new stdClass();
         $bucket->val = $val;
         $bucket->count = $count;

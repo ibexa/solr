@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException;
@@ -18,14 +19,14 @@ class Aggregate extends CriterionVisitor
     /**
      * Array of available visitors.
      *
-     * @var iterable<\Ibexa\Contracts\Solr\Query\CriterionVisitor>
+     * @var iterable<CriterionVisitor>
      */
     protected $visitors = [];
 
     /**
      * Construct from optional visitor array.
      *
-     * @param iterable<\Ibexa\Contracts\Solr\Query\CriterionVisitor> $visitors
+     * @param iterable<CriterionVisitor> $visitors
      */
     public function __construct(iterable $visitors)
     {
@@ -43,10 +44,12 @@ class Aggregate extends CriterionVisitor
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException
+     * @throws NotImplementedException
      */
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        Criterion $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         foreach ($this->visitors as $visitor) {
             if ($visitor->canVisit($criterion)) {
                 return $visitor->visit($criterion, $this);

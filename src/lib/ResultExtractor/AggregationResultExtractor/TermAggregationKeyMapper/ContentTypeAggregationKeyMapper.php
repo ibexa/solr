@@ -10,11 +10,13 @@ namespace Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationK
 
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ContentTypeTermAggregation;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
 final class ContentTypeAggregationKeyMapper implements TermAggregationKeyMapper
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
+    /** @var ContentTypeService */
     private $contentTypeService;
 
     public function __construct(ContentTypeService $contentTypeService)
@@ -23,14 +25,17 @@ final class ContentTypeAggregationKeyMapper implements TermAggregationKeyMapper
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ContentTypeTermAggregation $aggregation
+     * @param ContentTypeTermAggregation $aggregation
      * @param array $languageFilter
      * @param string[] $keys
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType[]
+     * @return ContentType[]
      */
-    public function map(Aggregation $aggregation, array $languageFilter, array $keys): array
-    {
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        array $keys
+    ): array {
         $result = [];
 
         $contentTypes = $this->contentTypeService->loadContentTypeList(array_map('intval', $keys));

@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\FacetBuilderVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder;
@@ -20,14 +21,14 @@ class Aggregate extends FacetBuilderVisitor implements FacetFieldVisitor
     /**
      * Array of available visitors.
      *
-     * @var \Ibexa\Solr\Query\FacetBuilderVisitor[]
+     * @var FacetBuilderVisitor[]
      */
     protected $visitors = [];
 
     /**
      * Construct from optional visitor array.
      *
-     * @param \Ibexa\Solr\Query\FacetBuilderVisitor[] $visitors
+     * @param FacetBuilderVisitor[] $visitors
      */
     public function __construct(array $visitors = [])
     {
@@ -50,8 +51,11 @@ class Aggregate extends FacetBuilderVisitor implements FacetFieldVisitor
      * @deprecated Internal support for nullable $facetBuilder will be removed in 2.0, here now to support facetBuilders
      *             that has not adapted yet.
      */
-    public function mapField($field, array $data, ?FacetBuilder $facetBuilder = null)
-    {
+    public function mapField(
+        $field,
+        array $data,
+        ?FacetBuilder $facetBuilder = null
+    ) {
         foreach ($this->visitors as $visitor) {
             if ($facetBuilder && $visitor instanceof FacetFieldVisitor && $visitor->canVisit($facetBuilder)) {
                 return $visitor->mapField($field, $data, $facetBuilder);
@@ -74,8 +78,10 @@ class Aggregate extends FacetBuilderVisitor implements FacetFieldVisitor
     /**
      * {@inheritdoc}.
      */
-    public function visitBuilder(FacetBuilder $facetBuilder, $fieldId)
-    {
+    public function visitBuilder(
+        FacetBuilder $facetBuilder,
+        $fieldId
+    ) {
         foreach ($this->visitors as $visitor) {
             if ($visitor->canVisit($facetBuilder)) {
                 return $visitor instanceof FacetFieldVisitor ?

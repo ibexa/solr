@@ -15,16 +15,17 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\Term
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationResultExtractor;
+use PHPUnit\Framework\MockObject\Stub;
 use stdClass;
 
 final class TermAggregationResultExtractorTest extends AbstractAggregationResultExtractorTest
 {
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var TermAggregationKeyMapper|Stub */
     private $keyMapper;
 
     protected function setUp(): void
     {
-        $this->keyMapper = $this->createMock(TermAggregationKeyMapper::class);
+        $this->keyMapper = $this->createStub(TermAggregationKeyMapper::class);
         $this->keyMapper
             ->method('map')
             ->willReturnCallback(static function (
@@ -32,7 +33,12 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
                 array $languageFilter,
                 array $keys
             ): array {
-                return array_combine($keys, array_map('strtoupper', $keys));
+                $map = [];
+                foreach ($keys as $key) {
+                    $map[$key] = strtoupper($key);
+                }
+
+                return $map;
             });
 
         $this->extractor = $this->createExtractor();
@@ -49,13 +55,13 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
     public function dataProviderForTestCanVisit(): iterable
     {
         yield 'true' => [
-            $this->createMock(AbstractTermAggregation::class),
+            $this->createStub(AbstractTermAggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             true,
         ];
 
         yield 'false' => [
-            $this->createMock(Aggregation::class),
+            $this->createStub(Aggregation::class),
             self::EXAMPLE_LANGUAGE_FILTER,
             false,
         ];
@@ -63,7 +69,7 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
 
     public function dataProviderForTestExtract(): iterable
     {
-        $aggregation = $this->createMock(AbstractTermAggregation::class);
+        $aggregation = $this->createStub(AbstractTermAggregation::class);
         $aggregation->method('getName')->willReturn(self::EXAMPLE_AGGREGATION_NAME);
 
         yield 'defaults' => [
@@ -107,8 +113,10 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
         return $data;
     }
 
-    private function createRawBucket(string $val, int $count): stdClass
-    {
+    private function createRawBucket(
+        string $val,
+        int $count
+    ): stdClass {
         $bucket = new stdClass();
         $bucket->val = $val;
         $bucket->count = $count;

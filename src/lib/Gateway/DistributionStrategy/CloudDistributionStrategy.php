@@ -18,8 +18,10 @@ final class CloudDistributionStrategy extends AbstractDistributionStrategy
     private const COLLECTION_SEPARATOR = ',';
     private const COLLECTION_PARAMETER = 'collection';
 
-    protected function appendSearchTargets(array $parameters, array $searchTargets): array
-    {
+    protected function appendSearchTargets(
+        array $parameters,
+        array $searchTargets
+    ): array {
         $collections = array_map(function (string $endpointName) {
             return $this->endpointRegistry->getEndpoint($endpointName)->core;
         }, $searchTargets);

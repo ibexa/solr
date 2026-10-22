@@ -15,10 +15,13 @@ use Ibexa\Core\FieldType\Author\Author;
 final class AuthorAggregationKeyMapper implements TermAggregationKeyMapper
 {
     /**
-     * @return \Ibexa\Core\FieldType\Author\Author[]
+     * @return Author[]
      */
-    public function map(Aggregation $aggregation, array $languageFilter, array $keys): array
-    {
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        array $keys
+    ): array {
         $results = [];
         foreach ($keys as $key) {
             $properties = json_decode($key, true);

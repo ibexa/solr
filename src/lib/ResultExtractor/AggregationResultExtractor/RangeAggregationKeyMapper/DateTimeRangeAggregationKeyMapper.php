@@ -14,8 +14,11 @@ use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggrega
 
 final class DateTimeRangeAggregationKeyMapper implements RangeAggregationKeyMapper
 {
-    public function map(Aggregation $aggregation, array $languageFilter, string $key)
-    {
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        string $key
+    ) {
         if ($key === '*') {
             return null;
         }

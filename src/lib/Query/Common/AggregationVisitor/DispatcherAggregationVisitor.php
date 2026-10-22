@@ -14,19 +14,21 @@ use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 
 final class DispatcherAggregationVisitor implements AggregationVisitor
 {
-    /** @var iterable<\Ibexa\Contracts\Solr\Query\AggregationVisitor> */
+    /** @var iterable<AggregationVisitor> */
     private $visitors;
 
     /**
-     * @param iterable<\Ibexa\Contracts\Solr\Query\AggregationVisitor> $visitors
+     * @param iterable<AggregationVisitor> $visitors
      */
     public function __construct(iterable $visitors)
     {
         $this->visitors = $visitors;
     }
 
-    public function canVisit(Aggregation $aggregation, array $languageFilter): bool
-    {
+    public function canVisit(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): bool {
         return $this->findVisitor($aggregation, $languageFilter) !== null;
     }
 
@@ -49,8 +51,10 @@ final class DispatcherAggregationVisitor implements AggregationVisitor
     /**
      * @param array{languages: string[]} $languageFilter
      */
-    private function findVisitor(Aggregation $aggregation, array $languageFilter): ?AggregationVisitor
-    {
+    private function findVisitor(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): ?AggregationVisitor {
         foreach ($this->visitors as $visitor) {
             if ($visitor->canVisit($aggregation, $languageFilter)) {
                 return $visitor;

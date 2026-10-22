@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\Bundle\Solr\DependencyInjection;
 
 use Ibexa\Bundle\Solr\DependencyInjection\Configuration;
@@ -17,7 +18,7 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
 {
     /**
-     * @var \Ibexa\Bundle\Solr\DependencyInjection\IbexaSolrExtension
+     * @var IbexaSolrExtension
      */
     private $extension;
 
@@ -135,8 +136,11 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
      * @param array $endpointValues
      * @param array $expectedArgument
      */
-    public function testEndpoint($endpointName, $endpointValues, $expectedArgument)
-    {
+    public function testEndpoint(
+        $endpointName,
+        $endpointValues,
+        $expectedArgument
+    ) {
         $this->load(['endpoints' => [$endpointName => $endpointValues]]);
 
         $this->assertContainerBuilderHasServiceDefinitionWithTag(
@@ -652,8 +656,10 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     /**
      * @dataProvider dataProvideForTestBoostFactorMap
      */
-    public function testBoostFactorMap(array $configuration, array $map)
-    {
+    public function testBoostFactorMap(
+        array $configuration,
+        array $map
+    ) {
         $this->load($configuration);
 
         $this->assertContainerBuilderHasParameter(

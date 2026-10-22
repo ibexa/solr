@@ -4,9 +4,11 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\Facet;
 
 /**
  * Visits the facet builder tree into a Solr query.
@@ -36,10 +38,12 @@ abstract class FacetBuilderVisitor
      *
      * @param string $field
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\Facet
+     * @return Facet
      */
-    public function map($field, array $data)
-    {
+    public function map(
+        $field,
+        array $data
+    ) {
         throw new \LogicException('Deprecated in favour of FacetFieldVisitor, not in use if FacetFieldVisitor is implemented');
     }
 

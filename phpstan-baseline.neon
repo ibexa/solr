@@ -2509,12 +2509,6 @@ parameters:
 			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationKeyMapper/UserMetadataAggregationKeyMapperTest.php
 
 		-
-			message: '#^Anonymous function should return array\<uppercase\-string\> but returns array\<uppercase\-string\>\|false\.$#'
-			identifier: return.type
-			count: 1
-			path: tests/lib/Search/ResultExtractor/AggregationResultExtractor/TermAggregationResultExtractorTest.php
-
-		-
 			message: '#^Method Ibexa\\Tests\\Solr\\Search\\ResultExtractor\\AggregationResultExtractor\\TermAggregationResultExtractorTest\:\:dataProviderForTestCanVisit\(\) return type has no value type specified in iterable type iterable\.$#'
 			identifier: missingType.iterableValue
 			count: 1

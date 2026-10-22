@@ -19,10 +19,10 @@ use Ibexa\Core\Search\Common\FieldValueMapper;
  */
 abstract class UpdateSerializer
 {
-    /** @var \Ibexa\Core\Search\Common\FieldValueMapper */
+    /** @var FieldValueMapper */
     protected $fieldValueMapper;
 
-    /** @var \Ibexa\Core\Search\Common\FieldNameGenerator */
+    /** @var FieldNameGenerator */
     protected $nameGenerator;
 
     public function __construct(

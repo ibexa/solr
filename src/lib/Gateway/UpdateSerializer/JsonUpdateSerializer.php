@@ -63,8 +63,11 @@ final class JsonUpdateSerializer extends UpdateSerializer implements UpdateSeria
      *
      * @return mixed
      */
-    private function buildValue($value, string $fieldName, array $data)
-    {
+    private function buildValue(
+        $value,
+        string $fieldName,
+        array $data
+    ) {
         return !array_key_exists($fieldName, $data) || !is_array($data[$fieldName])
             ? $value
             // append value(s) to a multivalued type

@@ -4,13 +4,18 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Spellcheck;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResultCollection;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\Facet;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SpellcheckResult;
+use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Solr\Gateway\EndpointRegistry;
 use Ibexa\Solr\Query\FacetFieldVisitor;
@@ -22,13 +27,13 @@ use stdClass;
  */
 abstract class ResultExtractor
 {
-    /** @var \Ibexa\Solr\Query\FacetFieldVisitor */
+    /** @var FacetFieldVisitor */
     protected $facetBuilderVisitor;
 
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor */
+    /** @var AggregationResultExtractor */
     protected $aggregationResultExtractor;
 
-    /** @var \Ibexa\Solr\Gateway\EndpointRegistry */
+    /** @var EndpointRegistry */
     protected $endpointRegistry;
 
     public function __construct(
@@ -45,11 +50,11 @@ abstract class ResultExtractor
      * Extracts search result from $data returned by Solr backend.
      *
      * @param mixed $data
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder[] $facetBuilders
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation[] $aggregations
+     * @param FacetBuilder[] $facetBuilders
+     * @param Aggregation[] $aggregations
      * @param array $languageFilter
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult
+     * @return SearchResult
      */
     public function extract(
         $data,
@@ -84,7 +89,7 @@ abstract class ResultExtractor
      *
      * @param mixed $hit
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ValueObject
+     * @return ValueObject
      */
     abstract public function extractHit($hit);
 
@@ -119,7 +124,7 @@ abstract class ResultExtractor
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation[] $aggregations
+     * @param Aggregation[] $aggregations
      */
     protected function extractAggregations(
         stdClass $data,
@@ -143,12 +148,15 @@ abstract class ResultExtractor
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder[] $facetBuilders
+     * @param FacetBuilder[] $facetBuilders
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\Facet[]
+     * @return Facet[]
      */
-    protected function extractFacets(stdClass $data, array $facetBuilders, array $languageFilter): array
-    {
+    protected function extractFacets(
+        stdClass $data,
+        array $facetBuilders,
+        array $languageFilter
+    ): array {
         $facets = [];
 
         if (isset($data->facet_counts)) {
@@ -183,8 +191,10 @@ abstract class ResultExtractor
         return $facets;
     }
 
-    protected function extractSearchHit(stdClass $doc, array $languageFilter): SearchHit
-    {
+    protected function extractSearchHit(
+        stdClass $doc,
+        array $languageFilter
+    ): SearchHit {
         return new SearchHit(
             [
                 'score' => $doc->score,
@@ -195,8 +205,10 @@ abstract class ResultExtractor
         );
     }
 
-    protected function extractSpellcheck(stdClass $data, ?Spellcheck $spellcheck): ?SpellcheckResult
-    {
+    protected function extractSpellcheck(
+        stdClass $data,
+        ?Spellcheck $spellcheck
+    ): ?SpellcheckResult {
         if ($spellcheck === null) {
             return null;
         }

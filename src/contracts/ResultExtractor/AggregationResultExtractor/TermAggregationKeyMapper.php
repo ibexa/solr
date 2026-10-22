@@ -12,7 +12,11 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 
 interface TermAggregationKeyMapper
 {
-    public function map(Aggregation $aggregation, array $languageFilter, array $keys): array;
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        array $keys
+    ): array;
 }
 
 class_alias(TermAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper');

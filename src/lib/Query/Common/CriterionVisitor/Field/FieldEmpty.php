@@ -24,7 +24,7 @@ use Ibexa\Solr\Query\Common\CriterionVisitor\Field;
 final class FieldEmpty extends Field
 {
     /**
-     * @var \Ibexa\Core\Search\Common\FieldNameGenerator
+     * @var FieldNameGenerator
      */
     private $fieldNameGenerator;
 
@@ -49,8 +49,10 @@ final class FieldEmpty extends Field
     /**
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException If no searchable fields are found for the given criterion target.
      */
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        Criterion $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $searchFields = $this->getSearchFields($criterion);
 
         if (empty($searchFields)) {

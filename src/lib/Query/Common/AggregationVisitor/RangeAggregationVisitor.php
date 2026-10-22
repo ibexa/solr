@@ -17,17 +17,21 @@ final class RangeAggregationVisitor extends AbstractRangeAggregationVisitor
     /** @var string */
     private $aggregationClass;
 
-    /** @var \Ibexa\Contracts\Solr\Query\Common\AggregationVisitor\AggregationFieldResolver */
+    /** @var AggregationFieldResolver */
     private $aggregationFieldResolver;
 
-    public function __construct(string $aggregationClass, AggregationFieldResolver $aggregationFieldResolver)
-    {
+    public function __construct(
+        string $aggregationClass,
+        AggregationFieldResolver $aggregationFieldResolver
+    ) {
         $this->aggregationClass = $aggregationClass;
         $this->aggregationFieldResolver = $aggregationFieldResolver;
     }
 
-    public function canVisit(Aggregation $aggregation, array $languageFilter): bool
-    {
+    public function canVisit(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): bool {
         return $aggregation instanceof $this->aggregationClass;
     }
 

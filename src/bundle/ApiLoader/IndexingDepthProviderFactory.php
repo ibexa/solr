@@ -19,7 +19,7 @@ class IndexingDepthProviderFactory implements ContainerAwareInterface
     use ContainerAwareTrait;
 
     /**
-     * @var \Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider
+     * @var RepositoryConfigurationProvider
      */
     private $repositoryConfigurationProvider;
 

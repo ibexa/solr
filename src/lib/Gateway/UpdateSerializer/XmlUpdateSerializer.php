@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Gateway\UpdateSerializer;
 
 use Ibexa\Contracts\Core\Search\Document;
@@ -38,8 +39,10 @@ class XmlUpdateSerializer extends UpdateSerializer implements UpdateSerializerIn
         return $xmlWriter->outputMemory(true);
     }
 
-    private function writeDocument(XMLWriter $xmlWriter, Document $document): void
-    {
+    private function writeDocument(
+        XMLWriter $xmlWriter,
+        Document $document
+    ): void {
         $xmlWriter->startElement('doc');
 
         $this->writeField(
@@ -62,8 +65,10 @@ class XmlUpdateSerializer extends UpdateSerializer implements UpdateSerializerIn
         $xmlWriter->endElement();
     }
 
-    private function writeField(XMLWriter $xmlWriter, Field $field): void
-    {
+    private function writeField(
+        XMLWriter $xmlWriter,
+        Field $field
+    ): void {
         $values = (array)$this->fieldValueMapper->map($field);
         $name = $this->nameGenerator->getTypedName($field->getName(), $field->getType());
 

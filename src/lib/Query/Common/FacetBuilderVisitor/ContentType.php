@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\FacetBuilderVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\FacetBuilder;
@@ -21,8 +22,11 @@ class ContentType extends FacetBuilderVisitor implements FacetFieldVisitor
     /**
      * {@inheritdoc}.
      */
-    public function mapField($field, array $data, FacetBuilder $facetBuilder)
-    {
+    public function mapField(
+        $field,
+        array $data,
+        FacetBuilder $facetBuilder
+    ) {
         return new Facet\ContentTypeFacet(
             [
                 'name' => $facetBuilder->name,
@@ -42,8 +46,10 @@ class ContentType extends FacetBuilderVisitor implements FacetFieldVisitor
     /**
      * {@inheritdoc}.
      */
-    public function visitBuilder(FacetBuilder $facetBuilder, $fieldId)
-    {
+    public function visitBuilder(
+        FacetBuilder $facetBuilder,
+        $fieldId
+    ) {
         return [
             'facet.field' => "{!ex=dt key=$fieldId}content_type_id_id",
             'f.content_type_id_id.facet.limit' => $facetBuilder->limit,

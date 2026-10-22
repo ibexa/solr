@@ -19,14 +19,16 @@ use stdClass;
 
 final class TermAggregationResultExtractor implements AggregationResultExtractor
 {
-    /** @var \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper */
+    /** @var TermAggregationKeyMapper */
     private $keyMapper;
 
     /** @var string */
     private $aggregationClass;
 
-    public function __construct(string $aggregationClass, ?TermAggregationKeyMapper $keyMapper = null)
-    {
+    public function __construct(
+        string $aggregationClass,
+        ?TermAggregationKeyMapper $keyMapper = null
+    ) {
         if ($keyMapper === null) {
             $keyMapper = new NullAggregationKeyMapper();
         }
@@ -35,13 +37,18 @@ final class TermAggregationResultExtractor implements AggregationResultExtractor
         $this->aggregationClass = $aggregationClass;
     }
 
-    public function canVisit(Aggregation $aggregation, array $languageFilter): bool
-    {
+    public function canVisit(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): bool {
         return $aggregation instanceof $this->aggregationClass;
     }
 
-    public function extract(Aggregation $aggregation, array $languageFilter, stdClass $data): AggregationResult
-    {
+    public function extract(
+        Aggregation $aggregation,
+        array $languageFilter,
+        stdClass $data
+    ): AggregationResult {
         $entries = [];
 
         if (isset($data->buckets)) {

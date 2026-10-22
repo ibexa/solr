@@ -12,7 +12,11 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 
 interface RangeAggregationKeyMapper
 {
-    public function map(Aggregation $aggregation, array $languageFilter, string $key);
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        string $key
+    );
 }
 
 class_alias(RangeAggregationKeyMapper::class, 'EzSystems\EzPlatformSolrSearchEngine\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper');

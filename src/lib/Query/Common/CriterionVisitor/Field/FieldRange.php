@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\CriterionVisitor\Field;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
@@ -20,7 +21,7 @@ class FieldRange extends Field
     /**
      * Check if visitor is applicable to current criterion.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion $criterion
+     * @param Criterion $criterion
      *
      * @return bool
      */
@@ -36,10 +37,12 @@ class FieldRange extends Field
     }
 
     /**
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException If no searchable fields are found for the given criterion target.
+     * @throws InvalidArgumentException If no searchable fields are found for the given criterion target.
      */
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        Criterion $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $searchFields = $this->getSearchFields($criterion);
 
         if (empty($searchFields)) {

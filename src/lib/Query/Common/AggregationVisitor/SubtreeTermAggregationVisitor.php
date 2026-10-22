@@ -20,19 +20,23 @@ final class SubtreeTermAggregationVisitor implements AggregationVisitor
     /** @var string */
     private $locationIdFieldName;
 
-    public function __construct(string $pathStringFieldName, string $locationIdFieldName)
-    {
+    public function __construct(
+        string $pathStringFieldName,
+        string $locationIdFieldName
+    ) {
         $this->pathStringFieldName = $pathStringFieldName;
         $this->locationIdFieldName = $locationIdFieldName;
     }
 
-    public function canVisit(Aggregation $aggregation, array $languageFilter): bool
-    {
+    public function canVisit(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): bool {
         return $aggregation instanceof SubtreeTermAggregation;
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Location\SubtreeTermAggregation $aggregation
+     * @param SubtreeTermAggregation $aggregation
      */
     public function visit(
         AggregationVisitor $dispatcherVisitor,

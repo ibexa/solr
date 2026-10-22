@@ -19,8 +19,12 @@ abstract class AbstractRangeAggregationKeyMapperTest extends TestCase
     /**
      * @dataProvider dataProviderForTestMap
      */
-    final public function testMap(Aggregation $aggregation, array $languageFilter, string $key, $expectedResult): void
-    {
+    final public function testMap(
+        Aggregation $aggregation,
+        array $languageFilter,
+        string $key,
+        $expectedResult
+    ): void {
         $mapper = $this->createRangeAggregationKeyMapper();
 
         $this->assertEquals(

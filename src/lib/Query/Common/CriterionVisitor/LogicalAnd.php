@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
@@ -25,9 +26,11 @@ class LogicalAnd extends CriterionVisitor
         return $criterion instanceof Criterion\LogicalAnd;
     }
 
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
-        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalAnd $criterion */
+    public function visit(
+        Criterion $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
+        /** @var Criterion\LogicalAnd $criterion */
         if (!isset($criterion->criteria[0])) {
             throw new RuntimeException('Invalid aggregation in LogicalAnd criterion.');
         }

@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\CoreFilter;
 
 use Ibexa\Solr\CoreFilter;
@@ -11,11 +12,11 @@ use OutOfBoundsException;
 
 final class CoreFilterRegistry
 {
-    /** @var \Ibexa\Solr\CoreFilter[] */
+    /** @var CoreFilter[] */
     private $coreFilters;
 
     /**
-     * @param \Ibexa\Solr\CoreFilter[] $coreFilters
+     * @param CoreFilter[] $coreFilters
      */
     public function __construct(array $coreFilters = [])
     {
@@ -23,7 +24,7 @@ final class CoreFilterRegistry
     }
 
     /**
-     * @return \Ibexa\Solr\CoreFilter[] $coreFilters
+     * @return CoreFilter[] $coreFilters
      */
     public function getCoreFilters(): array
     {
@@ -31,7 +32,7 @@ final class CoreFilterRegistry
     }
 
     /**
-     * @param \Ibexa\Solr\CoreFilter[] $coreFilters
+     * @param CoreFilter[] $coreFilters
      */
     public function setCoreFilters(array $coreFilters): void
     {
@@ -47,8 +48,10 @@ final class CoreFilterRegistry
         return $this->coreFilters[$connectionName];
     }
 
-    public function addCoreFilter(string $connectionName, CoreFilter $coreFilter): void
-    {
+    public function addCoreFilter(
+        string $connectionName,
+        CoreFilter $coreFilter
+    ): void {
         $this->coreFilters[$connectionName] = $coreFilter;
     }
 

@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler;
@@ -22,20 +23,22 @@ class ContentTypeIdentifierIn extends CriterionVisitor
     /**
      * ContentType handler.
      *
-     * @var \Ibexa\Contracts\Core\Persistence\Content\Type\Handler
+     * @var Handler
      */
     protected $contentTypeHandler;
 
     /**
-     * @var \Psr\Log\LoggerInterface
+     * @var LoggerInterface
      */
     protected $logger;
 
     /**
      * Create from content type handler and field registry.
      */
-    public function __construct(Handler $contentTypeHandler, ?LoggerInterface $logger = null)
-    {
+    public function __construct(
+        Handler $contentTypeHandler,
+        ?LoggerInterface $logger = null
+    ) {
         $this->contentTypeHandler = $contentTypeHandler;
         $this->logger = $logger ?? new NullLogger();
     }
@@ -55,8 +58,10 @@ class ContentTypeIdentifierIn extends CriterionVisitor
             );
     }
 
-    public function visit(Criterion $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        Criterion $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $validIds = [];
         $invalidIdentifiers = [];
         $contentTypeHandler = $this->contentTypeHandler;
