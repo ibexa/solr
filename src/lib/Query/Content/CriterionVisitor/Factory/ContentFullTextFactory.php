@@ -15,7 +15,7 @@ use Ibexa\Solr\Query\Content\CriterionVisitor\FullText;
 /**
  * Factory for FullText Criterion Visitor.
  *
- * @see \Ibexa\Solr\Query\Content\CriterionVisitor\FullText
+ * @see FullText
  *
  * @internal
  */

@@ -8,6 +8,7 @@
 namespace Ibexa\Solr;
 
 use Ibexa\Contracts\Core\Persistence\Content;
+use Ibexa\Contracts\Core\Persistence\Content\ContentInfo;
 use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
 use Ibexa\Contracts\Core\Repository\SearchService;
@@ -16,6 +17,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CustomField;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
+use Ibexa\Contracts\Core\Search\Document;
 use Ibexa\Contracts\Core\Search\VersatileHandler;
 use Ibexa\Contracts\Solr\DocumentMapper;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
@@ -60,11 +62,12 @@ class Handler implements VersatileHandler
         protected ResultExtractor $contentResultExtractor,
         protected ResultExtractor $locationResultExtractor,
         protected CoreFilter $coreFilter
-    ) {
-    }
+    ) {}
 
-    public function findContent(Query $query, array $languageFilter = []): SearchResult
-    {
+    public function findContent(
+        Query $query,
+        array $languageFilter = []
+    ): SearchResult {
         $query = clone $query;
         $query->filter = $query->filter ?: new Criterion\MatchAll();
         $query->query = $query->query ?: new Criterion\MatchAll();
@@ -75,7 +78,7 @@ class Handler implements VersatileHandler
             DocumentMapper::DOCUMENT_TYPE_IDENTIFIER_CONTENT
         );
 
-        /** @phpstan-var \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult<\Ibexa\Contracts\Core\Persistence\Content\ContentInfo> */
+        /** @phpstan-var SearchResult<ContentInfo> */
         return $this->contentResultExtractor->extract(
             $this->gateway->findContent($query, $languageFilter),
             $query->aggregations,
@@ -84,8 +87,10 @@ class Handler implements VersatileHandler
         );
     }
 
-    public function findSingle(Query\CriterionInterface $filter, array $languageFilter = []): Content\ContentInfo
-    {
+    public function findSingle(
+        Query\CriterionInterface $filter,
+        array $languageFilter = []
+    ): ContentInfo {
         $query = new Query();
         $query->filter = $filter;
         $query->query = new Criterion\MatchAll();
@@ -98,7 +103,7 @@ class Handler implements VersatileHandler
             DocumentMapper::DOCUMENT_TYPE_IDENTIFIER_CONTENT
         );
 
-        /** @phpstan-var \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult<\Ibexa\Contracts\Core\Persistence\Content\ContentInfo> $result */
+        /** @phpstan-var SearchResult<ContentInfo> $result */
         $result = $this->contentResultExtractor->extract(
             $this->gateway->findContent($query, $languageFilter)
         );
@@ -114,8 +119,10 @@ class Handler implements VersatileHandler
         return reset($result->searchHits)->valueObject;
     }
 
-    public function findLocations(LocationQuery $query, array $languageFilter = []): SearchResult
-    {
+    public function findLocations(
+        LocationQuery $query,
+        array $languageFilter = []
+    ): SearchResult {
         $query = clone $query;
         $query->query = $query->query ?: new Criterion\MatchAll();
 
@@ -125,7 +132,7 @@ class Handler implements VersatileHandler
             DocumentMapper::DOCUMENT_TYPE_IDENTIFIER_LOCATION
         );
 
-        /** @phpstan-var \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult<\Ibexa\Contracts\Core\Persistence\Content\Location> */
+        /** @phpstan-var SearchResult<Location> */
         return $this->locationResultExtractor->extract(
             $this->gateway->findLocations($query, $languageFilter),
             $query->aggregations,
@@ -138,8 +145,12 @@ class Handler implements VersatileHandler
      * @param string $prefix
      * @param string[] $fieldPaths
      */
-    public function suggest($prefix, $fieldPaths = [], $limit = 10, ?Criterion $filter = null): never
-    {
+    public function suggest(
+        $prefix,
+        $fieldPaths = [],
+        $limit = 10,
+        ?Criterion $filter = null
+    ): never {
         throw new \Exception('@todo: Not implemented yet.');
     }
 
@@ -166,7 +177,7 @@ class Handler implements VersatileHandler
      *       sure we match the features of these.
      *       See also {@see Solr\Content\Search\Gateway\Native::bulkIndexContent} for further Solr specific info.
      *
-     * @param \Ibexa\Contracts\Core\Persistence\Content[] $contentObjects
+     * @param Content[] $contentObjects
      */
     public function bulkIndexContent(array $contentObjects): void
     {
@@ -200,8 +211,10 @@ class Handler implements VersatileHandler
      * @param int $contentId
      * @param int|null $versionId
      */
-    public function deleteContent($contentId, $versionId = null): void
-    {
+    public function deleteContent(
+        $contentId,
+        $versionId = null
+    ): void {
         $idPrefix = $this->mapper->generateContentDocumentId((int)$contentId);
 
         $this->gateway->deleteByQuery("_root_:{$idPrefix}*");
@@ -213,8 +226,10 @@ class Handler implements VersatileHandler
      * @param mixed $locationId
      * @param mixed $contentId
      */
-    public function deleteLocation($locationId, $contentId): void
-    {
+    public function deleteLocation(
+        $locationId,
+        $contentId
+    ): void {
         $this->deleteAllItemsWithoutAdditionalLocation((int)$locationId);
         $this->updateAllElementsWithAdditionalLocation((int)$locationId);
     }
@@ -333,7 +348,7 @@ class Handler implements VersatileHandler
     /**
      * Generate search document for Content object to be indexed by a search engine.
      *
-     * @return list<\Ibexa\Contracts\Core\Search\Document>
+     * @return list<Document>
      */
     public function generateDocument(Content $content): array
     {
@@ -348,7 +363,7 @@ class Handler implements VersatileHandler
      * - On large amounts of data make sure to iterate with several calls to this function with a limited
      *   set of content objects, amount you have memory for depends on server, size of objects, & PHP version.
      *
-     * @param \Ibexa\Contracts\Core\Search\Document[][] $documents
+     * @param Document[][] $documents
      */
     public function bulkIndexDocuments(array $documents): void
     {
@@ -366,8 +381,10 @@ class Handler implements VersatileHandler
     /**
      * Deletes a translation content object from the index.
      */
-    public function deleteTranslation(int $contentId, string $languageCode): void
-    {
+    public function deleteTranslation(
+        int $contentId,
+        string $languageCode
+    ): void {
         $this->gateway->deleteByQuery(
             "content_id_id:{$contentId} AND meta_indexed_language_code_s:{$languageCode}"
         );

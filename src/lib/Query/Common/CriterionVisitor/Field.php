@@ -24,13 +24,12 @@ abstract class Field extends CriterionVisitor
     public function __construct(
         protected readonly FieldNameResolver $fieldNameResolver,
         protected readonly FieldValueMapper $fieldValueMapper
-    ) {
-    }
+    ) {}
 
     /**
      * Get array of search fields.
      *
-     * @return array<string, \Ibexa\Contracts\Core\Search\FieldType|null> Array of field types indexed by name.
+     * @return array<string, FieldType|null> Array of field types indexed by name.
      */
     protected function getSearchFields(Criterion $criterion): array
     {
@@ -43,8 +42,10 @@ abstract class Field extends CriterionVisitor
     /**
      * Map search field value to solr value using FieldValueMapper.
      */
-    protected function mapSearchFieldValue(mixed $value, ?FieldType $searchFieldType = null): mixed
-    {
+    protected function mapSearchFieldValue(
+        mixed $value,
+        ?FieldType $searchFieldType = null
+    ): mixed {
         if (null === $searchFieldType) {
             return $value;
         }

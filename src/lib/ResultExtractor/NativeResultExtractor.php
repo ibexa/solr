@@ -20,9 +20,9 @@ use stdClass;
 class NativeResultExtractor extends ResultExtractor
 {
     /**
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
-    public function extractHit(stdClass $hit): ContentInfo|Location
+    public function extractHit(stdClass $hit): ContentInfo | Location
     {
         if ($hit->document_type_id === 'content') {
             return $this->extractContentInfoFromHit($hit);
@@ -50,7 +50,7 @@ class NativeResultExtractor extends ResultExtractor
      *     content_remote_id_id: string,
      *     content_main_language_code_s: string,
      *     main_location_id?: int|string
-     * }&\stdClass $hit
+     * }&stdClass $hit
      */
     protected function extractContentInfoFromHit(stdClass $hit): ContentInfo
     {
@@ -91,7 +91,7 @@ class NativeResultExtractor extends ResultExtractor
      *     depth_i: int,
      *     sort_field_id: int|string,
      *     sort_order_id: int|string
-     * }&\stdClass $hit
+     * }&stdClass $hit
      */
     protected function extractLocationFromHit(stdClass $hit): Location
     {

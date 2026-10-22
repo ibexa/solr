@@ -8,6 +8,7 @@
 namespace Ibexa\Solr\Query\Common\CriterionVisitor\CustomField;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CustomField;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
@@ -23,7 +24,7 @@ class CustomFieldRange extends CriterionVisitor
     public function canVisit(CriterionInterface $criterion): bool
     {
         return
-            $criterion instanceof Criterion\CustomField &&
+            $criterion instanceof CustomField &&
             (
                 $criterion->operator === Operator::LT ||
                 $criterion->operator === Operator::LTE ||
@@ -36,10 +37,12 @@ class CustomFieldRange extends CriterionVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CustomField $criterion
+     * @param CustomField $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $values = (array)$criterion->value;
         $start = $values[0];
         $end = $values[1] ?? null;

@@ -39,10 +39,12 @@ class PublishedIn extends DateMetadata
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\DateMetadata $criterion
+     * @param Criterion\DateMetadata $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         return implode(
             ' OR ',
             array_map(

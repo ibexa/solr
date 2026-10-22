@@ -17,7 +17,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 final class TermAggregationVisitorTest extends AbstractAggregationVisitorTest
 {
-    private AggregationFieldResolver&MockObject $aggregationFieldResolver;
+    private AggregationFieldResolver & MockObject $aggregationFieldResolver;
 
     #[\Override]
     protected function setUp(): void
@@ -38,7 +38,7 @@ final class TermAggregationVisitorTest extends AbstractAggregationVisitorTest
 
     /**
      * @return iterable<string, array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     0: Aggregation,
      *     1: array{languages: string[]},
      *     2: bool
      * }>
@@ -60,7 +60,7 @@ final class TermAggregationVisitorTest extends AbstractAggregationVisitorTest
 
     /**
      * @return iterable<array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractTermAggregation,
+     *     0: AbstractTermAggregation,
      *     1: array<string, list<string>>,
      *     2: array{
      *         type: string,

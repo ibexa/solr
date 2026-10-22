@@ -13,13 +13,17 @@ use Ibexa\Solr\Gateway\Message;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * Simple PHP stream based HTTP client.
  *
- * @internal type-hint {@see \Ibexa\Solr\Gateway\HttpClient} instead.
+ * @internal type-hint {@see HttpClient} instead.
  */
 class Stream implements HttpClient, LoggerAwareInterface
 {
@@ -35,8 +39,12 @@ class Stream implements HttpClient, LoggerAwareInterface
         $this->setLogger(new NullLogger());
     }
 
-    public function request(string $method, Endpoint $endpoint, string $path, ?Message $message = null): Message
-    {
+    public function request(
+        string $method,
+        Endpoint $endpoint,
+        string $path,
+        ?Message $message = null
+    ): Message {
         $message ??= new Message();
 
         try {
@@ -52,10 +60,10 @@ class Stream implements HttpClient, LoggerAwareInterface
     }
 
     /**
-     * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
-     * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
-     * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
-     * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     private function getResponseMessage(
         string $method,

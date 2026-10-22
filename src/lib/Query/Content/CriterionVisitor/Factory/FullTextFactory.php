@@ -18,7 +18,7 @@ use QueryTranslator\Languages\Galach\Tokenizer;
 /**
  * Factory for FullText Criterion Visitor.
  *
- * @see \Ibexa\Solr\Query\Content\CriterionVisitor\FullText
+ * @see FullText
  *
  * @internal
  */
@@ -33,8 +33,7 @@ final readonly class FullTextFactory
         private Parser $parser,
         private ExtendedDisMax $generator,
         private IndexingDepthProvider $indexingDepthProvider
-    ) {
-    }
+    ) {}
 
     /**
      * Create FullText Criterion Visitor.

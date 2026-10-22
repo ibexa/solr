@@ -11,6 +11,7 @@ use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler;
 use Ibexa\Contracts\Core\Search\Document;
+use Ibexa\Contracts\Core\Search\Field;
 use Ibexa\Contracts\Solr\DocumentMapper;
 use Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper;
 use Ibexa\Contracts\Solr\FieldMapper\ContentTranslationFieldMapper;
@@ -31,13 +32,12 @@ class NativeDocumentMapper implements DocumentMapper
         private readonly ContentTranslationFieldMapper $contentTranslationFieldMapper,
         private readonly LocationFieldMapper $locationFieldMapper,
         protected readonly Handler $locationHandler
-    ) {
-    }
+    ) {}
 
     /**
      * Maps given Content to a Document.
      *
-     * @return \Ibexa\Contracts\Core\Search\Document[]
+     * @return Document[]
      */
     public function mapContentBlock(Content $content): array
     {
@@ -112,8 +112,10 @@ class NativeDocumentMapper implements DocumentMapper
      * the knowledge of it's translations, and thanks to "lang" string it will not
      * risk matching other documents (as was the case in EZP-26484).
      */
-    public function generateContentDocumentId(int $contentId, ?string $languageCode = null): string
-    {
+    public function generateContentDocumentId(
+        int $contentId,
+        ?string $languageCode = null
+    ): string {
         return strtolower("content{$contentId}lang{$languageCode}");
     }
 
@@ -127,8 +129,10 @@ class NativeDocumentMapper implements DocumentMapper
      * the knowledge of it's translations, and thanks to "lang" string it will not
      * risk matching other documents (as was the case in EZP-26484).
      */
-    public function generateLocationDocumentId(int $locationId, ?string $languageCode = null): string
-    {
+    public function generateLocationDocumentId(
+        int $locationId,
+        ?string $languageCode = null
+    ): string {
         return strtolower("location{$locationId}lang{$languageCode}");
     }
 
@@ -136,7 +140,7 @@ class NativeDocumentMapper implements DocumentMapper
      * Returns an array of fields for the given $content, to be added to the
      * corresponding block documents.
      *
-     * @return \Ibexa\Contracts\Core\Search\Field[]
+     * @return Field[]
      */
     private function getBlockFields(Content $content): array
     {
@@ -153,10 +157,12 @@ class NativeDocumentMapper implements DocumentMapper
      * Returns an array of fields for the given $content and $languageCode, to be added to the
      * corresponding block documents.
      *
-     * @return \Ibexa\Contracts\Core\Search\Field[]
+     * @return Field[]
      */
-    private function getBlockTranslationFields(Content $content, string $languageCode): array
-    {
+    private function getBlockTranslationFields(
+        Content $content,
+        string $languageCode
+    ): array {
         $fields = [];
 
         if ($this->blockTranslationFieldMapper->accept($content, $languageCode)) {
@@ -170,7 +176,7 @@ class NativeDocumentMapper implements DocumentMapper
      * Returns an array of fields for the given $content, to be added to the corresponding
      * Content document.
      *
-     * @return \Ibexa\Contracts\Core\Search\Field[]
+     * @return Field[]
      */
     private function getContentFields(Content $content): array
     {
@@ -187,10 +193,12 @@ class NativeDocumentMapper implements DocumentMapper
      * Returns an array of fields for the given $content and $languageCode, to be added to the
      * corresponding Content document.
      *
-     * @return \Ibexa\Contracts\Core\Search\Field[]
+     * @return Field[]
      */
-    private function getContentTranslationFields(Content $content, string $languageCode): array
-    {
+    private function getContentTranslationFields(
+        Content $content,
+        string $languageCode
+    ): array {
         $fields = [];
 
         if ($this->contentTranslationFieldMapper->accept($content, $languageCode)) {
@@ -204,7 +212,7 @@ class NativeDocumentMapper implements DocumentMapper
      * Returns an array of fields for the given $location, to be added to the corresponding
      * Location document.
      *
-     * @return \Ibexa\Contracts\Core\Search\Field[]
+     * @return Field[]
      */
     private function getLocationFields(Location $location): array
     {

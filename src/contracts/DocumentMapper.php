@@ -9,6 +9,7 @@ namespace Ibexa\Contracts\Solr;
 
 use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Location;
+use Ibexa\Contracts\Core\Search\Document;
 
 /**
  * Mapper maps Content and Location objects to a Document objects, representing a
@@ -34,7 +35,7 @@ interface DocumentMapper
      *
      * Each Content Document contains nested Documents representing it's Locations.
      *
-     * @return list<\Ibexa\Contracts\Core\Search\Document>
+     * @return list<Document>
      */
     public function mapContentBlock(Content $content): array;
 
@@ -46,7 +47,10 @@ interface DocumentMapper
      * The above is useful when targeting all Content's documents, without
      * the knowledge of it's translations.
      */
-    public function generateContentDocumentId(int $contentId, ?string $languageCode = null): string;
+    public function generateContentDocumentId(
+        int $contentId,
+        ?string $languageCode = null
+    ): string;
 
     /**
      * Generates the Solr backend document ID for Location object.
@@ -56,5 +60,8 @@ interface DocumentMapper
      * The above is useful when targeting all Location's documents, without
      * the knowledge of it's Content's translations.
      */
-    public function generateLocationDocumentId(int $locationId, ?string $languageCode = null): string;
+    public function generateLocationDocumentId(
+        int $locationId,
+        ?string $languageCode = null
+    ): string;
 }

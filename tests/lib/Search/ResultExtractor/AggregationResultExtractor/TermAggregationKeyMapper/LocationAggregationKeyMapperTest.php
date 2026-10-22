@@ -20,7 +20,7 @@ final class LocationAggregationKeyMapperTest extends TestCase
 {
     private const array EXAMPLE_LOCATION_IDS = ['2', '54', '47'];
 
-    private LocationService&MockObject $locationService;
+    private LocationService & MockObject $locationService;
 
     private LocationAggregationKeyMapper $mapper;
 
@@ -53,7 +53,7 @@ final class LocationAggregationKeyMapperTest extends TestCase
     }
 
     /**
-     * @return array<int, \Ibexa\Contracts\Core\Repository\Values\Content\Location>
+     * @return array<int, Location>
      */
     private function createExpectedLocations(): array
     {

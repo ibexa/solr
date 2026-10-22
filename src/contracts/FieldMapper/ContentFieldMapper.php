@@ -8,6 +8,7 @@
 namespace Ibexa\Contracts\Solr\FieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content as SPIContent;
+use Ibexa\Contracts\Core\Search\Field;
 
 /**
  * Base class for Content document field mapper.
@@ -24,7 +25,7 @@ abstract class ContentFieldMapper
     /**
      * Maps given $content to an array of search fields.
      *
-     * @return list<\Ibexa\Contracts\Core\Search\Field>
+     * @return list<Field>
      */
     abstract public function mapFields(SPIContent $content): array;
 }

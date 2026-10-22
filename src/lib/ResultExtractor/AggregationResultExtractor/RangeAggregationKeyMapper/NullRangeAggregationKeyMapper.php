@@ -13,8 +13,11 @@ use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggrega
 
 final class NullRangeAggregationKeyMapper implements RangeAggregationKeyMapper
 {
-    public function map(Aggregation $aggregation, array $languageFilter, string $key): ?string
-    {
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        string $key
+    ): ?string {
         if ($key === '*') {
             return null;
         }

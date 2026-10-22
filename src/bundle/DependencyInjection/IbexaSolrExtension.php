@@ -88,8 +88,10 @@ class IbexaSolrExtension extends ConfigurableExtension
      * @throws \InvalidArgumentException When provided tag is not defined in this extension
      * @throws \Exception
      */
-    public function loadInternal(array $mergedConfig, ContainerBuilder $container): void
-    {
+    public function loadInternal(
+        array $mergedConfig,
+        ContainerBuilder $container
+    ): void {
         // Loading configuration from lib/Resources/config/container
         $loader = new YamlFileLoader(
             $container,
@@ -116,8 +118,10 @@ class IbexaSolrExtension extends ConfigurableExtension
      *
      * @param array<string, mixed> $config
      */
-    protected function processConnectionConfiguration(ContainerBuilder $container, array $config): void
-    {
+    protected function processConnectionConfiguration(
+        ContainerBuilder $container,
+        array $config
+    ): void {
         $alias = $this->getServicePrefix();
 
         if (isset($config['default_connection'])) {
@@ -242,8 +246,11 @@ class IbexaSolrExtension extends ConfigurableExtension
      *
      * @param array<string, mixed> $connectionParams
      */
-    private function configureIndexingDepth(ContainerBuilder $container, string $connectionName, array $connectionParams): void
-    {
+    private function configureIndexingDepth(
+        ContainerBuilder $container,
+        string $connectionName,
+        array $connectionParams
+    ): void {
         $alias = $this->getServicePrefix();
 
         $defaultIndexingDepthId = "{$alias}.connection.{$connectionName}.indexing_depth.default";
@@ -258,8 +265,11 @@ class IbexaSolrExtension extends ConfigurableExtension
      *
      * @param array<mixed> $params
      */
-    protected function defineEndpoint(ContainerBuilder $container, string $alias, array $params): void
-    {
+    protected function defineEndpoint(
+        ContainerBuilder $container,
+        string $alias,
+        array $params
+    ): void {
         $definition = new Definition(self::ENDPOINT_CLASS, [$params]);
         $definition->addTag(self::ENDPOINT_TAG, ['alias' => $alias]);
 
@@ -273,15 +283,17 @@ class IbexaSolrExtension extends ConfigurableExtension
      * @param array<array<mixed>> $config
      */
     #[\Override]
-    public function getConfiguration(array $config, ContainerBuilder $container): ?ConfigurationInterface
-    {
+    public function getConfiguration(
+        array $config,
+        ContainerBuilder $container
+    ): ?ConfigurationInterface {
         return new Configuration($this->getAlias());
     }
 
     /**
      * Builds boost factor map from the given $config.
      *
-     * @see \Ibexa\Solr\FieldMapper\BoostFactorProvider::$map
+     * @see BoostFactorProvider::$map
      *
      * @param array<string, mixed> $config
      *
@@ -314,8 +326,10 @@ class IbexaSolrExtension extends ConfigurableExtension
     /**
      * @phpstan-param SolrHttpClientConfigArray $httpClientConfig
      */
-    private function configureHttpClient(ContainerBuilder $container, array $httpClientConfig): void
-    {
+    private function configureHttpClient(
+        ContainerBuilder $container,
+        array $httpClientConfig
+    ): void {
         $container->setParameter('ibexa.solr.http_client.timeout', $httpClientConfig['timeout']);
         $container->setParameter(
             'ibexa.solr.http_client.max_retries',

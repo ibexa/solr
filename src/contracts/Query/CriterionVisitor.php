@@ -23,7 +23,10 @@ abstract class CriterionVisitor
     /**
      * Map field value to a proper Solr representation.
      */
-    abstract public function visit(CriterionInterface $criterion, ?self $subVisitor = null);
+    abstract public function visit(
+        CriterionInterface $criterion,
+        ?self $subVisitor = null
+    );
 
     /**
      * Get Solr range.
@@ -37,8 +40,11 @@ abstract class CriterionVisitor
      * - case Operator::LTE:
      * - case Operator::BETWEEN:
      */
-    protected function getRange(string $operator, mixed $start, mixed $end): string
-    {
+    protected function getRange(
+        string $operator,
+        mixed $start,
+        mixed $end
+    ): string {
         $startBrace = '[';
         $startValue = '*';
         $endValue = '*';
@@ -95,8 +101,10 @@ abstract class CriterionVisitor
      *
      * Does not include quotes in the returned string, this needs to be done by the consumer code.
      */
-    protected function escapeQuote(string $string, bool $doubleQuote = false): string
-    {
+    protected function escapeQuote(
+        string $string,
+        bool $doubleQuote = false
+    ): string {
         $pattern = ($doubleQuote ? '/("|\\\)/' : '/(\'|\\\)/');
 
         return preg_replace($pattern, '\\\$1', $string);
@@ -107,8 +115,10 @@ abstract class CriterionVisitor
      *
      * @param bool $allowWildcard Allow "*" in expression.
      */
-    protected function escapeExpressions(string $string, bool $allowWildcard = false): ?string
-    {
+    protected function escapeExpressions(
+        string $string,
+        bool $allowWildcard = false
+    ): ?string {
         if ($allowWildcard) {
             $reservedCharacters = preg_quote('+-&|!(){}[]^"~?:\\ ');
         } else {

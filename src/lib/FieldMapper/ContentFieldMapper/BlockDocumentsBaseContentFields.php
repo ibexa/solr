@@ -27,8 +27,7 @@ class BlockDocumentsBaseContentFields extends ContentFieldMapper
         protected readonly ContentTypeHandler $contentTypeHandler,
         protected readonly ObjectStateHandler $objectStateHandler,
         protected readonly SectionHandler $sectionHandler
-    ) {
-    }
+    ) {}
 
     public function accept(Content $content): bool
     {

@@ -18,6 +18,5 @@ class Message
     public function __construct(
         public array $headers = [],
         public string $body = ''
-    ) {
-    }
+    ) {}
 }

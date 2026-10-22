@@ -13,15 +13,14 @@ use OutOfBoundsException;
 final class CoreFilterRegistry
 {
     /**
-     * @param array<string, \Ibexa\Solr\CoreFilter> $coreFilters
+     * @param array<string, CoreFilter> $coreFilters
      */
     public function __construct(
         private array $coreFilters = []
-    ) {
-    }
+    ) {}
 
     /**
-     * @return array<string, \Ibexa\Solr\CoreFilter> $coreFilters
+     * @return array<string, CoreFilter> $coreFilters
      */
     public function getCoreFilters(): array
     {
@@ -29,7 +28,7 @@ final class CoreFilterRegistry
     }
 
     /**
-     * @param array<string, \Ibexa\Solr\CoreFilter> $coreFilters
+     * @param array<string, CoreFilter> $coreFilters
      */
     public function setCoreFilters(array $coreFilters): void
     {
@@ -45,8 +44,10 @@ final class CoreFilterRegistry
         return $this->coreFilters[$connectionName];
     }
 
-    public function addCoreFilter(string $connectionName, CoreFilter $coreFilter): void
-    {
+    public function addCoreFilter(
+        string $connectionName,
+        CoreFilter $coreFilter
+    ): void {
         $this->coreFilters[$connectionName] = $coreFilter;
     }
 

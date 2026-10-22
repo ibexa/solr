@@ -35,10 +35,12 @@ class ModifiedIn extends DateMetadata
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\DateMetadata $criterion
+     * @param Criterion\DateMetadata $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $values = [];
         foreach ($criterion->value as $value) {
             $values[] = 'content_modification_date_dt:"' . $this->getSolrTime($value) . '"';

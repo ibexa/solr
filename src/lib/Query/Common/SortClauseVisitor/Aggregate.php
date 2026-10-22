@@ -19,12 +19,12 @@ class Aggregate extends SortClauseVisitor
     /**
      * Array of available visitors.
      *
-     * @var iterable<\Ibexa\Contracts\Solr\Query\SortClauseVisitor>
+     * @var iterable<SortClauseVisitor>
      */
     protected iterable $visitors;
 
     /**
-     * @param iterable<\Ibexa\Contracts\Solr\Query\SortClauseVisitor> $visitors
+     * @param iterable<SortClauseVisitor> $visitors
      */
     public function __construct(iterable $visitors)
     {
@@ -42,7 +42,7 @@ class Aggregate extends SortClauseVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException
+     * @throws NotImplementedException
      */
     public function visit(SortClause $sortClause): string
     {

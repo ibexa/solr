@@ -17,5 +17,10 @@ interface HttpClient
      *
      * Returns the result from the remote server.
      */
-    public function request(string $method, Endpoint $endpoint, string $path, ?Message $message = null): Message;
+    public function request(
+        string $method,
+        Endpoint $endpoint,
+        string $path,
+        ?Message $message = null
+    ): Message;
 }

@@ -8,6 +8,7 @@
 namespace Ibexa\Solr\Query\Common\CriterionVisitor\CustomField;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CustomField;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
@@ -23,7 +24,7 @@ class CustomFieldIn extends CriterionVisitor
     public function canVisit(CriterionInterface $criterion): bool
     {
         return
-            $criterion instanceof Criterion\CustomField &&
+            $criterion instanceof CustomField &&
             (
                 ($criterion->operator ?: Operator::IN) === Operator::IN ||
                 $criterion->operator === Operator::EQ ||
@@ -34,10 +35,12 @@ class CustomFieldIn extends CriterionVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CustomField $criterion
+     * @param CustomField $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $queries = [];
         $values = (array)$criterion->value;
 
@@ -54,7 +57,7 @@ class CustomFieldIn extends CriterionVisitor
         return '(' . implode(' OR ', $queries) . ')';
     }
 
-    private function isRegExp($preparedValue): int|false
+    private function isRegExp($preparedValue): int | false
     {
         return preg_match('#^/.*/$#', (string) $preparedValue);
     }

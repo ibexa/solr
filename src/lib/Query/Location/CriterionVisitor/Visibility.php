@@ -23,10 +23,12 @@ class Visibility extends CriterionVisitor
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Visibility $criterion
+     * @param Criterion\Visibility $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         return 'invisible_b:' . ($criterion->value[0] === Criterion\Visibility::HIDDEN ? 'true' : 'false');
     }
 }

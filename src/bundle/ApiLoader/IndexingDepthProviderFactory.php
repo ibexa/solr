@@ -15,15 +15,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 readonly class IndexingDepthProviderFactory
 {
     /**
-     * @param class-string<\Ibexa\Solr\FieldMapper\IndexingDepthProvider> $indexingDepthProviderClass
+     * @param class-string<IndexingDepthProvider> $indexingDepthProviderClass
      */
     public function __construct(
         private ContainerInterface $container,
         private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
         private string $defaultConnection,
         private string $indexingDepthProviderClass
-    ) {
-    }
+    ) {}
 
     public function buildService(): IndexingDepthProvider
     {

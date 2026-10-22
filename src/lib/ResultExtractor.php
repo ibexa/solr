@@ -7,6 +7,7 @@
 
 namespace Ibexa\Solr;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Spellcheck;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResultCollection;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
@@ -26,16 +27,15 @@ abstract class ResultExtractor
     public function __construct(
         protected AggregationResultExtractor $aggregationResultExtractor,
         protected EndpointRegistry $endpointRegistry
-    ) {
-    }
+    ) {}
 
     /**
      * Extracts search result from $data returned by Solr backend.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation[] $aggregations
+     * @param Aggregation[] $aggregations
      * @param array{languages?: string[], languageCode?: string, useAlwaysAvailable?: bool} $languageFilter
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult<\Ibexa\Contracts\Core\Repository\Values\ValueObject>
+     * @return SearchResult<ValueObject>
      */
     public function extract(
         stdClass $data,
@@ -116,7 +116,7 @@ abstract class ResultExtractor
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation[] $aggregations
+     * @param Aggregation[] $aggregations
      * @param array{languages?: string[], languageCode?: string, useAlwaysAvailable?: bool} $languageFilter
      */
     protected function extractAggregations(
@@ -152,8 +152,10 @@ abstract class ResultExtractor
         );
     }
 
-    protected function extractSpellcheck(stdClass $data, ?Spellcheck $spellcheck): ?SpellcheckResult
-    {
+    protected function extractSpellcheck(
+        stdClass $data,
+        ?Spellcheck $spellcheck
+    ): ?SpellcheckResult {
         if ($spellcheck === null) {
             return null;
         }

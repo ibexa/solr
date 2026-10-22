@@ -36,10 +36,12 @@ class ModifiedBetween extends DateMetadata
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\DateMetadata $criterion
+     * @param Criterion\DateMetadata $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $start = $this->getSolrTime($criterion->value[0]);
         $end = isset($criterion->value[1]) ? $this->getSolrTime($criterion->value[1]) : null;
 

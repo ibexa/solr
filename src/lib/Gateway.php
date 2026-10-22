@@ -8,6 +8,7 @@
 namespace Ibexa\Solr;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Search\Document;
 
 /**
  * The Content Search Gateway provides the implementation for one database to
@@ -21,7 +22,10 @@ abstract class Gateway
      * @param array<string, mixed> $fieldFilters - a map of filters for the returned fields.
      *        Currently supported: <code>array("languages" => array(<language1>,..))</code>.
      */
-    abstract public function findContent(Query $query, array $fieldFilters = []): mixed;
+    abstract public function findContent(
+        Query $query,
+        array $fieldFilters = []
+    ): mixed;
 
     /**
      * Returns search hits for the given query.
@@ -29,7 +33,10 @@ abstract class Gateway
      * @param array<string, mixed> $fieldFilters - a map of filters for the returned fields.
      *        Currently supported: <code>array("languages" => array(<language1>,..))</code>.
      */
-    abstract public function findLocations(Query $query, array $fieldFilters = []): mixed;
+    abstract public function findLocations(
+        Query $query,
+        array $fieldFilters = []
+    ): mixed;
 
     /**
      * Returns all search hits for given query, that will be performed on all endpoints.
@@ -42,7 +49,7 @@ abstract class Gateway
      * Documents are given as an array of the array of documents. The array of documents
      * holds documents for all translations of the particular entity.
      *
-     * @param \Ibexa\Contracts\Core\Search\Document[][] $documents
+     * @param Document[][] $documents
      */
     abstract public function bulkIndexDocuments(array $documents);
 

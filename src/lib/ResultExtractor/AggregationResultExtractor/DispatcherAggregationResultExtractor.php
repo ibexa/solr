@@ -17,20 +17,24 @@ use stdClass;
 final readonly class DispatcherAggregationResultExtractor implements AggregationResultExtractor
 {
     /**
-     * @param \Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor[] $extractors
+     * @param AggregationResultExtractor[] $extractors
      */
     public function __construct(
         private iterable $extractors
-    ) {
-    }
+    ) {}
 
-    public function canVisit(Aggregation $aggregation, array $languageFilter): bool
-    {
+    public function canVisit(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): bool {
         return $this->findExtractor($aggregation, $languageFilter) !== null;
     }
 
-    public function extract(Aggregation $aggregation, array $languageFilter, stdClass $data): AggregationResult
-    {
+    public function extract(
+        Aggregation $aggregation,
+        array $languageFilter,
+        stdClass $data
+    ): AggregationResult {
         $extractor = $this->findExtractor($aggregation, $languageFilter);
 
         if ($extractor === null) {

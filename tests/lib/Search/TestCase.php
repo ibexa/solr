@@ -12,6 +12,4 @@ use PHPUnit\Framework\TestCase as BaseTestCase;
 /**
  * Base test case for Solr related tests.
  */
-abstract class TestCase extends BaseTestCase
-{
-}
+abstract class TestCase extends BaseTestCase {}

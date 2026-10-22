@@ -23,10 +23,12 @@ class Ancestor extends CriterionVisitor
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Ancestor $criterion
+     * @param AncestorCriterion $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $idSet = [];
         foreach ($criterion->value as $value) {
             foreach (explode('/', trim((string)$value, '/')) as $id) {

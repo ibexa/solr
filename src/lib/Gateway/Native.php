@@ -29,18 +29,21 @@ class Native extends Gateway
         protected readonly QueryConverter $locationQueryConverter,
         protected readonly UpdateSerializerInterface $updateSerializer,
         protected readonly DistributionStrategy $distributionStrategy
-    ) {
-    }
+    ) {}
 
-    public function findContent(Query $query, array $languageSettings = []): mixed
-    {
+    public function findContent(
+        Query $query,
+        array $languageSettings = []
+    ): mixed {
         $parameters = $this->contentQueryConverter->convert($query, $languageSettings);
 
         return $this->internalFind($parameters, $languageSettings);
     }
 
-    public function findLocations(Query $query, array $languageSettings = []): mixed
-    {
+    public function findLocations(
+        Query $query,
+        array $languageSettings = []
+    ): mixed {
         $parameters = $this->locationQueryConverter->convert($query);
 
         return $this->internalFind($parameters, $languageSettings);
@@ -52,8 +55,10 @@ class Native extends Gateway
      * @param array<string, mixed> $languageSettings - a map of filters for the returned fields.
      *        Currently supported: <code>array("languages" => array(<language1>,..))</code>.
      */
-    protected function internalFind(array $parameters, array $languageSettings = []): mixed
-    {
+    protected function internalFind(
+        array $parameters,
+        array $languageSettings = []
+    ): mixed {
         $parameters = $this->distributionStrategy->getSearchParameters($parameters, $languageSettings);
 
         return $this->search($parameters);
@@ -130,7 +135,7 @@ class Native extends Gateway
             }
         }
 
-        return  implode(',', $shards);
+        return implode(',', $shards);
     }
 
     /**
@@ -144,7 +149,7 @@ class Native extends Gateway
      * - On large amounts of data make sure to iterate with several calls to this function with a limited
      *   set of documents, amount you have memory for depends on server, size of documents, & PHP version.
      *
-     * @param array<string, list<\Ibexa\Contracts\Core\Search\Document>> $documents
+     * @param array<string, list<Document>> $documents
      */
     public function bulkIndexDocuments(array $documents): void
     {
@@ -217,10 +222,12 @@ class Native extends Gateway
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Search\Document[] $documents
+     * @param Document[] $documents
      */
-    protected function doBulkIndexDocuments(Endpoint $endpoint, array $documents): void
-    {
+    protected function doBulkIndexDocuments(
+        Endpoint $endpoint,
+        array $documents
+    ): void {
         $updates = $this->updateSerializer->serialize($documents);
         $result = $this->client->request(
             'POST',

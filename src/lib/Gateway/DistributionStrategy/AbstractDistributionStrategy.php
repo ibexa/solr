@@ -18,11 +18,12 @@ abstract class AbstractDistributionStrategy implements DistributionStrategy
     public function __construct(
         protected readonly EndpointRegistry $endpointRegistry,
         protected readonly EndpointResolver $endpointResolver
-    ) {
-    }
+    ) {}
 
-    public function getSearchParameters(array $parameters, ?array $languageSettings = null): array
-    {
+    public function getSearchParameters(
+        array $parameters,
+        ?array $languageSettings = null
+    ): array {
         if ($this->endpointResolver instanceof SingleEndpointResolver && !$this->endpointResolver->hasMultipleEndpoints()) {
             return $parameters;
         }
@@ -44,5 +45,8 @@ abstract class AbstractDistributionStrategy implements DistributionStrategy
      *
      * @return array<string, mixed>
      */
-    abstract protected function appendSearchTargets(array $parameters, array $searchTargets): array;
+    abstract protected function appendSearchTargets(
+        array $parameters,
+        array $searchTargets
+    ): array;
 }

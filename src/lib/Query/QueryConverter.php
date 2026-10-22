@@ -24,5 +24,8 @@ abstract class QueryConverter
      *
      * @return array<mixed>
      */
-    abstract public function convert(Query $query, array $languageSettings = []): array;
+    abstract public function convert(
+        Query $query,
+        array $languageSettings = []
+    ): array;
 }

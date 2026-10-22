@@ -28,11 +28,13 @@ class LogicalAnd extends CriterionVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalAnd $criterion
+     * @param Criterion\LogicalAnd $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
-        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalAnd $criterion */
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
+        /** @var Criterion\LogicalAnd $criterion */
         if (!isset($criterion->criteria[0])) {
             throw new RuntimeException('Invalid aggregation in LogicalAnd criterion.');
         }

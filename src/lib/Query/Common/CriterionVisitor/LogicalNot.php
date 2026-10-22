@@ -25,10 +25,12 @@ class LogicalNot extends CriterionVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalNot $criterion
+     * @param Criterion\LogicalNot $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         if (!isset($criterion->criteria[0]) ||
              (\count($criterion->criteria) > 1)) {
             throw new RuntimeException('Invalid aggregation in LogicalNot criterion.');

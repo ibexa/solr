@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
-use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\UserEmail;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Solr\FieldMapper\ContentFieldMapper\UserDocumentFields;
@@ -18,7 +18,7 @@ final class UserEmailIn extends CriterionVisitor
 {
     public function canVisit(CriterionInterface $criterion): bool
     {
-        if (!$criterion instanceof Criterion\UserEmail) {
+        if (!$criterion instanceof UserEmail) {
             return false;
         }
 
@@ -26,10 +26,12 @@ final class UserEmailIn extends CriterionVisitor
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\UserEmail $criterion
+     * @param UserEmail $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         return sprintf(
             '(%s)',
             implode(

@@ -9,6 +9,7 @@ namespace Ibexa\Solr\Query\Common\QueryConverter;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\EmbeddingQuery;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
 use Ibexa\Contracts\Solr\Query\AggregationVisitor;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Contracts\Solr\Query\EmbeddingVisitor;
@@ -25,11 +26,12 @@ class NativeQueryConverter extends QueryConverter
         protected readonly SortClauseVisitor $sortClauseVisitor,
         private readonly AggregationVisitor $aggregationVisitor,
         private readonly EmbeddingVisitor $embeddingVisitor
-    ) {
-    }
+    ) {}
 
-    public function convert(Query $query, array $languageSettings = []): array
-    {
+    public function convert(
+        Query $query,
+        array $languageSettings = []
+    ): array {
         $params = [
             'q' => '{!lucene}' . ($query->query !== null ? $this->criterionVisitor->visit($query->query) : ''),
             'fq' => ['{!lucene}' . ($query->filter !== null ? $this->criterionVisitor->visit($query->filter) : '')],
@@ -75,7 +77,7 @@ class NativeQueryConverter extends QueryConverter
     /**
      * Converts an array of sort clause objects to a proper Solr representation.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause[] $sortClauses
+     * @param SortClause[] $sortClauses
      */
     private function getSortClauses(array $sortClauses): string
     {

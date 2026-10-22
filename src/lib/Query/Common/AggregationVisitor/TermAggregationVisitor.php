@@ -17,11 +17,12 @@ final class TermAggregationVisitor extends AbstractTermAggregationVisitor
     public function __construct(
         private readonly string $aggregationClass,
         private readonly AggregationFieldResolver $aggregationFieldResolver
-    ) {
-    }
+    ) {}
 
-    public function canVisit(Aggregation $aggregation, array $languageFilter): bool
-    {
+    public function canVisit(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): bool {
         return $aggregation instanceof $this->aggregationClass;
     }
 

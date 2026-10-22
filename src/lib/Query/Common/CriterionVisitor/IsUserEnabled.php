@@ -22,10 +22,12 @@ final class IsUserEnabled extends CriterionVisitor
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\IsUserEnabled $criterion
+     * @param Criterion\IsUserEnabled $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $value = $criterion->value;
         if (!is_array($value) || !is_bool($value[0])) {
             throw new \LogicException(

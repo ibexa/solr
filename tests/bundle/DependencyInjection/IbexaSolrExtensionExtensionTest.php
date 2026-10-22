@@ -11,6 +11,7 @@ use Ibexa\Bundle\Solr\DependencyInjection\Configuration;
 use Ibexa\Bundle\Solr\DependencyInjection\IbexaSolrExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
 /**
  * @phpstan-import-type SolrHttpClientConfigArray from IbexaSolrExtension
@@ -28,7 +29,7 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     }
 
     /**
-     * @return \Symfony\Component\DependencyInjection\Extension\ExtensionInterface[]
+     * @return ExtensionInterface[]
      */
     protected function getContainerExtensions(): array
     {
@@ -143,8 +144,11 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
      * @param array<string, mixed> $endpointValues
      * @param array<string, mixed> $expectedArgument
      */
-    public function testEndpoint(string $endpointName, array $endpointValues, array $expectedArgument): void
-    {
+    public function testEndpoint(
+        string $endpointName,
+        array $endpointValues,
+        array $expectedArgument
+    ): void {
         $this->load(['endpoints' => [$endpointName => $endpointValues]]);
 
         $this->assertContainerBuilderHasServiceDefinitionWithTag(
@@ -664,8 +668,10 @@ class IbexaSolrExtensionExtensionTest extends AbstractExtensionTestCase
     /**
      * @dataProvider dataProvideForTestBoostFactorMap
      */
-    public function testBoostFactorMap(array $configuration, array $map): void
-    {
+    public function testBoostFactorMap(
+        array $configuration,
+        array $map
+    ): void {
         $this->load($configuration);
 
         $this->assertContainerBuilderHasParameter(

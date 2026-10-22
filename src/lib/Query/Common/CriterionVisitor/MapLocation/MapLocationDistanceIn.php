@@ -8,7 +8,9 @@
 namespace Ibexa\Solr\Query\Common\CriterionVisitor\MapLocation;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\MapLocationDistance;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Value\MapLocationValue;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
@@ -22,24 +24,26 @@ class MapLocationDistanceIn extends MapLocation
     /**
      * Check if visitor is applicable to current criterion.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion $criterion
+     * @param Criterion $criterion
      */
     public function canVisit(CriterionInterface $criterion): bool
     {
         return
-            $criterion instanceof Criterion\MapLocationDistance &&
+            $criterion instanceof MapLocationDistance &&
             (($criterion->operator ?: Operator::IN) === Operator::IN ||
               $criterion->operator === Operator::EQ);
     }
 
     /**
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException If no searchable fields are found for the given criterion target.
+     * @throws InvalidArgumentException If no searchable fields are found for the given criterion target.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\MapLocationDistance $criterion
+     * @param MapLocationDistance $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
-        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Value\MapLocationValue $location */
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
+        /** @var MapLocationValue $location */
         $location = $criterion->valueData;
         $criterion->value = (array)$criterion->value;
 

@@ -19,7 +19,7 @@ use Psr\Log\LoggerInterface;
 
 class Indexer extends IncrementalIndexer
 {
-    /** @var \Ibexa\Solr\Handler */
+    /** @var SolrSearchHandler */
     protected SearchHandler $searchHandler;
 
     public function __construct(
@@ -44,8 +44,10 @@ class Indexer extends IncrementalIndexer
     /**
      * @param bool $commit
      */
-    public function updateSearchIndex(array $contentIds, $commit): void
-    {
+    public function updateSearchIndex(
+        array $contentIds,
+        $commit
+    ): void {
         $documents = [];
         $contentHandler = $this->persistenceHandler->contentHandler();
         foreach ($contentIds as $contentId) {

@@ -20,8 +20,11 @@ class WordVisitor extends WordBase
      * @param array<string, mixed>|null $options
      */
     #[\Override]
-    public function visit(Node $node, ?Visitor $subVisitor = null, $options = null): string
-    {
+    public function visit(
+        Node $node,
+        ?Visitor $subVisitor = null,
+        $options = null
+    ): string {
         $word = parent::visit($node, $subVisitor, $options);
 
         if (isset($options['fuzziness'])) {

@@ -20,10 +20,12 @@ final class CompositeCriterion extends CriterionVisitor
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CompositeCriterion $criterion
+     * @param Criterion\CompositeCriterion $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         return $subVisitor?->visit($criterion->criteria, $subVisitor) ?? '';
     }
 }

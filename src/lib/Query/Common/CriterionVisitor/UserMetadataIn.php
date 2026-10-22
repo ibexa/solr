@@ -10,6 +10,7 @@ namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\UserMetadata;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
@@ -24,22 +25,24 @@ class UserMetadataIn extends CriterionVisitor
     public function canVisit(CriterionInterface $criterion): bool
     {
         return
-            $criterion instanceof Criterion\UserMetadata &&
+            $criterion instanceof UserMetadata &&
             (($criterion->operator ?: Operator::IN) === Operator::IN ||
               $criterion->operator === Operator::EQ);
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException
+     * @throws NotImplementedException
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\UserMetadata $criterion
+     * @param UserMetadata $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $solrField = match ($criterion->target) {
-            Criterion\UserMetadata::MODIFIER => 'content_version_creator_user_id_id',
-            Criterion\UserMetadata::OWNER => 'content_owner_user_id_id',
-            Criterion\UserMetadata::GROUP => 'content_owner_user_group_ids_mid',
+            UserMetadata::MODIFIER => 'content_version_creator_user_id_id',
+            UserMetadata::OWNER => 'content_owner_user_id_id',
+            UserMetadata::GROUP => 'content_owner_user_group_ids_mid',
             default => throw new NotImplementedException('No visitor available for target: ' . $criterion->target . ' with operator: ' . $criterion->operator),
         };
 

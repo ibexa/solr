@@ -27,16 +27,19 @@ class ContentDocumentTranslatedContentNameField extends ContentTranslationFieldM
     public function __construct(
         protected readonly Handler $contentTypeHandler,
         protected readonly BoostFactorProvider $boostFactorProvider
-    ) {
-    }
+    ) {}
 
-    public function accept(Content $content, string $languageCode): bool
-    {
+    public function accept(
+        Content $content,
+        string $languageCode
+    ): bool {
         return true;
     }
 
-    public function mapFields(Content $content, string $languageCode): array
-    {
+    public function mapFields(
+        Content $content,
+        string $languageCode
+    ): array {
         if (!isset($content->versionInfo->names[$languageCode])) {
             return [];
         }

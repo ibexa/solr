@@ -17,16 +17,17 @@ final readonly class SubtreeTermAggregationVisitor implements AggregationVisitor
     public function __construct(
         private string $pathStringFieldName,
         private string $locationIdFieldName
-    ) {
-    }
+    ) {}
 
-    public function canVisit(Aggregation $aggregation, array $languageFilter): bool
-    {
+    public function canVisit(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): bool {
         return $aggregation instanceof SubtreeTermAggregation;
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Location\SubtreeTermAggregation $aggregation
+     * @param SubtreeTermAggregation $aggregation
      */
     public function visit(
         AggregationVisitor $dispatcherVisitor,

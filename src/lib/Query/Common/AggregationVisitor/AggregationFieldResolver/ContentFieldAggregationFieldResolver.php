@@ -19,8 +19,7 @@ final readonly class ContentFieldAggregationFieldResolver implements Aggregation
     public function __construct(
         private FieldNameResolver $fieldNameResolver,
         private string $searchFieldName
-    ) {
-    }
+    ) {}
 
     public function resolveTargetField(Aggregation $aggregation): string
     {

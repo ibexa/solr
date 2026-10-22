@@ -29,22 +29,26 @@ final readonly class RangeAggregationResultExtractor implements AggregationResul
         /** @phpstan-var class-string<TAggregation> */
         private string $aggregationClass,
         private RangeAggregationKeyMapper $keyMapper
-    ) {
-    }
+    ) {}
 
     /**
      * @phpstan-param TAggregation $aggregation
      */
-    public function canVisit(Aggregation $aggregation, array $languageFilter): bool
-    {
+    public function canVisit(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): bool {
         return $aggregation instanceof $this->aggregationClass;
     }
 
     /**
      * @phpstan-param TAggregation $aggregation
      */
-    public function extract(Aggregation $aggregation, array $languageFilter, stdClass $data): AggregationResult
-    {
+    public function extract(
+        Aggregation $aggregation,
+        array $languageFilter,
+        stdClass $data
+    ): AggregationResult {
         $entries = [];
 
         foreach ($data as $key => $bucket) {
@@ -73,11 +77,13 @@ final readonly class RangeAggregationResultExtractor implements AggregationResul
     /**
      * Ensures that results entries are in the exact same order as they ware defined in aggregation.
      *
-     * @phpstan-param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation<mixed> $aggregation
-     * @phpstan-param \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\RangeAggregationResultEntry<mixed>[] $entries
+     * @phpstan-param AbstractRangeAggregation<mixed> $aggregation
+     * @phpstan-param RangeAggregationResultEntry<mixed>[] $entries
      */
-    private function sort(AbstractRangeAggregation $aggregation, array &$entries): void
-    {
+    private function sort(
+        AbstractRangeAggregation $aggregation,
+        array &$entries
+    ): void {
         $order = $aggregation->getRanges();
 
         $comparator = (static fn (RangeAggregationResultEntry $a, RangeAggregationResultEntry $b): int => array_search($a->getKey(), $order) <=> array_search($b->getKey(), $order));

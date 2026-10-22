@@ -37,8 +37,10 @@ final class XmlUpdateSerializer extends UpdateSerializer implements UpdateSerial
         return $xmlWriter->outputMemory(true);
     }
 
-    private function writeDocument(XMLWriter $xmlWriter, Document $document): void
-    {
+    private function writeDocument(
+        XMLWriter $xmlWriter,
+        Document $document
+    ): void {
         $xmlWriter->startElement('doc');
 
         $this->writeField(
@@ -61,8 +63,10 @@ final class XmlUpdateSerializer extends UpdateSerializer implements UpdateSerial
         $xmlWriter->endElement();
     }
 
-    private function writeField(XMLWriter $xmlWriter, Field $field): void
-    {
+    private function writeField(
+        XMLWriter $xmlWriter,
+        Field $field
+    ): void {
         $values = (array)$this->fieldValueMapper->map($field);
         $name = $this->nameGenerator->getTypedName($field->getName(), $field->getType());
 

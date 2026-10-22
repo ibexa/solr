@@ -17,15 +17,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 readonly class BoostFactorProviderFactory
 {
     /**
-     * @param class-string<\Ibexa\Solr\FieldMapper\BoostFactorProvider> $boostFactorProviderClass
+     * @param class-string<BoostFactorProvider> $boostFactorProviderClass
      */
     public function __construct(
         private ContainerInterface $container,
         private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
         private string $defaultConnection,
         private string $boostFactorProviderClass
-    ) {
-    }
+    ) {}
 
     public function buildService(): BoostFactorProvider
     {

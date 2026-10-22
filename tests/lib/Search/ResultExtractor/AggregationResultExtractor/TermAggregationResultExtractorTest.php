@@ -20,7 +20,7 @@ use stdClass;
 
 final class TermAggregationResultExtractorTest extends AbstractAggregationResultExtractorTest
 {
-    private TermAggregationKeyMapper&MockObject $keyMapper;
+    private TermAggregationKeyMapper & MockObject $keyMapper;
 
     #[\Override]
     protected function setUp(): void
@@ -43,7 +43,7 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
 
     /**
      * @return iterable<string, array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     0: Aggregation,
      *     1: array{},
      *     2: bool
      * }>
@@ -65,10 +65,10 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
 
     /**
      * @return iterable<string, array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     0: Aggregation,
      *     1: array{},
-     *     2: \stdClass,
-     *     3: \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResult
+     *     2: stdClass,
+     *     3: TermAggregationResult
      * }>
      */
     public function dataProviderForTestExtract(): iterable
@@ -117,8 +117,10 @@ final class TermAggregationResultExtractorTest extends AbstractAggregationResult
         return $data;
     }
 
-    private function createRawBucket(string $val, int $count): stdClass
-    {
+    private function createRawBucket(
+        string $val,
+        int $count
+    ): stdClass {
         $bucket = new stdClass();
         $bucket->val = $val;
         $bucket->count = $count;

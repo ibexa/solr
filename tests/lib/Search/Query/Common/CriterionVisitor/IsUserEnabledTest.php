@@ -38,7 +38,7 @@ final class IsUserEnabledTest extends BaseCriterionVisitorTestCase
     /**
      * @return iterable<string, array{
      *     0: string,
-     *     1: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\IsUserEnabled
+     *     1: Criterion\IsUserEnabled
      * }>
      */
     protected function provideDataForTestVisit(): iterable

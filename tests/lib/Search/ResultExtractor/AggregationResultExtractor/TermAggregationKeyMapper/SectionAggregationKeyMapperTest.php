@@ -21,7 +21,7 @@ final class SectionAggregationKeyMapperTest extends TestCase
 {
     private const array EXAMPLE_SECTION_IDS = [1, 2, 3];
 
-    private SectionService&MockObject $sectionService;
+    private SectionService & MockObject $sectionService;
 
     private SectionAggregationKeyMapper $mapper;
 
@@ -48,7 +48,7 @@ final class SectionAggregationKeyMapperTest extends TestCase
     /**
      * @param iterable<int> $sectionIds
      *
-     * @return array<int, \Ibexa\Contracts\Core\Repository\Values\Content\Section>
+     * @return array<int, Section>
      */
     private function configureSectionServiceMock(iterable $sectionIds): array
     {
@@ -59,7 +59,7 @@ final class SectionAggregationKeyMapperTest extends TestCase
 
         $this->sectionService
             ->method('loadSection')
-            ->willReturnCallback(static function ($id) use ($sections): \Ibexa\Contracts\Core\Repository\Values\Content\Section&\PHPUnit\Framework\MockObject\MockObject {
+            ->willReturnCallback(static function ($id) use ($sections): Section & \PHPUnit\Framework\MockObject\MockObject {
                 if (isset($sections[$id])) {
                     return $sections[$id];
                 }

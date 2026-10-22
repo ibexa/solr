@@ -74,14 +74,15 @@ class BoostFactorProvider
          * ```
          */
         private array $map = []
-    ) {
-    }
+    ) {}
 
     /**
      * Get boost factor for a Content field by the given $contentType and $fieldDefinition.
      */
-    public function getContentFieldBoostFactor(ContentType $contentType, FieldDefinition $fieldDefinition): float
-    {
+    public function getContentFieldBoostFactor(
+        ContentType $contentType,
+        FieldDefinition $fieldDefinition
+    ): float {
         $typeIdentifier = $contentType->identifier;
         $fieldIdentifier = $fieldDefinition->identifier;
 
@@ -99,8 +100,10 @@ class BoostFactorProvider
     /**
      * Get boost factor for a Content meta field by the given $fieldName.
      */
-    public function getContentMetaFieldBoostFactor(ContentType $contentType, string $fieldName): float
-    {
+    public function getContentMetaFieldBoostFactor(
+        ContentType $contentType,
+        string $fieldName
+    ): float {
         $typeIdentifier = $contentType->identifier;
 
         if (!isset($this->map[self::$keyMetaFields][$typeIdentifier])) {

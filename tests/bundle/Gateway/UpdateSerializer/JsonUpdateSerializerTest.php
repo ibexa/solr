@@ -156,8 +156,10 @@ class JsonUpdateSerializerTest extends TestCase
      *
      * @throws \JsonException
      */
-    public function testSerialize(array $expectedData, array $inputDocuments): void
-    {
+    public function testSerialize(
+        array $expectedData,
+        array $inputDocuments
+    ): void {
         self::assertSame(
             json_encode($expectedData, JSON_THROW_ON_ERROR),
             $this->serializer->serialize($inputDocuments)

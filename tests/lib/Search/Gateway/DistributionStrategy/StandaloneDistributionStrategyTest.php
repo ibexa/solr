@@ -19,7 +19,7 @@ class StandaloneDistributionStrategyTest extends TestCase
 {
     private StandaloneDistributionStrategy $distributionStrategy;
 
-    private EndpointResolver&MockObject $endpointResolver;
+    private EndpointResolver & MockObject $endpointResolver;
 
     protected function setUp(): void
     {
@@ -75,7 +75,7 @@ class StandaloneDistributionStrategyTest extends TestCase
         ], $this->distributionStrategy->getSearchParameters($parameters, $languagesSettings));
     }
 
-    private function createEndpointRegistry(): EndpointRegistry&MockObject
+    private function createEndpointRegistry(): EndpointRegistry & MockObject
     {
         $endpointRegistry = $this->createMock(EndpointRegistry::class);
         $endpointRegistry

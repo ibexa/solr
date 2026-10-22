@@ -15,14 +15,16 @@ final readonly class SubtreeAggregationKeyMapper implements TermAggregationKeyMa
 {
     public function __construct(
         private TermAggregationKeyMapper $locationAggregationKeyMapper
-    ) {
-    }
+    ) {}
 
     /**
      * @param Aggregation\Location\SubtreeTermAggregation $aggregation
      */
-    public function map(Aggregation $aggregation, array $languageFilter, array $keys): array
-    {
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        array $keys
+    ): array {
         $ancestors = $this->getAncestors($aggregation->getPathString());
         $keys = array_filter($keys, static fn ($key): bool => !in_array($key, $ancestors));
 

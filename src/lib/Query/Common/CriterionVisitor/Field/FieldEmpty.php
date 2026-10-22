@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Solr\Query\Common\CriterionVisitor\Field;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\IsFieldEmpty;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Core\Search\FieldType\BooleanField;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
@@ -37,16 +38,18 @@ final class FieldEmpty extends Field
      */
     public function canVisit(CriterionInterface $criterion): bool
     {
-        return $criterion instanceof Criterion\IsFieldEmpty;
+        return $criterion instanceof IsFieldEmpty;
     }
 
     /**
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException If no searchable fields are found for the given criterion target.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\IsFieldEmpty $criterion
+     * @param IsFieldEmpty $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $searchFields = $this->getSearchFields($criterion);
 
         if (empty($searchFields)) {

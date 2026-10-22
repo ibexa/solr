@@ -25,8 +25,7 @@ class LocationDocumentBaseFields extends LocationFieldMapper
         private readonly BookmarkHandler $bookmarkHandler,
         protected readonly Handler $contentHandler,
         protected readonly ContentTypeHandler $contentTypeHandler
-    ) {
-    }
+    ) {}
 
     public function accept(Location $location): bool
     {

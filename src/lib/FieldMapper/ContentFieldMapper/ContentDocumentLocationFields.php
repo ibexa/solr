@@ -23,8 +23,7 @@ class ContentDocumentLocationFields extends ContentFieldMapper
     public function __construct(
         private readonly BookmarkHandler $bookmarkHandler,
         protected readonly Handler $locationHandler
-    ) {
-    }
+    ) {}
 
     public function accept(Content $content): bool
     {

@@ -8,6 +8,7 @@
 namespace Ibexa\Solr\Query\Common\SortClauseVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\Target\FieldTarget;
 use Ibexa\Contracts\Solr\Query\SortClauseVisitor;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Ibexa\Core\Search\Common\FieldNameResolver;
@@ -19,8 +20,7 @@ class Field extends SortClauseVisitor
 {
     public function __construct(
         protected readonly FieldNameResolver $fieldNameResolver
-    ) {
-    }
+    ) {}
 
     protected function getSortFieldName(
         SortClause $sortClause,
@@ -42,11 +42,11 @@ class Field extends SortClauseVisitor
     /**
      * Map the $sortClause to a proper Solr representation.
      *
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException If no sortable fields are found for the given sort clause target.
+     * @throws InvalidArgumentException If no sortable fields are found for the given sort clause target.
      */
     public function visit(SortClause $sortClause): string
     {
-        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\Target\FieldTarget $target */
+        /** @var FieldTarget $target */
         $target = $sortClause->targetData;
         $fieldName = $this->getSortFieldName(
             $sortClause,

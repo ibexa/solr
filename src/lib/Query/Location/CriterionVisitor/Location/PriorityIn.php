@@ -8,6 +8,7 @@
 namespace Ibexa\Solr\Query\Location\CriterionVisitor\Location;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Location\Priority;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
@@ -20,7 +21,7 @@ class PriorityIn extends CriterionVisitor
     public function canVisit(CriterionInterface $criterion): bool
     {
         return
-            $criterion instanceof Criterion\Location\Priority &&
+            $criterion instanceof Priority &&
             (
                 ($criterion->operator ?: Operator::IN) === Operator::IN ||
                 $criterion->operator === Operator::EQ
@@ -28,10 +29,12 @@ class PriorityIn extends CriterionVisitor
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Location\Priority $criterion
+     * @param Priority $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $values = [];
         foreach ($criterion->value as $value) {
             $values[] = 'priority_i:"' . $value . '"';

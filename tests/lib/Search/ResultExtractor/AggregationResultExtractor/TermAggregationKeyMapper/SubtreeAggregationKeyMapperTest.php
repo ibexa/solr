@@ -20,7 +20,7 @@ final class SubtreeAggregationKeyMapperTest extends TestCase
 {
     private const string EXAMPLE_PATH_STRING = '/1/2/54/';
 
-    private TermAggregationKeyMapper&MockObject $locationAggregationKeyMapper;
+    private TermAggregationKeyMapper & MockObject $locationAggregationKeyMapper;
 
     protected function setUp(): void
     {
@@ -56,7 +56,7 @@ final class SubtreeAggregationKeyMapperTest extends TestCase
     /**
      * @param iterable<int> $locationIds
      *
-     * @return array<int, \Ibexa\Contracts\Core\Repository\Values\Content\Location>
+     * @return array<int, Location>
      */
     private function createExpectedLocations(iterable $locationIds): array
     {
