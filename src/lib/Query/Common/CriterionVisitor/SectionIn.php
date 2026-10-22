@@ -9,6 +9,7 @@ namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\SectionId;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
@@ -23,7 +24,7 @@ class SectionIn extends CriterionVisitor
     public function canVisit(CriterionInterface $criterion): bool
     {
         return
-            $criterion instanceof Criterion\SectionId &&
+            $criterion instanceof SectionId &&
             (
                 ($criterion->operator ?: Operator::IN) === Operator::IN ||
                 $criterion->operator === Operator::EQ
@@ -33,15 +34,17 @@ class SectionIn extends CriterionVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\SectionId $criterion
+     * @param SectionId $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         return '(' .
             implode(
                 ' OR ',
                 array_map(
-                    static fn (bool|float|int|string $value): string => 'content_section_id_id:"' . $value . '"',
+                    static fn (bool | float | int | string $value): string => 'content_section_id_id:"' . $value . '"',
                     $criterion->value
                 )
             ) .

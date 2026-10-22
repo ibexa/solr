@@ -24,7 +24,7 @@ class EndpointRegistry
     /**
      * Construct from optional array of Endpoints.
      *
-     * @param array<string, \Ibexa\Solr\Gateway\Endpoint> $endpoints
+     * @param array<string, Endpoint> $endpoints
      */
     public function __construct(array $endpoints = [])
     {
@@ -36,8 +36,10 @@ class EndpointRegistry
     /**
      * Registers $endpoint with $name.
      */
-    public function registerEndpoint(string $name, Endpoint $endpoint): void
-    {
+    public function registerEndpoint(
+        string $name,
+        Endpoint $endpoint
+    ): void {
         $this->endpoint[$name] = $endpoint;
     }
 

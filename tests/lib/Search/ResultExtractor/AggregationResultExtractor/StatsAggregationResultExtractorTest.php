@@ -24,7 +24,7 @@ final class StatsAggregationResultExtractorTest extends AbstractAggregationResul
 
     /**
      * @return iterable<string, array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     0: Aggregation,
      *     1: array{},
      *     2: bool
      * }>
@@ -46,10 +46,10 @@ final class StatsAggregationResultExtractorTest extends AbstractAggregationResul
 
     /**
      * @return iterable<string, array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     0: Aggregation,
      *     1: array{},
-     *     2: \stdClass,
-     *     3: \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\StatsAggregationResult
+     *     2: stdClass,
+     *     3: StatsAggregationResult
      * }>
      */
     public static function dataProviderForTestExtract(): iterable

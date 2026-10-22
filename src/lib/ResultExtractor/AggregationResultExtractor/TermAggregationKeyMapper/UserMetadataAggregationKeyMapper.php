@@ -13,6 +13,7 @@ use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation;
+use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 use InvalidArgumentException;
 
@@ -20,16 +21,18 @@ final readonly class UserMetadataAggregationKeyMapper implements TermAggregation
 {
     public function __construct(
         private UserService $userService
-    ) {
-    }
+    ) {}
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\UserMetadataTermAggregation $aggregation
+     * @param UserMetadataTermAggregation $aggregation
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\User\User[]
+     * @return User[]
      */
-    public function map(Aggregation $aggregation, array $languageFilter, array $keys): array
-    {
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        array $keys
+    ): array {
         $loader = $this->resolveKeyLoader($aggregation);
 
         $results = [];

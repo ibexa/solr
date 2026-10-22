@@ -21,7 +21,7 @@ use stdClass;
 
 final class RangeAggregationResultExtractorTest extends AbstractAggregationResultExtractorTestCase
 {
-    private RangeAggregationKeyMapper&MockObject $keyMapper;
+    private RangeAggregationKeyMapper & MockObject $keyMapper;
 
     #[\Override]
     protected function setUp(): void
@@ -41,7 +41,7 @@ final class RangeAggregationResultExtractorTest extends AbstractAggregationResul
 
     /**
      * @return iterable<string, array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     0: Aggregation,
      *     1: array{},
      *     2: bool
      * }>
@@ -63,10 +63,10 @@ final class RangeAggregationResultExtractorTest extends AbstractAggregationResul
 
     /**
      * @return iterable<string, array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     0: Aggregation,
      *     1: array{},
-     *     2: \stdClass,
-     *     3: \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\RangeAggregationResult
+     *     2: stdClass,
+     *     3: RangeAggregationResult
      * }>
      */
     public static function dataProviderForTestExtract(): iterable
@@ -119,8 +119,10 @@ final class RangeAggregationResultExtractorTest extends AbstractAggregationResul
         return $data;
     }
 
-    private static function createRawBucket(string $val, int $count): stdClass
-    {
+    private static function createRawBucket(
+        string $val,
+        int $count
+    ): stdClass {
         $bucket = new stdClass();
         $bucket->val = $val;
         $bucket->count = $count;

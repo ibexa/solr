@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\Reference;
 class EndpointRegistryPass implements CompilerPassInterface
 {
     /**
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function process(ContainerBuilder $container): void
     {

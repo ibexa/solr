@@ -8,14 +8,16 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Solr\Search\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper;
 use Ibexa\Solr\ResultExtractor\AggregationResultExtractor\RangeAggregationKeyMapper\NullRangeAggregationKeyMapper;
+use PHPUnit\Framework\MockObject\Stub;
 
 final class NullRangeAggregationKeyMapperTest extends AbstractRangeAggregationKeyMapperTestCase
 {
     /**
      * @return iterable<string, array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation&\PHPUnit\Framework\MockObject\Stub,
+     *     0: Aggregation&Stub,
      *     1: array{},
      *     2: string,
      *     3: ?string,

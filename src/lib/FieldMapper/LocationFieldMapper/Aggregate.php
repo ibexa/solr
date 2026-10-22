@@ -18,12 +18,12 @@ class Aggregate extends LocationFieldMapper
     /**
      * An array of aggregated field mappers, sorted by priority.
      *
-     * @var \Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper[]
+     * @var LocationFieldMapper[]
      */
     protected array $mappers = [];
 
     /**
-     * @param \Ibexa\Contracts\Solr\FieldMapper\LocationFieldMapper[] $mappers An array of mappers, sorted by priority.
+     * @param LocationFieldMapper[] $mappers An array of mappers, sorted by priority.
      */
     public function __construct(array $mappers = [])
     {

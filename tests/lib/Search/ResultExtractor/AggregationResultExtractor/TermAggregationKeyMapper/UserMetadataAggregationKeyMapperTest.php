@@ -24,7 +24,7 @@ final class UserMetadataAggregationKeyMapperTest extends TestCase
     private const array EXAMPLE_USER_IDS = [1, 2, 3];
     private const array EXAMPLE_USER_GROUP_IDS = [1, 2, 3];
 
-    private UserService&MockObject $userService;
+    private UserService & MockObject $userService;
 
     private UserMetadataAggregationKeyMapper $mapper;
 
@@ -89,7 +89,7 @@ final class UserMetadataAggregationKeyMapperTest extends TestCase
 
         $this->userService
             ->method('loadUser')
-            ->willReturnCallback(static fn ($userId): \PHPUnit\Framework\MockObject\MockObject => $users[$userId] ?? throw new InvalidArgumentException('userId', "Unexpected user ID: $userId"));
+            ->willReturnCallback(static fn ($userId): MockObject => $users[$userId] ?? throw new InvalidArgumentException('userId', "Unexpected user ID: $userId"));
 
         return $users;
     }
@@ -109,7 +109,7 @@ final class UserMetadataAggregationKeyMapperTest extends TestCase
         $this->userService
             ->expects(self::any())
             ->method('loadUserGroup')
-            ->willReturnCallback(static fn ($userGroupId): \PHPUnit\Framework\MockObject\MockObject => $userGroups[$userGroupId] ?? throw new InvalidArgumentException('userGroupId', "Unexpected user group ID: $userGroupId"));
+            ->willReturnCallback(static fn ($userGroupId): MockObject => $userGroups[$userGroupId] ?? throw new InvalidArgumentException('userGroupId', "Unexpected user group ID: $userGroupId"));
 
         return $userGroups;
     }

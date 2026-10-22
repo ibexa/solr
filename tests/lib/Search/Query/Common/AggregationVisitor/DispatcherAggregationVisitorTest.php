@@ -77,7 +77,7 @@ final class DispatcherAggregationVisitorTest extends TestCase
     /**
      * @param array{languages: string[]} $languageFilter
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Solr\Query\AggregationVisitor
+     * @return MockObject&AggregationVisitor
      */
     private function createVisitorMock(
         Aggregation $aggregation,

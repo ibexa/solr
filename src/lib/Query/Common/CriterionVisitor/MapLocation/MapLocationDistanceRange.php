@@ -8,7 +8,9 @@
 namespace Ibexa\Solr\Query\Common\CriterionVisitor\MapLocation;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\MapLocationDistance;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Value\MapLocationValue;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
@@ -34,12 +36,12 @@ class MapLocationDistanceRange extends MapLocation
     /**
      * Check if visitor is applicable to current criterion.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion $criterion
+     * @param Criterion $criterion
      */
     public function canVisit(CriterionInterface $criterion): bool
     {
         return
-            $criterion instanceof Criterion\MapLocationDistance &&
+            $criterion instanceof MapLocationDistance &&
             ($criterion->operator === Operator::LT ||
               $criterion->operator === Operator::LTE ||
               $criterion->operator === Operator::GT ||
@@ -50,10 +52,12 @@ class MapLocationDistanceRange extends MapLocation
     /**
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException If no searchable fields are found for the given criterion target.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\MapLocationDistance $criterion
+     * @param MapLocationDistance $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         if (!$this->isSolrInMaxVersion('9.3.0')) {
             return $this->visitForSolr9($criterion);
         }
@@ -82,7 +86,7 @@ class MapLocationDistanceRange extends MapLocation
             );
         }
 
-        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Value\MapLocationValue $location */
+        /** @var MapLocationValue $location */
         $location = $criterion->valueData;
 
         $queries = [];
@@ -129,7 +133,7 @@ class MapLocationDistanceRange extends MapLocation
             );
         }
 
-        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Value\MapLocationValue $location */
+        /** @var MapLocationValue $location */
         $location = $criterion->valueData;
 
         $queries = [];

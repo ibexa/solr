@@ -20,7 +20,7 @@ final class ContentTypeAggregationKeyMapperTest extends TestCase
 {
     private const array EXAMPLE_CONTENT_TYPE_IDS = [1, 2, 3];
 
-    private ContentTypeService&MockObject $contentTypeService;
+    private ContentTypeService & MockObject $contentTypeService;
 
     protected function setUp(): void
     {
@@ -54,7 +54,7 @@ final class ContentTypeAggregationKeyMapperTest extends TestCase
     /**
      * @param list<int> $ids
      *
-     * @return list<\Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType>
+     * @return list<ContentType>
      */
     private function createContentTypesList(iterable $ids): array
     {

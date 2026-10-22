@@ -15,5 +15,8 @@ interface DistributionStrategy
      *
      * @return array<string, mixed>
      */
-    public function getSearchParameters(array $parameters, ?array $languageSettings = null): array;
+    public function getSearchParameters(
+        array $parameters,
+        ?array $languageSettings = null
+    ): array;
 }

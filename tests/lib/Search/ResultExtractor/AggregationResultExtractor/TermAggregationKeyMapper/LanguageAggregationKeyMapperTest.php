@@ -20,7 +20,7 @@ final class LanguageAggregationKeyMapperTest extends TestCase
 {
     private const array EXAMPLE_LANGUAGE_CODES = [];
 
-    private LanguageService&MockObject $languageService;
+    private LanguageService & MockObject $languageService;
 
     private LanguageAggregationKeyMapper $mapper;
 

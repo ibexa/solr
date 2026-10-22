@@ -22,7 +22,7 @@ abstract class AbstractAggregationVisitorTestCase extends TestCase
 
     protected AggregationVisitor $visitor;
 
-    protected AggregationVisitor&MockObject $dispatcherVisitor;
+    protected AggregationVisitor & MockObject $dispatcherVisitor;
 
     protected function setUp(): void
     {
@@ -49,7 +49,7 @@ abstract class AbstractAggregationVisitorTestCase extends TestCase
 
     /**
      * @return iterable<string, array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     0: Aggregation,
      *     1: array{languages: string[]},
      *     2: bool
      * }>

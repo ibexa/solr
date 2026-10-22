@@ -25,7 +25,7 @@ final class IsBookmarkedTest extends BaseCriterionVisitorTestCase
 
     private CriterionVisitor $visitor;
 
-    private PermissionResolver&MockObject $permissionResolver;
+    private PermissionResolver & MockObject $permissionResolver;
 
     protected function setUp(): void
     {
@@ -50,7 +50,7 @@ final class IsBookmarkedTest extends BaseCriterionVisitorTestCase
     /**
      * @return iterable<array{
      *     string,
-     *     \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion
+     *     Criterion
      * }>
      */
     public static function provideDataForTestVisit(): iterable

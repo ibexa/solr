@@ -22,8 +22,12 @@ abstract class AbstractRangeAggregationKeyMapperTestCase extends TestCase
      * @param array{} $languageFilter
      */
     #[DataProvider('dataProviderForTestMap')]
-    final public function testMap(Aggregation $aggregation, array $languageFilter, string $key, mixed $expectedResult): void
-    {
+    final public function testMap(
+        Aggregation $aggregation,
+        array $languageFilter,
+        string $key,
+        mixed $expectedResult
+    ): void {
         $mapper = $this->createRangeAggregationKeyMapper();
 
         self::assertEquals(
@@ -34,7 +38,7 @@ abstract class AbstractRangeAggregationKeyMapperTestCase extends TestCase
 
     /**
      * @return iterable<string, array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation&\PHPUnit\Framework\MockObject\Stub,
+     *     0: Aggregation&Stub,
      *     1: array{},
      *     2: string,
      *     3: mixed,
@@ -44,7 +48,7 @@ abstract class AbstractRangeAggregationKeyMapperTestCase extends TestCase
 
     abstract protected function createRangeAggregationKeyMapper(): RangeAggregationKeyMapper;
 
-    protected static function createAggregationMock(): Aggregation&Stub
+    protected static function createAggregationMock(): Aggregation & Stub
     {
         return self::createStub(Aggregation::class);
     }

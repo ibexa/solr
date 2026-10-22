@@ -18,8 +18,10 @@ use Ibexa\Solr\Query\Content\CriterionVisitor\FullText as ContentFullText;
 class FullText extends ContentFullText
 {
     #[\Override]
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $condition = $this->escapeQuote(parent::visit($criterion, $subVisitor));
 
         return "{!child of='document_type_id:content' v='document_type_id:content AND {$condition}'}";

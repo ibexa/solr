@@ -11,20 +11,23 @@ namespace Ibexa\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationK
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\ObjectStateService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ObjectStateTermAggregation;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\TermAggregationKeyMapper;
 
 final readonly class ObjectStateAggregationKeyMapper implements TermAggregationKeyMapper
 {
     public function __construct(
         private ObjectStateService $objectStateService
-    ) {
-    }
+    ) {}
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ObjectStateTermAggregation $aggregation
+     * @param ObjectStateTermAggregation $aggregation
      */
-    public function map(Aggregation $aggregation, array $languageFilter, array $keys): array
-    {
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        array $keys
+    ): array {
         $objectStateGroup = $this->objectStateService->loadObjectStateGroupByIdentifier(
             $aggregation->getObjectStateGroupIdentifier()
         );

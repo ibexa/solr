@@ -18,8 +18,7 @@ class IndexingDepthProvider
     public function __construct(
         private array $contentTypeMap = [],
         private readonly int $defaultIndexingDepth = 1
-    ) {
-    }
+    ) {}
 
     /**
      * Returns max depth of indexing for given content type.

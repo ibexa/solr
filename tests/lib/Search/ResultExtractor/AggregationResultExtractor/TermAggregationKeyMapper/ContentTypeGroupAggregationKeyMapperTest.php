@@ -20,7 +20,7 @@ final class ContentTypeGroupAggregationKeyMapperTest extends TestCase
 {
     private const array EXAMPLE_CONTENT_TYPE_GROUPS_IDS = ['1', '2', '3'];
 
-    private ContentTypeService&MockObject $contentTypeService;
+    private ContentTypeService & MockObject $contentTypeService;
 
     protected function setUp(): void
     {
@@ -52,7 +52,7 @@ final class ContentTypeGroupAggregationKeyMapperTest extends TestCase
     }
 
     /**
-     * @return array<int, \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeGroup>
+     * @return array<int, ContentTypeGroup>
      */
     private function createExpectedLanguages(): array
     {

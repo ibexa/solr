@@ -70,7 +70,7 @@ class CoreFilterRegistryTest extends TestCase
         self::assertCount(1, $registry->getCoreFilters());
     }
 
-    private function getCoreFilterMock(): CoreFilter&MockObject
+    private function getCoreFilterMock(): CoreFilter & MockObject
     {
         return $this->createMock(CoreFilter::class);
     }

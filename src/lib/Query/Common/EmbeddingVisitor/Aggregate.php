@@ -14,11 +14,11 @@ use Ibexa\Contracts\Solr\Query\EmbeddingVisitor;
 
 final class Aggregate extends EmbeddingVisitor
 {
-    /** @var iterable<\Ibexa\Contracts\Solr\Query\EmbeddingVisitor> */
+    /** @var iterable<EmbeddingVisitor> */
     protected iterable $visitors = [];
 
     /**
-     * @param \Ibexa\Contracts\Solr\Query\EmbeddingVisitor[] $visitors
+     * @param EmbeddingVisitor[] $visitors
      */
     public function __construct(iterable $visitors = [])
     {
@@ -33,10 +33,12 @@ final class Aggregate extends EmbeddingVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException
+     * @throws NotImplementedException
      */
-    public function visit(Embedding $embedding, int $limit): string
-    {
+    public function visit(
+        Embedding $embedding,
+        int $limit
+    ): string {
         foreach ($this->visitors as $visitor) {
             if ($visitor->canVisit($embedding)) {
                 return $visitor->visit($embedding, $limit);

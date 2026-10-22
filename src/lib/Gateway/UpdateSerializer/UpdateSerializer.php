@@ -22,8 +22,7 @@ abstract class UpdateSerializer
     public function __construct(
         protected readonly FieldValueMapper $fieldValueMapper,
         protected readonly FieldNameGenerator $nameGenerator
-    ) {
-    }
+    ) {}
 
     /**
      * Returns a 'dummy' document.

@@ -27,16 +27,19 @@ class ContentDocumentEmptyFields extends ContentTranslationFieldMapper
         private readonly Handler $contentTypeHandler,
         private readonly FieldNameGenerator $fieldNameGenerator,
         private readonly FieldTypeRegistry $fieldTypeRegistry
-    ) {
-    }
+    ) {}
 
-    public function accept(Content $content, string $languageCode): bool
-    {
+    public function accept(
+        Content $content,
+        string $languageCode
+    ): bool {
         return true;
     }
 
-    public function mapFields(Content $content, string $languageCode): array
-    {
+    public function mapFields(
+        Content $content,
+        string $languageCode
+    ): array {
         $fields = [];
         $contentType = $this->contentTypeHandler->load(
             $content->versionInfo->contentInfo->contentTypeId

@@ -8,16 +8,19 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Image\CriterionVisitor;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Image\AbstractImageRangeCriterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 
 abstract class AbstractImageTermsVisitor extends AbstractImageVisitor
 {
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Image\AbstractImageRangeCriterion $criterion
+     * @param AbstractImageRangeCriterion $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $queries = [];
         /** @var array<string>|string $criterionValue */
         $criterionValue = $criterion->value;

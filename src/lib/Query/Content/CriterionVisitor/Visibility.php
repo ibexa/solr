@@ -25,10 +25,12 @@ class Visibility extends CriterionVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Visibility $criterion
+     * @param Criterion\Visibility $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         return 'location_visible_b:' . ($criterion->value[0] === Criterion\Visibility::VISIBLE ? 'true' : 'false');
     }
 }

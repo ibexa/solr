@@ -22,7 +22,7 @@ final class UpdateSerializerFactoryTest extends TestCase
     private const string FORMAT_BAR = 'bar';
 
     /**
-     * @param array<\Ibexa\Solr\Gateway\UpdateSerializerInterface> $serializers
+     * @param array<UpdateSerializerInterface> $serializers
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
@@ -53,8 +53,8 @@ final class UpdateSerializerFactoryTest extends TestCase
 
     /**
      * @return iterable<string, array{
-     *     0: array<\Ibexa\Solr\Gateway\UpdateSerializerInterface>,
-     *     1: \Ibexa\Solr\Gateway\UpdateSerializerInterface,
+     *     0: array<UpdateSerializerInterface>,
+     *     1: UpdateSerializerInterface,
      *     2: string
      * }>
      */

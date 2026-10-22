@@ -8,6 +8,7 @@
 namespace Ibexa\Solr\Query\Common\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LanguageCode;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
@@ -23,7 +24,7 @@ class LanguageCodeIn extends CriterionVisitor
     public function canVisit(CriterionInterface $criterion): bool
     {
         return
-            $criterion instanceof Criterion\LanguageCode &&
+            $criterion instanceof LanguageCode &&
             (($criterion->operator ?: Operator::IN) === Operator::IN ||
               $criterion->operator === Operator::EQ);
     }
@@ -31,15 +32,17 @@ class LanguageCodeIn extends CriterionVisitor
     /**
      * Map field value to a proper Solr representation.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LanguageCode $criterion
+     * @param LanguageCode $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
-        /** @var Criterion\LanguageCode $criterion */
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
+        /** @var LanguageCode $criterion */
         $values = is_array($criterion->value) ? $criterion->value : [$criterion->value];
         // content_language_codes_ms is a string field which uses LowerCaseFilter.
         // Since {!terms} bypasses analysis, we must manually lowercase the values to match the index.
-        $values = array_map(static function (bool|float|int|string $value): string {
+        $values = array_map(static function (bool | float | int | string $value): string {
             return strtolower((string)$value);
         }, $values);
 

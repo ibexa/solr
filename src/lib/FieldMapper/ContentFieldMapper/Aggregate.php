@@ -18,12 +18,12 @@ class Aggregate extends ContentFieldMapper
     /**
      * An array of aggregated field mappers, sorted by priority.
      *
-     * @var \Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper[]
+     * @var ContentFieldMapper[]
      */
     protected array $mappers = [];
 
     /**
-     * @param \Ibexa\Contracts\Solr\FieldMapper\ContentFieldMapper[] $mappers
+     * @param ContentFieldMapper[] $mappers
      *        An array of mappers, sorted by priority.
      */
     public function __construct(array $mappers = [])

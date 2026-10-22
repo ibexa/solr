@@ -53,8 +53,7 @@ class NativeEndpointResolver implements EndpointResolver, SingleEndpointResolver
          * Holds a name of the Endpoint used to index translations in main languages, if configured.
          */
         private readonly ?string $mainLanguagesEndpoint = null
-    ) {
-    }
+    ) {}
 
     public function getEntryEndpoint(): string
     {

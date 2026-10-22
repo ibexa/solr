@@ -24,10 +24,12 @@ final class ContentName extends CriterionVisitor
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\ContentName $criterion
+     * @param Criterion\ContentName $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         /** @var string $value */
         $value = $criterion->value;
         $searchField = 'meta_content__name_s';

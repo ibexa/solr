@@ -7,6 +7,7 @@
 
 namespace Ibexa\Solr\CoreFilter;
 
+use Ibexa\Contracts\Core\Repository\Exceptions\InvalidCriterionArgumentException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\CustomField;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LanguageCode;
@@ -76,8 +77,11 @@ class NativeCoreFilter extends CoreFilter
         );
     }
 
-    public function apply(Query $query, array $languageSettings, string $documentTypeIdentifier): void
-    {
+    public function apply(
+        Query $query,
+        array $languageSettings,
+        string $documentTypeIdentifier
+    ): void {
         $languages = (
             empty($languageSettings['languages']) ?
                 [] :
@@ -206,7 +210,7 @@ class NativeCoreFilter extends CoreFilter
      *
      * @param list<string> $languageCodes
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidCriterionArgumentException
+     * @throws InvalidCriterionArgumentException
      */
     private function getAlwaysAvailableFilter(
         array $languageCodes,
@@ -255,8 +259,10 @@ class NativeCoreFilter extends CoreFilter
      *
      * @return list<string>
      */
-    private function getExcludedLanguageCodes(array $languageCodes, ?string $selectedLanguageCode = null): array
-    {
+    private function getExcludedLanguageCodes(
+        array $languageCodes,
+        ?string $selectedLanguageCode = null
+    ): array {
         $excludedLanguageCodes = [];
 
         foreach ($languageCodes as $languageCode) {

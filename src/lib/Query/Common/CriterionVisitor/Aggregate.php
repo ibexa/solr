@@ -19,14 +19,14 @@ class Aggregate extends CriterionVisitor
     /**
      * Array of available visitors.
      *
-     * @var iterable<\Ibexa\Contracts\Solr\Query\CriterionVisitor>
+     * @var iterable<CriterionVisitor>
      */
     protected iterable $visitors;
 
     /**
      * Construct from optional visitor array.
      *
-     * @param iterable<\Ibexa\Contracts\Solr\Query\CriterionVisitor> $visitors
+     * @param iterable<CriterionVisitor> $visitors
      */
     public function __construct(iterable $visitors)
     {
@@ -42,10 +42,12 @@ class Aggregate extends CriterionVisitor
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotImplementedException
+     * @throws NotImplementedException
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         foreach ($this->visitors as $visitor) {
             if ($visitor->canVisit($criterion)) {
                 return $visitor->visit($criterion, $this);

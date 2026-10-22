@@ -22,19 +22,20 @@ final class RangeAggregationVisitor extends AbstractRangeAggregationVisitor
     public function __construct(
         private readonly string $aggregationClass,
         private readonly AggregationFieldResolver $aggregationFieldResolver
-    ) {
-    }
+    ) {}
 
     /**
-     * @phpstan-param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation<TAggregation> $aggregation
+     * @phpstan-param AbstractRangeAggregation<TAggregation> $aggregation
      */
-    public function canVisit(Aggregation $aggregation, array $languageFilter): bool
-    {
+    public function canVisit(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): bool {
         return $aggregation instanceof $this->aggregationClass;
     }
 
     /**
-     * @phpstan-param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractRangeAggregation<TAggregation> $aggregation
+     * @phpstan-param AbstractRangeAggregation<TAggregation> $aggregation
      */
     protected function getTargetField(AbstractRangeAggregation $aggregation): string
     {

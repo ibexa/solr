@@ -9,6 +9,7 @@ namespace Ibexa\Solr\ResultExtractor;
 
 use Ibexa\Contracts\Core\Persistence\Content\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor;
 use Ibexa\Solr\Gateway\EndpointRegistry;
@@ -32,8 +33,8 @@ class LoadingResultExtractor extends ResultExtractor
     }
 
     /**
-     * @throws \RuntimeException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws RuntimeException
+     * @throws NotFoundException
      */
     public function extractHit(stdClass $hit): ValueObject
     {

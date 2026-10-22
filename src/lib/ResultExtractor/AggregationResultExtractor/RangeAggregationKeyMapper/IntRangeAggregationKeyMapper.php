@@ -13,8 +13,11 @@ use Ibexa\Contracts\Solr\ResultExtractor\AggregationResultExtractor\RangeAggrega
 
 final class IntRangeAggregationKeyMapper implements RangeAggregationKeyMapper
 {
-    public function map(Aggregation $aggregation, array $languageFilter, string $key): ?int
-    {
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        string $key
+    ): ?int {
         if ($key === '*') {
             return null;
         }

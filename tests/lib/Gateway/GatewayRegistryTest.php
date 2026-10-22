@@ -70,7 +70,7 @@ class GatewayRegistryTest extends TestCase
         self::assertCount(1, $registry->getGateways());
     }
 
-    private function getGatewayMock(): Gateway&MockObject
+    private function getGatewayMock(): Gateway & MockObject
     {
         return $this->createMock(Gateway::class);
     }

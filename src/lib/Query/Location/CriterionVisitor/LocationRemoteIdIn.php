@@ -8,6 +8,7 @@
 namespace Ibexa\Solr\Query\Location\CriterionVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LocationRemoteId;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Operator;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
@@ -20,7 +21,7 @@ class LocationRemoteIdIn extends CriterionVisitor
     public function canVisit(CriterionInterface $criterion): bool
     {
         return
-            $criterion instanceof Criterion\LocationRemoteId &&
+            $criterion instanceof LocationRemoteId &&
             (
                 ($criterion->operator ?: Operator::IN) === Operator::IN ||
                 $criterion->operator === Operator::EQ
@@ -28,15 +29,17 @@ class LocationRemoteIdIn extends CriterionVisitor
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LocationRemoteId $criterion
+     * @param LocationRemoteId $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         return '(' .
             implode(
                 ' OR ',
                 array_map(
-                    static fn (bool|float|int|string $value): string => 'remote_id_id:"' . $value . '"',
+                    static fn (bool | float | int | string $value): string => 'remote_id_id:"' . $value . '"',
                     $criterion->value
                 )
             ) .

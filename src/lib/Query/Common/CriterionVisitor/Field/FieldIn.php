@@ -22,7 +22,7 @@ class FieldIn extends Field
     /**
      * Check if visitor is applicable to current criterion.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion $criterion
+     * @param Criterion $criterion
      */
     public function canVisit(CriterionInterface $criterion): bool
     {
@@ -34,12 +34,14 @@ class FieldIn extends Field
     }
 
     /**
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException If no searchable fields are found for the given criterion target.
+     * @throws InvalidArgumentException If no searchable fields are found for the given criterion target.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Field $criterion
+     * @param Criterion\Field $criterion
      */
-    public function visit(CriterionInterface $criterion, ?CriterionVisitor $subVisitor = null): string
-    {
+    public function visit(
+        CriterionInterface $criterion,
+        ?CriterionVisitor $subVisitor = null
+    ): string {
         $searchFields = $this->getSearchFields($criterion);
 
         if (empty($searchFields)) {

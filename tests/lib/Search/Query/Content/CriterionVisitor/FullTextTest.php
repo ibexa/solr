@@ -30,8 +30,10 @@ class FullTextTest extends TestCase
     /**
      * @param array<string, mixed> $fieldTypes
      */
-    protected function getFullTextCriterionVisitor(array $fieldTypes = [], int $maxDepth = 0): FullText
-    {
+    protected function getFullTextCriterionVisitor(
+        array $fieldTypes = [],
+        int $maxDepth = 0
+    ): FullText {
         $fieldNameResolver = $this->getMockBuilder(FieldNameResolver::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -47,7 +49,7 @@ class FullTextTest extends TestCase
                 $fieldTypes
             );
 
-        /** @var \Ibexa\Core\Search\Common\FieldNameResolver $fieldNameResolver */
+        /** @var FieldNameResolver $fieldNameResolver */
         return new FullText(
             $fieldNameResolver,
             $this->getTokenizer(),

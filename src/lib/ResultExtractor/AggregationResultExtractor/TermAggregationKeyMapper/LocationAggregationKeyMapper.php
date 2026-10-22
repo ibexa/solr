@@ -16,11 +16,13 @@ final readonly class LocationAggregationKeyMapper implements TermAggregationKeyM
 {
     public function __construct(
         private LocationService $locationService
-    ) {
-    }
+    ) {}
 
-    public function map(Aggregation $aggregation, array $languageFilter, array $keys): array
-    {
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        array $keys
+    ): array {
         $result = [];
 
         $locations = $this->locationService->loadLocationList(array_map('intval', $keys));

@@ -20,7 +20,7 @@ final class NestedAggregationResultExtractorTest extends TestCase
 {
     private const string EXAMPLE_NESTED_RESULT_KEY = 'foo';
 
-    private AggregationResultExtractor&MockObject $innerResultExtractor;
+    private AggregationResultExtractor & MockObject $innerResultExtractor;
 
     private NestedAggregationResultExtractor $resultExtractor;
 

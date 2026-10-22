@@ -8,6 +8,7 @@
 namespace Ibexa\Contracts\Solr\FieldMapper;
 
 use Ibexa\Contracts\Core\Persistence\Content as SPIContent;
+use Ibexa\Contracts\Core\Search\Field;
 
 /**
  * Base class for Content translation document field mapper.
@@ -20,12 +21,18 @@ abstract class ContentTranslationFieldMapper
     /**
      * Indicates if the mapper accepts given $content and $languageCode for mapping.
      */
-    abstract public function accept(SPIContent $content, string $languageCode): bool;
+    abstract public function accept(
+        SPIContent $content,
+        string $languageCode
+    ): bool;
 
     /**
      * Maps given $content for $languageCode to an array of search fields.
      *
-     * @return list<\Ibexa\Contracts\Core\Search\Field>
+     * @return list<Field>
      */
-    abstract public function mapFields(SPIContent $content, string $languageCode): array;
+    abstract public function mapFields(
+        SPIContent $content,
+        string $languageCode
+    ): array;
 }

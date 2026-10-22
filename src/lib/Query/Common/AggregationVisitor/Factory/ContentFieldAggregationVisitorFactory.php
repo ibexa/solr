@@ -19,8 +19,7 @@ final readonly class ContentFieldAggregationVisitorFactory
 {
     public function __construct(
         private FieldNameResolver $fieldNameResolver
-    ) {
-    }
+    ) {}
 
     public function createRangeAggregationVisitor(
         string $aggregationClass,

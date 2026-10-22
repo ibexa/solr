@@ -15,5 +15,9 @@ interface RangeAggregationKeyMapper
     /**
      * @param array{languages?: string[], languageCode?: string, useAlwaysAvailable?: bool} $languageFilter
      */
-    public function map(Aggregation $aggregation, array $languageFilter, string $key): mixed;
+    public function map(
+        Aggregation $aggregation,
+        array $languageFilter,
+        string $key
+    ): mixed;
 }

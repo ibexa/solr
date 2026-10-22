@@ -11,6 +11,7 @@ use Ibexa\Contracts\Core\Persistence\Content;
 use Ibexa\Contracts\Core\Persistence\Content\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Type as ContentType;
 use Ibexa\Contracts\Core\Persistence\Content\Type\Handler as ContentTypeHandler;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Search\Field;
 use Ibexa\Contracts\Core\Search\FieldType;
 use Ibexa\Contracts\Core\Search\FieldType\TextField;
@@ -42,16 +43,19 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
         protected readonly FieldNameGenerator $fieldNameGenerator,
         protected readonly BoostFactorProvider $boostFactorProvider,
         protected readonly IndexingDepthProvider $indexingDepthProvider
-    ) {
-    }
+    ) {}
 
-    public function accept(Content $content, string $languageCode): bool
-    {
+    public function accept(
+        Content $content,
+        string $languageCode
+    ): bool {
         return true;
     }
 
-    public function mapFields(Content $content, string $languageCode): array
-    {
+    public function mapFields(
+        Content $content,
+        string $languageCode
+    ): array {
         $contentType = $this->contentTypeHandler->load(
             $content->versionInfo->contentInfo->contentTypeId
         );
@@ -64,9 +68,9 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
     }
 
     /**
-     * @return list<\Ibexa\Contracts\Core\Search\Field>
+     * @return list<Field>
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws NotFoundException
      */
     private function doMapFields(
         Content $content,
@@ -124,12 +128,16 @@ class ContentDocumentFulltextFields extends ContentTranslationFieldMapper
      * @param string $languageCode
      * @param int $maxDepth
      *
-     * @return \Ibexa\Contracts\Core\Search\Field[]
+     * @return Field[]
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws NotFoundException
      */
-    private function doMapRelatedFields(Content $sourceContent, $languageCode, $maxDepth, int $depth): array
-    {
+    private function doMapRelatedFields(
+        Content $sourceContent,
+        $languageCode,
+        $maxDepth,
+        int $depth
+    ): array {
         $sourceContentId = $sourceContent->versionInfo->contentInfo->id;
         $relations = $this->contentHandler->loadRelationList(
             $sourceContentId,

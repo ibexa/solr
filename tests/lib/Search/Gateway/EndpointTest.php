@@ -20,13 +20,13 @@ class EndpointTest extends TestCase
     {
         $actual = new Endpoint(['dsn' => 'https://jura:pura@10.10.10.10:5434/jolr', 'core' => 'core0']);
         $expected = new Endpoint([
-                'scheme' => 'https',
-                'host' => '10.10.10.10',
-                'port' => 5434,
-                'user' => 'jura',
-                'pass' => 'pura',
-                'path' => '/jolr',
-                'core' => 'core0',
+            'scheme' => 'https',
+            'host' => '10.10.10.10',
+            'port' => 5434,
+            'user' => 'jura',
+            'pass' => 'pura',
+            'path' => '/jolr',
+            'core' => 'core0',
         ]);
 
         self::assertEquals($expected, $actual);
@@ -36,13 +36,13 @@ class EndpointTest extends TestCase
     {
         $actual = new Endpoint(['dsn' => 'https://10.10.10.10:5434/jolr', 'core' => 'core0']);
         $expected = new Endpoint([
-                'scheme' => 'https',
-                'host' => '10.10.10.10',
-                'port' => 5434,
-                'user' => null,
-                'pass' => null,
-                'path' => '/jolr',
-                'core' => 'core0',
+            'scheme' => 'https',
+            'host' => '10.10.10.10',
+            'port' => 5434,
+            'user' => null,
+            'pass' => null,
+            'path' => '/jolr',
+            'core' => 'core0',
         ]);
 
         self::assertEquals($expected, $actual);
@@ -52,13 +52,13 @@ class EndpointTest extends TestCase
     {
         $actual = new Endpoint(['dsn' => 'https://10.10.10.10:5434/jolr#core1']);
         $expected = new Endpoint([
-                'scheme' => 'https',
-                'host' => '10.10.10.10',
-                'port' => 5434,
-                'user' => null,
-                'pass' => null,
-                'path' => '/jolr',
-                'core' => 'core1',
+            'scheme' => 'https',
+            'host' => '10.10.10.10',
+            'port' => 5434,
+            'user' => null,
+            'pass' => null,
+            'path' => '/jolr',
+            'core' => 'core1',
         ]);
 
         self::assertEquals($expected, $actual);
@@ -77,13 +77,13 @@ class EndpointTest extends TestCase
             'core' => 'core0',
         ]);
         $expected = new Endpoint([
-                'scheme' => 'https',
-                'host' => '10.10.10.10',
-                'port' => 5434,
-                'user' => 'jura',
-                'pass' => 'pura',
-                'path' => '/jolr',
-                'core' => 'core1',
+            'scheme' => 'https',
+            'host' => '10.10.10.10',
+            'port' => 5434,
+            'user' => 'jura',
+            'pass' => 'pura',
+            'path' => '/jolr',
+            'core' => 'core1',
         ]);
 
         self::assertEquals($expected, $actual);

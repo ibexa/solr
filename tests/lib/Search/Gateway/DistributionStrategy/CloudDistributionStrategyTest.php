@@ -19,9 +19,9 @@ class CloudDistributionStrategyTest extends TestCase
 {
     private CloudDistributionStrategy $distributionStrategy;
 
-    private EndpointResolver&MockObject $endpointResolver;
+    private EndpointResolver & MockObject $endpointResolver;
 
-    private EndpointRegistry&MockObject $endpointRegistry;
+    private EndpointRegistry & MockObject $endpointRegistry;
 
     protected function setUp(): void
     {

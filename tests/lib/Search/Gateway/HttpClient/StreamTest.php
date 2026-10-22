@@ -12,6 +12,7 @@ use Ibexa\Solr\Gateway\Endpoint;
 use Ibexa\Solr\Gateway\HttpClient\Stream;
 use Ibexa\Solr\Gateway\Message;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
@@ -20,7 +21,7 @@ final class StreamTest extends TestCase
 {
     private const TIMEOUT = 10;
 
-    /** @var \Symfony\Contracts\HttpClient\HttpClientInterface&\PHPUnit\Framework\MockObject\MockObject */
+    /** @var HttpClientInterface&MockObject */
     private HttpClientInterface $httpClient;
 
     private Stream $stream;
@@ -48,7 +49,7 @@ final class StreamTest extends TestCase
         $endpoint = new Endpoint($endpointConfig);
 
         $this->httpClient
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('request')
             ->with(
                 $httpMethod,
@@ -140,7 +141,7 @@ final class StreamTest extends TestCase
         ]);
 
         $this->httpClient
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('request')
             ->with(
                 'GET',
@@ -153,7 +154,7 @@ final class StreamTest extends TestCase
     }
 
     /**
-     * @return \Symfony\Contracts\HttpClient\ResponseInterface&\PHPUnit\Framework\MockObject\MockObject
+     * @return ResponseInterface&MockObject
      */
     private function createSuccessfulResponse(): ResponseInterface
     {

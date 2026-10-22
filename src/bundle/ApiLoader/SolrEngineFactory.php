@@ -29,8 +29,7 @@ readonly class SolrEngineFactory
         private DocumentMapper $documentMapper,
         private ResultExtractor $contentResultExtractor,
         private ResultExtractor $locationResultExtractor
-    ) {
-    }
+    ) {}
 
     public function buildEngine(): \Ibexa\Solr\Handler
     {

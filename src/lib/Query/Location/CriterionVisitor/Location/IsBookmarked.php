@@ -20,8 +20,7 @@ final class IsBookmarked extends CriterionVisitor
 
     public function __construct(
         private readonly PermissionResolver $permissionResolver
-    ) {
-    }
+    ) {}
 
     public function canVisit(CriterionInterface $criterion): bool
     {
@@ -30,7 +29,7 @@ final class IsBookmarked extends CriterionVisitor
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Location\IsBookmarked $criterion
+     * @param Criterion\Location\IsBookmarked $criterion
      */
     public function visit(
         CriterionInterface $criterion,

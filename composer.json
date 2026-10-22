@@ -26,7 +26,7 @@
         "symfony/http-kernel": "^8.1"
     },
     "require-dev": {
-        "ibexa/code-style": "~2.0.0",
+        "ibexa/code-style": "~2.3.1",
         "ibexa/doctrine-migrations": "~6.0.x-dev",
         "ibexa/doctrine-schema": "~6.0.x-dev",
         "ibexa/phpstan": "~6.0.x-dev",

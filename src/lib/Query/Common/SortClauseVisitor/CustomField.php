@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Solr\Query\Common\SortClauseVisitor;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\Target\CustomFieldTarget;
 use Ibexa\Contracts\Solr\Query\SortClauseVisitor;
 
 final class CustomField extends SortClauseVisitor
@@ -20,7 +21,7 @@ final class CustomField extends SortClauseVisitor
 
     public function visit(SortClause $sortClause): string
     {
-        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\Target\CustomFieldTarget $targetData */
+        /** @var CustomFieldTarget $targetData */
         $targetData = $sortClause->targetData;
 
         return $targetData->fieldName . ' ' . $this->getDirection($sortClause);

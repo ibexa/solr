@@ -17,7 +17,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 final class StatsAggregationVisitorTest extends AbstractAggregationVisitorTestCase
 {
-    private AggregationFieldResolver&MockObject $aggregationFieldResolver;
+    private AggregationFieldResolver & MockObject $aggregationFieldResolver;
 
     #[\Override]
     protected function setUp(): void
@@ -38,7 +38,7 @@ final class StatsAggregationVisitorTest extends AbstractAggregationVisitorTestCa
 
     /**
      * @return iterable<string, array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     0: Aggregation,
      *     1: array{languages: string[]},
      *     2: bool
      * }>
@@ -60,7 +60,7 @@ final class StatsAggregationVisitorTest extends AbstractAggregationVisitorTestCa
 
     /**
      * @return iterable<array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\AbstractStatsAggregation,
+     *     0: AbstractStatsAggregation,
      *     1: array{languages: string[]},
      *     2: array{
      *         type: string,

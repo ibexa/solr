@@ -29,16 +29,19 @@ class BlockDocumentsContentFields extends ContentTranslationFieldMapper
         protected readonly FieldRegistry $fieldRegistry,
         protected readonly FieldNameGenerator $fieldNameGenerator,
         protected readonly BoostFactorProvider $boostFactorProvider
-    ) {
-    }
+    ) {}
 
-    public function accept(Content $content, string $languageCode): bool
-    {
+    public function accept(
+        Content $content,
+        string $languageCode
+    ): bool {
         return true;
     }
 
-    public function mapFields(Content $content, string $languageCode): array
-    {
+    public function mapFields(
+        Content $content,
+        string $languageCode
+    ): array {
         $fields = [];
         $contentType = $this->contentTypeHandler->load(
             $content->versionInfo->contentInfo->contentTypeId
@@ -89,7 +92,7 @@ class BlockDocumentsContentFields extends ContentTranslationFieldMapper
         ContentType $contentType,
         FieldDefinition $fieldDefinition,
         FieldType $fieldType
-    ): FieldType|TextField {
+    ): FieldType | TextField {
         if (!$fieldType instanceof TextField) {
             return $fieldType;
         }

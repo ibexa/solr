@@ -23,7 +23,7 @@ abstract class BaseCriterionVisitorTestCase extends TestCase
     /**
      * @return iterable<array{
      *     string,
-     *     \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion
+     *     Criterion
      * }>
      */
     abstract public static function provideDataForTestVisit(): iterable;

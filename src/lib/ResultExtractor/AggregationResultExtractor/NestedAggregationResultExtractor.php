@@ -18,16 +18,20 @@ final readonly class NestedAggregationResultExtractor implements AggregationResu
     public function __construct(
         private AggregationResultExtractor $innerResultExtractor,
         private string $nestedResultKey
-    ) {
-    }
+    ) {}
 
-    public function canVisit(Aggregation $aggregation, array $languageFilter): bool
-    {
+    public function canVisit(
+        Aggregation $aggregation,
+        array $languageFilter
+    ): bool {
         return $this->innerResultExtractor->canVisit($aggregation, $languageFilter);
     }
 
-    public function extract(Aggregation $aggregation, array $languageFilter, stdClass $data): AggregationResult
-    {
+    public function extract(
+        Aggregation $aggregation,
+        array $languageFilter,
+        stdClass $data
+    ): AggregationResult {
         return $this->innerResultExtractor->extract(
             $aggregation,
             $languageFilter,
