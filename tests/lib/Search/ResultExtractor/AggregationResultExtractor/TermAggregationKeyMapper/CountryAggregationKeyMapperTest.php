@@ -69,7 +69,7 @@ final class CountryAggregationKeyMapperTest extends TestCase
 
     /**
      * @return iterable<string, array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\CountryTermAggregation,
+     *     0: CountryTermAggregation,
      *     1: array{languageCode: string, useAlwaysAvailable: bool},
      *     2: list<string>,
      *     3: array<string, string>

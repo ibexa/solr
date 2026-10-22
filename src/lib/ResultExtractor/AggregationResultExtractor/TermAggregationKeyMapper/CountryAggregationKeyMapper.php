@@ -19,8 +19,7 @@ final readonly class CountryAggregationKeyMapper implements TermAggregationKeyMa
      */
     public function __construct(
         private array $countriesInfo
-    ) {
-    }
+    ) {}
 
     /**
      * @param CountryTermAggregation $aggregation

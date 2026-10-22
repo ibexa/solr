@@ -23,7 +23,7 @@ final class SubtreeTermAggregationVisitorTest extends AbstractAggregationVisitor
 
     /**
      * @return iterable<string, array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     0: Aggregation,
      *     1: array{languages: string[]},
      *     2: bool
      * }>
@@ -48,7 +48,7 @@ final class SubtreeTermAggregationVisitorTest extends AbstractAggregationVisitor
 
     /**
      * @return iterable<array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Location\SubtreeTermAggregation,
+     *     0: SubtreeTermAggregation,
      *     1: array{languages: string[]},
      *     2: array{
      *         type: string,

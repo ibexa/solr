@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Solr\Query\Image\CriterionVisitor;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Image\AbstractImageRangeCriterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\CriterionInterface;
 use Ibexa\Contracts\Solr\Query\CriterionVisitor;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
@@ -19,13 +20,12 @@ abstract class AbstractImageVisitor extends CriterionVisitor
     public function __construct(
         private readonly FieldNameResolver $fieldNameResolver,
         private readonly Type $imageFieldType
-    ) {
-    }
+    ) {}
 
     abstract protected function getSearchFieldName(): string;
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\Image\AbstractImageRangeCriterion $criterion
+     * @param AbstractImageRangeCriterion $criterion
      *
      * @return list<string>
      *

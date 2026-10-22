@@ -42,8 +42,7 @@ class Configuration implements ConfigurationInterface
 
     public function __construct(
         protected string $rootNodeName
-    ) {
-    }
+    ) {}
 
     /**
      * @phpstan-return TreeBuilder<'array'>

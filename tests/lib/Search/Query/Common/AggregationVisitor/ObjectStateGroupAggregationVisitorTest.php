@@ -22,7 +22,7 @@ final class ObjectStateGroupAggregationVisitorTest extends AbstractAggregationVi
 
     /**
      * @return iterable<string, array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation,
+     *     0: Aggregation,
      *     1: array{languages: string[]},
      *     2: bool
      * }>
@@ -44,7 +44,7 @@ final class ObjectStateGroupAggregationVisitorTest extends AbstractAggregationVi
 
     /**
      * @return iterable<string, array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ObjectStateTermAggregation,
+     *     0: ObjectStateTermAggregation,
      *     1: array{languages: string[]},
      *     2: array{
      *         type: string,

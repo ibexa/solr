@@ -54,8 +54,8 @@ final class UpdateSerializerFactoryTest extends TestCase
 
     /**
      * @return iterable<string, array{
-     *     0: array<\Ibexa\Solr\Gateway\UpdateSerializerInterface>,
-     *     1: \Ibexa\Solr\Gateway\UpdateSerializerInterface,
+     *     0: array<UpdateSerializerInterface>,
+     *     1: UpdateSerializerInterface,
      *     2: string
      * }>
      */

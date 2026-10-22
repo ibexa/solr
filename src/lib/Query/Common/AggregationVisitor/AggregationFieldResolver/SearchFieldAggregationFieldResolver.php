@@ -15,8 +15,7 @@ final readonly class SearchFieldAggregationFieldResolver implements AggregationF
 {
     public function __construct(
         private string $searchIndexFieldName
-    ) {
-    }
+    ) {}
 
     public function resolveTargetField(Aggregation $aggregation): string
     {

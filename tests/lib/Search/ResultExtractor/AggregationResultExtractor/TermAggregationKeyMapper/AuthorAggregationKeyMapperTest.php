@@ -22,7 +22,7 @@ final class AuthorAggregationKeyMapperTest extends TestCase
      *
      * @param array{languages: string[]} $languageFilter
      * @param list<string|int> $keys
-     * @param array<string, \Ibexa\Core\FieldType\Author\Author> $expectedResult
+     * @param array<string, Author> $expectedResult
      */
     public function testMap(
         Aggregation $aggregation,
@@ -44,10 +44,10 @@ final class AuthorAggregationKeyMapperTest extends TestCase
 
     /**
      * @return iterable<string, array{
-     *     0: \Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\Field\AuthorTermAggregation,
+     *     0: AuthorTermAggregation,
      *     1: array<string, mixed>,
      *     2: list<string>,
-     *     3: array<string, \Ibexa\Core\FieldType\Author\Author>
+     *     3: array<string, Author>
      * }>
      */
     public function dataProviderForTestMap(): iterable

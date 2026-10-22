@@ -18,8 +18,7 @@ final readonly class StatsAggregationResultExtractor implements AggregationResul
 {
     public function __construct(
         private string $aggregationClass
-    ) {
-    }
+    ) {}
 
     public function canVisit(
         Aggregation $aggregation,
