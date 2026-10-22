@@ -43,7 +43,7 @@ class CloudDistributionStrategyTest extends TestCase
     public function testGetSearchParameters(): void
     {
         $this->endpointResolver
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('getEndpoints')
             ->willReturn(['en', 'de', 'fr', 'pl']);
 
@@ -66,7 +66,7 @@ class CloudDistributionStrategyTest extends TestCase
         ];
 
         $this->endpointResolver
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('getSearchTargets')
             ->with($languagesSettings)
             ->willReturn(['en', 'pl']);

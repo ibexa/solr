@@ -38,7 +38,7 @@ final class NestedAggregationResultExtractorTest extends TestCase
         $aggregation = self::createStub(Aggregation::class);
 
         $this->innerResultExtractor
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('canVisit')
             ->with($aggregation, AggregationResultExtractorTestUtils::EXAMPLE_LANGUAGE_FILTER)
             ->willReturn(true);
@@ -61,7 +61,7 @@ final class NestedAggregationResultExtractorTest extends TestCase
         $aggregation = self::createStub(Aggregation::class);
 
         $this->innerResultExtractor
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('extract')
             ->with(
                 $aggregation,

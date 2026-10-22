@@ -39,7 +39,7 @@ class FullTextTest extends TestCase
             ->getMock();
 
         $fieldNameResolver
-            ->expects(self::any())
+            ->expects($this->any())
             ->method('getFieldTypes')
             ->with(
                 self::isInstanceOf(Criterion::class),

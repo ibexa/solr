@@ -107,7 +107,7 @@ final class UserMetadataAggregationKeyMapperTest extends TestCase
         }
 
         $this->userService
-            ->expects(self::any())
+            ->expects($this->any())
             ->method('loadUserGroup')
             ->willReturnCallback(static fn ($userGroupId): MockObject => $userGroups[$userGroupId] ?? throw new InvalidArgumentException('userGroupId', "Unexpected user group ID: $userGroupId"));
 

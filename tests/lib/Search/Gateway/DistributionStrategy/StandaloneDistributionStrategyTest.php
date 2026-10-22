@@ -35,7 +35,7 @@ class StandaloneDistributionStrategyTest extends TestCase
     public function testGetSearchTargets(): void
     {
         $this->endpointResolver
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('getEndpoints')
             ->willReturn(['A', 'B', 'C']);
 
@@ -58,7 +58,7 @@ class StandaloneDistributionStrategyTest extends TestCase
         ];
 
         $this->endpointResolver
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('getSearchTargets')
             ->with($languagesSettings)
             ->willReturn(['A', 'B']);
