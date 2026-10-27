@@ -1,4 +1,4 @@
-FROM alpine:3.18.5 as builder
+FROM alpine:3.18.5 AS builder
 RUN apk add --no-cache --upgrade bash curl
 RUN adduser --disabled-password user
 USER user
