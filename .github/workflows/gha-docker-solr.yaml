@@ -11,7 +11,8 @@ on:
         - cron: "45 21 3 * *"
 
 env:
-  IMAGE_NAME: ghcr.io/ibexa/core/solr
+  IMAGE_NAME: ghcr.io/ibexa/solr
+  IMAGE_TAG: "4.6"
 
 jobs:
     build-and-publish:
@@ -34,13 +35,13 @@ jobs:
                   fetch-depth: 0
 
             - name: Build Solr image
-              run: docker build -f docker/Dockerfile -t "$IMAGE_NAME:latest" .
+              run: docker build -f docker/Dockerfile -t "$IMAGE_NAME:$IMAGE_TAG" .
 
             - name: Start Solr image
               run: |
                 docker run --health-cmd "solr status" \
                 --health-interval 10s --health-timeout 5s --health-retries 10 \
-                -d -p 8983:8983 "$IMAGE_NAME:latest"
+                -d -p 8983:8983 "$IMAGE_NAME:$IMAGE_TAG"
 
             - uses: ibexa/gh-workflows/actions/composer-install@main
               with:
@@ -67,4 +68,4 @@ jobs:
 
             - name: Push image
               if: ${{ matrix.php-version == '8.4' }}
-              run: docker push "$IMAGE_NAME"
+              run: docker push "$IMAGE_NAME:$IMAGE_TAG"
