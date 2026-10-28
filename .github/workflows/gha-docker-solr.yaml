@@ -31,8 +31,6 @@ jobs:
                       --memory=60m
         steps:
             - uses: actions/checkout@v7
-              with:
-                  fetch-depth: 0
 
             - name: Build Solr image
               run: docker build -f docker/Dockerfile -t "$IMAGE_NAME:$IMAGE_TAG" .
