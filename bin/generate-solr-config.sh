@@ -47,8 +47,8 @@ realpath() {
 }
 
 
-EZ_SCRIPT=`realpath $0`
-EZ_BUNDLE_PATH="`dirname $EZ_SCRIPT`/.."
+IBEXA_SCRIPT=`realpath $0`
+IBEXA_BUNDLE_PATH="`dirname $IBEXA_SCRIPT`/.."
 
 ## Parse arguments
 for i in "$@"; do
@@ -102,7 +102,16 @@ if [ "$SOLR_INSTALL_DIR" == "" ]; then
     # If we were not provided an existing install directory we'll temporarily download a version of solr to generate config.
     GENERATE_SOLR_TMPDIR=`mktemp -d`
     echo "Downloading solr bundle:"
-    curl https://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/solr-${SOLR_VERSION}.tgz > $GENERATE_SOLR_TMPDIR/solr-${SOLR_VERSION}.tgz
+
+    # choose archive path based on SOLR version (> 9.0.0 uses solr/solr)
+    SOLR_MAJOR=$(echo "$SOLR_VERSION" | sed -E 's/^([0-9]+).*/\1/')
+    if [[ "$SOLR_MAJOR" =~ ^[0-9]+$ ]] && [ "$SOLR_MAJOR" -ge 9 ]; then
+      DOWNLOAD_BASE="https://archive.apache.org/dist/solr/solr"
+    else
+      DOWNLOAD_BASE="https://archive.apache.org/dist/lucene/solr"
+    fi
+
+    curl "${DOWNLOAD_BASE}/${SOLR_VERSION}/solr-${SOLR_VERSION}.tgz" > "${GENERATE_SOLR_TMPDIR}/solr-${SOLR_VERSION}.tgz"
 
     echo "Untaring"
     cd $GENERATE_SOLR_TMPDIR
@@ -113,12 +122,12 @@ if [ "$SOLR_INSTALL_DIR" == "" ]; then
 fi
 
 mkdir -p $DESTINATION_DIR
-cp -a ${EZ_BUNDLE_PATH}/src/lib/Resources/config/solr/* $DESTINATION_DIR
+cp -a ${IBEXA_BUNDLE_PATH}/src/lib/Resources/config/solr/* $DESTINATION_DIR
 cp ${SOLR_INSTALL_DIR}/server/solr/configsets/_default/conf/{solrconfig.xml,stopwords.txt,synonyms.txt} $DESTINATION_DIR
 
 if [[ ! $DESTINATION_DIR =~ ^\.platform ]]; then
 
-    if [[ "${SOLR_VERSION}" =~ ^9\. ]]; then
+    if [[ "$SOLR_MAJOR" =~ ^[0-9]+$ ]] && [ "$SOLR_MAJOR" -ge 9 ]; then
         cp -f ${SOLR_INSTALL_DIR}/server/solr/solr.xml $DESTINATION_DIR/../..
 
         URL_LIST="${ALLOW_URLS_CLI//,/ }"
@@ -147,7 +156,13 @@ fi
 
 # Adapt autoSoftCommit to have a recommended value, and remove add-unknown-fields-to-the-schema
 sed -i.bak '/<updateRequestProcessorChain name="add-unknown-fields-to-the-schema".*/,/<\/updateRequestProcessorChain>/d' $DESTINATION_DIR/solrconfig.xml
-sed -i.bak 's/${solr.autoSoftCommit.maxTime:-1}/${solr.autoSoftCommit.maxTime:20}/' $DESTINATION_DIR/solrconfig.xml
+
+if [[ "$SOLR_MAJOR" =~ ^[0-9]+$ ]] && [ "$SOLR_MAJOR" -ge 9 ]; then
+  sed -i.bak 's/${solr.autoSoftCommit.maxTime:3000}/${solr.autoSoftCommit.maxTime:20}/' $DESTINATION_DIR/solrconfig.xml
+else
+    sed -i.bak 's/${solr.autoSoftCommit.maxTime:-1}/${solr.autoSoftCommit.maxTime:20}/' $DESTINATION_DIR/solrconfig.xml
+fi
+
 # Configure spellcheck component
 sed -i.bak 's/<str name="field">_text_<\/str>/<str name="field">meta_content__text_t<\/str>/' $DESTINATION_DIR/solrconfig.xml
 # Add spellcheck component to /select handler
